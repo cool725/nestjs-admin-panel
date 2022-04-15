@@ -1,0 +1,127 @@
+<div class="">
+  <h2>Kapitalfluss</h2>
+
+  <div class="">
+    <div class="row col-12">
+      <div class="col-12 col-md-6">
+        <div class="card shadow">
+          <table class="table">
+            <tr>
+              <th colspan="100">
+                <p class="mt-2">Laufenden geschäftstätigkeiten</p>
+              </th>
+            </tr>
+            <ng-container
+              *ngIf="cf.revenueAndExpenses | async as revenuesAndExpenses"
+            >
+              <tr *ngFor="let revenue of revenuesAndExpenses.list">
+                <td>{{ revenue.title }}</td>
+                <td
+                  width="155px"
+                  align="right"
+                  class="text-end"
+                  [class.is-negativ]="revenue._invertet"
+                >
+                  {{ revenue.price || 0 | currency: 'CHF':'symbol':'2.2-2' }}
+                </td>
+              </tr>
+              <tr>
+                <th>Total</th>
+                <th
+                  width="155px"
+                  align="right"
+                  class="text-end"
+                  [class.is-negativ]="revenuesAndExpenses.total < 0"
+                >
+                  {{
+                    revenuesAndExpenses.total | currency: 'CHF':'symbol':'2.2-2'
+                  }}
+                </th>
+              </tr>
+            </ng-container>
+
+            <tr>
+              <th colspan="100">
+                <p class="mt-2">Investitionstätigkeiten</p>
+              </th>
+            </tr>
+            <ng-container
+              *ngIf="cf.investingActivities | async as investingActivities"
+            >
+              <tr *ngFor="let revenue of investingActivities.list">
+                <td>{{ revenue.title }}</td>
+                <td
+                  width="155px"
+                  align="right"
+                  class="text-end"
+                  [class.is-negativ]="revenue._invertet"
+                >
+                  {{ revenue.price || 0 | currency: 'CHF':'symbol':'2.2-2' }}
+                </td>
+              </tr>
+              <tr>
+                <th>Total</th>
+                <th
+                  width="155px"
+                  align="right"
+                  class="text-end"
+                  [class.is-negativ]="investingActivities.total < 0"
+                >
+                  {{
+                    investingActivities.total | currency: 'CHF':'symbol':'2.2-2'
+                  }}
+                </th>
+              </tr>
+            </ng-container>
+
+            <tr>
+              <th colspan="100">
+                <p class="mt-2">Finanzierungstätigkeit</p>
+              </th>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 d-none d-md-block">
+        <div class="card shadow">
+          <table class="table">
+            <tr>
+              <th colspan="100">
+                <p class="mt-2">Erfolgsrechnung</p>
+              </th>
+            </tr>
+            <ng-container
+              *ngIf="cf.profitLossStatement | async as profitLossStatement"
+            >
+              <tr *ngFor="let revenue of profitLossStatement.list">
+                <td>{{ revenue.title }}</td>
+                <td
+                  width="155px"
+                  align="right"
+                  class="text-end"
+                  [class.is-negativ]="revenue._invertet"
+                >
+                  {{ revenue.price || 0 | currency: 'CHF':'symbol':'2.2-2' }}
+                </td>
+              </tr>
+              <tr>
+                <th>Gewinn</th>
+                <th
+                  width="155px"
+                  align="right"
+                  class="text-end"
+                  [class.is-negativ]="profitLossStatement.total < 0"
+                >
+                  {{
+                    profitLossStatement.total | currency: 'CHF':'symbol':'2.2-2'
+                  }}
+                </th>
+              </tr>
+            </ng-container>
+          </table>
+        </div>
+      </div>
+      <div class="col-12 col-m-6"></div>
+    </div>
+  </div>
+</div>

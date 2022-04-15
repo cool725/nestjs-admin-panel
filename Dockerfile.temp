@@ -1,0 +1,16 @@
+FROM node:16.14-alpine3.14 AS development
+WORKDIR /usr/src/app/
+COPY dist/apps/api/ .
+COPY package.json .
+COPY scripts/package.slicer.js .
+RUN node package.slicer.js
+#RUN npm i --production --ignore-scripts
+RUN npm i --g nodemon
+RUN npm i reflect-metadata tslib
+
+FROM development AS business
+WORKDIR /usr/src/app
+COPY --from=development /usr/src/app/ ./
+ENV APP_ENV=production
+EXPOSE 3003
+CMD ["node","business/main.js"]

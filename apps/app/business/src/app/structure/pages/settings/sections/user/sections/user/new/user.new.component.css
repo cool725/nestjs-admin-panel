@@ -1,0 +1,13 @@
+.user-new--banner {
+  color: white;
+  background: #607d8b;
+  height: 150px;
+  display: flex;
+  align-items: center;
+}
+.pull-up {
+  margin-top: -25px;
+}
+.cursor-pointer {
+  cursor: pointer;
+}

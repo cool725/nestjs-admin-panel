@@ -1,0 +1,106 @@
+<div class="p-5">
+  <div class="col-12 card bg-white shadow p-3">
+    <div class="">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Beschreibung</label>
+            <input
+              id="desc"
+              class="form-control"
+              placeholder="name"
+              tabindex="1"
+            />
+          </div>
+        </div>
+        <ng-container *ngIf="accounts$ | async as accounts">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label>Soll</label>
+              <select class="form-control" id="debit-acc" tabindex="2">
+                <option
+                  *ngFor="let account of accounts"
+                  [value]="account.accountId"
+                >
+                  {{ account.code }} {{ account.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label>Haben</label>
+              <select class="form-control" id="credit-acc" tabindex="3">
+                <option
+                  *ngFor="let account of accounts"
+                  [value]="account.accountId"
+                >
+                  {{ account.code }} {{ account.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </ng-container>
+        <div class="col-md-2">
+          <div class="form-group d-block">
+            <label class="opacity-0 w-100">Total</label>
+            <input
+              id="total"
+              class="form-control"
+              type="number"
+              placeholder="0.00"
+              tabindex="4"
+            />
+          </div>
+        </div>
+        <div class="col-md-1">
+          <div class="form-group d-block">
+            <label class="opacity-0 w-100">.</label>
+            <a
+              id="submit"
+              class="btn btn-success"
+              tabindex="5"
+              (click)="createTransaction()"
+              >Senden</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Abgebucht</th>
+        <th>Leistungsdatum</th>
+        <th>Beschreibung</th>
+        <th>Soll</th>
+        <th>Haben</th>
+        <th>Betrag bto.</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let _transaction of transactions$ | async">
+      <td>
+        {{ _transaction.accDate }}
+      </td>
+      <td>
+        {{ _transaction.finDate }}
+      </td>
+      <td>
+        {{ _transaction.title }}
+      </td>
+      <td>
+        {{ _transaction.accountDebitName }}
+      </td>
+      <td>
+        {{ _transaction.accountCreditName }}
+      </td>
+      <td>
+        {{ _transaction.price || 0 | currency: 'CHF':'symbol':'2.2-2' }}
+      </td>
+    </tr>
+  </table>
+</div>

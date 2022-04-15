@@ -1,0 +1,44 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "strictPropertyInitialization": false,
+    "baseUrl": ".",
+    "paths": {
+      "@movit/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@movit/api/agenda": ["libs/api/agenda/src/index.ts"],
+      "@movit/api/app": ["libs/api/apps-role/src/app/index.ts"],
+      "@movit/api/apps": ["libs/api/apps/src/index.ts"],
+      "@movit/api/auth": ["libs/api/auth/src/index.ts"],
+      "@movit/api/business": ["libs/api/business/src/index.ts"],
+      "@movit/api/employee": ["libs/api/employee/src/index.ts"],
+      "@movit/api/extern": ["libs/api/third-party/src/index.ts"],
+      "@movit/api/finance/account": ["libs/api/finance/account/src/index.ts"],
+      "@movit/api/finance/report": ["libs/api/finance/report/src/index.ts"],
+      "@movit/api/finance/transaction": [
+        "libs/api/finance/transaction/index.ts"
+      ],
+      "@movit/api/middleware": ["libs/api/common/middleware/index.ts"],
+      "@movit/api/role": ["libs/api/apps-role/src/role/index.ts"],
+      "@movit/api/sales/item": ["libs/api/sales/item/src/index.ts"],
+      "@movit/api/third-party": ["libs/api/third-party/src/index.ts"],
+      "@movit/api/translation": ["libs/api/translation/src/index.ts"],
+      "@movit/api/utils": ["libs/api/common/utils/index.ts"],
+      "@movit/app/common": ["libs/app/common/index.ts"],
+      "@movit/app/decorators": ["libs/app/common/lib/decorators/index.ts"],
+      "@movit/app/ui": ["libs/app/ui/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp", "scripts", "docker"]
+}

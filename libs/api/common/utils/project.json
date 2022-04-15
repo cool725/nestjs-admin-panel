@@ -1,0 +1,15 @@
+{
+  "root": "libs/api/common/utils",
+  "sourceRoot": "libs/api/common/utils",
+  "projectType": "library",
+  "prefix": "utils",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api/common/utils/**/*.ts"]
+      }
+    }
+  }
+}

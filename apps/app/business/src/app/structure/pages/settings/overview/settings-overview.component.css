@@ -1,0 +1,4 @@
+.card a {
+  user-select: none;
+  cursor: pointer;
+}

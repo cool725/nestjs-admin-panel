@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/api/third-party",
+  "sourceRoot": "libs/api/third-party/src",
+  "prefix": "movit",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/third-party"],
+      "options": {
+        "jestConfig": "libs/api/third-party/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/api/third-party/src/**/*.ts",
+          "libs/api/third-party/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,13 @@
+<lib-header-nav-ui>
+  <div class="d-flex h-100">
+    <lib-header-clock-ui></lib-header-clock-ui>
+    <movit-layout-menu [menuItems$]="menuAPI.menu$"></movit-layout-menu>
+  </div>
+  <div class="start-comp-header-nav">
+    <div class="start-comp-header-nav--list">
+      <lib-header-avatar-ui
+        [menuItems]="profileMenuItems"
+      ></lib-header-avatar-ui>
+    </div>
+  </div>
+</lib-header-nav-ui>

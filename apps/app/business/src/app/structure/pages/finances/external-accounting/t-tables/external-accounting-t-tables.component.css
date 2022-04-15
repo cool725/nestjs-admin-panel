@@ -1,0 +1,26 @@
+table {
+  margin-bottom: 0;
+}
+
+.t-border-right {
+  border-right: solid 1px black;
+}
+.t-border-bottom {
+  border-bottom: solid 1px black;
+}
+.t-border-top {
+  border-top: solid 1px black;
+}
+
+.t-table-intern {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 85px;
+}
+.t-table-intern table {
+  margin-bottom: 0;
+}
+
+.text-right {
+  text-align: right;
+}

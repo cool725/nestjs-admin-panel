@@ -1,0 +1,13 @@
+:host {
+  height: 100%;
+}
+.ui-header {
+  &-clock {
+    height: 100%;
+    background: #000;
+    width: 62px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

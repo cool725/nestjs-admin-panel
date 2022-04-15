@@ -1,0 +1,41 @@
+.ui-header {
+  height: 42.99px;
+  background: white;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 0px;
+  padding-right: 10px;
+
+  &-nav {
+    height: 100%;
+    &--list {
+      display: flex;
+      height: 100%;
+      .nav-item {
+        color: #253858;
+      }
+      .active {
+        border-bottom: solid 3px #3d79de;
+      }
+    }
+  }
+
+  &-logo {
+    height: 100%;
+    background: #000;
+    width: 62px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &-menu {
+  }
+
+  &.shadow {
+    -webkit-box-shadow: 0px 2px 18px 1px rgb(0 0 0 / 18%);
+    -moz-box-shadow: 0px 2px 18px 1px rgba(0, 0, 0, 0.18);
+    box-shadow: 0px 2px 18px 1px rgb(0 0 0 / 18%);
+  }
+}

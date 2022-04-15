@@ -1,0 +1,389 @@
+<ng-template #topbar>
+  <h4 class="slide" style="padding-top: 8px; white-space: nowrap; cursor: initial; top: 0px">
+    Dienstleistungen
+  </h4>
+</ng-template>
+
+<div class="p-4">
+  <div class="container">
+    <div class="pb-4">
+      <div class="col-12 card bg-white shadow p-3">
+        <div class="">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="form-group">
+                <input
+                  [(ngModel)]="tableServices.filterValues.search"
+                  class="form-control"
+                  placeholder="Suchen"
+                  tabindex="1"
+                />
+              </div>
+            </div>
+            <div class="w-100">
+              <hr />
+            </div>
+            <div class="d-flex">
+              <a (click)="create('category')" class="btn btn-outline-primary">
+                Kategorie erstellen
+              </a>
+              <a (click)="create('service')" class="btn btn-outline-primary ms-2">
+                Dienstleistung erstellen
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- list -->
+    <div class="card shadow">
+      <table class="table mb-0 bg-white">
+        <thead>
+          <tr>
+            <td>Titel</td>
+            <td></td>
+            <td width="100px"></td>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="tableServices.data$ | async as tableData">
+            <tr *ngFor="let item of tableData.data">
+              <td>
+                {{ item.title }}
+              </td>
+              <td></td>
+              <td width="100px">
+                <a class="btn btn-primary" (click)="editService(item)">
+                  Bearbeiten
+                </a>
+              </td>
+              <td width="100px">
+                <a class="btn btn-danger" (click)="deleteService(item)">
+                  Löschen
+                </a>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Categories -->
+    <div class="row w-100 pt-4 mt-4" *ngIf="api.categories$ | async as categoryData">
+      <div class="col-12 col-md-3">
+        <label style="font-size: 16px;font-weight: 600">{{'category' | translate| titlecase}} </label>
+      </div>
+      <div class="col-12 col-md-3">
+        <div class="card">
+          <div class="card-header">
+            <label>{{'category' | translate | titlecase}}</label>
+          </div>
+          <div class="card-body" >
+            <table class="table cat-table"  >
+              <tbody >
+               <ng-container *ngFor="let category of categoryData.data">
+                <tr  [style.background]="category.color"
+                     (click)="tableCategories.filterValues._categoryId = category.categoryId">
+                  <td style="padding: 0">
+                    <small>{{category.order}}</small>
+                  </td>
+                  <td> {{category.title}}</td>
+                  <td width="10px" (click)="editCategory(category)"><a class="btn"> <i class="fa-solid fa-pen"></i></a></td>
+                  <td width="10px" (click)="deleteCategory(category);getCategories()"><a class="btn"><i class="fa-solid fa-trash"></i></a></td>
+                </tr>
+              </ng-container>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-3">
+        <div class="card">
+          <div class="card-header" >
+            <label>{{'subcategory' | translate:'tc'}}</label>
+            <select
+              style="width: 130px; padding-left: 20px; border: none; text-decoration: double underline; " [(ngModel)]="tableCategories.filterValues._categoryId" class="transparent">
+              <option value="" selected>{{'all' | translate}}</option>
+              <option *ngFor="let c of categoryData.data" [value]="c.categoryId">{{c.title}}</option>
+            </select>
+          </div>
+          <div class="card-body">
+            <table class="table"  >
+             <tbody>
+              <ng-container *ngFor="let category of categoryData.data">
+               <ng-container *ngIf="!tableCategories.filterValues._categoryId || category.categoryId == tableCategories.filterValues._categoryId">
+                 <ng-container *ngFor="let category of category.children">
+                   <tr [style.background]="category.color">
+                     <td>
+                       <small>{{category.order}}</small>
+                     </td>
+                     <td> {{category.title}}</td>
+                     <td width="10px" (click)="editCategory(category)"><a class=" btn"><i class="fa-solid fa-pen"></i></a></td>
+                     <td width="10px" (click)="deleteCategory(category);getCategories()"><a class="  btn"><i class="fa-solid fa-trash"></i></a></td>
+                   </tr>
+                 </ng-container>
+               </ng-container>
+             </ng-container>
+             </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-3">
+        <div class="card h-line">
+          <div class="card-header">
+            <label>{{'notset' | translate:'tc'}}</label>
+          </div>
+          <div class="card-body">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<lib-modal-ui *ngIf="api.item$ | async as service">
+  <div class="modal-header">
+    <select class="form-control bg-transparent">
+      <option>Einfach</option>
+      <option>Detailiert</option>
+    </select>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="modal-header-sub">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page"> Übersicht </a>
+      </li>
+    </ul>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label class="w-100 col-form-label"><b>Kategorien</b></label>
+      <nz-select *ngIf="api.categories$ | async as categoryData"
+        nzMode="multiple"
+        nzPlaceHolder="Please select"
+        class="w-100"
+        [(ngModel)]="service.categoriesIds"
+        [nzMaxTagCount]="3"
+        [nzMaxTagPlaceholder]="tagPlaceHolder">
+        <ng-container  *ngFor="let item of categoryData.data">
+          <ng-container [ngTemplateOutlet]="catList"
+                        [ngTemplateOutletContext]="{item:item}"></ng-container>
+        </ng-container>
+        <ng-template #catList let-item='item'>
+          <nz-option-group [nzLabel]="item.title">
+            <nz-option [nzValue]="item.categoryId" [nzLabel]="item.title"></nz-option>
+            <nz-option *ngFor="let item of item.children" [nzValue]="item.categoryId" [nzLabel]="item.title">
+              <ng-container *ngFor="let item of item.children"
+                            [ngTemplateOutlet]="catList"
+                            [ngTemplateOutletContext]="{item:item}"
+              ></ng-container>
+            </nz-option>
+          </nz-option-group>
+        </ng-template>
+      </nz-select>
+      <ng-template #tagPlaceHolder let-selectedList>
+        and {{ selectedList.length }} more selected
+      </ng-template>
+    </div>
+
+    <div class="form-group form-group-lang">
+      <label class="w-100 col-form-label">
+        <b>Titel</b>
+      </label>
+      <div class="lang_chooser_pills">
+        <nav class="nav nav-pills nav-fill fadeInDown">
+          <a
+            *ngFor="let l of language.languages"
+            class="nav-item nav-link animated fadeInDown {{
+              (service.label['title']['cLang'] || defaultLanguageId) ==
+              l.languageId
+                ? 'active'
+                : ''
+            }}"
+            (click)="service.changeLang(l.languageId, 'title')"
+          >
+            {{ l.name | uppercase }}
+          </a>
+        </nav>
+      </div>
+      <input
+        [(ngModel)]="
+          service.label['title'][
+            service.label['title']['cLang'] || defaultLanguageId
+          ]
+        "
+        type="text"
+        class="form-control"
+        placeholder="Title"
+        autocomplete="new-password"
+      />
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      (click)="deleteService(service)"
+      type="button"
+      class="btn btn-danger text-white"
+    >
+      Löschen
+    </button>
+    <button
+      (click)="cancelModal(api.item$)"
+      type="button"
+      class="btn btn-primary text-white"
+      data-bs-dismiss="modal"
+    >
+      Abbrechen
+    </button>
+    <button
+      (click)="service.itemId ? updateService(service) : saveService(service)"
+      type="button"
+      class="btn btn-success text-white"
+    >
+      Speichern
+    </button>
+  </div>
+</lib-modal-ui>
+
+<lib-modal-ui *ngIf="api.category$ | async as category">
+  <div class="modal-header">
+    <select class="form-control bg-transparent">
+      <option>Einfach</option>
+      <option>Detailiert</option>
+    </select>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="modal-header-sub">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page"> Übersicht </a>
+      </li>
+    </ul>
+  </div>
+  <div class="modal-body">
+    <div class="form-group form-group-lang">
+      <label class="w-100 col-form-label">
+        <b>Titel</b>
+      </label>
+      <div class="lang_chooser_pills">
+        <nav class="nav nav-pills nav-fill fadeInDown">
+          <a
+            *ngFor="let l of language.languages"
+            class="nav-item nav-link animated fadeInDown {{
+              (category.label['title']['cLang'] || defaultLanguageId) ==
+              l.languageId
+                ? 'active'
+                : ''
+            }}"
+            (click)="category.changeLang(l.languageId, 'title')"
+          >
+            {{ l.name | uppercase }}
+          </a>
+        </nav>
+      </div>
+      <input
+        [(ngModel)]="
+          category.label['title'][
+            category.label['title']['cLang'] || defaultLanguageId
+          ]
+        "
+        type="text"
+        class="form-control"
+        placeholder="Title"
+        autocomplete="new-password"
+      />
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-12 col-md-2">
+        <div class="form-group">
+          <label class="w-100 col-form-label full">
+            <b>Farbe</b>
+          </label>
+          <input [(ngModel)]="category.color"
+                 class="form-control" type="color">
+        </div>
+      </div>
+      <div class="col-12 col-md-10">
+        <div class="form-group">
+          <label class="w-100 col-form-label">
+            <b>Aktiviert</b>
+          </label>
+          <select [(ngModel)]="category.enabled" class="form-control">
+            <option value=1>Ja</option>
+            <option value=0>Nein</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mt-4">
+      <label class="w-100 col-form-label"><b>Ist die Unterkategorie von:</b></label>
+      <nz-select *ngIf="api.categories$ | async as categoryData"
+                 nzPlaceHolder="Please select"
+                 class="w-100"
+                 [(ngModel)]="category.parentCategoryId"
+                 [nzMaxTagPlaceholder]="tagPlaceHolder"
+
+      >
+        <ng-container  *ngFor="let item of categoryData.data">
+          <ng-container [ngTemplateOutlet]="catList"
+                        [ngTemplateOutletContext]="{item:item}"></ng-container>
+        </ng-container>
+        <ng-template #catList let-item='item'>
+          <nz-option-group [nzLabel]="item.title">
+            <nz-option [nzValue]="item.categoryId" [nzLabel]="item.title"></nz-option>
+            <nz-option *ngFor="let item of item.children" [nzValue]="item.categoryId" [nzLabel]="item.title">
+              <ng-container *ngFor="let item of item.children"
+                            [ngTemplateOutlet]="catList"
+                            [ngTemplateOutletContext]="{item:item}"
+              ></ng-container>
+            </nz-option>
+          </nz-option-group>
+        </ng-template>
+      </nz-select>
+      <ng-template #tagPlaceHolder let-selectedList>
+        and {{ selectedList.length }} more selected
+      </ng-template>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button *ngIf="category.categoryId"
+      (click)="deleteCategory(category)"
+      type="button"
+      class="btn btn-danger text-white"
+    >
+      Löschen
+    </button>
+    <button
+      (click)="cancelModal(api.category$)"
+      type="button"
+      class="btn btn-primary text-white"
+      data-bs-dismiss="modal"
+    >
+      Abbrechen
+    </button>
+    <button
+      (click)="category.categoryId ? updateCategory(category) : saveCategory(category)"
+      type="button"
+      class="btn btn-success text-white"
+    >
+      Speichern
+    </button>
+  </div>
+</lib-modal-ui>

@@ -1,0 +1,46 @@
+::ng-deep {
+  .modal {
+    z-index: 10;
+    .modal-header {
+      padding-top: 0;
+      padding-bottom: 0;
+      background: black;
+      color: white;
+      height: 30px;
+
+      select {
+        width: 80px;
+        background: transparent;
+        border: none;
+        color: white;
+        padding: 0;
+        padding-left: 5px;
+        option {
+          color: black;
+        }
+      }
+
+      &-sub {
+        position: relative;
+        background: rgb(109, 131, 147);
+        margin-top: -5px;
+        max-height: 30px;
+        height: 30px;
+        overflow: hidden;
+        ul,
+        li {
+          background-color: transparent !important;
+          cursor: pointer;
+          user-select: initial;
+        }
+        .nav-link,
+        a {
+          color: white;
+          padding-top: 2px;
+          padding-bottom: 2px;
+          background-color: transparent !important;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,82 @@
+<ng-template #topbar>
+  <h4
+    class="slide"
+    style="padding-top: 8px; white-space: nowrap; cursor: initial; top: 0px"
+  >
+    Berechtigungen
+  </h4>
+</ng-template>
+
+<div class="p-4">
+  <div class="container">
+    <div class="pb-4">
+      <div class="col-12 card bg-white shadow p-3">
+        <div class="">
+          <div class="row">
+            <div class="col-10">
+              <div class="form-group">
+                <input
+                  [(ngModel)]="rolesTable.filter.search"
+                  class="form-control"
+                  placeholder="Suchen"
+                  tabindex="1"
+                />
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="form-group">
+                <div class="d-none d-md-block">
+                  <a
+                    [routerLink]="basePath + '/settings/user/role/new'"
+                    class="btn btn-success text-white w-100"
+                    >Erstellen</a
+                  >
+                </div>
+                <div class="d-md-none">
+                  <a
+                    [routerLink]="basePath + '/settings/user/role/new'"
+                    class="btn btn-success text-white"
+                    >+</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card shadow">
+      <table class="table mb-0 bg-white">
+        <thead>
+          <tr>
+            <th>Rolle</th>
+            <th>Anz. Personen</th>
+            <th>Status</th>
+            <th class="text-right pe-2" align="right">
+              <a></a>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let role of rolesTable.values | async">
+            <tr *ngIf="rolesTable.canShow(role, ['title'])" class="entry-row">
+              <td>{{ role.title }}</td>
+              <td>{{ role.countUser || 0 }}</td>
+              <td>{{ role.state }}</td>
+              <td class="text-right pe-2" align="right">
+                <a
+                  [routerLink]="
+                    basePath + '/settings/user/role/edit/' + role.roleId
+                  "
+                  class="text-primary cursor-pointer"
+                  >Bearbeiten</a
+                >
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

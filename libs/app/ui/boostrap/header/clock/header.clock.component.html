@@ -1,0 +1,7 @@
+<div
+  [class.bg-black]="dark"
+  [class.text-white]="dark"
+  class="ui-header-clock text-center user-select-none"
+>
+  {{ (time$ | async) || time }}
+</div>

@@ -1,0 +1,21 @@
+<div class="dropdown h-100">
+  <button
+    class=""
+    type="button"
+    id="profile-menu"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    <div class="profile-avatar">
+      <img *ngIf="false" class="profile-avatar--img" src="" />
+      <div class="no-img">WD</div>
+    </div>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="profile-menu">
+    <li *ngFor="let item of menuItems">
+      <a class="dropdown-item" (click)="item.cb ? item.cb($event, item) : null"
+        >{{ item.title }}
+      </a>
+    </li>
+  </ul>
+</div>

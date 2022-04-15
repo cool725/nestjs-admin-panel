@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "projects": {
+    "api-app-role": "libs/api/apps-role",
+    "api-auth": "apps/api/auth",
+    "api-business": "apps/api/business",
+    "app-auth": "apps/app/auth",
+    "app-business": "apps/app/business",
+    "lib-api-auth": "libs/api/auth",
+    "lib-api-business": "libs/api/business",
+    "lib-api-middleware": "libs/api/common/middleware",
+    "lib-api-utils": "libs/api/common/utils",
+    "lib-app-class": "libs/app/common",
+    "lib-app-common": {
+      "root": "libs/app/common",
+      "sourceRoot": "libs/app/common",
+      "projectType": "library",
+      "prefix": "common",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/app/common/**/*.ts"]
+          }
+        }
+      }
+    },
+    "libs-employee": "libs/api/employee",
+    "libs-third-party": "libs/api/third-party",
+    "libs-translation": "libs/api/translation"
+  }
+}

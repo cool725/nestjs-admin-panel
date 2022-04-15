@@ -1,0 +1,101 @@
+{
+  "projectType": "application",
+  "root": "apps/app/auth",
+  "sourceRoot": "apps/app/auth/src",
+  "prefix": "movit",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/app/auth",
+        "index": "apps/app/auth/src/index.html",
+        "main": "apps/app/auth/src/main.ts",
+        "polyfills": "apps/app/auth/src/polyfills.ts",
+        "tsConfig": "apps/app/auth/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/app/auth/src/.htaccess",
+          "apps/app/auth/src/favicon.ico",
+          "apps/app/auth/src/assets"
+        ],
+        "styles": [
+          "apps/app/auth/src/styles.scss",
+          "apps/app/auth/src/assets/vendors/vNotify/vanilla-notify.css"
+        ],
+        "scripts": [
+          "apps/app/auth/src/assets/vendors/vNotify/vanilla-notify.min.js"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/app/auth/src/environments/environment.ts",
+              "with": "apps/app/auth/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "app-auth:build:production"
+        },
+        "development": {
+          "browserTarget": "app-auth:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {}
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "app-auth:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/app/auth/src/**/*.ts",
+          "apps/app/auth/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/app/auth"],
+      "options": {
+        "jestConfig": "apps/app/auth/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

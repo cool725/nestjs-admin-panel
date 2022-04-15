@@ -1,0 +1,53 @@
+version: '3.7'
+services:
+  movit-api-auth:
+    container_name: api-auth
+    image: movit-api
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: pm2-runtime start scripts/ecosystem.config.js --only api-auth
+    ports:
+      - 3001:3001
+    restart: unless-stopped
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - movit-mysql
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+  movit-api-business:
+    container_name: api-business
+    image: movit-api
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: pm2-runtime start scripts/ecosystem.config.js --only api-business
+    ports:
+      - 3003:3003
+    restart: unless-stopped
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - movit-mysql
+      - movit-api-auth
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+  movit-mysql:
+    container_name: mysql
+    image: mysql
+    restart: always
+    ports:
+      - '3307:3306'
+    environment:
+      MYSQL_ROOT_USER: movit
+      MYSQL_USER: movit
+      MYSQL_ROOT_PASSWORD: movit@sql123
+      MYSQL_PASSWORD: movit@sql123
+      MYSQL_DATABASE: movit
+    volumes:
+      - movitdb:/var/lib/mysql
+volumes:
+  movitdb:

@@ -1,0 +1,92 @@
+<ng-template #topbar>
+  <h4
+    class="slide"
+    style="padding-top: 8px; white-space: nowrap; cursor: initial; top: 0px"
+  >
+    Benutzer
+  </h4>
+</ng-template>
+
+<div class="p-4">
+  <div class="container">
+    <div class="pb-4">
+      <div class="col-12 card bg-white shadow p-3">
+        <div class="">
+          <div class="row">
+            <div class="col-12 col-md-8">
+              <div class="form-group">
+                <input
+                  [(ngModel)]="userTable.filter.search"
+                  class="form-control"
+                  placeholder="Suchen"
+                  tabindex="1"
+                />
+              </div>
+            </div>
+            <div class="col-6 col-md-2 mt-2 mt-md-0">
+              <div class="form-group">
+                <a
+                  [routerLink]="basePath + '/settings/user/invite'"
+                  class="btn btn-primary text-white w-100"
+                  >Einladen</a
+                >
+              </div>
+            </div>
+            <div class="col-6 col-md-2 mt-2 mt-md-0">
+              <div class="form-group">
+                <a
+                  [routerLink]="basePath + '/settings/user/new'"
+                  class="btn btn-success text-white w-100"
+                  >Erstellen</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card shadow">
+      <table class="table mb-0 bg-white">
+        <thead>
+          <tr>
+            <td width="70px"></td>
+            <th></th>
+            <th>Vorname</th>
+            <th>Nachname</th>
+            <th>Geburstag</th>
+            <th>Email</th>
+            <th>Telefon</th>
+            <th>Apps</th>
+            <th class="text-right pe-2" align="right">
+              <a></a>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let user of userTable.values | async">
+            <tr *ngIf="userTable.canShow(user)" class="entry-row">
+              <td width="70px">
+                <img width="50px" [src]="user.avatar" />
+              </td>
+              <td>{{ user.gender }}</td>
+              <td>{{ user.firstName }}</td>
+              <td>{{ user.lastName }}</td>
+              <td>{{ user.birthDay | date: 'dd.MM.yy' }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.phone }}</td>
+              <td>{{ user.total }}</td>
+
+              <td class="text-right pe-2" align="right">
+                <a
+                  [routerLink]="basePath + '/settings/user/edit/' + user.userId"
+                  class="text-primary cursor-pointer"
+                  >Bearbeiten</a
+                >
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

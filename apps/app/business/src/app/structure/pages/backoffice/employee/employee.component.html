@@ -1,0 +1,60 @@
+<ng-template #topbar>
+  <h4
+    class="slide"
+    style="padding-top: 8px; white-space: nowrap; cursor: initial; top: 0px"
+  >
+    {{
+      "employee" | translate
+    }}
+  </h4>
+</ng-template>
+
+<div class="p-4">
+  <div class="container">
+    <div class="pb-4"></div>
+    <div class="card shadow">
+      <table class="table mb-0 bg-white">
+        <thead>
+          <tr>
+            <td width="70px"></td>
+            <th></th>
+            <th>Vorname</th>
+            <th>Nachname</th>
+            <th>Geburstag</th>
+            <th>Email</th>
+            <th>Telefon</th>
+
+            <th class="text-right pe-2" align="right">
+              <a></a>
+            </th>
+          </tr>
+        </thead>
+        <tbody *ngIf="tableEmployees.data$ | async as employeeData">
+          <ng-container *ngFor="let employee of employeeData.data">
+            <tr *ngIf="tableEmployees.canShow(employee)" class="entry-row">
+              <td width="70px">
+                <img width="50px" [src]="employee.avatar" />
+              </td>
+              <td>{{ employee.gender }}</td>
+              <td>{{ employee.firstName }}</td>
+              <td>{{ employee.lastName }}</td>
+              <td>{{ employee.birthDay | date: 'dd.MM.yy' }}</td>
+              <td>{{ employee.email }}</td>
+              <td>{{ employee.phone }}</td>
+
+              <td class="text-right pe-2" align="right">
+                <a
+                  [routerLink]="
+                    basePath + '/settings/employee/edit/' + employee.employeeId
+                  "
+                  class="text-primary cursor-pointer"
+                  >Bearbeiten</a
+                >
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

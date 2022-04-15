@@ -1,0 +1,212 @@
+<div class="role--banner">
+  <div class="container">
+    <h1>Berechtigungen</h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card shadow pull-up">
+    <div *ngIf="role$ | async as role" class="p-2">
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button
+            class="nav-link active"
+            id="nav-home-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#nav-home"
+            type="button"
+            role="tab"
+            aria-controls="nav-home"
+            aria-selected="true"
+          >
+            Allgemein
+          </button>
+          <button
+            class="nav-link"
+            id="nav-profile-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#nav-profile"
+            type="button"
+            role="tab"
+            aria-controls="nav-profile"
+            aria-selected="false"
+          >
+            Benutzer
+          </button>
+          <button
+            class="nav-link"
+            id="nav-profile-apps"
+            data-bs-toggle="tab"
+            data-bs-target="#nav-apps"
+            type="button"
+            role="tab"
+            aria-controls="nav-apps"
+            aria-selected="false"
+          >
+            Apps
+          </button>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div
+          class="tab-pane fade show active"
+          id="nav-home"
+          role="tabpanel"
+          aria-labelledby="nav-home-tab"
+        >
+          <table class="table mt-2">
+            <thead>
+              <tr>
+                <td>
+                  <h6>Einstellung für diese Berechtigung</h6>
+                </td>
+              </tr>
+            </thead>
+          </table>
+
+          <div class="row p-2 pt-0">
+            <div class="col-12">
+              <div class="form-group">
+                <label>Bezeichnung</label>
+                <input
+                  #title="ngModel"
+                  [(ngModel)]="role.title"
+                  name="title"
+                  class="form-control"
+                  required
+                />
+                <div
+                  [hidden]="title.valid || title.pristine"
+                  class="alert alert-danger"
+                >
+                  Title is required
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group mt-2">
+                <label>Status</label>
+                <select
+                  #state="ngModel"
+                  [(ngModel)]="role.state"
+                  name="state"
+                  class="form-control"
+                >
+                  <option value="1">Aktiv</option>
+                  <option value="0">Inaktiv</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <br />
+        </div>
+        <div
+          class="tab-pane fade"
+          id="nav-profile"
+          role="tabpanel"
+          aria-labelledby="nav-profile-tab"
+        >
+          <table class="table mt-1" *ngIf="users$ | async as users">
+            <thead>
+              <tr>
+                <td>
+                  <h6>Benutzer</h6>
+                </td>
+                <td
+                  align="right"
+                  (click)="toggleAllUsers(users)"
+                  class="cursor-pointer text-right"
+                >
+                  Aktiv
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td colspan="2">
+                  <label class="w-100">
+                    <div
+                      style="
+                        display: flex;
+                        justify-content: space-between;
+                        width: 100%;
+                      "
+                    >
+                      <a>{{ user.firstName }} {{ user.lastName }}</a>
+                      <div>
+                        <input
+                          type="checkbox"
+                          [(ngModel)]="selectedUsers[user.userId]"
+                          [checked]="selectedUsers[user.userId] === true"
+                        />
+                        <span class="vb__utils__control__indicator"></span>
+                      </div>
+                    </div>
+                  </label>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="nav-apps"
+          role="tabpanel"
+          aria-labelledby="nav-apps-tab"
+        >
+          <table class="table mt-1">
+            <thead>
+              <tr>
+                <td>
+                  <h6>App</h6>
+                </td>
+                <td align="right" class="cursor-pointer text-right">Rechte</td>
+              </tr>
+            </thead>
+            <tbody *ngIf="apps$ | async as apps">
+              <ng-container *ngFor="let app of apps">
+                <tr [class.bg-light-red]="!selectedApps[app.appId]">
+                  <td class="pb-0">
+                    <p class="m-0">{{ app.title }}</p>
+                    <small class="w-100">{{ app.categoryName }}</small>
+                  </td>
+                  <td class="pb-0" align="right">
+                    <select
+                      [(ngModel)]="selectedApps[app.appId]"
+                      dir="rtl"
+                      style="max-width: 200px; line-height: 15px"
+                      class="form-control border-0 pt-1 pb-0"
+                    >
+                      <option value="" selected>Keine Rechte</option>
+                      <option value="read">Lesen</option>
+                      <option value="write">Lesen/Schreiben</option>
+                      <option value="delete">Lesen/Schreiben/Löschen</option>
+                      <option value="root">Root</option>
+                    </select>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer ps-0">
+        <a
+          *ngIf="title.valid"
+          class="btn btn-success text-white"
+          (click)="save(role)"
+        >
+          Speichern
+        </a>
+        <a
+          *ngIf="role.roleId"
+          class="btn btn-danger ms-1"
+          (click)="deleteRole(role.roleId)"
+        >
+          Löschen
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

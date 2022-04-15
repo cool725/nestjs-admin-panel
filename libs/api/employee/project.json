@@ -1,0 +1,22 @@
+{
+  "root": "libs/api/employee",
+  "sourceRoot": "libs/api/employee/src",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api/employee/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/employee"],
+      "options": {
+        "jestConfig": "libs/api/employee/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

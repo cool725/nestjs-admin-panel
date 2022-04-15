@@ -1,0 +1,10 @@
+<div class="main-layout">
+  <layout-comp-header></layout-comp-header>
+  <ui-topbar></ui-topbar>
+  <div>
+    <div [@fadein]="getRouterOutletState(outlet)">
+      <router-outlet #outlet="outlet"></router-outlet>
+    </div>
+  </div>
+  <layout-comp-footer></layout-comp-footer>
+</div>

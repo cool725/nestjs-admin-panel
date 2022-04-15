@@ -1,0 +1,64 @@
+<div class="user-new--banner">
+  <div class="container">
+    <h1>Benutzer einladen</h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card shadow pull-up">
+    <div class="p-4">
+      <div class="w-100">
+        <h4>Send Email invites</h4>
+      </div>
+      <div class="w-100 row">
+        <div class="col-8 col-xl-10">
+          <input
+            #email
+            class="form-control"
+            placeholder="Email"
+            (keydown.enter)="inviteUser(email.value)"
+          />
+        </div>
+        <div class="col-4 col-xl-2">
+          <a
+            (click)="inviteUser(email.value)"
+            class="btn btn-success text-white w-100"
+            >Einladung senden</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="p-4">
+      <div class="w-100">
+        <h6>Einladungsübersicht</h6>
+      </div>
+      <div class="w-100">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Status</th>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let user of inventionUsers$ | async">
+              <tr>
+                <td>{{ user.email }}</td>
+                <td>{{ user.state ? user.state : 'Offen' }}</td>
+                <td></td>
+                <td>Erneut einladen</td>
+                <td (click)="deleteInviteUser(user.email)">
+                  <a class="cursor-pointer">Einladung löschen</a>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

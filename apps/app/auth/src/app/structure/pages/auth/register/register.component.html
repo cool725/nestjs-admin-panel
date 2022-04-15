@@ -1,0 +1,151 @@
+<div>
+  <h3 class="page__auth-title">Bereit zum starten?</h3>
+  <h5>
+    Testen Sie MovIT kostenlos und entdecken Sie die Tools und Services, die Sie
+    für den Betrieb und das Wachstum Ihres Unternehmens benötigen.
+  </h5>
+</div>
+<form class="col-12 m-0" [formGroup]="registerForm">
+  <div class="row">
+    <div class="mb-3 col-12">
+      <label for="gender" class="form-label">Geschlecht</label>
+      <select
+        formControlName="gender"
+        type="gender"
+        class="form-control"
+        id="gender"
+        aria-describedby="genderHelp">
+        <option value="M">Mänlich</option>
+        <option value="W">Weiblich</option>
+        <option value="O">Keine Angaben</option>
+      </select>
+    </div>
+    <div class="mb-3 col-12 col-md-6">
+      <label for="fistName" class="form-label">Vorname</label>
+      <input
+        required
+        formControlName="fistName"
+        type="text"
+        class="form-control"
+        id="fistName"
+      />
+      <div
+        *ngIf="
+          registerForm.controls['fistName']?.invalid &&
+          (registerForm.controls['fistName']?.dirty ||
+            registerForm.controls['fistName'].touched)
+        "
+        class="text-danger"
+      >
+        <div *ngIf="registerForm.controls['fistName']?.errors['required']">
+          Wert ungültig
+        </div>
+      </div>
+    </div>
+    <div class="mb-3 col-12 col-md-6">
+      <label for="lastName" class="form-label">Nachname</label>
+      <input
+        required
+        formControlName="lastName"
+        type="text"
+        class="form-control"
+        id="lastName"
+      />
+      <div
+        *ngIf="
+          registerForm.controls['lastName']?.invalid &&
+          (registerForm.controls['lastName']?.dirty ||
+            registerForm.controls['lastName'].touched)
+        "
+        class="text-danger"
+      >
+        <div *ngIf="registerForm.controls['lastName']?.errors['required']">
+          Wert ungültig
+        </div>
+      </div>
+    </div>
+    <div class="mb-3 col-12 col-md-12">
+      <label for="email" class="form-label">Email</label>
+      <input
+        required
+        formControlName="email"
+        type="text"
+        class="form-control"
+        id="email"
+      />
+
+      <div
+        *ngIf="
+          registerForm.controls['email']?.invalid &&
+          (registerForm.controls['email']?.dirty ||
+            registerForm.controls['email']?.touched)
+        "
+        class="text-danger"
+      >
+        <div *ngIf="registerForm.controls['email']?.errors['required']">
+          Email ungültig
+        </div>
+        <div *ngIf="registerForm.controls['email']?.errors['mail_exists']">
+          Email bereits registriert
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Passwort</label>
+      <input
+        required
+        formControlName="password"
+        type="password"
+        class="form-control"
+        id="password"
+      />
+      <div
+        *ngIf="
+          registerForm.controls['password']?.invalid &&
+          registerForm.controls['password']?.dirty
+        "
+        class="text-danger"
+      >
+        <div>Passwort ungültig</div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="passwordConfirm" class="form-label"
+        >Passwort wiederholen</label
+      >
+      <input
+        required
+        formControlName="passwordConfirm"
+        type="password"
+        class="form-control"
+        id="passwordConfirm"
+      />
+      <div
+        *ngIf="
+          registerForm.controls['passwordConfirm']?.invalid &&
+          registerForm.controls['password']?.valid &&
+          registerForm.controls['passwordConfirm']?.dirty
+        "
+        class="text-danger"
+      >
+        <div>Passwort nicht identisch</div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between">
+    <div class="form-group w-50 page__auth-login text-start">
+      <ng-container>
+        <small [routerLink]="'/auth/forgot'">
+          {{ 'forgot_password' | translate }}</small
+        >
+        <small>{{ '' }}</small>
+      </ng-container>
+    </div>
+    <div class="form-group w-50 page__auth-reset text-end">
+      <small [routerLink]="'/auth/login-business'">Anmelden</small>
+    </div>
+  </div>
+  <div class="form-group pt-4">
+    <a class="btn btn-block btn-yellow" (click)="submit()"> Join Synerma! </a>
+  </div>
+</form>

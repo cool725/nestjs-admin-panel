@@ -1,0 +1,26 @@
+<div>
+  <div nz-dropdown nzTrigger="click" class="dropdown" [nzDropdownMenu]="menu">
+    <span [style.color]="user.user.menuColorTxt" class="text-uppercase">{{
+      lang.currentLang
+    }}</span>
+  </div>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul [style.background]="user.user.menuColor" nz-menu>
+      <ng-container *ngFor="let _lang of languages">
+        <li
+          *ngIf="lang.isValid(_lang.lang, true)"
+          [style.color]="user.user.menuColorTxt"
+          nz-menu-item
+          [attr.data-key]="_lang.lang | lowercase"
+          [attr.data-val]="_lang.languageId"
+          (click)="changeLanguage(_lang.lang, _lang.languageId)"
+        >
+          <span class="text-uppercase font-size-12 mr-2">{{
+            _lang.lang | titlecase
+          }}</span>
+          {{ _lang.langKey | translate: 'tc' }}
+        </li>
+      </ng-container>
+    </ul>
+  </nz-dropdown-menu>
+</div>

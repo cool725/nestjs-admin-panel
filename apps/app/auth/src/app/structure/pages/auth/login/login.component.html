@@ -1,0 +1,95 @@
+<div>
+  <h3 class="page__auth-title">Login</h3>
+  <h5></h5>
+</div>
+<form [formGroup]="loginForm" [class.d-none]="companies.length">
+  <div>
+    <div class="mb-4">
+      <label for="email" class="form-label">E-Mail</label>
+      <input
+        formControlName="email"
+        type="email"
+        class="form-control"
+        required
+        id="email"
+        aria-describedby="emailHelp"
+      />
+      <div
+        *ngIf="
+          loginForm.controls['email']?.invalid &&
+          (loginForm.controls['email']?.dirty ||
+            loginForm.controls['email'].touched)
+        "
+        class="text-danger pt-1"
+      >
+        <div
+          *ngIf="
+            loginForm.controls['email'].value &&
+            loginForm.controls['email'].value.includes('.') &&
+            loginForm.controls['email'].value.includes('@')
+          "
+        >
+          Email ungültig
+        </div>
+      </div>
+    </div>
+    <div class="mb-2">
+      <label for="password" class="form-label">Passwort</label>
+      <input
+        (keydown.enter)="submit()"
+        formControlName="password"
+        type="password"
+        class="form-control"
+        id="password"
+      />
+    </div>
+  </div>
+
+  <hr style="opacity: 0" />
+  <div class="d-flex justify-content-between">
+    <div class="form-group w-50 page__auth-reset text-start">
+      <small [routerLink]="'/auth/forgot'">
+        {{ 'forgot_password' | translate }}
+      </small>
+    </div>
+    <div *ngIf="false" class="form-group w-50 page__auth-reset text-end pe-1">
+      <small [routerLink]="'signup'" [innerHTML]="'register' | translate">
+      </small>
+    </div>
+  </div>
+  <div class="form-group mt-5" [style.opacity]="this.loginForm.valid ? 1 : 0.8">
+    <a
+      (click)="submit()"
+      class="btn btn-block btn-yellow"
+      [innerHTML]="'sign_in' | translate"
+    >
+    </a>
+  </div>
+
+  <hr style="opacity: 0.3" class="d-none" />
+  <div
+    style="opacity: 0.8"
+    class="form-group text-center page__auth-register pt-4"
+  ></div>
+</form>
+<ng-container *ngIf="companies">
+  <div
+    *ngFor="let item of companies"
+    class="list-item list-item-style"
+    [routerLink]="item.path"
+  >
+    <section (click)="signInToCompany(item)">
+      <a>
+        {{ item.title || item.titleFull }}
+      </a>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+      >
+        <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
+      </svg>
+    </section>
+  </div>
+</ng-container>

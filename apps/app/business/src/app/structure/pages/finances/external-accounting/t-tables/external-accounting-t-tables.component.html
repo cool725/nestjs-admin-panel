@@ -1,0 +1,177 @@
+<div class="row w-100 m-0 justify-content-md-between">
+  <div class="col-12 col-md-6">
+    <div class="col-12">
+      <h2>Aktivkonto</h2>
+      <hr />
+    </div>
+
+    <div class="row w-100">
+      <ng-container *ngFor="let account of (tAccounts$ | async)?.debits">
+        <div class="col-12 col-md-6 mb-4">
+          <div class="card shadow">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th [title]="account.accountId" colspan="2" align="center">
+                    {{ account.code }} - {{ account.name }}
+                  </th>
+                </tr>
+              </thead>
+              <tr>
+                <td class="t-border-right" width="50%">
+                  <div class="t-table-intern">
+                    <div class="text-center pb-1">Aktiven</div>
+                    <table class="table">
+                      <ng-container
+                        *ngFor="let transaction of account.transactions.debits"
+                      >
+                        <tr class="t-border-bottom">
+                          <td align="left">{{ transaction.title }}</td>
+                          <td align="right" class="text-right">
+                            {{
+                              transaction.price
+                                | currency: 'CHF':'symbol':'2.2-2'
+                            }}
+                          </td>
+                        </tr>
+                      </ng-container>
+                      <ng-container *ngIf="account.transactions.debits.length">
+                        <tr>
+                          <th width="50%">Total</th>
+                          <th align="right" class="text-right">
+                            {{
+                              account.debitTotal || 0
+                                | currency: 'CHF':'symbol':'2.2-2'
+                            }}
+                          </th>
+                        </tr>
+                      </ng-container>
+                    </table>
+                  </div>
+                </td>
+                <td>
+                  <div class="t-table-intern">
+                    <div class="text-center pb-1">Passiven</div>
+                    <table class="table">
+                      <ng-container
+                        *ngFor="let transaction of account.transactions.credits"
+                      >
+                        <tr class="">
+                          <td align="left">{{ transaction.title }}</td>
+                          <td align="right" class="text-right">
+                            {{
+                              transaction.price
+                                | currency: 'CHF':'symbol':'2.2-2'
+                            }}
+                          </td>
+                        </tr>
+                      </ng-container>
+                      <ng-container *ngIf="account.transactions.credits.length">
+                        <tr class="t-border-top">
+                          <th width="50%">Summe</th>
+                          <th align="right" class="text-right">
+                            {{
+                              account.creditTotal || 0
+                                | currency: 'CHF':'symbol':'2.2-2'
+                            }}
+                          </th>
+                        </tr>
+                      </ng-container>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="col-12 col-md-6">
+    <div class="col-12">
+      <h2>Passivkonto</h2>
+      <hr />
+    </div>
+    <div class="row w-100">
+      <ng-container *ngFor="let account of (tAccounts$ | async)?.credits">
+        <div class="col-12 col-md-6 mb-4">
+          <div class="card shadow">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th [title]="account.accountId" colspan="2" align="center">
+                    {{ account.code }} - {{ account.name }}
+                  </th>
+                </tr>
+              </thead>
+              <tr>
+                <td class="t-border-right" width="50%">
+                  <div class="t-table-intern">
+                    <div class="text-center pb-1">Aktiven</div>
+                    <table class="table">
+                      <ng-container
+                        *ngFor="let transaction of account.transactions.debits"
+                      >
+                        <tr class="t-border-bottom">
+                          <td align="left">{{ transaction.title }}</td>
+                          <td align="right" class="text-right">
+                            {{
+                              transaction.price
+                                | currency: 'CHF':'symbol':'2.2-2'
+                            }}
+                          </td>
+                        </tr>
+                      </ng-container>
+                      <ng-container *ngIf="account.transactions.debits.length">
+                        <tr>
+                          <th width="50%">Summe</th>
+                          <th align="right" class="text-right">
+                            {{
+                              account.debitTotal || 0
+                                | currency: 'CHF':'symbol':'2.2-2'
+                            }}
+                          </th>
+                        </tr>
+                      </ng-container>
+                    </table>
+                  </div>
+                </td>
+                <td>
+                  <div class="t-table-intern">
+                    <div class="text-center pb-1">Passiven</div>
+                    <table class="table">
+                      <ng-container
+                        *ngFor="let transaction of account.transactions.credits"
+                      >
+                        <tr class="">
+                          <td align="left">{{ transaction.title }}</td>
+                          <td align="right" class="text-right">
+                            {{
+                              transaction.price
+                                | currency: 'CHF':'symbol':'2.2-2'
+                            }}
+                          </td>
+                        </tr>
+                      </ng-container>
+                      <ng-container *ngIf="account.transactions.credits.length">
+                        <tr class="t-border-top">
+                          <th width="50%">Total</th>
+                          <th align="right" class="text-right">
+                            {{
+                              account.creditTotal || 0
+                                | currency: 'CHF':'symbol':'2.2-2'
+                            }}
+                          </th>
+                        </tr>
+                      </ng-container>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

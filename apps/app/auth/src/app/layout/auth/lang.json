@@ -1,0 +1,23 @@
+{
+  "de": {
+    "forgot_password": "Passwort vergessen?",
+    "password": "Passwort",
+    "sign_in": "Anmelden",
+    "entry_not_valid": "Angaben sind nicht korrekt.",
+    "email": "E-mail",
+    "help": "Hilfe",
+    "privacy": "Datenschutz",
+    "terms_of_service": " Allgemeine Geschäftsbedingungen",
+    "register": "Neu bei MovIT? <a>Werde ein Teil des Moves!</a>",
+    "email_invalid": "Diese E-mail ist ungültig",
+    "length_invalid": "Passwort zu einfach",
+    "already_account": "Bereits ein Konto?",
+    "mail_exists": "Email ist bereits registriert.",
+    "gender": "Geschlecht",
+    "firstname": "Vorname",
+    "lastname": "Nachname",
+    "birthday": "Geburstag",
+    "reset": "Zurücksetzten",
+    "account_recovery": "Kontowiederherstellung"
+  }
+}

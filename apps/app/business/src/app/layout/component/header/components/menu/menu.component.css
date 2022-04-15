@@ -1,0 +1,59 @@
+/* ============ desktop view ============ */
+@media all and (min-width: 690px) {
+  .navbar-nav {
+    min-width: 500px;
+    display: block;
+  }
+  .navbar-nav > li {
+    display: inline-block;
+    max-width: 150px;
+    cursor: pointer;
+    padding-left: 20px;
+  }
+  .navbar-nav li a {
+    user-select: none;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .dropdown-menu li {
+    position: relative;
+  }
+  .dropdown-menu .submenu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: -7px;
+  }
+  .dropdown-menu .submenu-left {
+    right: 100%;
+    left: auto;
+  }
+
+  .dropdown-menu > li:hover {
+    background-color: #f1f1f1;
+  }
+  .dropdown-menu > li:hover > .submenu {
+    display: block;
+  }
+}
+/* ============ desktop view .end// ============ */
+
+/* ============ small devices ============ */
+@media (max-width: 690px) {
+  .dropdown-menu .dropdown-menu {
+    margin-left: 0.7rem;
+    margin-right: 0.7rem;
+    margin-bottom: 0.5rem;
+  }
+}
+/* ============ small devices .end// ============ */
+
+.dropdown-toggle:after {
+  display: none;
+}
+
+li a {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px;
+  line-height: 27px;
+}

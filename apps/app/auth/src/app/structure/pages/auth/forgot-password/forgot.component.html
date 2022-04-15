@@ -1,0 +1,104 @@
+<div>
+  <h3 class="page__auth-title">
+    {{ formContainer.title | translate }}
+  </h3>
+  <p>
+    {{ formContainer.mainText | translate }}
+  </p>
+</div>
+
+<form
+  *ngIf="viewSettings.visible"
+  class="col-12 m-0"
+  [formGroup]="formContainer.form"
+>
+  <div class="row">
+    <div class="mb-3 col-12 col-md-12">
+      <label for="email" class="form-label">Email</label>
+      <input
+        required
+        formControlName="email"
+        type="text"
+        class="form-control"
+        id="email"
+      />
+
+      <div
+        *ngIf="
+          formContainer.form.controls['email']?.invalid &&
+          (formContainer.form.controls['email']?.dirty ||
+            formContainer.form.controls['email']?.touched)
+        "
+        class="text-danger"
+      >
+        <div *ngIf="formContainer.form.controls['email']?.errors['required']">
+          Email ungültig
+        </div>
+        <div
+          *ngIf="formContainer.form.controls['email']?.errors['mail_exists']"
+        >
+          Email bereits registriert
+        </div>
+      </div>
+    </div>
+    <div *ngIf="viewSettings.section.idx === 3" class="mb-3">
+      <label for="password" class="form-label">Passwort</label>
+      <input
+        required
+        formControlName="password"
+        type="password"
+        class="form-control"
+        id="password"
+      />
+      <div
+        *ngIf="
+          formContainer.form.controls['password']?.invalid &&
+          formContainer.form.controls['password']?.dirty
+        "
+        class="text-danger"
+      >
+        <div>Passwort ungültig</div>
+      </div>
+    </div>
+    <div *ngIf="viewSettings.section.idx === 3" class="mb-3">
+      <label for="passwordConfirm" class="form-label"
+        >Passwort wiederholen</label
+      >
+      <input
+        required
+        formControlName="passwordConfirm"
+        type="password"
+        class="form-control"
+        id="passwordConfirm"
+      />
+      <div
+        *ngIf="
+          formContainer.form.controls['passwordConfirm']?.invalid &&
+          formContainer.form.controls['password']?.valid &&
+          formContainer.form.controls['passwordConfirm']?.dirty
+        "
+        class="text-danger"
+      >
+        <div>Passwort nicht identisch</div>
+      </div>
+    </div>
+  </div>
+  <hr style="opacity: 0" />
+  <div class="d-flex justify-content-between">
+    <div class="form-group w-50 page__auth-error text-start">
+      <small> <!-- ERROR Message --></small>
+    </div>
+    <div class="form-group w-50 page__auth-login text-end">
+      <small [routerLink]="'/auth/login-business'">Login</small>
+    </div>
+  </div>
+  <div class="form-group">
+    <a
+      class="btn btn-block btn-yellow"
+      *ngIf="viewSettings.section.idx !== 2"
+      (click)="submit({ section: viewSettings.section.idx })"
+    >
+      {{ formContainer.submitText | translate }}
+    </a>
+  </div>
+</form>

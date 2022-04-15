@@ -1,0 +1,29 @@
+<div class="page__auth">
+  <div class="page__auth-bg" style="">
+    <img src="assets/bg.jpg" />
+  </div>
+  <div
+    class="animated fade-in page__auth-card page-{{
+      pageName
+    }} shadow bg-white custom-scroll-bar"
+  >
+    <div class="page__auth-img logo">
+      <img src="https://mymovit.com/assets/img/logo/movit-dark.png" />
+    </div>
+    <div [@fadein]="getRouterOutletState(outlet)">
+      <router-outlet #outlet="outlet"></router-outlet>
+    </div>
+    <hr style="opacity: 0" />
+    <div class="page__auth-footer user-select-none">
+      <a href="/" class="d-none d-md-block">
+        {{ 'help' | translate }}
+      </a>
+      <a href="/">
+        {{ 'privacy' | translate }}
+      </a>
+      <a href="/">
+        {{ 'terms_of_service' | translate }}
+      </a>
+    </div>
+  </div>
+</div>

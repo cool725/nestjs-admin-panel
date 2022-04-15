@@ -95,6 +95,8 @@ export class LoginComponent implements OnDestroy, OnInit {
 
     this.storeCompanySession(company);
 
+    if(sessionStorage.getItem('debug'))return console.log('debug mode')
+
     if (accessCompanyToken) {
       this.doRedirect({
         redirect: 'business',

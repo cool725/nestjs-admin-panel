@@ -3,9 +3,11 @@
 ### Configuration
 #### Packages
 1. `yarn install`
+
 #### ENV Files
 1. copy .env.example in the root of the project to .env
 2. copy .env.example inside the apps/api/*/src to .env
+
 #### Docker 
 1. `npm run build && npm run docker:build`
 2. `docker-compose up`
@@ -17,9 +19,11 @@ Setup two Local Domain entry and point the root folder to:
 
 #### Login
 navigate to auth.movit.local
+press "Unternehmen"
 - password: demo 
 
 ---
+
 ### Development 
 
 #### Branch
@@ -27,6 +31,7 @@ create new Branch with your name as prefix.
 
 
 ---
+
 ### FileWatching
 docs coming soon
 

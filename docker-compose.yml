@@ -47,8 +47,8 @@ services:
       MYSQL_ROOT_PASSWORD: movit@sql123
       MYSQL_PASSWORD: movit@sql123
       MYSQL_DATABASE: movit
+      MYSQL_ROOT_HOST: 172.*.*.*
     volumes:
       - movit-frameworkdb:/var/lib/mysql
-      - ./config/mysql/my.cnf:/etc/mysql/my.cnf
 volumes:
   movit-frameworkdb:

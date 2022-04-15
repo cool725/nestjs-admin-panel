@@ -15,9 +15,17 @@ Setup two Local Domain entry and point the root folder to:
 - auth.movit.local ->
 - business.movit.local ->
 
+#### Login
+navigate to auth.movit.local
+- password: demo 
+
+
 ### Development / FileWatching
+docs coming soon
 
 
-####BUGS
-##### Linux memory problem:
+---
+
+####Known BUGS
+##### Linux memory problem on serve:
 echo fs.inotify.max_user_watches=65536 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p

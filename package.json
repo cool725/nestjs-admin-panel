@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "nx",
     "start": "ts-node src/index.ts",
-    "build": "nx build",
+    "build": "nx build api-auth && nx build",
     "api": "nx serve api",
     "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
     "typeorm:migrate": "npm run typeorm migration:generate -- -n",
@@ -17,7 +17,7 @@
     "api:start:app-business": "nx build app-business --watch --configuration=development",
     "api:start:api-business": "nx build api-business --watch",
     "postinstall": "ngcc --properties es2015 browser module main",
-    "docker:build": "docker image build --tag movit-api  --progress plain --file Dockerfile ."
+    "docker:build": "docker image build --tag admin-framework  --progress plain --file Dockerfile ."
   },
   "private": true,
   "dependencies": {

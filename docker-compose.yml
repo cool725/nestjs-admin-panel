@@ -1,8 +1,8 @@
 version: '3.7'
 services:
   movit-api-auth:
-    container_name: api-auth
-    image: movit-api
+    container_name: framework-api-auth
+    image: admin-framework
     build:
       context: .
       dockerfile: ./Dockerfile
@@ -18,8 +18,8 @@ services:
     extra_hosts:
       - 'host.docker.internal:host-gateway'
   movit-api-business:
-    container_name: api-business
-    image: movit-api
+    container_name: framework-api-business
+    image: admin-framework
     build:
       context: .
       dockerfile: ./Dockerfile
@@ -36,7 +36,7 @@ services:
     extra_hosts:
       - 'host.docker.internal:host-gateway'
   movit-mysql:
-    container_name: mysql
+    container_name: framework-mysql
     image: mysql
     restart: always
     ports:
@@ -48,6 +48,7 @@ services:
       MYSQL_PASSWORD: movit@sql123
       MYSQL_DATABASE: movit
     volumes:
-      - movitdb:/var/lib/mysql
+      - movit-frameworkdb:/var/lib/mysql
+      - ./config/mysql/my.cnf:/etc/mysql/my.cnf
 volumes:
-  movitdb:
+  movit-frameworkdb:

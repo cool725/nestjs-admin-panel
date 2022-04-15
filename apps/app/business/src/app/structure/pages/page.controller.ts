@@ -2,8 +2,7 @@ import { Component, Injector, TemplateRef, ViewChild } from '@angular/core';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { AppNotifyService, LangService } from '@movit/app/common';
-import { Table } from '../../../../../../../libs/app/common/lib/helper/helper.table.class';
-import { AutoUnsubscribe } from '../../../../../../../libs/app/common/lib/decorators/app.decorator.unsubscriber';
+import { AutoUnsubscribe } from '@movit/app/decorators';
 
 @Component({
   selector: 'base-component',
@@ -11,13 +10,28 @@ import { AutoUnsubscribe } from '../../../../../../../libs/app/common/lib/decora
 })
 @AutoUnsubscribe
 export abstract class PageController {
+  /*
+  * Current session base url
+  * when navigating to route ensure the path starts with the basePath
+  * */
   public basePath = environment.company.url;
 
+  /*
+  * Array of subscriptions that need to be destoryed on page leave
+  * */
   protected readonly subscriptions: Subscription[] = [];
 
+  /*
+  * Notify and Toaster
+  * */
   private vNotify: AppNotifyService;
 
+  /*
+  * Will be replaced with
+  * https://github.com/ngx-translate/core
+  * */
   readonly language: LangService;
+
   readonly defaultLanguageId: number;
 
   @ViewChild('topbar', { read: TemplateRef, static: false })
@@ -32,24 +46,21 @@ export abstract class PageController {
 
   private init() {
     setTimeout(() => this.getData(), 0);
-    setTimeout(() => this.setTopbarInfo(), 200);
+    setTimeout(() => this.setTopBarInfo(), 200);
     /*
      this.subscriptions.push(
       this.dEmitter.register(EDataEmitterType.DataReload, () =>
         this.reloadData()
       )
     );
-    * */
+    **/
   }
 
-  setTopbarInfo(context: any = {}, t: TemplateRef<any> = this.topbar) {
-    if (t) (<any>window)['emitTemplate'](t.createEmbeddedView(context));
-  }
+  abstract getData(): void;
 
   protected reloadData() {
     this.getData();
   }
-  abstract getData(): void;
 
   /**
    * Subscribes and pushes data to subject
@@ -66,6 +77,11 @@ export abstract class PageController {
   }
 
   protected destroySubscriptions() {
-    this.subscriptions.map((s) => s.unsubscribe());
+    return this.subscriptions.map((s) => s.unsubscribe());
+  }
+
+  protected setTopBarInfo(context: any = {}, t: TemplateRef<any> = this.topbar) {
+    // todo: refactore and remove window scope
+    if (t) (<any>window)['emitTemplate'](t.createEmbeddedView(context));
   }
 }

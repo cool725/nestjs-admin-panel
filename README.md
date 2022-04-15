@@ -12,8 +12,8 @@
 
 #### Local Domain
 Setup two Local Domain entry and point the root folder to:
-- auth.movit.local ->
-- business.movit.local ->
+- auth.movit.local -> dist/apps/app/auth/
+- business.movit.local -> dist/apps/app/business/
 
 #### Login
 navigate to auth.movit.local

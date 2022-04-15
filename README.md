@@ -19,13 +19,20 @@ Setup two Local Domain entry and point the root folder to:
 navigate to auth.movit.local
 - password: demo 
 
+---
+### Development 
 
-### Development / FileWatching
+#### Branch
+create new Branch with your name as prefix.
+
+
+---
+### FileWatching
 docs coming soon
 
 
 ---
 
-####Known BUGS
+### Known BUGS
 ##### Linux memory problem on serve:
 echo fs.inotify.max_user_watches=65536 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p

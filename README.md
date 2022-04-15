@@ -10,6 +10,14 @@
 1. `npm run build && npm run docker:build`
 2. `docker-compose up`
 
+#### Local Domain
+Setup two Local Domain entry and point the root folder to:
+- auth.movit.local ->
+- business.movit.local ->
+
+### Development / FileWatching
+
+
 ####BUGS
 ##### Linux memory problem:
 echo fs.inotify.max_user_watches=65536 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p

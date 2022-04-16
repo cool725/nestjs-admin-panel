@@ -21,7 +21,7 @@ export abstract class PageController {
   public basePath = environment.company.url;
 
   /*
-   * Array of subscriptions that need to be destoryed on page leave
+   * Array of subscriptions that's need to be destroyed on page leave
    * */
   protected readonly subscriptions: Subscription[] = [];
 

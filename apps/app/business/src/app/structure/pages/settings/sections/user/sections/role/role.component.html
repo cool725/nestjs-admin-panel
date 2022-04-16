@@ -16,7 +16,7 @@
             <div class="col-10">
               <div class="form-group">
                 <input
-                  [(ngModel)]="rolesTable.filter.search"
+                  [(ngModel)]="rolesTable.filterValues.searchValue"
                   class="form-control"
                   placeholder="Suchen"
                   tabindex="1"
@@ -58,8 +58,8 @@
             </th>
           </tr>
         </thead>
-        <tbody>
-          <ng-container *ngFor="let role of rolesTable.values | async">
+        <tbody *ngIf="rolesTable.data$ | async as tableData">
+          <ng-container *ngFor="let role of tableData.data">
             <tr *ngIf="rolesTable.canShow(role, ['title'])" class="entry-row">
               <td>{{ role.title }}</td>
               <td>{{ role.countUser || 0 }}</td>

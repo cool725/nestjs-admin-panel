@@ -1,9 +1,10 @@
 import { Component, Injector } from '@angular/core';
 import { SettingUserAPI } from '../../packages/user-api.service';
 import { PageController } from '../../../../../page.controller';
-import { TableHelper } from '@movit/app/common';
+
 import { SettingRoleAPI } from '../../packages/apps-api.service';
 import { Confirmable } from '@movit/app/decorators';
+import { ITableBaseFilter, Table } from '@movit/app/common';
 
 @Component({
   selector: 'movit-role',
@@ -11,7 +12,7 @@ import { Confirmable } from '@movit/app/decorators';
   styleUrls: ['./role.component.css'],
 })
 export class RoleComponent extends PageController {
-  rolesTable = new TableHelper<any>(this.userAPI.roles$);
+  rolesTable = new Table<any, ITableBaseFilter>(this.userAPI.roles$);
 
   constructor(
     override injector: Injector,

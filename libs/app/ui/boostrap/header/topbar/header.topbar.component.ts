@@ -5,6 +5,10 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
+import {
+  DataEmitter,
+  EDataEmitterType,
+} from "@movit/app/common";
 
 @Component({
   selector: 'ui-topbar',
@@ -13,15 +17,17 @@ import {
 })
 export class HeaderTopbarUIComponent {
   @ViewChild('container', { read: TemplateRef }) $container: TemplateRef<any>;
+
   @ViewChild('vc', { read: ViewContainerRef }) vc: ViewContainerRef;
 
   @Input() bgColor = '';
+
   @Input() color = '';
 
-  constructor(private vref: ViewContainerRef) {
-    (<any>window)['emitTemplate'] = (templte: any) => {
+  constructor(private dE: DataEmitter, private vref: ViewContainerRef) {
+    dE.register(EDataEmitterType.TopBarTemplate, ({data}) => {
       this.vc.clear();
-      this.vc.insert(templte);
-    };
+      this.vc.insert(data);
+    });
   }
 }

@@ -16,7 +16,7 @@
             <div class="col-12 col-md-8">
               <div class="form-group">
                 <input
-                  [(ngModel)]="userTable.filter.search"
+                  [(ngModel)]="userTable.filterValues.searchValue"
                   class="form-control"
                   placeholder="Suchen"
                   tabindex="1"
@@ -62,8 +62,8 @@
             </th>
           </tr>
         </thead>
-        <tbody>
-          <ng-container *ngFor="let user of userTable.values | async">
+        <tbody *ngIf="userTable.data$ | async as tableData">
+          <ng-container *ngFor="let user of tableData.data">
             <tr *ngIf="userTable.canShow(user)" class="entry-row">
               <td width="70px">
                 <img width="50px" [src]="user.avatar" />

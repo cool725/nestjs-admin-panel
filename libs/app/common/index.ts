@@ -4,5 +4,6 @@ export * from './lib/app.auth';
 export * from './lib/lang/app.lang.service';
 export * from './lib/lang/app.lang.module';
 export * from './lib/services/app.api.base';
+export * from './lib/services/app.data-emitter';
 
-export * from './utils/utils.table';
+export * from './lib/helper/helper.table.class';

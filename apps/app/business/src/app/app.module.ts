@@ -8,6 +8,7 @@ import { AppRoutingModule } from './structure/routing/app-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppInterceptor } from '@movit/app/common';
 import { environment } from '../environments/environment';
+import {DataEmitter} from "@movit/app/common";
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,4 +24,7 @@ import { environment } from '../environments/environment';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(dE:DataEmitter) {
+  }
+}

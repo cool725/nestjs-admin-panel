@@ -12,8 +12,8 @@ import { ForgotComponent } from './forgot-password/forgot.component';
 import { RegisterComponent } from './register/register.component';
 import { CommonModule } from '@angular/common';
 import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
-import { TranslatePipeModule } from '@movit/app/common';
 import { MenuComponent } from './menu/menu.component';
+import {TranslateModule} from "@ngx-translate/core";
 
 const COMPONENTS = [
   LoginComponent,
@@ -32,7 +32,7 @@ const COMPONENTS = [
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    TranslatePipeModule,
+    TranslateModule
   ],
   declarations: [...COMPONENTS],
   providers: [

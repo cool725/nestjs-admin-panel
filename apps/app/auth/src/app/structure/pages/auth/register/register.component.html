@@ -72,8 +72,8 @@
         type="text"
         class="form-control"
         id="email"
+        [disabled]="!!invitationEmail"
       />
-
       <div
         *ngIf="
           registerForm.controls['email']?.invalid &&
@@ -142,10 +142,10 @@
       </ng-container>
     </div>
     <div class="form-group w-50 page__auth-reset text-end">
-      <small [routerLink]="'/auth/login-business'">Anmelden</small>
+      <small [routerLink]="'/auth/login'">Anmelden</small>
     </div>
   </div>
   <div class="form-group pt-4">
-    <a class="btn btn-block btn-yellow" (click)="submit()"> Join Synerma! </a>
+    <a class="btn btn-block btn-yellow" (click)="submit()"> Join! </a>
   </div>
 </form>

@@ -43,6 +43,7 @@ export class RegisterComponent implements OnDestroy {
   };
 
   protected invitationCode = '';
+  public invitationEmail = '';
 
   private subscriptions: any[] = [];
 
@@ -55,6 +56,7 @@ export class RegisterComponent implements OnDestroy {
     this.subscriptions.push(
       ac.paramMap.subscribe((pm) => {
         this.invitationCode = <string>pm.get('invitation');
+        this.invitationEmail = <string>pm.get('email');
       })
     );
   }
@@ -66,6 +68,16 @@ export class RegisterComponent implements OnDestroy {
   submit() {
     if (this.registerForm.valid) {
       const formValues = this.registerForm.value;
+
+      if (this.invitationEmail) {
+        if (this.invitationEmail !== formValues.email) {
+          console.log(this.invitationEmail);
+          return alert(
+            'Diese Emailaddresse wurde nicht von der Organisation hinrugefügt.'
+          );
+        }
+      }
+
       this.authService
         .register(
           {
@@ -88,7 +100,7 @@ export class RegisterComponent implements OnDestroy {
           if (EAuthResponse.UserExits === response) {
             this.registerForm.controls['email']?.setErrors(['mail_exists']);
           } else {
-            this.router.navigate(['/auth']);
+            this.router.navigate(['/auth/login-business']);
           }
         });
     } else {

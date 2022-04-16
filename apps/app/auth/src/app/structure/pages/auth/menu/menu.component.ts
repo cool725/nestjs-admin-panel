@@ -8,16 +8,17 @@ import { Component, OnInit } from '@angular/core';
 export class MenuComponent {
   items = [
     {
-      title: 'Unternehmen',
-      path: 'login-business',
+      title: 'company',
+      path: '/auth/login',
     },
     {
-      title: 'Partnerseite',
-      path: 'login-partners',
+      title: 'partner-page',
+      path: '/auth/login-partners',
     },
     {
-      title: 'Support',
-      path: 'login-partners',
+      title: 'support',
+      path: '/auth/login-partners',
     },
   ];
+
 }

@@ -18,6 +18,10 @@
     "lastname": "Nachname",
     "birthday": "Geburstag",
     "reset": "Zurücksetzten",
-    "account_recovery": "Kontowiederherstellung"
+    "account_recovery": "Kontowiederherstellung",
+    "welcome": "Welcome to MovIT",
+    "company": "Unternehmen",
+    "partner-page": "Partnerseite",
+    "support": "Support"
   }
 }

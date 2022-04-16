@@ -42,6 +42,7 @@
     "@nestjs/platform-express": "^8.2.6",
     "@nestjs/schedule": "^1.1.0",
     "@nestjs/typeorm": "^8.0.3",
+    "@ngx-translate/core": "^14.0.0",
     "@nrwl/angular": "13.7.2",
     "@nxtend/capacitor": "13.0.0",
     "@nxtend/ionic-angular": "13.0.0",

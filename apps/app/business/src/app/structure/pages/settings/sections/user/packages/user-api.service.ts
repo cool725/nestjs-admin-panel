@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { ITableOptions } from '@movit/app/common';
 
 @Injectable()
 export class SettingUserAPI {
-  users$ = new Subject<any[]>();
-  roles$ = new Subject<any[]>();
+  // todo create interface
+  users$ = new BehaviorSubject<ITableOptions<any>>(<any>null);
+  roles$ = new BehaviorSubject<ITableOptions<any>>(<any>null);
 
   constructor(private http: HttpClient) {}
 

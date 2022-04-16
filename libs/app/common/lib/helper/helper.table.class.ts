@@ -14,8 +14,8 @@ class TablePagination {
 
   getPages(infos: IPageInfo): number[] {
     let pageNum: any = Array.apply(
-      null,
-      Array(Math.min(Math.round(infos.total / infos.perPage) || 0, 10))
+        null,
+        Array(Math.min(Math.round(infos.total / infos.perPage) || 0, 10))
     );
 
     if (infos.currentPage > 10) {
@@ -38,8 +38,8 @@ export interface ITableBaseFilter {
 
 export class Table<T, F extends ITableBaseFilter> {
   constructor(
-    public data$: BehaviorSubject<ITableOptions<T>>,
-    public filterValues: F
+      public data$: BehaviorSubject<ITableOptions<T>>,
+      public filterValues: F = <F>{}
   ) {}
   readonly paginate = new TablePagination();
 
@@ -50,12 +50,12 @@ export class Table<T, F extends ITableBaseFilter> {
     if (keys.length == 0) {
       for (const value in obj) {
         if (
-          value !== 'avatar' &&
-          value !== 'img' &&
-          value !== 'src' &&
-          value !== 'url' &&
-          value !== 'link' &&
-          (obj[value] + '').toLowerCase().includes(value.toLowerCase())
+            value !== 'avatar' &&
+            value !== 'img' &&
+            value !== 'src' &&
+            value !== 'url' &&
+            value !== 'link' &&
+            (obj[value] + '').toLowerCase().includes(value.toLowerCase())
         ) {
           return true;
         }
@@ -76,8 +76,8 @@ export class Table<T, F extends ITableBaseFilter> {
   }
 
   static create<T, F extends ITableBaseFilter>(
-    observer: BehaviorSubject<ITableOptions<T>>,
-    filterValues: F
+      observer: BehaviorSubject<ITableOptions<T>>,
+      filterValues: F
   ) {
     return new Table<T, F>(observer, filterValues);
   }

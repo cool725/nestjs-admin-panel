@@ -1,4 +1,4 @@
-import { Component, Injector, Input, OnInit } from '@angular/core';
+import { Component, Injector, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, map, Subject, tap } from 'rxjs';
 import { SettingRoleAPI } from '../../../packages/apps-api.service';

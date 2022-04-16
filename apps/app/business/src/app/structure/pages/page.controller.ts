@@ -3,6 +3,10 @@ import { Observable, Subject, Subscription } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { AppNotifyService, LangService } from '@movit/app/common';
 import { AutoUnsubscribe } from '@movit/app/decorators';
+import {
+  DataEmitter,
+  EDataEmitterType,
+} from '@movit/app/common';
 
 @Component({
   selector: 'base-component',
@@ -11,25 +15,25 @@ import { AutoUnsubscribe } from '@movit/app/decorators';
 @AutoUnsubscribe
 export abstract class PageController {
   /*
-  * Current session base url
-  * when navigating to route ensure the path starts with the basePath
-  * */
+   * Current session base url
+   * when navigating to route ensure the path starts with the basePath
+   * */
   public basePath = environment.company.url;
 
   /*
-  * Array of subscriptions that need to be destoryed on page leave
-  * */
+   * Array of subscriptions that's need to be destroyed on page leave
+   * */
   protected readonly subscriptions: Subscription[] = [];
 
   /*
-  * Notify and Toaster
-  * */
+   * Notify and Toaster
+   * */
   private vNotify: AppNotifyService;
 
   /*
-  * Will be replaced with
-  * https://github.com/ngx-translate/core
-  * */
+   * Will be replaced with
+   * https://github.com/ngx-translate/core
+   * */
   readonly language: LangService;
 
   readonly defaultLanguageId: number;
@@ -37,9 +41,12 @@ export abstract class PageController {
   @ViewChild('topbar', { read: TemplateRef, static: false })
   readonly topbar: TemplateRef<any>;
 
+  private dE: DataEmitter;
+
   constructor(protected injector: Injector) {
     this.vNotify = injector.get(AppNotifyService);
     this.language = injector.get(LangService);
+    this.dE = injector.get(DataEmitter);
     this.defaultLanguageId = this.language.getDefaultLanguageId();
     this.init();
   }
@@ -66,11 +73,11 @@ export abstract class PageController {
    * Subscribes and pushes data to subject
    * */
   protected onLoadAndSetData<T>(
-    api$: Observable<T>,
-    subject: Subject<any>,
-    cb: any = null
+      api$: Observable<T>,
+      subject: Subject<any>,
+      cb: any = null
   ): void {
-    const subscription = api$.subscribe((data) => {
+    const subscription = api$.subscribe((data:any) => {
       subject.next(cb ? cb(data) : data);
       setTimeout(() => subscription.unsubscribe(), 0);
     });
@@ -80,8 +87,14 @@ export abstract class PageController {
     return this.subscriptions.map((s) => s.unsubscribe());
   }
 
-  protected setTopBarInfo(context: any = {}, t: TemplateRef<any> = this.topbar) {
-    // todo: refactore and remove window scope
-    if (t) (<any>window)['emitTemplate'](t.createEmbeddedView(context));
+  protected setTopBarInfo(
+      context: any = {},
+      t: TemplateRef<any> = this.topbar
+  ) {
+    if (t)
+      this.dE.emit(
+          EDataEmitterType.TopBarTemplate,
+          t.createEmbeddedView(context)
+      );
   }
 }

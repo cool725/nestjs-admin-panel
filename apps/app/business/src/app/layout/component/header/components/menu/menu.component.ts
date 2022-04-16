@@ -27,6 +27,5 @@ export class LayoutHeaderMenuComponent implements AfterViewInit {
   menuItemClick($event: any, item: MenuItems) {
     $event.stopPropagation();
     document.body.click();
-    console.log('click', item);
   }
 }

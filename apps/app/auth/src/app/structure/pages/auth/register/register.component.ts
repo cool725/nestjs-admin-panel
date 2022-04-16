@@ -71,7 +71,6 @@ export class RegisterComponent implements OnDestroy {
 
       if (this.invitationEmail) {
         if (this.invitationEmail !== formValues.email) {
-          console.log(this.invitationEmail);
           return alert(
             'Diese Emailaddresse wurde nicht von der Organisation hinrugefügt.'
           );

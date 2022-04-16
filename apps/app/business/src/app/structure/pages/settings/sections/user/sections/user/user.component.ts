@@ -1,7 +1,19 @@
 import { Component, Injector } from '@angular/core';
 import { PageController } from '../../../../../page.controller';
 import { SettingUserAPI } from '../../packages/user-api.service';
-import { TableHelper } from '@movit/app/common';
+import { ITableBaseFilter, Table } from '@movit/app/common';
+
+interface User {
+  userId: number;
+  avatar: 'M' | 'W';
+  gender: 'M' | 'W';
+  firstName: string;
+  lastName: string;
+  birthDay: string;
+  email: string;
+  phone: string;
+  total?: number; // numbers of apps
+}
 
 @Component({
   selector: 'movit-user',
@@ -9,7 +21,7 @@ import { TableHelper } from '@movit/app/common';
   styleUrls: ['./user.component.css'],
 })
 export class UserComponent extends PageController {
-  userTable = new TableHelper<any>(this.userAPI.users$);
+  userTable = new Table<User, ITableBaseFilter>(this.userAPI.users$);
 
   constructor(override injector: Injector, public userAPI: SettingUserAPI) {
     super(injector);

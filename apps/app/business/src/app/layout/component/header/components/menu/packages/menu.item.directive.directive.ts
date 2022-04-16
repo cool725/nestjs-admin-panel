@@ -56,11 +56,7 @@ export class MenuItemDirectiveDirective implements OnDestroy, OnInit {
   constructor(private elRef: ElementRef) {}
 
   onStateChange(state: boolean) {
-    console.log(
-      elementInViewport(this.elRef.nativeElement),
-      elementInViewport2(this.elRef.nativeElement),
-      this.elRef.nativeElement
-    );
+
   }
 
   ngOnInit() {

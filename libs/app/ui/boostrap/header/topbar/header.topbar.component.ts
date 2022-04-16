@@ -25,7 +25,7 @@ export class HeaderTopbarUIComponent {
   @Input() color = '';
 
   constructor(private dE: DataEmitter, private vref: ViewContainerRef) {
-    dE.register(EDataEmitterType.TopBarTemplate, ({data}) => {
+    dE.register(EDataEmitterType.TopBarTemplate, (data) => {
       this.vc.clear();
       this.vc.insert(data);
     });

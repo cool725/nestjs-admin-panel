@@ -19,7 +19,7 @@ export class LayoutAuthComponent {
     lang.injectLangObj(require('./lang.json'));
     route.events.subscribe((rEvent: any) => {
       if (rEvent instanceof NavigationEnd) {
-        this.pageName = <any>rEvent.url.split('/').pop();
+        this.pageName = <any>rEvent.url.split('/')[1]; //.pop();
       }
     });
   }

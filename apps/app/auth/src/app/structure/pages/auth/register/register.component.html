@@ -72,8 +72,8 @@
         type="text"
         class="form-control"
         id="email"
+        [disabled]="!!invitationEmail"
       />
-
       <div
         *ngIf="
           registerForm.controls['email']?.invalid &&

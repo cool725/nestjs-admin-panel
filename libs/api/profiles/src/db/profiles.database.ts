@@ -1,7 +1,7 @@
 import { ConnectionOptions } from 'typeorm';
 
 import { doSeed } from '../../../common/db/seed';
-
+import {ProfileEntity} from "../entities/profles.entity";
 
 const ProfilesDBOptions = <ConnectionOptions>{
   type: process.env.DB_TYPE,
@@ -14,7 +14,7 @@ const ProfilesDBOptions = <ConnectionOptions>{
   logging: false,
   migrationsRun: true,
   logger: 'file',
-  entities: [],
+  entities: [ProfileEntity],
 };
 
 doSeed([], ProfilesDBOptions);

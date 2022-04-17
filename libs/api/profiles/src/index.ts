@@ -1,1 +1,1 @@
-export * from './db/profiles.module';
+export * from './profiles.module';

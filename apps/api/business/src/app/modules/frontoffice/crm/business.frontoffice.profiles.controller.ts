@@ -13,10 +13,16 @@ import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
 import { GetCompany } from '../../../../../../../../libs/api/business/src/business.decorator';
 import { BusinessEntity } from '../../../../../../../../libs/api/business/src/entities/business.entity';
+import {ProfilesService} from "../../../../../../../../libs/api/profiles/src/profiles.service";
 
 @Controller(FrontOffice.resolePath(FrontOffice.Profiles.PATH))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)
 export class BusinessFrontOfficeProfilesController {
+  constructor(protected profilesService:ProfilesService) {
+
+
+  }
+
   @Get('profile')
   getProfiles(
     @GetCompany() business: BusinessEntity,

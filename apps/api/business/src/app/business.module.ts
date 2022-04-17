@@ -11,6 +11,7 @@ import { BusinessSettingsModule } from './modules/settings/business.settings.mod
 import { BusinessController } from './controller/business.controller';
 import { TranslationModule } from '@movit/api/translation';
 import {BusinessFrontOfficeModule} from "./modules/frontoffice/business.frontoffice.module";
+import { ProfilesModule} from "@movit/api/profiles";
 
 @Module({
   imports: [
@@ -23,7 +24,8 @@ import {BusinessFrontOfficeModule} from "./modules/frontoffice/business.frontoff
         ...TranslationModule.dbSettings.entities,
         ...AppsModule.dbSettings.entities,
         ...AuthModule.dbSettings.entities,
-        ...BusinessModule.dbSettings.entities
+        ...BusinessModule.dbSettings.entities,
+        ...ProfilesModule.dbSettings.entities
       ],
     }),
     AuthModule,

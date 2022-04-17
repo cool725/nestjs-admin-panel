@@ -4,6 +4,7 @@
     "api-app-role": "libs/api/apps-role",
     "api-auth": "apps/api/auth",
     "api-business": "apps/api/business",
+    "api-profiles": "libs/api/profiles",
     "app-auth": "apps/app/auth",
     "app-business": "apps/app/business",
     "lib-api-auth": "libs/api/auth",

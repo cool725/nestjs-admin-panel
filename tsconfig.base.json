@@ -30,6 +30,7 @@
         "libs/api/finance/transaction/index.ts"
       ],
       "@movit/api/middleware": ["libs/api/common/middleware/index.ts"],
+      "@movit/api/profiles": ["libs/api/profiles/src/index.ts"],
       "@movit/api/role": ["libs/api/apps-role/src/role/index.ts"],
       "@movit/api/sales/item": ["libs/api/sales/item/src/index.ts"],
       "@movit/api/third-party": ["libs/api/third-party/src/index.ts"],

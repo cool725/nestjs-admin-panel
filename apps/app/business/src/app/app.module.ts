@@ -9,6 +9,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppInterceptor } from '@movit/app/common';
 import { environment } from '../environments/environment';
 import {DataEmitter} from "@movit/app/common";
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +18,9 @@ import {DataEmitter} from "@movit/app/common";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    //TranslateModule.forRoot()
+    TranslateModule.forRoot({
+      defaultLanguage:'de'
+    })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },

@@ -1,0 +1,81 @@
+<ng-template #topbar>
+  <h4
+    class="slide"
+    style="padding-top: 8px; white-space: nowrap; cursor: initial; top: 0px"
+  >
+    {{'profiles' | translate }}
+  </h4>
+</ng-template>
+
+<div class="p-4">
+  <div class="container">
+    <div class="pb-4">
+      <div class="col-12 card bg-white shadow p-3">
+        <div class="">
+          <div class="row">
+            <div class="col-12 col-md-8">
+              <div class="form-group">
+                <input
+                  [(ngModel)]="profileTable.filterValues.searchValue"
+                  class="form-control"
+                  placeholder="Suchen"
+                  tabindex="1"
+                />
+              </div>
+            </div>
+
+            <div class="col-6 col-md-2 mt-2 mt-md-0">
+              <div class="form-group">
+                <a
+                  [routerLink]="basePath + '// /new'"
+                  class="btn btn-success text-white w-100"
+                >Erstellen</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card shadow">
+      <table class="table mb-0 bg-white">
+        <thead>
+        <tr>
+          <td width="70px"></td>
+          <th></th>
+
+          <th class="text-right pe-2" align="right">
+            <a></a>
+          </th>
+        </tr>
+        </thead>
+        <tbody *ngIf="profileTable.data$ | async as tableData">
+        <ng-container *ngFor="let profile of tableData.data">
+          <tr *ngIf="profileTable.canShow(profile)" class="entry-row">
+
+
+            <td class="text-right pe-2" align="right">
+              <a
+                [routerLink]="basePath + '//' + profile.profileId"
+                class="text-primary cursor-pointer"
+              >
+                {{'edit'}}
+              </a
+              >
+            </td>
+            <td class="text-right pe-2" align="right">
+              <a
+
+                class="text-primary cursor-pointer"
+              >
+                {{'delete'}}
+              </a
+              >
+            </td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

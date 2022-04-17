@@ -1,1 +1,1 @@
-export * from './lib/api-profiles.module';
+export * from './db/profiles.module';

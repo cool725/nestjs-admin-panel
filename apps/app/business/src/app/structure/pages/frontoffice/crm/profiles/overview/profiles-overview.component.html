@@ -26,11 +26,7 @@
 
             <div class="col-6 col-md-2 mt-2 mt-md-0">
               <div class="form-group">
-                <a
-                  [routerLink]="basePath + '// /new'"
-                  class="btn btn-success text-white w-100"
-                >Erstellen</a
-                >
+                <a routerLink="new" class="btn btn-success text-white w-100">Erstellen</a>
               </div>
             </div>
           </div>
@@ -40,40 +36,38 @@
     <div class="card shadow">
       <table class="table mb-0 bg-white">
         <thead>
-        <tr>
-          <td width="70px"></td>
-          <th></th>
-
-          <th class="text-right pe-2" align="right">
-            <a></a>
-          </th>
-        </tr>
+          <tr>
+            <th>Vorname</th>
+            <th>Nachname</th>
+            <th>Email</th>
+            <th>Telefon</th>
+            <th class="text-right pe-2" align="right">
+              <a></a>
+            </th>
+            <th class="text-right pe-2" align="right">
+              <a></a>
+            </th>
+          </tr>
         </thead>
         <tbody *ngIf="profileTable.data$ | async as tableData">
-        <ng-container *ngFor="let profile of tableData.data">
-          <tr *ngIf="profileTable.canShow(profile)" class="entry-row">
-
-
-            <td class="text-right pe-2" align="right">
-              <a
-                [routerLink]="basePath + '//' + profile.profileId"
-                class="text-primary cursor-pointer"
-              >
-                {{'edit'}}
-              </a
-              >
-            </td>
-            <td class="text-right pe-2" align="right">
-              <a
-
-                class="text-primary cursor-pointer"
-              >
-                {{'delete'}}
-              </a
-              >
-            </td>
-          </tr>
-        </ng-container>
+          <ng-container *ngFor="let profile of tableData.data">
+            <tr *ngIf="profileTable.canShow(profile)" class="entry-row">
+              <td>{{ profile.firstName }}</td>
+              <td>{{ profile.lastName }}</td>
+              <td>{{ profile.email }}</td>
+              <td>{{ profile.phone }}</td>
+              <td class="text-right pe-2" align="right">
+                <a class="text-primary cursor-pointer" routerLink="edit/{{profile.id}}">
+                  {{'edit' | translate}}
+                </a>
+              </td>
+              <td class="text-right pe-2" align="right">
+                <a class="text-primary cursor-pointer" (click)="askDelete(profile.id)">
+                  {{'delete' | translate}}
+                </a>
+              </td>
+            </tr>
+          </ng-container>
         </tbody>
       </table>
     </div>

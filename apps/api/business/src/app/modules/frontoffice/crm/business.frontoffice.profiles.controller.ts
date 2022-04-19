@@ -1,59 +1,60 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
-  Put,
+  Post,
   UseGuards,
 } from '@nestjs/common';
 import { FrontOffice } from '../business.frontoffice.namespace';
-import { GetPagination } from '../../../../../../../../libs/api/common/decorator';
+import { GetPagination, Pagination } from '../../../../../../../../libs/api/common/decorator';
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
-import { GetCompany } from '../../../../../../../../libs/api/business/src/business.decorator';
-import { BusinessEntity } from '../../../../../../../../libs/api/business/src/entities/business.entity';
 import {ProfilesService} from "../../../../../../../../libs/api/profiles/src/profiles.service";
 
 @Controller(FrontOffice.resolePath(FrontOffice.Profiles.PATH))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)
 export class BusinessFrontOfficeProfilesController {
-  constructor(protected profilesService:ProfilesService) {
 
+  constructor(
+    private profilesService: ProfilesService
+  ) { }
 
-  }
-
-  @Get('profile')
+  @Get()
   getProfiles(
-    @GetCompany() business: BusinessEntity,
-    @GetPagination() pagination
+    @GetPagination() pagination: Pagination
   ) {
-    return pagination;
+    return this.profilesService.getProfiles(pagination);
   }
 
-  @Put('profile/:profileId')
-  getProfile(
-    @GetCompany() business: BusinessEntity,
+  @Get(':profileId')
+  getUser(
     @Param('profileId') profileId: number
   ) {
-    return 1;
+    return this.profilesService.getProfile(profileId);
   }
 
-  @Put('profile')
-  saveProfile(@GetCompany() business: BusinessEntity, @Body() body: any) {
-    return 1;
+  @Post()
+  createProfile(
+    @Body() body: any
+  ) {
+    return this.profilesService.createProfile(body);
   }
 
-  @Patch('profile')
-  updateProfile(@GetCompany() business: BusinessEntity, @Body() body: any) {
-    return 1;
+  @Patch(':profileId')
+  updateProfile(
+    @Param('profileId') profileId: number,
+    @Body() body: any
+  ) {
+    return this.profilesService.updateProfile(profileId, body);
   }
 
-  @Patch('profile/:profileId')
+  @Delete(':profileId')
   deleteProfile(
-    @GetCompany() business: BusinessEntity,
     @Param('profileId') profileId: number
   ) {
-    return 1;
+    return this.profilesService.deleteProfile(profileId);
   }
 }

@@ -5,30 +5,30 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import { ITableOptions } from '@movit/app/common';
 
 @Injectable()
-export class ProfilesAPI<Profile,FilterValues> {
+export class ProfilesAPI<Profile> {
   profile$ = new BehaviorSubject<Profile>(<any>null);
   profiles$ = new BehaviorSubject<ITableOptions<Profile>>(<any>null);
 
   constructor(private http: HttpClient) {}
 
-  protected getPath(path: string, subPath:string | number = ''):string {
-    return environment.api.url + 'profiles' + path + (subPath ? '/' + subPath : '')
+  protected getPath(path: string):string {
+    return environment.api.url + '/frontoffice/profiles' + (path ? '/' + path : '')
   }
 
   getProfile(profileId: string) {
-    return this.http.get(this.getPath(  'profile', profileId));
+    return this.http.get(this.getPath(profileId));
   }
 
-  getProfiles():Observable<Profile[]> {
-    return this.http.get<Profile[]>(this.getPath('profile'));
+  getProfiles() {
+    return this.http.get<Profile[]>(this.getPath(''));
   }
 
-  saveProfile(profile:Partial<Profile>) {
-    return this.http.put(this.getPath('profile'),profile);
+  createProfile(profile: Partial<Profile>) {
+    return this.http.post(this.getPath(''), profile);
   }
 
-  updateProfile(profileId: number, profile : Partial<Profile>) {
-    return this.http.patch( this.getPath('profile' , profileId),profile);
+  updateProfile(profileId: string, profile: Partial<Profile>) {
+    return this.http.patch(this.getPath(profileId), profile);
   }
 
   deleteProfile(profileId: string) {

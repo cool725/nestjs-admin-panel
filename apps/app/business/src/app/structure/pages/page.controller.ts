@@ -78,7 +78,7 @@ export abstract class PageController {
       cb: any = null
   ): void {
     const subscription = api$.subscribe((data:any) => {
-      subject.next(cb ? cb(data) : data);
+      subject.next({ data: cb ? cb(data) : data });
       setTimeout(() => subscription.unsubscribe(), 0);
     });
   }

@@ -1,21 +1,14 @@
-import {Component, Injector, OnInit} from '@angular/core';
+import {Component, Injector} from '@angular/core';
 import {PageController} from "../../../../page.controller";
 import {ProfilesAPI} from "../packages/profile-api.service";
 import {ITableBaseFilter, Table} from "@movit/app/common";
 
 class Profile {
-  profileId:number
-  companyId:number
-
-  firstName:string
-  lastName:string
-  email:string
-  phone:string
-
-
-  static create(params:Partial<Profile>){
-    return Object.assign(new Profile(),params)
-  }
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
 }
 
 @Component({
@@ -23,19 +16,26 @@ class Profile {
   templateUrl: './profiles-overview.component.html',
   styleUrls: ['./profiles-overview.component.css']
 })
-export class ProfilesOverviewComponent extends PageController implements OnInit {
-  public profileTable = new Table<Profile, ITableBaseFilter>(this.api.profiles$);
+export class ProfilesOverviewComponent extends PageController {
 
-  constructor(override injector: Injector, public api:ProfilesAPI<Profile, any>) {
+  profileTable = new Table<Profile, ITableBaseFilter>(this.api.profiles$);
+
+  constructor(
+    override injector: Injector,
+    private api: ProfilesAPI<Profile>
+  ) {
     super(injector);
   }
 
-  ngOnInit(): void {
-
+  getData() {
+    this.onLoadAndSetData(this.api.getProfiles(), this.api.profiles$);
   }
 
-  getData(): void {
-    this.onLoadAndSetData(this.api.getProfiles(),this.api.profiles$)
-  }
+  askDelete(id: number) {
+    if (!window.confirm('Are you sure to delete?')) {
+      return;
+    }
 
+    this.api.deleteProfile(`${id}`).subscribe(() => this.getData());
+  }
 }

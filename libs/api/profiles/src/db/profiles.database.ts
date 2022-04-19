@@ -1,7 +1,7 @@
 import { ConnectionOptions } from 'typeorm';
 
 import { doSeed } from '../../../common/db/seed';
-import {ProfileEntity} from "../entities/profles.entity";
+import {ProfileEntity} from "../entities/profile.entity";
 
 const ProfilesDBOptions = <ConnectionOptions>{
   type: process.env.DB_TYPE,

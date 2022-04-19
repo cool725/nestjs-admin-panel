@@ -2,8 +2,10 @@
 .vscode/
 node_modules/
 build/
+dist/
 tmp/
 temp/
 .angular
 /docker/
 .env
+.DS_Store

@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ProfilesRepository } from "./classes/profiles.repository";
 import { Pagination } from '../../common/decorator';
 
+//TODO   //  where companyId to all requests
 @Injectable()
 export class ProfilesService {
 
@@ -10,6 +11,7 @@ export class ProfilesService {
     @InjectRepository(ProfilesRepository)
     private profileRepo: ProfilesRepository
   ) { }
+
 
   getProfiles(pagination: Pagination) {
     return this.profileRepo.find({

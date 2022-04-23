@@ -13,6 +13,8 @@ import { GetPagination, Pagination } from '../../../../../../../../libs/api/comm
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
 import {ProfilesService} from "../../../../../../../../libs/api/profiles/src/profiles.service";
+import {BusinessEntity} from "../../../../../../../../libs/api/business/src/entities/business.entity";
+import {GetCompany} from "../../../../../../../../libs/api/business/src/business.decorator";
 
 @Controller(FrontOffice.resolePath(FrontOffice.Profiles.PATH))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)
@@ -24,37 +26,41 @@ export class BusinessFrontOfficeProfilesController {
 
   @Get()
   getProfiles(
+    @GetCompany() business:BusinessEntity,
     @GetPagination() pagination: Pagination
   ) {
     return this.profilesService.getProfiles(pagination);
   }
 
   @Get(':profileId')
-  getUser(
-    @Param('profileId') profileId: number
+  getProfile(
+      @GetCompany() business:BusinessEntity,
+      @Param('profileId') profileId: number
   ) {
-    return this.profilesService.getProfile(profileId);
+    return this.profilesService.getProfile(business.businessId,profileId);
   }
 
-  @Post()
+  @Patch()
   createProfile(
-    @Body() body: any
+    @GetCompany() business:BusinessEntity,
+    @Body() body: any,
   ) {
-    return this.profilesService.createProfile(body);
+    return this.profilesService.createProfile(business.businessId,body);
   }
 
   @Patch(':profileId')
   updateProfile(
-    @Param('profileId') profileId: number,
-    @Body() body: any
+    @GetCompany() business: BusinessEntity,
+    @Param('profileId') profileId: number
   ) {
-    return this.profilesService.updateProfile(profileId, body);
+    return this.profilesService.updateProfile(business.businessId,profileId,body);
   }
 
   @Delete(':profileId')
   deleteProfile(
+    @GetCompany() business: BusinessEntity,
     @Param('profileId') profileId: number
   ) {
-    return this.profilesService.deleteProfile(profileId);
+    return this.profilesService.deleteProfile(business.businessId,profileId);
   }
 }

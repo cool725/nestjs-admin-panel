@@ -6,6 +6,8 @@ import { FormController } from '../../../../form.controller';
 import { ProfilesAPI } from '../packages/profile-api.service';
 
 class Profile {
+  companyId:number;
+  profileId:number;
   firstName: string;
   lastName: string;
   email: string;
@@ -27,10 +29,10 @@ export class EditProfileComponent extends FormController<Profile> {
   });
 
   constructor(
+    protected profileAPI: ProfilesAPI<Profile>,
     override injector: Injector,
-    private router: Router,
     private fb: FormBuilder,
-    protected profileAPI: ProfilesAPI<Profile>
+    private router: Router
   ) {
     super(injector)
   }
@@ -52,7 +54,7 @@ export class EditProfileComponent extends FormController<Profile> {
   }
 
   navBack() {
-    this.router.navigateByUrl('/frontoffice/crm/profiles');
+    return this.router.navigateByUrl(this.basePath+'/frontoffice/crm/profiles');
   }
 
   doSave() {

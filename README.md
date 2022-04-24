@@ -17,7 +17,7 @@ Setup two Local Domain entry and point the root folder to:
 - auth.movit.local -> dist/apps/app/auth/
 - business.movit.local -> dist/apps/app/business/
 
-### Restart
+#### Restart
 restart docker and check if the db migration has successfully been run
 
 #### Login

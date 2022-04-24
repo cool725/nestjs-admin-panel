@@ -27,7 +27,7 @@ export class EditProfileComponent extends FormController<Profile> {
   });
 
   constructor(
-    injector: Injector,
+    override injector: Injector,
     private router: Router,
     private fb: FormBuilder,
     protected profileAPI: ProfilesAPI<Profile>
@@ -40,10 +40,15 @@ export class EditProfileComponent extends FormController<Profile> {
     if (!profileId) {
       return;
     }
-    return this.profileAPI
-      .getProfile(profileId)
-      .pipe(tap((profile) => this.profileForm.patchValue(profile)))
-      .subscribe();
+    
+    this.onLoadAndSetData(
+      this.profileAPI.getProfile(profileId),
+      this.profileAPI.profile$,
+        (profile:Partial<Profile>) => {
+          this.profileForm.patchValue(profile)
+          return profile
+      }
+    )
   }
 
   navBack() {
@@ -56,17 +61,15 @@ export class EditProfileComponent extends FormController<Profile> {
     }
 
     const profileId = this.getId('id');
-    const save$ = profileId
-      ? this.profileAPI.updateProfile(profileId, this.profileForm.value)
-      : this.profileAPI.createProfile(this.profileForm.value);
+
+    const save$ = this.profileAPI.saveProfile(profileId, this.profileForm.value)
 
     save$
       .pipe(
-        catchError(({ error }) => {
+       catchError(({ error }) => {
           console.log(error);
           return of(null);
-        })
-      )
+        }))
       .subscribe((result) => {
         if (result) {
           this.navBack();

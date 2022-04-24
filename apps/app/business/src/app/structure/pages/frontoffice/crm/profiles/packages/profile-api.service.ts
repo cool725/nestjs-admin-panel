@@ -27,7 +27,8 @@ export class ProfilesAPI<Profile> {
     return this.http.post(this.getPath(''), profile);
   }
 
-  updateProfile(profileId: string, profile: Partial<Profile>) {
+  saveProfile(profileId: string | null, profile: Partial<Profile>) {
+    if(!profileId) return this.createProfile(profile);
     return this.http.patch(this.getPath(profileId), profile);
   }
 

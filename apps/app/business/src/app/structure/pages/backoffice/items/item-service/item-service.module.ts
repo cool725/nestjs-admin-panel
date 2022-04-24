@@ -7,7 +7,7 @@ import { BoostrapModalUIModule } from '../../../../../../../../../../libs/app/ui
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ItemServiceAPI } from './item.api';
 import { ItemServiceFormComponent } from './form/item-service-form.component';
-import { TranslatePipeModule } from '@movit/app/common';
+import {TranslateModule} from "@ngx-translate/core";
 
 const routes: Routes = [
   {
@@ -32,7 +32,7 @@ const routes: Routes = [
     FormsModule,
     BoostrapModalUIModule,
     NzSelectModule,
-    TranslatePipeModule,
+    TranslateModule.forChild(),
   ],
   providers: [ItemServiceAPI],
 })

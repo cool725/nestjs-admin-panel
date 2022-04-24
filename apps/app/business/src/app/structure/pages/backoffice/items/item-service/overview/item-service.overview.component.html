@@ -203,7 +203,7 @@
       <div class="lang_chooser_pills">
         <nav class="nav nav-pills nav-fill fadeInDown">
           <a
-            *ngFor="let l of language.languages"
+            *ngFor="let l of [{languageId:1,name:'de'}]"
             class="nav-item nav-link animated fadeInDown {{
               (service.label['title']['cLang'] || defaultLanguageId) ==
               l.languageId
@@ -283,7 +283,7 @@
       <div class="lang_chooser_pills">
         <nav class="nav nav-pills nav-fill fadeInDown">
           <a
-            *ngFor="let l of language.languages"
+            *ngFor="let l of [{languageId:1,name:'de'}]"
             class="nav-item nav-link animated fadeInDown {{
               (category.label['title']['cLang'] || defaultLanguageId) ==
               l.languageId

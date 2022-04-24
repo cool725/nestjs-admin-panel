@@ -3,12 +3,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { TranslatePipeModule } from '@movit/app/common';
 
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../packages/auth.api';
 import { catchError, of } from 'rxjs';
+import {TranslateModule} from "@ngx-translate/core";
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -26,7 +26,7 @@ describe('LoginComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         CommonModule,
-        TranslatePipeModule,
+        TranslateModule.forChild(),
         RouterTestingModule,
         HttpClientModule,
       ],

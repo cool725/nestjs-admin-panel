@@ -5,6 +5,7 @@ export const environment = {
     url: 'https://business.movit.ch/api',
   },
   auth: {
+    redirectOnFailure: false,
     url: 'https://auth.movit.ch/api',
   },
   company: <any>{},

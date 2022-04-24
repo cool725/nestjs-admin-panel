@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { LayoutAuthComponent } from './auth/auth.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { TranslatePipeModule } from '@movit/app/common';
+import {TranslateModule} from "@ngx-translate/core";
 
 const BASE = [LayoutAuthComponent];
 
@@ -21,7 +21,7 @@ const routes: Routes = [
     FormsModule,
     CommonModule,
     RouterModule.forChild(routes),
-    TranslatePipeModule,
+    TranslateModule.forChild()
   ],
   declarations: [...BASE],
   exports: [],

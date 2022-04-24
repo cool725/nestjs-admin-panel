@@ -4,7 +4,7 @@ import { FormComponent } from './form/form.component';
 import { RouterModule, Routes } from '@angular/router';
 import { EmployeeOverviewComponent } from './employee.component';
 import { EmployeeApi } from './employee.api.service';
-import { TranslatePipeModule } from '@movit/app/common';
+import {TranslateModule} from "@ngx-translate/core";
 
 const routes: Routes = [
   {
@@ -19,7 +19,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [EmployeeOverviewComponent, FormComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), TranslatePipeModule],
+  imports: [CommonModule, RouterModule.forChild(routes), TranslateModule.forChild()],
   providers: [EmployeeApi],
 })
 export class EmployeeModule {}

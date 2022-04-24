@@ -1,36 +1,28 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild, ViewContainerRef} from '@angular/core';
 import { fadein } from './router-animations';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
+import { BoostrapModalUIComponent } from "@movit/app/ui";
 
-function getCookie(cName: string) {
-  const name = cName + '=';
-  const cDecoded = decodeURIComponent(document.cookie); //to be careful
-  const cArr = cDecoded.split('; ');
-  let res;
-  cArr.forEach((val) => {
-    if (val.indexOf(name) === 0) res = val.substring(name.length);
-  });
-  return res;
-}
 
 @Component({
   selector: 'start-layout-main',
   templateUrl: './layout-main.component.html',
   styleUrls: ['./layout-main.component.scss'],
-  animations: [fadein],
+  animations: [ fadein ],
 })
 export class LayoutMainComponent {
-  constructor(route: ActivatedRoute, private router: Router) {
-    const businessUuid =
-      route.snapshot.paramMap.get('businessUuid') ||
-      localStorage.getItem('ctk');
-    const locationId = route.snapshot.paramMap.get('locationId') || '1';
 
+  @ViewChild('vcModal', { read: ViewContainerRef }) vcModal: ViewContainerRef;
+
+  constructor(private route: ActivatedRoute) {
+    const businessUuid = route.snapshot.paramMap.get('businessUuid') || localStorage.getItem('ctk');
+    const locationId = route.snapshot.paramMap.get('locationId') || '1';
     if (!businessUuid || !locationId) {
       console.warn('ID is missing');
       this.redirectToAuth();
-    } else {
+    }
+    else {
       environment.company.url = `/${businessUuid}/${locationId}`;
       localStorage.setItem('ctk', businessUuid);
       localStorage.setItem('path:2', locationId);
@@ -38,10 +30,6 @@ export class LayoutMainComponent {
       sessionStorage.setItem('path:2', locationId);
     }
   }
-
-  private saveLocalSession() {}
-
-  private urlParamsIsValid() {}
 
   private redirectToAuth() {
     return;
@@ -54,5 +42,10 @@ export class LayoutMainComponent {
 
   public getRouterOutletState(outlet: any) {
     return outlet.isActivated ? outlet.activatedRoute : '';
+  }
+
+  public openModal(component:any){
+   const componentRef = this.vcModal.createComponent<BoostrapModalUIComponent>(BoostrapModalUIComponent);
+   componentRef.instance.setModalContentFromComponent(component,300);
   }
 }

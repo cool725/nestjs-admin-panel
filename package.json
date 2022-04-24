@@ -1,7 +1,7 @@
 {
   "name": "movit",
   "version": "0.0.1",
-  "license": "UNLICENSED",
+  "license": "",
   "scripts": {
     "ng": "nx",
     "start": "ts-node src/index.ts",

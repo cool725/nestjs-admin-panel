@@ -1,7 +1,7 @@
 import { Component, Injector, TemplateRef, ViewChild } from '@angular/core';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { AppNotifyService, LangService } from '@movit/app/common';
+import { AppNotifyService } from '@movit/app/common';
 import { AutoUnsubscribe } from '@movit/app/decorators';
 import {
   DataEmitter,
@@ -30,12 +30,6 @@ export abstract class PageController {
    * */
   private vNotify: AppNotifyService;
 
-  /*
-   * Will be replaced with
-   * https://github.com/ngx-translate/core
-   * */
-  readonly language: LangService;
-
   readonly defaultLanguageId: number;
 
   @ViewChild('topbar', { read: TemplateRef, static: false })
@@ -45,9 +39,8 @@ export abstract class PageController {
 
   constructor(protected injector: Injector) {
     this.vNotify = injector.get(AppNotifyService);
-    this.language = injector.get(LangService);
     this.dE = injector.get(DataEmitter);
-    this.defaultLanguageId = this.language.getDefaultLanguageId();
+    this.defaultLanguageId = 1
     this.init();
   }
 

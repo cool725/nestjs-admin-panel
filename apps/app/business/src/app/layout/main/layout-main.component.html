@@ -3,6 +3,11 @@
   <ui-topbar></ui-topbar>
   <div>
     <div [@fadein]="getRouterOutletState(outlet)">
+      <a (click)="openModal(null)" class="btn btn-success" style="z-index: 1;
+position: fixed;cursor: pointer">
+       Modal öffnen
+      </a>
+      <ng-container #vcModal></ng-container>
       <router-outlet #outlet="outlet"></router-outlet>
     </div>
   </div>

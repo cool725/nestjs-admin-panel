@@ -15,6 +15,7 @@ import {
 } from '@angular/router';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import {environment} from "../../../../apps/app/business/src/environments/environment";
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace AuthCanActivate {
@@ -34,7 +35,10 @@ export namespace AuthCanActivate {
     constructor(
       @Inject(DOCUMENT) private document: Document,
       @Inject(PLATFORM_ID) private platformId: InjectionToken<string>,
-      private router: Router
+      private router: Router,
+      @Inject('env') @Optional() public env?: {
+        auth?:any,
+        api: { url: string }; company: any },
     ) {}
 
     canActivate(
@@ -45,7 +49,7 @@ export namespace AuthCanActivate {
       | Promise<boolean | UrlTree>
       | boolean
       | UrlTree {
-      if (!this.document.cookie.includes('utk')) {
+      if (this.env?.auth?.redirectOnFailure && !this.document.cookie.includes('utk') ) {
         console.warn('utk missing');
         console.warn(this.document.cookie);
         console.warn(document.cookie);
@@ -64,7 +68,7 @@ export namespace AuthCanActivate {
       @Inject(PLATFORM_ID) private platformId: InjectionToken<string>,
       @Inject('env')
       @Optional()
-      public env?: { api: { url: string }; company: any }
+      public env?: {auth?:any, api: { url: string }; company: any }
     ) {}
 
     canActivate():
@@ -72,8 +76,10 @@ export namespace AuthCanActivate {
       | Promise<boolean | UrlTree>
       | boolean
       | UrlTree {
-      if (!this.env) return false;
-      return this.http.get(this.env.api.url + '/company').pipe(
+      if (!this.env ) return false;
+      if(this.env?.auth?.redirectOnFailure === false ) return true;
+      return this.http.get(this.env.api.url + '/company').pipe
+      (
         tap((company) => ((<any>this.env).company = company)),
         map((company: any) => {
           const isValid = !!(company && company.businessUuId);

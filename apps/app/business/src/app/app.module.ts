@@ -8,8 +8,8 @@ import { AppRoutingModule } from './structure/routing/app-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppInterceptor } from '@movit/app/common';
 import { environment } from '../environments/environment';
-import {DataEmitter} from "@movit/app/common";
-import {TranslateModule} from "@ngx-translate/core";
+import { DataEmitter } from '@movit/app/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,8 +19,8 @@ import {TranslateModule} from "@ngx-translate/core";
     AppRoutingModule,
     HttpClientModule,
     TranslateModule.forRoot({
-      defaultLanguage:'de'
-    })
+      defaultLanguage: 'de',
+    }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
@@ -29,6 +29,5 @@ import {TranslateModule} from "@ngx-translate/core";
   bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor(dE:DataEmitter) {
-  }
+  constructor() {}
 }

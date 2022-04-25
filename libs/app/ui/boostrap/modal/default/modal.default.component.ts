@@ -1,5 +1,5 @@
-import {Component, ViewChild, ViewContainerRef, ViewRef} from '@angular/core';
-import {DataEmitter} from "@movit/app/common";
+import { Component, ViewChild, ViewContainerRef, ViewRef } from '@angular/core';
+import { DataEmitter } from '@movit/app/common';
 
 @Component({
   selector: 'lib-modal-ui',
@@ -7,13 +7,12 @@ import {DataEmitter} from "@movit/app/common";
   styleUrls: ['./modal.default.component.scss'],
 })
 export class BoostrapModalUIComponent {
-
-  @ViewChild('vc' , { read: ViewContainerRef }) vc: ViewContainerRef;
+  @ViewChild('vc', { read: ViewContainerRef }) vc: ViewContainerRef;
 
   constructor(private dE: DataEmitter) {}
 
-  setModalContentFromComponent(component:any,delay = 0){
+  setModalContentFromComponent(component: any, delay = 0) {
     this.vc.clear();
-    setTimeout(()=>this.vc.createComponent(component),delay)
+    setTimeout(() => this.vc.createComponent(component), delay);
   }
 }

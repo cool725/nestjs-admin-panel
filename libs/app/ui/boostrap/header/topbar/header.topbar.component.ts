@@ -5,10 +5,7 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import {
-  DataEmitter,
-  EDataEmitterType,
-} from "@movit/app/common";
+import { DataEmitter, EDataEmitterType } from '@movit/app/common';
 
 @Component({
   selector: 'ui-topbar',

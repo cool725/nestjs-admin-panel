@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {ProfilesRepository} from "./classes/profiles.repository";
+import { ProfilesRepository } from './classes/profiles.repository';
 
 @Injectable()
 export class ProfilesService {
@@ -8,6 +8,5 @@ export class ProfilesService {
     @InjectRepository(ProfilesRepository)
     private profileRepo: ProfilesRepository
   ) {}
- r
-
+  r;
 }

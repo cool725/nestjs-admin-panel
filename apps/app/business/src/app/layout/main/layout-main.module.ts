@@ -8,7 +8,7 @@ import { HeaderMenuModule } from '../component/header/components/menu/header.men
 import { NavAvatarProfileUIModule, NavUIModule } from '@movit/app/ui';
 import { NavClockUIModule } from '@movit/app/ui';
 import { HeaderTopbarModule } from '../../../../../../../libs/app/ui/boostrap/header/topbar/header-topbar.module';
-import {ProfilesModule} from "../../structure/pages/frontoffice/crm/profiles/profiles.module";
+import { ProfilesModule } from '../../structure/pages/frontoffice/crm/profiles/profiles.module';
 
 const LayoutComponents = [HeaderComponent, FooterComponent];
 
@@ -22,7 +22,7 @@ const LayoutComponents = [HeaderComponent, FooterComponent];
     HeaderMenuModule,
     NavAvatarProfileUIModule,
     HeaderTopbarModule,
-    ProfilesModule
+    ProfilesModule,
   ],
 })
 export class LayoutMainModule {}

@@ -2,6 +2,26 @@ import { Injectable } from '@angular/core';
 import { AppApiBase } from '@movit/app/common';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
+import { ITableOptions } from '@movit/app/common';
+import { ITableOptions } from '@movit/app/common';
+import { ITableOptions } from '@movit/app/common';
+import { ITableOptions } from '@movit/app/common';
+import { ITableOptions } from '@movit/app/common';
+import { ITableOptions } from '@movit/app/common';
+import { ITableOptions } from '@movit/app/common';
+import { ITableOptions } from '@movit/app/common';
+import { ITableOptions } from '@movit/app/common';
+import { ITableOptions } from '@movit/app/common';
+import { ITableOptions } from '@movit/app/common';
+import { ITableOptions } from '@movit/app/common';
+import { ITableOptions } from '@movit/app/common';
+import { ITableOptions } from '@movit/app/common';
+import { ITableOptions } from '@movit/app/common';
+import { ITableOptions } from '@movit/app/common';
+import { ITableOptions } from '@movit/app/common';
+import { ITableOptions } from '@movit/app/common';
+import { ITableOptions } from '@movit/app/common';
+import { ITableOptions } from '@movit/app/common';
 import { ITableOptions } from '../../../../../../../../../libs/app/common/lib/helper/helper.table.class';
 
 @Injectable()

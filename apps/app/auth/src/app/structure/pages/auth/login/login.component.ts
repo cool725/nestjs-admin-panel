@@ -31,7 +31,6 @@ export class LoginComponent implements OnDestroy, OnInit {
   companies: any = [];
 
   constructor(
-
     @Inject('uuId') private uuId: string,
     @Inject('redirectByRouter') private redirectByRouter: boolean,
     @Inject(DOCUMENT) private document: Document,
@@ -160,11 +159,9 @@ export class LoginComponent implements OnDestroy, OnInit {
   }
 
   doRedirect(data: any) {
-
-    if(this.redirectByRouter){
+    if (this.redirectByRouter) {
       this.router.navigate(['/']);
-    }
-    else {
+    } else {
       if (data.redirect === 'business') {
         if (!data.uuid) location.href = environment.auth.redirectToBusiness;
 
@@ -172,11 +169,11 @@ export class LoginComponent implements OnDestroy, OnInit {
         baseUrl.shift();
         window.open(
           location.protocol +
-          '//business.' +
-          baseUrl.join('.') +
-          '/' +
-          data.uuid +
-          '/1',
+            '//business.' +
+            baseUrl.join('.') +
+            '/' +
+            data.uuid +
+            '/1',
           '_self'
         );
       }

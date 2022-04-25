@@ -10,8 +10,8 @@ import { BusinessBackOfficeModule } from './modules/backoffice/business.backoffi
 import { BusinessSettingsModule } from './modules/settings/business.settings.module';
 import { BusinessController } from './controller/business.controller';
 import { TranslationModule } from '@movit/api/translation';
-import {BusinessFrontOfficeModule} from "./modules/frontoffice/business.frontoffice.module";
-import { ProfilesModule} from "@movit/api/profiles";
+import { BusinessFrontOfficeModule } from './modules/frontoffice/business.frontoffice.module';
+import { ProfilesModule } from '@movit/api/profiles';
 
 @Module({
   imports: [
@@ -25,7 +25,7 @@ import { ProfilesModule} from "@movit/api/profiles";
         ...AppsModule.dbSettings.entities,
         ...AuthModule.dbSettings.entities,
         ...BusinessModule.dbSettings.entities,
-        ...ProfilesModule.dbSettings.entities
+        ...ProfilesModule.dbSettings.entities,
       ],
     }),
     AuthModule,

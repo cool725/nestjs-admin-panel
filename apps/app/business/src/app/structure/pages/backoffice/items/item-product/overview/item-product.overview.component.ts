@@ -1,6 +1,6 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { ItemController } from '../../item.controller';
-import { Table } from '../../../../../../../../../../../libs/app/common/lib/helper/helper.table.class';
+import { Table } from '@movit/app/common';
 import { ItemServiceAPI } from '../../item-service/item.api';
 
 @Component({

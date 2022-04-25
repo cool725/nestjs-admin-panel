@@ -7,7 +7,7 @@ import { BoostrapModalUIModule } from '../../../../../../../../../../libs/app/ui
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ItemServiceAPI } from './item.api';
 import { ItemServiceFormComponent } from './form/item-service-form.component';
-import {TranslateModule} from "@ngx-translate/core";
+import { TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [
   {

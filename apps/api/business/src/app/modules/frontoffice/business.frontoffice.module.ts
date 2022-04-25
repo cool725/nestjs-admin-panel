@@ -1,10 +1,8 @@
 import { Module } from '@nestjs/common';
-import {BusinessFrontOfficeProfilesModule} from "./crm/business.frontoffice.profiles.module";
+import { BusinessFrontOfficeProfilesModule } from './crm/business.frontoffice.profiles.module';
 
 @Module({
-  imports: [
-    BusinessFrontOfficeProfilesModule
-  ],
+  imports: [BusinessFrontOfficeProfilesModule],
   controllers: [],
   providers: [],
 })

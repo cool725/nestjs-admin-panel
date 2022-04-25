@@ -1,7 +1,6 @@
-import { Component, EventEmitter, Injector, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Injector } from '@angular/core';
+
 import { PageController } from '../../page.controller';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'base-item-component',

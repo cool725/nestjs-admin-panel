@@ -14,7 +14,7 @@ export const environment = {
   },
   company: <any>{
     url: '',
-  }
+  },
 };
 
 /*

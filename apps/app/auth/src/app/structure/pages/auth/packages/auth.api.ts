@@ -98,12 +98,12 @@ export class AuthService {
         queryParams = '?autoLogin=1';
       }
 
-      return this.http.get<C[]>(
-        environment.api.url + '/business/list' + queryParams
-      ).toPromise();
+      return this.http
+        .get<C[]>(environment.api.url + '/business/list' + queryParams)
+        .toPromise();
     }
 
-    return []
+    return [];
   }
 
   public removeTestUser(email: string, password: string): Observable<any> {

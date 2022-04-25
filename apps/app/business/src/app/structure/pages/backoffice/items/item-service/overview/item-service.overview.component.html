@@ -1,5 +1,8 @@
 <ng-template #topbar>
-  <h4 class="slide" style="padding-top: 8px; white-space: nowrap; cursor: initial; top: 0px">
+  <h4
+    class="slide"
+    style="padding-top: 8px; white-space: nowrap; cursor: initial; top: 0px"
+  >
     Dienstleistungen
   </h4>
 </ng-template>
@@ -27,7 +30,10 @@
               <a (click)="create('category')" class="btn btn-outline-primary">
                 Kategorie erstellen
               </a>
-              <a (click)="create('service')" class="btn btn-outline-primary ms-2">
+              <a
+                (click)="create('service')"
+                class="btn btn-outline-primary ms-2"
+              >
                 Dienstleistung erstellen
               </a>
             </div>
@@ -70,29 +76,46 @@
     </div>
 
     <!-- Categories -->
-    <div class="row w-100 pt-4 mt-4" *ngIf="api.categories$ | async as categoryData">
+    <div
+      class="row w-100 pt-4 mt-4"
+      *ngIf="api.categories$ | async as categoryData"
+    >
       <div class="col-12 col-md-3">
-        <label style="font-size: 16px;font-weight: 600">{{'category' | translate| titlecase}} </label>
+        <label style="font-size: 16px; font-weight: 600"
+          >{{ 'category' | translate | titlecase }}
+        </label>
       </div>
       <div class="col-12 col-md-3">
         <div class="card">
           <div class="card-header">
-            <label>{{'category' | translate | titlecase}}</label>
+            <label>{{ 'category' | translate | titlecase }}</label>
           </div>
-          <div class="card-body" >
-            <table class="table cat-table"  >
-              <tbody >
-               <ng-container *ngFor="let category of categoryData.data">
-                <tr  [style.background]="category.color"
-                     (click)="tableCategories.filterValues._categoryId = category.categoryId">
-                  <td style="padding: 0">
-                    <small>{{category.order}}</small>
-                  </td>
-                  <td> {{category.title}}</td>
-                  <td width="10px" (click)="editCategory(category)"><a class="btn"> <i class="fa-solid fa-pen"></i></a></td>
-                  <td width="10px" (click)="deleteCategory(category);getCategories()"><a class="btn"><i class="fa-solid fa-trash"></i></a></td>
-                </tr>
-              </ng-container>
+          <div class="card-body">
+            <table class="table cat-table">
+              <tbody>
+                <ng-container *ngFor="let category of categoryData.data">
+                  <tr
+                    [style.background]="category.color"
+                    (click)="
+                      tableCategories.filterValues._categoryId =
+                        category.categoryId
+                    "
+                  >
+                    <td style="padding: 0">
+                      <small>{{ category.order }}</small>
+                    </td>
+                    <td>{{ category.title }}</td>
+                    <td width="10px" (click)="editCategory(category)">
+                      <a class="btn"> <i class="fa-solid fa-pen"></i></a>
+                    </td>
+                    <td
+                      width="10px"
+                      (click)="deleteCategory(category); getCategories()"
+                    >
+                      <a class="btn"><i class="fa-solid fa-trash"></i></a>
+                    </td>
+                  </tr>
+                </ng-container>
               </tbody>
             </table>
           </div>
@@ -100,32 +123,58 @@
       </div>
       <div class="col-12 col-md-3">
         <div class="card">
-          <div class="card-header" >
-            <label>{{'subcategory' | translate:'tc'}}</label>
+          <div class="card-header">
+            <label>{{ 'subcategory' | translate: 'tc' }}</label>
             <select
-              style="width: 130px; padding-left: 20px; border: none; text-decoration: double underline; " [(ngModel)]="tableCategories.filterValues._categoryId" class="transparent">
-              <option value="" selected>{{'all' | translate}}</option>
-              <option *ngFor="let c of categoryData.data" [value]="c.categoryId">{{c.title}}</option>
+              style="
+                width: 130px;
+                padding-left: 20px;
+                border: none;
+                text-decoration: double underline;
+              "
+              [(ngModel)]="tableCategories.filterValues._categoryId"
+              class="transparent"
+            >
+              <option value="" selected>{{ 'all' | translate }}</option>
+              <option
+                *ngFor="let c of categoryData.data"
+                [value]="c.categoryId"
+              >
+                {{ c.title }}
+              </option>
             </select>
           </div>
           <div class="card-body">
-            <table class="table"  >
-             <tbody>
-              <ng-container *ngFor="let category of categoryData.data">
-               <ng-container *ngIf="!tableCategories.filterValues._categoryId || category.categoryId == tableCategories.filterValues._categoryId">
-                 <ng-container *ngFor="let category of category.children">
-                   <tr [style.background]="category.color">
-                     <td>
-                       <small>{{category.order}}</small>
-                     </td>
-                     <td> {{category.title}}</td>
-                     <td width="10px" (click)="editCategory(category)"><a class=" btn"><i class="fa-solid fa-pen"></i></a></td>
-                     <td width="10px" (click)="deleteCategory(category);getCategories()"><a class="  btn"><i class="fa-solid fa-trash"></i></a></td>
-                   </tr>
-                 </ng-container>
-               </ng-container>
-             </ng-container>
-             </tbody>
+            <table class="table">
+              <tbody>
+                <ng-container *ngFor="let category of categoryData.data">
+                  <ng-container
+                    *ngIf="
+                      !tableCategories.filterValues._categoryId ||
+                      category.categoryId ==
+                        tableCategories.filterValues._categoryId
+                    "
+                  >
+                    <ng-container *ngFor="let category of category.children">
+                      <tr [style.background]="category.color">
+                        <td>
+                          <small>{{ category.order }}</small>
+                        </td>
+                        <td>{{ category.title }}</td>
+                        <td width="10px" (click)="editCategory(category)">
+                          <a class="btn"><i class="fa-solid fa-pen"></i></a>
+                        </td>
+                        <td
+                          width="10px"
+                          (click)="deleteCategory(category); getCategories()"
+                        >
+                          <a class="btn"><i class="fa-solid fa-trash"></i></a>
+                        </td>
+                      </tr>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+              </tbody>
             </table>
           </div>
         </div>
@@ -133,11 +182,9 @@
       <div class="col-12 col-md-3">
         <div class="card h-line">
           <div class="card-header">
-            <label>{{'notset' | translate:'tc'}}</label>
+            <label>{{ 'notset' | translate: 'tc' }}</label>
           </div>
-          <div class="card-body">
-
-          </div>
+          <div class="card-body"></div>
         </div>
       </div>
     </div>
@@ -168,24 +215,36 @@
   <div class="modal-body">
     <div class="form-group">
       <label class="w-100 col-form-label"><b>Kategorien</b></label>
-      <nz-select *ngIf="api.categories$ | async as categoryData"
+      <nz-select
+        *ngIf="api.categories$ | async as categoryData"
         nzMode="multiple"
         nzPlaceHolder="Please select"
         class="w-100"
         [(ngModel)]="service.categoriesIds"
         [nzMaxTagCount]="3"
-        [nzMaxTagPlaceholder]="tagPlaceHolder">
-        <ng-container  *ngFor="let item of categoryData.data">
-          <ng-container [ngTemplateOutlet]="catList"
-                        [ngTemplateOutletContext]="{item:item}"></ng-container>
+        [nzMaxTagPlaceholder]="tagPlaceHolder"
+      >
+        <ng-container *ngFor="let item of categoryData.data">
+          <ng-container
+            [ngTemplateOutlet]="catList"
+            [ngTemplateOutletContext]="{ item: item }"
+          ></ng-container>
         </ng-container>
-        <ng-template #catList let-item='item'>
+        <ng-template #catList let-item="item">
           <nz-option-group [nzLabel]="item.title">
-            <nz-option [nzValue]="item.categoryId" [nzLabel]="item.title"></nz-option>
-            <nz-option *ngFor="let item of item.children" [nzValue]="item.categoryId" [nzLabel]="item.title">
-              <ng-container *ngFor="let item of item.children"
-                            [ngTemplateOutlet]="catList"
-                            [ngTemplateOutletContext]="{item:item}"
+            <nz-option
+              [nzValue]="item.categoryId"
+              [nzLabel]="item.title"
+            ></nz-option>
+            <nz-option
+              *ngFor="let item of item.children"
+              [nzValue]="item.categoryId"
+              [nzLabel]="item.title"
+            >
+              <ng-container
+                *ngFor="let item of item.children"
+                [ngTemplateOutlet]="catList"
+                [ngTemplateOutletContext]="{ item: item }"
               ></ng-container>
             </nz-option>
           </nz-option-group>
@@ -203,7 +262,7 @@
       <div class="lang_chooser_pills">
         <nav class="nav nav-pills nav-fill fadeInDown">
           <a
-            *ngFor="let l of [{languageId:1,name:'de'}]"
+            *ngFor="let l of [{ languageId: 1, name: 'de' }]"
             class="nav-item nav-link animated fadeInDown {{
               (service.label['title']['cLang'] || defaultLanguageId) ==
               l.languageId
@@ -283,7 +342,7 @@
       <div class="lang_chooser_pills">
         <nav class="nav nav-pills nav-fill fadeInDown">
           <a
-            *ngFor="let l of [{languageId:1,name:'de'}]"
+            *ngFor="let l of [{ languageId: 1, name: 'de' }]"
             class="nav-item nav-link animated fadeInDown {{
               (category.label['title']['cLang'] || defaultLanguageId) ==
               l.languageId
@@ -315,8 +374,11 @@
           <label class="w-100 col-form-label full">
             <b>Farbe</b>
           </label>
-          <input [(ngModel)]="category.color"
-                 class="form-control" type="color">
+          <input
+            [(ngModel)]="category.color"
+            class="form-control"
+            type="color"
+          />
         </div>
       </div>
       <div class="col-12 col-md-10">
@@ -325,33 +387,45 @@
             <b>Aktiviert</b>
           </label>
           <select [(ngModel)]="category.enabled" class="form-control">
-            <option value=1>Ja</option>
-            <option value=0>Nein</option>
+            <option value="1">Ja</option>
+            <option value="0">Nein</option>
           </select>
         </div>
       </div>
     </div>
 
     <div class="form-group mt-4">
-      <label class="w-100 col-form-label"><b>Ist die Unterkategorie von:</b></label>
-      <nz-select *ngIf="api.categories$ | async as categoryData"
-                 nzPlaceHolder="Please select"
-                 class="w-100"
-                 [(ngModel)]="category.parentCategoryId"
-                 [nzMaxTagPlaceholder]="tagPlaceHolder"
-
+      <label class="w-100 col-form-label"
+        ><b>Ist die Unterkategorie von:</b></label
       >
-        <ng-container  *ngFor="let item of categoryData.data">
-          <ng-container [ngTemplateOutlet]="catList"
-                        [ngTemplateOutletContext]="{item:item}"></ng-container>
+      <nz-select
+        *ngIf="api.categories$ | async as categoryData"
+        nzPlaceHolder="Please select"
+        class="w-100"
+        [(ngModel)]="category.parentCategoryId"
+        [nzMaxTagPlaceholder]="tagPlaceHolder"
+      >
+        <ng-container *ngFor="let item of categoryData.data">
+          <ng-container
+            [ngTemplateOutlet]="catList"
+            [ngTemplateOutletContext]="{ item: item }"
+          ></ng-container>
         </ng-container>
-        <ng-template #catList let-item='item'>
+        <ng-template #catList let-item="item">
           <nz-option-group [nzLabel]="item.title">
-            <nz-option [nzValue]="item.categoryId" [nzLabel]="item.title"></nz-option>
-            <nz-option *ngFor="let item of item.children" [nzValue]="item.categoryId" [nzLabel]="item.title">
-              <ng-container *ngFor="let item of item.children"
-                            [ngTemplateOutlet]="catList"
-                            [ngTemplateOutletContext]="{item:item}"
+            <nz-option
+              [nzValue]="item.categoryId"
+              [nzLabel]="item.title"
+            ></nz-option>
+            <nz-option
+              *ngFor="let item of item.children"
+              [nzValue]="item.categoryId"
+              [nzLabel]="item.title"
+            >
+              <ng-container
+                *ngFor="let item of item.children"
+                [ngTemplateOutlet]="catList"
+                [ngTemplateOutletContext]="{ item: item }"
               ></ng-container>
             </nz-option>
           </nz-option-group>
@@ -363,7 +437,8 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button *ngIf="category.categoryId"
+    <button
+      *ngIf="category.categoryId"
       (click)="deleteCategory(category)"
       type="button"
       class="btn btn-danger text-white"
@@ -379,7 +454,9 @@
       Abbrechen
     </button>
     <button
-      (click)="category.categoryId ? updateCategory(category) : saveCategory(category)"
+      (click)="
+        category.categoryId ? updateCategory(category) : saveCategory(category)
+      "
       type="button"
       class="btn btn-success text-white"
     >

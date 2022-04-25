@@ -2,9 +2,7 @@ import { Module } from '@nestjs/common';
 import { BusinessBackOfficeController } from './business.backoffice.controller';
 
 @Module({
-  imports: [
-
-  ],
+  imports: [],
   controllers: [BusinessBackOfficeController],
   providers: [],
 })

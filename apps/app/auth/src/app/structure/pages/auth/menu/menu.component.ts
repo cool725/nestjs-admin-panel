@@ -20,5 +20,4 @@ export class MenuComponent {
       path: '/auth/login-partners',
     },
   ];
-
 }

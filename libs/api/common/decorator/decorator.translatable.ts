@@ -36,7 +36,7 @@ export default function Translatable<TBase extends Constructor>(
     public async saveTranslations() {
       let self: any = this;
       if (!self.labels) self.labels = [];
-      console.log('called',self.labels.length)
+      console.log('called', self.labels.length);
       for (let i = 0; i < self.labels.length; i++) {
         const label: TranslationLabelEntity = self.labels[i];
 

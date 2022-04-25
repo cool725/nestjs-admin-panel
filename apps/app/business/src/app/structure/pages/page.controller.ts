@@ -3,10 +3,7 @@ import { Observable, Subject, Subscription } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { AppNotifyService } from '@movit/app/common';
 import { AutoUnsubscribe } from '@movit/app/decorators';
-import {
-  DataEmitter,
-  EDataEmitterType,
-} from '@movit/app/common';
+import { DataEmitter, EDataEmitterType } from '@movit/app/common';
 
 @Component({
   selector: 'base-component',
@@ -40,7 +37,7 @@ export abstract class PageController {
   constructor(protected injector: Injector) {
     this.vNotify = injector.get(AppNotifyService);
     this.dE = injector.get(DataEmitter);
-    this.defaultLanguageId = 1
+    this.defaultLanguageId = 1;
     this.init();
   }
 
@@ -66,11 +63,11 @@ export abstract class PageController {
    * Subscribes and pushes data to subject
    * */
   protected onLoadAndSetData<T>(
-      api$: Observable<T>,
-      subject: Subject<any>,
-      cb: any = null
+    api$: Observable<T>,
+    subject: Subject<any>,
+    cb: any = null
   ): void {
-    const subscription = api$.subscribe((data:any) => {
+    const subscription = api$.subscribe((data: any) => {
       subject.next(cb ? cb(data) : data);
       setTimeout(() => subscription.unsubscribe(), 0);
     });
@@ -81,13 +78,13 @@ export abstract class PageController {
   }
 
   protected setTopBarInfo(
-      context: any = {},
-      t: TemplateRef<any> = this.topbar
+    context: any = {},
+    t: TemplateRef<any> = this.topbar
   ) {
     if (t)
       this.dE.emit(
-          EDataEmitterType.TopBarTemplate,
-          t.createEmbeddedView(context)
+        EDataEmitterType.TopBarTemplate,
+        t.createEmbeddedView(context)
       );
   }
 }

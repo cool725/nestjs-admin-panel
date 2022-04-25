@@ -1,5 +1,25 @@
 import { Component, Injector } from '@angular/core';
 import { ItemController } from '../../item.controller';
+import { Table } from '@movit/app/common';
+import { Table } from '@movit/app/common';
+import { Table } from '@movit/app/common';
+import { Table } from '@movit/app/common';
+import { Table } from '@movit/app/common';
+import { Table } from '@movit/app/common';
+import { Table } from '@movit/app/common';
+import { Table } from '@movit/app/common';
+import { Table } from '@movit/app/common';
+import { Table } from '@movit/app/common';
+import { Table } from '@movit/app/common';
+import { Table } from '@movit/app/common';
+import { Table } from '@movit/app/common';
+import { Table } from '@movit/app/common';
+import { Table } from '@movit/app/common';
+import { Table } from '@movit/app/common';
+import { Table } from '@movit/app/common';
+import { Table } from '@movit/app/common';
+import { Table } from '@movit/app/common';
+import { Table } from '@movit/app/common';
 import { Table } from '../../../../../../../../../../../libs/app/common/lib/helper/helper.table.class';
 
 import { Confirmable } from '@movit/app/decorators';
@@ -125,7 +145,7 @@ export class ItemServiceOverviewComponent extends ItemController<ItemService> {
     return this.api.saveServiceItem(service).subscribe((service: any) => {
       const data = this.api.items$.getValue();
       if (service.labels && service.labels.length) {
-        let label = service.labels.find((a: any) => (a.key = 'title'));
+        const label = service.labels.find((a: any) => (a.key = 'title'));
         if (label) {
           service.label = {
             [label.key]: {

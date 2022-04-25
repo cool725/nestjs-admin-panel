@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./language-switcher.component.scss'],
 })
 export class TopbarLanguageSwitcherComponent {
-  constructor() {}
+
 }

@@ -2,33 +2,13 @@ import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { ITableOptions } from '@movit/app/common';
-import { ITableOptions } from '@movit/app/common';
-import { ITableOptions } from '@movit/app/common';
-import { ITableOptions } from '@movit/app/common';
-import { ITableOptions } from '@movit/app/common';
-import { ITableOptions } from '@movit/app/common';
-import { ITableOptions } from '@movit/app/common';
-import { ITableOptions } from '@movit/app/common';
-import { ITableOptions } from '@movit/app/common';
-import { ITableOptions } from '@movit/app/common';
-import { ITableOptions } from '@movit/app/common';
-import { ITableOptions } from '@movit/app/common';
-import { ITableOptions } from '@movit/app/common';
-import { ITableOptions } from '@movit/app/common';
-import { ITableOptions } from '@movit/app/common';
-import { ITableOptions } from '@movit/app/common';
-import { ITableOptions } from '@movit/app/common';
-import { ITableOptions } from '@movit/app/common';
-import { ITableOptions } from '@movit/app/common';
-import { ITableOptions } from '@movit/app/common';
-import { ITableOptions } from '../../../../../../../../../../libs/app/common/lib/helper/helper.table.class';
 
 @Injectable()
 export class ItemServiceAPI<T, C> {
-  readonly item$ = new BehaviorSubject<T>(<any>null);
+  readonly item$ = new BehaviorSubject<T | null>(null);
   readonly items$ = new BehaviorSubject<ITableOptions<T>>(<any>{ data: [] });
 
-  readonly category$ = new BehaviorSubject<C>(<any>null);
+  readonly category$ = new BehaviorSubject<C | null>(null);
   readonly categories$ = new BehaviorSubject<ITableOptions<C>>(<any>{
     data: [],
   });

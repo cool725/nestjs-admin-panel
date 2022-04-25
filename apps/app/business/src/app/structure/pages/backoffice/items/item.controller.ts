@@ -1,5 +1,4 @@
 import { Component, Injector } from '@angular/core';
-
 import { PageController } from '../../page.controller';
 
 @Component({
@@ -7,11 +6,7 @@ import { PageController } from '../../page.controller';
   template: ``,
 })
 export abstract class ItemController<T> extends PageController {
-  constructor(override injector: Injector) {
+  protected constructor(override injector: Injector) {
     super(injector);
-  }
-
-  cancelModal(s: any) {
-    s.next(null);
   }
 }

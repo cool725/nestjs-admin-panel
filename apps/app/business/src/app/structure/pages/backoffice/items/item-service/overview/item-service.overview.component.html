@@ -297,7 +297,7 @@
       Löschen
     </button>
     <button
-      (click)="cancelModal(api.item$)"
+      (click)="api.item$.next(null)"
       type="button"
       class="btn btn-primary text-white"
       data-bs-dismiss="modal"
@@ -446,7 +446,7 @@
       Löschen
     </button>
     <button
-      (click)="cancelModal(api.category$)"
+      (click)="api.category$.next(null)"
       type="button"
       class="btn btn-primary text-white"
       data-bs-dismiss="modal"

@@ -1,29 +1,10 @@
 import { Component, Injector } from '@angular/core';
 import { ItemController } from '../../item.controller';
-import { Table } from '@movit/app/common';
-import { Table } from '@movit/app/common';
-import { Table } from '@movit/app/common';
-import { Table } from '@movit/app/common';
-import { Table } from '@movit/app/common';
-import { Table } from '@movit/app/common';
-import { Table } from '@movit/app/common';
-import { Table } from '@movit/app/common';
-import { Table } from '@movit/app/common';
-import { Table } from '@movit/app/common';
-import { Table } from '@movit/app/common';
-import { Table } from '@movit/app/common';
-import { Table } from '@movit/app/common';
-import { Table } from '@movit/app/common';
-import { Table } from '@movit/app/common';
-import { Table } from '@movit/app/common';
-import { Table } from '@movit/app/common';
-import { Table } from '@movit/app/common';
-import { Table } from '@movit/app/common';
-import { Table } from '@movit/app/common';
-import { Table } from '../../../../../../../../../../../libs/app/common/lib/helper/helper.table.class';
+
 
 import { Confirmable } from '@movit/app/decorators';
 import { ItemServiceAPI } from '../item.api';
+import {Table} from "@movit/app/common";
 
 class Item {
   itemId: number;
@@ -38,15 +19,15 @@ class Item {
     return Object.assign(new Item(), item);
   }
 
-  public changeLang(id: number, key: string) {
-    this.label[key].cLang = id;
-  }
-
   categoriesIds: any[] = [];
 
   order = 1;
 
   color = '';
+
+  public changeLang(id: number, key: string) {
+    this.label[key].cLang = id;
+  }
 }
 
 class ItemService extends Item {
@@ -78,11 +59,11 @@ class ItemCategory {
 
   readonly children: any = [];
 
-  public changeLang(id: number, key: string) {
-    this.label[key].cLang = id;
-  }
   static create(cat: Partial<ItemCategory>) {
     return Object.assign(new ItemCategory(), cat);
+  }
+  public changeLang(id: number, key: string) {
+    this.label[key].cLang = id;
   }
 }
 
@@ -104,8 +85,8 @@ export class ItemServiceOverviewComponent extends ItemController<ItemService> {
   });
 
   constructor(
+    public api: ItemServiceAPI<ItemService, ItemCategory>,
     override injector: Injector,
-    public api: ItemServiceAPI<ItemService, ItemCategory>
   ) {
     super(injector);
   }

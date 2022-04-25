@@ -9,27 +9,6 @@ import { PageController } from '../../page.controller';
 
 import { EmployeeApi } from './employee.api.service';
 import { ITableBaseFilter, Table } from '@movit/app/common';
-import { ITableBaseFilter, Table } from '@movit/app/common';
-import { ITableBaseFilter, Table } from '@movit/app/common';
-import { ITableBaseFilter, Table } from '@movit/app/common';
-import { ITableBaseFilter, Table } from '@movit/app/common';
-import { ITableBaseFilter, Table } from '@movit/app/common';
-import { ITableBaseFilter, Table } from '@movit/app/common';
-import { ITableBaseFilter, Table } from '@movit/app/common';
-import { ITableBaseFilter, Table } from '@movit/app/common';
-import { ITableBaseFilter, Table } from '@movit/app/common';
-import { ITableBaseFilter, Table } from '@movit/app/common';
-import { ITableBaseFilter, Table } from '@movit/app/common';
-import { ITableBaseFilter, Table } from '@movit/app/common';
-import { ITableBaseFilter, Table } from '@movit/app/common';
-import { ITableBaseFilter, Table } from '@movit/app/common';
-import { ITableBaseFilter, Table } from '@movit/app/common';
-import { ITableBaseFilter, Table } from '@movit/app/common';
-import { ITableBaseFilter, Table } from '@movit/app/common';
-import { ITableBaseFilter, Table } from '@movit/app/common';
-import { ITableBaseFilter, Table } from '@movit/app/common';
-import { ITableBaseFilter, Table } from '../../../../../../../../../libs/app/common/lib/helper/helper.table.class';
-
 class Employee {
   employeeId: number;
   companyId: number;

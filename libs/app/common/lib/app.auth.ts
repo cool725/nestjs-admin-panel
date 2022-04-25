@@ -15,7 +15,6 @@ import {
 } from '@angular/router';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import {environment} from "../../../../apps/app/business/src/environments/environment";
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace AuthCanActivate {
@@ -37,7 +36,7 @@ export namespace AuthCanActivate {
       @Inject(PLATFORM_ID) private platformId: InjectionToken<string>,
       private router: Router,
       @Inject('env') @Optional() public env?: {
-        auth?:any,
+        auth?: { redirectOnFailure:boolean },
         api: { url: string }; company: any },
     ) {}
 
@@ -68,7 +67,7 @@ export namespace AuthCanActivate {
       @Inject(PLATFORM_ID) private platformId: InjectionToken<string>,
       @Inject('env')
       @Optional()
-      public env?: {auth?:any, api: { url: string }; company: any }
+      public env?: {auth?:{ redirectOnFailure:boolean }, api: { url: string }; company: any }
     ) {}
 
     canActivate():

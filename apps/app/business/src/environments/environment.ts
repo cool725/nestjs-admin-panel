@@ -9,7 +9,7 @@ export const environment = {
     url: 'http://localhost:3003/api',
   },
   auth: {
-    redirectOnFailure: false,
+    redirectOnFailure: true,
     url: 'http://localhost:3001/api',
   },
   company: <any>{

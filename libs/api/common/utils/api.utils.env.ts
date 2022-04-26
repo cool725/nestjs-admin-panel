@@ -1,5 +1,5 @@
-import path from 'path';
 export const env = (() => {
+  const path = require('path')
   return {
     load: (pathName = null) => {
       if (!pathName) pathName = path.resolve(__dirname, '.env');

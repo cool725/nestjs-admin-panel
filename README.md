@@ -18,7 +18,14 @@
 
 #### Local Domain
 
-Setup two Local Domain entry and point the root folder to:
+Setup two Local Domain entry
+
+* Ubuntu and Macos:
+  https://www.codegrepper.com/code-examples/shell/set+domain+name+for+localhost+ubuntu
+* Windows:
+  C:\Windows\System32\drivers\etc
+
+Point the root folder to:
 
 - auth.movit.local -> dist/apps/app/auth/
 - business.movit.local -> dist/apps/app/business/

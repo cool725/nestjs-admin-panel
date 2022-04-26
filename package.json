@@ -18,8 +18,9 @@
     "app:start:app-business": "nx build app-business --watch --configuration=development",
     "app:build:app-business": "nx build app-business --configuration=development",
     "api:start:api-business": "nx build api-business --watch",
+    "preinstall-webconfig": "node scripts/nginx.config.builder.js",
     "postinstall": "ngcc --properties es2015 browser module main",
-    "docker:build": "docker image build --tag admin-framework  --progress plain --file Dockerfile ."
+    "docker:build": "npm run preinstall-webconfig && docker image build --tag admin-framework  --progress plain --file Dockerfile ."
   },
   "private": true,
   "dependencies": {

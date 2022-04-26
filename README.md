@@ -23,7 +23,7 @@ Setup two Local Domain entry
 * Ubuntu and Macos:
   https://www.codegrepper.com/code-examples/shell/set+domain+name+for+localhost+ubuntu
 * Windows:
-  https://ecompile.io/blog/localhost-custom-domain-name
+  https://ecompile.io/blog/localhost-custom-domain-name 
   C:\Windows\System32\drivers\etc
 
 #### Restart

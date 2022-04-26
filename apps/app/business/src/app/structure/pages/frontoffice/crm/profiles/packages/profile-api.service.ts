@@ -13,7 +13,7 @@ export class ProfilesAPI<Profile, FilterValues> {
 
   protected getPath(path: string, subPath: string | number = ''): string {
     return (
-      environment.api.url + 'profiles' + path + (subPath ? '/' + subPath : '')
+      environment.api.url + '/profiles/' + path + '/' +(subPath ? '/' + subPath : '')
     );
   }
 

@@ -16,8 +16,11 @@ export class LayoutMainComponent {
   @ViewChild('vcModal', { read: ViewContainerRef }) vcModal: ViewContainerRef;
 
   constructor(private route: ActivatedRoute,private dE:DataEmitter) {
-    this.setRouteParams()
-    this.init()
+    this.setRouteParams();
+    this.init();
+    setTimeout(()=>{
+      this.dE.emit(EDataEmitterType.ModalOpen,ProfilesFormComponent)
+    },1000)
   }
 
   private init(){

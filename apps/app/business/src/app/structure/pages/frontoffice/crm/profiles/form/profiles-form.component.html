@@ -1,98 +1,104 @@
-<ng-container *ngIf="viewSettings.type === 'modal'">
-    <div class="modal-header">
-        <select class="form-control bg-transparent">
-            <option>Einfach</option>
-            <option>Detailiert</option>
-        </select>
-        <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-        ></button>
-    </div>
-    <div class="modal-header-sub">
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page"> Übersicht </a>
-            </li>
-        </ul>
-    </div>
-    <div class="modal-body">
-        <div class="row">
-            <div class="col-12 mb-3">
-                <div class="form-check form-check-inline ml-1">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                    <label class="form-check-label" for="inlineRadio1">Herr</label>
-                </div>
-                <div class="form-check form-check-inline ml-1">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                    <label class="form-check-label" for="inlineRadio2">Frau</label>
-                </div>
-                <div class="form-check form-check-inline ml-1">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                    <label class="form-check-label" for="inlineRadio3">Firma</label>
-                </div>
-            </div>
-            <div class="col-12 col-md-9 row">
-                <div class="col-12 col-md-6">
-                    <label>Nachname</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="profiles-lastname">@</span>
-                        <input type="text" class="form-control" autocomplete="new-password" placeholder="Nachname" aria-label="lastName" aria-describedby="profiles-lastname">
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 ">
-                    <label>Vorname</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="profles-firstname">@</span>
-                        <input type="text" class="form-control" autocomplete="new-password" placeholder="Vorname" aria-label="firstName" aria-describedby="profiles-firstname">
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-3 d-none d-md-block">
-            Avatar
-            </div>
-            <div class="col-12 col-md-9 row">
-                <div class="col-12 col-md-6">
-                    <label>Email</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="profiles-lastname">@</span>
-                        <input type="text" class="form-control" autocomplete="new-password" placeholder="Nachname" aria-label="lastName" aria-describedby="profiles-lastname">
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 ">
-                    <label>Telefon</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="profles-firstname">@</span>
-                        <input type="text" class="form-control" autocomplete="new-password" placeholder="Vorname" aria-label="firstName" aria-describedby="profiles-firstname">
-                    </div>
-                </div>
-            </div>
+<ng-container *ngIf="api.profile$ | async as profile">
+    <ng-container *ngIf="viewSettings.type === 'modal'">
+        <div class="modal-header">
+            <select class="form-control bg-transparent">
+                <option>Einfach</option>
+                <option>Detailiert</option>
+            </select>
+            <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+            ></button>
         </div>
-    </div>
-    <div class="modal-footer">
-        <button
+        <div class="modal-header-sub">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"> Übersicht </a>
+                </li>
+            </ul>
+        </div>
+        <div class="modal-body">
+            <form class="row" [formGroup]="formProfile">
+                <div class="col-12 mb-3">
+                    <ng-template #genderReqStar>
+                        <span class="text-danger" *ngIf="formProfile.controls['gender']?.hasError('required')">*</span>
+                    </ng-template>
+                    <div class="form-check form-check-inline ml-1">
+                        <input formControlName="gender" class="form-check-input" type="radio" id="inlineRadio1" value="option1">
+                        <label class="form-check-label" for="inlineRadio1"><ng-container [ngTemplateOutlet]="genderReqStar"></ng-container> Herr</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-1">
+                        <input formControlName="gender" class="form-check-input" type="radio"  id="inlineRadio2" value="option2">
+                        <label class="form-check-label" for="inlineRadio2">Frau</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-1">
+                        <input formControlName="gender" class="form-check-input" type="radio" id="inlineRadio3" value="option3">
+                        <label class="form-check-label" for="inlineRadio3">Firma</label>
+                    </div>
+                </div>
+                <div class="col-12 col-md-9 row">
+                    <div class="col-12 col-md-6">
+                        <label>Nachname</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="profiles-lastname">@</span>
+                            <input formControlName="lastName" type="text" class="form-control" autocomplete="new-password" placeholder="Nachname" aria-label="lastName" aria-describedby="profiles-lastname">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label>Vorname</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="profles-firstname">@</span>
+                            <input formControlName="firstName" type="text" class="form-control" autocomplete="new-password" placeholder="Vorname" aria-label="firstName" aria-describedby="profiles-firstname">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3 d-none d-md-block">
+                    Avatar
+                </div>
+                <div class="col-12 col-md-9 row">
+                    <div class="col-12 col-md-6">
+                        <label>Email</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="profiles-lastname">@</span>
+                            <input type="text" class="form-control" autocomplete="new-password" placeholder="Nachname" aria-label="lastName" aria-describedby="profiles-lastname">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 ">
+                        <label>Telefon</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="profles-firstname">@</span>
+                            <input type="text" class="form-control" autocomplete="new-password" placeholder="Vorname" aria-label="firstName" aria-describedby="profiles-firstname">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button
 
-                type="button"
-                class="btn btn-danger text-white"
-        >
-            Löschen
-        </button>
-        <button
-                (click)="closeModal()"
-                type="button"
-                class="btn btn-primary text-white"
-                data-bs-dismiss="modal"
-        >
-            Abbrechen
-        </button>
-        <button
-                type="button"
-                class="btn btn-success text-white">
-            Speichern
-        </button>
-    </div>
+                    type="button"
+                    class="btn btn-danger text-white"
+            >
+                Löschen
+            </button>
+            <button
+                    (click)="closeModal()"
+                    type="button"
+                    class="btn btn-primary text-white"
+                    data-bs-dismiss="modal"
+            >
+                Abbrechen
+            </button>
+            <button
+                    (click)="save(profile)"
+                    type="button"
+                    class="btn btn-success text-white">
+                Speichern
+            </button>
+        </div>
+    </ng-container>
+    <ng-container></ng-container>
+    <ng-container></ng-container>
 </ng-container>
-<ng-container></ng-container>
-<ng-container></ng-container>

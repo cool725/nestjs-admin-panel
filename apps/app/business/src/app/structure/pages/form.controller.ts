@@ -12,6 +12,7 @@ export abstract class FormController<T> extends PageController {
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() onCancel: EventEmitter<T> = new EventEmitter();
 
+
   private route: ActivatedRoute;
 
   constructor(override injector: Injector) {
@@ -24,4 +25,11 @@ export abstract class FormController<T> extends PageController {
   }
 
   abstract override getData(): void;
+
+  /**
+   * closes the modal
+   * */
+  public closeModal(){
+    throw 'not implemented'
+  }
 }

@@ -4,9 +4,6 @@ import {ActivatedRoute} from '@angular/router';
 import {environment} from '../../../environments/environment';
 import {BoostrapModalUIComponent} from '@movit/app/ui';
 import {DataEmitter, EDataEmitterType} from "@movit/app/common";
-import {
-  ProfilesOverviewComponent
-} from "../../structure/pages/frontoffice/crm/profiles/overview/profiles-overview.component";
 import {ProfilesFormComponent} from "../../structure/pages/frontoffice/crm/profiles/form/profiles-form.component";
 
 @Component({
@@ -21,16 +18,11 @@ export class LayoutMainComponent {
   constructor(private route: ActivatedRoute,private dE:DataEmitter) {
     this.setRouteParams()
     this.init()
-
-    setTimeout(()=>{
-      this.dE.emit(EDataEmitterType.ModalOpen,ProfilesFormComponent)
-    },1000)
   }
 
   private init(){
     this.dE.register(EDataEmitterType.ModalOpen, data => {
       this.openModal<ProfilesFormComponent>(data)
-          .then(r => r.instance)
     })
   }
 
@@ -63,10 +55,13 @@ export class LayoutMainComponent {
     return outlet.isActivated ? outlet.activatedRoute : '';
   }
 
-  public openModal<C>(component: Type<C>, options = {}) {
-    const componentRef = this.vcModal.createComponent<BoostrapModalUIComponent>(
+  public async openModal<C>(component: Type<C>, options = {}) {
+    const modalRef = this.vcModal.createComponent<BoostrapModalUIComponent>(
       BoostrapModalUIComponent
     );
-    return componentRef.instance.setModalContentFromComponent(component, options,300);
+     const componentRef = await modalRef.instance.setModalContentFromComponent(component, options,300);
+    (<any>componentRef.instance)['closeModal'] = ()=> modalRef.destroy(); // todo find better solution | with data emitter
+
+    return componentRef
   }
 }

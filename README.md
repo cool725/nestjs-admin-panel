@@ -48,7 +48,7 @@ create new Branch with your name as prefix.
 
 ### FileWatching
 
-docs coming soon
+`nx build app-business --configuration=development --watch`
 
 ---
 

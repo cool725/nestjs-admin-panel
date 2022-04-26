@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Inject, Injectable, Optional} from '@angular/core';
 import { environment } from '../../../../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -9,11 +9,16 @@ export class ProfilesAPI<Profile, FilterValues> {
   profile$ = new BehaviorSubject<Profile>(<any>null);
   profiles$ = new BehaviorSubject<ITableOptions<Profile>>(<any>null);
 
-  constructor(private http: HttpClient) {}
+  constructor(
+      @Optional()
+      @Inject('apiPath') protected endpoint:string,
+      private http: HttpClient) {
+    console.log(endpoint)
+  }
 
   protected getPath(path: string, subPath: string | number = ''): string {
     return (
-      environment.api.url + '/profiles/' + path + '/' +(subPath ? '/' + subPath : '')
+       this.endpoint + '/profiles/' + path + '/' +(subPath ? '/' + subPath : '')
     );
   }
 

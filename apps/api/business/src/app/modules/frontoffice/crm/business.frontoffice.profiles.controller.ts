@@ -7,7 +7,7 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
-import { FrontOffice } from '../business.frontoffice.namespace';
+import {FrontOffice} from '../business.frontoffice.namespace';
 import { GetPagination } from '../../../../../../../../libs/api/common/decorator';
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
@@ -15,7 +15,7 @@ import { GetCompany } from '../../../../../../../../libs/api/business/src/busine
 import { BusinessEntity } from '../../../../../../../../libs/api/business/src/entities/business.entity';
 import { ProfilesService } from '../../../../../../../../libs/api/profiles/src/profiles.service';
 
-@Controller(FrontOffice.resolePath(FrontOffice.Profiles.PATH))
+@Controller(FrontOffice.resolePaths(['crm', FrontOffice.Profiles.PATH]))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)
 export class BusinessFrontOfficeProfilesController {
   constructor(protected profilesService: ProfilesService) {}

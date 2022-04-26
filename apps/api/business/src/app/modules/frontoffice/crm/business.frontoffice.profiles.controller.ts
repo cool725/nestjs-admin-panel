@@ -28,23 +28,21 @@ export class BusinessFrontOfficeProfilesController {
     return pagination;
   }
 
-  @Put('profile/:profileId')
-  getProfile(
+  @Put('profile')
+  saveProfile(@GetCompany() business: BusinessEntity, @Body() body: any) {
+    this.profilesService
+    return body;
+  }
+
+
+  @Patch('profile/:profileId')
+  updateProfile(
     @GetCompany() business: BusinessEntity,
     @Param('profileId') profileId: number
   ) {
     return 1;
   }
 
-  @Put('profile')
-  saveProfile(@GetCompany() business: BusinessEntity, @Body() body: any) {
-    return 1;
-  }
-
-  @Patch('profile')
-  updateProfile(@GetCompany() business: BusinessEntity, @Body() body: any) {
-    return 1;
-  }
 
   @Patch('profile/:profileId')
   deleteProfile(

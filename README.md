@@ -25,13 +25,7 @@ Setup two Local Domain entry
 * Windows:
   C:\Windows\System32\drivers\etc
 
-Point the root folder to:
-
-- auth.movit.local -> dist/apps/app/auth/
-- business.movit.local -> dist/apps/app/business/
-
 #### Restart
-
 restart docker and check if the db migration has successfully been run
 
 #### Login

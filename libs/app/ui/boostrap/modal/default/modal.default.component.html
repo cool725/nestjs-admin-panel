@@ -7,8 +7,9 @@
   tabindex="-1"
   aria-labelledby="staticBackdropLabel"
   aria-hidden="true"
+  [style]="style"
 >
-  <div class="modal-dialog">
+  <div [class]="dialogClass">
     <div class="modal-content">
       <ng-content></ng-content>
       <ng-container #vc></ng-container>

@@ -1,7 +1,7 @@
 ::ng-deep {
   .modal {
     z-index: 10;
-    .modal-header {
+    &-header {
       padding-top: 0;
       padding-bottom: 0;
       background: black;
@@ -41,6 +41,10 @@
           background-color: transparent !important;
         }
       }
+    }
+    &-content{
+      height: 100%;
+      border-radius: 0;
     }
   }
 }

@@ -9,6 +9,8 @@ interface IDataEmitterEvent {
 export enum EDataEmitterType {
   DataReload = 'dataReload',
   TopBarTemplate = 'TopBarTemplate',
+
+  ModalOpen = 'ModalOpen'
 }
 
 @Injectable({

@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewContainerRef, ViewRef } from '@angular/core';
+import {Component, ComponentRef, Input, Type, ViewChild, ViewContainerRef, ViewRef} from '@angular/core';
 import { DataEmitter } from '@movit/app/common';
 
 @Component({
@@ -9,10 +9,25 @@ import { DataEmitter } from '@movit/app/common';
 export class BoostrapModalUIComponent {
   @ViewChild('vc', { read: ViewContainerRef }) vc: ViewContainerRef;
 
+  @Input() style = {
+    width:'925px',
+    height:'725px',
+    background:'red',
+    left:'initial',
+    top:'initial',
+    right:'0px',
+    bottom:'0px',
+  }
+
+  @Input() dialogClass = 'h-100';// 'modal-dialog'
+
   constructor(private dE: DataEmitter) {}
 
-  setModalContentFromComponent(component: any, delay = 0) {
-    this.vc.clear();
-    setTimeout(() => this.vc.createComponent(component), delay);
+  setModalContentFromComponent<C>(component: Type<C>, options = {}, delay = 0):Promise< ComponentRef<C> > {
+    return new Promise(resolver =>
+        setTimeout(() => {
+          this.vc.clear();
+          resolver(this.vc.createComponent(component))
+        }, delay))
   }
 }

@@ -1,0 +1,48 @@
+<ng-container *ngIf="viewSettings.type === 'modal'">
+    <div class="modal-header">
+        <select class="form-control bg-transparent">
+            <option>Einfach</option>
+            <option>Detailiert</option>
+        </select>
+        <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+        ></button>
+    </div>
+    <div class="modal-header-sub">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page"> Übersicht </a>
+            </li>
+        </ul>
+    </div>
+    <div class="modal-body">
+
+    </div>
+    <div class="modal-footer">
+        <button
+
+                type="button"
+                class="btn btn-danger text-white"
+        >
+            Löschen
+        </button>
+        <button
+
+                type="button"
+                class="btn btn-primary text-white"
+                data-bs-dismiss="modal"
+        >
+            Abbrechen
+        </button>
+        <button
+                type="button"
+                class="btn btn-success text-white">
+            Speichern
+        </button>
+    </div>
+</ng-container>
+<ng-container></ng-container>
+<ng-container></ng-container>

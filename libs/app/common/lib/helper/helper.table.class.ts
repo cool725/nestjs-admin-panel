@@ -20,8 +20,8 @@ class TablePagination {
 
     if (infos.currentPage > 10) {
       const factor: number = 10 * Math.floor(infos.currentPage / 10);
-      pageNum = pageNum.map((s: any, i: number) => factor + i);
-    } else pageNum = pageNum.map((s: any, i: number) => 1 + i);
+      pageNum = pageNum.map((s: number, i: number) => factor + i);
+    } else pageNum = pageNum.map((s: number, i: number) => 1 + i);
 
     return pageNum;
   }
@@ -36,12 +36,18 @@ export interface ITableBaseFilter {
   searchValue: string;
 }
 
-export class Table<T, F extends ITableBaseFilter> {
-  constructor(
-    public data$: BehaviorSubject<ITableOptions<T>>,
-    public filterValues: F = <F>{}
-  ) {}
+export class Table<Type, Filter extends ITableBaseFilter> {
+
+  /*
+  * Pagination Hanlder
+  * */
   readonly paginate = new TablePagination();
+
+  constructor(
+    public data$: BehaviorSubject<ITableOptions<Type>>,
+    public filterValues: Filter = <Filter>{}
+  ) {}
+
 
   public canShow(obj: any, keys: string[] = []): boolean {
     const value: string = this.filterValues.searchValue;
@@ -71,7 +77,7 @@ export class Table<T, F extends ITableBaseFilter> {
     return false;
   }
 
-  getPagesNum(pageResultInfos: IPageInfo) {
+  public getPagesNum(pageResultInfos: IPageInfo) {
     return this.paginate.getPages(pageResultInfos);
   }
 

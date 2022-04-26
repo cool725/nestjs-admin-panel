@@ -1,8 +1,13 @@
-import { Component, ViewChild, ViewContainerRef } from '@angular/core';
-import { fadein } from './router-animations';
-import { ActivatedRoute, Router } from '@angular/router';
-import { environment } from '../../../environments/environment';
-import { BoostrapModalUIComponent } from '@movit/app/ui';
+import {Component, Type, ViewChild, ViewContainerRef} from '@angular/core';
+import {fadein} from './router-animations';
+import {ActivatedRoute} from '@angular/router';
+import {environment} from '../../../environments/environment';
+import {BoostrapModalUIComponent} from '@movit/app/ui';
+import {DataEmitter, EDataEmitterType} from "@movit/app/common";
+import {
+  ProfilesOverviewComponent
+} from "../../structure/pages/frontoffice/crm/profiles/overview/profiles-overview.component";
+import {ProfilesFormComponent} from "../../structure/pages/frontoffice/crm/profiles/form/profiles-form.component";
 
 @Component({
   selector: 'start-layout-main',
@@ -13,15 +18,30 @@ import { BoostrapModalUIComponent } from '@movit/app/ui';
 export class LayoutMainComponent {
   @ViewChild('vcModal', { read: ViewContainerRef }) vcModal: ViewContainerRef;
 
-  constructor(private route: ActivatedRoute) {
-    const businessUuid =
-      route.snapshot.paramMap.get('businessUuid') ||
-      localStorage.getItem('ctk');
-    const locationId = route.snapshot.paramMap.get('locationId') || '1';
+  constructor(private route: ActivatedRoute,private dE:DataEmitter) {
+    this.setRouteParams()
+    this.init()
+
+    setTimeout(()=>{
+      this.dE.emit(EDataEmitterType.ModalOpen,ProfilesFormComponent)
+    },1000)
+  }
+
+  private init(){
+    this.dE.register(EDataEmitterType.ModalOpen, data => {
+      this.openModal<ProfilesFormComponent>(data)
+          .then(r => r.instance)
+    })
+  }
+
+  private setRouteParams(){
+    const businessUuid = this.route.snapshot.paramMap.get('businessUuid') || localStorage.getItem('ctk');
+    const locationId = this.route.snapshot.paramMap.get('locationId') || '1';
     if (!businessUuid || !locationId) {
       console.warn('ID is missing');
       this.redirectToAuth();
-    } else {
+    }
+    else {
       environment.company.url = `/${businessUuid}/${locationId}`;
       localStorage.setItem('ctk', businessUuid);
       localStorage.setItem('path:2', locationId);
@@ -43,10 +63,10 @@ export class LayoutMainComponent {
     return outlet.isActivated ? outlet.activatedRoute : '';
   }
 
-  public openModal(component: any) {
+  public openModal<C>(component: Type<C>, options = {}) {
     const componentRef = this.vcModal.createComponent<BoostrapModalUIComponent>(
       BoostrapModalUIComponent
     );
-    componentRef.instance.setModalContentFromComponent(component, 300);
+    return componentRef.instance.setModalContentFromComponent(component, options,300);
   }
 }

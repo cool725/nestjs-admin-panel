@@ -21,17 +21,37 @@ export class ProfileEntity extends BaseEntity {
   id: number;
 
   @Column({ type: 'bigint', nullable: false, unsigned: true })
-  companyId: string;
+  companyId: number;
 
   @Column({ type: 'bigint', nullable: false, unsigned: true })
-  profileId: string;
+  profileId: number;
+
+
+  @Column({ type: 'varchar', length:110, nullable: true })
+  firstName: string;
+
+  @Column({ type: 'varchar', length:110, nullable: true })
+  lastName: string;
+
+  @Column({ type: 'varchar', length:20, nullable: true })
+  phone: string;
+
+  @Column({ type: 'varchar', length:90, nullable: true })
+  email: string;
+
 
   constructor() {
     super();
   }
 
   @BeforeInsert()
-  private beforeInsert() {}
+  protected async beforeInsert() {
+    this.profileId =
+        (await ProfileEntity.count({
+          where: { companyId: this.companyId }
+        })) + 1;
+  }
+
 
   toJSON() {
     return this;

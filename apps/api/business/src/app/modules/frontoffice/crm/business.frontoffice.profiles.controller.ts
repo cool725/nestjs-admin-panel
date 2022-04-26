@@ -29,9 +29,12 @@ export class BusinessFrontOfficeProfilesController {
   }
 
   @Put('profile')
-  saveProfile(@GetCompany() business: BusinessEntity, @Body() body: any) {
-    this.profilesService
-    return body;
+  saveProfile(@GetCompany() business: BusinessEntity, @Param() profile: any) {
+    this.profilesService.createProfile(business.businessId, {
+      firstName:'weslley',
+      gender:'M'
+    })
+    return profile;
   }
 
 

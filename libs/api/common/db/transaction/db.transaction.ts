@@ -1,5 +1,6 @@
 export const doTransactionInsert = async (entity, repo) => {
   let connection = repo.manager.connection;
+  let count = 0
   let queryRunner = connection.createQueryRunner();
   const save = (entity) =>
     new Promise(async (resolve) => {
@@ -18,7 +19,10 @@ export const doTransactionInsert = async (entity, repo) => {
       resolve(true);
     });
 
-  while (!(await save(entity))) queryRunner = connection.createQueryRunner();
+  while (!(await save(entity)) && count < 50) {
+      queryRunner = connection.createQueryRunner();
+      count++;
+  }
 
   return entity;
 };

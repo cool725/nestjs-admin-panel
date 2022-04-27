@@ -52,7 +52,8 @@ create new Branch with your name as prefix.
 
 ### FileWatching
 
-`nx build app-business --configuration=development --watch`
+Frontend: `npm run app:start:api-business`
+Backend: `npm run api:start:api-business`
 
 ---
 

@@ -20,13 +20,14 @@
 
 Setup two Local Domain entry
 
-* Ubuntu and Macos:
+- Ubuntu and Macos:
   https://www.codegrepper.com/code-examples/shell/set+domain+name+for+localhost+ubuntu
-* Windows:
-  https://ecompile.io/blog/localhost-custom-domain-name 
+- Windows:
+  https://ecompile.io/blog/localhost-custom-domain-name
   C:\Windows\System32\drivers\etc
 
 #### Restart
+
 restart docker and check if the db migration has successfully been run
 
 #### Login

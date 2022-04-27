@@ -1,13 +1,13 @@
 version: '3.7'
 services:
   movit-local-server:
-      image: nginx
-      container_name: framework-local-server
-      ports:
-        - 80:80
-      volumes:
-        - ./config/local.webserver.conf:/etc/nginx/conf.d/site.conf
-        - ./dist/apps/app/:/var/www/
+    image: nginx
+    container_name: framework-local-server
+    ports:
+      - 80:80
+    volumes:
+      - ./config/local.webserver.conf:/etc/nginx/conf.d/site.conf
+      - ./dist/apps/app/:/var/www/
   movit-api-auth:
     container_name: framework-api-auth
     image: admin-framework

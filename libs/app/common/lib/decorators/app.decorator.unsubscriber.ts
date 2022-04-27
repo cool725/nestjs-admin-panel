@@ -4,7 +4,7 @@ export function AutoUnsubscribe(constructor: any = null): any {
     this.destroySubscriptions();
     ngOnDestroy &&
       typeof ngOnDestroy === 'function' &&
-    // eslint-disable-next-line prefer-rest-params
+      // eslint-disable-next-line prefer-rest-params
       ngOnDestroy.apply(this, arguments);
   };
 }

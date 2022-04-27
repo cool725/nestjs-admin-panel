@@ -37,17 +37,15 @@ export interface ITableBaseFilter {
 }
 
 export class Table<Type, Filter extends ITableBaseFilter> {
-
   /*
-  * Pagination Hanlder
-  * */
+   * Pagination Hanlder
+   * */
   readonly paginate = new TablePagination();
 
   constructor(
     public data$: BehaviorSubject<ITableOptions<Type>>,
     public filterValues: Filter = <Filter>{}
   ) {}
-
 
   public canShow(obj: any, keys: string[] = []): boolean {
     const value: string = this.filterValues.searchValue;

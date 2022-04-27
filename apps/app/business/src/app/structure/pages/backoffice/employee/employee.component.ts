@@ -21,7 +21,7 @@ class Employee {
   birthDay: string;
 }
 
-type ITableEmployeeFilter = ITableBaseFilter
+type ITableEmployeeFilter = ITableBaseFilter;
 
 @Component({
   selector: 'movit-backoffice-employee',

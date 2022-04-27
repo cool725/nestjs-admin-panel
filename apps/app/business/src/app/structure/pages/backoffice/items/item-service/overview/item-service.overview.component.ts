@@ -1,10 +1,9 @@
 import { Component, Injector } from '@angular/core';
 import { ItemController } from '../../item.controller';
 
-
 import { Confirmable } from '@movit/app/decorators';
 import { ItemServiceAPI } from '../item.api';
-import {Table} from "@movit/app/common";
+import { Table } from '@movit/app/common';
 
 class Item {
   itemId: number;
@@ -86,7 +85,7 @@ export class ItemServiceOverviewComponent extends ItemController<ItemService> {
 
   constructor(
     public api: ItemServiceAPI<ItemService, ItemCategory>,
-    override injector: Injector,
+    override injector: Injector
   ) {
     super(injector);
   }

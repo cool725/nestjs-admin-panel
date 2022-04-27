@@ -10,7 +10,7 @@ export enum EDataEmitterType {
   DataReload = 'dataReload',
   TopBarTemplate = 'TopBarTemplate',
 
-  ModalOpen = 'ModalOpen'
+  ModalOpen = 'ModalOpen',
 }
 
 @Injectable({

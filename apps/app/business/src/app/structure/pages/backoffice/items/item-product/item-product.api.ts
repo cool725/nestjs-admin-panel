@@ -6,7 +6,9 @@ import { ITableOptions } from '@movit/app/common';
 @Injectable()
 export class ItemProductAPI<T> {
   readonly item$ = new BehaviorSubject<T | null>(null);
-  readonly items$ = new BehaviorSubject<ITableOptions<T> | { data: [] }>({ data: [] });
+  readonly items$ = new BehaviorSubject<ITableOptions<T> | { data: [] }>({
+    data: [],
+  });
 
   constructor(
     @Inject('basePath') private basePath: string,

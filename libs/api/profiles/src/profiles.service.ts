@@ -1,52 +1,54 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ProfilesRepository } from "./classes/profiles.repository";
+import { ProfilesRepository } from './classes/profiles.repository';
 import { Pagination } from '../../common/decorator';
-import {doTransactionInsert} from "../../common/db/transaction/db.transaction";
-
+import { doTransactionInsert } from '../../common/db/transaction/db.transaction';
 
 @Injectable()
 export class ProfilesService {
-
   constructor(
-      @InjectRepository(ProfilesRepository)
-      private profileRepo: ProfilesRepository
-  ) { }
+    @InjectRepository(ProfilesRepository)
+    private profileRepo: ProfilesRepository
+  ) {}
 
-  getProfiles(businessId:number, pagination: Pagination) {
+  public getProfiles(businessId: number, pagination: Pagination) {
     return this.profileRepo.find({
-      where:{ companyId:businessId },
-      order: pagination.sort.reduce((order, sort) => ({ ...order, [sort.field]: sort.by }), {}),
+      where: { companyId: businessId },
+      order: pagination.sort.reduce(
+        (order, sort) => ({ ...order, [sort.field]: sort.by }),
+        {}
+      ),
       skip: pagination.skip,
-      take: pagination.limit
-    })
+      take: pagination.limit,
+    });
   }
 
-  getProfile(businessId:number, profileId: number) {
-    return this.profileRepo.findOne(
-        {where:{
-            companyId:businessId,
-            profileId:profileId
-          }}
-    );
+  public getProfile(businessId: number, profileId: number) {
+    return this.profileRepo.findOne({
+      where: {
+        companyId: businessId,
+        profileId: profileId,
+      },
+    });
   }
 
-  async createProfile(businessId:number, data: any) {
+  async createProfile(businessId: number, data: any) {
     const profile = this.profileRepo.create();
     profile.companyId = businessId;
-    await doTransactionInsert(profile,this.profileRepo);
-    return this.updateProfile(businessId,profile.profileId,data)
+    await doTransactionInsert(profile, this.profileRepo);
+    return this.updateProfile(businessId, profile.profileId, data);
   }
 
-  async updateProfile(businessId,profileId: number, data: any) {
-    const profile = await this.getProfile(businessId,profileId);
-    Object.assign(profile,data);
+  async updateProfile(businessId, profileId: number, data: any) {
+    const profile = await this.getProfile(businessId, profileId);
+    Object.assign(profile, data);
     return this.profileRepo.save(profile);
   }
 
-  deleteProfile(businessId,profileId: number) {
+  public deleteProfile(businessId, profileId: number) {
     return this.profileRepo.delete({
-      companyId:businessId,profileId:profileId
+      companyId: businessId,
+      profileId: profileId,
     });
   }
 }

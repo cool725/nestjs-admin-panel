@@ -7,13 +7,14 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
-import {FrontOffice} from '../business.frontoffice.namespace';
+import { FrontOffice } from '../business.frontoffice.namespace';
 import { GetPagination } from '../../../../../../../../libs/api/common/decorator';
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
 import { GetCompany } from '../../../../../../../../libs/api/business/src/business.decorator';
 import { BusinessEntity } from '../../../../../../../../libs/api/business/src/entities/business.entity';
 import { ProfilesService } from '../../../../../../../../libs/api/profiles/src/profiles.service';
+import { ProfilesDto } from '../../../../../../../../libs/api/profiles/src/classes/profiles.dto';
 
 @Controller(FrontOffice.resolePaths(['crm', FrontOffice.Profiles.PATH]))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)
@@ -29,23 +30,21 @@ export class BusinessFrontOfficeProfilesController {
   }
 
   @Put('profile')
-  saveProfile(@GetCompany() business: BusinessEntity, @Param() profile: any) {
-    this.profilesService.createProfile(business.businessId, {
-      firstName:'weslley',
-      gender:'M'
-    })
-    return profile;
+  saveProfile(
+    @GetCompany() business: BusinessEntity,
+    @Param() profile: ProfilesDto.Create
+  ) {
+    return this.profilesService.createProfile(business.businessId, profile);
   }
-
 
   @Patch('profile/:profileId')
   updateProfile(
     @GetCompany() business: BusinessEntity,
-    @Param('profileId') profileId: number
+    @Param('profileId') profileId: number,
+    @Param() data: ProfilesDto.Update
   ) {
-    return 1;
+    return data;
   }
-
 
   @Patch('profile/:profileId')
   deleteProfile(

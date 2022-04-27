@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Injector, Output } from '@angular/core';
 import { PageController } from './page.controller';
 import { ActivatedRoute } from '@angular/router';
-import {AutoUnsubscribe} from "@movit/app/decorators";
-import {FormBuilder} from "@angular/forms";
+import { AutoUnsubscribe } from '@movit/app/decorators';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'base-component',
@@ -25,7 +25,7 @@ export abstract class FormController<T> extends PageController {
     this.fb = injector.get(FormBuilder);
   }
 
-  protected override destroySubscriptions(){
+  protected override destroySubscriptions() {
     this.onSave.unsubscribe();
     this.onCancel.unsubscribe();
     return super.destroySubscriptions();
@@ -40,7 +40,5 @@ export abstract class FormController<T> extends PageController {
   /**
    * closes the modal
    * */
-  public closeModal(){
-  }
-
+  public closeModal() {}
 }

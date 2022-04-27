@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import {environment} from "../../../../../environments/environment";
+import { environment } from '../../../../../environments/environment';
 
 const routes = [
   {
@@ -14,6 +14,6 @@ const routes = [
 @NgModule({
   declarations: [],
   imports: [CommonModule, RouterModule.forChild(routes)],
-  providers:[]
+  providers: [],
 })
 export class CrmModule {}

@@ -26,19 +26,17 @@ export class ProfileEntity extends BaseEntity {
   @Column({ type: 'bigint', nullable: false, unsigned: true })
   profileId: number;
 
-
-  @Column({ type: 'varchar', length:110, nullable: true })
+  @Column({ type: 'varchar', length: 110, nullable: true })
   firstName: string;
 
-  @Column({ type: 'varchar', length:110, nullable: true })
+  @Column({ type: 'varchar', length: 110, nullable: true })
   lastName: string;
 
-  @Column({ type: 'varchar', length:20, nullable: true })
+  @Column({ type: 'varchar', length: 20, nullable: true })
   phone: string;
 
-  @Column({ type: 'varchar', length:90, nullable: true })
+  @Column({ type: 'varchar', length: 90, nullable: true })
   email: string;
-
 
   constructor() {
     super();
@@ -47,11 +45,10 @@ export class ProfileEntity extends BaseEntity {
   @BeforeInsert()
   protected async beforeInsert() {
     this.profileId =
-        (await ProfileEntity.count({
-          where: { companyId: this.companyId }
-        })) + 1;
+      (await ProfileEntity.count({
+        where: { companyId: this.companyId },
+      })) + 1;
   }
-
 
   toJSON() {
     return this;

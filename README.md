@@ -26,8 +26,8 @@ Setup two Local Domain entry
   https://ecompile.io/blog/localhost-custom-domain-name
   C:\Windows\System32\drivers\etc
 
-auth.movit.local
-business.movit.local
+`auth.movit.local`
+`business.movit.local`
 
 #### Restart
 

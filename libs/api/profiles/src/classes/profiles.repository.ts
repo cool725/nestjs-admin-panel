@@ -1,4 +1,4 @@
-import { EntityRepository, IsNull, Repository } from 'typeorm';
+import { EntityRepository, Repository } from 'typeorm';
 import { ProfileEntity } from '../entities/profles.entity';
 
 @EntityRepository(ProfileEntity)

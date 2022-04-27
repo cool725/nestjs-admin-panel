@@ -87,4 +87,9 @@ export abstract class PageController {
         t.createEmbeddedView(context)
       );
   }
+
+  // todo rename types
+  protected openModal(modalType: EDataEmitterType, data?: any, resolver?: any){
+    return this.dE.emit(modalType,data,resolver)
+  }
 }

@@ -1,7 +1,8 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { PageController } from '../../../../page.controller';
 import { ProfilesAPI } from '../packages/profile-api.service';
-import { ITableBaseFilter, Table } from '@movit/app/common';
+import {DataEmitter, EDataEmitterType, ITableBaseFilter, Table} from '@movit/app/common';
+import {ProfilesFormComponent} from "../form/profiles-form.component";
 
 class Profile {
   profileId: number;
@@ -41,5 +42,9 @@ export class ProfilesOverviewComponent
 
   getData(): void {
     this.onLoadAndSetData(this.api.getProfiles(), this.api.profiles$);
+  }
+
+  testOnly(){
+    this.openModal(EDataEmitterType.ModalOpen, ProfilesFormComponent);
   }
 }

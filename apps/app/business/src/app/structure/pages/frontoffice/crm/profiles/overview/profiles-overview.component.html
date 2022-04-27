@@ -27,9 +27,18 @@
             <div class="col-6 col-md-2 mt-2 mt-md-0">
               <div class="form-group">
                 <a
-                  [routerLink]="basePath + '// /new'"
+                  [routerLink]="basePath + ' /new'"
                   class="btn btn-success text-white w-100"
                   >Erstellen</a
+                >
+              </div>
+            </div>
+            <div class="col-6 col-md-2 mt-2 mt-md-0">
+              <div class="form-group">
+                <a
+                  (click)="testOnly()"
+                  class="btn btn-success text-white w-100"
+                  >Modal Test</a
                 >
               </div>
             </div>

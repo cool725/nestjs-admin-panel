@@ -18,10 +18,7 @@ export class LayoutMainComponent {
   constructor(private route: ActivatedRoute,private router: Router, private dE: DataEmitter) {
     this.setRouteParams();
     this.init();
-    setTimeout(() => {
 
-      this.dE.emit(EDataEmitterType.ModalOpen, ProfilesFormComponent);
-    }, 1000);
   }
 
   private init() {

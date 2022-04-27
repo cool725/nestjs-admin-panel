@@ -40,7 +40,7 @@ export class ProfilesAPI<Profile, FilterValues> {
     return this.http.patch(this.getPath('profile', profileId), profile);
   }
 
-  deleteProfile(profileId: string) {
-    return this.http.delete(this.getPath(profileId), {});
+  deleteProfile(profileId: number) {
+    return this.http.delete(this.getPath(profileId+''), {});
   }
 }

@@ -32,7 +32,8 @@ export class UserComponent extends PageController {
   }
 
   getUsers() {
-    this.onLoadAndSetData(this.userAPI.getUsers(), this.userAPI.users$);
+    this.onLoadAndSetData(this.userAPI.getUsers(), this.userAPI.users$,
+        (rows:any) => ({data:rows}));
   }
 
   saveUser(user: any) {

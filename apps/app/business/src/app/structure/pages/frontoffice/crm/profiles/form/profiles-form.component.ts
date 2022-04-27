@@ -2,8 +2,11 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { FormController } from '../../../../form.controller';
 import { ProfilesAPI } from '../packages/profile-api.service';
 import { FormControl, Validators } from '@angular/forms';
+import {Confirmable} from "@movit/app/decorators";
 
-class Profiles {}
+class Profiles {
+  profileId: number;
+}
 
 @Component({
   selector: 'movit-profiles-form',
@@ -34,9 +37,17 @@ export class ProfilesFormComponent extends FormController<Profiles> {
   getData(): void {}
 
   async save(profile: Partial<Profiles>) {
-    const api$ = await this.api.saveProfile(profile);
+    const profileValues = this.formProfile.value;
+    const api$ = await this.api.saveProfile(profileValues);
     api$.subscribe();
     this.onSave.emit();
+  }
+
+  @Confirmable({
+    title:'Sure?'
+  })
+  delete(profileId:number){
+    return this.api.deleteProfile(profileId)
   }
 
   cancel(profile: Partial<Profiles>) {

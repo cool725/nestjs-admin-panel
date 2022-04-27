@@ -129,7 +129,10 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-danger text-white">Löschen</button>
+      <button
+              *ngIf="profile.profileId"
+              (click)="delete(profile.profileId)"
+              type="button" class="btn btn-danger text-white">Löschen</button>
       <button
         (click)="closeModal()"
         type="button"

@@ -32,7 +32,7 @@ export class BusinessFrontOfficeProfilesController {
   @Put('profile')
   saveProfile(
     @GetCompany() business: BusinessEntity,
-    @Param() profile: ProfilesDto.Create
+    @Body() profile: ProfilesDto.Create
   ) {
     return this.profilesService.createProfile(business.businessId, profile);
   }
@@ -41,7 +41,7 @@ export class BusinessFrontOfficeProfilesController {
   updateProfile(
     @GetCompany() business: BusinessEntity,
     @Param('profileId') profileId: number,
-    @Param() data: ProfilesDto.Update
+    @Body() data: ProfilesDto.Update
   ) {
     return data;
   }

@@ -1,10 +1,10 @@
-import {Component, Type, ViewChild, ViewContainerRef} from '@angular/core';
-import {fadein} from './router-animations';
-import {ActivatedRoute} from '@angular/router';
-import {environment} from '../../../environments/environment';
-import {BoostrapModalUIComponent} from '@movit/app/ui';
-import {DataEmitter, EDataEmitterType} from "@movit/app/common";
-import {ProfilesFormComponent} from "../../structure/pages/frontoffice/crm/profiles/form/profiles-form.component";
+import { Component, Type, ViewChild, ViewContainerRef } from '@angular/core';
+import { fadein } from './router-animations';
+import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../../environments/environment';
+import { BoostrapModalUIComponent } from '@movit/app/ui';
+import { DataEmitter, EDataEmitterType } from '@movit/app/common';
+import { ProfilesFormComponent } from '../../structure/pages/frontoffice/crm/profiles/form/profiles-form.component';
 
 @Component({
   selector: 'start-layout-main',
@@ -15,25 +15,29 @@ import {ProfilesFormComponent} from "../../structure/pages/frontoffice/crm/profi
 export class LayoutMainComponent {
   @ViewChild('vcModal', { read: ViewContainerRef }) vcModal: ViewContainerRef;
 
-  constructor(private route: ActivatedRoute,private dE:DataEmitter) {
+  constructor(private route: ActivatedRoute, private dE: DataEmitter) {
     this.setRouteParams();
     this.init();
+    setTimeout(() => {
+      this.dE.emit(EDataEmitterType.ModalOpen, ProfilesFormComponent);
+    }, 1000);
   }
 
-  private init(){
-    this.dE.register(EDataEmitterType.ModalOpen, data => {
-      this.openModal<ProfilesFormComponent>(data)
-    })
+  private init() {
+    this.dE.register(EDataEmitterType.ModalOpen, (data) => {
+      this.openModal<ProfilesFormComponent>(data);
+    });
   }
 
-  private setRouteParams(){
-    const businessUuid = this.route.snapshot.paramMap.get('businessUuid') || localStorage.getItem('ctk');
+  private setRouteParams() {
+    const businessUuid =
+      this.route.snapshot.paramMap.get('businessUuid') ||
+      localStorage.getItem('ctk');
     const locationId = this.route.snapshot.paramMap.get('locationId') || '1';
     if (!businessUuid || !locationId) {
       console.warn('ID is missing');
       this.redirectToAuth();
-    }
-    else {
+    } else {
       environment.company.url = `/${businessUuid}/${locationId}`;
       localStorage.setItem('ctk', businessUuid);
       localStorage.setItem('path:2', locationId);
@@ -59,9 +63,13 @@ export class LayoutMainComponent {
     const modalRef = this.vcModal.createComponent<BoostrapModalUIComponent>(
       BoostrapModalUIComponent
     );
-     const componentRef = await modalRef.instance.setModalContentFromComponent(component, options,300);
-    (<any>componentRef.instance)['closeModal'] = ()=> modalRef.destroy(); // todo find better solution | with data emitter
+    const componentRef = await modalRef.instance.setModalContentFromComponent(
+      component,
+      options,
+      300
+    );
+    (<any>componentRef.instance)['closeModal'] = () => modalRef.destroy(); // todo find better solution | with data emitter
 
-    return componentRef
+    return componentRef;
   }
 }

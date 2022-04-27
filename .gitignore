@@ -7,3 +7,4 @@ temp/
 .angular
 /docker/
 .env
+docs/local.webserver.conf

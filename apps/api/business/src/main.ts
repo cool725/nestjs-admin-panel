@@ -4,11 +4,9 @@
 import { env } from '@movit/api/utils';
 env.load();
 
-import { Logger } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-
 import { BusinessAPIModule } from './app/business.module';
-import { BexioHelper } from '@movit/api/extern';
 import * as cookieParser from 'cookie-parser';
 import { CorsMiddleware } from '@movit/api/middleware';
 
@@ -16,6 +14,7 @@ async function bootstrap() {
   const app = await NestFactory.create(BusinessAPIModule);
   const globalPrefix = 'api';
 
+  app.useGlobalPipes(new ValidationPipe());
   app.setGlobalPrefix(globalPrefix);
   app.use(cookieParser());
   app.use(CorsMiddleware());

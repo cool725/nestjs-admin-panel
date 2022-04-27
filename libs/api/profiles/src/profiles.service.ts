@@ -11,6 +11,7 @@ export class ProfilesService {
     private profileRepo: ProfilesRepository
   ) {}
 
+
   public getProfiles(businessId: number, pagination: Pagination) {
     return this.profileRepo.find({
       where: { companyId: businessId },

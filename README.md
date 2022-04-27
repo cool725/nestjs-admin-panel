@@ -26,6 +26,9 @@ Setup two Local Domain entry
   https://ecompile.io/blog/localhost-custom-domain-name
   C:\Windows\System32\drivers\etc
 
+auth.movit.local
+business.movit.local
+
 #### Restart
 
 restart docker and check if the db migration has successfully been run

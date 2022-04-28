@@ -1,12 +1,10 @@
 import {
   Body,
   Controller,
-  Delete,
   Get,
   Param,
   Patch,
   Put,
-  Post,
   UseGuards,
 } from '@nestjs/common';
 import { FrontOffice } from '../business.frontoffice.namespace';
@@ -32,7 +30,6 @@ export class BusinessFrontOfficeProfilesController {
     @GetPagination() pagination: Pagination
   ) {
     return this.profilesService.getProfiles(business.businessId, pagination);
-    //return pagination;
   }
 
   @Put('profile/:profileId')
@@ -44,19 +41,20 @@ export class BusinessFrontOfficeProfilesController {
   }
 
   @Put('profile')
-  createProfile(@GetCompany() business: BusinessEntity, @Body() body: any) {
-    return this.profilesService.createProfile(business.businessId, body);
+  createProfile(@GetCompany() business: BusinessEntity, @Body() profile:ProfilesDto.Create) {
+    return this.profilesService.createProfile(business.businessId, profile);
   }
 
   @Patch('profile/:profileId')
   updateProfile(
     @GetCompany() business: BusinessEntity,
-    @Param('profileId') profileId: number
+    @Param('profileId') profileId: number,
+    @Body() profile:ProfilesDto.Update
   ) {
     return this.profilesService.updateProfile(
       business.businessId,
       profileId,
-      body
+      profile
     );
   }
 

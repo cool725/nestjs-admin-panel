@@ -21,21 +21,21 @@ export class ProfileEntity extends BaseEntity {
   id: number;
 
   @Column({ type: 'bigint', nullable: false, unsigned: true })
-  companyId: string;
+  companyId: number;
 
   @Column({ type: 'bigint', nullable: false, unsigned: true })
-  profileId: string;
+  profileId: number;
 
-  @Column({ type: 'varchar', length: 50 })
+  @Column({ type: 'varchar', length: 50, nullable:true })
   firstName: string;
 
-  @Column({ type: 'varchar', length: 50 })
+  @Column({ type: 'varchar', length: 70, nullable:true })
   lastName: string;
 
-  @Column({ type: 'varchar', length: 100 })
+  @Column({ type: 'varchar', length: 100, nullable:true })
   email: string;
 
-  @Column({ type: 'varchar', length: 15 })
+  @Column({ type: 'varchar', length: 15, nullable:true })
   phone: string;
 
   constructor() {

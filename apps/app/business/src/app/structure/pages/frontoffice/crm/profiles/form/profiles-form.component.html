@@ -63,39 +63,61 @@
             <label class="form-check-label" for="radio-company">Firma</label>
           </div>
         </div>
-        <div class="col-12 col-md-9 row">
-          <div class="col-12 col-md-6">
-            <label>Nachname</label>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="profiles-lastname">@</span>
-              <input
-                formControlName="lastName"
-                type="text"
-                class="form-control"
-                autocomplete="new-password"
-                placeholder="Nachname"
-                aria-label="lastName"
-                aria-describedby="profiles-lastname"
-              />
+
+        <ng-container *ngIf="profile.gender !== 'C'">
+          <div class="col-12 col-md-9 row">
+            <div class="col-12 col-md-6">
+              <label>Nachname</label>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="profiles-lastname">@</span>
+                <input
+                        formControlName="lastName"
+                        type="text"
+                        class="form-control"
+                        autocomplete="new-password"
+                        placeholder="Nachname"
+                        aria-label="lastName"
+                        aria-describedby="profiles-lastname"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <label>Vorname</label>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="profles-firstname">@</span>
+                <input
+                        formControlName="firstName"
+                        type="text"
+                        class="form-control"
+                        autocomplete="new-password"
+                        placeholder="Vorname"
+                        aria-label="firstName"
+                        aria-describedby="profiles-firstname"
+                />
+              </div>
             </div>
           </div>
-          <div class="col-12 col-md-6">
-            <label>Vorname</label>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="profles-firstname">@</span>
-              <input
-                formControlName="firstName"
-                type="text"
-                class="form-control"
-                autocomplete="new-password"
-                placeholder="Vorname"
-                aria-label="firstName"
-                aria-describedby="profiles-firstname"
-              />
+          <div class="col-12 col-md-3 d-none d-md-block"></div>
+        </ng-container>
+        <ng-container *ngIf="profile.gender === 'C'">
+          <div class="col-12 col-md-9 row">
+            <div class="col-12 col-md-12">
+              <label>Title</label>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="profiles-title">@</span>
+                <input
+                        formControlName="title"
+                        type="text"
+                        class="form-control"
+                        autocomplete="new-password"
+                        placeholder="Title"
+                        aria-label="title"
+                        aria-describedby="profiles-title"
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-12 col-md-3 d-none d-md-block"></div>
+        </ng-container>
         <div class="col-12 col-md-9 row">
           <div class="col-12 col-md-6">
             <label>Email</label>

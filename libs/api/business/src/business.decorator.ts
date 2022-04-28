@@ -1,6 +1,7 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
 import { BusinessEntity } from './entities/business.entity';
 
+// todo rename to get Business
 export const GetCompany = createParamDecorator(
   (_data: unknown, ctx: ExecutionContext): BusinessEntity => {
     const req = ctx.switchToHttp().getRequest();

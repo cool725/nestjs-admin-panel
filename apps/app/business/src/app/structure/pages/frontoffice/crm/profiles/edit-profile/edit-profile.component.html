@@ -1,0 +1,111 @@
+<div class="profile-edit--banner">
+  <div class="container">
+    <h1>Benutzer erstellen</h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card mt-3">
+    <form
+      id="profile-form"
+      [formGroup]="profileForm"
+      (ngSubmit)="doSave()"
+    >
+      <div class="row p-2">
+        <div class="col-md-6 col-12 mt-2">
+          <div class="form-group">
+            <label>Vorname</label>
+            <input
+              formControlName="firstName"
+              name="firstName"
+              class="form-control"
+              required
+            />
+            <div
+              [hidden]="!profileForm.hasError('required', 'firstName') || profileForm.get('firstName')?.pristine"
+              class="alert alert-danger"
+            >
+              Vorname is required
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-12 mt-2">
+          <div class="form-group">
+            <label>Nachname</label>
+            <input
+              formControlName="lastName"
+              name="lastName"
+              class="form-control"
+              required
+            />
+            <div
+              [hidden]="!profileForm.hasError('required', 'lastName') || profileForm.get('lastName')?.pristine"
+              class="alert alert-danger"
+            >
+              Nachname is required
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-12 mt-2">
+          <div class="form-group">
+            <label>Email</label>
+            <input
+              formControlName="email"
+              name="email"
+              type="email"
+              class="form-control"
+              required
+            />
+            <ng-template [ngIf]="profileForm.get('email')?.dirty">
+              <div
+                [hidden]="!profileForm.hasError('required', 'email')"
+                class="alert alert-danger"
+              >
+                Email is required
+              </div>
+              <div
+                [hidden]="!profileForm.hasError('email', 'email')"
+                class="alert alert-danger"
+              >
+                Email is not correct
+              </div>
+            </ng-template>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-12 mt-2">
+          <div class="form-group">
+            <label>Telefon</label>
+            <input
+              formControlName="phone"
+              name="phone"
+              type="phone"
+              class="form-control"
+              required
+            />
+            <div
+              [hidden]="!profileForm.hasError('required', 'phone') || profileForm.get('phone')?.pristine"
+              class="alert alert-danger"
+            >
+              Telefon is required
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button
+          *ngIf="profileForm.valid"
+          type="submit"
+          class="btn btn-success text-white"
+        >
+          Speichern
+        </button>
+        <a class="btn btn-default" (click)="navBack()">
+          Abbrechen
+        </a>
+      </div>
+    </form>
+  </div>
+</div>

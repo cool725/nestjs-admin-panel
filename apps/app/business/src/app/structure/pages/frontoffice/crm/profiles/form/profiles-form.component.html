@@ -126,14 +126,15 @@
           <div class="col-12 col-md-6">
             <label>Email</label>
             <div class="input-group mb-3">
-              <span class="input-group-text" id="profiles-lastname">@</span>
+              <span class="input-group-text" id="profiles-email">@</span>
               <input
                 type="text"
+                formControlName="email"
                 class="form-control"
                 autocomplete="new-password"
-                placeholder="Nachname"
-                aria-label="lastName"
-                aria-describedby="profiles-lastname"
+                placeholder="Email"
+                aria-label="email"
+                aria-describedby="profiles-email"
               />
             </div>
           </div>
@@ -142,6 +143,7 @@
             <div class="input-group mb-3">
               <span class="input-group-text" id="profles-phone">@</span>
               <input
+                formControlName="phone"
                 type="text"
                 class="form-control"
                 autocomplete="new-password"
@@ -159,7 +161,7 @@
             <div class="input-group mb-3">
               <span class="input-group-text" id="profiles-birthday">@</span>
               <input  type="date"
-                      formControlName="birthday"
+                      formControlName="birthDay"
                       class="form-control"
                       autocomplete="new-password"
                       aria-label="birthday"
@@ -191,7 +193,7 @@
             <div class="input-group mb-3">
               <span class="input-group-text" id="profiles-language">@</span>
               <select
-                      formControlName="language"
+                      formControlName="languageId"
                       class="form-control"
                       autocomplete="new-password"
                       aria-label="language"
@@ -204,19 +206,6 @@
           </div>
         </div>
         <div class="col-12 row">
-          <div class="col-12 col-md-4">
-            <label>Geburtstag</label>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="profiles-birthday">@</span>
-              <input  type="date"
-                      formControlName="birthday"
-                      class="form-control"
-                      autocomplete="new-password"
-                      aria-label="birthday"
-                      aria-describedby="profiles-birthday"
-              >
-            </div>
-          </div>
           <div class="col-12 col-md-4">
             <label>Kundensegment</label>
             <div class="input-group mb-3">

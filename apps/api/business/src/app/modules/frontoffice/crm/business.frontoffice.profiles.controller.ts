@@ -1,6 +1,6 @@
 import {
   Body,
-  Controller,
+  Controller, Delete,
   Get,
   Param,
   Patch,
@@ -32,7 +32,7 @@ export class BusinessFrontOfficeProfilesController {
     return this.profilesService.getProfiles(business.businessId, pagination);
   }
 
-  @Put('profile/:profileId')
+  @Get('profile/:profileId')
   getProfile(
     @GetCompany() business: BusinessEntity,
     @Param('profileId') profileId: number
@@ -58,7 +58,7 @@ export class BusinessFrontOfficeProfilesController {
     );
   }
 
-  @Patch('profile/:profileId')
+  @Delete('profile/:profileId')
   deleteProfile(
     @GetCompany() business: BusinessEntity,
     @Param('profileId') profileId: number

@@ -39,7 +39,9 @@ export class BoostrapModalUIComponent {
     return new Promise((resolver) =>
       setTimeout(() => {
         this.vc.clear();
-        resolver(this.vc.createComponent(component));
+        const componentRef = this.vc.createComponent(component);
+        (<any>componentRef.instance)['id'] = options.id;
+        resolver(componentRef);
       }, delay)
     );
   }

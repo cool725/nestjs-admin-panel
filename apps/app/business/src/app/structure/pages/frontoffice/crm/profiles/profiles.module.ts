@@ -31,7 +31,7 @@ const routes :Routes = [
 
 @NgModule({
   declarations: [ProfilesOverviewComponent],
-    imports: [
+  imports: [
         CommonModule,
         RouterModule.forChild(routes),
         TranslateModule.forChild(),

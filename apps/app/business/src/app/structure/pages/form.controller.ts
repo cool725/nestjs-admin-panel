@@ -19,6 +19,8 @@ export abstract class FormController<T> extends PageController {
 
   protected fb: FormBuilder;
 
+  public id:any;
+
   constructor(override injector: Injector) {
     super(injector);
     this.route = injector.get(ActivatedRoute);
@@ -32,7 +34,7 @@ export abstract class FormController<T> extends PageController {
   }
 
   protected getId(paramName: string = 'id') {
-    return this.route.snapshot.paramMap.get(paramName);
+    return this.id || this.route.snapshot.paramMap.get(paramName);
   }
 
   abstract override getData(): void;

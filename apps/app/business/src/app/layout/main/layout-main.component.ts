@@ -60,7 +60,7 @@ export class LayoutMainComponent {
     return outlet.isActivated ? outlet.activatedRoute : '';
   }
 
-  public async openModal<C>(component: Type<C>, options = {}) {
+  public async openModal<C>(component: Type<C>, options:{id?:any} = {}) {
     const modalRef = this.vcModal.createComponent<BoostrapModalUIComponent>(
       BoostrapModalUIComponent
     );
@@ -70,7 +70,6 @@ export class LayoutMainComponent {
       200
     );
     (<any>componentRef.instance)['closeModal'] = () => modalRef.destroy(); // todo find better solution | with data emitter
-
     return componentRef;
   }
 }

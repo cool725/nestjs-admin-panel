@@ -22,11 +22,9 @@ export class ProfilesFormComponent extends FormController<Profile> {
     lastName: new FormControl('', [Validators.max(100)]),
     phone: new FormControl('', [Validators.max(16)]),
     email: new FormControl('', [Validators.email]),
-
-    birthday: new FormControl('', []),
+    birthDay: new FormControl('', []),
     vip: new FormControl('', []),
-    language: new FormControl('', []),
-
+    languageId: new FormControl('', []),
     segments: new FormControl('', []),
     priceClass: new FormControl('', []),
     source: new FormControl('', []),
@@ -38,6 +36,7 @@ export class ProfilesFormComponent extends FormController<Profile> {
   ) {
     super(injector);
     api.profile$.next(new Profile());
+
   }
 
   get profileType(){
@@ -45,8 +44,15 @@ export class ProfilesFormComponent extends FormController<Profile> {
   }
 
   getData(): void {
-    if(/*hasParamsId*/ 1 + 1 == 3){
-      this.api.getProfile(1);
+    if(this.getId()){
+      this.onLoadAndSetData(
+       this.api.getProfile(this.getId()),
+          this.api.profile$,
+          (profile:Partial<Profile>)=> {
+           this.formProfile.patchValue(profile);
+           return Profile.create(profile)
+          }
+      );
     }
   }
 

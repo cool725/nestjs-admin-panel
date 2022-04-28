@@ -15,12 +15,12 @@ export class ProfilesAPI<Profile, FilterValues> {
     protected endpoint: string,
     private http: HttpClient
   ) {
-    console.log(endpoint);
+
   }
 
   protected getPath(path: string, subPath: string | number = ''): string {
     return (
-      this.endpoint + '/profiles/' + path + '/' + (subPath ? '/' + subPath : '')
+      this.endpoint + '/profiles/' + path + '/' + (subPath ?  subPath : '')
     );
   }
 
@@ -41,6 +41,6 @@ export class ProfilesAPI<Profile, FilterValues> {
   }
 
   deleteProfile(profileId: number) {
-    return this.http.delete(this.getPath(profileId + ''), {});
+    return this.http.delete(this.getPath('profile', profileId), {});
   }
 }

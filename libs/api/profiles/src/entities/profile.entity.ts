@@ -3,18 +3,19 @@ import {
   BeforeInsert,
   Column,
   Entity,
-  Generated,
   Index,
-  ManyToOne,
+  JoinColumn, ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
+import {ProfileSegmentEntity} from "./profile.segment.entity";
 
 @Entity('crm_profile')
 @Index(['companyId'])
 @Unique(['companyId', 'profileId'])
+@Index(['companyId', 'vip'])
 export class ProfileEntity extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
   @Exclude()
@@ -25,6 +26,9 @@ export class ProfileEntity extends BaseEntity {
 
   @Column({ type: 'bigint', nullable: false, unsigned: true })
   profileId: number;
+
+  @Column({ enum: ['C','M','W'],  nullable:false })
+  gender: string;
 
   @Column({ type: 'varchar', length: 50, nullable:true })
   firstName: string;
@@ -38,6 +42,32 @@ export class ProfileEntity extends BaseEntity {
   @Column({ type: 'varchar', length: 15, nullable:true })
   phone: string;
 
+  @Column({ type: 'date',  nullable:true })
+  birthDay: number;
+
+  @Column({ type: 'smallint',  nullable:true })
+  vip: number | string;
+
+  @ManyToOne(() => ProfileSegmentEntity, (segment) => segment.profiles)
+  @JoinColumn([
+    { name: 'companyId', referencedColumnName: 'companyId' },
+    { name: 'segmentId', referencedColumnName: 'segmentId' },
+  ])
+  segmentId:ProfileSegmentEntity;
+
+  @Column({ type: 'smallint', nullable:true,unsigned:true })
+  languageId: number;
+
+  @Column({ type: 'int', nullable:true, unsigned:true })
+  priceClassId: number;
+
+  @Column({ type: 'int',  nullable:true, unsigned:true })
+  sourceId: number;
+
+  @Column({ type: 'text', nullable:true })
+  @Exclude()
+  notes: string;
+
   constructor() {
     super();
   }
@@ -50,7 +80,7 @@ export class ProfileEntity extends BaseEntity {
       })) + 1;
   }
 
-  toJSON() {
+  protected toJSON() {
     return this;
   }
 }

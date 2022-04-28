@@ -46,16 +46,17 @@ export class ProfilesOverviewComponent extends PageController {
   }
 
   async editProfile(id: number) {
-    await this.api.deleteProfile(id);
-    this.testModal()
-  }
-  @Confirmable({ title: 'Sure?' })
-  async deleteProfile(id: number) {
-    await this.api.deleteProfile(id);
-    this.reloadData();
+    this.openModal(EDataEmitterType.ModalOpen, ProfilesFormComponent,{
+      id:id
+    })
   }
 
-  testModal(){
-    this.openModal(EDataEmitterType.ModalOpen,ProfilesFormComponent)
+  @Confirmable({ title: 'Sure?' })
+  async deleteProfile(id: number) {
+    await this.api.deleteProfile(id).subscribe(
+        ()=> this.reloadData()
+    );
+
   }
+
 }

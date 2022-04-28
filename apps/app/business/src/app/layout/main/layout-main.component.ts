@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { BoostrapModalUIComponent } from '@movit/app/ui';
 import { DataEmitter, EDataEmitterType } from '@movit/app/common';
-import { ProfilesFormComponent } from '../../structure/pages/frontoffice/crm/profiles/form/profiles-form.component';
 
 @Component({
   selector: 'start-layout-main',
@@ -25,8 +24,10 @@ export class LayoutMainComponent {
   }
 
   private init() {
-    this.dE.register(EDataEmitterType.ModalOpen, (data) => {
-      this.openModal<ProfilesFormComponent>(data);
+    this.dE.register(EDataEmitterType.ModalOpen, (event) => {
+      console.log(event)
+      this.openModal(event.component,event.data);
+
     });
   }
 

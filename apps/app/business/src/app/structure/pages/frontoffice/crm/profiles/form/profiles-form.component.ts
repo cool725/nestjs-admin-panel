@@ -17,6 +17,7 @@ export class ProfilesFormComponent extends FormController<Profile> {
 
   formProfile = this.fb.group({
     gender: new FormControl('', [Validators.required]),
+    title: new FormControl('', [Validators.max(100)]),
     firstName: new FormControl('', [Validators.max(100)]),
     lastName: new FormControl('', [Validators.max(100)]),
     phone: new FormControl('', [Validators.max(16)]),
@@ -31,7 +32,15 @@ export class ProfilesFormComponent extends FormController<Profile> {
     api.profile$.next(new Profile());
   }
 
-  getData(): void {}
+  get profileType(){
+    return this.formProfile.value.gender
+  }
+
+  getData(): void {
+    if(/*hasParamsId*/ 1 + 1 == 3){
+      this.api.getProfile(1);
+    }
+  }
 
   async save(profile: Partial<Profile>) {
     const profileValues = this.formProfile.value;

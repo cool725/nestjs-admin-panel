@@ -24,7 +24,7 @@ export class ProfilesAPI<Profile, FilterValues> {
     );
   }
 
-  getProfile(profileId: string) {
+  getProfile(profileId: number) {
     return this.http.get(this.getPath('profile', profileId));
   }
 

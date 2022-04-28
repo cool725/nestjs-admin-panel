@@ -64,7 +64,7 @@
           </div>
         </div>
 
-        <ng-container *ngIf="profile.gender !== 'C'">
+        <ng-container *ngIf="profileType !== 'C'">
           <div class="col-12 col-md-9 row">
             <div class="col-12 col-md-6">
               <label>Nachname</label>
@@ -99,7 +99,7 @@
           </div>
           <div class="col-12 col-md-3 d-none d-md-block"></div>
         </ng-container>
-        <ng-container *ngIf="profile.gender === 'C'">
+        <ng-container *ngIf="profileType === 'C'">
           <div class="col-12 col-md-9 row">
             <div class="col-12 col-md-12">
               <label>Title</label>

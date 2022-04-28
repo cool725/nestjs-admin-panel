@@ -4,7 +4,7 @@ import { ProfilesAPI } from '../packages/profile-api.service';
 import {DataEmitter, EDataEmitterType, ITableBaseFilter, Table} from '@movit/app/common';
 import {ProfilesFormComponent} from "../form/profiles-form.component";
 
-class Profile {
+export class Profile {
   profileId: number;
   companyId: number;
 

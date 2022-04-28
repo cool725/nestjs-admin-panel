@@ -42,6 +42,7 @@ export class LayoutMainComponent {
       sessionStorage.setItem('ctk', businessUuid);
       sessionStorage.setItem('path:2', locationId);
     }
+    console.warn('session: ' + environment.company.url )
   }
 
   private redirectToAuth() {

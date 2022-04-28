@@ -15,7 +15,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: '',
+    path: '**',
     loadChildren: () =>
       import('./../../layout/main/layout-main.module').then(
         (m) => m.LayoutMainModule

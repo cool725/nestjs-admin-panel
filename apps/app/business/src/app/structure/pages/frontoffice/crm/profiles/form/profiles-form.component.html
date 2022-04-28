@@ -34,12 +34,12 @@
               formControlName="gender"
               class="form-check-input"
               type="radio"
-              id="inlineRadio1"
-              value="option1"
+              id="radio-male"
+              value="M"
             />
-            <label class="form-check-label" for="inlineRadio1"
+            <label class="form-check-label" for="radio-male"
               ><ng-container [ngTemplateOutlet]="genderReqStar"></ng-container>
-              Herr</label
+              Male</label
             >
           </div>
           <div class="form-check form-check-inline ml-1">
@@ -47,20 +47,20 @@
               formControlName="gender"
               class="form-check-input"
               type="radio"
-              id="inlineRadio2"
-              value="option2"
+              id="radio-woman"
+              value="W"
             />
-            <label class="form-check-label" for="inlineRadio2">Frau</label>
+            <label class="form-check-label" for="radio-woman">Woman</label>
           </div>
           <div class="form-check form-check-inline ml-1">
             <input
               formControlName="gender"
               class="form-check-input"
               type="radio"
-              id="inlineRadio3"
-              value="option3"
+              id="radio-company"
+              value="C"
             />
-            <label class="form-check-label" for="inlineRadio3">Firma</label>
+            <label class="form-check-label" for="radio-company">Firma</label>
           </div>
         </div>
         <div class="col-12 col-md-9 row">
@@ -95,7 +95,9 @@
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-3 d-none d-md-block">Avatar</div>
+        <div class="col-12 col-md-3 d-none d-md-block">
+
+        </div>
         <div class="col-12 col-md-9 row">
           <div class="col-12 col-md-6">
             <label>Email</label>

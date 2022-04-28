@@ -9,31 +9,24 @@ import { ProfilesFormComponent } from './form/profiles-form.component';
 import { environment } from '../../../../../../environments/environment';
 import { ProfilesFormModule } from "./form/profiles-form.module";
 
-const routes :Routes = [
-  {
-    path: 'new',
-    component: ProfilesFormComponent,
-  },
-  {
-    path: 'edit/:id',
-    component: ProfilesFormComponent,
-  },
-  {
-    path: 'overview',
-    component: ProfilesOverviewComponent,
-  },
-  {
-    path: '',
-    redirectTo:'overview',
-    pathMatch:'full',
-  }
-];
-
 @NgModule({
   declarations: [ProfilesOverviewComponent],
   imports: [
         CommonModule,
-        RouterModule.forChild(routes),
+        RouterModule.forChild([
+          {
+            path: 'new',
+            component: ProfilesFormComponent,
+          },
+          {
+            path: 'edit/:id',
+            component: ProfilesFormComponent,
+          },
+          {
+            path: 'overview',
+            component: ProfilesOverviewComponent,
+          }
+        ]),
         TranslateModule.forChild(),
         FormsModule,
         ReactiveFormsModule,
@@ -50,3 +43,5 @@ const routes :Routes = [
   exports: [ProfilesFormComponent],
 })
 export class ProfilesModule {}
+
+

@@ -22,7 +22,6 @@ const LayoutComponents = [HeaderComponent, FooterComponent];
     HeaderMenuModule,
     NavAvatarProfileUIModule,
     HeaderTopbarModule,
-    ProfilesModule,
   ],
 })
 export class LayoutMainModule {}

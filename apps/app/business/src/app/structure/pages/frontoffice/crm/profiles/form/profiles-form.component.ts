@@ -22,6 +22,14 @@ export class ProfilesFormComponent extends FormController<Profile> {
     lastName: new FormControl('', [Validators.max(100)]),
     phone: new FormControl('', [Validators.max(16)]),
     email: new FormControl('', [Validators.email]),
+
+    birthday: new FormControl('', []),
+    vip: new FormControl('', []),
+    language: new FormControl('', []),
+
+    segments: new FormControl('', []),
+    priceClass: new FormControl('', []),
+    source: new FormControl('', []),
   });
 
   constructor(

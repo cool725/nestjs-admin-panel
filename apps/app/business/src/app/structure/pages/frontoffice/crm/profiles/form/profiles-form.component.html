@@ -15,7 +15,7 @@
     <div class="modal-header-sub">
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page"> Übersicht </a>
+          <a class="nav-link active text-white" aria-current="page"> Übersicht </a>
         </li>
       </ul>
     </div>
@@ -63,7 +63,6 @@
             <label class="form-check-label" for="radio-company">Firma</label>
           </div>
         </div>
-
         <ng-container *ngIf="profileType !== 'C'">
           <div class="col-12 col-md-9 row">
             <div class="col-12 col-md-6">
@@ -141,15 +140,120 @@
           <div class="col-12 col-md-6">
             <label>Telefon</label>
             <div class="input-group mb-3">
-              <span class="input-group-text" id="profles-firstname">@</span>
+              <span class="input-group-text" id="profles-phone">@</span>
               <input
                 type="text"
                 class="form-control"
                 autocomplete="new-password"
-                placeholder="Vorname"
-                aria-label="firstName"
-                aria-describedby="profiles-firstname"
+                placeholder="Phone"
+                aria-label="phone"
+                aria-describedby="profiles-phone"
               />
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="col-12 row">
+          <div class="col-12 col-md-4">
+            <label>Geburtstag</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="profiles-birthday">@</span>
+              <input  type="date"
+                      formControlName="birthday"
+                      class="form-control"
+                      autocomplete="new-password"
+                      aria-label="birthday"
+                      aria-describedby="profiles-birthday"
+              >
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>VIP</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="profiles-vip">@</span>
+              <select
+                      formControlName="vip"
+                      class="form-control"
+                      autocomplete="new-password"
+                      aria-label="lastName"
+                      aria-describedby="profiles-vip"
+              >
+                <option value="">Nein</option>
+                <option value="1">A</option>
+                <option value="2">B</option>
+                <option value="3">C</option>
+                <option value="4">D</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Sprache *</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="profiles-language">@</span>
+              <select
+                      formControlName="language"
+                      class="form-control"
+                      autocomplete="new-password"
+                      aria-label="language"
+                      aria-describedby="profiles-language"
+              >
+                <option value="1">Deutsch</option>
+
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 row">
+          <div class="col-12 col-md-4">
+            <label>Geburtstag</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="profiles-birthday">@</span>
+              <input  type="date"
+                      formControlName="birthday"
+                      class="form-control"
+                      autocomplete="new-password"
+                      aria-label="birthday"
+                      aria-describedby="profiles-birthday"
+              >
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Kundensegment</label>
+            <div class="input-group mb-3">
+              <nz-select
+                      class="w-100"
+                      formControlName="segments"
+                      multiple
+                      aria-label="segments"
+                      aria-describedby="profiles-vip"
+              >
+              </nz-select>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Preisklasse</label>
+            <div class="input-group mb-3">
+             <nz-select
+                      class="w-100"
+                      formControlName="priceClass"
+                      multiple
+                      aria-label="priceclass"
+                      aria-describedby="profiles-priceclass"
+              >
+              </nz-select>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <label>Source</label>
+            <div class="input-group mb-3">
+              <nz-select
+                      class="w-100"
+                      formControlName="source"
+                      multiple
+                      aria-label="source"
+                      aria-describedby="profiles-source"
+              >
+              </nz-select>
             </div>
           </div>
         </div>

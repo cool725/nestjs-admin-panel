@@ -7,6 +7,7 @@ import { ProfilesAPI } from './packages/profile-api.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfilesFormComponent } from './form/profiles-form.component';
 import { environment } from '../../../../../../environments/environment';
+import { ProfilesFormModule } from "./form/profiles-form.module";
 
 const routes = [
   {
@@ -24,14 +25,15 @@ const routes = [
 ];
 
 @NgModule({
-  declarations: [ProfilesOverviewComponent, ProfilesFormComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    TranslateModule.forChild(),
-    FormsModule,
-    ReactiveFormsModule,
-  ],
+  declarations: [ProfilesOverviewComponent],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        TranslateModule.forChild(),
+        FormsModule,
+        ReactiveFormsModule,
+        ProfilesFormModule
+    ],
   providers: [
     ProfilesAPI,
     {

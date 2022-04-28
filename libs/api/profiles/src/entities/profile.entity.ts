@@ -7,23 +7,23 @@ import {
   Index,
   ManyToOne,
   OneToMany,
-  PrimaryGeneratedColumn, Unique,
+  PrimaryGeneratedColumn,
+  Unique,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
 
-
 @Entity('crm_profile')
 @Index(['companyId'])
-@Unique(['companyId','profileId'])
+@Unique(['companyId', 'profileId'])
 export class ProfileEntity extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
   @Exclude()
   id: number;
 
-  @Column({ type: 'bigint', nullable: false, unsigned:true })
+  @Column({ type: 'bigint', nullable: false, unsigned: true })
   companyId: string;
 
-  @Column({ type: 'bigint', nullable: false, unsigned:true })
+  @Column({ type: 'bigint', nullable: false, unsigned: true })
   profileId: string;
 
   @Column({ type: 'varchar', length: 50 })
@@ -38,18 +38,16 @@ export class ProfileEntity extends BaseEntity {
   @Column({ type: 'varchar', length: 15 })
   phone: string;
 
-
   constructor() {
     super();
-
   }
 
   @BeforeInsert()
   protected async beforeInsert() {
     this.profileId =
-        (await ProfileEntity.count({
-          where: { companyId: this.companyId },
-        })) + 1;
+      (await ProfileEntity.count({
+        where: { companyId: this.companyId },
+      })) + 1;
   }
 
   toJSON() {

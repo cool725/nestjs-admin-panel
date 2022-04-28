@@ -41,6 +41,6 @@ export class ProfilesAPI<Profile, FilterValues> {
   }
 
   deleteProfile(profileId: number) {
-    return this.http.delete(this.getPath(profileId+''), {});
+    return this.http.delete(this.getPath(profileId + ''), {});
   }
 }

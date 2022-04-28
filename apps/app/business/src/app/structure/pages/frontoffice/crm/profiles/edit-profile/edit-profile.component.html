@@ -6,11 +6,7 @@
 
 <div class="container">
   <div class="card mt-3">
-    <form
-      id="profile-form"
-      [formGroup]="profileForm"
-      (ngSubmit)="doSave()"
-    >
+    <form id="profile-form" [formGroup]="profileForm" (ngSubmit)="doSave()">
       <div class="row p-2">
         <div class="col-md-6 col-12 mt-2">
           <div class="form-group">
@@ -22,7 +18,10 @@
               required
             />
             <div
-              [hidden]="!profileForm.hasError('required', 'firstName') || profileForm.get('firstName')?.pristine"
+              [hidden]="
+                !profileForm.hasError('required', 'firstName') ||
+                profileForm.get('firstName')?.pristine
+              "
               class="alert alert-danger"
             >
               Vorname is required
@@ -40,7 +39,10 @@
               required
             />
             <div
-              [hidden]="!profileForm.hasError('required', 'lastName') || profileForm.get('lastName')?.pristine"
+              [hidden]="
+                !profileForm.hasError('required', 'lastName') ||
+                profileForm.get('lastName')?.pristine
+              "
               class="alert alert-danger"
             >
               Nachname is required
@@ -86,7 +88,10 @@
               required
             />
             <div
-              [hidden]="!profileForm.hasError('required', 'phone') || profileForm.get('phone')?.pristine"
+              [hidden]="
+                !profileForm.hasError('required', 'phone') ||
+                profileForm.get('phone')?.pristine
+              "
               class="alert alert-danger"
             >
               Telefon is required
@@ -102,9 +107,7 @@
         >
           Speichern
         </button>
-        <a class="btn btn-default" (click)="navBack()">
-          Abbrechen
-        </a>
+        <a class="btn btn-default" (click)="navBack()"> Abbrechen </a>
       </div>
     </form>
   </div>

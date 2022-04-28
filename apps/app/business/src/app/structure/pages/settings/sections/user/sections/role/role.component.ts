@@ -28,12 +28,14 @@ export class RoleComponent extends PageController {
     private roleAPI: SettingRoleAPI
   ) {
     super(injector);
-
   }
 
   getData() {
-    this.onLoadAndSetData(this.userAPI.getRoles(), this.userAPI.roles$,
-        (rows:any) => ({data:rows}));
+    this.onLoadAndSetData(
+      this.userAPI.getRoles(),
+      this.userAPI.roles$,
+      (rows: any) => ({ data: rows })
+    );
   }
 
   @Confirmable({

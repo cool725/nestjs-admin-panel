@@ -95,9 +95,7 @@
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-3 d-none d-md-block">
-
-        </div>
+        <div class="col-12 col-md-3 d-none d-md-block"></div>
         <div class="col-12 col-md-9 row">
           <div class="col-12 col-md-6">
             <label>Email</label>
@@ -132,9 +130,13 @@
     </div>
     <div class="modal-footer">
       <button
-              *ngIf="profile.profileId"
-              (click)="delete(profile.profileId)"
-              type="button" class="btn btn-danger text-white">Löschen</button>
+        *ngIf="profile.profileId"
+        (click)="delete(profile.profileId)"
+        type="button"
+        class="btn btn-danger text-white"
+      >
+        Löschen
+      </button>
       <button
         (click)="closeModal()"
         type="button"

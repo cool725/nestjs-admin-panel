@@ -6,8 +6,8 @@ import { FormController } from '../../../../form.controller';
 import { ProfilesAPI } from '../packages/profile-api.service';
 
 class Profile {
-  companyId:number;
-  profileId:number;
+  companyId: number;
+  profileId: number;
   firstName: string;
   lastName: string;
   email: string;
@@ -17,15 +17,14 @@ class Profile {
 @Component({
   selector: 'edit-profile',
   templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.css']
+  styleUrls: ['./edit-profile.component.css'],
 })
 export class EditProfileComponent extends FormController<Profile> {
-
   profileForm = this.fb.group({
     firstName: [null, Validators.required],
     lastName: [null, Validators.required],
     email: [null, [Validators.required, Validators.email]],
-    phone: [null, Validators.required]
+    phone: [null, Validators.required],
   });
 
   constructor(
@@ -34,7 +33,7 @@ export class EditProfileComponent extends FormController<Profile> {
     private fb: FormBuilder,
     private router: Router
   ) {
-    super(injector)
+    super(injector);
   }
 
   getData() {
@@ -42,19 +41,21 @@ export class EditProfileComponent extends FormController<Profile> {
     if (!profileId) {
       return;
     }
-    
+
     this.onLoadAndSetData(
       this.profileAPI.getProfile(profileId),
       this.profileAPI.profile$,
-        (profile:Partial<Profile>) => {
-          this.profileForm.patchValue(profile)
-          return profile
+      (profile: Partial<Profile>) => {
+        this.profileForm.patchValue(profile);
+        return profile;
       }
-    )
+    );
   }
 
   navBack() {
-    return this.router.navigateByUrl(this.basePath+'/frontoffice/crm/profiles');
+    return this.router.navigateByUrl(
+      this.basePath + '/frontoffice/crm/profiles'
+    );
   }
 
   doSave() {
@@ -64,14 +65,18 @@ export class EditProfileComponent extends FormController<Profile> {
 
     const profileId = this.getId('id');
 
-    const save$ = this.profileAPI.saveProfile(profileId, this.profileForm.value)
+    const save$ = this.profileAPI.saveProfile(
+      profileId,
+      this.profileForm.value
+    );
 
     save$
       .pipe(
-       catchError(({ error }) => {
+        catchError(({ error }) => {
           console.log(error);
           return of(null);
-        }))
+        })
+      )
       .subscribe((result) => {
         if (result) {
           this.navBack();

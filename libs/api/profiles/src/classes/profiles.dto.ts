@@ -3,28 +3,27 @@ import {
   IsNotEmpty,
   IsNumber,
   IsOptional,
-  IsPhoneNumber, ValidateIf,
+  IsPhoneNumber,
+  ValidateIf,
 } from 'class-validator';
-import {PartialType} from "@nestjs/mapped-types";
+import { PartialType } from '@nestjs/mapped-types';
 
 export namespace ProfilesDto {
   export class Create {
     @IsNotEmpty()
     gender: string;
 
-
-
     firstName: string;
     lastName: string;
 
     @IsEmail()
     @IsOptional()
-    @ValidateIf(self => self.email)
+    @ValidateIf((self) => self.email)
     email: string;
 
     @IsPhoneNumber() // todo test this
     @IsOptional()
-    @ValidateIf(self => self.phone)
+    @ValidateIf((self) => self.phone)
     phone: string;
   }
 

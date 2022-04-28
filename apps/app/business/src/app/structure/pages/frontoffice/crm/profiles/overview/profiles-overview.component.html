@@ -35,9 +35,7 @@
             </div>
             <div class="col-6 col-md-2 mt-2 mt-md-0">
               <div class="form-group">
-                <a
-                  (click)="testOnly()"
-                  class="btn btn-success text-white w-100"
+                <a (click)="testOnly()" class="btn btn-success text-white w-100"
                   >Modal Test</a
                 >
               </div>
@@ -61,9 +59,9 @@
         <tbody *ngIf="profileTable.data$ | async as tableData">
           <ng-container *ngFor="let profile of tableData.data">
             <tr *ngIf="profileTable.canShow(profile)" class="entry-row">
-              <td>{{profile.email}}</td>
-              <td>{{profile.firstName + ' ' + profile.lastName }}</td>
-              <td>{{profile.phone}}</td>
+              <td>{{ profile.email }}</td>
+              <td>{{ profile.firstName + ' ' + profile.lastName }}</td>
+              <td>{{ profile.phone }}</td>
               <td class="text-right pe-2" align="right">
                 <a
                   [routerLink]="basePath + '//' + profile.profileId"

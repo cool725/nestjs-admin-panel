@@ -1,6 +1,6 @@
 import { Component, Type, ViewChild, ViewContainerRef } from '@angular/core';
 import { fadein } from './router-animations';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { BoostrapModalUIComponent } from '@movit/app/ui';
 import { DataEmitter, EDataEmitterType } from '@movit/app/common';
@@ -15,10 +15,13 @@ import { ProfilesFormComponent } from '../../structure/pages/frontoffice/crm/pro
 export class LayoutMainComponent {
   @ViewChild('vcModal', { read: ViewContainerRef }) vcModal: ViewContainerRef;
 
-  constructor(private route: ActivatedRoute,private router: Router, private dE: DataEmitter) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private dE: DataEmitter
+  ) {
     this.setRouteParams();
     this.init();
-
   }
 
   private init() {
@@ -42,7 +45,7 @@ export class LayoutMainComponent {
       sessionStorage.setItem('ctk', businessUuid);
       sessionStorage.setItem('path:2', locationId);
     }
-    console.warn('session: ' + environment.company.url )
+    console.warn('session: ' + environment.company.url);
   }
 
   private redirectToAuth() {

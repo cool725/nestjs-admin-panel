@@ -10,7 +10,10 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { FrontOffice } from '../business.frontoffice.namespace';
-import { GetPagination, Pagination } from '../../../../../../../../libs/api/common/decorator';
+import {
+  GetPagination,
+  Pagination,
+} from '../../../../../../../../libs/api/common/decorator';
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
 import { GetCompany } from '../../../../../../../../libs/api/business/src/business.decorator';
@@ -21,46 +24,47 @@ import { ProfilesDto } from '../../../../../../../../libs/api/profiles/src/class
 @Controller(FrontOffice.resolePaths(['crm', FrontOffice.Profiles.PATH]))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)
 export class BusinessFrontOfficeProfilesController {
-  constructor(protected profilesService:ProfilesService) {}
+  constructor(protected profilesService: ProfilesService) {}
 
   @Get('profile')
   getProfiles(
-    @GetCompany() business:BusinessEntity,
+    @GetCompany() business: BusinessEntity,
     @GetPagination() pagination: Pagination
   ) {
-    return this.profilesService.getProfiles(business.businessId,pagination)
+    return this.profilesService.getProfiles(business.businessId, pagination);
     //return pagination;
   }
 
   @Put('profile/:profileId')
   getProfile(
-      @GetCompany() business:BusinessEntity,
-      @Param('profileId') profileId: number
+    @GetCompany() business: BusinessEntity,
+    @Param('profileId') profileId: number
   ) {
-    return this.profilesService.getProfile(business.businessId,profileId);
+    return this.profilesService.getProfile(business.businessId, profileId);
   }
 
   @Put('profile')
-  createProfile(
-      @GetCompany() business:BusinessEntity,
-      @Body() body: any,
-  ) {
-    return this.profilesService.createProfile(business.businessId,body);
+  createProfile(@GetCompany() business: BusinessEntity, @Body() body: any) {
+    return this.profilesService.createProfile(business.businessId, body);
   }
 
   @Patch('profile/:profileId')
   updateProfile(
-      @GetCompany() business: BusinessEntity,
-      @Param('profileId') profileId: number
+    @GetCompany() business: BusinessEntity,
+    @Param('profileId') profileId: number
   ) {
-    return this.profilesService.updateProfile(business.businessId,profileId,body);
+    return this.profilesService.updateProfile(
+      business.businessId,
+      profileId,
+      body
+    );
   }
 
   @Patch('profile/:profileId')
   deleteProfile(
-      @GetCompany() business: BusinessEntity,
-      @Param('profileId') profileId: number
+    @GetCompany() business: BusinessEntity,
+    @Param('profileId') profileId: number
   ) {
-    return this.profilesService.deleteProfile(business.businessId,profileId);
+    return this.profilesService.deleteProfile(business.businessId, profileId);
   }
 }

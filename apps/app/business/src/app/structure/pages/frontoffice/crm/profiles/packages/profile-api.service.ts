@@ -4,7 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ITableOptions } from '@movit/app/common';
 
-@Injectable()
+@Injectable({
+  providedIn:'root'
+})
 export class ProfilesAPI<Profile, FilterValues> {
   profile$ = new BehaviorSubject<Profile>(<any>null);
   profiles$ = new BehaviorSubject<ITableOptions<Profile>>(<any>null);

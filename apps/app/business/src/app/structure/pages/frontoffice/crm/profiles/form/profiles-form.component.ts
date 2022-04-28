@@ -36,7 +36,6 @@ export class ProfilesFormComponent extends FormController<Profile> {
   ) {
     super(injector);
     api.profile$.next(new Profile());
-
   }
 
   get profileType(){
@@ -71,6 +70,7 @@ export class ProfilesFormComponent extends FormController<Profile> {
      return this.cancel();
   }
 
+  // todo rename
   cancel() {
     this.onCancel.emit();
   }

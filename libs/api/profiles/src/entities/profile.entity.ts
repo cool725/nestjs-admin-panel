@@ -27,7 +27,7 @@ export class ProfileEntity extends BaseEntity {
   @Column({ type: 'bigint', nullable: false, unsigned: true })
   profileId: number;
 
-  @Column({ enum: ['C','M','W'],  nullable:false })
+  @Column({type:'enum', enum: ['C','M','W'],  nullable:false })
   gender: string;
 
   @Column({ type: 'varchar', length: 50, nullable:true })

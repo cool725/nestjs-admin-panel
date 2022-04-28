@@ -26,7 +26,9 @@ export class BusinessFrontOfficeProfilesController {
     @GetCompany() business: BusinessEntity,
     @GetPagination() pagination
   ) {
-    return pagination;
+    
+    return this.profilesService.getProfiles(business.businessId,pagination)
+    //return pagination;
   }
 
   @Put('profile')

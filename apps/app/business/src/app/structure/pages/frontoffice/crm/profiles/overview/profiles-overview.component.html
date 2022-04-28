@@ -50,17 +50,20 @@
       <table class="table mb-0 bg-white">
         <thead>
           <tr>
-            <td width="70px"></td>
-            <th></th>
-
+            <th>Email</th>
+            <th>Name</th>
+            <th>phone</th>
             <th class="text-right pe-2" align="right">
-              <a></a>
+              <a>Action</a>
             </th>
           </tr>
         </thead>
         <tbody *ngIf="profileTable.data$ | async as tableData">
           <ng-container *ngFor="let profile of tableData.data">
             <tr *ngIf="profileTable.canShow(profile)" class="entry-row">
+              <td>{{profile.email}}</td>
+              <td>{{profile.firstName + ' ' + profile.lastName }}</td>
+              <td>{{profile.phone}}</td>
               <td class="text-right pe-2" align="right">
                 <a
                   [routerLink]="basePath + '//' + profile.profileId"

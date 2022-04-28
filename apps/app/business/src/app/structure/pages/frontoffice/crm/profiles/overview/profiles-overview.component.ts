@@ -41,7 +41,7 @@ export class ProfilesOverviewComponent
   ngOnInit(): void {}
 
   getData(): void {
-    this.onLoadAndSetData(this.api.getProfiles(), this.api.profiles$);
+    this.onLoadAndSetData(this.api.getProfiles(), this.api.profiles$,(rows:any) => ({data:rows}));
   }
 
   testOnly(){

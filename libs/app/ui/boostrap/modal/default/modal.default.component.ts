@@ -33,7 +33,7 @@ export class BoostrapModalUIComponent {
 
   setModalContentFromComponent<C>(
     component: Type<C>,
-    options = {},
+    options:any = {},
     delay = 0
   ): Promise<ComponentRef<C>> {
     return new Promise((resolver) =>

@@ -1,8 +1,9 @@
-import { Component, Injector } from '@angular/core';
-import { PageController } from '../../../../page.controller';
-import { ProfilesAPI } from '../packages/profile-api.service';
-import { ITableBaseFilter, Table } from '@movit/app/common';
-import { Confirmable } from '@movit/app/decorators';
+import {Component, Injector} from '@angular/core';
+import {PageController} from '../../../../page.controller';
+import {ProfilesAPI} from '../packages/profile-api.service';
+import {DataEmitter, EDataEmitterType, ITableBaseFilter, Table} from '@movit/app/common';
+import {Confirmable} from '@movit/app/decorators';
+import {ProfilesFormComponent} from "../form/profiles-form.component";
 
 export class Profile {
   profileId: number;
@@ -43,9 +44,13 @@ export class ProfilesOverviewComponent extends PageController {
     );
   }
 
-  @Confirmable({ title: '' })
+  @Confirmable({ title: 'Sure?' })
   async deleteProfile(id: number) {
     await this.api.deleteProfile(id);
     this.reloadData();
+  }
+
+  testModal(){
+    this.openModal(EDataEmitterType.ModalOpen,ProfilesFormComponent)
   }
 }

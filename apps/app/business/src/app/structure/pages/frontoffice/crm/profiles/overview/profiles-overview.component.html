@@ -29,13 +29,13 @@
                 <a
                   [routerLink]="basePath + 'new'"
                   class="btn btn-success text-white w-100"
-                  >Erstellen</a
+                  >Create</a
                 >
               </div>
             </div>
             <div class="col-6 col-md-2 mt-2 mt-md-0">
               <div class="form-group">
-                <a (click)="testOnly()" class="btn btn-success text-white w-100"
+                <a (click)="testModal()" class="btn btn-success text-white w-100"
                   >Modal Test</a
                 >
               </div>
@@ -64,14 +64,14 @@
               <td>{{ profile.phone }}</td>
               <td class="text-right pe-2" align="right">
                 <a
-                  [routerLink]="basePath + '//' + profile.profileId"
+                  [routerLink]="basePath + '/frontoffice/crm/profiles/edit/' + profile.profileId"
                   class="text-primary cursor-pointer"
                 >
                   {{ 'edit' }}
                 </a>
               </td>
               <td class="text-right pe-2" align="right">
-                <a class="text-primary cursor-pointer">
+                <a (click)="deleteProfile(profile.profileId)" class="text-primary cursor-pointer">
                   {{ 'delete' }}
                 </a>
               </td>

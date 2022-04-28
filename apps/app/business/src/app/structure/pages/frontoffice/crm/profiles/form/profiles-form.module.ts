@@ -17,7 +17,7 @@ import {environment} from "../../../../../../../environments/environment";
         NzSelectModule,
     ],
   providers: [
-   ProfilesAPI,
+    ProfilesAPI,
     {
       provide: 'apiPath',
       useValue: [environment.api.url, 'frontoffice/crm'].join('/'),

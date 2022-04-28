@@ -9,6 +9,7 @@ import { NavClockUIModule } from '@movit/app/ui';
 import { HeaderTopbarModule } from '../../../../../../../libs/app/ui/boostrap/header/topbar/header-topbar.module';
 import { ProfilesModule } from '../../structure/pages/frontoffice/crm/profiles/profiles.module';
 import {RouterModule} from "@angular/router";
+import {ProfilesFormModule} from "../../structure/pages/frontoffice/crm/profiles/form/profiles-form.module";
 
 const LayoutComponents = [HeaderComponent, FooterComponent];
 
@@ -22,6 +23,7 @@ const LayoutComponents = [HeaderComponent, FooterComponent];
     HeaderMenuModule,
     NavAvatarProfileUIModule,
     HeaderTopbarModule,
+    ProfilesFormModule, // todo remove this from here
   ],
 })
 export class LayoutMainModule {}

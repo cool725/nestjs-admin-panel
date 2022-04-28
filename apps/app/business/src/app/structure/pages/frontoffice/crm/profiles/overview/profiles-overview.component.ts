@@ -1,7 +1,7 @@
 import {Component, Injector} from '@angular/core';
 import {PageController} from '../../../../page.controller';
 import {ProfilesAPI} from '../packages/profile-api.service';
-import { EDataEmitterType, ITableBaseFilter, Table} from '@movit/app/common';
+import {EDataEmitterType, ITableBaseFilter, Table} from '@movit/app/common';
 import {Confirmable} from '@movit/app/decorators';
 import {ProfilesFormComponent} from "../form/profiles-form.component";
 

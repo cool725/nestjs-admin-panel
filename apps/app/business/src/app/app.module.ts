@@ -8,7 +8,6 @@ import { AppRoutingModule } from './structure/routing/app-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppInterceptor } from '@movit/app/common';
 import { environment } from '../environments/environment';
-import { DataEmitter } from '@movit/app/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
@@ -29,5 +28,5 @@ import { TranslateModule } from '@ngx-translate/core';
   bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor() {}
+
 }

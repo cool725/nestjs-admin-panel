@@ -19,15 +19,13 @@ export class LayoutMainComponent {
     private router: Router,
     private dE: DataEmitter
   ) {
-    this.setRouteParams();
     this.init();
   }
 
   private init() {
+    this.setRouteParams();
     this.dE.register(EDataEmitterType.ModalOpen, (event) => {
-      console.log(event)
       this.openModal(event.component,event.data);
-
     });
   }
 

@@ -1,34 +1,65 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthCanActivate } from '@movit/app/common';
+import { LayoutMainComponent } from "../../layout/main/layout-main.component";
+import {LayoutMainModule} from "../../layout/main/layout-main.module";
+
+const childRoutes = [
+  {
+    path: 'frontoffice',
+    loadChildren: () =>
+        import(
+            './../../structure/pages/frontoffice/front-office.module'
+            ).then((m) => m.FrontOfficeModule),
+  },
+  {
+    path: 'backoffice',
+    loadChildren: () =>
+        import('./../../structure/pages/backoffice/back-office.module').then(
+            (m) => m.BackOfficeModule
+        ),
+  },
+  {
+    path: 'finances',
+    loadChildren: () =>
+        import('./../../structure/pages/finances/finances.module').then(
+            (m) => m.FinancesModule
+        ),
+  },
+  {
+    path: 'settings',
+    loadChildren: () =>
+        import('./../../structure/pages/settings/settings.module').then(
+            (m) => m.SettingsModule
+        ),
+  },
+]
 
 const routes: Routes = [
   {
     path: ':businessUuid/:locationId',
-    loadChildren: () =>
-      import('./../../layout/main/layout-main.module').then(
-        (m) => m.LayoutMainModule
-      ),
+    children: childRoutes,
     canActivate: [
       AuthCanActivate.hasUserAccess,
       AuthCanActivate.hasCompanyAccess,
     ],
+    component:LayoutMainComponent
   },
   {
-    path: '**',
-    loadChildren: () =>
-      import('./../../layout/main/layout-main.module').then(
-        (m) => m.LayoutMainModule
-      ),
+    path: '',
+    children:childRoutes,
     canActivate: [
       AuthCanActivate.hasUserAccess,
       AuthCanActivate.hasCompanyAccess,
     ],
-  },
+    component:LayoutMainComponent
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+       LayoutMainModule,
+      RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [AuthCanActivate.hasUserAccess, AuthCanActivate.hasCompanyAccess],
 })

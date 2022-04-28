@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { LayoutMainComponent } from './layout-main.component';
 import { HeaderComponent } from '../component/header/header.component';
 import { FooterComponent } from '../component/footer/footer.component';
-import { LayoutRoutingModule } from './layout-routing.module';
 import { HeaderMenuModule } from '../component/header/components/menu/header.menu.module';
 import { NavAvatarProfileUIModule, NavUIModule } from '@movit/app/ui';
 import { NavClockUIModule } from '@movit/app/ui';
 import { HeaderTopbarModule } from '../../../../../../../libs/app/ui/boostrap/header/topbar/header-topbar.module';
 import { ProfilesModule } from '../../structure/pages/frontoffice/crm/profiles/profiles.module';
+import {RouterModule} from "@angular/router";
 
 const LayoutComponents = [HeaderComponent, FooterComponent];
 
@@ -18,7 +18,7 @@ const LayoutComponents = [HeaderComponent, FooterComponent];
     NavClockUIModule,
     NavUIModule,
     CommonModule,
-    LayoutRoutingModule,
+    RouterModule,
     HeaderMenuModule,
     NavAvatarProfileUIModule,
     HeaderTopbarModule,

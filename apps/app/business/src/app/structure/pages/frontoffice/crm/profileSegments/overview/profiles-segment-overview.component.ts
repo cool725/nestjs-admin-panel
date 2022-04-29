@@ -45,10 +45,13 @@ export class ProfilesSegmentOverviewComponent extends PageController {
     );
   }
 
-  async editProfile(id: number) {
-    // this.openModal(EDataEmitterType.ModalOpen, ProfilesSagmentFormComponent,{
-    //   id:id
-    // })
+  createSegment(){
+    this.api.profileSegment$.next(new Segment())
+  }
+
+  async editSegment(id: number) {
+    // load segment by api
+    this.api.profileSegment$.next(new Segment())
   }
 
   @Confirmable({ title: 'Sure?' })
@@ -57,9 +60,5 @@ export class ProfilesSegmentOverviewComponent extends PageController {
         ()=> this.reloadData()
     );
 
-  }
-
-  createSegment(){
-    this.api.profileSegment$.next(new Segment())
   }
 }

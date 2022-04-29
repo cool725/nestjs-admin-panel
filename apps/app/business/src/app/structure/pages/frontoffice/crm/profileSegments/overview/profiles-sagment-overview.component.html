@@ -1,0 +1,77 @@
+<ng-template #topbar>
+  <h4
+    class="slide"
+    style="padding-top: 8px; white-space: nowrap; cursor: initial; top: 0px"
+  >
+    {{ 'profiles sagment' | translate }}
+  </h4>
+</ng-template>
+
+<div class="p-4">
+  <div class="container">
+    <div class="pb-4">
+      <div class="col-12 card bg-white shadow p-3">
+        <div class="">
+          <div class="row">
+            <div class="col-12 col-md-8">
+              <div class="form-group">
+                <input
+                  [(ngModel)]="profileSagmentTable.filterValues.searchValue"
+                  class="form-control"
+                  placeholder="Suchen"
+                  tabindex="1"
+                />
+              </div>
+            </div>
+
+            <div class="col-6 col-md-2 mt-2 mt-md-0">
+              <div class="form-group">
+                <a
+                  [routerLink]="basePath + 'frontoffice/crm/profiles/new'"
+                  class="btn btn-success text-white w-100"
+                  >Create</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card shadow">
+      <table class="table mb-0 bg-white">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Color</th>
+            <th>Order</th>
+            <th class="text-right pe-2" align="right">
+              <a>Action</a>
+            </th>
+          </tr>
+        </thead>
+        <tbody *ngIf="profileSagmentTable.data$ | async as tableData">
+          <ng-container *ngFor="let profile of tableData.data">
+            <tr *ngIf="profileSagmentTable.canShow(profile)" class="entry-row">
+              <td></td>
+              <td>{{ profile.title }}--- </td>
+              <td>{{ profile.color }} </td>
+              <td>{{ profile.order }}</td>
+              <td class="text-right pe-2" align="right">
+                <a
+                  (click)="editProfile(profile.segmentId)"
+                  class="text-primary cursor-pointer">
+                  {{ 'edit' }}
+                </a>
+              </td>
+              <td class="text-right pe-2" align="right">
+                <a (click)="deleteProfile(profile.segmentId)" class="text-primary cursor-pointer">
+                  {{ 'delete' }}
+                </a>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

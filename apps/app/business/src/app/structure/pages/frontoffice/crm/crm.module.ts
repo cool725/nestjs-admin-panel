@@ -9,6 +9,11 @@ const routes = [
     loadChildren: () =>
       import('./profiles/profiles.module').then((m) => m.ProfilesModule),
   },
+  {
+    path: 'profilesagment',
+    loadChildren: () =>
+      import('./profileSegments/profileSegment.module').then((m) => m.ProfileSegmentModule),
+  },
 ];
 
 @NgModule({

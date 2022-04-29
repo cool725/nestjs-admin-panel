@@ -1,12 +1,51 @@
+<ng-template #profileGender>
+  <ng-template #genderReqStar>
+            <span
+                    class="text-danger"
+                    *ngIf="formProfile.controls['gender']?.hasError('required')"
+            >*</span
+            >
+  </ng-template>
+  <div class="form-check form-check-inline ml-1">
+    <input
+            formControlName="gender"
+            class="form-check-input"
+            type="radio"
+            id="radio-male"
+            value="M"
+    />
+    <label class="form-check-label" for="radio-male"
+    ><ng-container [ngTemplateOutlet]="genderReqStar"></ng-container>
+      Male</label
+    >
+  </div>
+  <div class="form-check form-check-inline ml-1">
+    <input
+            formControlName="gender"
+            class="form-check-input"
+            type="radio"
+            id="radio-woman"
+            value="W"
+    />
+    <label class="form-check-label" for="radio-woman">Woman</label>
+  </div>
+  <div class="form-check form-check-inline ml-1">
+    <input
+            formControlName="gender"
+            class="form-check-input"
+            type="radio"
+            id="radio-company"
+            value="C"
+    />
+    <label class="form-check-label" for="radio-company">Firma</label>
+  </div>
+</ng-template>
+
+
 <ng-container *ngIf="api.profile$ | async as profile">
   <ng-container *ngIf="viewSettings.type === 'modal'">
     <div class="modal-header">
-      <select
-              (change)="viewSettings.changeMode($event.target.value)"
-              [(ngModel)]="viewSettings.mode" class="form-control bg-transparent">
-        <option value="simple">Einfach</option>
-        <option value="details">Detailiert</option>
-      </select>
+
       <button
         type="button"
         class="btn-close"
@@ -15,55 +54,17 @@
       ></button>
     </div>
     <div class="modal-header-sub">
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page"> Übersicht </a>
-        </li>
-      </ul>
+      <select
+              (change)="viewSettings.changeMode($event.target.value)"
+              [(ngModel)]="viewSettings.mode" class="form-control bg-transparent text-white">
+        <option value="simple">Einfach</option>
+        <option value="details">Detailiert</option>
+      </select>
     </div>
     <div *ngIf="viewSettings.mode === 'simple'" class="modal-body">
       <form class="row" [formGroup]="formProfile">
         <div class="col-12 mb-3">
-          <ng-template #genderReqStar>
-            <span
-              class="text-danger"
-              *ngIf="formProfile.controls['gender']?.hasError('required')"
-              >*</span
-            >
-          </ng-template>
-          <div class="form-check form-check-inline ml-1">
-            <input
-              formControlName="gender"
-              class="form-check-input"
-              type="radio"
-              id="radio-male"
-              value="M"
-            />
-            <label class="form-check-label" for="radio-male"
-              ><ng-container [ngTemplateOutlet]="genderReqStar"></ng-container>
-              Male</label
-            >
-          </div>
-          <div class="form-check form-check-inline ml-1">
-            <input
-              formControlName="gender"
-              class="form-check-input"
-              type="radio"
-              id="radio-woman"
-              value="W"
-            />
-            <label class="form-check-label" for="radio-woman">Woman</label>
-          </div>
-          <div class="form-check form-check-inline ml-1">
-            <input
-              formControlName="gender"
-              class="form-check-input"
-              type="radio"
-              id="radio-company"
-              value="C"
-            />
-            <label class="form-check-label" for="radio-company">Firma</label>
-          </div>
+          <ng-container [ngTemplateOutlet]="profileGender"></ng-container>
         </div>
 
         <ng-container *ngIf="profileType === 'C'">
@@ -253,7 +254,42 @@
     </div>
     <div *ngIf="viewSettings.mode === 'details'" class="modal-body">
 
+      <div class="row col-12 col-md-6">
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+            <div>
+
+              <div class="col-12 mb-3">
+                <ng-container [ngTemplateOutlet]="profileGender"></ng-container>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+          <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+        </div>
+
+
+      </div>
+      <div class="row col-12 col-md-6"></div>
+
     </div>
+
+
     <div class="modal-footer">
       <button
         *ngIf="profile.profileId"

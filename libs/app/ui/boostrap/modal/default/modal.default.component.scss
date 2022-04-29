@@ -12,18 +12,6 @@
       color: white;
       height: 30px;
 
-      select {
-        width: 80px;
-        background: transparent;
-        border: none;
-        color: white;
-        padding: 0;
-        padding-left: 5px;
-        option {
-          color: black;
-        }
-      }
-
       &-sub {
         position: relative;
         background: rgb(109, 131, 147);
@@ -43,6 +31,21 @@
           padding-top: 2px;
           padding-bottom: 2px;
           background-color: transparent !important;
+        }
+
+        select {
+          cursor: pointer;
+          user-select: none;
+          outline-color: transparent;
+          background: transparent;
+          max-width: 120px;
+          border: none;
+          color: white;
+          option {
+            color: black;
+          }
+          padding-top: 2px;
+          height: 100%;
         }
       }
     }

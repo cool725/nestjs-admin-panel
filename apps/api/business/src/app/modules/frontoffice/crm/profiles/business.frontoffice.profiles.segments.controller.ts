@@ -16,19 +16,25 @@ import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
 import { GetCompany } from '../../../../../../../../../libs/api/business/src/business.decorator';
 import { BusinessEntity } from '../../../../../../../../../libs/api/business/src/entities/business.entity';
-import { ProfilesService } from '../../../../../../../../../libs/api/profiles/src/profiles.service';
+import {
+  ProfilesSegmentService,
+  ProfilesService
+} from '@movit/api/profiles';
 
 @Controller(FrontOffice.resolePaths(['crm', FrontOffice.Profiles.PATH]))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)
-export class BusinessFrontOfficeProfilesController {
-  constructor(protected profilesService: ProfilesService) {}
+export class BusinessFrontOfficeProfilesSegmentsController {
+  constructor(
+      protected profilesService: ProfilesService,
+      protected segmentService: ProfilesSegmentService,
+      ) {}
 
   @Get('segment')
   getSegments(
     @GetCompany() business: BusinessEntity,
     @GetPagination() pagination: Pagination
   ) {
-    return this.profilesService.getProfiles(business.businessId, pagination);
+    return this.segmentService.getSegments(business.businessId, pagination);
   }
 
   @Get('segment/:segmentId')
@@ -36,7 +42,7 @@ export class BusinessFrontOfficeProfilesController {
     @GetCompany() business: BusinessEntity,
     @Param('profileId') profileId: number
   ) {
-    return this.profilesService.getProfile(business.businessId, profileId);
+    return this.segmentService.getSegment(business.businessId, profileId);
   }
 
   @Put('segment')
@@ -48,7 +54,7 @@ export class BusinessFrontOfficeProfilesController {
   updateSegment(@GetCompany() business: BusinessEntity,
                 @Param('segmentId') segmentId:number,
                 @Body() data:any) {
-    return data
+    return this.segmentService.updateSegment(business.businessId, segmentId,data)
   }
 
   @Delete('segment/:segmentId')
@@ -56,6 +62,7 @@ export class BusinessFrontOfficeProfilesController {
     @GetCompany() business: BusinessEntity,
     @Param('segmentId') segmentId: number
   ) {
-    return segmentId
+    if(segmentId)
+    return this.segmentService.deleteSegment(business.businessId, segmentId)
   }
 }

@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { ProfilesRepository } from './classes/profiles.repository';
+import {ProfilesRepository, ProfilesSegmentRepository} from './classes/profiles.repository';
 import ProfilesDBOptions from './db/profiles.database';
-import { ProfilesService } from './profiles.service';
+import {ProfilesPriceClassService, ProfilesSegmentService, ProfilesService} from './profiles.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ProfilesRepository])],
-  providers: [ProfilesService],
+  imports: [TypeOrmModule.forFeature([ProfilesRepository,ProfilesSegmentRepository])],
+  providers: [ProfilesService,ProfilesSegmentService,ProfilesPriceClassService],
   controllers: [],
-  exports: [ProfilesService],
+  exports: [ProfilesService,ProfilesSegmentService,ProfilesPriceClassService],
 })
 export class ProfilesModule {
   static dbSettings = ProfilesDBOptions;

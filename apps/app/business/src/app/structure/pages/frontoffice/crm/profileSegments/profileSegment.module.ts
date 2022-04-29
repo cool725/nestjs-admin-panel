@@ -5,12 +5,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ProfileSagmentAPI } from './packages/profile-sagment-api.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../../../../../../environments/environment';
-import { ProfilesSagmentOverviewComponent } from './overview/profiles-sagment-overview.component';
+import { ProfilesSegmentOverviewComponent } from './overview/profiles-segment-overview.component';
 
 
 
 @NgModule({
-  declarations: [ProfilesSagmentOverviewComponent],
+  declarations: [ProfilesSegmentOverviewComponent],
   imports: [
         CommonModule,
         RouterModule.forChild([
@@ -24,7 +24,7 @@ import { ProfilesSagmentOverviewComponent } from './overview/profiles-sagment-ov
           // },
           {
             path: 'overview',
-            component: ProfilesSagmentOverviewComponent,
+            component: ProfilesSegmentOverviewComponent,
           }
         ]),
         TranslateModule.forChild(),
@@ -39,7 +39,7 @@ import { ProfilesSagmentOverviewComponent } from './overview/profiles-sagment-ov
       useValue: [environment.api.url, 'frontoffice/crm'].join('/'),
     },
   ],
-  entryComponents: [ProfilesSagmentOverviewComponent],
+  entryComponents: [ProfilesSegmentOverviewComponent],
   exports: [],
 })
 export class ProfileSegmentModule {}

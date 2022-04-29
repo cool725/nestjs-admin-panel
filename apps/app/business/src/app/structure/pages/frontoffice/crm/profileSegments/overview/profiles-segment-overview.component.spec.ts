@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProfilesSagmentOverviewComponent } from './profiles-sagment-overview.component';
+import { ProfilesSegmentOverviewComponent } from './profiles-segment-overview.component';
 
 describe('ProfilesSagmentOverviewComponent', () => {
-  let component: ProfilesSagmentOverviewComponent;
-  let fixture: ComponentFixture<ProfilesSagmentOverviewComponent>;
+  let component: ProfilesSegmentOverviewComponent;
+  let fixture: ComponentFixture<ProfilesSegmentOverviewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProfilesSagmentOverviewComponent],
+      declarations: [ProfilesSegmentOverviewComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProfilesSagmentOverviewComponent);
+    fixture = TestBed.createComponent(ProfilesSegmentOverviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

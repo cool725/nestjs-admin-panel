@@ -5,33 +5,32 @@ import { EDataEmitterType, ITableBaseFilter, Table } from '@movit/app/common';
 import { Confirmable } from '@movit/app/decorators';
 // import { ProfilesSagmentFormComponent } from "../form/profiles-sagment-form.component";
 
-export class sagment {
+export class Segment {
   segmentId: number;
   companyId: number;
 
-  
   title: string;
   color: string;
   order: string;
 
-  static create(params: Partial<sagment>) {
-    return Object.assign(new sagment(), params);
+  static create(params: Partial<Segment>) {
+    return Object.assign(new Segment(), params);
   }
 }
 
 @Component({
   selector: 'movit-profiles-sagment-overview',
-  templateUrl: './profiles-sagment-overview.component.html',
-  styleUrls: ['./profiles-sagment-overview.component.css'],
+  templateUrl: './profiles-segment-overview.component.html',
+  styleUrls: ['./profiles-segment-overview.component.css'],
 })
-export class ProfilesSagmentOverviewComponent extends PageController {
-  public profileSagmentTable = new Table<sagment, ITableBaseFilter>(
-    this.api.profilesagments$
+export class ProfilesSegmentOverviewComponent extends PageController {
+  public profileSagmentTable = new Table<Segment, ITableBaseFilter>(
+    this.api.profileSegments$
   );
 
   constructor(
     override injector: Injector,
-    public api: ProfileSagmentAPI<sagment, any>
+    public api: ProfileSagmentAPI<Segment, any>
   ) {
     super(injector);
   }
@@ -39,7 +38,7 @@ export class ProfilesSagmentOverviewComponent extends PageController {
   getData(): void {
     this.onLoadAndSetData(
       this.api.getSegments(),
-      this.api.profilesagments$,
+      this.api.profileSegments$,
       (rows: any) => ({ 
         data: rows 
       })

@@ -7,9 +7,9 @@ import { ITableOptions } from '@movit/app/common';
 @Injectable({
   providedIn:'root'
 })
-export class ProfileSagmentAPI<sagment, FilterValues> {
-  profilesagment$ = new BehaviorSubject<sagment>(<any>null);
-  profilesagments$ = new BehaviorSubject<ITableOptions<sagment>>(<any>null);
+export class ProfileSagmentAPI<Segment, FilterValues> {
+  profileSegment$ = new BehaviorSubject<Segment>(<any>null);
+  profileSegments$ = new BehaviorSubject<ITableOptions<Segment>>(<any>null);
 
   constructor(
     @Optional()
@@ -30,19 +30,19 @@ export class ProfileSagmentAPI<sagment, FilterValues> {
     return this.http.get(this.getPath('segment', profileId));
   }
 
-  getSegments(): Observable<sagment[]> {
-    return this.http.get<sagment[]>(this.getPath('profile'));
+  getSegments(): Observable<Segment[]> {
+    return this.http.get<Segment[]>(this.getPath('segment'));
   }
 
-  saveProfile(profile: Partial<sagment>) {
-    return this.http.put(this.getPath('profile'), profile);
+  saveProfile(profile: Partial<Segment>) {
+    return this.http.put(this.getPath('segment'), profile);
   }
 
-  updateProfile(profileId: number, profile: Partial<sagment>) {
-    return this.http.patch(this.getPath('profile', profileId), profile);
+  updateProfile(profileId: number, profile: Partial<Segment>) {
+    return this.http.patch(this.getPath('segment', profileId), profile);
   }
 
   deleteProfile(profileId: number) {
-    return this.http.delete(this.getPath('profile', profileId), {});
+    return this.http.delete(this.getPath('segment', profileId), {});
   }
 }

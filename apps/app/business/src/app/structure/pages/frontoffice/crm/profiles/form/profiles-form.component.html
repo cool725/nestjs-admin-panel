@@ -6,38 +6,53 @@
             >*</span
             >
   </ng-template>
-  <div class="form-check form-check-inline ml-1">
-    <input
-            formControlName="gender"
-            class="form-check-input"
-            type="radio"
-            id="radio-male"
-            value="M"
-    />
-    <label class="form-check-label" for="radio-male"
-    ><ng-container [ngTemplateOutlet]="genderReqStar"></ng-container>
-      Male</label
-    >
+  <div [formGroup]="formProfile">
+    <div class="form-check form-check-inline ml-1">
+      <input
+              formControlName="gender"
+              class="form-check-input"
+              type="radio"
+              id="radio-male"
+              value="M"
+      />
+      <label class="form-check-label" for="radio-male"
+      ><ng-container [ngTemplateOutlet]="genderReqStar"></ng-container>
+        Male</label
+      >
+    </div>
+    <div class="form-check form-check-inline ml-1">
+      <input
+              formControlName="gender"
+              class="form-check-input"
+              type="radio"
+              id="radio-woman"
+              value="W"
+      />
+      <label class="form-check-label" for="radio-woman">Woman</label>
+    </div>
+    <div class="form-check form-check-inline ml-1">
+      <input
+              formControlName="gender"
+              class="form-check-input"
+              type="radio"
+              id="radio-company"
+              value="C"
+      />
+      <label class="form-check-label" for="radio-company">Firma</label>
+    </div>
   </div>
-  <div class="form-check form-check-inline ml-1">
-    <input
-            formControlName="gender"
-            class="form-check-input"
-            type="radio"
-            id="radio-woman"
-            value="W"
-    />
-    <label class="form-check-label" for="radio-woman">Woman</label>
-  </div>
-  <div class="form-check form-check-inline ml-1">
-    <input
-            formControlName="gender"
-            class="form-check-input"
-            type="radio"
-            id="radio-company"
-            value="C"
-    />
-    <label class="form-check-label" for="radio-company">Firma</label>
+</ng-template>
+
+<ng-template #profileName>
+  <ng-template #genderReqStar>
+            <span
+                    class="text-danger"
+                    *ngIf="formProfile.controls['gender']?.hasError('required')"
+            >*</span
+            >
+  </ng-template>
+  <div [formGroup]="formProfile">
+
   </div>
 </ng-template>
 
@@ -45,7 +60,7 @@
 <ng-container *ngIf="api.profile$ | async as profile">
   <ng-container *ngIf="viewSettings.type === 'modal'">
     <div class="modal-header">
-
+      <span>#{{profile.profileId}}</span>
       <button
         type="button"
         class="btn-close"
@@ -61,6 +76,7 @@
         <option value="details">Detailiert</option>
       </select>
     </div>
+
     <div *ngIf="viewSettings.mode === 'simple'" class="modal-body">
       <form class="row" [formGroup]="formProfile">
         <div class="col-12 mb-3">
@@ -86,7 +102,7 @@
             </div>
           </div>
         </ng-container>
-        <ng-container >
+        <ng-container>
           <div class="col-12 col-md-9 row">
             <div class="col-12 col-md-6">
               <label>Nachname</label>
@@ -126,6 +142,7 @@
             </div>
           </div>
         </ng-container>
+
         <div class="col-12 col-md-9 row">
           <div class="col-12 col-md-6">
             <label>Email</label>
@@ -158,6 +175,7 @@
             </div>
           </div>
         </div>
+
         <hr>
         <div class="col-12 row">
           <div class="col-12 col-md-4">
@@ -270,7 +288,10 @@
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-            <div>
+            <div class="row shadow ">
+              <div class="col-12 mb-3">
+                <ng-container [ngTemplateOutlet]="profileGender"></ng-container>
+              </div>
 
               <div class="col-12 mb-3">
                 <ng-container [ngTemplateOutlet]="profileGender"></ng-container>

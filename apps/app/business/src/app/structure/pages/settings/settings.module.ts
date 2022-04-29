@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SettingsOverviewComponent } from './overview/settings-overview.component';
 import { SettingUserAPI } from './sections/user/packages/user-api.service';
-import { OverviewComponent } from './sections/user/overview/overview.component';
 
 const routes = [
   {
@@ -39,7 +38,7 @@ const routes = [
 ];
 
 @NgModule({
-  declarations: [SettingsOverviewComponent, OverviewComponent],
+  declarations: [ SettingsOverviewComponent ],
   imports: [CommonModule, RouterModule.forChild(routes)],
   providers: [SettingUserAPI],
 })

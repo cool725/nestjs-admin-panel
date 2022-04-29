@@ -1,6 +1,6 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { FormController } from '../../../../form.controller';
-import { ProfileSagmentAPI } from '../packages/profile-sagment-api.service';
+import { ProfileSegmentAPI } from '../packages/profile-sagment-api.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Confirmable } from '@movit/app/decorators';
 import { Segment } from '../overview/profiles-segment-overview.component';
@@ -21,7 +21,7 @@ export class ProfilesSegmentFormComponent extends FormController<Segment> {
 
   constructor(
     override injector: Injector,
-    public api: ProfileSagmentAPI<Segment, any>
+    public api: ProfileSegmentAPI<Segment, any>
   ) {
     super(injector);
     api.profileSegment$.next(new Segment());
@@ -34,7 +34,7 @@ export class ProfilesSegmentFormComponent extends FormController<Segment> {
   getData(): void {
     if(this.getId()){
       this.onLoadAndSetData(
-       this.api.getSagment(this.getId()),
+       this.api.getSegment(this.getId()),
           this.api.profileSegment$,
           (profile:Partial<Segment>)=> {
            this.formProfile.patchValue(profile);

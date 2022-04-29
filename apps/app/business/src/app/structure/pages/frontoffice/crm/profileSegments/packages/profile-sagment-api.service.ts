@@ -7,7 +7,7 @@ import { ITableOptions } from '@movit/app/common';
 @Injectable({
   providedIn:'root'
 })
-export class ProfileSagmentAPI<Segment, FilterValues> {
+export class ProfileSegmentAPI<Segment, FilterValues> {
   profileSegment$ = new BehaviorSubject<Segment>(<any>null);
   profileSegments$ = new BehaviorSubject<ITableOptions<Segment>>(<any>null);
 
@@ -26,12 +26,12 @@ export class ProfileSagmentAPI<Segment, FilterValues> {
     );
   }
 
-  getSagment(profileId: number) {
+  getSegment(profileId: number) {
     return this.http.get(this.getPath('segment', profileId));
   }
 
-  getSegments(): Observable<Segment[]> {
-    return this.http.get<Segment[]>(this.getPath('segment'));
+  getSegments(options?:FilterValues): Observable<Segment[]> {
+    return this.http.get<Segment[]>(this.getPath('segment'),options);
   }
 
   saveProfile(profile: Partial<Segment>) {

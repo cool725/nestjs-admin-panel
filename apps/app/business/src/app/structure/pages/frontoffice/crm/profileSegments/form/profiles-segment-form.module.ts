@@ -4,7 +4,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TranslateModule} from "@ngx-translate/core";
 import {NgModule} from "@angular/core";
 import {NzSelectModule} from "ng-zorro-antd/select";
-import {ProfileSagmentAPI} from "../packages/profile-sagment-api.service";
+import {ProfileSegmentAPI} from "../packages/profile-sagment-api.service";
 import {environment} from "../../../../../../../environments/environment";
 
 @NgModule({
@@ -17,7 +17,7 @@ import {environment} from "../../../../../../../environments/environment";
         NzSelectModule,
     ],
   providers: [
-    ProfileSagmentAPI,
+    ProfileSegmentAPI,
     {
       provide: 'apiPath',
       useValue: [environment.api.url, 'frontoffice/crm'].join('/'),

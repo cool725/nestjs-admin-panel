@@ -1,6 +1,6 @@
 import { Component, Injector} from '@angular/core';
 import { PageController } from '../../../../page.controller';
-import { ProfileSagmentAPI } from '../packages/profile-sagment-api.service';
+import { ProfileSegmentAPI } from '../packages/profile-sagment-api.service';
 import { EDataEmitterType, ITableBaseFilter, Table } from '@movit/app/common';
 import { Confirmable } from '@movit/app/decorators';
 // import { ProfilesSagmentFormComponent } from "../form/profiles-sagment-form.component";
@@ -30,7 +30,7 @@ export class ProfilesSegmentOverviewComponent extends PageController {
 
   constructor(
     override injector: Injector,
-    public api: ProfileSagmentAPI<Segment, any>
+    public api: ProfileSegmentAPI<Segment, any>
   ) {
     super(injector);
   }

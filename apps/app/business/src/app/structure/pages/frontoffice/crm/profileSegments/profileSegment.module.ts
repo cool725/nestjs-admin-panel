@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { ProfileSagmentAPI } from './packages/profile-sagment-api.service';
+import { ProfileSegmentAPI } from './packages/profile-sagment-api.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../../../../../../environments/environment';
 import { ProfilesSegmentOverviewComponent } from './overview/profiles-segment-overview.component';
@@ -40,7 +40,7 @@ import {ProfilesSegmentFormModule} from "./form/profiles-segment-form.module";
 
     ],
   providers: [
-    ProfileSagmentAPI,
+    ProfileSegmentAPI,
     {
       provide: 'apiPath',
       useValue: [environment.api.url, 'frontoffice/crm'].join('/'),

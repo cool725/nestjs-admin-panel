@@ -1,7 +1,9 @@
 <ng-container *ngIf="api.profile$ | async as profile">
   <ng-container *ngIf="viewSettings.type === 'modal'">
     <div class="modal-header">
-      <select [(ngModel)]="viewSettings.type" class="form-control bg-transparent">
+      <select
+              (change)="viewSettings.changeMode($event.target.value)"
+              [(ngModel)]="viewSettings.mode" class="form-control bg-transparent">
         <option value="simple">Einfach</option>
         <option value="details">Detailiert</option>
       </select>
@@ -248,6 +250,9 @@
           </div>
         </div>
       </form>
+    </div>
+    <div *ngIf="viewSettings.mode === 'details'" class="modal-body">
+
     </div>
     <div class="modal-footer">
       <button

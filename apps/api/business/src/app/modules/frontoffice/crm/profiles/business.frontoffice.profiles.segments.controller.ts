@@ -40,9 +40,9 @@ export class BusinessFrontOfficeProfilesSegmentsController {
   @Get('segment/:segmentId')
   getProfile(
     @GetCompany() business: BusinessEntity,
-    @Param('profileId') profileId: number
+    @Param('segmentId') segmentId: number
   ) {
-    return this.segmentService.getSegment(business.businessId, profileId);
+    return this.segmentService.getSegment(business.businessId, segmentId);
   }
 
   @Put('segment')

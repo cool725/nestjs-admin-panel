@@ -9,7 +9,7 @@ import {environment} from "../../../../../../../environments/environment";
 
 @NgModule({
   declarations: [ ProfilesFormComponent],
-    imports: [
+  imports: [
         CommonModule,
         TranslateModule.forChild(),
         FormsModule,

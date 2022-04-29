@@ -6,14 +6,19 @@ import { environment } from '../../../../../environments/environment';
 const routes = [
   {
     path: 'profiles',
-    loadChildren: () =>
-      import('./profiles/profiles.module').then((m) => m.ProfilesModule),
-  },
-  {
-    path: 'profilesagment',
-    loadChildren: () =>
-      import('./profileSegments/profileSegment.module').then((m) => m.ProfileSegmentModule),
-  },
+    children:[
+      {
+        path:'segment',
+        loadChildren: () =>
+            import('./profileSegments/profileSegment.module').then((m) => m.ProfileSegmentModule),
+      },
+      {
+        path:'',
+        loadChildren: () =>
+            import('./profiles/profiles.module').then((m) => m.ProfilesModule),
+      },
+    ]
+  }
 ];
 
 @NgModule({

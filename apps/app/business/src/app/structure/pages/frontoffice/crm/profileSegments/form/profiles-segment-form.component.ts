@@ -6,11 +6,11 @@ import { Confirmable } from '@movit/app/decorators';
 import { Segment } from '../overview/profiles-segment-overview.component';
 
 @Component({
-  selector: 'movit-profiles-sagment-form',
-  templateUrl: './profiles-sagment-form.component.html',
-  styleUrls: ['./profiles-sagment-form.component.scss'],
+  selector: 'movit-profiles-segment-form',
+  templateUrl: './profiles-segment-form.component.html',
+  styleUrls: ['./profiles-segment-form.component.scss'],
 })
-export class ProfilesSagmentFormComponent extends FormController<Segment> {
+export class ProfilesSegmentFormComponent extends FormController<Segment> {
   viewSettings = {
     type: 'modal',
   };

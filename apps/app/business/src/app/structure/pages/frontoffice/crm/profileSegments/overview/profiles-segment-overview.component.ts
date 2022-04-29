@@ -58,4 +58,8 @@ export class ProfilesSegmentOverviewComponent extends PageController {
     );
 
   }
+
+  createSegment(){
+    this.api.profileSegment$.next(new Segment())
+  }
 }

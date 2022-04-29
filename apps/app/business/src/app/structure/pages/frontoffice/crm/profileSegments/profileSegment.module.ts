@@ -6,6 +6,11 @@ import { ProfileSagmentAPI } from './packages/profile-sagment-api.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../../../../../../environments/environment';
 import { ProfilesSegmentOverviewComponent } from './overview/profiles-segment-overview.component';
+import {BoostrapModalUIComponent} from "@movit/app/ui";
+import {
+    BoostrapModalUIModule
+} from "../../../../../../../../../../libs/app/ui/boostrap/modal/default/modal.default.module";
+import {ProfilesSegmentFormModule} from "./form/profiles-segment-form.module";
 
 
 
@@ -30,7 +35,9 @@ import { ProfilesSegmentOverviewComponent } from './overview/profiles-segment-ov
         TranslateModule.forChild(),
         FormsModule,
         ReactiveFormsModule,
-        // ProfilesSagmentFormModule
+         BoostrapModalUIModule,
+        ProfilesSegmentFormModule
+
     ],
   providers: [
     ProfileSagmentAPI,

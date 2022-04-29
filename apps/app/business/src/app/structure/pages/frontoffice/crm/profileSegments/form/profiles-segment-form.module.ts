@@ -1,5 +1,5 @@
 import {CommonModule} from "@angular/common";
-import {ProfilesSagmentFormComponent} from "./profiles-sagment-form.component";
+import {ProfilesSegmentFormComponent} from "./profiles-segment-form.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TranslateModule} from "@ngx-translate/core";
 import {NgModule} from "@angular/core";
@@ -8,7 +8,7 @@ import {ProfileSagmentAPI} from "../packages/profile-sagment-api.service";
 import {environment} from "../../../../../../../environments/environment";
 
 @NgModule({
-  declarations: [ ProfilesSagmentFormComponent],
+  declarations: [ ProfilesSegmentFormComponent ],
   imports: [
         CommonModule,
         TranslateModule.forChild(),
@@ -23,7 +23,7 @@ import {environment} from "../../../../../../../environments/environment";
       useValue: [environment.api.url, 'frontoffice/crm'].join('/'),
     },
   ],
-  entryComponents: [ProfilesSagmentFormComponent],
-  exports: [ProfilesSagmentFormComponent],
+  entryComponents: [ProfilesSegmentFormComponent],
+  exports: [ProfilesSegmentFormComponent],
 })
-export class ProfilesSagmentFormModule {}
+export class ProfilesSegmentFormModule {}

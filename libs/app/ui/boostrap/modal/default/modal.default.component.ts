@@ -17,7 +17,7 @@ import { DataEmitter } from '@movit/app/common';
 export class BoostrapModalUIComponent {
   @ViewChild('vc', { read: ViewContainerRef }) vc: ViewContainerRef;
 
-  @Input() style = {
+  @Input() style:any = {
     width: '925px',
     height: '725px',
     background: 'red',

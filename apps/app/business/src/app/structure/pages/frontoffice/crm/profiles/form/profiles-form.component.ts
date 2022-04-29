@@ -13,6 +13,7 @@ import { Profile } from '../overview/profiles-overview.component';
 export class ProfilesFormComponent extends FormController<Profile> {
   viewSettings = {
     type: 'modal',
+    mode:'simple'
   };
 
   formProfile = this.fb.group({

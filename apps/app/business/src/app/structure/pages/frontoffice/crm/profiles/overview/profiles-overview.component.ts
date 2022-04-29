@@ -45,8 +45,11 @@ export class ProfilesOverviewComponent extends PageController {
     );
   }
 
-  async editProfile(id: number) {
-    this.openModal(EDataEmitterType.ModalOpen, ProfilesFormComponent,{
+   createProfile() {
+    return this.openModal(EDataEmitterType.ModalOpen, ProfilesFormComponent,{})
+  }
+   editProfile(id: number) {
+    return this.openModal(EDataEmitterType.ModalOpen, ProfilesFormComponent,{
       id:id
     })
   }

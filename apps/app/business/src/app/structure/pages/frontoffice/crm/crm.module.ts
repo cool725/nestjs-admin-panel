@@ -8,7 +8,7 @@ const routes = [
     path: 'profiles',
     children:[
       {
-        path:'segment',
+        path:'segments',
         loadChildren: () =>
             import('./profileSegments/profileSegment.module').then((m) => m.ProfileSegmentModule),
       },

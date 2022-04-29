@@ -15,8 +15,8 @@ export class ProfilesSegmentFormComponent extends FormController<Segment> {
     type: 'modal',
   };
 
-  formProfile = this.fb.group({
-
+  formSegment = this.fb.group({
+    title: new FormControl('', [Validators.max(100)]),
   });
 
   constructor(
@@ -27,26 +27,22 @@ export class ProfilesSegmentFormComponent extends FormController<Segment> {
     api.profileSegment$.next(new Segment());
   }
 
-  get profileType(){
-    return this.formProfile.value.gender
-  }
-
   getData(): void {
     if(this.getId()){
       this.onLoadAndSetData(
        this.api.getSegment(this.getId()),
           this.api.profileSegment$,
-          (profile:Partial<Segment>)=> {
-           this.formProfile.patchValue(profile);
-           return Segment.create(profile)
+          (segment:Partial<Segment>)=> {
+           this.formSegment.patchValue(segment);
+           return Segment.create(segment)
           }
       );
     }
   }
 
-  async save(profile: Partial<Segment>) {
-    const profileValues = this.formProfile.value;
-    const api$ = await this.api.saveProfile(profileValues);
+  async save(segment: Partial<Segment>) {
+    const values = this.formSegment.value;
+    const api$ = await this.api.saveSegment(values);
     api$.subscribe();
     this.onSave.emit();
   }

@@ -1,5 +1,4 @@
 import { Inject, Injectable, Optional } from '@angular/core';
-import { environment } from '../../../../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ITableOptions } from '@movit/app/common';
@@ -34,7 +33,7 @@ export class ProfileSegmentAPI<Segment, FilterValues> {
     return this.http.get<Segment[]>(this.getPath('segment'),options);
   }
 
-  saveProfile(profile: Partial<Segment>) {
+  saveSegment(profile: Partial<Segment>) {
     return this.http.put(this.getPath('segment'), profile);
   }
 

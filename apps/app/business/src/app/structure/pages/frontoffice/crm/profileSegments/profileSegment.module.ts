@@ -6,7 +6,7 @@ import { ProfileSegmentAPI } from './packages/profile-sagment-api.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../../../../../../environments/environment';
 import { ProfilesSegmentOverviewComponent } from './overview/profiles-segment-overview.component';
-import {BoostrapModalUIComponent} from "@movit/app/ui";
+
 import {
     BoostrapModalUIModule
 } from "../../../../../../../../../../libs/app/ui/boostrap/modal/default/modal.default.module";

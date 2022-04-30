@@ -48,6 +48,7 @@ export class ProfileSegmentEntity extends BaseEntity {
 
   @BeforeInsert()
   protected async beforeInsert() {
+    console.warn('replace count with max')
     this.segmentId =
       (await ProfileSegmentEntity.count({
         where: { companyId: this.companyId },

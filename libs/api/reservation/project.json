@@ -1,0 +1,22 @@
+{
+  "root": "libs/api/reservation",
+  "sourceRoot": "libs/api/reservation/src",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api/reservation/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/reservation"],
+      "options": {
+        "jestConfig": "libs/api/reservation/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

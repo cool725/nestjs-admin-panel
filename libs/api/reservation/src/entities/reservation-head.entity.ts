@@ -1,0 +1,68 @@
+import {
+  BaseEntity, Column,
+  Entity, Index, JoinColumn, ManyToOne,
+  OneToMany, PrimaryGeneratedColumn, Unique,
+} from 'typeorm';
+import {Exclude, instanceToPlain} from 'class-transformer';
+
+import { ReservationLegEntity } from './reservation-leg.entity';
+import { ReservationSourceEntity } from "./reservation.source.entity";
+
+@Entity('res_reservation_head')
+@Index(['userId'])
+@Index(['companyId'])
+@Index(['companyId','state'])
+@Unique(['companyId','reservationId'])
+export class ReservationHeadEntity extends BaseEntity {
+  @PrimaryGeneratedColumn('increment')
+  @Exclude()
+  id: number;
+
+  @Column({ type: 'bigint', nullable: false, unsigned: true })
+  companyId: number;
+
+  @Column({ type: 'bigint', nullable: false, unsigned: true })
+  reservationId: number;
+
+  @OneToMany(() => ReservationLegEntity, (leg) => leg.head, { eager: false })
+  @JoinColumn([
+    { name: 'companyId', referencedColumnName: 'companyId' },
+    { name: 'reservationId', referencedColumnName: 'reservationId' },
+  ])
+  legs: ReservationLegEntity[];
+
+  @Column({ type: 'bigint', nullable: false, unsigned: true })
+  userId: number;
+
+  @Column({ type: 'varchar', nullable: true, length:100})
+  title: string;
+
+  @Column({ type: 'varchar', nullable: false, length:120})
+  place: string;
+
+  @Column({ type: 'varchar', nullable: false, length:9})
+  color: string;
+
+  @Column({ type: 'tinyint', nullable: false, default: 0})
+  state: number;
+
+  @Column({ type: 'datetime', nullable: false,})
+  start: Date;
+
+  @Column({ type: 'datetime', nullable: true,  })
+  end: Date;
+
+  @ManyToOne(() => ReservationSourceEntity, (source) => source.reservations)
+  @JoinColumn([
+    { name: 'companyId', referencedColumnName: 'companyId' },
+    { name: 'sourceId', referencedColumnName: 'sourceId' },
+  ])
+  sourceId: number;
+
+  // guests
+  profiles:any[]
+
+  public toJSON() {
+    return instanceToPlain(this);
+  }
+}

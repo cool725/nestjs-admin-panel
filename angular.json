@@ -5,6 +5,7 @@
     "api-auth": "apps/api/auth",
     "api-business": "apps/api/business",
     "api-profiles": "libs/api/profiles",
+    "api-reservation": "libs/api/reservation",
     "app-auth": "apps/app/auth",
     "app-business": "apps/app/business",
     "lib-api-auth": "libs/api/auth",

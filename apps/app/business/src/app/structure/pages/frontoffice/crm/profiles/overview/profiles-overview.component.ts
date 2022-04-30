@@ -27,7 +27,15 @@ export class Profile {
 })
 export class ProfilesOverviewComponent extends PageController {
   public profileTable = new Table<Profile, ITableBaseFilter>(
-    this.api.profiles$
+    this.api.profiles$, {
+        searchValue:'',
+        keys: [
+          'firstName',
+          'lastName',
+          'phone',
+          'email',
+        ]
+      }
   );
 
   constructor(
@@ -38,17 +46,23 @@ export class ProfilesOverviewComponent extends PageController {
   }
 
   getData(): void {
-    this.onLoadAndSetData(
-      this.api.getProfiles(),
-      this.api.profiles$,
-      (rows: any) => ({ data: rows })
-    );
+    this.getProfiles()
   }
 
-   createProfile() {
-    return this.openModal(EDataEmitterType.ModalOpen, ProfilesFormComponent,{})
+  getProfiles(){
+      this.onLoadAndSetData(
+          this.api.getProfiles(this.profileTable.filterValues),
+          this.api.profiles$,
+          (rows: Profile[]) => ({ data: rows })
+      );
   }
-   editProfile(id: number) {
+
+  createProfile() {
+       new Promise(resolve => this.openModal(EDataEmitterType.ModalOpen, ProfilesFormComponent,{}, resolve))
+           .then(()=> this.getData())
+  }
+
+  editProfile(id: number) {
     return this.openModal(EDataEmitterType.ModalOpen, ProfilesFormComponent,{
       id:id
     })
@@ -56,9 +70,8 @@ export class ProfilesOverviewComponent extends PageController {
 
   @Confirmable({ title: 'Sure?' })
   async deleteProfile(id: number) {
-    await this.api.deleteProfile(id).subscribe(
-        ()=> this.reloadData()
-    );
+    return this.api.deleteProfile(id)
+        .subscribe(()=> this.reloadData());
 
   }
 }

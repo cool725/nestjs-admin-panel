@@ -73,7 +73,11 @@ export class ProfilesFormComponent extends FormController<Profile> {
 
     api$.pipe();
     api$.subscribe(
-        data => closeOnSave ? this.onCancel.emit() : null,
+        data => {
+          if(closeOnSave && this.viewSettings.type  === 'modal'){
+            this.closeModal()
+          }
+        },
         ({error}) => {
           console.log(error)
         }
@@ -91,6 +95,7 @@ export class ProfilesFormComponent extends FormController<Profile> {
   }
 
   // todo rename
+  // add comment
   cancel() {
     this.onCancel.emit();
   }

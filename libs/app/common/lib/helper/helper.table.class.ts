@@ -34,6 +34,7 @@ export interface ITableOptions<T> extends IPageInfo {
 export interface ITableBaseFilter {
   page?: number;
   searchValue: string;
+  keys?:string[]
 }
 
 export class Table<Type, Filter extends ITableBaseFilter> {
@@ -47,7 +48,7 @@ export class Table<Type, Filter extends ITableBaseFilter> {
     public filterValues: Filter = <Filter>{}
   ) {}
 
-  public canShow(obj: any, keys: string[] = []): boolean {
+  public canShow(obj: any, keys: string[] = this.filterValues.keys || []): boolean {
     const value: string = this.filterValues.searchValue;
     if (!value) return true;
 

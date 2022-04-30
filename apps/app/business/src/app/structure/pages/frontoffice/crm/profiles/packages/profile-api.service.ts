@@ -31,8 +31,8 @@ export class ProfilesAPI<Profile, FilterValues> {
     return this.http.get(this.getPath('profile', profileId));
   }
 
-  getProfiles(): Observable<Profile[]> {
-    return this.http.get<Profile[]>(this.getPath('profile'));
+  getProfiles(filter:FilterValues): Observable<Profile[]> {
+    return this.http.get<Profile[]>(this.getPath('profile'),filter);
   }
 
   saveProfile(profile: Partial<Profile>) {

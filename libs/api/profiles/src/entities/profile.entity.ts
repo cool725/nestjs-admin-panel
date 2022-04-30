@@ -83,14 +83,14 @@ export class ProfileEntity extends BaseEntity {
   protected async beforeInsert() {
     const lastEntry = (await ProfileEntity.find({
       order: {
-        profileId: "ASC",
-        id: "DESC"
+        profileId: "DESC"
       },
       where: { companyId: this.companyId },
       take:1,
 
     })) ;
-    this.profileId = (lastEntry && lastEntry[0]) ? lastEntry[0].profileId + 1 : 1;
+    this.profileId = (lastEntry && lastEntry[0]) ? (+lastEntry[0].profileId + 1) : 1;
+    console.log('profileId',this.profileId,lastEntry[0].profileId)
   }
 
   protected toJSON() {

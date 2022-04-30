@@ -1,18 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {ProfilesRepository, ProfilesSegmentRepository} from './classes/profiles.repository';
-import { Pagination } from '../../common/decorator';
 import { doTransactionInsert } from '../../common/db/transaction/db.transaction';
-
+import { ProfilesRepository, ProfilesSegmentRepository} from './classes/profiles.repository';
+import { Pagination } from '../../common/decorator';
+import { ProfileEntity } from "./entities/profile.entity";
 
 @Injectable()
 export class ProfilesService {
   constructor(
     @InjectRepository(ProfilesRepository)
-    private profileRepo: ProfilesRepository,
-
-
-  ) {}
+    private profileRepo: ProfilesRepository) {}
 
   public getProfiles(businessId: number, pagination: Pagination) {
     return this.profileRepo.find({
@@ -35,17 +32,21 @@ export class ProfilesService {
     });
   }
 
-  async createProfile(businessId: number, data: any) {
+  async createProfile(businessId: number, data: Partial<ProfileEntity>) {
     const profile = this.profileRepo.create();
     profile.companyId = businessId;
-    await doTransactionInsert(profile, this.profileRepo);
-    return this.updateProfile(businessId, profile.profileId, data);
+    Object.assign(profile, data);
+    return this.profileRepo.save(profile)
   }
 
   async updateProfile(businessId, profileId: number, data: any) {
-    const profile = await this.getProfile(businessId, profileId);
-    Object.assign(profile, data);
-    return this.profileRepo.save(profile);
+    // todo handle segments | sources ect
+    delete data.profileId
+    delete data.businessId
+    return this.profileRepo.update({
+      companyId:businessId,
+      profileId:profileId
+    }, data);
   }
 
   public deleteProfile(businessId, profileId: number) {
@@ -102,9 +103,9 @@ export class ProfilesSegmentService {
     });
   }
 }
+
 @Injectable()
 export class ProfilesPriceClassService {
   constructor( @InjectRepository(ProfilesSegmentRepository)
-               private segmentRepo: ProfilesSegmentRepository) {
-  }
+               private segmentRepo: ProfilesSegmentRepository) {}
 }

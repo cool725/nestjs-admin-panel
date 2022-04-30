@@ -61,7 +61,8 @@ export class ProfilesFormComponent extends FormController<Profile> {
 
   async save(profile: Partial<Profile>) {
     const profileValues = this.formProfile.value;
-    const api$ = await this.api.saveProfile(profileValues);
+    const profileId =  this.api.profile$.getValue().profileId
+    const api$ = profileId ? this.api.updateProfile(profileId,profileValues) : this.api.saveProfile(profileValues);
     api$.subscribe();
     this.onSave.emit();
   }

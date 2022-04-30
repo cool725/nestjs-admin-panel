@@ -29,7 +29,6 @@ export namespace ProfilesDto {
 
   export class Update extends PartialType(Create) {
     @IsNotEmpty()
-    @IsNumber()
     profileId: string;
   }
 }

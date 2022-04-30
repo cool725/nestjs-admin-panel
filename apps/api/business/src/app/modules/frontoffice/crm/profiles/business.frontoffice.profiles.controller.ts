@@ -48,7 +48,7 @@ export class BusinessFrontOfficeProfilesController {
   @Patch('profile/:profileId')
   updateProfile(
     @GetCompany() business: BusinessEntity,
-    @Param('profileId') profileId: number,
+    @Param('profileId') profileId: any,
     @Body() profile:ProfilesDto.Update
   ) {
     return this.profilesService.updateProfile(

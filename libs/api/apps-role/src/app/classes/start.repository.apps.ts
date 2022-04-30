@@ -36,6 +36,7 @@ export class StartRepositoryApps extends Repository<AppsEntity> {
   public async getAppsAsMenu(params): Promise<any> {
     if (params.domain) params.domain = params.domain || -1;
     if (!params.companyId) params.companyId = params.companyId || IsNull();
+    let maxDepth = 1000; // protection of recursive
 
     const allowedApps = (
       await this.query(
@@ -48,9 +49,8 @@ export class StartRepositoryApps extends Repository<AppsEntity> {
       )
     ).map((allowedApps) => allowedApps.appId);
 
-    console.log(params, allowedApps);
-
-    const fetchCategories = (parentCategoryId: any = IsNull()) => {
+    const fetchCategories = (parentCategoryId) => {
+      if(!parentCategoryId)return []
       const queryParams = {
         domain: params.domain,
         companyId: params.companyId,
@@ -74,30 +74,33 @@ export class StartRepositoryApps extends Repository<AppsEntity> {
       });
     };
 
-    const baseCategories = await fetchCategories();
+    const baseCategories = await fetchCategories(IsNull());
 
     const filterApps = (apps: AppsEntity[]) =>
       apps.filter((app) => allowedApps.includes(app.appId));
 
     const getChildren = async (base) => {
-      if (!base) return base;
+      if (!base || maxDepth < 0 ) return base;
+
       for (let i = 0; i < base.length; i++) {
         const category = base[i];
-        category.children = (await fetchCategories(category.categoryId)) || [];
 
+        // get children and filter apps
+        category.children = (await fetchCategories(category.categoryId)) || [];
         if (category.apps) category.apps = filterApps(category.apps);
 
-        if (category.children) {
-          for (let childI = 0; childI < category.children.length; childI++) {
-            category.children = await getChildren(category.children);
-          }
-        }
+        if (maxDepth >= 0 && category.children)
+        category.children = await getChildren(category.children);
+
+        // Merge apps to children (Navigation)
         category.children.push(...(category.apps || []));
+
+        // Delete non used valued
         delete category.apps;
-        delete category.categoryId;
         delete category.parentCategoryId;
       }
 
+      maxDepth--;
       return base;
     };
 

@@ -54,6 +54,8 @@ export class ProfileSegmentEntity extends BaseEntity {
       })) + 1;
   }
 
+
+
   toJSON() {
     return this;
   }

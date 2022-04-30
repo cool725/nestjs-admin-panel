@@ -4,7 +4,7 @@ import { ProfilesAPI } from '../packages/profile-api.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Confirmable } from '@movit/app/decorators';
 import { Profile } from '../overview/profiles-overview.component';
-import {Subject} from "rxjs";
+import { Subject} from "rxjs";
 
 @Component({
   selector: 'movit-profiles-form',
@@ -67,11 +67,19 @@ export class ProfilesFormComponent extends FormController<Profile> {
     this.onLoadAndSetData(this.api.getSegments(),this.segments$);
   }
 
-  async save(profile: Partial<Profile>) {
+  async save(profile: Partial<Profile>,closeOnSave = true) {
     const formValues = this.formProfile.value;
     const api$ = profile.profileId ? this.api.updateProfile(profile.profileId,formValues) : this.api.saveProfile(formValues);
-    api$.subscribe();
-    this.onSave.emit();
+
+    api$.pipe();
+    api$.subscribe(
+        data => closeOnSave ? this.onCancel.emit() : null,
+        ({error}) => {
+          console.log(error)
+        }
+    );
+
+    this.onSave.emit(Object.assign(profile,formValues));
   }
 
   @Confirmable({

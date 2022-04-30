@@ -24,7 +24,7 @@ export class Segment {
   styleUrls: ['./profiles-segment-overview.component.css'],
 })
 export class ProfilesSegmentOverviewComponent extends PageController {
-  public profileSagmentTable = new Table<Segment, ITableBaseFilter>(
+  public profileSegmentTable = new Table<Segment, ITableBaseFilter>(
     this.api.profileSegments$
   );
 

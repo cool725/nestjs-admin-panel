@@ -62,9 +62,11 @@ export class ProfilesService {
     delete data.businessId
 
     const profile = await this.getProfile(businessId,profileId);
+    if(!profile)return ;
+
     await this.profileRepo.saveSegments(businessId,profile.profileId,<any>data.segments)
 
-    return profile;
+    return profile.initialiseData(data).save();
   }
 
   public deleteProfile(businessId, profileId: number) {

@@ -7,7 +7,7 @@ import { ITableOptions } from '@movit/app/common';
   providedIn:'root'
 })
 export class ProfileSegmentAPI<Segment, FilterValues> {
-  profileSegment$ = new BehaviorSubject<Segment>(<any>null);
+  profileSegment$ = new BehaviorSubject<Segment | null>(null);
   profileSegments$ = new BehaviorSubject<ITableOptions<Segment>>(<any>null);
 
   constructor(

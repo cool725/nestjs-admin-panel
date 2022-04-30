@@ -95,4 +95,8 @@ export abstract class PageController {
       data:data
     }, resolver);
   }
+
+  protected notify(type:any,message:string){
+    return this.vNotify.show(type,message)
+  }
 }

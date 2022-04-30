@@ -80,6 +80,17 @@ export class ProfileEntity extends BaseEntity {
     super();
   }
 
+  public initialiseData(profile:Partial<ProfileEntity>){
+      this.firstName = profile.firstName;
+      this.lastName  = profile.lastName;
+      this.email  = profile.email;
+      this.phone  = profile.phone;
+
+      this.sourceId  = profile.sourceId;
+      this.notes  = profile.notes;
+      return this
+  }
+
   @BeforeInsert()
   protected async beforeInsert() {
     const lastEntry = (await ProfileEntity.find({

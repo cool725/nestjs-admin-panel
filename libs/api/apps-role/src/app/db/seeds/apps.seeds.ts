@@ -56,6 +56,12 @@ export class InitialAppsSeeds extends SeedHelper {
       title: 'sales',
       parentCategoryId: 7,
     },
+    {
+      categoryId: 9,
+      domain: 'business',
+      title: 'profiles',
+      parentCategoryId: 2,
+    }
   ];
 
   apps = [
@@ -102,6 +108,30 @@ export class InitialAppsSeeds extends SeedHelper {
       categoryId: 6,
       img: '',
     },
+    {
+      appId: 13,
+      domain: 'business',
+      title: 'profiles',
+      path: '/frontoffice/crm/profiles/overview',
+      categoryId: 9,
+      img: '',
+    },
+    {
+      appId: 14,
+      domain: 'business',
+      title: 'segments',
+      path: '/frontoffice/crm/profiles/segments/overview',
+      categoryId: 9,
+      img: '',
+    },
+    {
+      appId: 15,
+      domain: 'business',
+      title: 'priceclass',
+      path: '/frontoffice/crm/profiles/priceclass/overview',
+      categoryId: 9,
+      img: '',
+    },
   ];
 
   public async doSeed(queryRunner: Connection): Promise<boolean> {
@@ -119,10 +149,10 @@ export class InitialAppsSeeds extends SeedHelper {
           this.apps[i].categoryId
         );
         await app.save();
-        console.log(await AppsCategoryEntity.findOne(this.apps[i].categoryId));
       }
 
       return resolve(true);
     });
   }
+
 }

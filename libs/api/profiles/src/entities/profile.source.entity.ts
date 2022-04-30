@@ -3,7 +3,7 @@ import {
   BeforeInsert,
   Column,
   Entity,
-  Index, ManyToMany,
+  Index,
   OneToMany,
   PrimaryGeneratedColumn,
   Unique,
@@ -11,10 +11,10 @@ import {
 import { Exclude } from 'class-transformer';
  import {ProfileEntity} from "./profile.entity";
 
-@Entity('crm_segment')
+@Entity('crm_source')
 @Index(['companyId'])
-@Unique(['companyId', 'segmentId'])
-export class ProfileSegmentEntity extends BaseEntity {
+@Unique(['companyId', 'sourceId'])
+export class ProfileSourceEntity extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
   @Exclude()
   id: number;
@@ -23,7 +23,7 @@ export class ProfileSegmentEntity extends BaseEntity {
   companyId: number;
 
   @Column({ type: 'bigint', nullable: false, unsigned: true })
-  segmentId: number;
+  sourceId: number;
 
   @Column({ type: 'varchar', length: 50, nullable:true })
   title: string;
@@ -34,7 +34,7 @@ export class ProfileSegmentEntity extends BaseEntity {
   @Column({ type: 'smallint',  nullable:true, default:1 })
   order: number;
 
-  @ManyToMany(() => ProfileEntity, (profile) => profile.segments, {})
+  @OneToMany(() => ProfileEntity, (profile) => profile.sourceId, {})
   profiles:ProfileEntity[];
 
   constructor() {
@@ -43,13 +43,13 @@ export class ProfileSegmentEntity extends BaseEntity {
 
   @BeforeInsert()
   protected async beforeInsert() {
-    this.segmentId =
-      (await ProfileSegmentEntity.count({
+    this.sourceId =
+      (await ProfileSourceEntity.count({
         where: { companyId: this.companyId },
       })) + 1;
   }
 
-  toJSON() {
+  public toJSON() {
     return this;
   }
 }

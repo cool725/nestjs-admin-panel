@@ -4,13 +4,16 @@ import {
   Column,
   Entity,
   Index,
-  JoinColumn, ManyToOne,
-  OneToMany,
+  JoinColumn,
+  ManyToMany,
+  ManyToOne,
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import {ProfileSegmentEntity} from "./profile.segment.entity";
+import {ProfileSourceEntity} from "./profile.source.entity";
+
 
 @Entity('crm_profile')
 @Index(['companyId'])
@@ -48,12 +51,12 @@ export class ProfileEntity extends BaseEntity {
   @Column({ type: 'smallint',  nullable:true })
   vip: number | string;
 
-  @ManyToOne(() => ProfileSegmentEntity, (segment) => segment.profiles)
+  @ManyToMany(() => ProfileSegmentEntity, (segment) => segment.profiles)
   @JoinColumn([
     { name: 'companyId', referencedColumnName: 'companyId' },
     { name: 'segmentId', referencedColumnName: 'segmentId' },
   ])
-  segmentId:ProfileSegmentEntity;
+  segments:ProfileSegmentEntity[];
 
   @Column({ type: 'smallint', nullable:true,unsigned:true })
   languageId: number;
@@ -61,7 +64,11 @@ export class ProfileEntity extends BaseEntity {
   @Column({ type: 'int', nullable:true, unsigned:true })
   priceClassId: number;
 
-  @Column({ type: 'int',  nullable:true, unsigned:true })
+  @ManyToOne(() => ProfileSourceEntity, (source) => source.profiles)
+  @JoinColumn([
+    { name: 'companyId', referencedColumnName: 'companyId' },
+    { name: 'sourceId', referencedColumnName: 'sourceId' },
+  ])
   sourceId: number;
 
   @Column({ type: 'text', nullable:true })
@@ -74,10 +81,16 @@ export class ProfileEntity extends BaseEntity {
 
   @BeforeInsert()
   protected async beforeInsert() {
-    this.profileId =
-      (await ProfileEntity.count({
-        where: { companyId: this.companyId },
-      })) + 1;
+    const lastEntry = (await ProfileEntity.find({
+      order: {
+        profileId: "ASC",
+        id: "DESC"
+      },
+      where: { companyId: this.companyId },
+      take:1,
+
+    })) ;
+    this.profileId = (lastEntry && lastEntry[0]) ? lastEntry[0].profileId + 1 : 1;
   }
 
   protected toJSON() {

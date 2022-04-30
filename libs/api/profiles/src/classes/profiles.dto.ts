@@ -1,7 +1,6 @@
 import {
   IsEmail,
   IsNotEmpty,
-  IsNumber,
   IsOptional,
   IsPhoneNumber,
   ValidateIf,
@@ -27,7 +26,5 @@ export namespace ProfilesDto {
     phone: string;
   }
 
-  export class Update extends PartialType(Create) {
-    profileId: string;
-  }
+  export class Update extends PartialType(Create) {}
 }

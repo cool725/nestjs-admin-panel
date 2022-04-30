@@ -4,6 +4,7 @@ import { ProfilesAPI } from '../packages/profile-api.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Confirmable } from '@movit/app/decorators';
 import { Profile } from '../overview/profiles-overview.component';
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'movit-profiles-form',
@@ -29,10 +30,14 @@ export class ProfilesFormComponent extends FormController<Profile> {
     birthDay: new FormControl('', []),
     vip: new FormControl('', []),
     languageId: new FormControl('', []),
-    segments: new FormControl('', []),
+    segments: new FormControl([], []),
     priceClass: new FormControl('', []),
     source: new FormControl('', []),
   });
+
+  segments$ = new Subject<any[]>()
+
+  sources$ = new Subject<any[]>()
 
   constructor(
     override injector: Injector,
@@ -46,7 +51,7 @@ export class ProfilesFormComponent extends FormController<Profile> {
     return this.formProfile.value.gender
   }
 
-  getData(): void {
+  override getData(): void {
     if(this.getId()){
       this.onLoadAndSetData(
        this.api.getProfile(this.getId()),
@@ -57,6 +62,9 @@ export class ProfilesFormComponent extends FormController<Profile> {
           }
       );
     }
+    this.segments$.subscribe(console.log)
+    this.onLoadAndSetData(this.api.getSources(),this.sources$);
+    this.onLoadAndSetData(this.api.getSegments(),this.segments$);
   }
 
   async save(profile: Partial<Profile>) {

@@ -37,7 +37,9 @@ export class BusinessFrontOfficeProfilesController {
     @GetCompany() business: BusinessEntity,
     @Param('profileId') profileId: number
   ) {
-    return this.profilesService.getProfile(business.businessId, profileId);
+    return this.profilesService.getProfile(business.businessId, profileId,{
+      relations:['segments']
+    });
   }
 
   @Put('profile')

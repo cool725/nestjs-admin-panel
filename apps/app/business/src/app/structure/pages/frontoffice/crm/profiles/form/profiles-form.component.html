@@ -232,12 +232,16 @@
             <label>Kundensegment</label>
             <div class="input-group mb-3">
               <nz-select
+
                       class="w-100"
                       formControlName="segments"
-                      multiple
+                      nzMode="multiple"
+                      nzPlaceHolder="Please select"
                       aria-label="segments"
-                      aria-describedby="profiles-vip"
-              >
+                      aria-describedby="profiles-vip">
+                  <nz-option *ngFor="let segment of segments$ |async"
+                             [nzLabel]="segment.title"
+                             [nzValue]="segment.segmentId"></nz-option>
               </nz-select>
             </div>
           </div>

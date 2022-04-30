@@ -3,13 +3,14 @@ import {
   BeforeInsert,
   Column,
   Entity,
-  Index, ManyToMany,
+  Index, JoinColumn, ManyToMany, ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
  import {ProfileEntity} from "./profile.entity";
+import {ProfileSegmentRelationEntity} from "./profile.segment.relation.entity";
 
 @Entity('crm_segment')
 @Index(['companyId'])
@@ -34,8 +35,12 @@ export class ProfileSegmentEntity extends BaseEntity {
   @Column({ type: 'smallint',  nullable:true, default:1 })
   order: number;
 
-  @ManyToMany(() => ProfileEntity, (profile) => profile.segments, {})
-  profiles:ProfileEntity[];
+  @OneToMany(() => ProfileSegmentRelationEntity, (profile) => profile.segment, {})
+  @JoinColumn([
+    { name: 'companyId', referencedColumnName: 'companyId' },
+    { name: 'segmentId', referencedColumnName: 'segmentId' },
+  ])
+  profiles:ProfileSegmentRelationEntity[];
 
   constructor() {
     super();

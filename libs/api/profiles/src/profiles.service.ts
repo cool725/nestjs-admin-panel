@@ -23,30 +23,48 @@ export class ProfilesService {
     });
   }
 
-  public getProfile(businessId: number, profileId: number) {
-    return this.profileRepo.findOne({
+  public async getProfile(businessId: number, profileId: number,options:{relations?:string[]} = {}) {
+    const profile = await this.profileRepo.findOne({
       where: {
         companyId: businessId,
         profileId: profileId,
-      },
+      }
     });
+
+    if(!options) return profile
+
+
+    if( options.relations?.includes('segments')) {
+      profile.segments = await this.profileRepo.getProfileSegments(
+          businessId, profileId,
+      )
+    }
+
+
+    return profile
   }
 
   async createProfile(businessId: number, data: Partial<ProfileEntity>) {
     const profile = this.profileRepo.create();
     profile.companyId = businessId;
+
+    for(const key in data) if(!data[key])delete data[key];
     Object.assign(profile, data);
-    return this.profileRepo.save(profile)
+
+    await this.profileRepo.save(profile);
+    await this.profileRepo.saveSegments(businessId,profile.profileId,<any>data.segments)
+    return profile
   }
 
   async updateProfile(businessId, profileId: number, data: any) {
     // todo handle segments | sources ect
     delete data.profileId
     delete data.businessId
-    return this.profileRepo.update({
-      companyId:businessId,
-      profileId:profileId
-    }, data);
+
+    const profile = await this.getProfile(businessId,profileId);
+    await this.profileRepo.saveSegments(businessId,profile.profileId,<any>data.segments)
+
+    return profile;
   }
 
   public deleteProfile(businessId, profileId: number) {

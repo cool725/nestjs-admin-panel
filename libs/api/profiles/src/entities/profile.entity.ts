@@ -6,13 +6,14 @@ import {
   Index,
   JoinColumn,
   ManyToMany,
-  ManyToOne,
+  ManyToOne, OneToMany,
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import {ProfileSegmentEntity} from "./profile.segment.entity";
 import {ProfileSourceEntity} from "./profile.source.entity";
+import {ProfileSegmentRelationEntity} from "./profile.segment.relation.entity";
 
 
 @Entity('crm_profile')
@@ -51,18 +52,18 @@ export class ProfileEntity extends BaseEntity {
   @Column({ type: 'smallint',  nullable:true })
   vip: number | string;
 
-  @ManyToMany(() => ProfileSegmentEntity, (segment) => segment.profiles)
-  @JoinColumn([
-    { name: 'companyId', referencedColumnName: 'companyId' },
-    { name: 'segmentId', referencedColumnName: 'segmentId' },
-  ])
-  segments:ProfileSegmentEntity[];
-
   @Column({ type: 'smallint', nullable:true,unsigned:true })
   languageId: number;
 
   @Column({ type: 'int', nullable:true, unsigned:true })
   priceClassId: number;
+
+  @OneToMany(() => ProfileSegmentRelationEntity, (segment) => segment.profile)
+  @JoinColumn([
+    { name: 'companyId', referencedColumnName: 'companyId' },
+    { name: 'profileId', referencedColumnName: 'profileId' },
+  ])
+  segments:ProfileSegmentRelationEntity[] | number[];
 
   @ManyToOne(() => ProfileSourceEntity, (source) => source.profiles)
   @JoinColumn([
@@ -90,7 +91,6 @@ export class ProfileEntity extends BaseEntity {
 
     })) ;
     this.profileId = (lastEntry && lastEntry[0]) ? (+lastEntry[0].profileId + 1) : 1;
-    console.log('profileId',this.profileId,lastEntry[0].profileId)
   }
 
   protected toJSON() {

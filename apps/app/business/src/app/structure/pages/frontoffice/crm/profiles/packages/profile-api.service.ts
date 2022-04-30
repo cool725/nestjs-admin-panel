@@ -3,6 +3,7 @@ import { environment } from '../../../../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ITableOptions } from '@movit/app/common';
+import {Cacheable} from "angular-cacheable";
 
 @Injectable({
   providedIn:'root'
@@ -44,5 +45,18 @@ export class ProfilesAPI<Profile, FilterValues> {
 
   deleteProfile(profileId: number) {
     return this.http.delete(this.getPath('profile', profileId), {});
+  }
+
+  @Cacheable({
+
+  })
+  getSegments(){
+    return this.http.get<any[]> (this.getPath('segment'));
+  }
+  @Cacheable({
+
+  })
+  getSources(){
+    return this.http.get<any[]> (this.endpoint + '/sources/source');
   }
 }

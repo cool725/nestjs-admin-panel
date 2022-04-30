@@ -38,7 +38,7 @@ export class BusinessFrontOfficeProfilesSegmentsController {
   }
 
   @Get('segment/:segmentId')
-  getProfile(
+  getSegment(
     @GetCompany() business: BusinessEntity,
     @Param('segmentId') segmentId: number
   ) {
@@ -47,7 +47,7 @@ export class BusinessFrontOfficeProfilesSegmentsController {
 
   @Put('segment')
   createSegment(@GetCompany() business: BusinessEntity, @Body() data:any) {
-    return data
+    return this.segmentService.createSegment(business.businessId,data);
   }
 
   @Patch('segment/:segmentId')

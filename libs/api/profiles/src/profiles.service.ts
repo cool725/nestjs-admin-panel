@@ -77,7 +77,7 @@ export class ProfilesSegmentService {
     return this.segmentRepo.findOne({
       where: {
         companyId: businessId,
-        profileId: segmentId,
+        segmentId: segmentId,
       },
     });
   }
@@ -89,8 +89,8 @@ export class ProfilesSegmentService {
     return this.updateSegment(businessId, segment.segmentId, data);
   }
 
-  async updateSegment(businessId, profileId: number, data: any) {
-    const segment = await this.getSegment(businessId, profileId);
+  async updateSegment(businessId, segmentId: number, data: any) {
+    const segment = await this.getSegment(businessId, segmentId);
     Object.assign(segment, data);
     return this.segmentRepo.save(segment);
   }

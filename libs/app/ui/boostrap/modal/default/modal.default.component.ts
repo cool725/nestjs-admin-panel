@@ -1,7 +1,7 @@
 import {
   Component,
   ComponentRef,
-  Input, OnInit,
+  Input,
   Type,
   ViewChild,
   ViewContainerRef,
@@ -19,7 +19,7 @@ export class BoostrapModalUIComponent  {
 
   @Input() modalName = 'default';
 
-  @Input() style = {
+  @Input() style:any = {
     width: '925px',
     height: '725px',
     background: 'red',
@@ -31,7 +31,7 @@ export class BoostrapModalUIComponent  {
 
   @Input() dialogClass = 'h-100'; // 'modal-dialog' //todo add description
 
-  @Input() saveModeState = true;
+  @Input() saveModeState = true; // todo add comment
 
   public fullMode:boolean
 

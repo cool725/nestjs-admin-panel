@@ -28,6 +28,12 @@ export class ProfileSegmentEntity extends BaseEntity {
   @Column({ type: 'varchar', length: 50, nullable:true })
   title: string;
 
+  @Column({ type: 'varchar', length: 10, nullable:true })
+  color: string;
+
+  @Column({ type: 'smallint',  nullable:true, default:1 })
+  order: number;
+
   @OneToMany(() => ProfileEntity, (profile) => profile.segmentId, {})
   profiles:ProfileEntity[];
 

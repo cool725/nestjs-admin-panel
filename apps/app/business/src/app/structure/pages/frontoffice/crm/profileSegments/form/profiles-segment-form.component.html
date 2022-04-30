@@ -1,0 +1,9 @@
+
+<form [formGroup]="formSegment" *ngIf="api.profileSegment$ |
+async as segment">
+    <input class="form-control" formControlName="title">
+
+    <a (click)="save(segment)" class="btn btn-success">
+        save
+    </a>
+</form>

@@ -9,8 +9,7 @@ export class ReservationService {
       private resHeadRepo: ReservationRepository,
       @InjectRepository(ReservationRepository)
       private resLegRepo: ReservationRepository
-  ) {
-  }
+  ) {}
 
   saveReservation(businessId,reservation){
     const resHead = this.resHeadRepo.create();

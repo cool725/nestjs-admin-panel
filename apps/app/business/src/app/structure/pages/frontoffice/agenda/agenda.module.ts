@@ -17,7 +17,7 @@ const routes: Routes = [
   imports: [CommonModule, RouterModule.forChild(routes)],
   providers: [
     {
-      provide: 'basePath',
+      provide: 'apiPath',
       useValue: environment.api.url + '/frontoffice',
     },
     AgendaAPI,

@@ -46,9 +46,11 @@ export class ReservationHeadEntity extends BaseEntity {
   @Column({ type: 'tinyint', nullable: false, default: 0})
   state: number;
 
+  // First Entry
   @Column({ type: 'datetime', nullable: false})
   start: Date;
 
+  // Last Entry
   @Column({ type: 'datetime', nullable: true  })
   end: Date;
 

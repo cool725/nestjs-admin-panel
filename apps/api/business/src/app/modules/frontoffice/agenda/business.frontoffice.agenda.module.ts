@@ -3,7 +3,7 @@ import { BusinessFrontOfficeAgendaController } from './business.frontoffice.agen
 import {ReservationModule} from "@movit/api/reservation";
 
 @Module({
-  imports: [ReservationModule],
+  imports: [ReservationModule,],
   controllers: [BusinessFrontOfficeAgendaController],
   providers: [],
 })

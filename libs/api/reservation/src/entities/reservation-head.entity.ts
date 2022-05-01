@@ -37,19 +37,19 @@ export class ReservationHeadEntity extends BaseEntity {
   @Column({ type: 'varchar', nullable: true, length:100})
   title: string;
 
-  @Column({ type: 'varchar', nullable: false, length:120})
+  @Column({ type: 'varchar', nullable: true, length:120})
   place: string;
 
-  @Column({ type: 'varchar', nullable: false, length:9})
+  @Column({ type: 'varchar', nullable: true, length:9})
   color: string;
 
   @Column({ type: 'tinyint', nullable: false, default: 0})
   state: number;
 
-  @Column({ type: 'datetime', nullable: false,})
+  @Column({ type: 'datetime', nullable: false})
   start: Date;
 
-  @Column({ type: 'datetime', nullable: true,  })
+  @Column({ type: 'datetime', nullable: true  })
   end: Date;
 
   @ManyToOne(() => ReservationSourceEntity, (source) => source.reservations)

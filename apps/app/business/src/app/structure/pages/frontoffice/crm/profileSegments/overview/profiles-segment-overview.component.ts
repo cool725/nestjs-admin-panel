@@ -1,4 +1,4 @@
-import { Component, Injector} from '@angular/core';
+import { Component, Injector, OnDestroy } from '@angular/core';
 import { PageController } from '../../../../page.controller';
 import { ProfileSegmentAPI } from '../packages/profile-sagment-api.service';
 import { EDataEmitterType, ITableBaseFilter, Table } from '@movit/app/common';
@@ -24,6 +24,7 @@ export class Segment {
   styleUrls: ['./profiles-segment-overview.component.css'],
 })
 export class ProfilesSegmentOverviewComponent extends PageController {
+  showPopup: boolean = false;
   public profileSagmentTable = new Table<Segment, ITableBaseFilter>(
     this.api.profileSegments$
   );
@@ -33,6 +34,11 @@ export class ProfilesSegmentOverviewComponent extends PageController {
     public api: ProfileSegmentAPI<Segment, any>
   ) {
     super(injector);
+    this.api.profileSegment$.subscribe((ress)=>{
+      if(ress==null){
+        this.getData();
+      }
+    })
   }
 
   getData(): void {
@@ -49,9 +55,11 @@ export class ProfilesSegmentOverviewComponent extends PageController {
     this.api.profileSegment$.next(new Segment())
   }
 
-  async editSegment(id: number) {
+  async editSegment(id:number) {
     // load segment by api
-    this.api.profileSegment$.next(new Segment())
+    this.api.getSegment(id).subscribe((resss:any)=>{
+    this.api.profileSegment$.next(resss)
+    });
   }
 
   @Confirmable({ title: 'Sure?' })
@@ -60,5 +68,8 @@ export class ProfilesSegmentOverviewComponent extends PageController {
         ()=> this.reloadData()
     );
 
+  }
+  closePopup(){
+    this.api.profileSegment$.next(null)   
   }
 }

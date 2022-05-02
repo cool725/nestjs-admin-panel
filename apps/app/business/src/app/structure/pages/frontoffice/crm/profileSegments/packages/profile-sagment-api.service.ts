@@ -7,7 +7,7 @@ import { ITableOptions } from '@movit/app/common';
   providedIn:'root'
 })
 export class ProfileSegmentAPI<Segment, FilterValues> {
-  profileSegment$ = new BehaviorSubject<Segment>(<any>null);
+  profileSegment$ = new BehaviorSubject<Segment | null>(<any>null);
   profileSegments$ = new BehaviorSubject<ITableOptions<Segment>>(<any>null);
 
   constructor(
@@ -20,9 +20,16 @@ export class ProfileSegmentAPI<Segment, FilterValues> {
   }
 
   protected getPath(path: string, subPath: string | number = ''): string {
-    return (
-      this.endpoint + '/profiles/' + path + '/' + (subPath ?  subPath : '')
-    );
+    if(subPath!=''){
+
+      return (
+        this.endpoint + '/profiles/' + path + '/' + (subPath ?  subPath : '')
+      );
+    }else{
+      return (
+        this.endpoint + '/profiles/' + path
+      );
+    }
   }
 
   getSegment(profileId: number) {
@@ -37,7 +44,7 @@ export class ProfileSegmentAPI<Segment, FilterValues> {
     return this.http.put(this.getPath('segment'), profile);
   }
 
-  updateProfile(profileId: number, profile: Partial<Segment>) {
+  updateSegment(profileId: number, profile: Partial<Segment>) {
     return this.http.patch(this.getPath('segment', profileId), profile);
   }
 

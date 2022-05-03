@@ -51,6 +51,7 @@
         </thead>
         <tbody *ngIf="profilePriceClassTable.data$ | async as tableData">
           <ng-container *ngFor="let priceclass of tableData.data">
+            <!-- [ngStyle]="{'background-color': priceclass.color}" -->
             <tr *ngIf="profilePriceClassTable.canShow(priceclass)" class="entry-row">
               <!-- <td></td> -->
               <!-- <td>{{ priceclass.standard }}</td> -->

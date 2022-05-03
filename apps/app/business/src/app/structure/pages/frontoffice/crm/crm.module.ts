@@ -23,17 +23,7 @@ const routes = [
             import('./profiles/profiles.module').then((m) => m.ProfilesModule),
       },
     ]
-  },
-   {
-        path:'profilesagment',
-        loadChildren: () =>
-            import('./profileSegments/profileSegment.module').then((m) => m.ProfileSegmentModule),
-      },
-       {
-        path: 'priceclass',
-         loadChildren: () =>
-            import('./profilePriceClass/profilePriceClass.module').then((m) => m.ProfilePriceClassModule),
-      },
+  }
 ];
 
 @NgModule({

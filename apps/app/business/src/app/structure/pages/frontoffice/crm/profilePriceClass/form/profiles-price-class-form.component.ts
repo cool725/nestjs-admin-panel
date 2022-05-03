@@ -50,7 +50,6 @@ showPercentage:boolean= false;
 
   async savePriceClass() {
     if(this.formPriceClass.invalid){
-      console.log(this.formPriceClass)
       return;
     }
     const values = this.formPriceClass.value;
@@ -87,15 +86,12 @@ showPercentage:boolean= false;
  
   eventCheck(event:any){
     this.showPercentage=event.target.checked
-    console.log(this.showPercentage)
-     console.log('form',this.formPriceClass)
     if(this.showPercentage){
-      this.formPriceClass.addControl('percentage',new FormControl('', Validators.required))
+      this.formPriceClass.addControl('percentage',new FormControl('', [Validators.required]));
     }else{
-      this.formPriceClass.addControl('percentage',new FormControl(''))
+      this.formPriceClass.removeControl('percentage');
     }
-    this.formPriceClass.controls['percentage'].updateValueAndValidity();
-    console.log(this.formPriceClass)
+    this.formPriceClass.updateValueAndValidity();
      
   }
 }

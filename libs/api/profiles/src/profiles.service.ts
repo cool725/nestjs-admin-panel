@@ -131,7 +131,7 @@ export class ProfilesPriceClassService {
   constructor( @InjectRepository(ProfilesPriceClassRepository)
                private priceClassRepo: ProfilesPriceClassRepository) {}
 
-  getPriceClasses(businessId:number){
+  getPriceClasses(businessId:number,pagination:any){
     return this.priceClassRepo.find({
       where:{
         companyId:businessId
@@ -140,7 +140,7 @@ export class ProfilesPriceClassService {
   }
 
   getPriceClass(businessId:number, priceClassId:number){
-    return this.priceClassRepo.find({
+    return this.priceClassRepo.findOne({
       where:{
         companyId:businessId,
         priceClassId:priceClassId
@@ -153,5 +153,22 @@ export class ProfilesPriceClassService {
     priceClass.companyId = businessId;
     priceClass.title = data.title;
     return priceClass.save()
+  }
+
+  async updatePriceClass( businessId:number,priceClassId, data:any ){
+    const priceClass = await this.getPriceClass(businessId,priceClassId)
+    if(!priceClass)return;
+
+    priceClass.companyId = businessId;
+    priceClass.title = data.title;
+    return priceClass.save()
+  }
+
+  deletePriceClass(
+      businessId, priceClassId
+  ){
+    return this.priceClassRepo.delete({
+      companyId: businessId, priceClassId
+    })
   }
 }

@@ -23,7 +23,7 @@ import {
 
 @Controller(FrontOffice.resolePaths(['crm', FrontOffice.Profiles.PATH]))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)
-export class BusinessFrontOfficeProfilesPriceClassController {
+export class BusinessFrontofficeProfilesPriceClassController {
   constructor(
       protected profilesService: ProfilesService,
       protected priceClassService:ProfilesPriceClassService       ) {}
@@ -33,7 +33,9 @@ export class BusinessFrontOfficeProfilesPriceClassController {
     @GetCompany() business: BusinessEntity,
     @GetPagination() pagination: Pagination
   ) {
-    return [];
+    return this.priceClassService.getPriceClasses(
+        business.businessId, pagination
+    );
   }
 
   @Get('priceclass/:priceClassId')
@@ -41,26 +43,34 @@ export class BusinessFrontOfficeProfilesPriceClassController {
     @GetCompany() business: BusinessEntity,
     @Param('priceClassId') priceClassId: number
   ) {
-    return this.priceClassService
+    return this.priceClassService.getPriceClass(
+        business.businessId, priceClassId
+    );
   }
 
   @Put('priceclass')
   createPriceClass(@GetCompany() business: BusinessEntity, @Body() data:any) {
-    return data
+    return this.priceClassService.savePriceClass(
+        business.businessId, data
+    );
   }
 
   @Patch('priceclass/:priceClassId')
   updatePriceClass(@GetCompany() business: BusinessEntity,
-                @Param('priceClassId') segmentId:number,
+                @Param('priceClassId') priceClassId:number,
                 @Body() data:any) {
-    return data
+    return this.priceClassService.updatePriceClass(
+        business.businessId, priceClassId, data
+    );
   }
 
   @Delete('priceclass/:priceClassId')
   deletePriceClassId(
     @GetCompany() business: BusinessEntity,
-    @Param('segmentId') segmentId: number
+    @Param('priceClassId') priceClassId: number
   ) {
-    return segmentId
+     return this.priceClassService.deletePriceClass(
+        business.businessId, priceClassId
+    );
   }
 }

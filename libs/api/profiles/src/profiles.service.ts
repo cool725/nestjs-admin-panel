@@ -8,6 +8,7 @@ import {
 } from './classes/profiles.repository';
 import { Pagination } from '../../common/decorator';
 import { ProfileEntity } from "./entities/profile.entity";
+import {IsNull} from "typeorm";
 
 @Injectable()
 export class ProfilesService {
@@ -134,7 +135,8 @@ export class ProfilesPriceClassService {
   getPriceClasses(businessId:number,pagination:any){
     return this.priceClassRepo.find({
       where:{
-        companyId:businessId
+        companyId:businessId,
+        deletedAt:IsNull()
       }
     })
   }
@@ -167,8 +169,11 @@ export class ProfilesPriceClassService {
   deletePriceClass(
       businessId, priceClassId
   ){
-    return this.priceClassRepo.delete({
+    return this.priceClassRepo.findOne({
       companyId: businessId, priceClassId
+    }).then(r => {
+      r.deletedAt = new Date()
+      return r.save()
     })
   }
 }

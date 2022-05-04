@@ -9,9 +9,11 @@ import {
   Unique,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
+import {ProfileEntity} from "./profile.entity";
 
 @Entity('crm_priceclass')
 @Index(['companyId'])
+@Index(['companyId','deletedAt'])
 @Unique(['companyId', 'priceClassId'])
 export class ProfilePriceClassEntity extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
@@ -30,7 +32,10 @@ export class ProfilePriceClassEntity extends BaseEntity {
   @Column({ type: 'smallint',  nullable:true, default:1 })
   order: number;
 
-  @OneToMany(() => ProfilePriceClassEntity, (profile) => profile.priceClassId, {})
+  @Column({ type: 'date',  nullable:true})
+  deletedAt: Date;
+
+  @OneToMany(() => ProfileEntity, (profile) => profile.priceClassId, {})
   @JoinColumn([
     { name: 'companyId', referencedColumnName: 'companyId' },
     { name: 'priceClassId', referencedColumnName: 'priceClassId' },
@@ -57,4 +62,6 @@ export class ProfilePriceClassEntity extends BaseEntity {
   toJSON() {
     return this;
   }
+
+
 }

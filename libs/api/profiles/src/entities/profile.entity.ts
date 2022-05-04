@@ -70,9 +70,7 @@ export class ProfileEntity extends BaseEntity {
   ])
   sourceId: number;
 
-  @ManyToOne(() => ProfilePriceClassEntity, (priceClass) => priceClass.profiles,{
-    onDelete:'SET NULL'
-  })
+  @ManyToOne(() => ProfilePriceClassEntity, (priceClass) => priceClass.profiles)
   @JoinColumn([
     { name: 'companyId', referencedColumnName: 'companyId' },
     { name: 'priceClassId', referencedColumnName: 'priceClassId' },])

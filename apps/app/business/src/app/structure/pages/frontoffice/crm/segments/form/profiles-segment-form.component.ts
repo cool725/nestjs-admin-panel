@@ -10,7 +10,7 @@ import { Segment } from '../overview/profiles-segment-overview.component';
   templateUrl: './profiles-segment-form.component.html',
   styleUrls: ['./profiles-segment-form.component.scss'],
 })
-export class ProfilesSegmentFormComponent extends FormController<Segment> {
+export class ProfilesSegmentFormComponent extends FormController<Segment> implements OnInit {
   viewSettings = {
     type: 'modal',
   };
@@ -26,7 +26,11 @@ export class ProfilesSegmentFormComponent extends FormController<Segment> {
     public api: ProfileSegmentAPI<Segment, any>
   ) {
     super(injector);
-    api.profileSegment$.next(new Segment());
+  }
+
+  ngOnInit() {
+    const values:any = this.api.profileSegment$.getValue();
+    this.formSegment.patchValue(values);
   }
 
   getData(): void {

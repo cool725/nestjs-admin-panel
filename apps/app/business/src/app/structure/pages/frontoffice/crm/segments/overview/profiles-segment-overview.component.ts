@@ -1,4 +1,4 @@
-import { Component, Injector, OnDestroy } from '@angular/core';
+import {Component, Injector, OnDestroy, OnInit} from '@angular/core';
 import { PageController } from '../../../../page.controller';
 import { ProfileSegmentAPI } from '../packages/profile-sagment-api.service';
 import { EDataEmitterType, ITableBaseFilter, Table } from '@movit/app/common';
@@ -55,8 +55,8 @@ export class ProfilesSegmentOverviewComponent extends PageController {
 
   async editSegment(id:number) {
     // load segment by api
-    this.api.getSegment(id).subscribe((resss:any)=>{
-    this.api.profileSegment$.next(resss)
+    this.api.getSegment(id).subscribe((segment:any)=>{
+    this.api.profileSegment$.next(segment)
     });
   }
 

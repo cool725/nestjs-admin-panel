@@ -13,6 +13,7 @@ import { PriceClass } from '../overview/profiles-price-class-overview.component'
 export class ProfilesPriceClassFormComponent extends FormController<PriceClass> implements OnInit{
   viewSettings = {
     type: 'modal',
+    showPercentage: false
   };
 
   formPriceClass = this.fb.group({
@@ -79,5 +80,17 @@ export class ProfilesPriceClassFormComponent extends FormController<PriceClass> 
   cancel() {
     this.onCancel.emit();
     this.api.profilePriceClass$.next(null)
+  }
+
+
+  eventCheck(event:any){
+    this.viewSettings.showPercentage=event.target.checked
+    if(this.viewSettings.showPercentage){
+      this.formPriceClass.addControl('percentage',new FormControl('', [Validators.required]));
+    }else{
+      this.formPriceClass.removeControl('percentage');
+    }
+    this.formPriceClass.updateValueAndValidity();
+
   }
 }

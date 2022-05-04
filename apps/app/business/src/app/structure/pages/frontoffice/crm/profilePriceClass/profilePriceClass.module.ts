@@ -2,54 +2,54 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { ProfileSegmentAPI } from './packages/profile-sagment-api.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../../../../../../environments/environment';
-import { ProfilesSegmentOverviewComponent } from './overview/profiles-segment-overview.component';
-
+import {BoostrapModalUIComponent} from "@movit/app/ui";
 import {
     BoostrapModalUIModule
 } from "../../../../../../../../../../libs/app/ui/boostrap/modal/default/modal.default.module";
-import {ProfilesSegmentFormModule} from "./form/profiles-segment-form.module";
-import { ProfilesSegmentFormComponent } from './form/profiles-segment-form.component';
+import { ProfilesPriceClassOverviewComponent } from './overview/profiles-price-class-overview.component';
+import { ProfilesPriceClassFormComponent } from './form/profiles-price-class-form.component';
+import { ProfilePriceClassAPI } from './packages/profile-price-class-api.service';
+import { ProfilesPriceClassFormModule } from './form/profiles-price-class-form.module';
 
 
 
 @NgModule({
-  declarations: [ProfilesSegmentOverviewComponent],
+  declarations: [ProfilesPriceClassOverviewComponent],
   imports: [
         CommonModule,
         RouterModule.forChild([
           {
             path: 'new',
-            component: ProfilesSegmentFormComponent,
+            component: ProfilesPriceClassFormComponent,
           },
           {
             path: 'edit/:id',
-            component: ProfilesSegmentFormComponent,
+            component: ProfilesPriceClassFormComponent,
           },
           {
             path: 'overview',
-            component: ProfilesSegmentOverviewComponent,
+            component: ProfilesPriceClassOverviewComponent,
           }
         ]),
         TranslateModule.forChild(),
         FormsModule,
         ReactiveFormsModule,
          BoostrapModalUIModule,
-        ProfilesSegmentFormModule
+        ProfilesPriceClassFormModule
 
     ],
   providers: [
-    ProfileSegmentAPI,
+    ProfilePriceClassAPI,
     {
       provide: 'apiPath',
       useValue: [environment.api.url, 'frontoffice/crm'].join('/'),
     },
   ],
-  entryComponents: [ProfilesSegmentOverviewComponent],
+  entryComponents: [ProfilesPriceClassOverviewComponent],
   exports: [],
 })
-export class ProfileSegmentModule {}
+export class ProfilePriceClassModule {}
 
 

@@ -1,9 +1,57 @@
-
 <form [formGroup]="formSegment" *ngIf="api.profileSegment$ |
 async as segment">
-    <input class="form-control" formControlName="title">
+    <!-- <input class="form-control" formControlName="title"> -->
+    <div class="modal-body">
+        <div class="col-12 col-md-9 row">
+            <div class="form-group">
+                <label>Title</label>
+                <div class="input-group mb-3">
+                    <input formControlName="title" type="text" class="form-control" placeholder="Title"
+                        aria-label="title" aria-describedby="profiles-sagment-title" />
+                </div>
+                <div *ngIf="formSegment.controls['title'].errors && formSegment.controls['title'].touched"
+                    class="alert alert-danger">
+                    Title is required
+                </div>
+            </div>
 
-    <a (click)="save(segment)" class="btn btn-success">
-        save
-    </a>
+        </div>
+        <div class="col-12 col-md-9 row">
+            <div class="form-group">
+                <label>Color</label>
+                <div class="input-group mb-3">
+                    <input formControlName="color" type="color" class="form-control" placeholder="Color"
+                        aria-label="color" aria-describedby="profiles-sagment-color" />
+                </div>
+                <div *ngIf="formSegment.controls['color'].errors && formSegment.controls['color'].touched"
+                    class="alert alert-danger">
+                    Color is required
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-9 row">
+            <div class="form-group">
+                <label>Order</label>
+                <div class="input-group mb-3">
+                    <input formControlName="order" type="number" class="form-control" placeholder="Order"
+                        aria-label="order" aria-describedby="profiles-sagment-order" />
+                </div>
+
+                <div *ngIf="formSegment.controls['order'].errors && formSegment.controls['order'].touched"
+                    class="alert alert-danger">
+                    Order is required
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" *ngIf="formSegment.valid"
+            (click)="segment.segmentId ? updateSegment(segment.segmentId) : saveSegment()" class="btn btn-success">
+            save
+        </button>
+        <button type="button" (click)="cancel()" class="btn btn-success">
+            cancel
+        </button>
+    </div>
+
 </form>

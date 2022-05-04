@@ -16,7 +16,9 @@ export class ProfilesSegmentFormComponent extends FormController<Segment> {
   };
 
   formSegment = this.fb.group({
-    title: new FormControl('', [Validators.max(100)]),
+    title: new FormControl('', [Validators.required,Validators.max(100)]),
+     color: new FormControl('#ff0000', [Validators.required]),
+    order: new FormControl('', [Validators.required,Validators.pattern("^[0-9]*$")]),
   });
 
   constructor(
@@ -24,7 +26,13 @@ export class ProfilesSegmentFormComponent extends FormController<Segment> {
     public api: ProfileSegmentAPI<Segment, any>
   ) {
     super(injector);
-    api.profileSegment$.next(new Segment());
+    api.profileSegment$.subscribe(segment=>{
+      if(segment){
+           this.formSegment.patchValue(segment);
+      }
+      
+    });
+    // api.profileSegment$.next(new Segment());
   }
 
   getData(): void {
@@ -40,11 +48,27 @@ export class ProfilesSegmentFormComponent extends FormController<Segment> {
     }
   }
 
-  async save(segment: Partial<Segment>) {
+  async saveSegment() {
+    console.log(this.formSegment)
+    if(this.formSegment.invalid){
+      console.log(this.formSegment)
+      return;
+    }
     const values = this.formSegment.value;
     const api$ = await this.api.saveSegment(values);
     api$.subscribe();
     this.onSave.emit();
+     this.api.profileSegment$.next(null)
+  }
+  async updateSegment(segment:number){
+    if(this.formSegment.invalid){
+      return;
+    }
+     const values = this.formSegment.value;
+    const api$ = await this.api.updateSegment(segment,values);
+    api$.subscribe();
+     this.api.profileSegment$.next(null)
+    
   }
 
   @Confirmable({
@@ -58,5 +82,6 @@ export class ProfilesSegmentFormComponent extends FormController<Segment> {
   // todo rename
   cancel() {
     this.onCancel.emit();
+    this.api.profileSegment$.next(null)
   }
 }

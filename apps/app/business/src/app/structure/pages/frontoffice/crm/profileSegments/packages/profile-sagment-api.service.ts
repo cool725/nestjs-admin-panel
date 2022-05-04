@@ -37,7 +37,7 @@ export class ProfileSegmentAPI<Segment, FilterValues> {
     return this.http.put(this.getPath('segment'), profile);
   }
 
-  updateProfile(profileId: number, profile: Partial<Segment>) {
+  updateSegment(profileId: number, profile: Partial<Segment>) {
     return this.http.patch(this.getPath('segment', profileId), profile);
   }
 

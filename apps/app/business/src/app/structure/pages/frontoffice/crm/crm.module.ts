@@ -8,6 +8,11 @@ const routes = [
     path: 'profiles',
     children:[
       {
+        path: 'priceclass',
+         loadChildren: () =>
+            import('./profilePriceClass/profilePriceClass.module').then((m) => m.ProfilePriceClassModule),
+      },
+      {
         path:'segments',
         loadChildren: () =>
             import('./profileSegments/profileSegment.module').then((m) => m.ProfileSegmentModule),

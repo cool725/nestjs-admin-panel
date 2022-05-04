@@ -1,0 +1,69 @@
+<form [formGroup]="formPriceClass" *ngIf="api.profilePriceClass$ |
+async as priceclass">
+    <!-- <input class="form-control" formControlName="title"> -->
+    <div class="modal-body">
+        <div class="col-12 col-md-9 row">
+            <div class="form-group">
+                <label>Standard</label>
+                <div class="input-group mb-3">
+                    <select class="form-control" formControlName="standard">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div *ngIf="formPriceClass.controls['standard'].errors && formPriceClass.controls['standard'].touched"
+                    class="alert alert-danger">
+                    Standard is required
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-9 row">
+            <div class="form-group">
+                <label>Color</label>
+                <div class="input-group mb-3">
+                    <input formControlName="color" type="color" class="form-control" placeholder="Color"
+                        aria-label="color" aria-describedby="profiles-sagment-color" />
+                </div>
+                <div *ngIf="formPriceClass.controls['color'].errors && formPriceClass.controls['color'].touched"
+                    class="alert alert-danger">
+                    Color is required
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-9 row">
+            <label class="w-100">
+                <div>
+                    <a>Is Percentage</a>
+                    <div>
+                        <input type="checkbox" formControlName="isPercentage" (change)="eventCheck($event)" />
+                    </div>
+                </div>
+            </label>
+        </div>
+        <div class="col-12 col-md-9 row" *ngIf="showPercentage">
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <input formControlName="percentage" type="number" class="form-control" placeholder="percentage"
+                        aria-label="percentage" aria-describedby="profiles-price-class-percentage" />
+                </div>
+                <div *ngIf="formPriceClass.controls['percentage'].errors && formPriceClass.controls['percentage'].touched"
+                    class="alert alert-danger">
+                    Percentage is required
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <!-- <footer> -->
+        <button type="button" *ngIf="formPriceClass.valid"
+            (click)="priceclass.priceClassId ? updatePriceClass(priceclass.priceClassId) : savePriceClass()"
+            class="btn btn-success">
+            {{priceclass.priceClassId?'update':'save'}}
+        </button>
+        <button type="button" (click)="cancel()" class="btn btn-success">
+            cancel
+        </button>
+        <!-- </footer> -->
+    </div>
+
+</form>

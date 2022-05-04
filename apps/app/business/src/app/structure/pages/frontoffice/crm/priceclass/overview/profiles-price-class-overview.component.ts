@@ -1,4 +1,4 @@
-import { Component, Injector, OnDestroy } from '@angular/core';
+import {Component, Injector, OnDestroy, OnInit} from '@angular/core';
 import { PageController } from '../../../../page.controller';
 import { EDataEmitterType, ITableBaseFilter, Table } from '@movit/app/common';
 import { Confirmable } from '@movit/app/decorators';
@@ -23,8 +23,7 @@ export class PriceClass {
   templateUrl: './profiles-price-class-overview.component.html',
   styleUrls: ['./profiles-price-class-overview.component.css'],
 })
-export class ProfilesPriceClassOverviewComponent extends PageController {
-  showPopup: boolean = false;
+export class ProfilesPriceClassOverviewComponent extends PageController  {
   public profilePriceClassTable = new Table<PriceClass, ITableBaseFilter>(
     this.api.profilePriceClasses$
   );
@@ -34,11 +33,6 @@ export class ProfilesPriceClassOverviewComponent extends PageController {
     public api: ProfilePriceClassAPI<PriceClass, any>
   ) {
     super(injector);
-    this.api.profilePriceClass$.subscribe((ress)=>{
-      if(ress==null){
-        this.getData();
-      }
-    })
   }
 
   getData(): void {

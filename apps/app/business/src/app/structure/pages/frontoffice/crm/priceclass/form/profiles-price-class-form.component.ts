@@ -10,11 +10,11 @@ import { PriceClass } from '../overview/profiles-price-class-overview.component'
   templateUrl: './profiles-price-class-form.component.html',
   styleUrls: ['./profiles-price-class-form.component.scss'],
 })
-export class ProfilesPriceClassFormComponent extends FormController<PriceClass> {
+export class ProfilesPriceClassFormComponent extends FormController<PriceClass> implements OnInit{
   viewSettings = {
     type: 'modal',
   };
-showPercentage:boolean= false;
+
   formPriceClass = this.fb.group({
     standard: new FormControl('', [Validators.required]),
     color: new FormControl('#ff0000', [Validators.required]),
@@ -26,13 +26,11 @@ showPercentage:boolean= false;
     public api: ProfilePriceClassAPI<PriceClass, any>
   ) {
     super(injector);
-    api.profilePriceClass$.subscribe((priceClass:any)=>{
-      if(priceClass){
-           this.formPriceClass.patchValue(priceClass);
-      }
-      
-    });
-    // api.profileSegment$.next(new Segment());
+  }
+
+  ngOnInit() {
+    const values:any = this.api.profilePriceClass$.getValue();
+    this.formPriceClass.patchValue(values);
   }
 
   getData(): void {
@@ -81,17 +79,5 @@ showPercentage:boolean= false;
   cancel() {
     this.onCancel.emit();
     this.api.profilePriceClass$.next(null)
-  }
-
- 
-  eventCheck(event:any){
-    this.showPercentage=event.target.checked
-    if(this.showPercentage){
-      this.formPriceClass.addControl('percentage',new FormControl('', [Validators.required]));
-    }else{
-      this.formPriceClass.removeControl('percentage');
-    }
-    this.formPriceClass.updateValueAndValidity();
-     
   }
 }

@@ -19,7 +19,7 @@ import { BusinessEntity } from '../../../../../../../../../libs/api/business/src
 import {
   ProfilesPriceClassService,
   ProfilesService
-} from '../../../../../../../../../libs/api/profiles/src/profiles.service';
+} from '@movit/api/profiles';
 
 @Controller(FrontOffice.resolePaths(['crm', FrontOffice.Profiles.PATH]))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)
@@ -37,11 +37,11 @@ export class BusinessFrontOfficeProfilesPriceClassController {
   }
 
   @Get('priceclass/:priceClassId')
-  getProfile(
+  getPriceClass(
     @GetCompany() business: BusinessEntity,
     @Param('priceClassId') priceClassId: number
   ) {
-    return priceClassId
+    return this.priceClassService
   }
 
   @Put('priceclass')

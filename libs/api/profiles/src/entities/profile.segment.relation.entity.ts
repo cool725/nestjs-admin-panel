@@ -1,9 +1,8 @@
 import {
   BaseEntity,
-  BeforeInsert,
   Column,
   Entity,
-  Index, ManyToMany,
+  Index,
   OneToMany,
   PrimaryGeneratedColumn,
   Unique,

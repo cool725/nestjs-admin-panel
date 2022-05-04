@@ -1,7 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { doTransactionInsert } from '../../common/db/transaction/db.transaction';
-import { ProfilesRepository, ProfilesSegmentRepository} from './classes/profiles.repository';
+import {
+  ProfilesPriceClassRepository,
+  ProfilesRepository,
+  ProfilesSegmentRepository
+} from './classes/profiles.repository';
 import { Pagination } from '../../common/decorator';
 import { ProfileEntity } from "./entities/profile.entity";
 
@@ -33,13 +37,11 @@ export class ProfilesService {
 
     if(!options) return profile
 
-
     if( options.relations?.includes('segments')) {
       profile.segments = await this.profileRepo.getProfileSegments(
           businessId, profileId,
       )
     }
-
 
     return profile
   }
@@ -126,6 +128,30 @@ export class ProfilesSegmentService {
 
 @Injectable()
 export class ProfilesPriceClassService {
-  constructor( @InjectRepository(ProfilesSegmentRepository)
-               private segmentRepo: ProfilesSegmentRepository) {}
+  constructor( @InjectRepository(ProfilesPriceClassRepository)
+               private priceClassRepo: ProfilesPriceClassRepository) {}
+
+  getPriceClasses(businessId:number){
+    return this.priceClassRepo.find({
+      where:{
+        companyId:businessId
+      }
+    })
+  }
+
+  getPriceClass(businessId:number, priceClassId:number){
+    return this.priceClassRepo.find({
+      where:{
+        companyId:businessId,
+        priceClassId:priceClassId
+      }
+    })
+  }
+
+  savePriceClass( businessId:number, data:any ){
+    const priceClass = this.priceClassRepo.create();
+    priceClass.companyId = businessId;
+    priceClass.title = data.title;
+    return priceClass.save()
+  }
 }

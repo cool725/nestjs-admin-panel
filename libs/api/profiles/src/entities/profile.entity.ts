@@ -14,6 +14,7 @@ import { Exclude } from 'class-transformer';
 import {ProfileSegmentEntity} from "./profile.segment.entity";
 import {ProfileSourceEntity} from "./profile.source.entity";
 import {ProfileSegmentRelationEntity} from "./profile.segment.relation.entity";
+import {ProfilePriceClassEntity} from "./profile.priceclass.entity";
 
 
 @Entity('crm_profile')
@@ -55,9 +56,6 @@ export class ProfileEntity extends BaseEntity {
   @Column({ type: 'smallint', nullable:true,unsigned:true })
   languageId: number;
 
-  @Column({ type: 'int', nullable:true, unsigned:true })
-  priceClassId: number;
-
   @OneToMany(() => ProfileSegmentRelationEntity, (segment) => segment.profile)
   @JoinColumn([
     { name: 'companyId', referencedColumnName: 'companyId' },
@@ -71,6 +69,14 @@ export class ProfileEntity extends BaseEntity {
     { name: 'sourceId', referencedColumnName: 'sourceId' },
   ])
   sourceId: number;
+
+  @ManyToOne(() => ProfilePriceClassEntity, (priceClass) => priceClass.profiles,{
+    onDelete:'SET NULL'
+  })
+  @JoinColumn([
+    { name: 'companyId', referencedColumnName: 'companyId' },
+    { name: 'priceClassId', referencedColumnName: 'priceClassId' },])
+  priceClassId: number;
 
   @Column({ type: 'text', nullable:true })
   @Exclude()

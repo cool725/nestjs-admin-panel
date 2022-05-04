@@ -2,6 +2,7 @@ import { EntityRepository, Repository } from 'typeorm';
 import { ProfileEntity } from '../entities/profile.entity';
 import {ProfileSegmentEntity} from "../entities/profile.segment.entity";
 import {ProfileSegmentRelationEntity} from "../entities/profile.segment.relation.entity";
+import {ProfilePriceClassEntity} from "../entities/profile.priceclass.entity";
 
 @EntityRepository(ProfileEntity)
 export class ProfilesRepository extends Repository<ProfileEntity> {
@@ -37,6 +38,12 @@ export class ProfilesRepository extends Repository<ProfileEntity> {
 
 @EntityRepository(ProfileSegmentEntity)
 export class ProfilesSegmentRepository extends Repository<ProfileSegmentEntity> {
+  constructor() {
+    super();
+  }
+}
+@EntityRepository(ProfilePriceClassEntity)
+export class ProfilesPriceClassRepository extends Repository<ProfilePriceClassEntity> {
   constructor() {
     super();
   }

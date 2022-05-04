@@ -50,7 +50,7 @@ export class StartRepositoryApps extends Repository<AppsEntity> {
     ).map((allowedApps) => allowedApps.appId);
 
     const fetchCategories = (parentCategoryId) => {
-      if(!parentCategoryId)return []
+      if (!parentCategoryId) return [];
       const queryParams = {
         domain: params.domain,
         companyId: params.companyId,
@@ -80,7 +80,7 @@ export class StartRepositoryApps extends Repository<AppsEntity> {
       apps.filter((app) => allowedApps.includes(app.appId));
 
     const getChildren = async (base) => {
-      if (!base || maxDepth < 0 ) return base;
+      if (!base || maxDepth < 0) return base;
 
       for (let i = 0; i < base.length; i++) {
         const category = base[i];
@@ -90,7 +90,7 @@ export class StartRepositoryApps extends Repository<AppsEntity> {
         if (category.apps) category.apps = filterApps(category.apps);
 
         if (maxDepth >= 0 && category.children)
-        category.children = await getChildren(category.children);
+          category.children = await getChildren(category.children);
 
         // Merge apps to children (Navigation)
         category.children.push(...(category.apps || []));

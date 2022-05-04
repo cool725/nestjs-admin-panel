@@ -1,4 +1,4 @@
-import {Component, Injector, OnDestroy, OnInit} from '@angular/core';
+import { Component, Injector, OnDestroy, OnInit } from '@angular/core';
 import { PageController } from '../../../../page.controller';
 import { ProfileSegmentAPI } from '../packages/profile-sagment-api.service';
 import { EDataEmitterType, ITableBaseFilter, Table } from '@movit/app/common';
@@ -36,38 +36,35 @@ export class ProfilesSegmentOverviewComponent extends PageController {
   }
 
   getData(): void {
-    this.getSegments()
+    this.getSegments();
   }
 
-  getSegments(){
+  getSegments() {
     this.onLoadAndSetData(
-        this.api.getSegments(),
-        this.api.profileSegments$,
-        (rows: any) => ({
-          data: rows
-        })
+      this.api.getSegments(),
+      this.api.profileSegments$,
+      (rows: any) => ({
+        data: rows,
+      })
     );
   }
 
-  createSegment(){
-    this.api.profileSegment$.next(new Segment())
+  createSegment() {
+    this.api.profileSegment$.next(new Segment());
   }
 
-  async editSegment(id:number) {
+  async editSegment(id: number) {
     // load segment by api
-    this.api.getSegment(id).subscribe((segment:any)=>{
-    this.api.profileSegment$.next(segment)
+    this.api.getSegment(id).subscribe((segment: any) => {
+      this.api.profileSegment$.next(segment);
     });
   }
 
   @Confirmable({ title: 'Sure?' })
   async deleteProfile(id: number) {
-    await this.api.deleteProfile(id).subscribe(
-        ()=> this.reloadData()
-    );
-
+    await this.api.deleteProfile(id).subscribe(() => this.reloadData());
   }
-  closePopup(){
-    this.api.profileSegment$.next(null)
+  closePopup() {
+    this.api.profileSegment$.next(null);
   }
 }

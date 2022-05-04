@@ -1,21 +1,21 @@
-import {CommonModule} from "@angular/common";
-import {ProfilesPriceClassFormComponent} from "./profiles-price-class-form.component";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {TranslateModule} from "@ngx-translate/core";
-import {NgModule} from "@angular/core";
-import {NzSelectModule} from "ng-zorro-antd/select";
-import {environment} from "../../../../../../../environments/environment";
-import { ProfilePriceClassAPI } from "../packages/profile-price-class-api.service";
+import { CommonModule } from '@angular/common';
+import { ProfilesPriceClassFormComponent } from './profiles-price-class-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
+import { NgModule } from '@angular/core';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { environment } from '../../../../../../../environments/environment';
+import { ProfilePriceClassAPI } from '../packages/profile-price-class-api.service';
 
 @NgModule({
-  declarations: [ ProfilesPriceClassFormComponent ],
+  declarations: [ProfilesPriceClassFormComponent],
   imports: [
-        CommonModule,
-        TranslateModule.forChild(),
-        FormsModule,
-        ReactiveFormsModule,
-        NzSelectModule,
-    ],
+    CommonModule,
+    TranslateModule.forChild(),
+    FormsModule,
+    ReactiveFormsModule,
+    NzSelectModule,
+  ],
   providers: [
     ProfilePriceClassAPI,
     {

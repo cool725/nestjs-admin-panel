@@ -1,18 +1,24 @@
 import {
-  BaseEntity, Column,
-  Entity, Index, JoinColumn, ManyToOne,
-  OneToMany, PrimaryGeneratedColumn, Unique,
+  BaseEntity,
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  Unique,
 } from 'typeorm';
-import {Exclude, instanceToPlain} from 'class-transformer';
+import { Exclude, instanceToPlain } from 'class-transformer';
 
 import { ReservationLegEntity } from './reservation-leg.entity';
-import { ReservationSourceEntity } from "./reservation.source.entity";
+import { ReservationSourceEntity } from './reservation.source.entity';
 
 @Entity('res_reservation_head')
 @Index(['userId'])
 @Index(['companyId'])
-@Index(['companyId','state'])
-@Unique(['companyId','reservationId'])
+@Index(['companyId', 'state'])
+@Unique(['companyId', 'reservationId'])
 export class ReservationHeadEntity extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
   @Exclude()
@@ -34,24 +40,24 @@ export class ReservationHeadEntity extends BaseEntity {
   @Column({ type: 'bigint', nullable: false, unsigned: true })
   userId: number;
 
-  @Column({ type: 'varchar', nullable: true, length:100})
+  @Column({ type: 'varchar', nullable: true, length: 100 })
   title: string;
 
-  @Column({ type: 'varchar', nullable: true, length:120})
+  @Column({ type: 'varchar', nullable: true, length: 120 })
   place: string;
 
-  @Column({ type: 'varchar', nullable: true, length:9})
+  @Column({ type: 'varchar', nullable: true, length: 9 })
   color: string;
 
-  @Column({ type: 'tinyint', nullable: false, default: 0})
+  @Column({ type: 'tinyint', nullable: false, default: 0 })
   state: number;
 
   // First Entry
-  @Column({ type: 'datetime', nullable: false})
+  @Column({ type: 'datetime', nullable: false })
   start: Date;
 
   // Last Entry
-  @Column({ type: 'datetime', nullable: true  })
+  @Column({ type: 'datetime', nullable: true })
   end: Date;
 
   @ManyToOne(() => ReservationSourceEntity, (source) => source.reservations)
@@ -62,7 +68,7 @@ export class ReservationHeadEntity extends BaseEntity {
   sourceId: number;
 
   // guests
-  profiles:any[]
+  profiles: any[];
 
   public toJSON() {
     return instanceToPlain(this);

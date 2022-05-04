@@ -38,7 +38,7 @@ const routes = [
 ];
 
 @NgModule({
-  declarations: [ SettingsOverviewComponent ],
+  declarations: [SettingsOverviewComponent],
   imports: [CommonModule, RouterModule.forChild(routes)],
   providers: [SettingUserAPI],
 })

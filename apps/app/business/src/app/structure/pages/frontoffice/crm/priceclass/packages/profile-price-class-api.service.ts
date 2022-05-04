@@ -4,31 +4,28 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ITableOptions } from '@movit/app/common';
 
 @Injectable({
-  providedIn:'root'
+  providedIn: 'root',
 })
 export class ProfilePriceClassAPI<PriceClass, FilterValues> {
   profilePriceClass$ = new BehaviorSubject<PriceClass | null>(<any>null);
-  profilePriceClasses$ = new BehaviorSubject<ITableOptions<PriceClass>>(<any>null);
+  profilePriceClasses$ = new BehaviorSubject<ITableOptions<PriceClass>>(
+    <any>null
+  );
 
   constructor(
     @Optional()
     @Inject('apiPath')
     protected endpoint: string,
     private http: HttpClient
-  ) {
-
-  }
+  ) {}
 
   protected getPath(path: string, subPath: string | number = ''): string {
-    if(subPath!=''){
-
+    if (subPath != '') {
       return (
-        this.endpoint + '/profiles/' + path + '/' + (subPath ?  subPath : '')
+        this.endpoint + '/profiles/' + path + '/' + (subPath ? subPath : '')
       );
-    }else{
-      return (
-        this.endpoint + '/profiles/' + path
-      );
+    } else {
+      return this.endpoint + '/profiles/' + path;
     }
   }
 
@@ -36,8 +33,8 @@ export class ProfilePriceClassAPI<PriceClass, FilterValues> {
     return this.http.get(this.getPath('priceclass', priceClassId));
   }
 
-  getPriceClasses(options?:FilterValues): Observable<PriceClass[]> {
-    return this.http.get<PriceClass[]>(this.getPath('priceclass'),options);
+  getPriceClasses(options?: FilterValues): Observable<PriceClass[]> {
+    return this.http.get<PriceClass[]>(this.getPath('priceclass'), options);
   }
 
   savePriceClass(profile: Partial<PriceClass>) {

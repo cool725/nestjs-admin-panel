@@ -87,7 +87,6 @@ export namespace AuthCanActivate {
       | Promise<boolean | UrlTree>
       | boolean
       | UrlTree {
-
       if (!this.env) return false;
       if (this.env?.auth?.redirectOnFailure === false) return true;
       return true;

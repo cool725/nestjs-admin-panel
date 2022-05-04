@@ -5,26 +5,29 @@ import { RouterModule } from '@angular/router';
 const routes = [
   {
     path: 'profiles',
-    children:[
+    children: [
       {
         path: 'priceclass',
-         loadChildren: () =>
-            import('./priceclass/profilePriceClass.module').then((m) => m.ProfilePriceClassModule),
+        loadChildren: () =>
+          import('./priceclass/profilePriceClass.module').then(
+            (m) => m.ProfilePriceClassModule
+          ),
       },
       {
-        path:'segments',
+        path: 'segments',
         loadChildren: () =>
-            import('./segments/profileSegment.module').then((m) => m.ProfileSegmentModule),
+          import('./segments/profileSegment.module').then(
+            (m) => m.ProfileSegmentModule
+          ),
       },
       {
-        path:'',
+        path: '',
         loadChildren: () =>
-            import('./profiles/profiles.module').then((m) => m.ProfilesModule),
+          import('./profiles/profiles.module').then((m) => m.ProfilesModule),
       },
-    ]
-  }
+    ],
+  },
 ];
-
 
 @NgModule({
   declarations: [],

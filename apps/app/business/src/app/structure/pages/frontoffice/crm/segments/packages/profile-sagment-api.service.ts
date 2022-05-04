@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ITableOptions } from '@movit/app/common';
 
 @Injectable({
-  providedIn:'root'
+  providedIn: 'root',
 })
 export class ProfileSegmentAPI<Segment, FilterValues> {
   profileSegment$ = new BehaviorSubject<Segment | null>(null);
@@ -15,22 +15,18 @@ export class ProfileSegmentAPI<Segment, FilterValues> {
     @Inject('apiPath')
     protected endpoint: string,
     private http: HttpClient
-  ) {
-
-  }
+  ) {}
 
   protected getPath(path: string, subPath: string | number = ''): string {
-    return (
-      this.endpoint + '/profiles/' + path + '/' + (subPath ?  subPath : '')
-    );
+    return this.endpoint + '/profiles/' + path + '/' + (subPath ? subPath : '');
   }
 
   getSegment(profileId: number) {
     return this.http.get(this.getPath('segment', profileId));
   }
 
-  getSegments(options?:FilterValues): Observable<Segment[]> {
-    return this.http.get<Segment[]>(this.getPath('segment'),options);
+  getSegments(options?: FilterValues): Observable<Segment[]> {
+    return this.http.get<Segment[]>(this.getPath('segment'), options);
   }
 
   saveSegment(profile: Partial<Segment>) {

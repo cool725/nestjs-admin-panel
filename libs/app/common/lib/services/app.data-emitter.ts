@@ -23,10 +23,13 @@ export class DataEmitter {
   /**
    * Register Event
    * */
-  public register(eventName: EDataEmitterType, cb: (data?: any,resolver?:any) => any) {
+  public register(
+    eventName: EDataEmitterType,
+    cb: (data?: any, resolver?: any) => any
+  ) {
     return this.on.subscribe((event: IDataEmitterEvent) => {
       if (event.eventName == eventName) {
-        cb(event.data,event.resolver );
+        cb(event.data, event.resolver);
       }
     });
   }

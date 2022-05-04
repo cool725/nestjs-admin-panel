@@ -1,10 +1,10 @@
 import { ConnectionOptions } from 'typeorm';
 import { doSeed } from '../../../common/db/seed';
-import { ProfileEntity } from "../entities/profile.entity";
-import { ProfileSegmentEntity } from "../entities/profile.segment.entity";
-import {ProfileSourceEntity} from "../entities/profile.source.entity";
-import {ProfileSegmentRelationEntity} from "../entities/profile.segment.relation.entity";
-import {ProfilePriceClassEntity} from "../entities/profile.priceclass.entity";
+import { ProfileEntity } from '../entities/profile.entity';
+import { ProfileSegmentEntity } from '../entities/profile.segment.entity';
+import { ProfileSourceEntity } from '../entities/profile.source.entity';
+import { ProfileSegmentRelationEntity } from '../entities/profile.segment.relation.entity';
+import { ProfilePriceClassEntity } from '../entities/profile.priceclass.entity';
 
 const ProfilesDBOptions = <ConnectionOptions>{
   type: process.env.DB_TYPE,
@@ -17,7 +17,13 @@ const ProfilesDBOptions = <ConnectionOptions>{
   logging: false,
   migrationsRun: true,
   logger: 'file',
-  entities: [ProfileEntity,ProfileSegmentEntity,ProfileSegmentRelationEntity,ProfileSourceEntity,ProfilePriceClassEntity],
+  entities: [
+    ProfileEntity,
+    ProfileSegmentEntity,
+    ProfileSegmentRelationEntity,
+    ProfileSourceEntity,
+    ProfilePriceClassEntity,
+  ],
 };
 
 doSeed([], ProfilesDBOptions);

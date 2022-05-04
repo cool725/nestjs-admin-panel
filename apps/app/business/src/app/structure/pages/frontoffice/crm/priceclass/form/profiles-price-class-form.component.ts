@@ -10,10 +10,13 @@ import { PriceClass } from '../overview/profiles-price-class-overview.component'
   templateUrl: './profiles-price-class-form.component.html',
   styleUrls: ['./profiles-price-class-form.component.scss'],
 })
-export class ProfilesPriceClassFormComponent extends FormController<PriceClass> implements OnInit{
+export class ProfilesPriceClassFormComponent
+  extends FormController<PriceClass>
+  implements OnInit
+{
   viewSettings = {
     type: 'modal',
-    showPercentage: false
+    showPercentage: false,
   };
 
   formPriceClass = this.fb.group({
@@ -31,67 +34,67 @@ export class ProfilesPriceClassFormComponent extends FormController<PriceClass> 
   }
 
   ngOnInit() {
-    const values:any = this.api.profilePriceClass$.getValue();
+    const values: any = this.api.profilePriceClass$.getValue();
     this.formPriceClass.patchValue(values);
   }
 
   getData(): void {
-    if(this.getId()){
+    if (this.getId()) {
       this.onLoadAndSetData(
-       this.api.getPriceClass(this.getId()),
-          this.api.profilePriceClass$,
-          (priceClass:Partial<PriceClass>)=> {
-           this.formPriceClass.patchValue(priceClass);
-           return PriceClass.create(priceClass)
-          }
+        this.api.getPriceClass(this.getId()),
+        this.api.profilePriceClass$,
+        (priceClass: Partial<PriceClass>) => {
+          this.formPriceClass.patchValue(priceClass);
+          return PriceClass.create(priceClass);
+        }
       );
     }
   }
 
   async savePriceClass() {
-    if(this.formPriceClass.invalid){
+    if (this.formPriceClass.invalid) {
       return;
     }
     const values = this.formPriceClass.value;
     const api$ = await this.api.savePriceClass(values);
     api$.subscribe();
     this.onSave.emit();
-     this.api.profilePriceClass$.next(null)
+    this.api.profilePriceClass$.next(null);
   }
-  async updatePriceClass(segment:number){
-    if(this.formPriceClass.invalid){
+  async updatePriceClass(segment: number) {
+    if (this.formPriceClass.invalid) {
       return;
     }
-     const values = this.formPriceClass.value;
-    const api$ = await this.api.updatePriceClass(segment,values);
+    const values = this.formPriceClass.value;
+    const api$ = await this.api.updatePriceClass(segment, values);
     api$.subscribe();
-     this.api.profilePriceClass$.next(null)
-    
+    this.api.profilePriceClass$.next(null);
   }
 
   @Confirmable({
     title: 'Sure?',
   })
   async delete(profileId: number) {
-     await this.api.deletePriceClass(profileId);
-     return this.cancel();
+    await this.api.deletePriceClass(profileId);
+    return this.cancel();
   }
 
   // todo rename
   cancel() {
     this.onCancel.emit();
-    this.api.profilePriceClass$.next(null)
+    this.api.profilePriceClass$.next(null);
   }
 
-
-  eventCheck(event:any){
-    this.viewSettings.showPercentage=event.target.checked
-    if(this.viewSettings.showPercentage){
-      this.formPriceClass.addControl('percentage',new FormControl('', [Validators.required]));
-    }else{
+  eventCheck(event: any) {
+    this.viewSettings.showPercentage = event.target.checked;
+    if (this.viewSettings.showPercentage) {
+      this.formPriceClass.addControl(
+        'percentage',
+        new FormControl('', [Validators.required])
+      );
+    } else {
       this.formPriceClass.removeControl('percentage');
     }
     this.formPriceClass.updateValueAndValidity();
-
   }
 }

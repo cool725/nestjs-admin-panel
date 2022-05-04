@@ -24,8 +24,8 @@ export class LayoutMainComponent {
 
   private init() {
     this.setRouteParams();
-    this.dE.register(EDataEmitterType.ModalOpen, (event,resolver) => {
-      this.openModal(event.component,event.data,resolver)
+    this.dE.register(EDataEmitterType.ModalOpen, (event, resolver) => {
+      this.openModal(event.component, event.data, resolver);
     });
   }
 
@@ -60,7 +60,11 @@ export class LayoutMainComponent {
     return outlet.isActivated ? outlet.activatedRoute : '';
   }
 
-  public async openModal<C>(component: Type<C>, options:{id?:any} = {}, resolver:any = undefined) {
+  public async openModal<C>(
+    component: Type<C>,
+    options: { id?: any } = {},
+    resolver: any = undefined
+  ) {
     const modalRef = this.vcModal.createComponent<BoostrapModalUIComponent>(
       BoostrapModalUIComponent
     );
@@ -71,8 +75,8 @@ export class LayoutMainComponent {
     );
     (<any>componentRef.instance)['closeModal'] = () => {
       modalRef.destroy();
-      resolver ? resolver() : null
-    } // todo find better solution | with data emitter
+      resolver ? resolver() : null;
+    }; // todo find better solution | with data emitter
     return componentRef;
   }
 }

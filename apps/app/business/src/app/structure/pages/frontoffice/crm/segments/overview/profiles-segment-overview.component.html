@@ -1,8 +1,6 @@
 <ng-template #topbar>
   <div class="left-box"></div>
-  <h4
-    class="slide"
-  >
+  <h4 class="slide">
     {{ 'profilessegment' | translate }}
   </h4>
 </ng-template>
@@ -53,17 +51,21 @@
           <ng-container *ngFor="let profile of tableData.data">
             <tr *ngIf="profileSegmentTable.canShow(profile)" class="entry-row">
               <td>{{ profile.title }}</td>
-              <td>{{ profile.color }} </td>
+              <td>{{ profile.color }}</td>
               <td class="text-center">{{ profile.order }}</td>
               <td class="text-right pe-2" align="right">
                 <a
                   (click)="editSegment(profile.segmentId)"
-                  class="text-primary cursor-pointer">
+                  class="text-primary cursor-pointer"
+                >
                   {{ 'edit' }}
                 </a>
               </td>
               <td class="text-right pe-2" align="right">
-                <a (click)="deleteProfile(profile.segmentId)" class="text-primary cursor-pointer">
+                <a
+                  (click)="deleteProfile(profile.segmentId)"
+                  class="text-primary cursor-pointer"
+                >
                   {{ 'delete' }}
                 </a>
               </td>
@@ -75,20 +77,21 @@
   </div>
 </div>
 
-
-<lib-modal-ui *ngIf="api.profileSegment$ | async as segment"
-[style]="{
-    display:'block',
+<lib-modal-ui
+  *ngIf="api.profileSegment$ | async as segment"
+  [style]="{
+    display: 'block',
     width: '425px',
     height: 'fit-content',
     left: '0px',
     top: '0px',
     right: '0px',
     bottom: '0px',
-    margin:'auto'
-}">
+    margin: 'auto'
+  }"
+>
   <movit-profiles-segment-form
-  (onSave)="getSegments()"
-  (onCancel)="api.profileSegment$.next(null)"
+    (onSave)="getSegments()"
+    (onCancel)="api.profileSegment$.next(null)"
   ></movit-profiles-segment-form>
 </lib-modal-ui>

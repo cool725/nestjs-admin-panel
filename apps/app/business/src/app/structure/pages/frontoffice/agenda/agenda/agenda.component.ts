@@ -23,11 +23,13 @@ export class AgendaComponent extends PageController {
 
   // move those functions inside modal
   saveReservation() {
-    this.api.saveReservation({
-      title: 'test',
-      start: '2022-05-05T12:00',
-      end: '2022-05-05T13:00',
-    }).subscribe();
+    this.api
+      .saveReservation({
+        title: 'test',
+        start: '2022-05-05T12:00',
+        end: '2022-05-05T13:00',
+      })
+      .subscribe();
   }
   deleteReservation() {}
   cancelReservation() {}

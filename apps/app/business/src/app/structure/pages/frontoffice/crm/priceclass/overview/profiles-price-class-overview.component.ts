@@ -1,4 +1,4 @@
-import {Component, Injector} from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { PageController } from '../../../../page.controller';
 import { ITableBaseFilter, Table } from '@movit/app/common';
 import { Confirmable } from '@movit/app/decorators';
@@ -11,7 +11,7 @@ export class PriceClass {
   title: string;
   standard: string;
   color: string;
-  isPercentage?:boolean;
+  isPercentage?: boolean;
   percentage?: number;
 
   static create(params: Partial<PriceClass>) {
@@ -24,7 +24,7 @@ export class PriceClass {
   templateUrl: './profiles-price-class-overview.component.html',
   styleUrls: ['./profiles-price-class-overview.component.css'],
 })
-export class ProfilesPriceClassOverviewComponent extends PageController  {
+export class ProfilesPriceClassOverviewComponent extends PageController {
   public profilePriceClassTable = new Table<PriceClass, ITableBaseFilter>(
     this.api.profilePriceClasses$
   );
@@ -40,31 +40,28 @@ export class ProfilesPriceClassOverviewComponent extends PageController  {
     this.onLoadAndSetData(
       this.api.getPriceClasses(),
       this.api.profilePriceClasses$,
-      (rows: any) => ({ 
-        data: rows 
+      (rows: any) => ({
+        data: rows,
       })
     );
   }
 
-  createSegment(){
-    this.api.profilePriceClass$.next(new PriceClass())
+  createSegment() {
+    this.api.profilePriceClass$.next(new PriceClass());
   }
 
-  async editSegment(id:number) {
+  async editSegment(id: number) {
     // load segment by api
-    this.api.getPriceClass(id).subscribe((resss:any)=>{
-    this.api.profilePriceClass$.next(resss)
+    this.api.getPriceClass(id).subscribe((resss: any) => {
+      this.api.profilePriceClass$.next(resss);
     });
   }
 
   @Confirmable({ title: 'Sure?' })
   async deleteProfile(id: number) {
-    await this.api.deletePriceClass(id).subscribe(
-        ()=> this.reloadData()
-    );
-
+    await this.api.deletePriceClass(id).subscribe(() => this.reloadData());
   }
-  closePopup(){
-    this.api.profilePriceClass$.next(null)   
+  closePopup() {
+    this.api.profilePriceClass$.next(null);
   }
 }

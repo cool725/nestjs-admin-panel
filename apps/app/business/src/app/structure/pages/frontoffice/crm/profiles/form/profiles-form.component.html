@@ -1,42 +1,42 @@
 <ng-template #profileGender>
   <ng-template #genderReqStar>
-            <span
-                    class="text-danger"
-                    *ngIf="formProfile.controls['gender']?.hasError('required')"
-            >*</span
-            >
+    <span
+      class="text-danger"
+      *ngIf="formProfile.controls['gender']?.hasError('required')"
+      >*</span
+    >
   </ng-template>
   <div [formGroup]="formProfile">
     <div class="form-check form-check-inline ml-1">
       <input
-              formControlName="gender"
-              class="form-check-input"
-              type="radio"
-              id="radio-male"
-              value="M"
+        formControlName="gender"
+        class="form-check-input"
+        type="radio"
+        id="radio-male"
+        value="M"
       />
       <label class="form-check-label" for="radio-male"
-      ><ng-container [ngTemplateOutlet]="genderReqStar"></ng-container>
+        ><ng-container [ngTemplateOutlet]="genderReqStar"></ng-container>
         Male</label
       >
     </div>
     <div class="form-check form-check-inline ml-1">
       <input
-              formControlName="gender"
-              class="form-check-input"
-              type="radio"
-              id="radio-woman"
-              value="W"
+        formControlName="gender"
+        class="form-check-input"
+        type="radio"
+        id="radio-woman"
+        value="W"
       />
       <label class="form-check-label" for="radio-woman">Woman</label>
     </div>
     <div class="form-check form-check-inline ml-1">
       <input
-              formControlName="gender"
-              class="form-check-input"
-              type="radio"
-              id="radio-company"
-              value="C"
+        formControlName="gender"
+        class="form-check-input"
+        type="radio"
+        id="radio-company"
+        value="C"
       />
       <label class="form-check-label" for="radio-company">Firma</label>
     </div>
@@ -45,22 +45,19 @@
 
 <ng-template #profileName>
   <ng-template #genderReqStar>
-            <span
-                    class="text-danger"
-                    *ngIf="formProfile.controls['gender']?.hasError('required')"
-            >*</span
-            >
+    <span
+      class="text-danger"
+      *ngIf="formProfile.controls['gender']?.hasError('required')"
+      >*</span
+    >
   </ng-template>
-  <div [formGroup]="formProfile">
-
-  </div>
+  <div [formGroup]="formProfile"></div>
 </ng-template>
-
 
 <ng-container *ngIf="api.profile$ | async as profile">
   <ng-container *ngIf="viewSettings.type === 'modal'">
     <div class="modal-header">
-      <span>#{{profile.profileId}}</span>
+      <span>#{{ profile.profileId }}</span>
       <button
         type="button"
         class="btn-close"
@@ -70,8 +67,10 @@
     </div>
     <div class="modal-header-sub">
       <select
-              (change)="viewSettings.changeMode($event.target.value)"
-              [(ngModel)]="viewSettings.mode" class="form-control bg-transparent text-white">
+        (change)="viewSettings.changeMode($event.target.value)"
+        [(ngModel)]="viewSettings.mode"
+        class="form-control bg-transparent text-white"
+      >
         <option value="simple">Einfach</option>
         <option value="details">Detailiert</option>
       </select>
@@ -90,13 +89,13 @@
               <div class="input-group mb-3">
                 <span class="input-group-text" id="profiles-title">@</span>
                 <input
-                        formControlName="title"
-                        type="text"
-                        class="form-control"
-                        autocomplete="new-password"
-                        placeholder="Title"
-                        aria-label="title"
-                        aria-describedby="profiles-title"
+                  formControlName="title"
+                  type="text"
+                  class="form-control"
+                  autocomplete="new-password"
+                  placeholder="Title"
+                  aria-label="title"
+                  aria-describedby="profiles-title"
                 />
               </div>
             </div>
@@ -109,13 +108,13 @@
               <div class="input-group mb-3">
                 <span class="input-group-text" id="profiles-lastname">@</span>
                 <input
-                        formControlName="lastName"
-                        type="text"
-                        class="form-control"
-                        autocomplete="new-password"
-                        placeholder="Nachname"
-                        aria-label="lastName"
-                        aria-describedby="profiles-lastname"
+                  formControlName="lastName"
+                  type="text"
+                  class="form-control"
+                  autocomplete="new-password"
+                  placeholder="Nachname"
+                  aria-label="lastName"
+                  aria-describedby="profiles-lastname"
                 />
               </div>
             </div>
@@ -124,21 +123,23 @@
               <div class="input-group mb-3">
                 <span class="input-group-text" id="profles-firstname">@</span>
                 <input
-                        formControlName="firstName"
-                        type="text"
-                        class="form-control"
-                        autocomplete="new-password"
-                        placeholder="Vorname"
-                        aria-label="firstName"
-                        aria-describedby="profiles-firstname"
+                  formControlName="firstName"
+                  type="text"
+                  class="form-control"
+                  autocomplete="new-password"
+                  placeholder="Vorname"
+                  aria-label="firstName"
+                  aria-describedby="profiles-firstname"
                 />
               </div>
             </div>
           </div>
           <div class="col-12 col-md-3 d-none d-md-block">
             <div class="form-group position-relative">
-              <img style="max-width: 100px;position: absolute"
-                   src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png">
+              <img
+                style="max-width: 100px; position: absolute"
+                src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
+              />
             </div>
           </div>
         </ng-container>
@@ -176,19 +177,20 @@
           </div>
         </div>
 
-        <hr>
+        <hr />
         <div class="col-12 row">
           <div class="col-12 col-md-4">
             <label>Geburtstag</label>
             <div class="input-group mb-3">
               <span class="input-group-text" id="profiles-birthday">@</span>
-              <input  type="date"
-                      formControlName="birthDay"
-                      class="form-control"
-                      autocomplete="new-password"
-                      aria-label="birthday"
-                      aria-describedby="profiles-birthday"
-              >
+              <input
+                type="date"
+                formControlName="birthDay"
+                class="form-control"
+                autocomplete="new-password"
+                aria-label="birthday"
+                aria-describedby="profiles-birthday"
+              />
             </div>
           </div>
           <div class="col-12 col-md-4">
@@ -196,11 +198,11 @@
             <div class="input-group mb-3">
               <span class="input-group-text" id="profiles-vip">@</span>
               <select
-                      formControlName="vip"
-                      class="form-control"
-                      autocomplete="new-password"
-                      aria-label="lastName"
-                      aria-describedby="profiles-vip"
+                formControlName="vip"
+                class="form-control"
+                autocomplete="new-password"
+                aria-label="lastName"
+                aria-describedby="profiles-vip"
               >
                 <option value="">Nein</option>
                 <option value="1">A</option>
@@ -215,14 +217,13 @@
             <div class="input-group mb-3">
               <span class="input-group-text" id="profiles-language">@</span>
               <select
-                      formControlName="languageId"
-                      class="form-control"
-                      autocomplete="new-password"
-                      aria-label="language"
-                      aria-describedby="profiles-language"
+                formControlName="languageId"
+                class="form-control"
+                autocomplete="new-password"
+                aria-label="language"
+                aria-describedby="profiles-language"
               >
                 <option value="1">Deutsch</option>
-
               </select>
             </div>
           </div>
@@ -232,28 +233,30 @@
             <label>Kundensegment</label>
             <div class="input-group mb-3">
               <nz-select
-
-                      class="w-100"
-                      formControlName="segments"
-                      nzMode="multiple"
-                      nzPlaceHolder="Please select"
-                      aria-label="segments"
-                      aria-describedby="profiles-vip">
-                  <nz-option *ngFor="let segment of segments$ |async"
-                             [nzLabel]="segment.title"
-                             [nzValue]="segment.segmentId"></nz-option>
+                class="w-100"
+                formControlName="segments"
+                nzMode="multiple"
+                nzPlaceHolder="Please select"
+                aria-label="segments"
+                aria-describedby="profiles-vip"
+              >
+                <nz-option
+                  *ngFor="let segment of segments$ | async"
+                  [nzLabel]="segment.title"
+                  [nzValue]="segment.segmentId"
+                ></nz-option>
               </nz-select>
             </div>
           </div>
           <div class="col-12 col-md-4">
             <label>Preisklasse</label>
             <div class="input-group mb-3">
-             <nz-select
-                      class="w-100"
-                      formControlName="priceClass"
-                      multiple
-                      aria-label="priceclass"
-                      aria-describedby="profiles-priceclass"
+              <nz-select
+                class="w-100"
+                formControlName="priceClass"
+                multiple
+                aria-label="priceclass"
+                aria-describedby="profiles-priceclass"
               >
               </nz-select>
             </div>
@@ -262,11 +265,11 @@
             <label>Source</label>
             <div class="input-group mb-3">
               <nz-select
-                      class="w-100"
-                      formControlName="source"
-                      multiple
-                      aria-label="source"
-                      aria-describedby="profiles-source"
+                class="w-100"
+                formControlName="source"
+                multiple
+                aria-label="source"
+                aria-describedby="profiles-source"
               >
               </nz-select>
             </div>
@@ -275,24 +278,59 @@
       </form>
     </div>
     <div *ngIf="viewSettings.mode === 'details'" class="modal-body">
-
       <div class="row col-12 col-md-6">
-
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+            <button
+              class="nav-link active"
+              id="home-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#home"
+              type="button"
+              role="tab"
+              aria-controls="home"
+              aria-selected="true"
+            >
+              Home
+            </button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+            <button
+              class="nav-link"
+              id="profile-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#profile"
+              type="button"
+              role="tab"
+              aria-controls="profile"
+              aria-selected="false"
+            >
+              Profile
+            </button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+            <button
+              class="nav-link"
+              id="contact-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#contact"
+              type="button"
+              role="tab"
+              aria-controls="contact"
+              aria-selected="false"
+            >
+              Contact
+            </button>
           </li>
         </ul>
         <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-
-            <div class="row shadow ">
+          <div
+            class="tab-pane fade show active"
+            id="home"
+            role="tabpanel"
+            aria-labelledby="home-tab"
+          >
+            <div class="row shadow">
               <div class="col-12 mb-3">
                 <ng-container [ngTemplateOutlet]="profileGender"></ng-container>
               </div>
@@ -300,20 +338,28 @@
               <div class="col-12 mb-3">
                 <ng-container [ngTemplateOutlet]="profileGender"></ng-container>
               </div>
-
             </div>
-
           </div>
-          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-          <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+          <div
+            class="tab-pane fade"
+            id="profile"
+            role="tabpanel"
+            aria-labelledby="profile-tab"
+          >
+            ...
+          </div>
+          <div
+            class="tab-pane fade"
+            id="contact"
+            role="tabpanel"
+            aria-labelledby="contact-tab"
+          >
+            ...
+          </div>
         </div>
-
-
       </div>
       <div class="row col-12 col-md-6"></div>
-
     </div>
-
 
     <div class="modal-footer">
       <button

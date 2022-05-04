@@ -61,7 +61,7 @@ export class InitialAppsSeeds extends SeedHelper {
       domain: 'business',
       title: 'profiles',
       parentCategoryId: 2,
-    }
+    },
   ];
 
   apps = [
@@ -154,5 +154,4 @@ export class InitialAppsSeeds extends SeedHelper {
       return resolve(true);
     });
   }
-
 }

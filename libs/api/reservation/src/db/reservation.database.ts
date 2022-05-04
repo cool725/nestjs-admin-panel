@@ -1,8 +1,8 @@
 import { ConnectionOptions } from 'typeorm';
 import { doSeed } from '../../../common/db/seed';
-import { ReservationHeadEntity } from "../entities/reservation-head.entity";
-import { ReservationLegEntity } from "../entities/reservation-leg.entity";
-import {ReservationSourceEntity} from "../entities/reservation.source.entity";
+import { ReservationHeadEntity } from '../entities/reservation-head.entity';
+import { ReservationLegEntity } from '../entities/reservation-leg.entity';
+import { ReservationSourceEntity } from '../entities/reservation.source.entity';
 
 const ReservationDBOptions = <ConnectionOptions>{
   type: process.env.DB_TYPE,
@@ -15,7 +15,11 @@ const ReservationDBOptions = <ConnectionOptions>{
   logging: false,
   migrationsRun: true,
   logger: 'file',
-  entities: [ReservationHeadEntity,ReservationLegEntity,ReservationSourceEntity],
+  entities: [
+    ReservationHeadEntity,
+    ReservationLegEntity,
+    ReservationSourceEntity,
+  ],
 };
 
 doSeed([], ReservationDBOptions);

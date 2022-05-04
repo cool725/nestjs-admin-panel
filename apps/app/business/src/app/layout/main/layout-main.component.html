@@ -1,11 +1,11 @@
 <div class="main-layout">
-    <layout-comp-header></layout-comp-header>
-    <ui-topbar></ui-topbar>
-    <div>
-        <div [@fadein]="getRouterOutletState(outlet)">
-            <ng-container #vcModal></ng-container>
-            <router-outlet #outlet="outlet"></router-outlet>
-        </div>
+  <layout-comp-header></layout-comp-header>
+  <ui-topbar></ui-topbar>
+  <div>
+    <div [@fadein]="getRouterOutletState(outlet)">
+      <ng-container #vcModal></ng-container>
+      <router-outlet #outlet="outlet"></router-outlet>
     </div>
-    <layout-comp-footer></layout-comp-footer>
+  </div>
+  <layout-comp-footer></layout-comp-footer>
 </div>

@@ -1,6 +1,7 @@
 import {
   Body,
-  Controller, Delete,
+  Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -18,15 +19,16 @@ import { GetCompany } from '../../../../../../../../../libs/api/business/src/bus
 import { BusinessEntity } from '../../../../../../../../../libs/api/business/src/entities/business.entity';
 import {
   ProfilesPriceClassService,
-  ProfilesService
+  ProfilesService,
 } from '@movit/api/profiles';
 
 @Controller(FrontOffice.resolePaths(['crm', FrontOffice.Profiles.PATH]))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)
 export class BusinessFrontofficeProfilesPriceClassController {
   constructor(
-      protected profilesService: ProfilesService,
-      protected priceClassService:ProfilesPriceClassService       ) {}
+    protected profilesService: ProfilesService,
+    protected priceClassService: ProfilesPriceClassService
+  ) {}
 
   @Get('priceclass')
   getPriceClasses(
@@ -34,7 +36,8 @@ export class BusinessFrontofficeProfilesPriceClassController {
     @GetPagination() pagination: Pagination
   ) {
     return this.priceClassService.getPriceClasses(
-        business.businessId, pagination
+      business.businessId,
+      pagination
     );
   }
 
@@ -44,23 +47,26 @@ export class BusinessFrontofficeProfilesPriceClassController {
     @Param('priceClassId') priceClassId: number
   ) {
     return this.priceClassService.getPriceClass(
-        business.businessId, priceClassId
+      business.businessId,
+      priceClassId
     );
   }
 
   @Put('priceclass')
-  createPriceClass(@GetCompany() business: BusinessEntity, @Body() data:any) {
-    return this.priceClassService.savePriceClass(
-        business.businessId, data
-    );
+  createPriceClass(@GetCompany() business: BusinessEntity, @Body() data: any) {
+    return this.priceClassService.savePriceClass(business.businessId, data);
   }
 
   @Patch('priceclass/:priceClassId')
-  updatePriceClass(@GetCompany() business: BusinessEntity,
-                @Param('priceClassId') priceClassId:number,
-                @Body() data:any) {
+  updatePriceClass(
+    @GetCompany() business: BusinessEntity,
+    @Param('priceClassId') priceClassId: number,
+    @Body() data: any
+  ) {
     return this.priceClassService.updatePriceClass(
-        business.businessId, priceClassId, data
+      business.businessId,
+      priceClassId,
+      data
     );
   }
 
@@ -69,8 +75,9 @@ export class BusinessFrontofficeProfilesPriceClassController {
     @GetCompany() business: BusinessEntity,
     @Param('priceClassId') priceClassId: number
   ) {
-     return this.priceClassService.deletePriceClass(
-        business.businessId, priceClassId
+    return this.priceClassService.deletePriceClass(
+      business.businessId,
+      priceClassId
     );
   }
 }

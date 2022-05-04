@@ -1,21 +1,21 @@
-import {CommonModule} from "@angular/common";
-import {ProfilesSegmentFormComponent} from "./profiles-segment-form.component";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {TranslateModule} from "@ngx-translate/core";
-import {NgModule} from "@angular/core";
-import {NzSelectModule} from "ng-zorro-antd/select";
-import {ProfileSegmentAPI} from "../packages/profile-sagment-api.service";
-import {environment} from "../../../../../../../environments/environment";
+import { CommonModule } from '@angular/common';
+import { ProfilesSegmentFormComponent } from './profiles-segment-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
+import { NgModule } from '@angular/core';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { ProfileSegmentAPI } from '../packages/profile-sagment-api.service';
+import { environment } from '../../../../../../../environments/environment';
 
 @NgModule({
-  declarations: [ ProfilesSegmentFormComponent ],
+  declarations: [ProfilesSegmentFormComponent],
   imports: [
-        CommonModule,
-        TranslateModule.forChild(),
-        FormsModule,
-        ReactiveFormsModule,
-        NzSelectModule,
-    ],
+    CommonModule,
+    TranslateModule.forChild(),
+    FormsModule,
+    ReactiveFormsModule,
+    NzSelectModule,
+  ],
   providers: [
     ProfileSegmentAPI,
     {

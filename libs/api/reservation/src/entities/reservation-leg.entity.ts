@@ -1,11 +1,19 @@
-import {BaseEntity, Column, Entity, Index, ManyToOne, PrimaryGeneratedColumn, Unique} from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  Index,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  Unique,
+} from 'typeorm';
 import { Exclude, instanceToPlain } from 'class-transformer';
 import { ReservationHeadEntity } from './reservation-head.entity';
 
 @Entity('res_reservation_leg')
 @Index(['companyId'])
-@Index(['companyId','userId'])
-@Unique(['companyId','reservationId','legId'])
+@Index(['companyId', 'userId'])
+@Unique(['companyId', 'reservationId', 'legId'])
 export class ReservationLegEntity extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
   @Exclude()
@@ -20,7 +28,7 @@ export class ReservationLegEntity extends BaseEntity {
   @Column({ type: 'bigint', nullable: false, unsigned: true })
   legId: number;
 
-  @ManyToOne(() => ReservationHeadEntity, (res) => res.legs, )
+  @ManyToOne(() => ReservationHeadEntity, (res) => res.legs)
   head: ReservationHeadEntity;
 
   @Column({ type: 'bigint', nullable: false, unsigned: true })

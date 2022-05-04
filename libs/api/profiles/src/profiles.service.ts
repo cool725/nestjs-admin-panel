@@ -4,17 +4,18 @@ import { doTransactionInsert } from '../../common/db/transaction/db.transaction'
 import {
   ProfilesPriceClassRepository,
   ProfilesRepository,
-  ProfilesSegmentRepository
+  ProfilesSegmentRepository,
 } from './classes/profiles.repository';
 import { Pagination } from '../../common/decorator';
-import { ProfileEntity } from "./entities/profile.entity";
-import {IsNull} from "typeorm";
+import { ProfileEntity } from './entities/profile.entity';
+import { IsNull } from 'typeorm';
 
 @Injectable()
 export class ProfilesService {
   constructor(
     @InjectRepository(ProfilesRepository)
-    private profileRepo: ProfilesRepository) {}
+    private profileRepo: ProfilesRepository
+  ) {}
 
   public getProfiles(businessId: number, pagination: Pagination) {
     return this.profileRepo.find({
@@ -28,46 +29,59 @@ export class ProfilesService {
     });
   }
 
-  public async getProfile(businessId: number, profileId: number,options:{relations?:string[]} = {}) {
+  public async getProfile(
+    businessId: number,
+    profileId: number,
+    options: { relations?: string[] } = {}
+  ) {
     const profile = await this.profileRepo.findOne({
       where: {
         companyId: businessId,
         profileId: profileId,
-      }
+      },
     });
 
-    if(!options) return profile
+    if (!options) return profile;
 
-    if( options.relations?.includes('segments')) {
+    if (options.relations?.includes('segments')) {
       profile.segments = await this.profileRepo.getProfileSegments(
-          businessId, profileId,
-      )
+        businessId,
+        profileId
+      );
     }
 
-    return profile
+    return profile;
   }
 
   async createProfile(businessId: number, data: Partial<ProfileEntity>) {
     const profile = this.profileRepo.create();
     profile.companyId = businessId;
 
-    for(const key in data) if(!data[key])delete data[key];
+    for (const key in data) if (!data[key]) delete data[key];
     Object.assign(profile, data);
 
     await this.profileRepo.save(profile);
-    await this.profileRepo.saveSegments(businessId,profile.profileId,<any>data.segments)
-    return profile
+    await this.profileRepo.saveSegments(
+      businessId,
+      profile.profileId,
+      <any>data.segments
+    );
+    return profile;
   }
 
   async updateProfile(businessId, profileId: number, data: any) {
     // todo handle segments | sources ect
-    delete data.profileId
-    delete data.businessId
+    delete data.profileId;
+    delete data.businessId;
 
-    const profile = await this.getProfile(businessId,profileId);
-    if(!profile)return ;
+    const profile = await this.getProfile(businessId, profileId);
+    if (!profile) return;
 
-    await this.profileRepo.saveSegments(businessId,profile.profileId,<any>data.segments)
+    await this.profileRepo.saveSegments(
+      businessId,
+      profile.profileId,
+      <any>data.segments
+    );
 
     return profile.initialiseData(data).save();
   }
@@ -82,15 +96,16 @@ export class ProfilesService {
 
 @Injectable()
 export class ProfilesSegmentService {
-  constructor( @InjectRepository(ProfilesSegmentRepository)
-               private segmentRepo: ProfilesSegmentRepository) {
-  }
+  constructor(
+    @InjectRepository(ProfilesSegmentRepository)
+    private segmentRepo: ProfilesSegmentRepository
+  ) {}
   public getSegments(businessId: number, pagination: Pagination) {
     return this.segmentRepo.find({
       where: { companyId: businessId },
       order: pagination.sort.reduce(
-          (order, sort) => ({ ...order, [sort.field]: sort.by }),
-          {}
+        (order, sort) => ({ ...order, [sort.field]: sort.by }),
+        {}
       ),
       skip: pagination.skip,
       take: pagination.limit,
@@ -119,7 +134,7 @@ export class ProfilesSegmentService {
     return this.segmentRepo.save(segment);
   }
 
-  public deleteSegment(businessId:number, segmentId: number) {
+  public deleteSegment(businessId: number, segmentId: number) {
     return this.segmentRepo.delete({
       companyId: businessId,
       segmentId: segmentId,
@@ -129,51 +144,54 @@ export class ProfilesSegmentService {
 
 @Injectable()
 export class ProfilesPriceClassService {
-  constructor( @InjectRepository(ProfilesPriceClassRepository)
-               private priceClassRepo: ProfilesPriceClassRepository) {}
+  constructor(
+    @InjectRepository(ProfilesPriceClassRepository)
+    private priceClassRepo: ProfilesPriceClassRepository
+  ) {}
 
-  getPriceClasses(businessId:number,pagination:any){
+  getPriceClasses(businessId: number, pagination: any) {
     return this.priceClassRepo.find({
-      where:{
-        companyId:businessId,
-        deletedAt:IsNull()
-      }
-    })
+      where: {
+        companyId: businessId,
+        deletedAt: IsNull(),
+      },
+    });
   }
 
-  getPriceClass(businessId:number, priceClassId:number){
+  getPriceClass(businessId: number, priceClassId: number) {
     return this.priceClassRepo.findOne({
-      where:{
-        companyId:businessId,
-        priceClassId:priceClassId
-      }
-    })
+      where: {
+        companyId: businessId,
+        priceClassId: priceClassId,
+      },
+    });
   }
 
-  savePriceClass( businessId:number, data:any ){
+  savePriceClass(businessId: number, data: any) {
     const priceClass = this.priceClassRepo.create();
     priceClass.companyId = businessId;
     priceClass.title = data.title;
-    return priceClass.save()
+    return priceClass.save();
   }
 
-  async updatePriceClass( businessId:number,priceClassId, data:any ){
-    const priceClass = await this.getPriceClass(businessId,priceClassId)
-    if(!priceClass)return;
+  async updatePriceClass(businessId: number, priceClassId, data: any) {
+    const priceClass = await this.getPriceClass(businessId, priceClassId);
+    if (!priceClass) return;
 
     priceClass.companyId = businessId;
     priceClass.title = data.title;
-    return priceClass.save()
+    return priceClass.save();
   }
 
-  deletePriceClass(
-      businessId, priceClassId
-  ){
-    return this.priceClassRepo.findOne({
-      companyId: businessId, priceClassId
-    }).then(r => {
-      r.deletedAt = new Date()
-      return r.save()
-    })
+  deletePriceClass(businessId, priceClassId) {
+    return this.priceClassRepo
+      .findOne({
+        companyId: businessId,
+        priceClassId,
+      })
+      .then((r) => {
+        r.deletedAt = new Date();
+        return r.save();
+      });
   }
 }

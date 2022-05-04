@@ -19,7 +19,7 @@ export abstract class FormController<T> extends PageController {
 
   protected fb: FormBuilder;
 
-  public id:any;
+  public id: any;
 
   constructor(override injector: Injector) {
     super(injector);

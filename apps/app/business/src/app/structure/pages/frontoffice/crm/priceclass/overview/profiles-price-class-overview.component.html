@@ -1,8 +1,6 @@
 <ng-template #topbar>
   <div class="left-box"></div>
-  <h4
-    class="slide"
-  >
+  <h4 class="slide">
     {{ 'profile price class' | translate }}
   </h4>
 </ng-template>
@@ -52,20 +50,27 @@
         </thead>
         <tbody *ngIf="profilePriceClassTable.data$ | async as tableData">
           <ng-container *ngFor="let priceclass of tableData.data">
-            <tr *ngIf="profilePriceClassTable.canShow(priceclass)" class="entry-row">
-              <td> {{ priceclass.title }} </td>
-              <input type="checkbox" [(ngModel)]='priceclass.standard'>
-              <td>{{ priceclass.color }} </td>
+            <tr
+              *ngIf="profilePriceClassTable.canShow(priceclass)"
+              class="entry-row"
+            >
+              <td>{{ priceclass.title }}</td>
+              <input type="checkbox" [(ngModel)]="priceclass.standard" />
+              <td>{{ priceclass.color }}</td>
               <td class="text-center">{{ priceclass.percentage }}%</td>
               <td class="text-end pe-2" align="right">
                 <a
                   (click)="editSegment(priceclass.priceClassId)"
-                  class="text-primary cursor-pointer">
+                  class="text-primary cursor-pointer"
+                >
                   {{ 'edit' }}
                 </a>
               </td>
               <td class="text-end pe-2" align="right">
-                <a (click)="deleteProfile(priceclass.priceClassId)" class="text-primary cursor-pointer">
+                <a
+                  (click)="deleteProfile(priceclass.priceClassId)"
+                  class="text-primary cursor-pointer"
+                >
                   {{ 'delete' }}
                 </a>
               </td>
@@ -77,20 +82,20 @@
   </div>
 </div>
 
-
-<lib-modal-ui *ngIf="api.profilePriceClass$ | async as priceclass"
-[style]="{
-    display:'block',
+<lib-modal-ui
+  *ngIf="api.profilePriceClass$ | async as priceclass"
+  [style]="{
+    display: 'block',
     width: '425px',
     height: 'fit-content',
     left: '0px',
     top: '0px',
     right: '0px',
     bottom: '0px',
-    margin:'auto'
-}"
+    margin: 'auto'
+  }"
 >
- <div style="direction:rtl">
+  <div style="direction: rtl">
     <button
       type="button"
       class="btn-close"
@@ -101,5 +106,4 @@
   </div>
 
   <movit-profiles-price-class-form></movit-profiles-price-class-form>
-
 </lib-modal-ui>

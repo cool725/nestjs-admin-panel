@@ -9,7 +9,7 @@ import {
   Unique,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
-import {  ReservationHeadEntity } from "./reservation-head.entity";
+import { ReservationHeadEntity } from './reservation-head.entity';
 
 @Entity('res_source')
 @Index(['companyId'])
@@ -25,26 +25,28 @@ export class ReservationSourceEntity extends BaseEntity {
   @Column({ type: 'bigint', nullable: false, unsigned: true })
   sourceId: number;
 
-  @Column({ type: 'varchar', length: 50, nullable:true })
+  @Column({ type: 'varchar', length: 50, nullable: true })
   title: string;
 
-  @Column({ type: 'varchar', length: 10, nullable:true })
+  @Column({ type: 'varchar', length: 10, nullable: true })
   color: string;
 
-  @Column({ type: 'smallint',  nullable:true, default:1 })
+  @Column({ type: 'smallint', nullable: true, default: 1 })
   order: number;
 
-  @OneToMany(() => ReservationHeadEntity, (reservation) => reservation.sourceId, {})
-  reservations:ReservationHeadEntity[];
+  @OneToMany(
+    () => ReservationHeadEntity,
+    (reservation) => reservation.sourceId,
+    {}
+  )
+  reservations: ReservationHeadEntity[];
 
   constructor() {
     super();
   }
 
   @BeforeInsert()
-  protected async beforeInsert() {
-
-  }
+  protected async beforeInsert() {}
 
   public toJSON() {
     return this;

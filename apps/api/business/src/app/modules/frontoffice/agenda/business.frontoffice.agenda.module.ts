@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { BusinessFrontOfficeAgendaController } from './business.frontoffice.agenda.controller';
-import {ReservationModule} from "@movit/api/reservation";
+import { ReservationModule } from '@movit/api/reservation';
 
 @Module({
-  imports: [ReservationModule,],
+  imports: [ReservationModule],
   controllers: [BusinessFrontOfficeAgendaController],
   providers: [],
 })

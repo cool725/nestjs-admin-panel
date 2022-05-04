@@ -12,24 +12,10 @@
     "lib-api-business": "libs/api/business",
     "lib-api-middleware": "libs/api/common/middleware",
     "lib-api-utils": "libs/api/common/utils",
-    "lib-app-class": "libs/app/common",
-    "lib-app-common": {
-      "root": "libs/app/common",
-      "sourceRoot": "libs/app/common",
-      "projectType": "library",
-      "prefix": "common",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["libs/app/common/**/*.ts"]
-          }
-        }
-      }
-    },
-    "libs-employee": "libs/api/employee",
-    "libs-third-party": "libs/api/third-party",
-    "libs-translation": "libs/api/translation"
+    "lib-app-common": "libs/app/common",
+    "lib-app-ui": "libs/app/ui",
+    "lib-employee": "libs/api/employee",
+    "lib-third-party": "libs/api/third-party",
+    "lib-translation": "libs/api/translation"
   }
 }

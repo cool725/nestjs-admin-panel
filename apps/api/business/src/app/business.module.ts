@@ -12,7 +12,7 @@ import { BusinessController } from './controller/business.controller';
 import { TranslationModule } from '@movit/api/translation';
 import { BusinessFrontOfficeModule } from './modules/frontoffice/business.frontoffice.module';
 import { ProfilesModule } from '@movit/api/profiles';
-import {ReservationModule} from "@movit/api/reservation";
+import { ReservationModule } from '@movit/api/reservation';
 
 @Module({
   imports: [
@@ -27,7 +27,7 @@ import {ReservationModule} from "@movit/api/reservation";
         ...AuthModule.dbSettings.entities,
         ...BusinessModule.dbSettings.entities,
         ...ProfilesModule.dbSettings.entities,
-        ...ReservationModule.dbSettings.entities
+        ...ReservationModule.dbSettings.entities,
       ],
     }),
     AuthModule,

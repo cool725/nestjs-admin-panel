@@ -10,8 +10,8 @@
   align-items: center;
   background: #fff;
 
-  ::ng-deep{
-    .left-box{
+  ::ng-deep {
+    .left-box {
       width: 60px;
       text-align: center;
       height: 100%;
@@ -20,15 +20,13 @@
       align-items: center;
       padding-bottom: 4px;
     }
-    h4{
+    h4 {
       padding-top: 8px;
       white-space: nowrap;
       cursor: initial;
       top: 0px;
-      font-family: "Nunito Sans",sans-serif;
+      font-family: 'Nunito Sans', sans-serif;
       text-transform: capitalize;
     }
   }
-
-
 }

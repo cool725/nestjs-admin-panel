@@ -1,39 +1,39 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthCanActivate } from '@movit/app/common';
-import { LayoutMainComponent } from "../../layout/main/layout-main.component";
-import {LayoutMainModule} from "../../layout/main/layout-main.module";
+import { LayoutMainComponent } from '../../layout/main/layout-main.component';
+import { LayoutMainModule } from '../../layout/main/layout-main.module';
 
 const childRoutes = [
   {
     path: 'frontoffice',
     loadChildren: () =>
-        import(
-            './../../structure/pages/frontoffice/front-office.module'
-            ).then((m) => m.FrontOfficeModule),
+      import('./../../structure/pages/frontoffice/front-office.module').then(
+        (m) => m.FrontOfficeModule
+      ),
   },
   {
     path: 'backoffice',
     loadChildren: () =>
-        import('./../../structure/pages/backoffice/back-office.module').then(
-            (m) => m.BackOfficeModule
-        ),
+      import('./../../structure/pages/backoffice/back-office.module').then(
+        (m) => m.BackOfficeModule
+      ),
   },
   {
     path: 'finances',
     loadChildren: () =>
-        import('./../../structure/pages/finances/finances.module').then(
-            (m) => m.FinancesModule
-        ),
+      import('./../../structure/pages/finances/finances.module').then(
+        (m) => m.FinancesModule
+      ),
   },
   {
     path: 'settings',
     loadChildren: () =>
-        import('./../../structure/pages/settings/settings.module').then(
-            (m) => m.SettingsModule
-        ),
+      import('./../../structure/pages/settings/settings.module').then(
+        (m) => m.SettingsModule
+      ),
   },
-]
+];
 
 const routes: Routes = [
   {
@@ -43,23 +43,21 @@ const routes: Routes = [
       AuthCanActivate.hasUserAccess,
       AuthCanActivate.hasCompanyAccess,
     ],
-    component:LayoutMainComponent
+    component: LayoutMainComponent,
   },
   {
     path: '',
-    children:childRoutes,
+    children: childRoutes,
     canActivate: [
       AuthCanActivate.hasUserAccess,
       AuthCanActivate.hasCompanyAccess,
     ],
-    component:LayoutMainComponent
-  }
+    component: LayoutMainComponent,
+  },
 ];
 
 @NgModule({
-  imports: [
-       LayoutMainModule,
-      RouterModule.forRoot(routes)],
+  imports: [LayoutMainModule, RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [AuthCanActivate.hasUserAccess, AuthCanActivate.hasCompanyAccess],
 })

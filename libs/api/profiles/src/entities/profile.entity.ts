@@ -6,16 +6,16 @@ import {
   Index,
   JoinColumn,
   ManyToMany,
-  ManyToOne, OneToMany,
+  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
-import {ProfileSegmentEntity} from "./profile.segment.entity";
-import {ProfileSourceEntity} from "./profile.source.entity";
-import {ProfileSegmentRelationEntity} from "./profile.segment.relation.entity";
-import {ProfilePriceClassEntity} from "./profile.priceclass.entity";
-
+import { ProfileSegmentEntity } from './profile.segment.entity';
+import { ProfileSourceEntity } from './profile.source.entity';
+import { ProfileSegmentRelationEntity } from './profile.segment.relation.entity';
+import { ProfilePriceClassEntity } from './profile.priceclass.entity';
 
 @Entity('crm_profile')
 @Index(['companyId'])
@@ -32,28 +32,28 @@ export class ProfileEntity extends BaseEntity {
   @Column({ type: 'bigint', nullable: false, unsigned: true })
   profileId: number;
 
-  @Column({type:'enum', enum: ['C','M','W'],  nullable:false })
+  @Column({ type: 'enum', enum: ['C', 'M', 'W'], nullable: false })
   gender: string;
 
-  @Column({ type: 'varchar', length: 50, nullable:true })
+  @Column({ type: 'varchar', length: 50, nullable: true })
   firstName: string;
 
-  @Column({ type: 'varchar', length: 70, nullable:true })
+  @Column({ type: 'varchar', length: 70, nullable: true })
   lastName: string;
 
-  @Column({ type: 'varchar', length: 100, nullable:true })
+  @Column({ type: 'varchar', length: 100, nullable: true })
   email: string;
 
-  @Column({ type: 'varchar', length: 15, nullable:true })
+  @Column({ type: 'varchar', length: 15, nullable: true })
   phone: string;
 
-  @Column({ type: 'date',  nullable:true })
+  @Column({ type: 'date', nullable: true })
   birthDay: number;
 
-  @Column({ type: 'smallint',  nullable:true })
+  @Column({ type: 'smallint', nullable: true })
   vip: number | string;
 
-  @Column({ type: 'smallint', nullable:true,unsigned:true })
+  @Column({ type: 'smallint', nullable: true, unsigned: true })
   languageId: number;
 
   @OneToMany(() => ProfileSegmentRelationEntity, (segment) => segment.profile)
@@ -61,7 +61,7 @@ export class ProfileEntity extends BaseEntity {
     { name: 'companyId', referencedColumnName: 'companyId' },
     { name: 'profileId', referencedColumnName: 'profileId' },
   ])
-  segments:ProfileSegmentRelationEntity[] | number[];
+  segments: ProfileSegmentRelationEntity[] | number[];
 
   @ManyToOne(() => ProfileSourceEntity, (source) => source.profiles)
   @JoinColumn([
@@ -73,10 +73,11 @@ export class ProfileEntity extends BaseEntity {
   @ManyToOne(() => ProfilePriceClassEntity, (priceClass) => priceClass.profiles)
   @JoinColumn([
     { name: 'companyId', referencedColumnName: 'companyId' },
-    { name: 'priceClassId', referencedColumnName: 'priceClassId' },])
+    { name: 'priceClassId', referencedColumnName: 'priceClassId' },
+  ])
   priceClassId: number;
 
-  @Column({ type: 'text', nullable:true })
+  @Column({ type: 'text', nullable: true })
   @Exclude()
   notes: string;
 
@@ -84,28 +85,28 @@ export class ProfileEntity extends BaseEntity {
     super();
   }
 
-  public initialiseData(profile:Partial<ProfileEntity>){
-      this.firstName = profile.firstName;
-      this.lastName  = profile.lastName;
-      this.email  = profile.email;
-      this.phone  = profile.phone;
+  public initialiseData(profile: Partial<ProfileEntity>) {
+    this.firstName = profile.firstName;
+    this.lastName = profile.lastName;
+    this.email = profile.email;
+    this.phone = profile.phone;
 
-      this.sourceId  = profile.sourceId;
-      this.notes  = profile.notes;
-      return this
+    this.sourceId = profile.sourceId;
+    this.notes = profile.notes;
+    return this;
   }
 
   @BeforeInsert()
   protected async beforeInsert() {
-    const lastEntry = (await ProfileEntity.find({
+    const lastEntry = await ProfileEntity.find({
       order: {
-        profileId: "DESC"
+        profileId: 'DESC',
       },
       where: { companyId: this.companyId },
-      take:1,
-
-    })) ;
-    this.profileId = (lastEntry && lastEntry[0]) ? (+lastEntry[0].profileId + 1) : 1;
+      take: 1,
+    });
+    this.profileId =
+      lastEntry && lastEntry[0] ? +lastEntry[0].profileId + 1 : 1;
   }
 
   protected toJSON() {

@@ -9,9 +9,7 @@ export class AgendaAPI {
     protected endpoint: string,
     private http: HttpClient
   ) {
-    console.log(
-        endpoint
-    )
+    console.log(endpoint);
   }
 
   protected getPath(path: string, subPath: string | number = ''): string {

@@ -1,6 +1,7 @@
 import {
   Body,
-  Controller, Delete,
+  Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -37,13 +38,16 @@ export class BusinessFrontOfficeProfilesController {
     @GetCompany() business: BusinessEntity,
     @Param('profileId') profileId: number
   ) {
-    return this.profilesService.getProfile(business.businessId, profileId,{
-      relations:['segments']
+    return this.profilesService.getProfile(business.businessId, profileId, {
+      relations: ['segments'],
     });
   }
 
   @Put('profile')
-  createProfile(@GetCompany() business: BusinessEntity, @Body() profile:ProfilesDto.Create) {
+  createProfile(
+    @GetCompany() business: BusinessEntity,
+    @Body() profile: ProfilesDto.Create
+  ) {
     return this.profilesService.createProfile(business.businessId, profile);
   }
 
@@ -51,7 +55,7 @@ export class BusinessFrontOfficeProfilesController {
   updateProfile(
     @GetCompany() business: BusinessEntity,
     @Param('profileId') profileId: any,
-    @Body() profile:ProfilesDto.Update
+    @Body() profile: ProfilesDto.Update
   ) {
     return this.profilesService.updateProfile(
       business.businessId,

@@ -89,14 +89,23 @@ export abstract class PageController {
   }
 
   // todo rename types
-  protected openModal(modalType: EDataEmitterType, component:any, data?: any, resolver?: any) {
-    return this.dE.emit(modalType, {
-      component:component,
-      data:data
-    }, resolver);
+  protected openModal(
+    modalType: EDataEmitterType,
+    component: any,
+    data?: any,
+    resolver?: any
+  ) {
+    return this.dE.emit(
+      modalType,
+      {
+        component: component,
+        data: data,
+      },
+      resolver
+    );
   }
 
-  protected notify(type:any,message:string){
-    return this.vNotify.show(type,message)
+  protected notify(type: any, message: string) {
+    return this.vNotify.show(type, message);
   }
 }

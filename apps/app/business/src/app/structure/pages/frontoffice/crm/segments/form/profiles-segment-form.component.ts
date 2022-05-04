@@ -16,9 +16,9 @@ export class ProfilesSegmentFormComponent extends FormController<Segment> {
   };
 
   formSegment = this.fb.group({
-    title: new FormControl('', [Validators.required,Validators.max(100)]),
-     color: new FormControl('#ff0000', [Validators.required]),
-    order: new FormControl('', [Validators.required,Validators.pattern("^[0-9]*$")]),
+    title: new FormControl('', [Validators.required,Validators.max(71)]),
+    color: new FormControl('', []),
+    order: new FormControl(1, [Validators.required,Validators.pattern("^[0-9]*$")]),
   });
 
   constructor(
@@ -26,49 +26,39 @@ export class ProfilesSegmentFormComponent extends FormController<Segment> {
     public api: ProfileSegmentAPI<Segment, any>
   ) {
     super(injector);
-    api.profileSegment$.subscribe(segment=>{
-      if(segment){
-           this.formSegment.patchValue(segment);
-      }
-      
-    });
-    // api.profileSegment$.next(new Segment());
+    api.profileSegment$.next(new Segment());
   }
 
   getData(): void {
     if(this.getId()){
-      this.onLoadAndSetData(
-       this.api.getSegment(this.getId()),
-          this.api.profileSegment$,
-          (segment:Partial<Segment>)=> {
-           this.formSegment.patchValue(segment);
-           return Segment.create(segment)
-          }
-      );
+      this.loadSegment()
     }
   }
 
-  async saveSegment() {
-    console.log(this.formSegment)
+  loadSegment(segmentId = this.getId()){
+    this.onLoadAndSetData(
+        this.api.getSegment(segmentId),
+        this.api.profileSegment$,
+        (segment:Partial<Segment>)=> {
+          this.formSegment.patchValue(segment);
+          return Segment.create(segment)
+        }
+    );
+  }
+
+  async saveSegment(segment:Segment) {
+
     if(this.formSegment.invalid){
       console.log(this.formSegment)
       return;
     }
+
     const values = this.formSegment.value;
-    const api$ = await this.api.saveSegment(values);
-    api$.subscribe();
-    this.onSave.emit();
-     this.api.profileSegment$.next(null)
-  }
-  async updateSegment(segment:number){
-    if(this.formSegment.invalid){
-      return;
-    }
-     const values = this.formSegment.value;
-    const api$ = await this.api.updateSegment(segment,values);
-    api$.subscribe();
-     this.api.profileSegment$.next(null)
-    
+    const api$ =  (segment.segmentId ? this.api.updateSegment(segment.segmentId,values) : this.api.saveSegment(values))
+    api$.subscribe(() => {
+      this.onSave.emit();
+      this.api.profileSegment$.next(null)
+    });
   }
 
   @Confirmable({

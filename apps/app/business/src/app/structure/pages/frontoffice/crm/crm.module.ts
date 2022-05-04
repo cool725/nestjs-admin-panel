@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { environment } from '../../../../../environments/environment';
 
 const routes = [
   {
@@ -10,12 +9,12 @@ const routes = [
       {
         path: 'priceclass',
          loadChildren: () =>
-            import('./profilePriceClass/profilePriceClass.module').then((m) => m.ProfilePriceClassModule),
+            import('./priceclass/profilePriceClass.module').then((m) => m.ProfilePriceClassModule),
       },
       {
         path:'segments',
         loadChildren: () =>
-            import('./profileSegments/profileSegment.module').then((m) => m.ProfileSegmentModule),
+            import('./segments/profileSegment.module').then((m) => m.ProfileSegmentModule),
       },
       {
         path:'',
@@ -25,6 +24,7 @@ const routes = [
     ]
   }
 ];
+
 
 @NgModule({
   declarations: [],

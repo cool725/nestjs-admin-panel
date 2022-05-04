@@ -86,18 +86,9 @@
     right: '0px',
     bottom: '0px',
     margin:'auto'
-}"
->
- <div style="direction:rtl">
-    <button
-      type="button"
-      class="btn-close"
-      data-bs-dismiss="modal"
-      aria-label="Close"
-      (click)="closePopup()"
-    ></button>
-  </div>
+}">
   <movit-profiles-segment-form
+  (onSave)="getSegments()"
   (onCancel)="api.profileSegment$.next(null)"
   ></movit-profiles-segment-form>
 </lib-modal-ui>

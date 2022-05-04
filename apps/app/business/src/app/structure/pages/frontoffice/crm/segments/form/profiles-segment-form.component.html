@@ -14,8 +14,8 @@ async as segment">
                     Title is required
                 </div>
             </div>
-
         </div>
+
         <div class="col-12 col-md-9 row">
             <div class="form-group">
                 <label>Color</label>
@@ -46,7 +46,7 @@ async as segment">
     </div>
     <div class="modal-footer">
         <button type="button" *ngIf="formSegment.valid"
-            (click)="segment.segmentId ? updateSegment(segment.segmentId) : saveSegment()" class="btn btn-success">
+            (click)="saveSegment(segment)" class="btn btn-success">
             save
         </button>
         <button type="button" (click)="cancel()" class="btn btn-success">

@@ -3,7 +3,6 @@ import { PageController } from '../../../../page.controller';
 import { EDataEmitterType, ITableBaseFilter, Table } from '@movit/app/common';
 import { Confirmable } from '@movit/app/decorators';
 import { ProfilePriceClassAPI } from '../packages/profile-price-class-api.service';
-// import { ProfilesSagmentFormComponent } from "../form/profiles-sagment-form.component";
 
 export class PriceClass {
   priceClassId: number;

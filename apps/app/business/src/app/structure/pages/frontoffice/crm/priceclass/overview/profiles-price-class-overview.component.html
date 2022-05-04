@@ -54,7 +54,7 @@
             <tr *ngIf="profilePriceClassTable.canShow(priceclass)" class="entry-row">
               <input type="checkbox" [(ngModel)]='priceclass.standard'>
               <td>{{ priceclass.color }} </td>
-              <td>{{ priceclass.percentage }}</td>
+              <td class="text-center">{{ priceclass.percentage }}%</td>
               <td class="text-end pe-2" align="right">
                 <a
                   (click)="editSegment(priceclass.priceClassId)"

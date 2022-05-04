@@ -54,7 +54,7 @@
             <tr *ngIf="profileSegmentTable.canShow(profile)" class="entry-row">
               <td>{{ profile.title }}</td>
               <td>{{ profile.color }} </td>
-              <td>{{ profile.order }}</td>
+              <td class="text-center">{{ profile.order }}</td>
               <td class="text-right pe-2" align="right">
                 <a
                   (click)="editSegment(profile.segmentId)"

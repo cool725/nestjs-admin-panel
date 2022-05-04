@@ -41,6 +41,7 @@
       <table class="table mb-0 bg-white">
         <thead>
           <tr>
+            <th>Title</th>
             <th>Standard</th>
             <th>Color</th>
             <th>Percentage</th>
@@ -52,6 +53,7 @@
         <tbody *ngIf="profilePriceClassTable.data$ | async as tableData">
           <ng-container *ngFor="let priceclass of tableData.data">
             <tr *ngIf="profilePriceClassTable.canShow(priceclass)" class="entry-row">
+              <td> {{ priceclass.title }} </td>
               <input type="checkbox" [(ngModel)]='priceclass.standard'>
               <td>{{ priceclass.color }} </td>
               <td class="text-center">{{ priceclass.percentage }}%</td>

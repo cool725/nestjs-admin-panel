@@ -1,6 +1,6 @@
-import {Component, Injector, OnDestroy, OnInit} from '@angular/core';
+import {Component, Injector} from '@angular/core';
 import { PageController } from '../../../../page.controller';
-import { EDataEmitterType, ITableBaseFilter, Table } from '@movit/app/common';
+import { ITableBaseFilter, Table } from '@movit/app/common';
 import { Confirmable } from '@movit/app/decorators';
 import { ProfilePriceClassAPI } from '../packages/profile-price-class-api.service';
 
@@ -8,6 +8,7 @@ export class PriceClass {
   priceClassId: number;
   companyId: number;
 
+  title: string;
   standard: string;
   color: string;
   isPercentage?:boolean;

@@ -17,6 +17,7 @@ export class ProfilesPriceClassFormComponent extends FormController<PriceClass> 
   };
 
   formPriceClass = this.fb.group({
+    title: new FormControl('', [Validators.required]),
     standard: new FormControl('', [Validators.required]),
     color: new FormControl('#ff0000', [Validators.required]),
     isPercentage: new FormControl(false),

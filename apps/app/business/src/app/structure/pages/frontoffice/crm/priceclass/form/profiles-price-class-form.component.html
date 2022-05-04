@@ -4,6 +4,19 @@ async as priceclass">
     <div class="modal-body">
         <div class="col-12 col-md-9 row">
             <div class="form-group">
+                <label>Title</label>
+                <div class="input-group mb-3">
+                    <input formControlName="title" type="text" class="form-control" placeholder="Title"
+                           aria-label="title" aria-describedby="profiles-sagment-title" />
+                </div>
+                <div *ngIf="formPriceClass.controls['title'].errors && formPriceClass.controls['title'].touched"
+                     class="alert alert-danger">
+                    Title is required
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-9 row">
+            <div class="form-group">
                 <label>Standard</label>
                 <div class="input-group mb-3">
                     <select class="form-control" formControlName="standard">

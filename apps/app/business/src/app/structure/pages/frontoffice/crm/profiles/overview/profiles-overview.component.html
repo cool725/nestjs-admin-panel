@@ -60,20 +60,19 @@
               <td>{{ profile.email }}</td>
               <td>{{ profile.phone }}</td>
               <td class="text-right pe-2" align="right">
-                <a
-                  (click)="editProfile(profile.profileId)"
-                  class="text-primary cursor-pointer"
+                <button mdbRipple (click)="editProfile(profile.profileId)"
+                  class="btn btn-primary"
                 >
                   {{ 'edit' }}
-                </a>
+                </button>
               </td>
               <td class="text-right pe-2" align="right">
-                <a
-                  (click)="deleteProfile(profile.profileId)"
-                  class="text-primary cursor-pointer"
+                <button mdbRipple
+                   (click)="deleteProfile(profile.profileId)"
+                  class="btn btn-primary"
                 >
                   {{ 'delete' }}
-                </a>
+                </button>
               </td>
             </tr>
           </ng-container>

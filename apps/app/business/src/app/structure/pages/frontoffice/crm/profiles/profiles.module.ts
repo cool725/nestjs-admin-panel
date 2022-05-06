@@ -8,30 +8,32 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfilesFormComponent } from './form/profiles-form.component';
 import { environment } from '../../../../../../environments/environment';
 import { ProfilesFormModule } from './form/profiles-form.module';
+import {MdbRippleModule} from "mdb-angular-ui-kit/ripple";
 
 @NgModule({
   declarations: [ProfilesOverviewComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild([
-      {
-        path: 'new',
-        component: ProfilesFormComponent,
-      },
-      {
-        path: 'edit/:id',
-        component: ProfilesFormComponent,
-      },
-      {
-        path: 'overview',
-        component: ProfilesOverviewComponent,
-      },
-    ]),
-    TranslateModule.forChild(),
-    FormsModule,
-    ReactiveFormsModule,
-    ProfilesFormModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild([
+            {
+                path: 'new',
+                component: ProfilesFormComponent,
+            },
+            {
+                path: 'edit/:id',
+                component: ProfilesFormComponent,
+            },
+            {
+                path: 'overview',
+                component: ProfilesOverviewComponent,
+            },
+        ]),
+        TranslateModule.forChild(),
+        FormsModule,
+        ReactiveFormsModule,
+        ProfilesFormModule,
+        MdbRippleModule,
+    ],
   providers: [
     ProfilesAPI,
     {

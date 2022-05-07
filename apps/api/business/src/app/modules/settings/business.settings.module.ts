@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
-import { BusinessSettingsRoleModule } from './user/role/business.settings.role.module';
-import { BusinessSettingsUserModule } from './user/user/business.settings.user.module';
+import { BusinessSettingsController } from './business.settings.controller';
 
 @Module({
-  imports: [BusinessSettingsRoleModule, BusinessSettingsUserModule],
-  controllers: [],
+  imports: [],
+  controllers: [BusinessSettingsController],
   providers: [],
 })
 export class BusinessSettingsModule {}

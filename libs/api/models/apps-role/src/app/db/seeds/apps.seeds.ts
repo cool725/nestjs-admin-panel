@@ -68,6 +68,14 @@ export class InitialAppsSeeds extends SeedHelper {
       title: 'reservation',
       parentCategoryId: 2,
     },
+
+    {
+      categoryId: 11,
+      domain: 'business',
+      title: 'Settings',
+      parentCategoryId: null,
+      companyId: 1
+    },
   ];
 
   apps = [
@@ -102,7 +110,7 @@ export class InitialAppsSeeds extends SeedHelper {
       appId: 11,
       domain: 'business',
       title: 'users',
-      path: '/settings/user/overview',
+      path: '/administration/user/overview',
       categoryId: 6,
       img: '',
     },
@@ -110,7 +118,7 @@ export class InitialAppsSeeds extends SeedHelper {
       appId: 12,
       domain: 'business',
       title: 'role',
-      path: '/settings/user/role',
+      path: '/administration/user/role',
       categoryId: 6,
       img: '',
     },
@@ -160,6 +168,22 @@ export class InitialAppsSeeds extends SeedHelper {
       title: 'agendalist',
       path: '/frontoffice/agenda/list',
       categoryId: 10,
+      img: '',
+    },
+    {
+      appId: 19,
+      domain: 'business',
+      title: 'languages',
+      path: '/settings/locales/',
+      categoryId: 11,
+      img: '',
+    },
+    {
+      appId: 20,
+      domain: 'business',
+      title: 'organisation',
+      path: '/administration/business/overview',
+      categoryId: 5,
       img: '',
     },
   ];

@@ -8,16 +8,16 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { Settings } from '../../business.settings.namespace';
+import { Administration } from '../../business.administration.namespace';
 import { GetCompany } from '../../../../../../../../../libs/api/models/business/src/business.decorator';
 import { AuthGuard } from '@nestjs/passport';
 import { BusinessService } from '@movit/api/business';
 import { BusinessEntity } from '../../../../../../../../../libs/api/models/business/src/entities/business.entity';
 import { AuthService, CompanyGuard } from '@movit/api/auth';
 
-@Controller(Settings.resolePath(Settings.User.UserPATH))
+@Controller(Administration.resolePath(Administration.User.UserPATH))
 @UseGuards(AuthGuard(), CompanyGuard)
-export class BusinessSettingsUserController {
+export class BusinessAdministrationUserController {
   constructor(
     private businessService: BusinessService,
     private authService: AuthService

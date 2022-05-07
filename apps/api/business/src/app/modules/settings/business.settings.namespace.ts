@@ -8,9 +8,5 @@ export namespace Settings {
     return [PATH, ...path].join('/');
   }
 
-  export namespace User {
-    export const UserInvitationPATH = 'user/invitation';
-    export const UserPATH = 'user';
-    export const RolePATH = 'role';
-  }
+
 }

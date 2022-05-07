@@ -7,13 +7,13 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { Settings } from '../../../business.settings.namespace';
+import { Administration } from '../../../business.administration.namespace';
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
-import { UserInvitationService } from './business.settins.user-invitation.service';
+import { UserInvitationService } from './business.administration.user-invitation.service';
 import { GetCompany } from '../../../../../../../../../../libs/api/models/business/src/business.decorator';
 
-@Controller(Settings.resolePath(Settings.User.UserInvitationPATH))
+@Controller(Administration.resolePath(Administration.User.UserInvitationPATH))
 @UseGuards(AuthGuard(), CompanyGuard)
 export class BusinessSettingsUserInvitationController {
   constructor(private userInvitationService: UserInvitationService) {}

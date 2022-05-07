@@ -8,7 +8,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { Settings } from '../../business.settings.namespace';
+import { Administration } from '../../business.administration.namespace';
 import { GetCompany } from '../../../../../../../../../libs/api/models/business/src/business.decorator';
 import { BusinessEntity } from '../../../../../../../../../libs/api/models/business/src/entities/business.entity';
 import { BusinessService } from '@movit/api/business';
@@ -17,9 +17,9 @@ import { CompanyGuard } from '@movit/api/auth';
 import { AppRoleService } from '@movit/api/app';
 import { IsNull } from "typeorm";
 
-@Controller(Settings.resolePath(Settings.User.RolePATH))
+@Controller(Administration.resolePath(Administration.User.RolePATH))
 @UseGuards(AuthGuard(), CompanyGuard)
-export class BusinessSettingsRoleController {
+export class BusinessAdministrationRoleController {
   constructor(
     private businessService: BusinessService,
     private appRoleService: AppRoleService

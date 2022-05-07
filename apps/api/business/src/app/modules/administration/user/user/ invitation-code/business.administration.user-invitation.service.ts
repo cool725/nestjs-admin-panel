@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AuthRepositoryUserInvited } from '../../../../../../../../../../libs/api/models/auth/src/auth/classes/auth.repository.user.invited';
 import { Mailer } from '../../../../../../../../../../libs/api/common/classes';

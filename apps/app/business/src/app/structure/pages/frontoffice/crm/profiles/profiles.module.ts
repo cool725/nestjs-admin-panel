@@ -9,6 +9,7 @@ import { ProfilesFormComponent } from './form/profiles-form.component';
 import { environment } from '../../../../../../environments/environment';
 import { ProfilesFormModule } from './form/profiles-form.module';
 import {MdbRippleModule} from "mdb-angular-ui-kit/ripple";
+import {MdbFormsModule} from "mdb-angular-ui-kit/forms";
 
 @NgModule({
   declarations: [ProfilesOverviewComponent],
@@ -33,6 +34,7 @@ import {MdbRippleModule} from "mdb-angular-ui-kit/ripple";
         ReactiveFormsModule,
         ProfilesFormModule,
         MdbRippleModule,
+        MdbFormsModule,
     ],
   providers: [
     ProfilesAPI,

@@ -5,6 +5,13 @@
   <h4 class="slide">
     {{ 'profiles' | translate }}
   </h4>
+
+  <div >
+    <button (click)="mockupImporter()" class="btn btn-success">
+      Import
+    </button>
+
+  </div>
 </ng-template>
 
 <div class="p-4">
@@ -13,26 +20,23 @@
       <div class="col-12 card bg-white shadow p-3">
         <div class="">
           <div class="row">
-            <div class="col-12 col-md-8">
-              <div class="form-group">
-                <input
-                  (keyup)="getProfiles()"
-                  [(ngModel)]="profileTable.filterValues.searchValue"
-                  class="form-control"
-                  placeholder="Suchen"
-                  tabindex="1"
-                />
-              </div>
+            <div class="col-12 col-md-10">
+              <mdb-form-control>
+                <i class="fa fa-search trailing"></i>
+                <input (keyup)="getProfiles()"
+                       [(ngModel)]="profileTable.filterValues.searchValue"
+                        mdbInput type="text" id="search" class="form-control" />
+                <label mdbLabel class="form-label" for="search">Suchen</label>
+              </mdb-form-control>
             </div>
-
             <div class="col-6 col-md-2 mt-2 mt-md-0">
               <div class="form-group">
-                <a
+                <button mdbRipple
                   (click)="createProfile()"
                   class="btn btn-success text-white w-100"
                 >
                   Create
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -40,16 +44,14 @@
       </div>
     </div>
     <div class="card shadow">
-      <table class="table mb-0 bg-white">
+      <table class="table table-sm mb-0 bg-white">
         <thead>
           <tr>
             <th>firstName</th>
             <th>lastName</th>
             <th>Email</th>
             <th>phone</th>
-            <th class="text-right pe-2" align="right">
-              <a>Action</a>
-            </th>
+            <th colspan="2"></th>
           </tr>
         </thead>
         <tbody *ngIf="profileTable.data$ | async as tableData">
@@ -59,19 +61,19 @@
               <td>{{ profile.lastName }}</td>
               <td>{{ profile.email }}</td>
               <td>{{ profile.phone }}</td>
-              <td class="text-right pe-2" align="right">
+              <td class="text-right ps-0 pe-2" width="80px" align="right">
                 <button mdbRipple (click)="editProfile(profile.profileId)"
                   class="btn btn-primary"
                 >
-                  {{ 'edit' }}
+                 <i class="fa fa-edit text-white"></i>
                 </button>
               </td>
-              <td class="text-right pe-2" align="right">
+              <td class="text-right ps-0 pe-2" width="80px" align="right">
                 <button mdbRipple
                    (click)="deleteProfile(profile.profileId)"
-                  class="btn btn-primary"
+                  class="btn btn-danger"
                 >
-                  {{ 'delete' }}
+                  <i class="fa fa-trash text-white"></i>
                 </button>
               </td>
             </tr>

@@ -25,7 +25,7 @@ export class ProfilesFormComponent extends FormController<Profile> {
     title: new FormControl('', [Validators.max(100)]),
     firstName: new FormControl('', [Validators.max(100)]),
     lastName: new FormControl('', [Validators.max(100)]),
-    phone: new FormControl('', [Validators.max(16)]),
+    phone: new FormControl('', [Validators.maxLength(16)]),
     email: new FormControl('', [Validators.email]),
     birthDay: new FormControl('', []),
     vip: new FormControl('', []),
@@ -41,7 +41,7 @@ export class ProfilesFormComponent extends FormController<Profile> {
 
   constructor(
     override injector: Injector,
-    public api: ProfilesAPI<Profile, any>
+    public api: ProfilesAPI<Profile>
   ) {
     super(injector);
     api.profile$.next(new Profile());
@@ -81,7 +81,12 @@ export class ProfilesFormComponent extends FormController<Profile> {
         }
       },
       ({ error }) => {
-        console.log(error);
+        const keys = error.message.map((message:string) => message.split(' ')[0].trim())
+        for(let i = 0; i<keys.length;i++){
+          const key:string = keys[i]
+          console.log(key,this.formProfile.controls[key])
+          this.formProfile.controls[key].setErrors({'incorrect': true})
+        }
       }
     );
 

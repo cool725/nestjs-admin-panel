@@ -1,6 +1,6 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { environment } from '../../../../../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ITableOptions } from '@movit/app/common';
 import { Cacheable } from 'angular-cacheable';
@@ -8,7 +8,7 @@ import { Cacheable } from 'angular-cacheable';
 @Injectable({
   providedIn: 'root',
 })
-export class ProfilesAPI<Profile, FilterValues> {
+export class ProfilesAPI<Profile> {
   profile$ = new BehaviorSubject<Profile>(<any>null);
   profiles$ = new BehaviorSubject<ITableOptions<Profile>>(<any>null);
 
@@ -27,8 +27,10 @@ export class ProfilesAPI<Profile, FilterValues> {
     return this.http.get(this.getPath('profile', profileId));
   }
 
-  getProfiles(filter: FilterValues): Observable<Profile[]> {
-    return this.http.get<Profile[]>(this.getPath('profile'), filter);
+  getProfiles(filter: HttpParams): Observable<Profile[]> {
+    return this.http.get<Profile[]>(this.getPath('profile'),{
+      params:filter
+    });
   }
 
   saveProfile(profile: Partial<Profile>) {

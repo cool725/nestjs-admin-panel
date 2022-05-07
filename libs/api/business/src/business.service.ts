@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BusinessRepository } from './classes/business.repository';
+import {BusinessIndexHelperRepository, BusinessRepository} from './classes/business.repository';
 import { BusinessEntity } from './entities/business.entity';
 import { BusinessUserRolesEntity } from './entities/business.users.roles.entity.app';
 import { AuthUser } from '@movit/api/auth';
@@ -9,7 +9,9 @@ import { AuthUser } from '@movit/api/auth';
 export class BusinessService {
   constructor(
     @InjectRepository(BusinessRepository)
-    private businessRepo: BusinessRepository
+    private businessRepo: BusinessRepository  ,
+    @InjectRepository(BusinessIndexHelperRepository)
+    private businessIndex: BusinessIndexHelperRepository
   ) {}
 
   /**
@@ -77,5 +79,9 @@ export class BusinessService {
     // create com_user_role
     // create app_role with business scope
     // assign user
+  }
+
+  public getNextId(businessId,tableName){
+    return this.businessIndex.getNextId(businessId,tableName)
   }
 }

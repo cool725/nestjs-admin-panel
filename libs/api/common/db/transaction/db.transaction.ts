@@ -11,7 +11,6 @@ export const doTransactionInsert = async (entity, repo) => {
       } catch (e) {
         await queryRunner.rollbackTransaction();
         await queryRunner.release();
-        console.log(e);
         resolve(false);
       } finally {
         await queryRunner.release();

@@ -2,8 +2,9 @@ import { Component, Injector } from '@angular/core';
 import { PageController } from '../../../../page.controller';
 import { ProfilesAPI } from '../packages/profile-api.service';
 import { EDataEmitterType, ITableBaseFilter, Table } from '@movit/app/common';
-import { Confirmable } from '@movit/app/decorators';
 import { ProfilesFormComponent } from '../form/profiles-form.component';
+import {Confirmable} from "@movit/app/decorators";
+import {Debounce} from "../../../../../../../../../../../libs/app/common/lib/decorators/app.decorator.debounce";
 
 export class Profile {
   profileId: number;
@@ -36,7 +37,7 @@ export class ProfilesOverviewComponent extends PageController {
 
   constructor(
     override injector: Injector,
-    public api: ProfilesAPI<Profile, any>
+    public api: ProfilesAPI<Profile>
   ) {
     super(injector);
   }
@@ -45,9 +46,11 @@ export class ProfilesOverviewComponent extends PageController {
     this.getProfiles();
   }
 
+  @Debounce(300)
   getProfiles() {
     this.onLoadAndSetData(
-      this.api.getProfiles(this.profileTable.filterValues),
+      this.api.
+      getProfiles(this.profileTable.getFilterValuesAsHttpParams()),
       this.api.profiles$,
       (rows: Profile[]) => ({ data: rows })
     );
@@ -73,5 +76,20 @@ export class ProfilesOverviewComponent extends PageController {
   @Confirmable({ title: 'Sure?' })
   async deleteProfile(id: number) {
     return this.api.deleteProfile(id).subscribe(() => this.reloadData());
+  }
+
+  mockupImporter(){
+    fetch('https://627594d0bc9e46be1a0ce35d.mockapi.io/profiles')
+        .then(r => r.json())
+        .then(
+            rows => {
+              for(let i = 0; i<rows.length;i++){
+                rows[i].gender = rows[i].gender =='F2M' ? 'W' : 'M';
+                rows[i].phone = '+41789000000';
+                rows[i].segments = [];
+                this.api.saveProfile(rows[i]).subscribe()
+              }
+            }
+        ).then(()=>setTimeout(()=>this.getData(),5000))
   }
 }

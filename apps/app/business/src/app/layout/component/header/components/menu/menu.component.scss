@@ -1,0 +1,22 @@
+:host{
+  ::ng-deep{
+    .ant-menu.ant-menu-root.ant-menu-light{
+      background: transparent;
+      color: white;
+      &:hover,
+      .active,
+      .ant-menu-submenu-open,
+      .ant-menu-submenu-selected{
+       span{
+         color: white;
+       }
+      }
+    }
+  }
+}
+
+li a {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px;
+  line-height: 27px;
+}

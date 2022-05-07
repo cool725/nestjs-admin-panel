@@ -4,6 +4,7 @@ import { BusinessUserRolesEntity } from '../entities/business.users.roles.entity
 import { InitialBusinessSeeds } from './seeds/business.seeds';
 import { doSeed } from '../../../common/db/seed';
 import { AuthLogin, AuthUser } from '@movit/api/auth';
+import {BusinessTableIndexEntity} from "../entities/business.table.index.entity";
 
 const BusinessDBOptions = <ConnectionOptions>{
   type: process.env.DB_TYPE,
@@ -16,7 +17,7 @@ const BusinessDBOptions = <ConnectionOptions>{
   logging: false,
   migrationsRun: true,
   logger: 'file',
-  entities: [BusinessEntity, BusinessUserRolesEntity],
+  entities: [BusinessEntity, BusinessUserRolesEntity,BusinessTableIndexEntity],
 };
 
 doSeed([InitialBusinessSeeds], BusinessDBOptions, [AuthUser, AuthLogin]);

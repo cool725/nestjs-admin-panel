@@ -1,4 +1,5 @@
 import { BehaviorSubject } from 'rxjs';
+import {HttpParams} from "@angular/common/http";
 
 interface IPageInfo {
   prevPage: boolean;
@@ -90,7 +91,14 @@ export class Table<Type, Filter extends ITableBaseFilter> {
     return new Table<T, F>(observer, filterValues);
   }
 
+  // todo comment
   destroy() {
     this.data$.unsubscribe();
+  }
+
+  public getFilterValuesAsHttpParams(){
+    let queryParams = new HttpParams();
+    for( const key in this.filterValues) queryParams = queryParams.append(key,<any>this.filterValues[key]);
+    return queryParams
   }
 }

@@ -14,17 +14,22 @@ import { IsNull } from 'typeorm';
 export class ProfilesService {
   constructor(
     @InjectRepository(ProfilesRepository)
-    private profileRepo: ProfilesRepository
-  ) {}
+    private profileRepo: ProfilesRepository,
+  ) {
+  }
 
   public getProfiles(businessId: number, pagination: Pagination) {
+
+
+
+
     return this.profileRepo.find({
       where: { companyId: businessId },
       order: pagination.sort.reduce(
         (order, sort) => ({ ...order, [sort.field]: sort.by }),
         {}
       ),
-      skip: pagination.skip,
+    //  skip: pagination.skip,
       take: pagination.limit,
     });
   }
@@ -56,11 +61,13 @@ export class ProfilesService {
   async createProfile(businessId: number, data: Partial<ProfileEntity>) {
     const profile = this.profileRepo.create();
     profile.companyId = businessId;
+    delete data.id;
 
     for (const key in data) if (!data[key]) delete data[key];
     Object.assign(profile, data);
 
-    await this.profileRepo.save(profile);
+    await profile.forceSave();
+
     await this.profileRepo.saveSegments(
       businessId,
       profile.profileId,
@@ -87,7 +94,7 @@ export class ProfilesService {
   }
 
   public deleteProfile(businessId, profileId: number) {
-    return this.profileRepo.delete({
+    return this.profileRepo.softDelete({
       companyId: businessId,
       profileId: profileId,
     });

@@ -7,12 +7,13 @@ interface MenuItems {
   title: string;
   children: MenuItems[];
   path?: string;
+  icon?:string
 }
 
 @Component({
   selector: 'movit-layout-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css'],
+  styleUrls: ['./menu.component.scss'],
 })
 export class LayoutHeaderMenuComponent implements AfterViewInit {
   @Input() menuItems$: Subject<MenuItems[]>;

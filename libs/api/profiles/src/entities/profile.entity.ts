@@ -1,7 +1,7 @@
 import {
   BaseEntity,
   BeforeInsert,
-  Column,
+  Column, DeleteDateColumn,
   Entity,
   Index,
   JoinColumn,
@@ -81,6 +81,10 @@ export class ProfileEntity extends BaseEntity {
   @Exclude()
   notes: string;
 
+  @DeleteDateColumn()
+  @Exclude()
+  deletedAt:Date
+
   constructor() {
     super();
   }
@@ -103,13 +107,19 @@ export class ProfileEntity extends BaseEntity {
         profileId: 'DESC',
       },
       where: { companyId: this.companyId },
-      take: 1,
+      take: 1
     });
-    this.profileId =
-      lastEntry && lastEntry[0] ? +lastEntry[0].profileId + 1 : 1;
+    this.profileId = lastEntry && lastEntry[0] ? +lastEntry[0].profileId + 1 : 1;
+  }
+
+  async forceSave(){
+    while (!this.id ){
+      try {await this.save()}catch (e){}}
   }
 
   protected toJSON() {
     return this;
   }
+
+
 }

@@ -52,6 +52,9 @@ export const GetPagination = createParamDecorator(
 
     // create array of search
     if (search) {
+
+      // refactorize by
+
       const searchArray = search.toString().split(',');
       paginationParams.search = searchArray.map((searchItem) => {
         let field = searchItem.split(':')[0];

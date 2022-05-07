@@ -4,13 +4,13 @@ import { MenuItemDirectiveDirective } from './packages/menu.item.directive.direc
 import { LayoutHeaderMenuComponent } from './menu.component';
 import { HeaderMenuAPI } from './packages/header.service';
 import { RouterModule } from '@angular/router';
-import {NzMenuModule} from "ng-zorro-antd/menu";
+import { NzMenuModule } from 'ng-zorro-antd/menu';
 
 const components = [LayoutHeaderMenuComponent, MenuItemDirectiveDirective];
 
 @NgModule({
   declarations: [components],
-  imports: [CommonModule, RouterModule,  NzMenuModule],
+  imports: [CommonModule, RouterModule, NzMenuModule],
   exports: [components],
   providers: [HeaderMenuAPI],
 })

@@ -52,7 +52,6 @@ export const GetPagination = createParamDecorator(
 
     // create array of search
     if (search) {
-
       // refactorize by
 
       const searchArray = search.toString().split(',');

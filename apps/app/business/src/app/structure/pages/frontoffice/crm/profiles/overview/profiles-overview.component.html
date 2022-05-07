@@ -7,11 +7,8 @@
       {{ 'profiles' | translate }}
     </h4>
 
-    <div class="pe-2" >
-      <button (click)="mockupImporter()" class="btn btn-success">
-        Import
-      </button>
-
+    <div class="pe-2">
+      <button (click)="mockupImporter()" class="btn btn-success">Import</button>
     </div>
   </div>
 </ng-template>
@@ -25,15 +22,21 @@
             <div class="col-12 col-md-10">
               <mdb-form-control>
                 <i class="fa fa-search trailing"></i>
-                <input (keyup)="getProfiles()"
-                       [(ngModel)]="profileTable.filterValues.searchValue"
-                        mdbInput type="text" id="search" class="form-control" />
+                <input
+                  (keyup)="getProfiles()"
+                  [(ngModel)]="profileTable.filterValues.searchValue"
+                  mdbInput
+                  type="text"
+                  id="search"
+                  class="form-control"
+                />
                 <label mdbLabel class="form-label" for="search">Suchen</label>
               </mdb-form-control>
             </div>
             <div class="col-6 col-md-2 mt-2 mt-md-0">
               <div class="form-group">
-                <button mdbRipple
+                <button
+                  mdbRipple
                   (click)="createProfile()"
                   class="btn btn-success text-white w-100"
                 >
@@ -64,15 +67,18 @@
               <td>{{ profile.email }}</td>
               <td>{{ profile.phone }}</td>
               <td class="text-right ps-0 pe-2" width="80px" align="right">
-                <button mdbRipple (click)="editProfile(profile.profileId)"
+                <button
+                  mdbRipple
+                  (click)="editProfile(profile.profileId)"
                   class="btn btn-primary"
                 >
-                 <i class="fa fa-edit text-white"></i>
+                  <i class="fa fa-edit text-white"></i>
                 </button>
               </td>
               <td class="text-right ps-0 pe-2" width="80px" align="right">
-                <button mdbRipple
-                   (click)="deleteProfile(profile.profileId)"
+                <button
+                  mdbRipple
+                  (click)="deleteProfile(profile.profileId)"
                   class="btn btn-danger"
                 >
                   <i class="fa fa-trash text-white"></i>

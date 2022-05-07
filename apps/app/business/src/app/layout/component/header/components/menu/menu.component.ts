@@ -7,7 +7,7 @@ interface MenuItems {
   title: string;
   children: MenuItems[];
   path?: string;
-  icon?:string
+  icon?: string;
 }
 
 @Component({

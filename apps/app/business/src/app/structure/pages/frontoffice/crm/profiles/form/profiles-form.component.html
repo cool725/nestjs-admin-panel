@@ -174,7 +174,12 @@
                 aria-describedby="profiles-phone"
               />
 
-              <div class="w-100 text-danger" *ngIf="!formProfile.controls['phone'].valid">{{formProfile.controls['phone']?.errors| json}}</div>
+              <div
+                class="w-100 text-danger"
+                *ngIf="!formProfile.controls['phone'].valid"
+              >
+                {{ formProfile.controls['phone']?.errors | json }}
+              </div>
             </div>
           </div>
         </div>

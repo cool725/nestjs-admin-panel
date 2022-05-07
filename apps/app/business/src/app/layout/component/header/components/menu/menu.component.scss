@@ -1,15 +1,15 @@
-:host{
-  ::ng-deep{
-    .ant-menu.ant-menu-root.ant-menu-light{
+:host {
+  ::ng-deep {
+    .ant-menu.ant-menu-root.ant-menu-light {
       background: transparent;
       color: white;
       &:hover,
       .active,
       .ant-menu-submenu-open,
-      .ant-menu-submenu-selected{
-       span{
-         color: white;
-       }
+      .ant-menu-submenu-selected {
+        span {
+          color: white;
+        }
       }
     }
   }

@@ -1,25 +1,64 @@
 <div class="start-comp-header-nav--list">
   <ul nz-menu #nav class=" " [nzMode]="'horizontal'">
-    <li *ngFor="let baseItems of menuItems$ | async" class="animated fadeInDown" nz-submenu [nzTitle]="baseItems.title">
+    <li
+      *ngFor="let baseItems of menuItems$ | async"
+      class="animated fadeInDown"
+      nz-submenu
+      [nzTitle]="baseItems.title"
+    >
       <ul *ngIf="baseItems.children?.length">
         <!-- lv 1-->
         <ng-container *ngFor="let childItem of baseItems.children">
-          <li *ngIf="!childItem.children?.length" nz-menu-item [routerLink]="childItem.path" >{{childItem.title}}</li>
-          <li *ngIf="childItem.children?.length" nz-submenu [nzTitle]="childItem.title" >
+          <li
+            *ngIf="!childItem.children?.length"
+            nz-menu-item
+            [routerLink]="childItem.path"
+          >
+            {{ childItem.title }}
+          </li>
+          <li
+            *ngIf="childItem.children?.length"
+            nz-submenu
+            [nzTitle]="childItem.title"
+          >
             <ul>
               <!-- lv 2-->
               <ng-container *ngFor="let childItem of childItem.children">
-                <li *ngIf="!childItem.children?.length" nz-menu-item [routerLink]="childItem.path" >{{childItem.title}}</li>
-                <li *ngIf="childItem.children?.length" nz-submenu [nzTitle]="childItem.title" >
+                <li
+                  *ngIf="!childItem.children?.length"
+                  nz-menu-item
+                  [routerLink]="childItem.path"
+                >
+                  {{ childItem.title }}
+                </li>
+                <li
+                  *ngIf="childItem.children?.length"
+                  nz-submenu
+                  [nzTitle]="childItem.title"
+                >
                   <ul>
                     <!-- lv 3-->
                     <ng-container *ngFor="let childItem of childItem.children">
-                      <li *ngIf="!childItem.children?.length" nz-menu-item [routerLink]="childItem.path" >{{childItem.title}}</li>
-                      <li *ngIf="childItem.children?.length" nz-submenu [nzTitle]="childItem.title" >
+                      <li
+                        *ngIf="!childItem.children?.length"
+                        nz-menu-item
+                        [routerLink]="childItem.path"
+                      >
+                        {{ childItem.title }}
+                      </li>
+                      <li
+                        *ngIf="childItem.children?.length"
+                        nz-submenu
+                        [nzTitle]="childItem.title"
+                      >
                         <ul>
                           <!-- lv 4-->
-                          <ng-container *ngFor="let childItem of childItem.children">
-                            <li [routerLink]="childItem.path" nz-menu-item >{{childItem.title}}</li>
+                          <ng-container
+                            *ngFor="let childItem of childItem.children"
+                          >
+                            <li [routerLink]="childItem.path" nz-menu-item>
+                              {{ childItem.title }}
+                            </li>
                           </ng-container>
                         </ul>
                       </li>
@@ -30,9 +69,7 @@
             </ul>
           </li>
         </ng-container>
-
       </ul>
     </li>
   </ul>
-
 </div>

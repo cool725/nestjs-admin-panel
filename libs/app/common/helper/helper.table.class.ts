@@ -1,5 +1,5 @@
 import { BehaviorSubject } from 'rxjs';
-import {HttpParams} from "@angular/common/http";
+import { HttpParams } from '@angular/common/http';
 
 interface IPageInfo {
   prevPage: boolean;
@@ -96,9 +96,10 @@ export class Table<Type, Filter extends ITableBaseFilter> {
     this.data$.unsubscribe();
   }
 
-  public getFilterValuesAsHttpParams(){
+  public getFilterValuesAsHttpParams() {
     let queryParams = new HttpParams();
-    for( const key in this.filterValues) queryParams = queryParams.append(key,<any>this.filterValues[key]);
-    return queryParams
+    for (const key in this.filterValues)
+      queryParams = queryParams.append(key, <any>this.filterValues[key]);
+    return queryParams;
   }
 }

@@ -2,15 +2,17 @@
   <div class="left-box cursor-pointer">
     <i class="fas fa-cog"></i>
   </div>
-  <h4 class="slide">
-    {{ 'profiles' | translate }}
-  </h4>
+  <div class="d-flex justify-content-between w-100">
+    <h4 class="slide">
+      {{ 'profiles' | translate }}
+    </h4>
 
-  <div >
-    <button (click)="mockupImporter()" class="btn btn-success">
-      Import
-    </button>
+    <div class="pe-2" >
+      <button (click)="mockupImporter()" class="btn btn-success">
+        Import
+      </button>
 
+    </div>
   </div>
 </ng-template>
 

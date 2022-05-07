@@ -3,10 +3,10 @@ import { PageController } from '../../page.controller';
 
 @Component({
   selector: 'movit-settings-overview',
-  templateUrl: './settings-overview.component.html',
-  styleUrls: ['./settings-overview.component.css'],
+  templateUrl: './administration-overview.component.html',
+  styleUrls: ['./administration-overview.component.css'],
 })
-export class SettingsOverviewComponent
+export class AdministrationOverviewComponent
   extends PageController
   implements OnInit
 {

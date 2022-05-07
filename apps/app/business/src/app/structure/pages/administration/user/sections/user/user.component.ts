@@ -1,5 +1,5 @@
 import { Component, Injector } from '@angular/core';
-import { PageController } from '../../../../../page.controller';
+import { PageController } from '../../../../page.controller';
 import { SettingUserAPI } from '../../packages/user-api.service';
 import { ITableBaseFilter, Table } from '@movit/app/common';
 

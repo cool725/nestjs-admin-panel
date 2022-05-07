@@ -1,6 +1,6 @@
 import { Component, Injector } from '@angular/core';
 import { SettingUserAPI } from '../../../packages/user-api.service';
-import { PageController } from '../../../../../../page.controller';
+import { PageController } from '../../../../../page.controller';
 import { Subject, tap } from 'rxjs';
 
 function validateEmail(mail: string) {

@@ -8,8 +8,8 @@ import {
 import { BehaviorSubject, catchError, map, of, Subject, tap } from 'rxjs';
 import { SettingUserAPI } from '../../../packages/user-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PageController } from '../../../../../../page.controller';
-import { FormController } from '../../../../../../form.controller';
+import { PageController } from '../../../../../page.controller';
+import { FormController } from '../../../../../form.controller';
 
 class User {
   firstName: string;

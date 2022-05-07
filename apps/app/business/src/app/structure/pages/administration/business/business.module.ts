@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SettingsOverviewComponent } from './settings-overview/settings-overview.component';
+import { BusinessOverviewComponent } from './overview/business-overview.component';
 import { RouterModule } from '@angular/router';
 
 const routes = [
   {
-    path: 'overview',
-    component: SettingsOverviewComponent,
+    path: '**',
+    component: BusinessOverviewComponent,
   },
 ];
 
 @NgModule({
-  declarations: [SettingsOverviewComponent],
+  declarations: [BusinessOverviewComponent],
   imports: [CommonModule, RouterModule.forChild(routes)],
 })
-export class SettingsCompanyModule {}
+export class BusinessModule {}

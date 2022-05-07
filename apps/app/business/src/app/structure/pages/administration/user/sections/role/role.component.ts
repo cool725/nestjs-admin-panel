@@ -1,9 +1,9 @@
 import { Component, Injector } from '@angular/core';
 import { SettingUserAPI } from '../../packages/user-api.service';
-import { PageController } from '../../../../../page.controller';
+import { PageController } from '../../../../page.controller';
 
 import { SettingRoleAPI } from '../../packages/apps-api.service';
-import { Confirmable } from '../../../../../../../../../../../../libs/app/common/decorators';
+import { Confirmable } from '../../../../../../../../../../../libs/app/common/decorators';
 import { ITableBaseFilter, Table } from '@movit/app/common';
 
 interface IRole {

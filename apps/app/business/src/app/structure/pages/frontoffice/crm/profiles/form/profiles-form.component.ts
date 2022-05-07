@@ -2,7 +2,7 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { FormController } from '../../../../form.controller';
 import { ProfilesAPI } from '../packages/profile-api.service';
 import { FormControl, Validators } from '@angular/forms';
-import { Confirmable } from '@movit/app/decorators';
+import { Confirmable } from '../../../../../../../../../../../libs/app/common/decorators';
 import { Profile } from '../overview/profiles-overview.component';
 import { Subject } from 'rxjs';
 
@@ -39,10 +39,7 @@ export class ProfilesFormComponent extends FormController<Profile> {
 
   sources$ = new Subject<any[]>();
 
-  constructor(
-    override injector: Injector,
-    public api: ProfilesAPI<Profile>
-  ) {
+  constructor(override injector: Injector, public api: ProfilesAPI<Profile>) {
     super(injector);
     api.profile$.next(new Profile());
   }
@@ -81,11 +78,13 @@ export class ProfilesFormComponent extends FormController<Profile> {
         }
       },
       ({ error }) => {
-        const keys = error.message.map((message:string) => message.split(' ')[0].trim())
-        for(let i = 0; i<keys.length;i++){
-          const key:string = keys[i]
-          console.log(key,this.formProfile.controls[key])
-          this.formProfile.controls[key].setErrors({'incorrect': true})
+        const keys = error.message.map((message: string) =>
+          message.split(' ')[0].trim()
+        );
+        for (let i = 0; i < keys.length; i++) {
+          const key: string = keys[i];
+          console.log(key, this.formProfile.controls[key]);
+          this.formProfile.controls[key].setErrors({ incorrect: true });
         }
       }
     );

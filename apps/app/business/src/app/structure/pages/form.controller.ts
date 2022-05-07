@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Injector, Output } from '@angular/core';
 import { PageController } from './page.controller';
 import { ActivatedRoute } from '@angular/router';
-import { AutoUnsubscribe } from '@movit/app/decorators';
+import { AutoUnsubscribe } from '../../../../../../../libs/app/common/decorators';
 import { FormBuilder } from '@angular/forms';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { ItemController } from '../../item.controller';
 
-import { Confirmable } from '@movit/app/decorators';
+import { Confirmable } from '../../../../../../../../../../../libs/app/common/decorators';
 import { ItemServiceAPI } from '../item.api';
 import { Table } from '@movit/app/common';
 

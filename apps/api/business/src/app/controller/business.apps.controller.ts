@@ -2,7 +2,7 @@ import { Controller, Get, UseGuards } from '@nestjs/common';
 import { AppRoleService } from '@movit/api/app';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthUser, CompanyGuard, GetUser } from '@movit/api/auth';
-import { GetCompany } from '../../../../../../libs/api/business/src/business.decorator';
+import { GetCompany } from '../../../../../../libs/api/models/business/src/business.decorator';
 
 @Controller()
 @UseGuards(AuthGuard(), CompanyGuard)

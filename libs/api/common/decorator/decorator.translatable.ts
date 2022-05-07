@@ -1,4 +1,4 @@
-import { TranslationLabelEntity } from '../../translation/src/lib/entities/translation.label.item';
+import { TranslationLabelEntity } from '../../models/translation/src/lib/entities/translation.label.item';
 import { Like, Not } from 'typeorm';
 
 export interface ITranslatable {}

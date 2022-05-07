@@ -15,10 +15,10 @@ import {
 } from '../../../../../../../../../libs/api/common/decorator';
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
-import { GetCompany } from '../../../../../../../../../libs/api/business/src/business.decorator';
-import { BusinessEntity } from '../../../../../../../../../libs/api/business/src/entities/business.entity';
+import { GetCompany } from '../../../../../../../../../libs/api/models/business/src/business.decorator';
+import { BusinessEntity } from '../../../../../../../../../libs/api/models/business/src/entities/business.entity';
 import { ProfilesService } from '@movit/api/profiles';
-import { ProfilesDto } from '../../../../../../../../../libs/api/profiles/src/classes/profiles.dto';
+import { ProfilesDto } from '../../../../../../../../../libs/api/models/profiles/src/classes/profiles.dto';
 
 @Controller(FrontOffice.resolePaths(['crm', FrontOffice.Profiles.PATH]))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)

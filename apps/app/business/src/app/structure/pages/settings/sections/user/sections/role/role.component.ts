@@ -3,7 +3,7 @@ import { SettingUserAPI } from '../../packages/user-api.service';
 import { PageController } from '../../../../../page.controller';
 
 import { SettingRoleAPI } from '../../packages/apps-api.service';
-import { Confirmable } from '@movit/app/decorators';
+import { Confirmable } from '../../../../../../../../../../../../libs/app/common/decorators';
 import { ITableBaseFilter, Table } from '@movit/app/common';
 
 interface IRole {

@@ -2,7 +2,7 @@ import { Component, Injector, TemplateRef, ViewChild } from '@angular/core';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { AppNotifyService } from '@movit/app/common';
-import { AutoUnsubscribe } from '@movit/app/decorators';
+import { AutoUnsubscribe } from '../../../../../../../libs/app/common/decorators';
 import { DataEmitter, EDataEmitterType } from '@movit/app/common';
 
 @Component({
@@ -108,7 +108,4 @@ export abstract class PageController {
   protected notify(type: any, message: string) {
     return this.vNotify.show(type, message);
   }
-
-
-
 }

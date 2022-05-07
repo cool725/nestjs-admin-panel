@@ -2,7 +2,7 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { FormController } from '../../../../form.controller';
 import { ProfileSegmentAPI } from '../packages/profile-sagment-api.service';
 import { FormControl, Validators } from '@angular/forms';
-import { Confirmable } from '@movit/app/decorators';
+import { Confirmable } from '../../../../../../../../../../../libs/app/common/decorators';
 import { Segment } from '../overview/profiles-segment-overview.component';
 
 @Component({

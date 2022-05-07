@@ -1,1 +1,1 @@
-export * from './lib/cors.middleware';
+export * from './cors.middleware';

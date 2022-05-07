@@ -9,14 +9,14 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { Settings } from '../../business.settings.namespace';
-import { GetCompany } from '../../../../../../../../../libs/api/business/src/business.decorator';
-import { BusinessEntity } from '../../../../../../../../../libs/api/business/src/entities/business.entity';
+import { GetCompany } from '../../../../../../../../../libs/api/models/business/src/business.decorator';
+import { BusinessEntity } from '../../../../../../../../../libs/api/models/business/src/entities/business.entity';
 import { BusinessService } from '@movit/api/business';
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
 import { AppRoleService } from '@movit/api/app';
-import { AppsRoleRightsEntity } from '../../../../../../../../../libs/api/apps-role/src/app/entities/start.entity.role.rights';
-import { AppsUserRightEntity } from '../../../../../../../../../libs/api/apps-role/src/app/entities/start.entity.user.rights';
+import { AppsRoleRightsEntity } from '../../../../../../../../../libs/api/models/apps-role/src/app/entities/start.entity.role.rights';
+import { AppsUserRightEntity } from '../../../../../../../../../libs/api/models/apps-role/src/app/entities/start.entity.user.rights';
 
 @Controller(Settings.resolePath(Settings.User.RolePATH))
 @UseGuards(AuthGuard(), CompanyGuard)

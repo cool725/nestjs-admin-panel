@@ -1,21 +1,21 @@
 {
   "version": 2,
   "projects": {
-    "api-app-role": "libs/api/apps-role",
     "api-auth": "apps/api/auth",
     "api-business": "apps/api/business",
-    "api-profiles": "libs/api/profiles",
-    "api-reservation": "libs/api/reservation",
     "app-auth": "apps/app/auth",
     "app-business": "apps/app/business",
-    "lib-api-auth": "libs/api/auth",
-    "lib-api-business": "libs/api/business",
+    "lib-api-auth": "libs/api/models/auth",
+    "lib-api-business": "libs/api/models/business",
     "lib-api-middleware": "libs/api/common/middleware",
+    "lib-api-profiles": "libs/api/models/profiles",
+    "lib-api-reservation": "libs/api/models/reservation",
     "lib-api-utils": "libs/api/common/utils",
     "lib-app-common": "libs/app/common",
+    "lib-app-role": "libs/api/models/apps-role",
     "lib-app-ui": "libs/app/ui",
-    "lib-employee": "libs/api/employee",
+    "lib-employee": "libs/api/models/employee",
     "lib-third-party": "libs/api/third-party",
-    "lib-translation": "libs/api/translation"
+    "lib-translation": "libs/api/models/translation"
   }
 }

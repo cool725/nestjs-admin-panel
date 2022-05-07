@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { PageController } from '../../../../page.controller';
 import { ITableBaseFilter, Table } from '@movit/app/common';
-import { Confirmable } from '@movit/app/decorators';
+import { Confirmable } from '../../../../../../../../../../../libs/app/common/decorators';
 import { ProfilePriceClassAPI } from '../packages/profile-price-class-api.service';
 
 export class PriceClass {

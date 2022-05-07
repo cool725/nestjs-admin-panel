@@ -2,7 +2,7 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { FormController } from '../../../../form.controller';
 import { ProfilePriceClassAPI } from '../packages/profile-price-class-api.service';
 import { FormControl, Validators } from '@angular/forms';
-import { Confirmable } from '@movit/app/decorators';
+import { Confirmable } from '../../../../../../../../../../../libs/app/common/decorators';
 import { PriceClass } from '../overview/profiles-price-class-overview.component';
 
 @Component({

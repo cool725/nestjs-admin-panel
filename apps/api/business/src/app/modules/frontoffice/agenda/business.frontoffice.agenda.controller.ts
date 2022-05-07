@@ -9,8 +9,8 @@ import {
 } from '@nestjs/common';
 import { FrontOffice } from '../business.frontoffice.namespace';
 import { ReservationService } from '@movit/api/reservation';
-import { GetCompany } from '../../../../../../../../libs/api/business/src/business.decorator';
-import { BusinessEntity } from '../../../../../../../../libs/api/business/src/entities/business.entity';
+import { GetCompany } from '../../../../../../../../libs/api/models/business/src/business.decorator';
+import { BusinessEntity } from '../../../../../../../../libs/api/models/business/src/entities/business.entity';
 import { AuthUser, CompanyGuard, GetUser } from '@movit/api/auth';
 import { AuthGuard } from '@nestjs/passport';
 

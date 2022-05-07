@@ -11,7 +11,7 @@ import { Settings } from '../../../business.settings.namespace';
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
 import { UserInvitationService } from './business.settins.user-invitation.service';
-import { GetCompany } from '../../../../../../../../../../libs/api/business/src/business.decorator';
+import { GetCompany } from '../../../../../../../../../../libs/api/models/business/src/business.decorator';
 
 @Controller(Settings.resolePath(Settings.User.UserInvitationPATH))
 @UseGuards(AuthGuard(), CompanyGuard)

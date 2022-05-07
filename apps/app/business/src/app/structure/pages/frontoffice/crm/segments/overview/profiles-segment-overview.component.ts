@@ -2,7 +2,7 @@ import { Component, Injector, OnDestroy, OnInit } from '@angular/core';
 import { PageController } from '../../../../page.controller';
 import { ProfileSegmentAPI } from '../packages/profile-sagment-api.service';
 import { EDataEmitterType, ITableBaseFilter, Table } from '@movit/app/common';
-import { Confirmable } from '@movit/app/decorators';
+import { Confirmable } from '../../../../../../../../../../../libs/app/common/decorators';
 // import { ProfilesSagmentFormComponent } from "../form/profiles-sagment-form.component";
 
 export class Segment {

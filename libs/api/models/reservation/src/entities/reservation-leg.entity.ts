@@ -1,26 +1,24 @@
 import {
-  BaseEntity,
+  BeforeInsert,
   Column,
   Entity,
   Index,
   ManyToOne,
   PrimaryGeneratedColumn,
-  Unique,
-} from 'typeorm';
-import { Exclude, instanceToPlain } from 'class-transformer';
+  Unique
+} from "typeorm";
+import { Exclude } from 'class-transformer';
 import { ReservationHeadEntity } from './reservation-head.entity';
+import { TenantEntity } from "../../../../common/db/db.CoreEntity";
 
 @Entity('res_reservation_leg')
 @Index(['companyId'])
 @Index(['companyId', 'userId'])
 @Unique(['companyId', 'reservationId', 'legId'])
-export class ReservationLegEntity extends BaseEntity {
+export class ReservationLegEntity extends TenantEntity {
   @PrimaryGeneratedColumn('increment')
   @Exclude()
   id: number;
-
-  @Column({ type: 'bigint', nullable: false, unsigned: true })
-  companyId: number;
 
   @Column({ type: 'bigint', nullable: false, unsigned: true })
   reservationId: number;
@@ -40,7 +38,8 @@ export class ReservationLegEntity extends BaseEntity {
   @Column({ type: 'datetime', nullable: true })
   end: Date;
 
-  public toJSON() {
-    return instanceToPlain(this);
+  @BeforeInsert()
+  protected async beforeInsert() {
+    // no needs to call setLastEntryId
   }
 }

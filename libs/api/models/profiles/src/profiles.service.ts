@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { doTransactionInsert } from '../../../common/db/transaction/db.transaction';
+
 import {
   ProfilesPriceClassRepository,
   ProfilesRepository,
@@ -9,6 +9,7 @@ import {
 import { Pagination } from '../../../common/decorator';
 import { ProfileEntity } from './entities/profile.entity';
 import { IsNull } from 'typeorm';
+import { doInsert } from "../../../common/db/utils/db.utils";
 
 @Injectable()
 export class ProfilesService {
@@ -61,13 +62,14 @@ export class ProfilesService {
     for (const key in data) if (!data[key]) delete data[key];
     Object.assign(profile, data);
 
-    await profile.forceSave();
+    await doInsert(profile);
 
     await this.profileRepo.saveSegments(
       businessId,
       profile.profileId,
-      <any>data.segments
+      data.segments as number[]
     );
+
     return profile;
   }
 
@@ -126,7 +128,7 @@ export class ProfilesSegmentService {
   async createSegment(businessId: number, data: any) {
     const segment = this.segmentRepo.create();
     segment.companyId = businessId;
-    await doTransactionInsert(segment, this.segmentRepo);
+    doInsert(segment)
     return this.updateSegment(businessId, segment.segmentId, data);
   }
 

@@ -14,17 +14,15 @@ import {
 import { Exclude } from 'class-transformer';
 import { ProfileEntity } from './profile.entity';
 import { ProfileSegmentRelationEntity } from './profile.segment.relation.entity';
+import { TenantEntity } from "../../../../common/db/db.CoreEntity";
 
 @Entity('crm_segment')
 @Index(['companyId'])
 @Unique(['companyId', 'segmentId'])
-export class ProfileSegmentEntity extends BaseEntity {
+export class ProfileSegmentEntity extends TenantEntity {
   @PrimaryGeneratedColumn('increment')
   @Exclude()
   id: number;
-
-  @Column({ type: 'bigint', nullable: false, unsigned: true })
-  companyId: number;
 
   @Column({ type: 'bigint', nullable: false, unsigned: true })
   segmentId: number;
@@ -49,20 +47,8 @@ export class ProfileSegmentEntity extends BaseEntity {
   ])
   profiles: ProfileSegmentRelationEntity[];
 
-  constructor() {
-    super();
-  }
-
   @BeforeInsert()
   protected async beforeInsert() {
-    console.warn('replace count with max');
-    this.segmentId =
-      (await ProfileSegmentEntity.count({
-        where: { companyId: this.companyId },
-      })) + 1;
-  }
-
-  toJSON() {
-    return this;
+    await this.setLastEntryId('segmentId')
   }
 }

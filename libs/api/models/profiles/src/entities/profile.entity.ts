@@ -17,18 +17,16 @@ import { ProfileSegmentEntity } from './profile.segment.entity';
 import { ProfileSourceEntity } from './profile.source.entity';
 import { ProfileSegmentRelationEntity } from './profile.segment.relation.entity';
 import { ProfilePriceClassEntity } from './profile.priceclass.entity';
+import { TenantEntity } from "../../../../common/db/db.CoreEntity";
 
 @Entity('crm_profile')
 @Index(['companyId'])
 @Unique(['companyId', 'profileId'])
 @Index(['companyId', 'vip'])
-export class ProfileEntity extends BaseEntity {
+export class ProfileEntity extends TenantEntity {
   @PrimaryGeneratedColumn('increment')
   @Exclude()
   id: number;
-
-  @Column({ type: 'bigint', nullable: false, unsigned: true })
-  companyId: number;
 
   @Column({ type: 'bigint', nullable: false, unsigned: true })
   profileId: number;
@@ -86,10 +84,6 @@ export class ProfileEntity extends BaseEntity {
   @Exclude()
   deletedAt: Date;
 
-  constructor() {
-    super();
-  }
-
   public initialiseData(profile: Partial<ProfileEntity>) {
     this.firstName = profile.firstName;
     this.lastName = profile.lastName;
@@ -103,26 +97,7 @@ export class ProfileEntity extends BaseEntity {
 
   @BeforeInsert()
   protected async beforeInsert() {
-    const lastEntry = await ProfileEntity.find({
-      order: {
-        profileId: 'DESC',
-      },
-      where: { companyId: this.companyId },
-      take: 1,
-    });
-    this.profileId =
-      lastEntry && lastEntry[0] ? +lastEntry[0].profileId + 1 : 1;
+    await this.setLastEntryId('profileId')
   }
 
-  async forceSave() {
-    while (!this.id) {
-      try {
-        await this.save();
-      } catch (e) {}
-    }
-  }
-
-  protected toJSON() {
-    return this;
-  }
 }

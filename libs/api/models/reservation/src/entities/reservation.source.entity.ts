@@ -10,17 +10,15 @@ import {
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { ReservationHeadEntity } from './reservation-head.entity';
+import { TenantEntity } from "../../../../common/db/db.CoreEntity";
 
 @Entity('res_source')
 @Index(['companyId'])
 @Unique(['companyId', 'sourceId'])
-export class ReservationSourceEntity extends BaseEntity {
+export class ReservationSourceEntity extends TenantEntity {
   @PrimaryGeneratedColumn('increment')
   @Exclude()
   id: number;
-
-  @Column({ type: 'bigint', nullable: false, unsigned: true })
-  companyId: number;
 
   @Column({ type: 'bigint', nullable: false, unsigned: true })
   sourceId: number;
@@ -46,7 +44,9 @@ export class ReservationSourceEntity extends BaseEntity {
   }
 
   @BeforeInsert()
-  protected async beforeInsert() {}
+  protected async beforeInsert() {
+    await this.setLastEntryId('sourceId')
+  }
 
   public toJSON() {
     return this;

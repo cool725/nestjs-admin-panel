@@ -119,7 +119,10 @@ export class RoleFormComponent extends FormController<any> {
 
     api.subscribe();
 
-    setTimeout(() => this.navBack(), 300);
+    setTimeout(() => {
+      this.navBack();
+      location.reload()
+    }, 300);
   }
 
   async deleteRole(roleId: number) {

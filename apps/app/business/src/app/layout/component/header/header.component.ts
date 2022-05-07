@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import { AuthCanActivate } from '@movit/app/common';
 import { HttpClient } from '@angular/common/http';
+import { UserStore } from "../../../../../../../../libs/app/common/store/app.store.user";
 
 @Component({
   selector: 'layout-comp-header',
@@ -29,10 +30,11 @@ export class HeaderComponent extends PageController implements OnInit {
     override injector: Injector,
     public menuAPI: HeaderMenuAPI,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    public user: UserStore
   ) {
     super(injector);
-    console.log('okk');
+
   }
 
   ngOnInit() {

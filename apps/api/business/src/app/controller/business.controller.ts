@@ -19,4 +19,9 @@ export class BusinessController {
   invitationCode(@GetUser() user, @Param('code') invitationCode) {
     return this.businessAPI.signUserByInvitationCode(user, invitationCode);
   }
+
+  @Get('user/me')
+  getSelf(@GetUser() user) {
+    return user;
+  }
 }

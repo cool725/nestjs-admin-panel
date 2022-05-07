@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AgendaComponent } from './agenda/agenda.component';
+import { AgendaComponent } from './me/agenda.component';
 import { RouterModule, Routes } from '@angular/router';
-import { AgendaAPI } from './agenda/agenda.api.service';
+import { AgendaAPI } from './me/agenda.api.service';
 import { environment } from '../../../../../environments/environment';
 
 const routes: Routes = [

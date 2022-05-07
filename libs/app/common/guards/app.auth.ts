@@ -15,6 +15,7 @@ import {
 } from '@angular/router';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { UserStore } from "../store/app.store.user";
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace AuthCanActivate {
@@ -34,6 +35,7 @@ export namespace AuthCanActivate {
     constructor(
       @Inject(DOCUMENT) private document: Document,
       @Inject(PLATFORM_ID) private platformId: InjectionToken<string>,
+      private userStore: UserStore,
       private router: Router,
       @Inject('env')
       @Optional()
@@ -42,7 +44,9 @@ export namespace AuthCanActivate {
         api: { url: string };
         company: any;
       }
-    ) {}
+    ) {
+
+    }
 
     canActivate(
       route: ActivatedRouteSnapshot,
@@ -52,7 +56,7 @@ export namespace AuthCanActivate {
       | Promise<boolean | UrlTree>
       | boolean
       | UrlTree {
-      return true;
+
       if (
         this.env?.auth?.redirectOnFailure &&
         !this.document.cookie.includes('utk')
@@ -63,7 +67,7 @@ export namespace AuthCanActivate {
         navigateToAuthPage(document);
         return false;
       }
-      return true;
+      return this.userStore.reloadUser();;
     }
   }
 

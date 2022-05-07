@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { BoostrapModalUIComponent } from '@movit/app/ui';
 import { DataEmitter, EDataEmitterType } from '@movit/app/common';
+import { UserStore } from "../../../../../../../libs/app/common/store/app.store.user";
 
 @Component({
   selector: 'start-layout-main',
@@ -17,7 +18,8 @@ export class LayoutMainComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private dE: DataEmitter
+    private dE: DataEmitter,
+    public user: UserStore
   ) {
     this.init();
   }

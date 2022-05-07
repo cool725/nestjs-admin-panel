@@ -1,12 +1,10 @@
 import { Connection } from 'typeorm';
 import { SeedHelper } from '../../../../../../common/db/seed';
-import { AppsCategoryEntity } from '../../entities/start.entity.category';
 import { AppsEntity } from '../../entities/start.entity.app';
 import { AuthUser } from '@movit/api/auth';
 import { AppsUserRightEntity } from '../../entities/start.entity.user.rights';
 import { AppsRoleEntity } from '../../entities/start.entity.role.app';
 import { BusinessEntity } from '../../../../../business/src/entities/business.entity';
-import { BusinessUserRolesEntity } from '../../../../../business/src/entities/business.users.roles.entity.app';
 
 export class InitialAppRoleSeeds extends SeedHelper {
   migrationName: string = this.constructor.name;
@@ -49,7 +47,7 @@ export class InitialAppRoleSeeds extends SeedHelper {
       await userRight.save();
 
       role.users = [userRight];
-      role.save();
+      await role.save();
 
       const apps = await AppsEntity.find();
 

@@ -29,7 +29,7 @@ const childRoutes = [
   {
     path: 'settings',
     loadChildren: () =>
-      import('./../../structure/pages/settings/settings.module').then(
+      import('../pages/administrator/settings.module').then(
         (m) => m.SettingsModule
       ),
   },

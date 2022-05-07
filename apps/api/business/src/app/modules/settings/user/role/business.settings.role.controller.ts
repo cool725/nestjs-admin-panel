@@ -15,8 +15,7 @@ import { BusinessService } from '@movit/api/business';
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
 import { AppRoleService } from '@movit/api/app';
-import { AppsRoleRightsEntity } from '../../../../../../../../../libs/api/models/apps-role/src/app/entities/start.entity.role.rights';
-import { AppsUserRightEntity } from '../../../../../../../../../libs/api/models/apps-role/src/app/entities/start.entity.user.rights';
+import { IsNull } from "typeorm";
 
 @Controller(Settings.resolePath(Settings.User.RolePATH))
 @UseGuards(AuthGuard(), CompanyGuard)
@@ -33,10 +32,21 @@ export class BusinessSettingsRoleController {
 
   @Get('getApps')
   getApps(@GetCompany() business: BusinessEntity) {
-    return this.appRoleService.getBusinessApps({
-      domain: null,
-      companyId: business.businessId,
-    });
+    return Promise.all([
+      this.appRoleService.getBusinessApps({
+        domain: null,
+        companyId: business.businessId,
+      }),
+      this.appRoleService.getBusinessApps({
+        domain: 'business',
+        companyId: IsNull() as any,
+      })
+    ]).then(rows => [... rows[0], ...rows[1]])
+      .then(apps => apps.map( (app:any) => {
+        app.categoryName = app?.category?.title;  // todo get base category
+        delete app.category;
+        return app
+      }));
   }
   @Get('getRole/:roleId')
   getRole(

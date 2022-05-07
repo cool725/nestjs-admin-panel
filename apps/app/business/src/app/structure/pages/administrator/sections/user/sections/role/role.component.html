@@ -59,15 +59,14 @@
             <tr *ngIf="rolesTable.canShow(role, ['title'])" class="entry-row">
               <td>{{ role.title }}</td>
               <td>{{ role.countUser || 0 }}</td>
-              <td>{{ role.state }}</td>
+              <td>{{ role.state ? 'enabled' : 'disabled' }}</td>
               <td class="text-right pe-2" align="right">
-                <a
+                <button mdbRipple
                   [routerLink]="
                     basePath + '/settings/user/role/edit/' + role.roleId
                   "
-                  class="text-primary cursor-pointer"
-                  >Bearbeiten</a
-                >
+                  class="btn btn-primary"
+                  > <i class="fa fa-edit text-white"></i></button>
               </td>
             </tr>
           </ng-container>

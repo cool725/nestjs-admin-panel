@@ -62,6 +62,12 @@ export class InitialAppsSeeds extends SeedHelper {
       title: 'profiles',
       parentCategoryId: 2,
     },
+    {
+      categoryId: 10,
+      domain: 'business',
+      title: 'reservation',
+      parentCategoryId: 2,
+    },
   ];
 
   apps = [
@@ -130,6 +136,30 @@ export class InitialAppsSeeds extends SeedHelper {
       title: 'priceclass',
       path: '/frontoffice/crm/profiles/priceclass/overview',
       categoryId: 9,
+      img: '',
+    },
+    {
+      appId: 16,
+      domain: 'business',
+      title: 'agenda',
+      path: '/frontoffice/agenda/me',
+      categoryId: 10,
+      img: '',
+    },
+    {
+      appId: 17,
+      domain: 'business',
+      title: 'agenda',
+      path: '/frontoffice/agenda/employees',
+      categoryId: 10,
+      img: '',
+    },
+    {
+      appId: 18,
+      domain: 'business',
+      title: 'agendalist',
+      path: '/frontoffice/agenda/list',
+      categoryId: 10,
       img: '',
     },
   ];

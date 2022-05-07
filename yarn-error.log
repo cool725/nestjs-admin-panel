@@ -1,5 +1,5 @@
 Arguments: 
-  /home/wds/.nvm/versions/node/v17.4.0/bin/node /usr/local/bin/yarn install
+  /home/wds/.nvm/versions/node/v17.4.0/bin/node /usr/local/bin/yarn install --force
 
 PATH: 
   /home/wds/.nvm/versions/node/v17.4.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/wds/IdeaProjects/codebase/nestjs-admin-panel/node_modules/.bin

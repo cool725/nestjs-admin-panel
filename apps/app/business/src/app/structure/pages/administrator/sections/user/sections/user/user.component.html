@@ -73,10 +73,10 @@
               <td>{{ user.total }}</td>
 
               <td class="text-right pe-2" align="right">
-                <a
+                <button mdbRipple
                   [routerLink]="basePath + '/settings/user/edit/' + user.userId"
-                  class="text-primary cursor-pointer"
-                  >Bearbeiten</a
+                  class="btn btn-primary"
+                  > <i class="fa fa-edit text-white"></i></button
                 >
               </td>
             </tr>

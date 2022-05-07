@@ -1,6 +1,5 @@
 {
   "projectType": "application",
-  "root": "apps/app/auth",
   "sourceRoot": "apps/app/auth/src",
   "prefix": "movit",
   "targets": {

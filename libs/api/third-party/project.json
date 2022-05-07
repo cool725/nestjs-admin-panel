@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/api/third-party",
   "sourceRoot": "libs/api/third-party/src",
   "prefix": "movit",
   "targets": {

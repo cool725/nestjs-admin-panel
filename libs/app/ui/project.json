@@ -1,5 +1,4 @@
 {
-  "root": "libs/app/ui",
   "sourceRoot": "libs/app/ui",
   "projectType": "library",
   "prefix": "ui",

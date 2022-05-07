@@ -1,5 +1,4 @@
 {
-  "root": "libs/api/translation",
   "sourceRoot": "libs/api/translation/src",
   "projectType": "library",
   "targets": {

@@ -1,5 +1,4 @@
 {
-  "root": "libs/api/auth",
   "sourceRoot": "libs/api/auth/src",
   "projectType": "library",
   "prefix": "auth",

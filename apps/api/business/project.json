@@ -1,5 +1,4 @@
 {
-  "root": "apps/api/business",
   "sourceRoot": "apps/api/business/src",
   "projectType": "application",
   "targets": {

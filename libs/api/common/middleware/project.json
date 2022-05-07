@@ -1,5 +1,4 @@
 {
-  "root": "libs/api/common/middleware",
   "sourceRoot": "libs/api/common/middleware",
   "projectType": "library",
   "targets": {

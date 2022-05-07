@@ -1,5 +1,4 @@
 {
-  "root": "libs/api/profiles",
   "sourceRoot": "libs/api/profiles/src",
   "targets": {
     "lint": {

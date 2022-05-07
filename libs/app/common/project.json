@@ -1,5 +1,4 @@
 {
-  "root": "libs/app/common",
   "sourceRoot": "libs/app/common",
   "projectType": "library",
   "prefix": "common",

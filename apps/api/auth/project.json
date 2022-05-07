@@ -1,5 +1,4 @@
 {
-  "root": "apps/api/auth",
   "sourceRoot": "apps/api/auth/src",
   "projectType": "application",
   "targets": {

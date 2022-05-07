@@ -1,5 +1,4 @@
 {
-  "root": "libs/api/business",
   "sourceRoot": "libs/api/business/src",
   "projectType": "library",
   "targets": {

@@ -1,6 +1,5 @@
 {
   "projectType": "application",
-  "root": "apps/app/business",
   "sourceRoot": "apps/app/business/src",
   "prefix": "movit",
   "targets": {

@@ -1,5 +1,4 @@
 {
-  "root": "libs/api/employee",
   "sourceRoot": "libs/api/employee/src",
   "targets": {
     "lint": {

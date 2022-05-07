@@ -1,5 +1,4 @@
 {
-  "root": "libs/api/reservation",
   "sourceRoot": "libs/api/reservation/src",
   "targets": {
     "lint": {

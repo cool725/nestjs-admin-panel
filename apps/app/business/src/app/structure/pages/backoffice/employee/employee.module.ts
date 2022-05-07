@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EmployeeOverviewComponent } from './overview/employee.component';
 import { EmployeeApi } from './overview/employee.api.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { MdbSharedModule } from "@movit/app/ui";
 
 const routes: Routes = [
   {
@@ -31,6 +32,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     TranslateModule.forChild(),
+    MdbSharedModule
   ],
   providers: [EmployeeApi],
 })

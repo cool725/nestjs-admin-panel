@@ -41,13 +41,15 @@
               <td>{{ employee.phone }}</td>
 
               <td class="text-right pe-2" align="right">
-                <a
+
+                <button
+                  mdbRipple
                   [routerLink]="
-                    basePath + '/settings/employee/edit/' + employee.employeeId
-                  "
-                  class="text-primary cursor-pointer"
-                  >Bearbeiten</a
+                    basePath + '/settings/employee/edit/' + employee.employeeId"
+                  class="btn btn-primary"
                 >
+                  <i class="fa fa-edit text-white"></i>
+                </button>
               </td>
             </tr>
           </ng-container>

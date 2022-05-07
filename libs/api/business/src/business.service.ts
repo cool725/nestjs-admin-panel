@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {BusinessIndexHelperRepository, BusinessRepository} from './classes/business.repository';
+import { BusinessRepository} from './classes/business.repository';
 import { BusinessEntity } from './entities/business.entity';
 import { BusinessUserRolesEntity } from './entities/business.users.roles.entity.app';
 import { AuthUser } from '@movit/api/auth';
@@ -9,9 +9,7 @@ import { AuthUser } from '@movit/api/auth';
 export class BusinessService {
   constructor(
     @InjectRepository(BusinessRepository)
-    private businessRepo: BusinessRepository  ,
-    @InjectRepository(BusinessIndexHelperRepository)
-    private businessIndex: BusinessIndexHelperRepository
+    private businessRepo: BusinessRepository
   ) {}
 
   /**
@@ -81,7 +79,5 @@ export class BusinessService {
     // assign user
   }
 
-  public getNextId(businessId,tableName){
-    return this.businessIndex.getNextId(businessId,tableName)
-  }
+
 }

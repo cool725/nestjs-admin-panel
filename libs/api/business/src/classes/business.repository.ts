@@ -2,7 +2,6 @@ import { EntityRepository, Repository } from 'typeorm';
 import { BusinessEntity } from '../entities/business.entity';
 import { BusinessUserRolesEntity } from '../entities/business.users.roles.entity.app';
 import { AuthUser } from '@movit/api/auth';
-import {BusinessTableIndexEntity} from "../entities/business.table.index.entity";
 
 @EntityRepository(BusinessEntity)
 export class BusinessRepository extends Repository<BusinessEntity> {
@@ -113,28 +112,4 @@ export class BusinessRepository extends Repository<BusinessEntity> {
 }
 
 
-@EntityRepository(BusinessTableIndexEntity)
-export class BusinessIndexHelperRepository extends Repository<BusinessTableIndexEntity> {
-  constructor() {
-    super();
-  }
-
-  async getNextId(businessId,tableName){
-
-    const target:any = {
-      businessId:businessId,
-      tableName:tableName,
-    };
-    await this.createQueryBuilder()
-        .update()
-        .set({ tableIndex: () => "tableIndex + 1" })
-        .where(target)
-        .execute();
-
-    if(!target.tableIndex)
-    await this.upsert(target,['businessId','tableName']);
-
-    return target;
-  }
-}
 

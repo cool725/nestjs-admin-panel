@@ -7,4 +7,4 @@ COPY scripts/ecosystem.config.js ./scripts
 RUN node package.slicer.js
 #RUN npm i --production --ignore-scripts
 RUN npm i --g pm2
-RUN npm i tslib
+RUN yarn add tslib

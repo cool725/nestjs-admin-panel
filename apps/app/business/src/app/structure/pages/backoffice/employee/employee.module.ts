@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormComponent } from './form/form.component';
+import { EmployeeFormComponent } from "./form/form.component";
 import { RouterModule, Routes } from '@angular/router';
-import { EmployeeOverviewComponent } from './employee.component';
-import { EmployeeApi } from './employee.api.service';
+import { EmployeeOverviewComponent } from './overview/employee.component';
+import { EmployeeApi } from './overview/employee.api.service';
 import { TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [
@@ -12,13 +12,21 @@ const routes: Routes = [
     component: EmployeeOverviewComponent,
   },
   {
+    path: 'edit/:employeeId',
+    component: EmployeeFormComponent,
+  },
+  {
+    path: 'new',
+    component: EmployeeFormComponent,
+  },
+  {
     path: '',
     redirectTo: 'overview',
   },
 ];
 
 @NgModule({
-  declarations: [EmployeeOverviewComponent, FormComponent],
+  declarations: [EmployeeOverviewComponent, EmployeeFormComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

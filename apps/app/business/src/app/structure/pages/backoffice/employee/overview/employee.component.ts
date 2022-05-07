@@ -1,14 +1,12 @@
 import {
   Component,
-  Injector,
-  OnInit,
-  TemplateRef,
-  ViewChild,
+  Injector
 } from '@angular/core';
-import { PageController } from '../../page.controller';
+import { PageController } from '../../../page.controller';
 
 import { EmployeeApi } from './employee.api.service';
 import { ITableBaseFilter, Table } from '@movit/app/common';
+
 class Employee {
   employeeId: number;
   companyId: number;
@@ -45,6 +43,10 @@ export class EmployeeOverviewComponent extends PageController {
   }
 
   getData(): void {
+    this.getEmployees()
+  }
+
+  getEmployees(){
     this.onLoadAndSetData(this.api.get('employees'), this.api.employees$);
   }
 }

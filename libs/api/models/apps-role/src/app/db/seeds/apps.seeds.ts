@@ -189,11 +189,44 @@ export class InitialAppsSeeds extends SeedHelper {
     {
       appId: 21,
       domain: 'business',
-      title: 'payment',
+      title: 'products',
       path: '/administration/payment/overview',
       categoryId: 5,
       img: '',
     },
+    {
+      appId: 22,
+      domain: 'business',
+      title: 'services',
+      path: '/backoffice/items/sales/service/overview',
+      categoryId: 8,
+      img: '',
+    },
+    {
+      appId: 23,
+      domain: 'business',
+      title: 'products',
+      path: '/backoffice/items/sales/products/overview',
+      categoryId: 8,
+      img: '',
+    },
+    {
+      appId: 24,
+      domain: 'business',
+      title: 'vouchers',
+      path: '/backoffice/items/sales/vouchers/overview',
+      categoryId: 8,
+      img: '',
+    },
+    {
+      appId: 25,
+      domain: 'business',
+      title: 'postage',
+      path: '/backoffice/items/sales/products/postage',
+      categoryId: 8,
+      img: '',
+    },
+
   ];
 
   public async doSeed(queryRunner: Connection): Promise<boolean> {

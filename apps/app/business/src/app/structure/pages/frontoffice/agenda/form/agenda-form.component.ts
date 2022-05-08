@@ -1,25 +1,21 @@
-import {Component, Injector, OnInit} from '@angular/core';
-import {FormController} from "../../../form.controller";
+import { Component, Injector, OnInit } from '@angular/core';
+import { FormController } from '../../../form.controller';
 
 @Component({
   selector: 'movit-agenda-form',
   templateUrl: './agenda-form.component.html',
-  styleUrls: ['./agenda-form.component.css']
+  styleUrls: ['./agenda-form.component.css'],
 })
 export class AgendaFormComponent extends FormController<any> implements OnInit {
-
-  viewSettings:any = {
-    mode:'mode'
-  }
+  viewSettings: any = {
+    mode: 'mode',
+  };
 
   constructor(override injector: Injector) {
     super(injector);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  override getData(): void {
-  }
-
+  override getData(): void {}
 }

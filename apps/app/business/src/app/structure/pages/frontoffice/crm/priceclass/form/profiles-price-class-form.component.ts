@@ -24,7 +24,7 @@ export class ProfilesPriceClassFormComponent
     isDefault: new FormControl(1, [Validators.required]),
     color: new FormControl('#ffffff', [Validators.required]),
     value: new FormControl(0),
-    reduceType: new FormControl('fixed',[Validators.required]),
+    reduceType: new FormControl('fixed', [Validators.required]),
   });
 
   constructor(

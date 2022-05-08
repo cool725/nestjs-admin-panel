@@ -226,7 +226,6 @@ export class InitialAppsSeeds extends SeedHelper {
       categoryId: 8,
       img: '',
     },
-
   ];
 
   public async doSeed(queryRunner: Connection): Promise<boolean> {

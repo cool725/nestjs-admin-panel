@@ -49,25 +49,28 @@
           <ng-container *ngFor="let priceclass of tableData.data">
             <tr *ngIf="profilePriceClassTable.canShow(priceclass)">
               <td>{{ priceclass.title }}</td>
-              <td>  <input type="color" disabled [value]=" priceclass.color "></td>
+              <td>
+                <input type="color" disabled [value]="priceclass.color" />
+              </td>
               <td class="text-center">{{ priceclass.percentage }}%</td>
               <td class="text-right ps-0 pe-2" width="80px" align="right">
-
-                <button mdbRipple
-                        (click)="editPriceClass(priceclass.priceClassId)"
-                        class="btn btn-primary"
+                <button
+                  mdbRipple
+                  (click)="editPriceClass(priceclass.priceClassId)"
+                  class="btn btn-primary"
                 >
                   <i class="fa fa-edit text-white"></i>
                 </button>
               </td>
               <td class="text-right ps-0 pe-2" width="80px" align="right">
-                <button mdbRipple
-                        (click)="deleteProfilePriceClass(priceclass.priceClassId)"
-                        class="btn btn-danger">
+                <button
+                  mdbRipple
+                  (click)="deleteProfilePriceClass(priceclass.priceClassId)"
+                  class="btn btn-danger"
+                >
                   <i class="fa fa-trash text-white"></i>
                 </button>
               </td>
-
             </tr>
           </ng-container>
         </tbody>

@@ -35,14 +35,19 @@ export class ProfilePriceClassEntity extends BaseEntity {
   @Column({ type: 'varchar', length: 20, nullable: true })
   color: string;
 
-  @Column({ type: 'boolean', default:false,  nullable: true })
+  @Column({ type: 'boolean', default: false, nullable: true })
   isDefault: string;
 
-  @Column({ type: 'float', default: 0,  nullable: true })
+  @Column({ type: 'float', default: 0, nullable: true })
   value: number;
 
-  @Column({ type: 'enum', enum:['fixed','%'],  nullable: false, default:'fixed' })
-  reduceType: ['fixed','%'];
+  @Column({
+    type: 'enum',
+    enum: ['fixed', '%'],
+    nullable: false,
+    default: 'fixed',
+  })
+  reduceType: ['fixed', '%'];
 
   @Column({ type: 'smallint', nullable: true, default: 1 })
   order: number;

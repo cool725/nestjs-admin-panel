@@ -8,7 +8,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ItemServiceAPI } from './item.api';
 import { ItemServiceFormComponent } from './form/item-service-form.component';
 import { TranslateModule } from '@ngx-translate/core';
-import {MdbSharedModule} from "@movit/app/ui";
+import { MdbSharedModule } from '@movit/app/ui';
 
 const routes: Routes = [
   {
@@ -24,9 +24,9 @@ const routes: Routes = [
     component: ItemServiceOverviewComponent,
   },
   {
-    path:'',
-    redirectTo:'overview'
-  }
+    path: '',
+    redirectTo: 'overview',
+  },
 ];
 
 @NgModule({

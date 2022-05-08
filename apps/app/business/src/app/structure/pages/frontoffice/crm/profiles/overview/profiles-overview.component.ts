@@ -54,11 +54,7 @@ export class ProfilesOverviewComponent extends PageController {
 
   createProfile() {
     new Promise((resolve) =>
-      this.openModal(
-        ProfilesFormComponent,
-        {},
-        resolve
-      )
+      this.openModal(ProfilesFormComponent, {}, resolve)
     ).then(() => this.getData());
   }
 

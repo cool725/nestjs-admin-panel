@@ -121,7 +121,7 @@ export class RoleFormComponent extends FormController<any> {
 
     setTimeout(() => {
       this.navBack();
-      setTimeout(()=>location.reload(),500)
+      setTimeout(() => location.reload(), 500);
     }, 300);
   }
 

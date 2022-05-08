@@ -38,9 +38,7 @@ export class BusinessOverviewComponent extends PageController {
     );
   }
 
-  editBusiness(businessId: number) {
-
-  }
+  editBusiness(businessId: number) {}
 
   @Confirmable({ title: 'sure?' })
   deleteBusiness(businessId: number) {}

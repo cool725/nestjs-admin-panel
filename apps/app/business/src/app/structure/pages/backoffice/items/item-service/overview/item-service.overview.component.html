@@ -29,22 +29,23 @@
             </div>
             <div class="d-flex justify-content-between">
               <div class="d-flex">
-                <button mdbRipple (click)="create('category')"
-                        class="btn btn-success text-white ">
+                <button
+                  mdbRipple
+                  (click)="create('category')"
+                  class="btn btn-success text-white"
+                >
                   Kategorie erstellen
                 </button>
-                <button mdbRipple
-                        (click)="create('service')"
-                        class=" ms-2 btn btn-success text-white "
+                <button
+                  mdbRipple
+                  (click)="create('service')"
+                  class="ms-2 btn btn-success text-white"
                 >
                   Dienstleistung erstellen
                 </button>
               </div>
 
-              <button mdbRipple
-
-                      class=" ms-2 btn btn-primary text-white "
-              >
+              <button mdbRipple class="ms-2 btn btn-primary text-white">
                 Ansicht ändern
               </button>
             </div>
@@ -193,7 +194,7 @@
       <div class="col-12 col-md-3">
         <div class="card h-line">
           <div class="card-header">
-            <label>{{ 'notset' | translate  }}</label>
+            <label>{{ 'notset' | translate }}</label>
           </div>
           <div class="card-body"></div>
         </div>
@@ -326,7 +327,7 @@
 </lib-modal-ui>
 
 <lib-modal-ui
-        [style]="{
+  [style]="{
     width: '400px',
     height: '725px',
     background: 'red',
@@ -336,7 +337,8 @@
     top: '0px',
     margin: 'auto'
   }"
-        *ngIf="api.category$ | async as category">
+  *ngIf="api.category$ | async as category"
+>
   <div class="modal-header">
     <select class="form-control bg-transparent">
       <option>Einfach</option>
@@ -364,7 +366,12 @@
       <div class="lang_chooser_pills">
         <nav class="nav nav-pills nav-fill fadeInDown">
           <a
-            *ngFor="let l of [{ languageId: 1, name: 'de' },{ languageId: 2, name: 'en' }]"
+            *ngFor="
+              let l of [
+                { languageId: 1, name: 'de' },
+                { languageId: 2, name: 'en' }
+              ]
+            "
             class="nav-item nav-link animated fadeInDown {{
               (category.label['title']['cLang'] || defaultLanguageId) ==
               l.languageId

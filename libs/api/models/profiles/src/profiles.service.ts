@@ -177,9 +177,8 @@ export class ProfilesPriceClassService {
     priceClass.title = data.title;
     priceClass.color = data.color;
     priceClass.isDefault = data.isDefault;
-    priceClass.value =  data.value;
-    priceClass.reduceType = data.reduceType
-
+    priceClass.value = data.value;
+    priceClass.reduceType = data.reduceType;
     return priceClass.save();
   }
 

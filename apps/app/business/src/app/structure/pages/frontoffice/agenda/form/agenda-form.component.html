@@ -1,39 +1,28 @@
 <div class="modal-header">
-    <span># </span>
-    <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-    ></button>
+  <span># </span>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal"
+    aria-label="Close"
+  ></button>
 </div>
 <div class="modal-header-sub">
-    <select class="form-control bg-transparent text-white">
-        <option value="simple">Einfach</option>
-        <option value="details">Detailiert</option>
-    </select>
+  <select class="form-control bg-transparent text-white">
+    <option value="simple">Einfach</option>
+    <option value="details">Detailiert</option>
+  </select>
 </div>
 
 <div class="modal-footer">
-    <button
-
-            type="button"
-            class="btn btn-danger text-white"
-    >
-        Löschen
-    </button>
-    <button
-            (click)="closeModal()"
-            type="button"
-            class="btn btn-primary text-white"
-            data-bs-dismiss="modal"
-    >
-        Abbrechen
-    </button>
-    <button
-            type="button"
-            class="btn btn-success text-white"
-    >
-        Speichern
-    </button>
+  <button type="button" class="btn btn-danger text-white">Löschen</button>
+  <button
+    (click)="closeModal()"
+    type="button"
+    class="btn btn-primary text-white"
+    data-bs-dismiss="modal"
+  >
+    Abbrechen
+  </button>
+  <button type="button" class="btn btn-success text-white">Speichern</button>
 </div>

@@ -52,25 +52,28 @@
             <tr *ngIf="profileSegmentTable.canShow(data)" class="entry-row">
               <td>{{ data.title }}</td>
               <td>
-                <input type="color" disabled [value]=" data.color ">
+                <input type="color" disabled [value]="data.color" />
               </td>
               <td class="text-center">{{ data.order }}</td>
               <td class="text-right ps-0 pe-2" width="80px" align="right">
-                <button mdbRipple
-                        (click)="editSegment(data.segmentId)"
-                        class="btn btn-primary"
+                <button
+                  mdbRipple
+                  (click)="editSegment(data.segmentId)"
+                  class="btn btn-primary"
                 >
                   <i class="fa fa-edit text-white"></i>
                 </button>
               </td>
               <td class="text-right ps-0 pe-2" width="80px" align="right">
-                <button mdbRipple
-                        (click)="deleteSegment(data.segmentId)"
-                        class="btn btn-danger">
+                <button
+                  mdbRipple
+                  (click)="deleteSegment(data.segmentId)"
+                  class="btn btn-danger"
+                >
                   <i class="fa fa-trash text-white"></i>
                 </button>
               </td>
-             </tr>
+            </tr>
           </ng-container>
         </tbody>
       </table>

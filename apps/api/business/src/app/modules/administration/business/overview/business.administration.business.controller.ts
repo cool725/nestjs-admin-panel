@@ -1,4 +1,4 @@
-import {Controller, Get, Param, UseGuards} from '@nestjs/common';
+import { Controller, Get, Param, UseGuards } from '@nestjs/common';
 import { Administration } from '../../business.administration.namespace';
 import { GetCompany } from '../../../../../../../../../libs/api/models/business/src/business.decorator';
 import { BusinessEntity } from '../../../../../../../../../libs/api/models/business/src/entities/business.entity';
@@ -24,9 +24,9 @@ export class BusinessAdministrationBusinessController {
 
   @Get(':businessId')
   getOrganisations(
-      @Param('businessId') businessId: string,
-      @GetCompany() business: BusinessEntity,
-      @GetUser() user: AuthUser
+    @Param('businessId') businessId: string,
+    @GetCompany() business: BusinessEntity,
+    @GetUser() user: AuthUser
   ) {
     /* Get linked companies */
     // this.businessService.getAllowedBusinessListFromUser();

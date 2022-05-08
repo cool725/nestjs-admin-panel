@@ -13,4 +13,7 @@ export namespace Administration {
     export const UserPATH = 'user';
     export const RolePATH = 'role';
   }
+  export namespace Business {
+    export const Path = 'business';
+  }
 }

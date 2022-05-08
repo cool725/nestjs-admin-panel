@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { UserNewComponent } from './new/user.new.component';
 import { FormUserComponent } from './form/form-user.component';
-import { MdbSharedModule } from "@movit/app/ui";
+import { MdbSharedModule } from '@movit/app/ui';
 
 const routes = [
   { path: 'invite', component: UserNewComponent },
@@ -16,6 +16,11 @@ const routes = [
 
 @NgModule({
   declarations: [UserComponent, UserNewComponent, FormUserComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), FormsModule, MdbSharedModule]
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    FormsModule,
+    MdbSharedModule,
+  ],
 })
 export class SettingsUserModule {}

@@ -1,1 +1,88 @@
-<p>settings-overview works!</p>
+<ng-template #topbar>
+  <div class="left-box"></div>
+  <h4 class="slide">Firmen</h4>
+</ng-template>
+
+<div class="p-4">
+  <div class="container">
+    <div class="pb-4">
+      <div class="col-12 card bg-white shadow p-3">
+        <div class="">
+          <div class="row">
+            <div class="col-12 col-md-10">
+              <mdb-form-control>
+                <i class="fa fa-search trailing"></i>
+                <input
+                  (keyup)="getBusinessList()"
+                  [(ngModel)]="businessTable.filterValues.searchValue"
+                  mdbInput
+                  type="text"
+                  id="search"
+                  class="form-control"
+                />
+                <label mdbLabel class="form-label" for="search">Suchen</label>
+              </mdb-form-control>
+            </div>
+            <div class="col-6 col-md-2 mt-2 mt-md-0">
+              <div class="form-group">
+                <button
+                  mdbRipple
+                  (click)="createBusiness()"
+                  class="btn btn-success text-white w-100"
+                >
+                  Create
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card shadow">
+      <table class="table table-sm mb-0 bg-white">
+        <thead>
+          <tr>
+            <th>Logo</th>
+            <th>Name</th>
+            <th>Standort</th>
+            <th>Verantworlicher</th>
+            <th>phone</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+        <tbody *ngIf="businessTable.data$ | async as tableData">
+          <ng-container *ngFor="let data of tableData.data">
+            <tr *ngIf="businessTable.canShow(data) || true" class="entry-row">
+              <td>
+                <img [src]="data.logoSrc" width="80px" class="" />
+              </td>
+              <td>{{ data.titleFull }}</td>
+              <td>{{ data.location }}</td>
+              <td>{{ 'person' }}</td>
+              <td>{{ 'phone' }}</td>
+
+              <td class="text-right ps-0 pe-2" width="80px" align="right">
+                <button
+                  mdbRipple
+                  (click)="editBusiness(data.companyId)"
+                  class="btn btn-primary"
+                >
+                  <i class="fa fa-edit text-white"></i>
+                </button>
+              </td>
+              <td class="text-right ps-0 pe-2" width="80px" align="right">
+                <button
+                  mdbRipple
+                  (click)="deleteBusiness(data.companyId)"
+                  class="btn btn-danger"
+                >
+                  <i class="fa fa-trash text-white"></i>
+                </button>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

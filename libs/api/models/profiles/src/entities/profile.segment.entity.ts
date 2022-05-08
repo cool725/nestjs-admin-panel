@@ -14,7 +14,7 @@ import {
 import { Exclude } from 'class-transformer';
 import { ProfileEntity } from './profile.entity';
 import { ProfileSegmentRelationEntity } from './profile.segment.relation.entity';
-import { TenantEntity } from "../../../../common/db/db.CoreEntity";
+import { TenantEntity } from '../../../../common/db/db.CoreEntity';
 
 @Entity('crm_segment')
 @Index(['companyId'])
@@ -49,6 +49,6 @@ export class ProfileSegmentEntity extends TenantEntity {
 
   @BeforeInsert()
   protected async beforeInsert() {
-    await this.setLastEntryId('segmentId')
+    await this.setLastEntryId('segmentId');
   }
 }

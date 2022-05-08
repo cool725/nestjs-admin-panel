@@ -51,6 +51,19 @@ export class BusinessRepository extends Repository<BusinessEntity> {
     );
   }
 
+  async getAllowedBusinessListFromUser(user) {
+    const userBusinesses = await BusinessUserRolesEntity.find({
+      where: {
+        user: user,
+      },
+    });
+    return userBusinesses.map((v) => v.business);
+  }
+
+  async getLinkedBusinessList(user) {
+    return [];
+  }
+
   async getBusinessRoles(business: BusinessEntity) {
     const userBusinesses = await BusinessUserRolesEntity.find({
       where: {

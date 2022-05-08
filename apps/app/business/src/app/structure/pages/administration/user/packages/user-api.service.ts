@@ -13,7 +13,7 @@ export class SettingUserAPI {
   constructor(private http: HttpClient) {}
 
   getPath(path: string) {
-    return environment.api.url + '/settings' + path;
+    return environment.api.url + '/administration' + path;
   }
 
   getUser(userId: string) {

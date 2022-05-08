@@ -168,15 +168,19 @@
               <ng-container *ngFor="let app of apps">
                 <tr [class.bg-light-red]="!selectedApps[app.appId]">
                   <td class="pb-0">
-                    <p class="m-0">{{app.baseTitle ? (app.baseTitle + ' - ' ) : ''}} {{ app.title }}</p>
-                    <small class="w-100">{{ app.categoryName  }}</small>
+                    <p class="m-0">
+                      {{ app.baseTitle ? app.baseTitle + ' - ' : '' }}
+                      {{ app.title }}
+                    </p>
+                    <small class="w-100">{{ app.categoryName }}</small>
                   </td>
                   <td class="pb-0" align="right">
                     <select
                       [(ngModel)]="selectedApps[app.appId]"
                       dir="rtl"
                       style="max-width: 200px; line-height: 15px"
-                      class="form-control border-0 pt-1 pb-0">
+                      class="form-control border-0 pt-1 pb-0"
+                    >
                       <option value="" selected>Keine Rechte</option>
                       <option value="read">Lesen</option>
                       <option value="write">Lesen/Schreiben</option>

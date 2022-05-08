@@ -1,13 +1,12 @@
-import { BaseEntity, Column } from "typeorm";
+import { BaseEntity, Column } from 'typeorm';
 
-export abstract class TenantEntity extends BaseEntity{
-
+export abstract class TenantEntity extends BaseEntity {
   @Column({ type: 'bigint', nullable: false, unsigned: true })
   companyId: number;
 
-  protected abstract beforeInsert():Promise<any>
+  protected abstract beforeInsert(): Promise<any>;
 
-  async setLastEntryId(key:string):Promise<number>{
+  async setLastEntryId(key: string): Promise<number> {
     const lastEntry = await TenantEntity.find({
       order: {
         [key]: 'DESC',
@@ -16,7 +15,7 @@ export abstract class TenantEntity extends BaseEntity{
       take: 1,
     });
     this[key] = lastEntry && lastEntry[0] ? +lastEntry[0][key] + 1 : 1;
-    return this[key]
+    return this[key];
   }
 
   public toJSON() {

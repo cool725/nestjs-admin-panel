@@ -5,11 +5,11 @@ import {
   Index,
   ManyToOne,
   PrimaryGeneratedColumn,
-  Unique
-} from "typeorm";
+  Unique,
+} from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { ReservationHeadEntity } from './reservation-head.entity';
-import { TenantEntity } from "../../../../common/db/db.CoreEntity";
+import { TenantEntity } from '../../../../common/db/db.CoreEntity';
 
 @Entity('res_reservation_leg')
 @Index(['companyId'])

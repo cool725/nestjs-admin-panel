@@ -7,6 +7,4 @@ export namespace Settings {
   export function resolePaths(path: string[]) {
     return [PATH, ...path].join('/');
   }
-
-
 }

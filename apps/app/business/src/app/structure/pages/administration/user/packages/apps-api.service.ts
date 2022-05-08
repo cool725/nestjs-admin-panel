@@ -7,7 +7,7 @@ export class SettingRoleAPI {
   constructor(private http: HttpClient) {}
 
   getPath(path: string): string {
-    return environment.api.url + '/settings' + path;
+    return environment.api.url + '/administration' + path;
   }
 
   getRoles() {

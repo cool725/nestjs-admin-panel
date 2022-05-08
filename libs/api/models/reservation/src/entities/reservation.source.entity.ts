@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { ReservationHeadEntity } from './reservation-head.entity';
-import { TenantEntity } from "../../../../common/db/db.CoreEntity";
+import { TenantEntity } from '../../../../common/db/db.CoreEntity';
 
 @Entity('res_source')
 @Index(['companyId'])
@@ -45,7 +45,7 @@ export class ReservationSourceEntity extends TenantEntity {
 
   @BeforeInsert()
   protected async beforeInsert() {
-    await this.setLastEntryId('sourceId')
+    await this.setLastEntryId('sourceId');
   }
 
   public toJSON() {

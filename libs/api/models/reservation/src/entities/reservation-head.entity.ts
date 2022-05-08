@@ -1,5 +1,6 @@
 import {
-  BaseEntity, BeforeInsert,
+  BaseEntity,
+  BeforeInsert,
   Column,
   Entity,
   Index,
@@ -7,13 +8,13 @@ import {
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
-  Unique
-} from "typeorm";
+  Unique,
+} from 'typeorm';
 import { Exclude, instanceToPlain } from 'class-transformer';
 
 import { ReservationLegEntity } from './reservation-leg.entity';
 import { ReservationSourceEntity } from './reservation.source.entity';
-import { TenantEntity } from "../../../../common/db/db.CoreEntity";
+import { TenantEntity } from '../../../../common/db/db.CoreEntity';
 
 @Entity('res_reservation_head')
 @Index(['userId'])
@@ -68,9 +69,8 @@ export class ReservationHeadEntity extends TenantEntity {
   // guests
   profiles: any[];
 
-
   @BeforeInsert()
   protected async beforeInsert() {
-    await this.setLastEntryId('reservationId')
+    await this.setLastEntryId('reservationId');
   }
 }

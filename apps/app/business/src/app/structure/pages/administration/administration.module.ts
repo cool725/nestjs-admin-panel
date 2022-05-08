@@ -26,9 +26,7 @@ const routes = [
   {
     path: 'business',
     loadChildren: () =>
-      import('./business/business.module').then(
-        (m) => m.BusinessModule
-      ),
+      import('./business/business.module').then((m) => m.BusinessModule),
   },
   {
     path: 'payment',

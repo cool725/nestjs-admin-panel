@@ -15,7 +15,7 @@ import { BusinessService } from '@movit/api/business';
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
 import { AppRoleService } from '@movit/api/app';
-import { IsNull } from "typeorm";
+import { IsNull } from 'typeorm';
 
 @Controller(Administration.resolePath(Administration.User.RolePATH))
 @UseGuards(AuthGuard(), CompanyGuard)
@@ -40,13 +40,16 @@ export class BusinessAdministrationRoleController {
       this.appRoleService.getBusinessApps({
         domain: 'business',
         companyId: IsNull() as any,
-      })
-    ]).then(rows => [... rows[0], ...rows[1]])
-      .then(apps => apps.map( (app:any) => {
-        app.categoryName = app?.category?.title;  // todo get base category
-        delete app.category;
-        return app
-      }));
+      }),
+    ])
+      .then((rows) => [...rows[0], ...rows[1]])
+      .then((apps) =>
+        apps.map((app: any) => {
+          app.categoryName = app?.category?.title; // todo get base category
+          delete app.category;
+          return app;
+        })
+      );
   }
   @Get('getRole/:roleId')
   getRole(

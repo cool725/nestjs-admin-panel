@@ -1,13 +1,8 @@
 <div mdbDropdown class="dropdown h-100">
-  <button
-    class=""
-    type="button"
-    id="profile-menu"
-    mdbDropdownToggle
-  >
+  <button class="" type="button" id="profile-menu" mdbDropdownToggle>
     <div class="profile-avatar">
       <img *ngIf="false" class="profile-avatar--img" src="" />
-      <div class="no-img">{{label}}</div>
+      <div class="no-img">{{ label }}</div>
     </div>
   </button>
   <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="profile-menu">

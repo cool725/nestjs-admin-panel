@@ -10,7 +10,7 @@ import { environment } from '../../../../../../environments/environment';
 import { ProfilesFormModule } from './form/profiles-form.module';
 import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
-import { MdbSharedModule } from "@movit/app/ui";
+import { MdbSharedModule } from '@movit/app/ui';
 
 @NgModule({
   declarations: [ProfilesOverviewComponent],
@@ -18,24 +18,23 @@ import { MdbSharedModule } from "@movit/app/ui";
     CommonModule,
     RouterModule.forChild([
       {
-        path: "new",
-        component: ProfilesFormComponent
+        path: 'new',
+        component: ProfilesFormComponent,
       },
       {
-        path: "edit/:id",
-        component: ProfilesFormComponent
+        path: 'edit/:id',
+        component: ProfilesFormComponent,
       },
       {
-        path: "overview",
-        component: ProfilesOverviewComponent
-      }
+        path: 'overview',
+        component: ProfilesOverviewComponent,
+      },
     ]),
     TranslateModule.forChild(),
     FormsModule,
     ReactiveFormsModule,
     ProfilesFormModule,
-    MdbSharedModule
-
+    MdbSharedModule,
   ],
   providers: [
     ProfilesAPI,

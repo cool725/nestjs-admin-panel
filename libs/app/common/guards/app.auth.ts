@@ -15,7 +15,7 @@ import {
 } from '@angular/router';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { UserStore } from "../store/app.store.user";
+import { UserStore } from '../store/app.store.user';
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace AuthCanActivate {
@@ -44,9 +44,7 @@ export namespace AuthCanActivate {
         api: { url: string };
         company: any;
       }
-    ) {
-
-    }
+    ) {}
 
     canActivate(
       route: ActivatedRouteSnapshot,
@@ -56,7 +54,6 @@ export namespace AuthCanActivate {
       | Promise<boolean | UrlTree>
       | boolean
       | UrlTree {
-
       if (
         this.env?.auth?.redirectOnFailure &&
         !this.document.cookie.includes('utk')
@@ -67,7 +64,7 @@ export namespace AuthCanActivate {
         navigateToAuthPage(document);
         return false;
       }
-      return this.userStore.reloadUser();;
+      return this.userStore.reloadUser();
     }
   }
 

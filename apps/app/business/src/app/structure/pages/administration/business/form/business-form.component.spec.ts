@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LocalesComponent } from './locales.component';
+import { BusinessFormComponent } from './business-form.component';
 
-describe('LocalesComponent', () => {
-  let component: LocalesComponent;
-  let fixture: ComponentFixture<LocalesComponent>;
+describe('BusinessFormComponent', () => {
+  let component: BusinessFormComponent;
+  let fixture: ComponentFixture<BusinessFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LocalesComponent],
+      declarations: [BusinessFormComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LocalesComponent);
+    fixture = TestBed.createComponent(BusinessFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

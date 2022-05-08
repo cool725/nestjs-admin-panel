@@ -4,7 +4,7 @@ import {
   ReservationLegRepository,
   ReservationRepository,
 } from './classes/reservation.repository';
-import { doInsert } from "../../../common/db/utils/db.utils";
+import { doInsert } from '../../../common/db/utils/db.utils';
 
 @Injectable()
 export class ReservationService {
@@ -47,7 +47,7 @@ export class ReservationService {
     resHead.userId = reservation.userId;
     resHead.reservationId = 1;
     await doInsert(resHead);
-    return
+    return;
   }
 
   async updateReservation(businessId, reservationId, reservation: any) {

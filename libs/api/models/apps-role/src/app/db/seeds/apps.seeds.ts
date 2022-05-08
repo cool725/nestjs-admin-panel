@@ -74,7 +74,7 @@ export class InitialAppsSeeds extends SeedHelper {
       domain: 'business',
       title: 'Settings',
       parentCategoryId: null,
-      companyId: 1
+      companyId: 1,
     },
   ];
 

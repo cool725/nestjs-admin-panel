@@ -13,7 +13,7 @@ import { TranslationModule } from '@movit/api/translation';
 import { BusinessFrontOfficeModule } from './modules/frontoffice/business.frontoffice.module';
 import { ProfilesModule } from '@movit/api/profiles';
 import { ReservationModule } from '@movit/api/reservation';
-import { BusinessSettingsModule } from "./modules/settings/business.settings.module";
+import { BusinessSettingsModule } from './modules/settings/business.settings.module';
 
 @Module({
   imports: [

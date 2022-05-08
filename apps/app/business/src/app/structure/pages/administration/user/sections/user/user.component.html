@@ -22,7 +22,7 @@
             <div class="col-6 col-md-2 mt-2 mt-md-0">
               <div class="form-group">
                 <a
-                  [routerLink]="basePath + '/settings/user/invite'"
+                  [routerLink]="basePath + '/administration/user/invite'"
                   class="btn btn-primary text-white w-100"
                   >Einladen</a
                 >
@@ -31,7 +31,7 @@
             <div class="col-6 col-md-2 mt-2 mt-md-0">
               <div class="form-group">
                 <a
-                  [routerLink]="basePath + '/settings/user/new'"
+                  [routerLink]="basePath + '/administration/user/new'"
                   class="btn btn-success text-white w-100"
                   >Erstellen</a
                 >
@@ -73,11 +73,15 @@
               <td>{{ user.total }}</td>
 
               <td class="text-right pe-2" align="right">
-                <button mdbRipple
-                  [routerLink]="basePath + '/settings/user/edit/' + user.userId"
+                <button
+                  mdbRipple
+                  [routerLink]="
+                    basePath + '/administration/user/edit/' + user.userId
+                  "
                   class="btn btn-primary"
-                  > <i class="fa fa-edit text-white"></i></button
                 >
+                  <i class="fa fa-edit text-white"></i>
+                </button>
               </td>
             </tr>
           </ng-container>

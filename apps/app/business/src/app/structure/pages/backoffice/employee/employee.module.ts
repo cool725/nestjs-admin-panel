@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EmployeeFormComponent } from "./form/form.component";
+import { EmployeeFormComponent } from './form/form.component';
 import { RouterModule, Routes } from '@angular/router';
 import { EmployeeOverviewComponent } from './overview/employee.component';
 import { EmployeeApi } from './overview/employee.api.service';
 import { TranslateModule } from '@ngx-translate/core';
-import { MdbSharedModule } from "@movit/app/ui";
+import { MdbSharedModule } from '@movit/app/ui';
 
 const routes: Routes = [
   {
@@ -32,7 +32,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     TranslateModule.forChild(),
-    MdbSharedModule
+    MdbSharedModule,
   ],
   providers: [EmployeeApi],
 })

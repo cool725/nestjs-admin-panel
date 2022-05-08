@@ -28,6 +28,7 @@ export class BusinessService {
     return this.businessRepo.getCompanyByUuIdWithVerification(authUser, uuId);
   }
 
+  // todo rename
   public async signUserByInvitationCode(
     authUser,
     invitationCode
@@ -59,6 +60,10 @@ export class BusinessService {
   getBusinessUsers(business: BusinessEntity) {
     return this.businessRepo.getBusinessUsers(business);
   }
+
+  /*
+   * Loads user that is assigned to company
+   * */
   getBusinessUser(business: BusinessEntity, userId: string, details = {}) {
     const user = this.businessRepo.getBusinessUser(business, userId);
     return user;
@@ -77,5 +82,16 @@ export class BusinessService {
     // create com_user_role
     // create app_role with business scope
     // assign user
+  }
+
+  /**
+   * Return all Business/organisation where user has rights
+   * */
+  getAllowedBusinessListFromUser(user) {
+    return this.businessRepo.getAllowedBusinessListFromUser(user);
+  }
+
+  getLinkedBusinessList(business) {
+    return this.businessRepo.getLinkedBusinessList(business);
   }
 }

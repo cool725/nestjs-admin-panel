@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { RoleFormComponent } from './form/role.form.component';
 import { SettingRoleAPI } from '../../packages/apps-api.service';
-import { MdbSharedModule } from "@movit/app/ui";
+import { MdbSharedModule } from '@movit/app/ui';
 
 const routes = [
   { path: 'new', component: RoleFormComponent },
@@ -15,7 +15,12 @@ const routes = [
 
 @NgModule({
   declarations: [RoleComponent, RoleFormComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), FormsModule, MdbSharedModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    FormsModule,
+    MdbSharedModule,
+  ],
   providers: [SettingRoleAPI],
 })
 export class SettingsUserRoleModule {}

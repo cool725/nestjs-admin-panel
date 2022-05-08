@@ -1,7 +1,4 @@
-import {
-  Component,
-  Injector
-} from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { PageController } from '../../../page.controller';
 
 import { EmployeeApi } from './employee.api.service';
@@ -43,10 +40,10 @@ export class EmployeeOverviewComponent extends PageController {
   }
 
   getData(): void {
-    this.getEmployees()
+    this.getEmployees();
   }
 
-  getEmployees(){
+  getEmployees() {
     this.onLoadAndSetData(this.api.get('employees'), this.api.employees$);
   }
 }

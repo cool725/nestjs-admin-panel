@@ -17,7 +17,7 @@ import { ProfileSegmentEntity } from './profile.segment.entity';
 import { ProfileSourceEntity } from './profile.source.entity';
 import { ProfileSegmentRelationEntity } from './profile.segment.relation.entity';
 import { ProfilePriceClassEntity } from './profile.priceclass.entity';
-import { TenantEntity } from "../../../../common/db/db.CoreEntity";
+import { TenantEntity } from '../../../../common/db/db.CoreEntity';
 
 @Entity('crm_profile')
 @Index(['companyId'])
@@ -97,7 +97,6 @@ export class ProfileEntity extends TenantEntity {
 
   @BeforeInsert()
   protected async beforeInsert() {
-    await this.setLastEntryId('profileId')
+    await this.setLastEntryId('profileId');
   }
-
 }

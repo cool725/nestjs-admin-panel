@@ -9,7 +9,7 @@ import {
 import { Pagination } from '../../../common/decorator';
 import { ProfileEntity } from './entities/profile.entity';
 import { IsNull } from 'typeorm';
-import { doInsert } from "../../../common/db/utils/db.utils";
+import { doInsert } from '../../../common/db/utils/db.utils';
 
 @Injectable()
 export class ProfilesService {
@@ -128,7 +128,7 @@ export class ProfilesSegmentService {
   async createSegment(businessId: number, data: any) {
     const segment = this.segmentRepo.create();
     segment.companyId = businessId;
-    doInsert(segment)
+    doInsert(segment);
     return this.updateSegment(businessId, segment.segmentId, data);
   }
 

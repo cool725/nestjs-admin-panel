@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
 
-
-
 @Component({
   selector: 'lib-header-avatar-ui',
   templateUrl: './header.avatar-profile.component.html',

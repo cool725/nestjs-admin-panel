@@ -10,6 +10,7 @@ export enum EDataEmitterType {
   DataReload = 'dataReload',
   TopBarTemplate = 'TopBarTemplate',
 
+  // todo sub types of modal
   ModalOpen = 'ModalOpen',
 }
 

@@ -43,33 +43,34 @@
             <th>Color</th>
             <th>Order</th>
             <th colspan="2" class="text-end pe-2" align="right">
-              <a>Action</a>
+              <a></a>
             </th>
           </tr>
         </thead>
         <tbody *ngIf="profileSegmentTable.data$ | async as tableData">
-          <ng-container *ngFor="let profile of tableData.data">
-            <tr *ngIf="profileSegmentTable.canShow(profile)" class="entry-row">
-              <td>{{ profile.title }}</td>
-              <td>{{ profile.color }}</td>
-              <td class="text-center">{{ profile.order }}</td>
-              <td class="text-right pe-2" align="right">
-                <a
-                  (click)="editSegment(profile.segmentId)"
-                  class="text-primary cursor-pointer"
-                >
-                  {{ 'edit' }}
-                </a>
+          <ng-container *ngFor="let data of tableData.data">
+            <tr *ngIf="profileSegmentTable.canShow(data)" class="entry-row">
+              <td>{{ data.title }}</td>
+              <td>
+                <input type="color" disabled [value]=" data.color ">
               </td>
-              <td class="text-right pe-2" align="right">
-                <a
-                  (click)="deleteProfile(profile.segmentId)"
-                  class="text-primary cursor-pointer"
+              <td class="text-center">{{ data.order }}</td>
+              <td class="text-right ps-0 pe-2" width="80px" align="right">
+                <button mdbRipple
+                        (click)="editSegment(data.segmentId)"
+                        class="btn btn-primary"
                 >
-                  {{ 'delete' }}
-                </a>
+                  <i class="fa fa-edit text-white"></i>
+                </button>
               </td>
-            </tr>
+              <td class="text-right ps-0 pe-2" width="80px" align="right">
+                <button mdbRipple
+                        (click)="deleteSegment(data.segmentId)"
+                        class="btn btn-danger">
+                  <i class="fa fa-trash text-white"></i>
+                </button>
+              </td>
+             </tr>
           </ng-container>
         </tbody>
       </table>

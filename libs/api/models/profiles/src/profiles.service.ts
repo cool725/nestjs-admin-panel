@@ -175,6 +175,11 @@ export class ProfilesPriceClassService {
     const priceClass = this.priceClassRepo.create();
     priceClass.companyId = businessId;
     priceClass.title = data.title;
+    priceClass.color = data.color;
+    priceClass.isDefault = data.isDefault;
+    priceClass.value =  data.value;
+    priceClass.reduceType = data.reduceType
+
     return priceClass.save();
   }
 

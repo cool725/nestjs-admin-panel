@@ -75,8 +75,8 @@ export class ProfilesSegmentFormComponent
   @Confirmable({
     title: 'Sure?',
   })
-  async delete(profileId: number) {
-    await this.api.deleteProfile(profileId);
+  async delete(segmentId: number) {
+    await this.api.deleteSegment(segmentId);
     return this.cancel();
   }
 

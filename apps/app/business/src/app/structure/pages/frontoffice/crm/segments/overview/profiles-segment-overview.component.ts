@@ -61,8 +61,8 @@ export class ProfilesSegmentOverviewComponent extends PageController {
   }
 
   @Confirmable({ title: 'Sure?' })
-  async deleteProfile(id: number) {
-    await this.api.deleteProfile(id).subscribe(() => this.reloadData());
+  async deleteSegment(id: number) {
+    await this.api.deleteSegment(id).subscribe(() => this.reloadData());
   }
   closePopup() {
     this.api.profileSegment$.next(null);

@@ -4,6 +4,8 @@ import { AgendaComponent } from './me/agenda.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AgendaAPI } from './me/agenda.api.service';
 import { environment } from '../../../../../environments/environment';
+import { AgendaFormComponent } from './form/agenda-form.component';
+import {AgendaFormModule} from "./form/agenda-form.module";
 
 const routes: Routes = [
   {
@@ -13,8 +15,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AgendaComponent],
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  declarations: [AgendaComponent,],
+  imports: [CommonModule, RouterModule.forChild(routes), AgendaFormModule],
   providers: [
     {
       provide: 'apiPath',

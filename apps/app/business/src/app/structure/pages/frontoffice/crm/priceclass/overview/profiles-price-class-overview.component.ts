@@ -46,11 +46,11 @@ export class ProfilesPriceClassOverviewComponent extends PageController {
     );
   }
 
-  createSegment() {
+  createPriceClass() {
     this.api.profilePriceClass$.next(new PriceClass());
   }
 
-  async editSegment(id: number) {
+  async editPriceClass(id: number) {
     // load segment by api
     this.api.getPriceClass(id).subscribe((resss: any) => {
       this.api.profilePriceClass$.next(resss);
@@ -58,9 +58,10 @@ export class ProfilesPriceClassOverviewComponent extends PageController {
   }
 
   @Confirmable({ title: 'Sure?' })
-  async deleteProfile(id: number) {
+  async deleteProfilePriceClass(id: number) {
     await this.api.deletePriceClass(id).subscribe(() => this.reloadData());
   }
+
   closePopup() {
     this.api.profilePriceClass$.next(null);
   }

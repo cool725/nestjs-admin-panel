@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../../../../../../environments/environment';
-import { BoostrapModalUIComponent } from '@movit/app/ui';
+import {BoostrapModalUIComponent, MdbSharedModule} from '@movit/app/ui';
 import { BoostrapModalUIModule } from '../../../../../../../../../../libs/app/ui/boostrap/modal/default/modal.default.module';
 import { ProfilesPriceClassOverviewComponent } from './overview/profiles-price-class-overview.component';
 import { ProfilesPriceClassFormComponent } from './form/profiles-price-class-form.component';
@@ -13,28 +13,29 @@ import { ProfilesPriceClassFormModule } from './form/profiles-price-class-form.m
 
 @NgModule({
   declarations: [ProfilesPriceClassOverviewComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild([
-      {
-        path: 'new',
-        component: ProfilesPriceClassFormComponent,
-      },
-      {
-        path: 'edit/:id',
-        component: ProfilesPriceClassFormComponent,
-      },
-      {
-        path: 'overview',
-        component: ProfilesPriceClassOverviewComponent,
-      },
-    ]),
-    TranslateModule.forChild(),
-    FormsModule,
-    ReactiveFormsModule,
-    BoostrapModalUIModule,
-    ProfilesPriceClassFormModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild([
+            {
+                path: 'new',
+                component: ProfilesPriceClassFormComponent,
+            },
+            {
+                path: 'edit/:id',
+                component: ProfilesPriceClassFormComponent,
+            },
+            {
+                path: 'overview',
+                component: ProfilesPriceClassOverviewComponent,
+            },
+        ]),
+        TranslateModule.forChild(),
+        FormsModule,
+        ReactiveFormsModule,
+        BoostrapModalUIModule,
+        ProfilesPriceClassFormModule,
+        MdbSharedModule,
+    ],
   providers: [
     ProfilePriceClassAPI,
     {

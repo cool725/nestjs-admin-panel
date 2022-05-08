@@ -37,7 +37,7 @@ export class ProfileSegmentAPI<Segment, FilterValues> {
     return this.http.patch(this.getPath('segment', profileId), profile);
   }
 
-  deleteProfile(profileId: number) {
+  deleteSegment(profileId: number) {
     return this.http.delete(this.getPath('segment', profileId), {});
   }
 }

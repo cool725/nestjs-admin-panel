@@ -28,19 +28,39 @@
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-9 row">
+    <div class="col-12 col-md-12 row">
       <div class="form-group">
         <label>Standard</label>
         <div class="input-group mb-3">
-          <select class="form-control" formControlName="standard">
-            <option value="1">Yes</option>
-            <option value="0">No</option>
+          <select class="form-control" formControlName="isDefault">
+            <option value=1>Yes</option>
+            <option value=0>No</option>
           </select>
         </div>
         <div
           *ngIf="
-            formPriceClass.controls['standard'].errors &&
-            formPriceClass.controls['standard'].touched
+            formPriceClass.controls['isDefault']?.errors &&
+            formPriceClass.controls['isDefault']?.touched
+          "
+          class="alert alert-danger"
+        >
+          Standard is required
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-12 row">
+      <div class="form-group">
+        <label>ReduceType</label>
+        <div class="input-group mb-3">
+          <select class="form-control" formControlName="reduceType">
+            <option value='%'>%</option>
+            <option value="fixed">Fixed</option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            formPriceClass.controls['reduceType'].errors &&
+            formPriceClass.controls['reduceType'].touched
           "
           class="alert alert-danger"
         >
@@ -72,40 +92,28 @@
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-9 row">
-      <label class="w-100">
-        <div>
-          <a>Is Percentage</a>
-          <div>
-            <input
-              type="checkbox"
-              formControlName="isPercentage"
-              (change)="eventCheck($event)"
-            />
-          </div>
-        </div>
-      </label>
-    </div>
-    <div class="col-12 col-md-9 row" *ngIf="viewSettings.showPercentage">
+
+    <div class="col-12 col-md-12 row">
       <div class="form-group">
         <div class="input-group mb-3">
           <input
-            formControlName="percentage"
+            formControlName="value"
             type="number"
             class="form-control"
-            placeholder="percentage"
-            aria-label="percentage"
+            placeholder="value"
+            min="0"
+            aria-label="value"
             aria-describedby="profiles-price-class-percentage"
           />
         </div>
         <div
           *ngIf="
-            formPriceClass.controls['percentage'].errors &&
-            formPriceClass.controls['percentage'].touched
+            formPriceClass.controls['value'].errors &&
+            formPriceClass.controls['value'].touched
           "
           class="alert alert-danger"
         >
-          Percentage is required
+          value is required
         </div>
       </div>
     </div>

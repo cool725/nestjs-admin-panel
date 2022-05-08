@@ -25,7 +25,7 @@
             <div class="col-6 col-md-2 mt-2 mt-md-0">
               <div class="form-group">
                 <a
-                  (click)="createSegment()"
+                  (click)="createPriceClass()"
                   class="btn btn-success text-white w-100"
                   >Create</a
                 >
@@ -40,40 +40,34 @@
         <thead>
           <tr>
             <th>Title</th>
-            <th>Standard</th>
             <th>Color</th>
             <th>Percentage</th>
-            <th colspan="2" class="text-end pe-2" align="right">
-              <a>Action</a>
-            </th>
+            <th colspan="2" class="text-end pe-2" align="right"></th>
           </tr>
         </thead>
         <tbody *ngIf="profilePriceClassTable.data$ | async as tableData">
           <ng-container *ngFor="let priceclass of tableData.data">
-            <tr
-              *ngIf="profilePriceClassTable.canShow(priceclass)"
-              class="entry-row"
-            >
+            <tr *ngIf="profilePriceClassTable.canShow(priceclass)">
               <td>{{ priceclass.title }}</td>
-              <input type="checkbox" [(ngModel)]="priceclass.standard" />
-              <td>{{ priceclass.color }}</td>
+              <td>  <input type="color" disabled [value]=" priceclass.color "></td>
               <td class="text-center">{{ priceclass.percentage }}%</td>
-              <td class="text-end pe-2" align="right">
-                <a
-                  (click)="editSegment(priceclass.priceClassId)"
-                  class="text-primary cursor-pointer"
+              <td class="text-right ps-0 pe-2" width="80px" align="right">
+
+                <button mdbRipple
+                        (click)="editPriceClass(priceclass.priceClassId)"
+                        class="btn btn-primary"
                 >
-                  {{ 'edit' }}
-                </a>
+                  <i class="fa fa-edit text-white"></i>
+                </button>
               </td>
-              <td class="text-end pe-2" align="right">
-                <a
-                  (click)="deleteProfile(priceclass.priceClassId)"
-                  class="text-primary cursor-pointer"
-                >
-                  {{ 'delete' }}
-                </a>
+              <td class="text-right ps-0 pe-2" width="80px" align="right">
+                <button mdbRipple
+                        (click)="deleteProfilePriceClass(priceclass.priceClassId)"
+                        class="btn btn-danger">
+                  <i class="fa fa-trash text-white"></i>
+                </button>
               </td>
+
             </tr>
           </ng-container>
         </tbody>

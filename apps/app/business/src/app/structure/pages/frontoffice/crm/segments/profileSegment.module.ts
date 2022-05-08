@@ -10,31 +10,33 @@ import { ProfilesSegmentOverviewComponent } from './overview/profiles-segment-ov
 import { BoostrapModalUIModule } from '../../../../../../../../../../libs/app/ui/boostrap/modal/default/modal.default.module';
 import { ProfilesSegmentFormModule } from './form/profiles-segment-form.module';
 import { ProfilesSegmentFormComponent } from './form/profiles-segment-form.component';
+import {MdbSharedModule} from "@movit/app/ui";
 
 @NgModule({
   declarations: [ProfilesSegmentOverviewComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild([
-      {
-        path: 'new',
-        component: ProfilesSegmentFormComponent,
-      },
-      {
-        path: 'edit/:id',
-        component: ProfilesSegmentFormComponent,
-      },
-      {
-        path: 'overview',
-        component: ProfilesSegmentOverviewComponent,
-      },
-    ]),
-    TranslateModule.forChild(),
-    FormsModule,
-    ReactiveFormsModule,
-    BoostrapModalUIModule,
-    ProfilesSegmentFormModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild([
+            {
+                path: 'new',
+                component: ProfilesSegmentFormComponent,
+            },
+            {
+                path: 'edit/:id',
+                component: ProfilesSegmentFormComponent,
+            },
+            {
+                path: 'overview',
+                component: ProfilesSegmentOverviewComponent,
+            },
+        ]),
+        TranslateModule.forChild(),
+        FormsModule,
+        ReactiveFormsModule,
+        BoostrapModalUIModule,
+        ProfilesSegmentFormModule,
+        MdbSharedModule,
+    ],
   providers: [
     ProfileSegmentAPI,
     {

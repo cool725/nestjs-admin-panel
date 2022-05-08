@@ -90,13 +90,12 @@ export abstract class PageController {
 
   // todo rename types
   protected openModal(
-    modalType: EDataEmitterType,
     component: any,
     data?: any,
     resolver?: any
   ) {
     return this.dE.emit(
-      modalType,
+        EDataEmitterType.ModalOpen,
       {
         component: component,
         data: data,

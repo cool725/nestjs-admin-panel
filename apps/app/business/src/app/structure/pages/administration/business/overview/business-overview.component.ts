@@ -39,7 +39,7 @@ export class BusinessOverviewComponent extends PageController {
   }
 
   editBusiness(businessId: number) {
-    this.openModal()
+
   }
 
   @Confirmable({ title: 'sure?' })

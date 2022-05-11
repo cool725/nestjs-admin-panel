@@ -364,32 +364,38 @@
         <b>Titel</b>
       </label>
       <mdb-form-control>
-        <input mdbInput type="text" id="cat-title" class="form-control" [(ngModel)]="
-          category.label['title'][
-            category.label['title']['cLang'] || defaultLanguageId
-          ]
-        " />
+        <input
+          mdbInput
+          type="text"
+          id="cat-title"
+          class="form-control"
+          [(ngModel)]="
+            category.label['title'][
+              category.label['title']['cLang'] || defaultLanguageId
+            ]
+          "
+        />
         <label mdbLabel class="form-label" for="cat-title">Title</label>
         <div class="lang_chooser_pills">
           <nav class="nav nav-pills nav-fill fadeInDown">
             <a
-               *ngFor="
-              let l of [
-                { languageId: 1, name: 'de' },
-                { languageId: 2, name: 'en' },
+              *ngFor="
+                let l of [
+                  { languageId: 1, name: 'de' },
                   { languageId: 2, name: 'en' },
-                    { languageId: 2, name: 'en' },
-                      { languageId: 2, name: 'en' },
-                        { languageId: 2, name: 'en' }
-              ]
-            "
-                    class="nav-item nav-link animated fadeInDown {{
-              (category.label['title']['cLang'] || defaultLanguageId) ==
-              l.languageId
-                ? 'active'
-                : ''
-            }}"
-                    (click)="category.changeLang(l.languageId, 'title')"
+                  { languageId: 2, name: 'en' },
+                  { languageId: 2, name: 'en' },
+                  { languageId: 2, name: 'en' },
+                  { languageId: 2, name: 'en' }
+                ]
+              "
+              class="nav-item nav-link animated fadeInDown {{
+                (category.label['title']['cLang'] || defaultLanguageId) ==
+                l.languageId
+                  ? 'active'
+                  : ''
+              }}"
+              (click)="category.changeLang(l.languageId, 'title')"
             >
               {{ l.name | uppercase }}
             </a>

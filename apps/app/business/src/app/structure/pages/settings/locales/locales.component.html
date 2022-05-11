@@ -2,3 +2,256 @@
   <div class="left-box"></div>
   <h4 class="slide">Locales</h4>
 </ng-template>
+
+<nav class="container mt-4">
+  <div class="card">
+    <div class="card-body row col-12">
+      <div class="col-12 col-md-8">
+        <nz-select
+          [nzMaxTagCount]="15"
+          [nzMaxTagPlaceholder]="tagPlaceHolder"
+          style="width: 100%"
+          nzMode="multiple"
+          nzPlaceHolder="Please select"
+          [(ngModel)]="allowSee"
+        >
+          <nz-option
+            *ngFor="let option of allLang"
+            [nzLabel]="option"
+            [nzValue]="option"
+          ></nz-option>
+        </nz-select>
+        <ng-template #tagPlaceHolder let-selectedList>
+          and {{ selectedList.length }} more selected
+        </ng-template>
+      </div>
+
+      <div class="ps-2 col-2">
+        <a class="btn btn-primary text-white w-100" >Add Lang</a>
+      </div>
+      <div class="ps-2 col-2">
+        <a class="btn btn-success text-white w-100" >Add Key</a>
+      </div>
+
+      <!-- (click)="showDialog = !showDialog" -->
+    </div>
+  </div>
+</nav>
+
+<div class="scroll-area custom-scroll-bar" style="width: 100%">
+  <div class="col-12">
+    <div style="width: 100%; overflow-x: hidden">
+      <div class="card container">
+        <table
+          *ngIf="totalCounting.length"
+          class="table"
+          style="margin-bottom: 10px"
+        >
+          <thead>
+            <tr>
+              <th>Lang</th>
+              <th>Words</th>
+              <th>Fields</th>
+              <th>Perc %</th>
+              <td (click)="getCounting()" style="cursor: pointer">
+                <i> Icon</i>
+              </td>
+            </tr>
+          </thead>
+
+          <tr *ngFor="let c of totalCounting">
+            <td>{{ c.langName }}</td>
+            <td>{{ c.words }}</td>
+            <td>{{ c.total }}</td>
+            <td>{{ c.perc }}</td>
+            <td>
+              <!--
+              <i nz-icon [nzType]=" +c.perc > '95'? 'check-circle' : ('exclamation-circle')" [nzTheme]="'twotone'" [nzTwotoneColor]="+c.perc > 90 ?'#52c41a':(+c.perc < 50 ? '#f72f29' :'#F7CA18')"></i>
+              -->
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <ng-container *ngFor="let section of sections">
+        <section class="card cat__core__sortable__collapsed shadow">
+          <div class="card-header ui-sortable-handle" (click)="getCounting()">
+            <h2>{{ section | titlecase }}</h2>
+            <div class="pull-right cat__core__sortable__control">
+              <i
+                class="icmn-minus mr-2 cat__core__sortable__collapse"
+                data-original-title="Collapse"
+                data-placement="left"
+                data-toggle="tooltip"
+                title=""
+              ></i>
+              <i
+                class="icmn-plus mr-2 cat__core__sortable__uncollapse"
+                data-original-title="Uncollapse"
+                data-placement="left"
+                data-toggle="tooltip"
+                title=""
+              ></i>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="table-responsive mb-5">
+                  <table
+                    *ngIf="allLanguagesSection[section]"
+                    id="langTable"
+                    class="table table-hover nowrap editable-table"
+                    style="cursor: pointer"
+                  >
+                    <thead style="text-align: center">
+                      <tr>
+                        <ng-container
+                          *ngFor="let key of allowSee; let i = index"
+                        >
+                          <th
+                            [style.background]="
+                              colorize.includes(key) ? '#98d6f4' : ''
+                            "
+                            class="lang-{{ key }}"
+                          >
+                            {{ key | titlecase }}
+                          </th>
+                        </ng-container>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container
+                        *ngFor="
+                          let key of allLanguagesSection[section].de | keys;
+                          let i = index
+                        "
+                      >
+                        <tr>
+                          <td
+                            *ngFor="let lang of allowSee"
+                            [style.background]="
+                              colorize.includes(lang) ? '#98d6f4' : ''
+                            "
+                            tabindex="1"
+                            data-toggle="tooltip"
+                            data-placement="bottom"
+                            title="{{ lang }} {{ i == 0 ? key : '' }} "
+                            style="max-width: 250px"
+                          >
+                            <ng-container
+                              *ngIf="allLanguagesSection[section][lang]"
+                            >
+                              <i
+                                *ngIf="
+                                  allLanguagesSection[section][lang][key] &&
+                                  allLanguagesSection[section][lang][key].key &&
+                                  allLanguagesSection[section][lang][
+                                    key
+                                  ].key.includes('apps_')
+                                "
+                                style="
+                                  position: absolute;
+                                  font-size: 9px;
+                                  opacity: 0.3;
+                                "
+                                class="icmn-list"
+                              ></i>
+                              <i
+                                *ngIf="
+                                  allLanguagesSection[section][lang][key] &&
+                                  allLanguagesSection[section][lang][key]
+                                    .section &&
+                                  allLanguagesSection[section][lang][
+                                    key
+                                  ].section.includes('date')
+                                "
+                                style="
+                                  position: absolute;
+                                  font-size: 9px;
+                                  opacity: 0.3;
+                                "
+                                class="icmn-calendar"
+                              ></i>
+                              <textarea
+                                [disabled]="!allowChange.includes(lang)"
+                                [attr.data-key]="key"
+                                (change)="
+                                  updateLanguageByKey(
+                                    $event.target['value'],
+                                    lang,
+                                    key,
+                                    allLanguagesSection[section][lang][key],
+                                    allLanguagesSection[section]['de'][key]
+                                  )
+                                "
+                                class="form-control border-0 bg-transparent"
+                                >{{
+                                  allLanguagesSection[section][lang][key]?.value
+                                }}</textarea
+                              >
+                            </ng-container>
+
+                            <ng-container
+                              *ngIf="!allLanguagesSection[section][lang]"
+                              [style.background]="
+                                (colorize + '').includes(lang) ? '#C9E3FD' : ''
+                              "
+                            >
+                              <a
+                                class="btn"
+                                (click)="createKey(key, '', lang, section)"
+                                >Create key</a
+                              >
+                            </ng-container>
+                          </td>
+                        </tr>
+                      </ng-container>
+                      <tr>
+                        <ng-container
+                          *ngFor="let lang of allowSee; let i = index"
+                        >
+                          <th>
+                            {{
+                              getPrecentOfLang(
+                                section,
+                                allLanguagesSection[section][lang]
+                              )
+                            }}
+                          </th>
+                        </ng-container>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <input
+                    style="
+                      position: absolute;
+                      top: 105.4px;
+                      left: 9.9375px;
+                      padding: 10.5px;
+                      text-align: left;
+                      font-style: normal;
+                      font-variant: normal;
+                      font-weight: 400;
+                      font-stretch: normal;
+                      font-size: 14px;
+                      line-height: 21px;
+                      font-family: 'PT Sans', sans-serif;
+                      border-width: 0px;
+                      border-style: none;
+                      border-color: rgb(81, 77, 106) rgb(228, 233, 240)
+                        rgb(228, 233, 240);
+                      width: 165.8px;
+                      height: 21.4px;
+                      display: none;
+                    "
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -189,7 +189,7 @@ export class InitialAppsSeeds extends SeedHelper {
     {
       appId: 21,
       domain: 'business',
-      title: 'products',
+      title: 'payment',
       path: '/administration/payment/overview',
       categoryId: 5,
       img: '',

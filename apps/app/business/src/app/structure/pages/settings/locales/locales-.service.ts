@@ -10,7 +10,8 @@ export class LocalesService {
   }
 
   getAllLang() {
-    return this.http.get(this.getPath('/getText?all=1'), {});
+    return this.http.get(this.getPath('/assets/locale-test/settings.json'), {});
+    //return this.http.get(this.getPath('/getText?all=1'), {});
   }
 
   setTranslation(

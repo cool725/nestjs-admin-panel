@@ -10,14 +10,16 @@ import {PageController} from "../../page.controller";
 const defaultLanguages = [
   'de',
   'en',
-  'br',
   'fr',
   'es',
   'it',
-  'ru',
+  'br',
+ /*
+   'ru',
   'el',
   'tr',
   'th',
+ * */
 ];
 
 @Component({

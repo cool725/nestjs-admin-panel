@@ -72,9 +72,8 @@
           </tr>
         </table>
       </div>
-
       <ng-container *ngFor="let section of sections">
-        <section class="card cat__core__sortable__collapsed shadow">
+        <section class="card shadow cat__core__sortable__collapsed m-2 mt-3">
           <div class="card-header ui-sortable-handle" (click)="getCounting()">
             <h2>{{ section | titlecase }}</h2>
             <div class="pull-right cat__core__sortable__control">

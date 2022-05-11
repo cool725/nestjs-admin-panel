@@ -1,3 +1,14 @@
 :host {
   height: 100%;
 }
+
+.modal-header {
+  background: none !important;
+  border-bottom: 1px solid rgb(206 210 214 / 50%) !important;
+  height: unset !important;
+
+}
+
+.modal-footer {
+  border-top: none !important;
+}

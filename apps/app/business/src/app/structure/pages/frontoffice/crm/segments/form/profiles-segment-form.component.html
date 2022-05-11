@@ -1,9 +1,17 @@
 <form [formGroup]="formSegment" *ngIf="api.profileSegment$ | async as segment">
-  <div class="modal-body">
-    <div class="col-12 col-md-9 row">
-      <div class="form-group">
-        <label>Title</label>
-        <div class="input-group mb-3">
+
+  <div class="modal-header p-2">
+    <h5 class="modal-title p-2 text-start w-100" id="exampleModalLabel" *ngIf="!segment.segmentId">Create</h5>
+    <h5 class="modal-title p-2 text-start w-100" id="exampleModalLabel" *ngIf="segment.segmentId">Edit</h5>
+    <button type="button" class="btn-close p-2 px-4" data-bs-dismiss="modal" aria-label="Close"
+      (click)="closePopup()"></button>
+  </div>
+  <div class="modal-body pt-4">
+    <div class="row mb-3">
+      <div class="col-12">
+        <div class="form-group">
+          <!-- <label>Title</label>
+          <div class="input-group mb-3">
           <input
             formControlName="title"
             type="text"
@@ -12,75 +20,67 @@
             aria-label="title"
             aria-describedby="profiles-sagment-title"
           />
-        </div>
-        <div
-          *ngIf="
+        </div> -->
+          <mdb-form-control>
+            <input mdbInput type="text" formControlName="title" id="formControlLg" class="form-control" />
+            <label mdbLabel class="form-label" for="formControlDefault">Title</label>
+          </mdb-form-control>
+          <div *ngIf="
             formSegment.controls['title'].errors &&
             formSegment.controls['title'].touched
-          "
-          class="alert alert-danger"
-        >
-          Title is required
+          " class="alert alert-danger py-2 mt-1">
+            Title is required
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-9 row">
-      <div class="form-group">
-        <label>Color</label>
-        <div class="input-group mb-3">
-          <input
-            formControlName="color"
-            type="color"
-            class="form-control"
-            placeholder="Color"
-            aria-label="color"
-            aria-describedby="profiles-sagment-color"
-          />
-        </div>
-        <div
-          *ngIf="
-            formSegment.controls['color'].errors &&
-            formSegment.controls['color'].touched
-          "
-          class="alert alert-danger"
-        >
-          Color is required
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-md-9 row">
-      <div class="form-group">
-        <label>Order</label>
-        <div class="input-group mb-3">
-          <input
-            formControlName="order"
-            type="number"
-            class="form-control"
-            placeholder="Order"
-            aria-label="order"
-            aria-describedby="profiles-sagment-order"
-          />
-        </div>
 
-        <div
-          *ngIf="
-            formSegment.controls['order'].errors &&
-            formSegment.controls['order'].touched
-          "
-          class="alert alert-danger"
-        >
-          Order is required
+    <div class="row">
+      <div class="col-3">
+        <div class="form-group">
+          <div class="d-flex align-items-center">
+            <label class="me-2">Color</label>
+            <div class="input-group">
+              <input formControlName="color" type="color" class="form-control p-1" placeholder="Color" aria-label="color"
+                aria-describedby="profiles-sagment-color" />
+            </div>
+          </div>
+          <!-- <mdb-form-control>
+                  <input mdbInput type="color" id="formControlLg" class="form-control" />
+                  <label mdbLabel class="form-label" for="formControlDefault">Color</label>
+                </mdb-form-control> -->
+          <div *ngIf="
+                  formSegment.controls['color'].errors &&
+                  formSegment.controls['color'].touched
+                " class="alert alert-danger py-2 mt-1">
+            Color is required
+          </div>
+        </div>
+      </div>
+      <div class="col-9 ps-0">
+        <div class="form-group">
+          <!-- <label>Order</label>
+                <div class="input-group mb-3">
+                  <input formControlName="order" type="number" class="form-control" placeholder="Order" aria-label="order"
+                    aria-describedby="profiles-sagment-order" />
+                </div> -->
+          <mdb-form-control>
+            <input mdbInput type="number" formControlName="order" class="form-control" id="formControlLg" class="form-control" />
+            <label mdbLabel class="form-label" for="formControlDefault">Order</label>
+          </mdb-form-control>
+          <div *ngIf="
+                      formSegment.controls['order'].errors &&
+                      formSegment.controls['order'].touched
+                    " class="alert alert-danger py-2 mt-1">
+            Order is required
+          </div>
         </div>
       </div>
     </div>
   </div>
+
   <div class="modal-footer">
-    <button
-      type="button"
-      *ngIf="formSegment.valid"
-      (click)="saveSegment(segment)"
-      class="btn btn-success"
-    >
+    <button type="button" *ngIf="formSegment.valid" (click)="saveSegment(segment)" class="btn btn-success">
       save
     </button>
     <button type="button" (click)="cancel()" class="btn btn-success">

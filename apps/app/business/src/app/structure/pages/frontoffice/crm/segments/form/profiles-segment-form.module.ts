@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ProfileSegmentAPI } from '../packages/profile-sagment-api.service';
 import { environment } from '../../../../../../../environments/environment';
+import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 
 @NgModule({
   declarations: [ProfilesSegmentFormComponent],
@@ -15,6 +16,7 @@ import { environment } from '../../../../../../../environments/environment';
     FormsModule,
     ReactiveFormsModule,
     NzSelectModule,
+    MdbFormsModule
   ],
   providers: [
     ProfileSegmentAPI,

@@ -1,93 +1,138 @@
-<form
-  [formGroup]="formPriceClass"
-  *ngIf="api.profilePriceClass$ | async as priceclass"
->
+<form [formGroup]="formPriceClass" *ngIf="api.profilePriceClass$ | async as priceclass">
+
   <!-- <input class="form-control" formControlName="title"> -->
+  <div class="modal-header p-2 text-center">
+    <h5 class="modal-title p-2 text-start w-100" id="exampleModalLabel" *ngIf="!priceclass.priceClassId">Create</h5>
+    <h5 class="modal-title p-2 text-start w-100" id="exampleModalLabel" *ngIf="priceclass.priceClassId">Edit</h5>
+    <button type="button" class="btn-close p-2 px-4" data-bs-dismiss="modal" aria-label="Close"
+      (click)="closePopup()"></button>
+  </div>
   <div class="modal-body">
-    <div class="col-12 col-md-9 row">
-      <div class="form-group">
-        <label>Title</label>
-        <div class="input-group mb-3">
-          <input
-            formControlName="title"
-            type="text"
-            class="form-control"
-            placeholder="Title"
-            aria-label="title"
-            aria-describedby="profiles-sagment-title"
-          />
-        </div>
-        <div
-          *ngIf="
+    <div class="row mb-3">
+      <div class="col-12">
+        <div class="form-group w-100">
+          <!-- <label>Title</label>
+          <div class="input-group mb-3">
+            <input formControlName="title" type="text" class="form-control" placeholder="Title" aria-label="title"
+              aria-describedby="profiles-sagment-title" />
+          </div> -->
+          <mdb-form-control>
+            <input mdbInput type="text" formControlName="title" id="formControlLg" class="form-control" />
+            <label mdbLabel class="form-label" for="formControlDefault">Title</label>
+          </mdb-form-control>
+          <div *ngIf="
             formPriceClass.controls['title'].errors &&
             formPriceClass.controls['title'].touched
-          "
-          class="alert alert-danger"
-        >
-          Title is required
+          " class="alert alert-danger py-2 mt-1">
+            Title is required
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-12 row">
-      <div class="form-group">
-        <label>Standard</label>
+
+    <div class="row mb-3">
+      <div class="col-6">
+        <div class="form-group">
+          <!-- <label>Standard</label>
         <div class="input-group mb-3">
           <select class="form-control" formControlName="isDefault">
             <option value="1">Yes</option>
             <option value="0">No</option>
           </select>
-        </div>
-        <div
-          *ngIf="
+        </div> -->
+          <mdb-form-control>
+            <select mdbInput type="text" formControlName="isDefault" id="formControlLg" class="form-control">
+              <option value="1">Yes</option>
+              <option value="0">No</option>
+            </select>
+            <label mdbLabel class="form-label" for="formControlDefault">Standard</label>
+          </mdb-form-control>
+          <div *ngIf="
             formPriceClass.controls['isDefault']?.errors &&
             formPriceClass.controls['isDefault']?.touched
-          "
-          class="alert alert-danger"
-        >
-          Standard is required
+          " class="alert alert-danger py-2 mt-1">
+            Standard is required
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="form-group">
+          <!-- <label>ReduceType</label>
+              <div class="input-group mb-3">
+                <select class="form-control" formControlName="reduceType">
+                  <option value="%">%</option>
+                  <option value="fixed">Fixed</option>
+                </select>
+              </div> -->
+
+          <mdb-form-control>
+            <select mdbInput type="text" formControlName="reduceType" id="formControlLg" class="form-control">
+              <option value="%">%</option>
+              <option value="fixed">Fixed</option>
+            </select>
+            <label mdbLabel class="form-label" for="formControlDefault">Reduce Type</label>
+          </mdb-form-control>
+          <div *ngIf="
+                  formPriceClass.controls['reduceType'].errors &&
+                  formPriceClass.controls['reduceType'].touched
+                " class="alert alert-danger py-2 mt-1">
+            Standard is required
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-12 row">
-      <div class="form-group">
-        <label>ReduceType</label>
-        <div class="input-group mb-3">
-          <select class="form-control" formControlName="reduceType">
-            <option value="%">%</option>
-            <option value="fixed">Fixed</option>
-          </select>
+
+
+    <div class="row">
+      <div class="col-3">
+        <div class="form-group">
+          <div class="d-flex align-items-center">
+            <label class="me-2">Color</label>
+            <div class="input-group">
+              <input type="color" class="form-control p-1" formControlName="color" placeholder="Color"
+                aria-label="color" aria-describedby="profiles-sagment-color" />
+            </div>
+            <div *ngIf="
+                        formPriceClass.controls['color'].errors &&
+                        formPriceClass.controls['color'].touched
+                      " class="alert alert-danger py-2 mt-1">
+              Color is required
+            </div>
+          </div>
         </div>
-        <div
-          *ngIf="
-            formPriceClass.controls['reduceType'].errors &&
-            formPriceClass.controls['reduceType'].touched
-          "
-          class="alert alert-danger"
-        >
-          Standard is required
+      </div>
+      <div class="col-9 ps-0">
+        <div class="form-group">
+
+          <mdb-form-control>
+            <input mdbInput type="number" class="form-control" formControlName="value" id="formControlLg"
+              class="form-control" />
+            <label mdbLabel class="form-label" for="formControlDefault">Value</label>
+          </mdb-form-control>
+          <div *ngIf="
+                      formPriceClass.controls['value'].errors &&
+                      formPriceClass.controls['value'].touched
+                    " class="alert alert-danger py-2 mt-1">
+            value is required
+          </div>
+
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-9 row">
+
+
+    <!-- <div class="col-12 col-md-9 row">
       <div class="form-group">
         <label>Color</label>
         <div class="input-group mb-3">
-          <input
-            formControlName="color"
-            type="color"
-            class="form-control"
-            placeholder="Color"
-            aria-label="color"
-            aria-describedby="profiles-sagment-color"
-          />
+          <input formControlName="color" type="color" class="form-control" placeholder="Color" aria-label="color"
+            aria-describedby="profiles-sagment-color" />
         </div>
-        <div
-          *ngIf="
+        <div *ngIf="
             formPriceClass.controls['color'].errors &&
             formPriceClass.controls['color'].touched
-          "
-          class="alert alert-danger"
-        >
+          " class="alert alert-danger">
           Color is required
         </div>
       </div>
@@ -96,40 +141,26 @@
     <div class="col-12 col-md-12 row">
       <div class="form-group">
         <div class="input-group mb-3">
-          <input
-            formControlName="value"
-            type="number"
-            class="form-control"
-            placeholder="value"
-            min="0"
-            aria-label="value"
-            aria-describedby="profiles-price-class-percentage"
-          />
+          <input formControlName="value" type="number" class="form-control" placeholder="value" min="0"
+            aria-label="value" aria-describedby="profiles-price-class-percentage" />
         </div>
-        <div
-          *ngIf="
+        <div *ngIf="
             formPriceClass.controls['value'].errors &&
             formPriceClass.controls['value'].touched
-          "
-          class="alert alert-danger"
-        >
+          " class="alert alert-danger">
           value is required
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
+
   <div class="modal-footer">
     <!-- <footer> -->
-    <button
-      type="button"
-      *ngIf="formPriceClass.valid"
-      (click)="
+    <button type="button" *ngIf="formPriceClass.valid" (click)="
         priceclass.priceClassId
           ? updatePriceClass(priceclass.priceClassId)
           : savePriceClass()
-      "
-      class="btn btn-success"
-    >
+      " class="btn btn-success">
       {{ priceclass.priceClassId ? 'update' : 'save' }}
     </button>
     <button type="button" (click)="cancel()" class="btn btn-success">

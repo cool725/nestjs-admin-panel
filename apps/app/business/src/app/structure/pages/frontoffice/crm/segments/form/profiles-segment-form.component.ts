@@ -85,4 +85,7 @@ export class ProfilesSegmentFormComponent
     this.onCancel.emit();
     this.api.profileSegment$.next(null);
   }
+   closePopup() {
+    this.api.profileSegment$.next(null);
+  }
 }

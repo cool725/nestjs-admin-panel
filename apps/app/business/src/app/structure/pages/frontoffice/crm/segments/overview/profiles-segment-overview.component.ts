@@ -49,7 +49,7 @@ export class ProfilesSegmentOverviewComponent extends PageController {
     );
   }
 
-  createSegment() {
+  createSegment() {    
     this.api.profileSegment$.next(new Segment());
   }
 

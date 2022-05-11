@@ -9,26 +9,26 @@
   <div class="container">
     <div class="pb-4">
       <div class="col-12 card bg-white shadow p-3">
-        <div class="">
+        <div >
           <div class="row">
             <div class="col-12 col-md-10">
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <input
                   [(ngModel)]="profileSegmentTable.filterValues.searchValue"
                   class="form-control"
                   placeholder="Suchen"
                   tabindex="1"
                 />
-              </div>
+              </div> -->
+              <mdb-form-control>
+                <input mdbInput type="text" id="formControlDefault" class="form-control"
+                  [(ngModel)]="profileSegmentTable.filterValues.searchValue" />
+                <label mdbLabel class="form-label" for="formControlDefault">Suchen</label>
+              </mdb-form-control>
             </div>
-
-            <div class="col-6 col-md-2 mt-2 mt-md-0">
+            <div class="col-12 col-md-2 mt-2 mt-md-0">
               <div class="form-group">
-                <a
-                  (click)="createSegment()"
-                  class="btn btn-success text-white w-100"
-                  >Create</a
-                >
+                <a (click)="createSegment()" class="btn btn-success text-white w-100">Create</a>
               </div>
             </div>
           </div>
@@ -52,25 +52,17 @@
             <tr *ngIf="profileSegmentTable.canShow(data)" class="entry-row">
               <td>{{ data.title }}</td>
               <td>
-                <input type="color" disabled [value]="data.color" />
+                <input type="color" style="height:30px; width:30px; padding: 3px;" disabled [value]="data.color" />
               </td>
-              <td class="text-center">{{ data.order }}</td>
-              <td class="text-right ps-0 pe-2" width="80px" align="right">
-                <button
-                  mdbRipple
-                  (click)="editSegment(data.segmentId)"
-                  class="btn btn-primary"
-                >
+              <td class="text-start">{{ data.order }}</td>
+              <td class="text-center ps-0 pe-2" width="60px" align="right">
+                <button mdbRipple (click)="editSegment(data.segmentId)" class="btn btn-primary w-75 p-2">
                   <i class="fa fa-edit text-white"></i>
                 </button>
               </td>
-              <td class="text-right ps-0 pe-2" width="80px" align="right">
-                <button
-                  mdbRipple
-                  (click)="deleteSegment(data.segmentId)"
-                  class="btn btn-danger"
-                >
-                  <i class="fa fa-trash text-white"></i>
+              <td class="text-center ps-0 pe-2" width="60px" align="right">
+                <button mdbRipple (click)="deleteSegment(data.segmentId)" class="btn btn-danger w-75 p-2">
+                  <i class="fa fa-trash text-white"></i> 
                 </button>
               </td>
             </tr>
@@ -80,22 +72,16 @@
     </div>
   </div>
 </div>
-
-<lib-modal-ui
-  *ngIf="api.profileSegment$ | async as segment"
-  [style]="{
-    display: 'block',
-    width: '425px',
-    height: 'fit-content',
-    left: '0px',
-    top: '0px',
-    right: '0px',
-    bottom: '0px',
-    margin: 'auto'
-  }"
->
-  <movit-profiles-segment-form
-    (onSave)="getSegments()"
-    (onCancel)="api.profileSegment$.next(null)"
-  ></movit-profiles-segment-form>
+<lib-modal-ui *ngIf="api.profileSegment$ | async as segment" [style]="{
+          display: 'block',
+          width: '425px',
+          height: 'fit-content',
+          left: '0px',
+          top: '0px',
+          right: '0px',
+          bottom: '0px',
+          margin: 'auto'
+        }">
+  <movit-profiles-segment-form (onSave)="getSegments()" (onCancel)="api.profileSegment$.next(null)">
+  </movit-profiles-segment-form>
 </lib-modal-ui>

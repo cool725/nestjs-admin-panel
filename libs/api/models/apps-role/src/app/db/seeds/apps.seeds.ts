@@ -68,7 +68,6 @@ export class InitialAppsSeeds extends SeedHelper {
       title: 'reservation',
       parentCategoryId: 2,
     },
-
     {
       categoryId: 11,
       domain: 'business',
@@ -81,6 +80,12 @@ export class InitialAppsSeeds extends SeedHelper {
       domain: 'business',
       title: 'employees',
       parentCategoryId: 3,
+    },
+    {
+      categoryId: 13,
+      domain: 'business',
+      title: 'payment',
+      parentCategoryId: 5,
     },
   ];
 
@@ -197,7 +202,7 @@ export class InitialAppsSeeds extends SeedHelper {
       domain: 'business',
       title: 'payment',
       path: '/administration/payment/overview',
-      categoryId: 5,
+      categoryId: 13,
       img: '',
     },
     {
@@ -238,6 +243,14 @@ export class InitialAppsSeeds extends SeedHelper {
       title: 'employee',
       path: '/backoffice/employees/overview/',
       categoryId: 12,
+      img: '',
+    },
+    {
+      appId: 27,
+      domain: 'business',
+      title: 'abo',
+      path: '/administration/payment/abo',
+      categoryId: 13,
       img: '',
     },
   ];

@@ -13,16 +13,12 @@ import {
 * Locales for Application
 * */
 @Entity('translation_locale')
-@Index(['companyId'])
-@Index(['companyId', 'languageId'])
-@Index(['companyId', 'languageId', 'section'])
-@Unique(['companyId', 'languageId', 'section', 'key'])
+@Index(['languageId'])
+@Index([ 'languageId', 'section'])
+@Unique(['languageId', 'section', 'key'])
 export class TranslationLocaleEntity extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
   translationId: number;
-
-  @Column({ type: 'bigint' , nullable:true})
-  companyId: number;
 
   @Column({ type: 'smallint' , nullable:false})
   languageId: number;

@@ -25,13 +25,13 @@ export class LocalesService {
   setTranslation(
     key: string,
     translation: string,
-    lang: string,
+    languageId: number,
     section: string
   ) {
-    return this.http.post(this.getPath('/setText'), {
+    return this.http.put(this.getPath('/settings/locales/setText'), {
       key,
       translation: encodeURI(translation),
-      lang,
+      languageId,
       section,
       isEncodeURI: true,
     });
@@ -40,12 +40,12 @@ export class LocalesService {
   updateTranslation(
     key: string,
     translation: string,
-    lang: string,
+    languageId: number,
     section: string
   ) {
-    return this.http.patch(this.getPath('/updateText/' + key), {
+    return this.http.patch(this.getPath('/settings/locales/updateText/' + key), {
       translation: encodeURI(translation),
-      lang,
+      languageId,
       section,
       isEncodeURI: true,
     });

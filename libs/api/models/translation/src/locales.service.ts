@@ -10,17 +10,48 @@ export class LocalesService {
   ) {}
 
   getAllLocales(){
-    return this.repo.find();
+    let data = {};
+    const langName = {
+        1:'de',
+        2:'en'
+    }
+    return this.repo.find().then(
+        rows =>{
+            rows.map(obj => {
+
+                const langItem = { key:  obj.key , value : obj.value, languageId:  obj.languageId , section:obj.section};
+
+                if(data[obj.section]){
+
+                    if(data[obj.section][langName[obj.languageId]]){
+                        data[obj.section][langName[obj.languageId]][obj.key] = (langItem);
+                    }else {
+                        data[obj.section][langName[obj.languageId]] = {};
+                        data[obj.section][langName[obj.languageId]][obj.key] = (langItem);
+                    }
+
+
+                }
+                else{
+                    data[obj.section] = {};
+                    data[obj.section][langName[obj.languageId]]             = {};
+                    data[obj.section][langName[obj.languageId]][obj.key]   = (langItem);
+                }
+
+            })
+            return data
+        }
+    );
   }
 
   createLocaleValue(key:string, translation:string ,languageId:number, section:string | null = null){
    return this.repo.upsert( {
       languageId ,
-      value:translation,
+      value: translation || '',
       key,
       section
     } ,[
-        'companyId','languageId', 'section','key',
+       'languageId', 'section', 'key',
     ])
   };
 

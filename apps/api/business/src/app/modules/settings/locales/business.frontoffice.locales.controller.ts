@@ -33,19 +33,26 @@ export class BusinessSettingsLocalesController {
     @GetUser() user: AuthUser,
     @Body() params: any,
   ) {
+
+
+
     return this.localesService.createLocaleValue(
-        params.key, (params.translation || params.value) ,params.lang, params.section
+        params.key, decodeURI(params.translation || params.value || '') ,params.languageId, params.section
     )
   }
 
-  @Patch('updateText')
+  @Patch('updateText/:key')
   updateText(
       @GetCompany() business: BusinessEntity,
       @GetUser() user: AuthUser,
+      @Param('key') key: string,
       @Body() params: any,
   ) {
-    return this.localesService.createLocaleValue(
-        params.key, (params.translation || params.value) ,params.lang, params.section
+    return this.localesService.updateLocaleValue(
+        key,
+        decodeURI(params.translation || params.value || '') ,
+        params.languageId,
+        params.section
     )
   }
 }

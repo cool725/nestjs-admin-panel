@@ -27,6 +27,7 @@ export class BoostrapModalUIComponent {
     top: 'initial',
     right: '0px',
     bottom: '0px',
+    display: 'block',
   };
 
   @Input() dialogClass = 'h-100'; // 'modal-dialog' //todo add description

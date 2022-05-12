@@ -59,7 +59,7 @@ export class ProfilesOverviewComponent extends PageController {
   }
 
   editProfile(id: number) {
-    return this.openModal(EDataEmitterType.ModalOpen, ProfilesFormComponent, {
+    return this.openModal(ProfilesFormComponent, {
       id: id,
     });
   }

@@ -73,7 +73,7 @@ export class LayoutMainComponent {
     const componentRef = await modalRef.instance.setModalContentFromComponent(
       component,
       options,
-      100
+      50
     );
     (componentRef.instance as any)['closeModal'] = () => {
       modalRef.destroy();

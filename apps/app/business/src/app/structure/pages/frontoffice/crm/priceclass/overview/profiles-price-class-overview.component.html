@@ -22,9 +22,16 @@
               </div> -->
 
               <mdb-form-control>
-                <input mdbInput type="text" id="formControlDefault" class="form-control"
-                  [(ngModel)]="profilePriceClassTable.filterValues.searchValue" />
-                <label mdbLabel class="form-label" for="formControlDefault">Suchen</label>
+                <input
+                  mdbInput
+                  type="text"
+                  id="formControlDefault"
+                  class="form-control"
+                  [(ngModel)]="profilePriceClassTable.filterValues.searchValue"
+                />
+                <label mdbLabel class="form-label" for="formControlDefault"
+                  >Suchen</label
+                >
               </mdb-form-control>
             </div>
 
@@ -56,7 +63,12 @@
             <tr *ngIf="profilePriceClassTable.canShow(priceclass)">
               <td>{{ priceclass.title }}</td>
               <td>
-                <input type="color" style="height:30px; width:30px; padding: 3px;" disabled [value]="priceclass.color" />
+                <input
+                  type="color"
+                  style="height: 30px; width: 30px; padding: 3px"
+                  disabled
+                  [value]="priceclass.color"
+                />
               </td>
               <td class="text-start">{{ priceclass.value }}%</td>
               <td class="text-center ps-0 pe-2" width="60px" align="right">

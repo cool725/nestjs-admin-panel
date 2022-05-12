@@ -98,7 +98,7 @@ export class ProfilesPriceClassFormComponent
     }
     this.formPriceClass.updateValueAndValidity();
   }
-   closePopup() {
+  closePopup() {
     this.api.profilePriceClass$.next(null);
   }
 }

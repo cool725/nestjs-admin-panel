@@ -27,10 +27,10 @@
       </div>
 
       <div class="ps-2 col-2">
-        <a class="btn btn-primary text-white w-100" >Add Lang</a>
+        <a class="btn btn-primary text-white w-100">Add Lang</a>
       </div>
       <div class="ps-2 col-2">
-        <a class="btn btn-success text-white w-100" >Add Key</a>
+        <a class="btn btn-success text-white w-100">Add Key</a>
       </div>
 
       <!-- (click)="showDialog = !showDialog" -->
@@ -199,9 +199,14 @@
                             >
                               <a
                                 class="btn"
-                                (click)="createKey(key, '',
-                                getLangIdByKey(lang)
-                                , section)"
+                                (click)="
+                                  createKey(
+                                    key,
+                                    '',
+                                    getLangIdByKey(lang),
+                                    section
+                                  )
+                                "
                                 >Create key</a
                               >
                             </ng-container>
@@ -257,10 +262,9 @@
   </div>
 </div>
 
-
 <lib-modal-ui
-        *ngIf="locale"
-        [style]="{
+  *ngIf="locale"
+  [style]="{
     display: 'block',
     width: '425px',
     height: 'fit-content',
@@ -272,45 +276,65 @@
   }"
 >
   <div>
-
-
     <div class="modal-header header">
-      <h6>Key </h6>
+      <h6>Key</h6>
     </div>
-    <div class="text-container form-group ">
-
+    <div class="text-container form-group">
       <div class="col-12 row">
         <div class="col-4">
-          <input [(ngModel)]="locale.key"       type="text" class="form-control " placeholder="key">
+          <input
+            [(ngModel)]="locale.key"
+            type="text"
+            class="form-control"
+            placeholder="key"
+          />
         </div>
         <div class="col-4">
-          <select [(ngModel)]="locale.languageId" type="text" class="form-control  ">
+          <select
+            [(ngModel)]="locale.languageId"
+            type="text"
+            class="form-control"
+          >
             <ng-container *ngFor="let _lang of locale.getLanguages()">
-              <option [value]=_lang.languageId> {{ (_lang.langName ) }}</option>
+              <option [value]="_lang.languageId">{{ _lang.langName }}</option>
             </ng-container>
-
-
           </select>
         </div>
         <div class="col-4">
-          <select [(ngModel)]="locale.section"  class="form-control  ">
+          <select [(ngModel)]="locale.section" class="form-control">
             <ng-container *ngFor="let _section of sections">
-              <option [value]="_section|lowercase">{{_section  | titlecase}}</option> <!-- | translate -->
+              <option [value]="_section | lowercase">
+                {{ _section | titlecase }}
+              </option>
+              <!-- | translate -->
             </ng-container>
           </select>
         </div>
       </div>
-
-
       <div style="margin-top: 20px" class="col-12">
-        <textarea [(ngModel)]="locale.value" class="form-control " placeholder="{{'description'  | titlecase}}"></textarea>
+        <textarea
+          [(ngModel)]="locale.value"
+          class="form-control"
+          placeholder="{{ 'description' | titlecase }}"
+        ></textarea>
       </div>
-
-
     </div>
-    <footer >
-      <input type="button" class="btn btn-default " value="{{'cancel' }}" (click)="locale = null">
-      <input type="button" *ngIf="locale.languageId && locale.key && locale.value" (click)="createKey(locale.key,locale.value,locale.languageId,locale.section)" class="btn btn-success"  value="{{'save'}}">
+    <footer>
+      <input
+        type="button"
+        class="btn btn-default"
+        value="{{ 'cancel' }}"
+        (click)="locale = null"
+      />
+      <input
+        type="button"
+        *ngIf="locale.languageId && locale.key && locale.value"
+        (click)="
+          createKey(locale.key, locale.value, locale.languageId, locale.section)
+        "
+        class="btn btn-success"
+        value="{{ 'save' }}"
+      />
     </footer>
   </div>
 </lib-modal-ui>

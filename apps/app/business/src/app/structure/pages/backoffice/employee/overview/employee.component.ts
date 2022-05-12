@@ -24,9 +24,9 @@ type ITableEmployeeFilter = ITableBaseFilter;
   styleUrls: ['./employee.component.css'],
 })
 export class EmployeeOverviewComponent extends PageController {
-
   tableEmployees = Table.create<Employee, ITableEmployeeFilter>(
-    this.api.employees$, {
+    this.api.employees$,
+    {
       page: 0,
       searchValue: '',
     }

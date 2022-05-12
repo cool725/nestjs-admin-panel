@@ -9,8 +9,8 @@ const routes = [
       import('./employee/employee.module').then((m) => m.EmployeeModule),
   },
   {
-    path:'employees',
-    redirectTo:'employee'
+    path: 'employees',
+    redirectTo: 'employee',
   },
   {
     path: 'items',

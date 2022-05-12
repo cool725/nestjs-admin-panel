@@ -8,7 +8,6 @@ import { environment } from '../../../../../../../environments/environment';
 import { ProfilePriceClassAPI } from '../packages/profile-price-class-api.service';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 
-
 @NgModule({
   declarations: [ProfilesPriceClassFormComponent],
   imports: [
@@ -17,8 +16,7 @@ import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
     FormsModule,
     ReactiveFormsModule,
     NzSelectModule,
-    MdbFormsModule
-
+    MdbFormsModule,
   ],
   providers: [
     ProfilePriceClassAPI,

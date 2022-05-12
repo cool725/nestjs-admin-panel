@@ -11,8 +11,8 @@ import { GetCompany } from '../../../../../../../../libs/api/models/business/src
 import { BusinessEntity } from '../../../../../../../../libs/api/models/business/src/entities/business.entity';
 import { AuthUser, CompanyGuard, GetUser } from '@movit/api/auth';
 import { AuthGuard } from '@nestjs/passport';
-import { Settings } from "../business.settings.namespace";
-import {LocalesService} from "@movit/api/translation";
+import { Settings } from '../business.settings.namespace';
+import { LocalesService } from '@movit/api/translation';
 
 @Controller(Settings.resolePaths([Settings.Locales.PATH]))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)
@@ -20,39 +20,36 @@ export class BusinessSettingsLocalesController {
   constructor(protected localesService: LocalesService) {}
 
   @Get('all')
-  getAll(
-    @GetCompany() business: BusinessEntity,
-    @GetUser() user: AuthUser,
-  ) {
-    return this.localesService.getAllLocales()
+  getAll(@GetCompany() business: BusinessEntity, @GetUser() user: AuthUser) {
+    return this.localesService.getAllLocales();
   }
 
   @Put('setText')
   setText(
     @GetCompany() business: BusinessEntity,
     @GetUser() user: AuthUser,
-    @Body() params: any,
+    @Body() params: any
   ) {
-
-
-
     return this.localesService.createLocaleValue(
-        params.key, decodeURI(params.translation || params.value || '') ,params.languageId, params.section
-    )
+      params.key,
+      decodeURI(params.translation || params.value || ''),
+      params.languageId,
+      params.section
+    );
   }
 
   @Patch('updateText/:key')
   updateText(
-      @GetCompany() business: BusinessEntity,
-      @GetUser() user: AuthUser,
-      @Param('key') key: string,
-      @Body() params: any,
+    @GetCompany() business: BusinessEntity,
+    @GetUser() user: AuthUser,
+    @Param('key') key: string,
+    @Body() params: any
   ) {
     return this.localesService.updateLocaleValue(
-        key,
-        decodeURI(params.translation || params.value || '') ,
-        params.languageId,
-        params.section
-    )
+      key,
+      decodeURI(params.translation || params.value || ''),
+      params.languageId,
+      params.section
+    );
   }
 }

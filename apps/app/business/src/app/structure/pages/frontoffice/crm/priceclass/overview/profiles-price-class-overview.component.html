@@ -12,17 +12,23 @@
         <div class="">
           <div class="row">
             <div class="col-12 col-md-10">
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <input
                   [(ngModel)]="profilePriceClassTable.filterValues.searchValue"
                   class="form-control"
                   placeholder="Suchen"
                   tabindex="1"
                 />
-              </div>
+              </div> -->
+
+              <mdb-form-control>
+                <input mdbInput type="text" id="formControlDefault" class="form-control"
+                  [(ngModel)]="profilePriceClassTable.filterValues.searchValue" />
+                <label mdbLabel class="form-label" for="formControlDefault">Suchen</label>
+              </mdb-form-control>
             </div>
 
-            <div class="col-6 col-md-2 mt-2 mt-md-0">
+            <div class="col-12 col-md-2 mt-2 mt-md-0">
               <div class="form-group">
                 <a
                   (click)="createPriceClass()"
@@ -50,23 +56,23 @@
             <tr *ngIf="profilePriceClassTable.canShow(priceclass)">
               <td>{{ priceclass.title }}</td>
               <td>
-                <input type="color" disabled [value]="priceclass.color" />
+                <input type="color" style="height:30px; width:30px; padding: 3px;" disabled [value]="priceclass.color" />
               </td>
-              <td class="text-center">{{ priceclass.percentage }}%</td>
-              <td class="text-right ps-0 pe-2" width="80px" align="right">
+              <td class="text-start">{{ priceclass.value }}%</td>
+              <td class="text-center ps-0 pe-2" width="60px" align="right">
                 <button
                   mdbRipple
                   (click)="editPriceClass(priceclass.priceClassId)"
-                  class="btn btn-primary"
+                  class="btn btn-primary w-75 p-2"
                 >
                   <i class="fa fa-edit text-white"></i>
                 </button>
               </td>
-              <td class="text-right ps-0 pe-2" width="80px" align="right">
+              <td class="text-center ps-0 pe-2" width="60px" align="right">
                 <button
                   mdbRipple
                   (click)="deleteProfilePriceClass(priceclass.priceClassId)"
-                  class="btn btn-danger"
+                  class="btn btn-danger w-75 p-2"
                 >
                   <i class="fa fa-trash text-white"></i>
                 </button>
@@ -92,15 +98,15 @@
     margin: 'auto'
   }"
 >
-  <div style="direction: rtl">
+  <!-- <div style="direction: rtl">
     <button
       type="button"
-      class="btn-close"
+      class="btn-close p-2"
       data-bs-dismiss="modal"
       aria-label="Close"
       (click)="closePopup()"
     ></button>
-  </div>
+  </div> -->
 
   <movit-profiles-price-class-form></movit-profiles-price-class-form>
 </lib-modal-ui>

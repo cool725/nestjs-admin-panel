@@ -12,7 +12,7 @@ export class PriceClass {
   standard: string;
   color: string;
   isPercentage?: boolean;
-  percentage?: number;
+  value: number;
 
   static create(params: Partial<PriceClass>) {
     return Object.assign(new PriceClass(), params);
@@ -62,7 +62,7 @@ export class ProfilesPriceClassOverviewComponent extends PageController {
     await this.api.deletePriceClass(id).subscribe(() => this.reloadData());
   }
 
-  closePopup() {
-    this.api.profilePriceClass$.next(null);
-  }
+  // closePopup() {
+  //   this.api.profilePriceClass$.next(null);
+  // }
 }

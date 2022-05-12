@@ -27,8 +27,8 @@ export class TranslationLocaleEntity extends BaseEntity {
   @Column({ type: 'smallint' , nullable:false})
   languageId: number;
 
-  @Column({ type: 'char', length: 20 })
-  section: string;
+  @Column({ type: 'char', length: 30 , nullable:true})
+  section?: string;
 
   @Column({ type: 'char', length: 20 })
   key: string;

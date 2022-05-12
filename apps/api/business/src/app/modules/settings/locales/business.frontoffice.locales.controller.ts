@@ -19,14 +19,33 @@ import {LocalesService} from "@movit/api/translation";
 export class BusinessSettingsLocalesController {
   constructor(protected localesService: LocalesService) {}
 
-  /*
-   * Gets reservations with legs
-   * */
   @Get('all')
-  alive(
+  getAll(
     @GetCompany() business: BusinessEntity,
     @GetUser() user: AuthUser,
   ) {
-    return [1]
+    return this.localesService.getAllLocales()
+  }
+
+  @Put('setText')
+  setText(
+    @GetCompany() business: BusinessEntity,
+    @GetUser() user: AuthUser,
+    @Body() params: any,
+  ) {
+    return this.localesService.createLocaleValue(
+        params.key, (params.translation || params.value) ,params.lang, params.section
+    )
+  }
+
+  @Patch('updateText')
+  updateText(
+      @GetCompany() business: BusinessEntity,
+      @GetUser() user: AuthUser,
+      @Body() params: any,
+  ) {
+    return this.localesService.createLocaleValue(
+        params.key, (params.translation || params.value) ,params.lang, params.section
+    )
   }
 }

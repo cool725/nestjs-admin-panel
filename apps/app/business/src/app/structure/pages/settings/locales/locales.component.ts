@@ -1,11 +1,12 @@
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component, Injector,
+  Component,
+  Injector,
   OnInit,
 } from '@angular/core';
 import { LocalesService } from './locales-service';
-import {PageController} from "../../page.controller";
+import { PageController } from '../../page.controller';
 
 const defaultLanguages = [
   'de',
@@ -14,34 +15,34 @@ const defaultLanguages = [
   'es',
   'it',
   'br',
- /*
+  /*
    'ru',
   'el',
   'tr',
   'th',
  * */
 ];
-const languages:{languageId:number,langName:string,key:string}[] = [
+const languages: { languageId: number; langName: string; key: string }[] = [
   {
-    langName:'german',
-    key:'de',
-    languageId:1,
+    langName: 'german',
+    key: 'de',
+    languageId: 1,
   },
   {
-    langName:'english',
-    key:'en',
-    languageId:2,
-  }
-]
+    langName: 'english',
+    key: 'en',
+    languageId: 2,
+  },
+];
 
-class LocaleObject{
-  key:string
-  languageId:number
-  section?:string
-  value?:string
+class LocaleObject {
+  key: string;
+  languageId: number;
+  section?: string;
+  value?: string;
 
-  getLanguages(){
-    return languages
+  getLanguages() {
+    return languages;
   }
 }
 
@@ -74,7 +75,7 @@ export class LocalesComponent extends PageController implements OnInit {
     private langAPI: LocalesService
   ) {
     super(injector);
-  langAPI.test()
+    langAPI.test();
   }
 
   ngOnInit(): void {}
@@ -134,8 +135,8 @@ export class LocalesComponent extends PageController implements OnInit {
     //  return (100 / (this.total / i) ).toFixed(2) + '%';
   }
 
-  showDialog(){
-    this.locale = new LocaleObject()
+  showDialog() {
+    this.locale = new LocaleObject();
   }
 
   // Creating new LangObject
@@ -146,16 +147,14 @@ export class LocalesComponent extends PageController implements OnInit {
         .subscribe(() => this.updateView());
   }
 
-  getLangIdByKey(key:string):number{
-    const lang = languages.find(
-        lang => lang.key == key
-    );
+  getLangIdByKey(key: string): number {
+    const lang = languages.find((lang) => lang.key == key);
 
-    if(!lang){
-      console.warn('getLangIdByKey:'+key)
+    if (!lang) {
+      console.warn('getLangIdByKey:' + key);
     }
 
-    return lang?.languageId || 0
+    return lang?.languageId || 0;
   }
 
   async updateLanguageByKey(
@@ -165,10 +164,9 @@ export class LocalesComponent extends PageController implements OnInit {
     item: any,
     orginalItem: any
   ) {
+    const languageId = this.getLangIdByKey(langNameShort);
 
-    const languageId = this.getLangIdByKey(langNameShort)
-
-    if(!languageId)return console.error('lang not found: '+ langNameShort)
+    if (!languageId) return console.error('lang not found: ' + langNameShort);
 
     if (!item)
       return this.createKey(key, value, languageId, orginalItem.section);

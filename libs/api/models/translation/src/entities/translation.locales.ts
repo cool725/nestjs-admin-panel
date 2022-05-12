@@ -10,20 +10,20 @@ import {
 } from 'typeorm';
 
 /*
-* Locales for Application
-* */
+ * Locales for Application
+ * */
 @Entity('translation_locale')
 @Index(['languageId'])
-@Index([ 'languageId', 'section'])
+@Index(['languageId', 'section'])
 @Unique(['languageId', 'section', 'key'])
 export class TranslationLocaleEntity extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
   translationId: number;
 
-  @Column({ type: 'smallint' , nullable:false})
+  @Column({ type: 'smallint', nullable: false })
   languageId: number;
 
-  @Column({ type: 'char', length: 30 , nullable:true})
+  @Column({ type: 'char', length: 30, nullable: true })
   section?: string;
 
   @Column({ type: 'char', length: 20 })
@@ -35,5 +35,4 @@ export class TranslationLocaleEntity extends BaseEntity {
   public toJSON() {
     return instanceToPlain(this);
   }
-
 }

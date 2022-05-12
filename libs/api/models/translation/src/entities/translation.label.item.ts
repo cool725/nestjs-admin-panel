@@ -10,8 +10,8 @@ import {
 } from 'typeorm';
 
 /*
-* Translation for Items/Products/Services ect
-* */
+ * Translation for Items/Products/Services ect
+ * */
 @Entity('translation_label')
 @Index(['companyId', 'languageId', 'type'])
 @Unique(['companyId', 'languageId', 'type', 'key', 'id'])

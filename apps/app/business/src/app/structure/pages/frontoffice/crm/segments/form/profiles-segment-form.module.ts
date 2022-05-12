@@ -16,7 +16,7 @@ import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
     FormsModule,
     ReactiveFormsModule,
     NzSelectModule,
-    MdbFormsModule
+    MdbFormsModule,
   ],
   providers: [
     ProfileSegmentAPI,

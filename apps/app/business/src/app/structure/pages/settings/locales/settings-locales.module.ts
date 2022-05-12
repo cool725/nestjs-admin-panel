@@ -5,10 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LocalesService } from './locales-service';
 import { KeysPipe } from './pipes.key';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-import {FormsModule} from "@angular/forms";
-import {
-    BoostrapModalUIModule
-} from "../../../../../../../../../libs/app/ui/boostrap/modal/default/modal.default.module";
+import { FormsModule } from '@angular/forms';
+import { BoostrapModalUIModule } from '../../../../../../../../../libs/app/ui/boostrap/modal/default/modal.default.module';
 
 const routes: Routes = [
   {
@@ -22,7 +20,13 @@ const routes: Routes = [
 ];
 @NgModule({
   declarations: [LocalesComponent, KeysPipe],
-    imports: [CommonModule, RouterModule.forChild(routes), NzSelectModule, FormsModule, BoostrapModalUIModule], // todo NzSelectModule to sharedModules
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    NzSelectModule,
+    FormsModule,
+    BoostrapModalUIModule,
+  ], // todo NzSelectModule to sharedModules
   providers: [LocalesService],
 })
 export class SettingsLocalesModule {}

@@ -26,7 +26,7 @@ const DBStartOptions = <ConnectionOptions>{
     AppsRoleEntity,
     AppsUserRightEntity,
     AppsRoleRightsEntity,
-  ]
+  ],
 };
 
 doSeed([InitialAppsSeeds, InitialAppRoleSeeds], DBStartOptions);

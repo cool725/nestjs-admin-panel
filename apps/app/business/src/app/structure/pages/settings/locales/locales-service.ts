@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {environment} from "../../../../../environments/environment";
+import { environment } from '../../../../../environments/environment';
 
 @Injectable()
 export class LocalesService {
@@ -13,7 +13,7 @@ export class LocalesService {
   }
 
   getAllLang() {
-    return this.http.get(('/assets/locale-test/settings.json'), {});
+    return this.http.get('/assets/locale-test/settings.json', {});
     //return this.http.get(this.getPath('/getText?all=1'), {});
   }
 
@@ -43,11 +43,14 @@ export class LocalesService {
     languageId: number,
     section: string
   ) {
-    return this.http.patch(this.getPath('/settings/locales/updateText/' + key), {
-      translation: encodeURI(translation),
-      languageId,
-      section,
-      isEncodeURI: true,
-    });
+    return this.http.patch(
+      this.getPath('/settings/locales/updateText/' + key),
+      {
+        translation: encodeURI(translation),
+        languageId,
+        section,
+        isEncodeURI: true,
+      }
+    );
   }
 }

@@ -76,6 +76,12 @@ export class InitialAppsSeeds extends SeedHelper {
       parentCategoryId: null,
       companyId: 1,
     },
+    {
+      categoryId: 12,
+      domain: 'business',
+      title: 'employees',
+      parentCategoryId: 3,
+    },
   ];
 
   apps = [
@@ -224,6 +230,14 @@ export class InitialAppsSeeds extends SeedHelper {
       title: 'postage',
       path: '/backoffice/items/sales/product/postage',
       categoryId: 8,
+      img: '',
+    },
+    {
+      appId: 26,
+      domain: 'business',
+      title: 'employee',
+      path: '/backoffice/employees/overview/',
+      categoryId: 12,
       img: '',
     },
   ];

@@ -16,6 +16,11 @@
 1. `npm run build && npm run docker:build`
 2. `docker-compose up`
 
+If you are getting an ngcc error:
+remove the postinstall skript from package.json
+run 1 & 2 again. After the build has finished. 
+add the postinstall skript again.
+
 #### Local Domain
 
 Setup two Local Domain entry

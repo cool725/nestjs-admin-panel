@@ -9,6 +9,10 @@ const routes = [
       import('./employee/employee.module').then((m) => m.EmployeeModule),
   },
   {
+    path:'employees',
+    redirectTo:'employee'
+  },
+  {
     path: 'items',
     loadChildren: () =>
       import('./items/items.module').then((m) => m.ItemsModule),

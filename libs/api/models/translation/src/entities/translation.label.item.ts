@@ -1,4 +1,4 @@
-import { Exclude, instanceToPlain } from 'class-transformer';
+import { instanceToPlain } from 'class-transformer';
 
 import {
   BaseEntity,
@@ -9,6 +9,9 @@ import {
   Unique,
 } from 'typeorm';
 
+/*
+* Translation for Items/Products/Services ect
+* */
 @Entity('translation_label')
 @Index(['companyId', 'languageId', 'type'])
 @Unique(['companyId', 'languageId', 'type', 'key', 'id'])

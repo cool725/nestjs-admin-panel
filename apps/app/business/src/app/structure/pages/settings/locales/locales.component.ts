@@ -4,7 +4,7 @@ import {
   Component, Injector,
   OnInit,
 } from '@angular/core';
-import { LocalesService } from './locales-.service';
+import { LocalesService } from './locales-service';
 import {PageController} from "../../page.controller";
 
 const defaultLanguages = [
@@ -49,7 +49,8 @@ export class LocalesComponent extends PageController implements OnInit {
     private cdr: ChangeDetectorRef,
     private langAPI: LocalesService
   ) {
-    super(injector)
+    super(injector);
+
   }
 
   ngOnInit(): void {}

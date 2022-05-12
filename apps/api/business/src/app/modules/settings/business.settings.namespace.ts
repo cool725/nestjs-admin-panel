@@ -7,4 +7,7 @@ export namespace Settings {
   export function resolePaths(path: string[]) {
     return [PATH, ...path].join('/');
   }
+  export namespace Locales {
+    export const PATH = 'locales';
+  }
 }

@@ -1,6 +1,7 @@
 import { ConnectionOptions } from 'typeorm';
 import * as path from 'path';
 import { TranslationLabelEntity } from '../entities/translation.label.item';
+import {TranslationLocaleEntity} from "../entities/translation.locales";
 
 const DBTranslationOptions = <ConnectionOptions>{
   type: process.env.DB_TYPE,
@@ -16,7 +17,7 @@ const DBTranslationOptions = <ConnectionOptions>{
   cli: {
     migrationsDir: path.resolve('./migrations'),
   },
-  entities: [TranslationLabelEntity],
+  entities: [TranslationLabelEntity,TranslationLocaleEntity],
 };
 
 export default DBTranslationOptions;

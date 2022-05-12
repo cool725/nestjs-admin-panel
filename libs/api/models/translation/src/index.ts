@@ -1,1 +1,2 @@
-export * from './lib/translation.module';
+export * from './translation.module';
+export * from './locales.service';

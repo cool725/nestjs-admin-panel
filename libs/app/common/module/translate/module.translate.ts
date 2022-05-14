@@ -1,16 +1,18 @@
 import {ModuleWithProviders, NgModule} from "@angular/core";
 import {TranslateService} from "./app.service.translate";
 import {TranslatePipe} from "./app.pipe.translate";
+import {LocaleResolver} from "./app.service.translate-resolver";
 
 @NgModule({
   providers:[
       TranslateService,
+      LocaleResolver
   ],
   declarations:[
       TranslatePipe
   ],
   exports:[
-      TranslatePipe
+      TranslatePipe,
   ]
 })
 export class TranslateLocaleModule {
@@ -24,6 +26,7 @@ export class TranslateLocaleModule {
     static forChild(): ModuleWithProviders<TranslateLocaleModule> {
         return {
             ngModule: TranslateLocaleModule,
+
         }
     }
 }

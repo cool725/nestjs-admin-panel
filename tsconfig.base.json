@@ -43,7 +43,7 @@
       "@movit/app/common": ["libs/app/common/index.ts"],
       "@movit/app/decorators": ["libs/app/common/lib/decorators/index.ts"],
       "@movit/app/ui": ["libs/app/ui/index.ts"],
-      "@movit/app/module": ["libs/app/common/module/index.ts"],
+      "@movit/app/module": ["libs/app/common/module/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp", "scripts", "docker"]

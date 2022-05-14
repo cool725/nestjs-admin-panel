@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {LocaleResolver} from "../../routing/app-routing.resolver";
+import {LocaleResolver, TranslateLocaleModule} from "@movit/app/module";
 
 const routes:Routes = [
   {
@@ -28,7 +28,10 @@ const routes:Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, RouterModule.forChild(routes)],
-  providers:[LocaleResolver]
+  imports: [
+    CommonModule,
+    TranslateLocaleModule.forChild(),
+    RouterModule.forChild(routes)],
+  providers:[]
 })
 export class FrontOfficeModule {}

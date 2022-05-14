@@ -5,6 +5,6 @@ import {TranslateService} from "./app.service.translate";
 export class TranslatePipe implements PipeTransform {
     constructor( private translateService:TranslateService ) {}
     transform(value: string): string {
-        return value;
+        return this.translateService.translate(value) || value;
     }
 }

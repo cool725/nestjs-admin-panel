@@ -10,7 +10,7 @@ import { Inject, Injectable, InjectionToken, PLATFORM_ID } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 @Injectable()
-export class AppInterceptor implements HttpInterceptor {
+export class AppHttpInterceptor implements HttpInterceptor {
   private readonly documentIsAccessible: boolean = isPlatformBrowser(
     this.platformId
   );
@@ -25,13 +25,13 @@ export class AppInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     this.token = this.documentIsAccessible
-      ? AppInterceptor.getCookie('utk', this.document)
+      ? AppHttpInterceptor.getCookie('utk', this.document)
       : '';
     if (!this.token) return next.handle(req);
 
     const headerObj: any = this.getHeader();
 
-    const ctk = AppInterceptor.getCookie('ctk', this.document);
+    const ctk = AppHttpInterceptor.getCookie('ctk', this.document);
     if (ctk) {
       headerObj['Company'] =
         location.pathname.split('/')[1] +
@@ -67,7 +67,7 @@ export class AppInterceptor implements HttpInterceptor {
     if (name) {
       name = encodeURIComponent(name);
 
-      const regExp: RegExp = AppInterceptor.getCookieRegExp(name);
+      const regExp: RegExp = AppHttpInterceptor.getCookieRegExp(name);
       const result: RegExpExecArray = <any>regExp.exec(document.cookie);
       return result && result[0] ? decodeURIComponent(result[1]) : '';
     } else {

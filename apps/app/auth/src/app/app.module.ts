@@ -5,7 +5,7 @@ import { LayoutsModule } from './layout/layouts.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppInterceptor } from '@movit/app/common';
+import { AppHttpInterceptor } from '@movit/app/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
@@ -21,7 +21,7 @@ import { TranslateModule } from '@ngx-translate/core';
     }),
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AppHttpInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

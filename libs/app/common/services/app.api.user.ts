@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subscription } from 'rxjs';
-import { AppApiBase } from '@movit/app/common';
-import { Cacheable } from 'angular-cacheable';
 
 interface User {}
 

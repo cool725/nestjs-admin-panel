@@ -15,6 +15,7 @@ module.exports = {
       script: 'dist/apps/api/business/main.js',
       watch: ['dist/apps/api/business/**/*'],
       ignore_watch: '*.ts',
+      "pre-setup":"npm run prestart",
       watch_options: {
         usePolling: true,
         alwaysStat: true,

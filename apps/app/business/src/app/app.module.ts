@@ -6,9 +6,18 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './structure/routing/app-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AppInterceptor } from '@movit/app/common';
+import { AppHttpInterceptor } from '@movit/app/common';
 import { environment } from '../environments/environment';
-import { TranslateModule } from '@ngx-translate/core';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {Observable, of} from "rxjs";
+
+
+class CustomLoader implements TranslateLoader {
+  getTranslation(lang: string): Observable<any> {
+    console.log(lang)
+    return of({KEY: 'value'});
+  }
+}
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,10 +28,12 @@ import { TranslateModule } from '@ngx-translate/core';
     HttpClientModule,
     TranslateModule.forRoot({
       defaultLanguage: 'de',
+      loader: {provide: TranslateLoader, useClass: CustomLoader}
     }),
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
+
+    { provide: HTTP_INTERCEPTORS, useClass: AppHttpInterceptor, multi: true },
     { provide: 'env', useValue: environment },
   ],
   bootstrap: [AppComponent],

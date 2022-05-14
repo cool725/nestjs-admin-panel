@@ -7,12 +7,15 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ProfileSegmentAPI } from '../packages/profile-sagment-api.service';
 import { environment } from '../../../../../../../environments/environment';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
+import {
+  TranslateLocaleModule
+} from "../../../../../../../../../../../libs/app/common/module/translate/module.translate";
 
 @NgModule({
   declarations: [ProfilesSegmentFormComponent],
   imports: [
     CommonModule,
-    TranslateModule.forChild(),
+    TranslateLocaleModule.forChild(),
     FormsModule,
     ReactiveFormsModule,
     NzSelectModule,

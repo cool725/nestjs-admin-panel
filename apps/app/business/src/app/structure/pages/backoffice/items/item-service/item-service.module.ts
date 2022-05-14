@@ -7,8 +7,9 @@ import { BoostrapModalUIModule } from '../../../../../../../../../../libs/app/ui
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ItemServiceAPI } from './item.api';
 import { ItemServiceFormComponent } from './form/item-service-form.component';
-import { TranslateModule } from '@ngx-translate/core';
 import { MdbSharedModule } from '@movit/app/ui';
+import {TranslateModule} from "@ngx-translate/core";
+import {TranslateLocaleModule} from "../../../../../../../../../../libs/app/common/module/translate/module.translate";
 
 const routes: Routes = [
   {
@@ -37,7 +38,7 @@ const routes: Routes = [
     FormsModule,
     BoostrapModalUIModule,
     NzSelectModule,
-    TranslateModule.forChild(),
+    TranslateLocaleModule.forChild(),
     MdbSharedModule,
   ],
   providers: [ItemServiceAPI],

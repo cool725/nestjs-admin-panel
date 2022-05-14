@@ -8,8 +8,9 @@ import { AppRoutingModule } from './structure/routing/app-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppHttpInterceptor } from '@movit/app/common';
 import { environment } from '../environments/environment';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateLoader} from '@ngx-translate/core';
 import {Observable, of} from "rxjs";
+import {TranslateLocaleModule} from "../../../../../libs/app/common/module/translate/module.translate";
 
 
 class CustomLoader implements TranslateLoader {
@@ -26,8 +27,7 @@ class CustomLoader implements TranslateLoader {
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    TranslateModule.forRoot({
-      defaultLanguage: 'de',
+    TranslateLocaleModule.forRoot({
       loader: {provide: TranslateLoader, useClass: CustomLoader}
     }),
   ],

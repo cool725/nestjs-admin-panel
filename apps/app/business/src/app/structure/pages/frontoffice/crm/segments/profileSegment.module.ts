@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { RouterModule } from '@angular/router';
+
 import { ProfileSegmentAPI } from './packages/profile-sagment-api.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../../../../../../environments/environment';
@@ -11,6 +11,7 @@ import { BoostrapModalUIModule } from '../../../../../../../../../../libs/app/ui
 import { ProfilesSegmentFormModule } from './form/profiles-segment-form.module';
 import { ProfilesSegmentFormComponent } from './form/profiles-segment-form.component';
 import { MdbSharedModule } from '@movit/app/ui';
+import {TranslateLocaleModule} from "../../../../../../../../../../libs/app/common/module/translate/module.translate";
 
 @NgModule({
   declarations: [ProfilesSegmentOverviewComponent],
@@ -30,7 +31,7 @@ import { MdbSharedModule } from '@movit/app/ui';
         component: ProfilesSegmentOverviewComponent,
       },
     ]),
-    TranslateModule.forChild(),
+    TranslateLocaleModule.forChild(),
     FormsModule,
     ReactiveFormsModule,
     BoostrapModalUIModule,

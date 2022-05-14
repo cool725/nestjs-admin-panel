@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../../../../../../environments/environment';
 import { BoostrapModalUIComponent, MdbSharedModule } from '@movit/app/ui';
@@ -10,6 +10,7 @@ import { ProfilesPriceClassOverviewComponent } from './overview/profiles-price-c
 import { ProfilesPriceClassFormComponent } from './form/profiles-price-class-form.component';
 import { ProfilePriceClassAPI } from './packages/profile-price-class-api.service';
 import { ProfilesPriceClassFormModule } from './form/profiles-price-class-form.module';
+import {TranslateLocaleModule} from "../../../../../../../../../../libs/app/common/module/translate/module.translate";
 
 @NgModule({
   declarations: [ProfilesPriceClassOverviewComponent],
@@ -29,7 +30,7 @@ import { ProfilesPriceClassFormModule } from './form/profiles-price-class-form.m
         component: ProfilesPriceClassOverviewComponent,
       },
     ]),
-    TranslateModule.forChild(),
+    TranslateLocaleModule.forChild(),
     FormsModule,
     ReactiveFormsModule,
     BoostrapModalUIModule,

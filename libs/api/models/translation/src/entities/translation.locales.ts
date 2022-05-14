@@ -13,6 +13,7 @@ import {
  * Locales for Application
  * */
 @Entity('translation_locale')
+@Index(['project'])
 @Index(['languageId'])
 @Index(['languageId', 'section'])
 @Unique(['languageId', 'section', 'key'])
@@ -31,6 +32,9 @@ export class TranslationLocaleEntity extends BaseEntity {
 
   @Column({ type: 'varchar', length: 150 })
   value: string;
+
+  @Column({ type: 'varchar', length: 20, default:null })
+  project: string;
 
   public toJSON() {
     return instanceToPlain(this);

@@ -8,3 +8,4 @@ temp/
 /docker/
 .env
 docs/local.webserver.conf
+*.locale.json

@@ -1,10 +1,14 @@
-import {ModuleWithProviders, NgModule} from "@angular/core";
+import {Inject, ModuleWithProviders, NgModule} from "@angular/core";
 import {TranslateService} from "./app.service.translate";
 import {TranslatePipe} from "./app.pipe.translate";
 import {LocaleResolver} from "./app.service.translate-resolver";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
-  providers:[
+  imports:[
+      HttpClientModule
+  ],
+  providers: [
       TranslateService,
       LocaleResolver
   ],
@@ -16,17 +20,36 @@ import {LocaleResolver} from "./app.service.translate-resolver";
   ]
 })
 export class TranslateLocaleModule {
-    constructor(private translateService:TranslateService) {}
+    constructor(
+        @Inject('TranslateLocaleLoader') translationLoader: any,
+        private translateService:TranslateService) {
+        this.defineLoader(translateService,translationLoader)
+    }
 
-    static forRoot({loader}:{loader:any}): ModuleWithProviders<TranslateLocaleModule> {
+    static forRoot(
+        conf: { loader?:any }
+    ): ModuleWithProviders<TranslateLocaleModule> {
+
         return {
             ngModule: TranslateLocaleModule,
+            providers:[
+                {provide:'TranslateLocaleLoader', useClass: conf.loader.useClass}
+            ]
         }
     }
+
     static forChild(): ModuleWithProviders<TranslateLocaleModule> {
         return {
             ngModule: TranslateLocaleModule,
 
         }
+    }
+
+    defineLoader(translateService:TranslateService, useClass:any){
+        Object.defineProperty(translateService,
+            'loadTranslations', {
+                value: useClass,
+                writable: false
+            });
     }
 }

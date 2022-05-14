@@ -1,24 +1,16 @@
-import { NgModule } from '@angular/core';
+import {Injectable, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './structure/routing/app-routing.module';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import { AppHttpInterceptor } from '@movit/app/common';
 import { environment } from '../environments/environment';
-import {TranslateLoader} from '@ngx-translate/core';
 import {Observable, of} from "rxjs";
-import {TranslateLocaleModule} from "../../../../../libs/app/common/module/translate/module.translate";
+import {TranslateLoader, TranslateLocaleModule} from "@movit/app/module";
 
-
-class CustomLoader implements TranslateLoader {
-  getTranslation(lang: string): Observable<any> {
-    console.log(lang)
-    return of({KEY: 'value'});
-  }
-}
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,7 +20,10 @@ class CustomLoader implements TranslateLoader {
     AppRoutingModule,
     HttpClientModule,
     TranslateLocaleModule.forRoot({
-      loader: {provide: TranslateLoader, useClass: CustomLoader}
+      loader: {
+        provide: TranslateLoader.provideName,
+        useClass: TranslateLoader.useClass
+      }
     }),
   ],
   providers: [

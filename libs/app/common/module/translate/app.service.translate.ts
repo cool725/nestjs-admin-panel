@@ -20,6 +20,17 @@ export class TranslateService {
     setTranslations( section:string, values :any, lang?:string){
     }
 
-    loadAndSetTranslations( section:string, lang?:string){
+    async loadAndSetTranslations(section:string, lang?:string){
+
+        return console.log(
+            (<any>this.loadTranslations)
+        );
+
+       const values = await this.loadTranslations( section, lang);
+       if( !values ) return;
+    }
+
+    public loadTranslations( section:string, lang?:string):any{
+        throw new Error('Method not implemented: loadTranslations');
     }
 }

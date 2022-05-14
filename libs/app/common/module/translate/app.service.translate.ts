@@ -8,6 +8,7 @@ export class TranslateService {
     private readonly defaultTranslations:any = {
         "profiles" : "Kunden",
         "create" : "Erstellen",
+        "search" : "Suchen",
     };
 
     private readonly loadedTranslations:any = {};

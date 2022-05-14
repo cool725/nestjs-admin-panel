@@ -10,8 +10,8 @@ import { ProfilesFormModule } from './form/profiles-form.module';
 import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { MdbSharedModule } from '@movit/app/ui';
-import {TranslateModule} from "@ngx-translate/core";
-import {TranslateLocaleModule} from "../../../../../../../../../../libs/app/common/module/translate/module.translate";
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslateLocaleModule } from '../../../../../../../../../../libs/app/common/module/translate/module.translate';
 
 @NgModule({
   declarations: [ProfilesOverviewComponent],

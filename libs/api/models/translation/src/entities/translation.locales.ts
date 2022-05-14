@@ -33,7 +33,7 @@ export class TranslationLocaleEntity extends BaseEntity {
   @Column({ type: 'varchar', length: 150 })
   value: string;
 
-  @Column({ type: 'varchar', length: 20, default:null })
+  @Column({ type: 'varchar', length: 20, default: null })
   project: string;
 
   public toJSON() {

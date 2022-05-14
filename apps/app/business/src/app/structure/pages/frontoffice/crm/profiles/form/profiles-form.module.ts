@@ -7,9 +7,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ProfilesAPI } from '../packages/profile-api.service';
 import { environment } from '../../../../../../../environments/environment';
 import { MdbSharedModule } from '@movit/app/ui';
-import {
-  TranslateLocaleModule
-} from "../../../../../../../../../../../libs/app/common/module/translate/module.translate";
+import { TranslateLocaleModule } from '../../../../../../../../../../../libs/app/common/module/translate/module.translate';
 
 @NgModule({
   declarations: [ProfilesFormComponent],

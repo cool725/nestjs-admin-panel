@@ -1,33 +1,33 @@
 import { Injectable } from '@angular/core';
 import {
-    ActivatedRouteSnapshot,
-    RouterStateSnapshot,
-    Resolve,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  Resolve,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import {TranslateService} from "./app.service.translate";
+import { TranslateService } from './app.service.translate';
 
 /**
  * This class handles the loading of language of an component
  *
  * */
 @Injectable({
-    providedIn:'root'
+  providedIn: 'root',
 })
 export class LocaleResolver implements Resolve<any> {
-    static default = {
-        locale:LocaleResolver
-    }
+  static default = {
+    locale: LocaleResolver,
+  };
 
-    constructor(private ts: TranslateService) {}
+  constructor(private ts: TranslateService) {}
 
-    resolve(
-        route: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot
-    ): Observable<any> | Promise<any> | any {
-        const {routeConfig} = route;
-        const data = routeConfig?.data;
-        const path = route?.url[0].path
-        return this.ts.loadAndSetTranslations(path);
-    }
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<any> | Promise<any> | any {
+    const { routeConfig } = route;
+    const data = routeConfig?.data;
+    const path = route?.url[0].path;
+    return this.ts.loadAndSetTranslations(path);
+  }
 }

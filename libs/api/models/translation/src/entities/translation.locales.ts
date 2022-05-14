@@ -27,7 +27,7 @@ export class TranslationLocaleEntity extends BaseEntity {
   @Column({ type: 'char', length: 30, nullable: true })
   section?: string;
 
-  @Column({ type: 'char', length: 20 })
+  @Column({ type: 'char', length: 30 })
   key: string;
 
   @Column({ type: 'varchar', length: 150 })

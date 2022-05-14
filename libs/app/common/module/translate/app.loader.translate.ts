@@ -1,22 +1,14 @@
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {Observable, of} from "rxjs";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
-export class TranslateLoader {
-    static provideName = 'TranslateLoader';
+export class HTTPTranslateLoader {
+  constructor(private http: HttpClient) {}
 
-    static useClass = TranslateLoader;
-
-    constructor(private http:HttpClient) {}
-
-    test() {
-        console.log(this.http);;
-        console.log(this.http.get(''));;
-    }
-
-    getTranslation(lang: string): Observable<any> {
-        console.log(lang)
-        return of({KEY: 'value'});
-    }
+  getTranslation(section: string, lang: string): Observable<any> {
+    return this.http.get(
+      '/assets/locale/' + lang + '/' + `${lang}.${section}.locale.json`
+    );
+  }
 }

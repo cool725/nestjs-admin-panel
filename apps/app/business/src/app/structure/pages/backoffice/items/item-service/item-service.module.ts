@@ -8,8 +8,8 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ItemServiceAPI } from './item.api';
 import { ItemServiceFormComponent } from './form/item-service-form.component';
 import { MdbSharedModule } from '@movit/app/ui';
-import {TranslateModule} from "@ngx-translate/core";
-import {TranslateLocaleModule} from "../../../../../../../../../../libs/app/common/module/translate/module.translate";
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslateLocaleModule } from '../../../../../../../../../../libs/app/common/module/translate/module.translate';
 
 const routes: Routes = [
   {

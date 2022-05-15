@@ -89,15 +89,17 @@ export abstract class PageController {
   }
 
   // todo rename types
-  protected openModal(component: any, data?: any, resolver?: any) {
-    return this.dE.emit(
-      EDataEmitterType.ModalOpen,
-      {
-        component: component,
-        data: data,
-      },
-      resolver
-    );
+  protected openModal(component: any, data?: any) {
+    return new Promise(resolve =>
+      this.dE.emit(
+          EDataEmitterType.ModalOpen,
+          {
+            component: component,
+            data: data,
+          },
+          resolve
+      )
+    )
   }
 
   protected notify(type: any, message: string) {

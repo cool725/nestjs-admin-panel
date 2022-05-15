@@ -23,4 +23,4 @@ const routes = [
     MdbSharedModule,
   ],
 })
-export class SettingsUserModule {}
+export class AdministrationUserModule {}

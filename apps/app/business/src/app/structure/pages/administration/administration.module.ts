@@ -20,7 +20,7 @@ const routes = [
     path: 'user',
     loadChildren: () =>
       import('./user/sections/user/user.module').then(
-        (m) => m.SettingsUserModule
+        (m) => m.AdministrationUserModule
       ),
   },
   {

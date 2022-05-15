@@ -16,6 +16,8 @@ export class Profile {
   email: string;
   phone: string;
 
+  brithDay: string;
+
   static create(params: Partial<Profile>) {
     return Object.assign(new Profile(), params);
   }
@@ -27,13 +29,13 @@ export class Profile {
   styleUrls: ['./profiles-overview.component.css'],
 })
 export class ProfilesOverviewComponent extends PageController {
-  public profileTable = new Table<Profile, ITableBaseFilter>(
+  public profileTable:Table<Profile, ITableBaseFilter> = new Table<Profile, ITableBaseFilter>(
     this.api.profiles$,
     {
       searchValue: '',
       keys: ['firstName', 'lastName', 'phone', 'email'],
     }
-  );
+  ).setFields(['firstName', 'lastName', 'email', 'phone', 'brithDay' ]);
 
   constructor(override injector: Injector, public api: ProfilesAPI<Profile>) {
     super(injector);

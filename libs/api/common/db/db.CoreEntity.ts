@@ -1,5 +1,5 @@
 import { BaseEntity, Column, TableInheritance } from "typeorm";
-import { Exclude } from "class-transformer";
+import {classToPlain, Exclude} from "class-transformer";
 
 @TableInheritance()
 export abstract class TenantEntity extends BaseEntity {
@@ -23,6 +23,6 @@ export abstract class TenantEntity extends BaseEntity {
   }
 
   public toJSON() {
-    return this;
+    return classToPlain(this);
   }
 }

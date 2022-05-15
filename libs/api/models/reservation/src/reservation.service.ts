@@ -31,23 +31,26 @@ export class ReservationService {
     return reservation;
   }
 
-  getReservations(businessId, filterValues = {}) {
-    return this.resHeadRepo.find({
+  async getReservations(businessId, filterValues = {}) {
+    const rows = await this.resHeadRepo.find({
       where: {
         companyId: businessId,
       },
     });
+    return {
+      data: rows
+    };
   }
 
   async saveReservation(businessId, reservation) {
     const resHead = this.resHeadRepo.create();
     resHead.companyId = businessId;
     resHead.start = reservation.start;
+    resHead.end = reservation.end;
     resHead.title = reservation.title;
     resHead.userId = reservation.userId;
-    resHead.reservationId = 1;
     await doInsert(resHead);
-    return;
+    return resHead.toJSON();
   }
 
   async updateReservation(businessId, reservationId, reservation: any) {

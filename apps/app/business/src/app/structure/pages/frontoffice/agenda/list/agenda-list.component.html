@@ -1,0 +1,64 @@
+<ng-template #topbar>
+  <div class="left-box cursor-pointer">
+    <i class="fas fa-cog"></i>
+  </div>
+  <h4 class="slide">übersicht</h4>
+</ng-template>
+
+<div class="p-4">
+  <div class="container">
+
+    <!-- config block -->
+    <div class="pb-4">
+      <div class="col-12 card bg-white shadow p-3">
+        <div class="">
+          <div class="row">
+            <div class="col-12 col-md-10">
+              <mdb-form-control>
+                <i class="fa fa-search trailing"></i>
+                <input
+                        (keyup)="resTable.filterValues.searchValue = $event.target['value'];getReservations()"
+                        [value]="resTable.filterValues.searchValue"
+                        mdbInput
+                        type="text"
+                        id="search"
+                        class="form-control"
+                />
+                <label mdbLabel class="form-label" for="search">
+                  {{'search' | translate}}
+                </label>
+              </mdb-form-control>
+            </div>
+            <div class="col-6 col-md-2 mt-2 mt-md-0">
+              <div class="form-group">
+                <button
+                        mdbRipple
+                        (click)="createReservation()"
+                        class="btn btn-success text-white w-100"
+                >
+                  {{ 'create' | translate }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- list -->
+    <div class="card">
+      <table class="table">
+        <tbody *ngIf="resTable.data$ | async as tableData">
+          <tr *ngFor="let row of tableData.data">
+            <td>{{row.title}}</td>
+            <td>{{row.start}}</td>
+            <td>{{row.end}}</td>
+            <td>{{row.state}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+

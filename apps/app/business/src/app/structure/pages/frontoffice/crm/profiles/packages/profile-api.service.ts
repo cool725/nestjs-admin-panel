@@ -1,5 +1,4 @@
 import { Inject, Injectable, Optional } from '@angular/core';
-import { environment } from '../../../../../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ITableOptions } from '@movit/app/common';
@@ -49,6 +48,7 @@ export class ProfilesAPI<Profile> {
   getSegments() {
     return this.http.get<any[]>(this.getPath('segment'));
   }
+
   @Cacheable({})
   getSources() {
     return this.http.get<any[]>(this.endpoint + '/sources/source');

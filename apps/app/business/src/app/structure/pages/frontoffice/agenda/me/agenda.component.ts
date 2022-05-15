@@ -1,9 +1,7 @@
 import { Component, Inject, Injector, OnInit } from '@angular/core';
-import { AgendaAPI } from './agenda.api.service';
 import { PageController } from '../../../page.controller';
-import { EDataEmitterType } from '@movit/app/common';
-import { ProfilesFormComponent } from '../../crm/profiles/form/profiles-form.component';
 import { AgendaFormComponent } from '../form/agenda-form.component';
+import {AgendaAPI} from "../packages/agenda-api.service";
 
 @Component({
   selector: 'movit-agenda',
@@ -12,7 +10,7 @@ import { AgendaFormComponent } from '../form/agenda-form.component';
   providers: [],
 })
 export class AgendaComponent extends PageController {
-  constructor(override injector: Injector, protected api: AgendaAPI) {
+  constructor(override injector: Injector, protected api: AgendaAPI<any>) {
     super(injector);
   }
 
@@ -21,7 +19,7 @@ export class AgendaComponent extends PageController {
   }
 
   getReservations() {
-    this.api.getReservations();
+    this.api.getReservations(<any>{});
   }
 
   // move those functions inside modal

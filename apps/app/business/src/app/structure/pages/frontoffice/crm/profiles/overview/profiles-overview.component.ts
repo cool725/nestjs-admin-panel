@@ -23,6 +23,7 @@ export class Profile {
   }
 }
 
+
 @Component({
   selector: 'movit-profiles-overview',
   templateUrl: './profiles-overview.component.html',

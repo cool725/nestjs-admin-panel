@@ -2,13 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AgendaComponent } from './me/agenda.component';
 import { RouterModule, Routes } from '@angular/router';
-import { AgendaAPI } from './me/agenda.api.service';
-import { environment } from '../../../../../environments/environment';
-import { AgendaFormComponent } from './form/agenda-form.component';
 import { AgendaFormModule } from './form/agenda-form.module';
+import {AgendaListModule} from "./list/agenda-list.module";
+import {AgendaListComponent} from "./list/agenda-list.component";
 
 const routes: Routes = [
   {
+    path: 'list',
+    component: AgendaListComponent, // move to listmodule
+  }, {
     path: '**',
     component: AgendaComponent,
   },
@@ -16,13 +18,9 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [AgendaComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), AgendaFormModule],
-  providers: [
-    {
-      provide: 'apiPath',
-      useValue: environment.api.url + '/frontoffice',
-    },
-    AgendaAPI,
-  ],
+  imports: [CommonModule, RouterModule.forChild(routes),
+    AgendaListModule,
+    AgendaFormModule],
+  providers: [],
 })
 export class AgendaModule {}

@@ -1,10 +1,10 @@
 <div class="modal-header">
   <span># </span>
   <button
-    type="button"
-    class="btn-close"
-    data-bs-dismiss="modal"
-    aria-label="Close"
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
   ></button>
 </div>
 <div class="modal-header-sub">
@@ -14,15 +14,45 @@
   </select>
 </div>
 
+<form [formGroup]="reservationForm" class="modal-body">
+  <div class="row w-100">
+    <div class="col-12">
+      <mdb-form-control>
+        <input formControlName="title" mdbInput type="text" id="res-title" class="form-control" />
+        <label mdbLabel class="form-label" for="res-title">{{'title' | translate}}</label>
+      </mdb-form-control>
+    </div>
+
+
+    <div class="col-6 mt-4">
+      <mdb-form-control>
+        <input formControlName="start" mdbInput type="date" id="res-start" class="form-control" />
+        <label mdbLabel class="form-label" for="res-start">{{'start' | translate}}</label>
+      </mdb-form-control>
+    </div>
+    <div class="col-6 mt-4">
+      <mdb-form-control>
+        <input formControlName="end" mdbInput type="date" id="res-end" class="form-control" />
+        <label mdbLabel class="form-label" for="res-end">{{'end' | translate}}</label>
+      </mdb-form-control>
+    </div>
+
+  </div>
+</form>
+
 <div class="modal-footer">
-  <button type="button" class="btn btn-danger text-white">Löschen</button>
-  <button
-    (click)="closeModal()"
-    type="button"
-    class="btn btn-primary text-white"
-    data-bs-dismiss="modal"
-  >
-    Abbrechen
+  <button type="button" class="btn btn-danger text-white">
+    {{'delete' | translate}}
   </button>
-  <button type="button" class="btn btn-success text-white">Speichern</button>
+  <button
+          (click)="closeModal()"
+          type="button"
+          class="btn btn-primary text-white"
+          data-bs-dismiss="modal"
+  >
+    {{'cancel' | translate}}
+  </button>
+  <button (click)="save(null)" type="button" class="btn btn-success text-white">
+    {{'save' | translate}}
+  </button>
 </div>

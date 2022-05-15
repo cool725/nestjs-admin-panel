@@ -22,9 +22,6 @@ export class ReservationSourceEntity extends TenantEntity {
   id: number;
 
   @Column({ type: 'bigint', nullable: false, unsigned: true })
-  companyId: number;
-
-  @Column({ type: 'bigint', nullable: false, unsigned: true })
   sourceId: number;
 
   @Column({ type: 'varchar', length: 50, nullable: true })

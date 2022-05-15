@@ -23,9 +23,6 @@ export class ReservationLegEntity extends TenantEntity {
   id: number;
 
   @Column({ type: 'bigint', nullable: false, unsigned: true })
-  companyId: number;
-
-  @Column({ type: 'bigint', nullable: false, unsigned: true })
   reservationId: number;
 
   @Column({ type: 'bigint', nullable: false, unsigned: true })

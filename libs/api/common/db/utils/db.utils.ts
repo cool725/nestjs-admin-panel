@@ -16,9 +16,7 @@ export const doInsert = async (entity: insertEntity) => {
     try {
       console.log('retry',entity)
       await entity.save();
-    } catch (e) {
-      console.log(e)
-    }
+    } catch (e) {}
   }
   return entity;
 };

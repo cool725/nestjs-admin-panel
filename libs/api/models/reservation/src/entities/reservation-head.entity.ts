@@ -29,9 +29,6 @@ export class ReservationHeadEntity extends TenantEntity {
   id: number;
 
   @Column({ type: 'bigint', nullable: false, unsigned: true })
-  companyId: number;
-
-  @Column({ type: 'bigint', nullable: false, unsigned: true })
   reservationId: number;
 
   @OneToMany(() => ReservationLegEntity, (leg) => leg.head, { eager: false })

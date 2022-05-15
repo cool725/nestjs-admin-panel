@@ -27,9 +27,6 @@ export class ProfileSegmentEntity extends TenantEntity {
   id: number;
 
   @Column({ type: 'bigint', nullable: false, unsigned: true })
-  companyId: number;
-
-  @Column({ type: 'bigint', nullable: false, unsigned: true })
   segmentId: number;
 
   @Column({ type: 'varchar', length: 50, nullable: true })

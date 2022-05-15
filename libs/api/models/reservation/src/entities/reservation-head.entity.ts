@@ -22,9 +22,14 @@ import { TenantEntity } from '../../../../common/db/db.CoreEntity';
 @Index(['companyId', 'state'])
 @Unique(['companyId', 'reservationId'])
 export class ReservationHeadEntity extends TenantEntity {
+  @Exclude() self = ReservationHeadEntity;
+
   @PrimaryGeneratedColumn('increment')
   @Exclude()
   id: number;
+
+  @Column({ type: 'bigint', nullable: false, unsigned: true })
+  companyId: number;
 
   @Column({ type: 'bigint', nullable: false, unsigned: true })
   reservationId: number;

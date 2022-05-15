@@ -1,13 +1,17 @@
-import { BaseEntity, Column } from 'typeorm';
+import { BaseEntity, Column, TableInheritance } from "typeorm";
+import { Exclude } from "class-transformer";
 
+@TableInheritance()
 export abstract class TenantEntity extends BaseEntity {
+  @Exclude() abstract self:any
+
   @Column({ type: 'bigint', nullable: false, unsigned: true })
   companyId: number;
 
   protected abstract beforeInsert(): Promise<any>;
 
   async setLastEntryId(key: string): Promise<number> {
-    const lastEntry = await TenantEntity.find({
+    const lastEntry = await this.self.find({
       order: {
         [key]: 'DESC',
       },

@@ -14,8 +14,11 @@ export const doInsert = async (entity: insertEntity) => {
   // ensure  beforeInsert():any is implemented
   while (!entity.id) {
     try {
+      console.log('retry',entity)
       await entity.save();
-    } catch (e) {}
+    } catch (e) {
+      console.log(e)
+    }
   }
   return entity;
 };

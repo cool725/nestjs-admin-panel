@@ -16,9 +16,14 @@ import { TenantEntity } from '../../../../common/db/db.CoreEntity';
 @Index(['companyId', 'userId'])
 @Unique(['companyId', 'reservationId', 'legId'])
 export class ReservationLegEntity extends TenantEntity {
+  @Exclude() self = ReservationLegEntity
+
   @PrimaryGeneratedColumn('increment')
   @Exclude()
   id: number;
+
+  @Column({ type: 'bigint', nullable: false, unsigned: true })
+  companyId: number;
 
   @Column({ type: 'bigint', nullable: false, unsigned: true })
   reservationId: number;

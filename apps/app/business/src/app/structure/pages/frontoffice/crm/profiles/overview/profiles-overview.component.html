@@ -6,7 +6,6 @@
     <h4 class="slide">
       {{ 'profiles' | translate }}
     </h4>
-
     <div class="pe-2">
       <button (click)="mockupImporter()" class="btn btn-success">Import</button>
     </div>
@@ -30,7 +29,9 @@
                   id="search"
                   class="form-control"
                 />
-                <label mdbLabel class="form-label" for="search">Suchen</label>
+                <label mdbLabel class="form-label" for="search">
+                  {{'search' | translate}}
+                </label>
               </mdb-form-control>
             </div>
             <div class="col-6 col-md-2 mt-2 mt-md-0">
@@ -52,10 +53,10 @@
       <table class="table table-sm mb-0 bg-white">
         <thead>
           <tr>
-            <th>firstName</th>
-            <th>lastName</th>
-            <th>Email</th>
-            <th>phone</th>
+            <th>{{'firstname' | translate}}</th>
+            <th>{{'lastname' | translate}}</th>
+            <th>{{'email' | translate}}</th>
+            <th>{{'phone' | translate}}</th>
             <th colspan="2"></th>
           </tr>
         </thead>

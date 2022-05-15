@@ -47,7 +47,7 @@ export class AgendaListComponent extends PageController {
 
   editReservation(resId:number | null){
    return this.openModal(AgendaFormComponent,{
-      reservationId: resId
+      id: resId
     })
   }
 

@@ -54,6 +54,15 @@
             <td>{{row.start}}</td>
             <td>{{row.end}}</td>
             <td>{{row.state}}</td>
+            <td >
+              <button
+                      mdbRipple
+                      (click)="editReservation(row.reservationId)"
+                      class="btn btn-primary"
+              >
+                <i class="fa fa-edit text-white"></i>
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>

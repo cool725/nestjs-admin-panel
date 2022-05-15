@@ -35,18 +35,25 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
     if (this.getId()) {
       this.onLoadAndSetData(
           this.api.getReservation(this.getId()),
-          this.api.reservation$, Reservation.create)
+          this.api.reservation$, (res:any)=>{
+            this.reservationForm.setValue({
+              title:res.title,
+              start:res.start?.split('T')[0],
+              end:res.end?.split('T')[0],
+            });
+
+
+
+            return Reservation.create(res)
+          })
     }
   }
 
   override getData(): void {}
 
   save(reservation:any){
-    console.log(
-        this.reservationForm.value
-    )
     this.api.saveReservation( this.reservationForm.value ).subscribe()
-    //this.onSave.emit()
-    //this.closeModal()
+    this.onSave.emit()
+    this.closeModal()
   }
 }

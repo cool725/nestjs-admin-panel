@@ -1,33 +1,18 @@
-<form
-  [formGroup]="formPriceClass"
-  *ngIf="api.profilePriceClass$ | async as priceclass"
->
+<form [formGroup]="formPriceClass" *ngIf="api.profilePriceClass$ | async as priceclass">
   <!-- <input class="form-control" formControlName="title"> -->
   <div class="modal-header p-2 text-center">
-    <h5
-      class="modal-title p-2 text-start w-100"
-      id="exampleModalLabel"
-      *ngIf="!priceclass.priceClassId"
-    >
+    <h5 class="modal-title p-2 text-start w-100" id="exampleModalLabel" *ngIf="!priceclass.priceClassId">
       Create
     </h5>
-    <h5
-      class="modal-title p-2 text-start w-100"
-      id="exampleModalLabel"
-      *ngIf="priceclass.priceClassId"
-    >
+    <h5 class="modal-title p-2 text-start w-100" id="exampleModalLabel" *ngIf="priceclass.priceClassId">
       Edit
     </h5>
-    <button
-      type="button"
-      class="btn-close p-2 px-4"
-      data-bs-dismiss="modal"
-      aria-label="Close"
-      (click)="closePopup()"
-    ></button>
+    <a class="p-2 px-4" role="button" (click)="closePopup()" style="color: #a5bbd4;">
+      <i class="fa fa-times fa-lg"></i>
+    </a>
   </div>
   <div class="modal-body">
-    <div class="row mb-3">
+    <div class="row mb-4">
       <div class="col-12">
         <div class="form-group w-100">
           <!-- <label>Title</label>
@@ -36,31 +21,20 @@
               aria-describedby="profiles-sagment-title" />
           </div> -->
           <mdb-form-control>
-            <input
-              mdbInput
-              type="text"
-              formControlName="title"
-              id="formControlLg"
-              class="form-control"
-            />
-            <label mdbLabel class="form-label" for="formControlDefault"
-              >Title</label
-            >
+            <input mdbInput type="text" formControlName="title" id="formControlLg" class="form-control" />
+            <label mdbLabel class="form-label" for="formControlDefault">Title</label>
           </mdb-form-control>
-          <div
-            *ngIf="
+          <div *ngIf="
               formPriceClass.controls['title'].errors &&
               formPriceClass.controls['title'].touched
-            "
-            class="alert alert-danger py-2 mt-1"
-          >
+            " class="alert alert-danger py-2 mt-1">
             Title is required
           </div>
         </div>
       </div>
     </div>
 
-    <div class="row mb-3">
+    <div class="row mb-4">
       <div class="col-6">
         <div class="form-group">
           <!-- <label>Standard</label>
@@ -71,27 +45,16 @@
           </select>
         </div> -->
           <mdb-form-control>
-            <select
-              mdbInput
-              type="text"
-              formControlName="isDefault"
-              id="formControlLg"
-              class="form-control"
-            >
+            <select mdbInput type="text" formControlName="isDefault" id="formControlLg" class="form-control">
               <option value="1">Yes</option>
               <option value="0">No</option>
             </select>
-            <label mdbLabel class="form-label" for="formControlDefault"
-              >Standard</label
-            >
+            <label mdbLabel class="form-label" for="formControlDefault">Standard</label>
           </mdb-form-control>
-          <div
-            *ngIf="
+          <div *ngIf="
               formPriceClass.controls['isDefault']?.errors &&
               formPriceClass.controls['isDefault']?.touched
-            "
-            class="alert alert-danger py-2 mt-1"
-          >
+            " class="alert alert-danger py-2 mt-1">
             Standard is required
           </div>
         </div>
@@ -108,27 +71,16 @@
               </div> -->
 
           <mdb-form-control>
-            <select
-              mdbInput
-              type="text"
-              formControlName="reduceType"
-              id="formControlLg"
-              class="form-control"
-            >
+            <select mdbInput type="text" formControlName="reduceType" id="formControlLg" class="form-control">
               <option value="%">%</option>
               <option value="fixed">Fixed</option>
             </select>
-            <label mdbLabel class="form-label" for="formControlDefault"
-              >Reduce Type</label
-            >
+            <label mdbLabel class="form-label" for="formControlDefault">Reduce Type</label>
           </mdb-form-control>
-          <div
-            *ngIf="
+          <div *ngIf="
               formPriceClass.controls['reduceType'].errors &&
               formPriceClass.controls['reduceType'].touched
-            "
-            class="alert alert-danger py-2 mt-1"
-          >
+            " class="alert alert-danger py-2 mt-1">
             Standard is required
           </div>
         </div>
@@ -141,49 +93,30 @@
           <div class="d-flex align-items-center">
             <label class="me-2">Color</label>
             <div class="input-group">
-              <input
-                type="color"
-                class="form-control p-1"
-                formControlName="color"
-                placeholder="Color"
-                aria-label="color"
-                aria-describedby="profiles-sagment-color"
-              />
+              <input type="color" class="form-control p-1" formControlName="color" placeholder="Color"
+                aria-label="color" aria-describedby="profiles-sagment-color" />
             </div>
-            <div
-              *ngIf="
+            <div *ngIf="
                 formPriceClass.controls['color'].errors &&
                 formPriceClass.controls['color'].touched
-              "
-              class="alert alert-danger py-2 mt-1"
-            >
+              " class="alert alert-danger py-2 mt-1">
               Color is required
             </div>
           </div>
         </div>
       </div>
+      
       <div class="col-9 ps-0">
         <div class="form-group">
           <mdb-form-control>
-            <input
-              mdbInput
-              type="number"
-              class="form-control"
-              formControlName="value"
-              id="formControlLg"
-              class="form-control"
-            />
-            <label mdbLabel class="form-label" for="formControlDefault"
-              >Value</label
-            >
+            <input mdbInput type="number" class="form-control" formControlName="value" id="formControlLg"
+              class="form-control" />
+            <label mdbLabel class="form-label" for="formControlDefault">Value</label>
           </mdb-form-control>
-          <div
-            *ngIf="
+          <div *ngIf="
               formPriceClass.controls['value'].errors &&
               formPriceClass.controls['value'].touched
-            "
-            class="alert alert-danger py-2 mt-1"
-          >
+            " class="alert alert-danger py-2 mt-1">
             value is required
           </div>
         </div>
@@ -224,16 +157,11 @@
 
   <div class="modal-footer">
     <!-- <footer> -->
-    <button
-      type="button"
-      *ngIf="formPriceClass.valid"
-      (click)="
+    <button type="button" *ngIf="formPriceClass.valid" (click)="
         priceclass.priceClassId
           ? updatePriceClass(priceclass.priceClassId)
           : savePriceClass()
-      "
-      class="btn btn-success"
-    >
+      " class="btn btn-success">
       {{ priceclass.priceClassId ? 'update' : 'save' }}
     </button>
     <button type="button" (click)="cancel()" class="btn btn-success">

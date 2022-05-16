@@ -6,45 +6,96 @@
       background: #f0f7fc;
       margin: 0;
       border-radius: 0 !important;
-      border: #c9c9c9 solid !important;
-      padding: 3px !important;
+
+      border: 1px solid #ccc !important;
+      padding: 8px !important;
+
       &.active {
         background: rgb(69, 154, 250);
       }
     }
   }
 
+
+
   .nav-pills a:nth-of-type(1) {
     animation-delay: 300ms;
   }
+
   .nav-pills a:nth-of-type(2) {
     animation-delay: 400ms;
   }
+
   .nav-pills a:nth-of-type(3) {
     animation-delay: 500ms;
   }
+
   .nav-pills a:nth-of-type(4) {
     animation-delay: 600ms;
   }
+
   .nav-pills a:nth-of-type(5) {
     animation-delay: 700ms;
   }
+
   .nav-pills a:nth-of-type(6) {
     animation-delay: 800ms;
   }
+
   .nav-pills a:nth-of-type(7) {
     animation-delay: 900ms;
   }
+
   .nav-pills a:nth-of-type(8) {
     animation-delay: 1000ms;
   }
+
   .nav-pills a:nth-of-type(9) {
     animation-delay: 1100ms;
   }
+
   .nav-pills a:nth-of-type(10) {
     animation-delay: 1200ms;
   }
+
   .nav-pills a:nth-of-type(11) {
     animation-delay: 1300ms;
   }
+}
+
+::ng-deep lib-modal-ui {
+  .modal {
+    background-color: #ffffff !important;
+    width: 450px !important;
+    height: 430px !important;
+    top: 120px !important;
+    left: 560px !important;
+
+    .modal-header {
+      height: 70px !important;
+      background-color: #ffffff !important;
+      border: none !important;
+    }
+
+    .modal-header-sub {
+      margin-top: 0 !important;
+      padding: 7px 1rem !important;
+    }
+
+    .modal-body {
+      .lang_chooser_pills {
+        .nav-pills {
+          margin-left: 0 !important;
+        }
+      }
+    }
+
+    .modal-footer {
+      border-top: 1px solid #ced2d680 !important;
+    }
+  }
+}
+
+::ng-deep .form-outline .form-control {
+  border: 0 !important;
 }

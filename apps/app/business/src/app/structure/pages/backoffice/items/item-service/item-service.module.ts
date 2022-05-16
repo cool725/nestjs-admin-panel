@@ -9,6 +9,7 @@ import { ItemServiceAPI } from './item.api';
 import { ItemServiceFormComponent } from './form/item-service-form.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { MdbSharedModule } from '@movit/app/ui';
+import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 
 const routes: Routes = [
   {
@@ -39,6 +40,7 @@ const routes: Routes = [
     NzSelectModule,
     TranslateModule.forChild(),
     MdbSharedModule,
+    MdbFormsModule,
   ],
   providers: [ItemServiceAPI],
 })

@@ -1,10 +1,6 @@
 import {
-  Body,
   Controller,
   Get,
-  Param,
-  Patch,
-  Put,
   UseGuards,
 } from '@nestjs/common';
 import { FrontOffice } from '../business.frontoffice.namespace';
@@ -28,7 +24,7 @@ export class BusinessFrontOfficeAgendaProfilesController {
  * Gets reservations with legs
  * */
   @Get('profiles')
-  getReservations(
+  getProfiles(
       @GetCompany() business: BusinessEntity,
       @GetUser() user: AuthUser,
       @GetPagination() pagination: any

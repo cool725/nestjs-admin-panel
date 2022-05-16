@@ -8,7 +8,6 @@ import {ProfilesModule} from "@movit/api/profiles";
   imports: [
       ReservationModule,
       ProfilesModule,
-
   ],
   controllers: [
       BusinessFrontOfficeAgendaController,

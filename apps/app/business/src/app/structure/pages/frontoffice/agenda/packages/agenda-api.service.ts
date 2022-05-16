@@ -45,4 +45,10 @@ export class AgendaAPI<Reservation> {
   getSources() {
     return this.http.get<any[]>(this.getPath( '/sources/source'));
   }
+
+  searchProfiles(searchTerm:string){
+    return this.http.get<Reservation[]>(this.getPath('profiles'), {
+      params: {searchTerm},
+    });
+  }
 }

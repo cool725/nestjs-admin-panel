@@ -37,7 +37,24 @@
       </mdb-form-control>
     </div>
 
+    <div class="col-12 mt-4">
+      <nz-select
+
+              nzShowSearch
+              nzServerSearch
+
+              [nzShowArrow]="false"
+              (nzOnSearch)="searchProfile($event)"
+              [nzMaxTagCount]="10"
+              nzMode="multiple"
+              nzPlaceHolder="Please select"
+      >
+        <nz-option *ngFor="let item of []" [nzLabel]="item" [nzValue]="item"></nz-option>
+      </nz-select>
+      <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template>
+    </div>
   </div>
+
 </form>
 
 <div class="modal-footer">

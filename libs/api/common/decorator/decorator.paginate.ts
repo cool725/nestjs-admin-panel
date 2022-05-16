@@ -12,7 +12,7 @@ export const GetPagination = createParamDecorator(
   (data, ctx: ExecutionContext): Pagination => {
     const req: Request = ctx.switchToHttp().getRequest();
     const query = req['query'] || req.body;
-    const search = query.search || query.searchValue;
+    const search = query.search || query.searchValue || query.searchTerm;
 
     const paginationParams: Pagination = {
       page: (query.page > 0 ? query.page : 1) || 1,

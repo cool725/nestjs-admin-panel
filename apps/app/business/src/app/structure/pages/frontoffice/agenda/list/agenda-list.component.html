@@ -48,13 +48,24 @@
     <!-- list -->
     <div class="card">
       <table class="table">
+        <thead>
+        <tr>
+          <th>{{'title' | translate}}</th>
+          <th>{{'person' | translate}}</th>
+          <th>{{'start' | translate}}</th>
+          <th>{{'end' | translate}}</th>
+          <th>{{'state' | translate}}</th>
+          <th>{{'price' | translate}}</th>
+        </tr>
+        </thead>
         <tbody *ngIf="resTable.data$ | async as tableData">
           <tr *ngFor="let row of tableData.data">
             <td>{{row.title}}</td>
             <td>{{row.start}}</td>
             <td>{{row.end}}</td>
             <td>{{row.state}}</td>
-            <td >
+            <td>{{row.price}}</td>
+            <td>
               <button
                       mdbRipple
                       (click)="editReservation(row.reservationId)"

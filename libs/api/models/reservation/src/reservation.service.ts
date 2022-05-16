@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
-  ReservationLegRepository,
+  ReservationLegRepository, ReservationProfilesRepository,
   ReservationRepository,
 } from './classes/reservation.repository';
 import { doInsert } from '../../../common/db/utils/db.utils';
@@ -12,7 +12,9 @@ export class ReservationService {
     @InjectRepository(ReservationRepository)
     private resHeadRepo: ReservationRepository,
     @InjectRepository(ReservationLegRepository)
-    private resLegRepo: ReservationLegRepository
+    private resLegRepo: ReservationLegRepository,
+    @InjectRepository(ReservationProfilesRepository)
+    private resProfilesRepo: ReservationProfilesRepository
   ) {}
 
   async getReservation(businessId, reservationId) {

@@ -1,7 +1,7 @@
 import { Component, Inject, Injector, OnInit } from '@angular/core';
 import { PageController } from '../../../page.controller';
 import { AgendaFormComponent } from '../form/agenda-form.component';
-import {AgendaAPI} from "../packages/agenda-api.service";
+import { AgendaAPI } from '../packages/agenda-api.service';
 
 @Component({
   selector: 'movit-agenda',

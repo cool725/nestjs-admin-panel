@@ -6,7 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { HTTPTranslateLoader } from './app.loader.translate';
 
 @NgModule({
-  imports: [ /*HttpClientModule*/ ],
+  imports: [
+    /*HttpClientModule*/
+  ],
   providers: [TranslateService, LocaleResolver],
   declarations: [TranslatePipe],
   exports: [TranslatePipe],

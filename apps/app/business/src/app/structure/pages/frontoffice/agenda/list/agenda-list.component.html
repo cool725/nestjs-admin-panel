@@ -7,7 +7,6 @@
 
 <div class="p-4">
   <div class="container">
-
     <!-- config block -->
     <div class="pb-4">
       <div class="col-12 card bg-white shadow p-3">
@@ -17,24 +16,27 @@
               <mdb-form-control>
                 <i class="fa fa-search trailing"></i>
                 <input
-                        (keyup)="resTable.filterValues.searchValue = $event.target['value'];getReservations()"
-                        [value]="resTable.filterValues.searchValue"
-                        mdbInput
-                        type="text"
-                        id="search"
-                        class="form-control"
+                  (keyup)="
+                    resTable.filterValues.searchValue = $event.target['value'];
+                    getReservations()
+                  "
+                  [value]="resTable.filterValues.searchValue"
+                  mdbInput
+                  type="text"
+                  id="search"
+                  class="form-control"
                 />
                 <label mdbLabel class="form-label" for="search">
-                  {{'search' | translate}}
+                  {{ 'search' | translate }}
                 </label>
               </mdb-form-control>
             </div>
             <div class="col-6 col-md-2 mt-2 mt-md-0">
               <div class="form-group">
                 <button
-                        mdbRipple
-                        (click)="createReservation()"
-                        class="btn btn-success text-white w-100"
+                  mdbRipple
+                  (click)="createReservation()"
+                  class="btn btn-success text-white w-100"
                 >
                   {{ 'create' | translate }}
                 </button>
@@ -49,27 +51,27 @@
     <div class="card">
       <table class="table">
         <thead>
-        <tr>
-          <th>{{'title' | translate}}</th>
-          <th>{{'person' | translate}}</th>
-          <th>{{'start' | translate}}</th>
-          <th>{{'end' | translate}}</th>
-          <th>{{'state' | translate}}</th>
-          <th>{{'price' | translate}}</th>
-        </tr>
+          <tr>
+            <th>{{ 'title' | translate }}</th>
+            <th>{{ 'person' | translate }}</th>
+            <th>{{ 'start' | translate }}</th>
+            <th>{{ 'end' | translate }}</th>
+            <th>{{ 'state' | translate }}</th>
+            <th>{{ 'price' | translate }}</th>
+          </tr>
         </thead>
         <tbody *ngIf="resTable.data$ | async as tableData">
           <tr *ngFor="let row of tableData.data">
-            <td>{{row.title}}</td>
-            <td>{{row.start}}</td>
-            <td>{{row.end}}</td>
-            <td>{{row.state}}</td>
-            <td>{{row.price}}</td>
+            <td>{{ row.title }}</td>
+            <td>{{ row.start }}</td>
+            <td>{{ row.end }}</td>
+            <td>{{ row.state }}</td>
+            <td>{{ row.price }}</td>
             <td>
               <button
-                      mdbRipple
-                      (click)="editReservation(row.reservationId)"
-                      class="btn btn-primary"
+                mdbRipple
+                (click)="editReservation(row.reservationId)"
+                class="btn btn-primary"
               >
                 <i class="fa fa-edit text-white"></i>
               </button>
@@ -80,5 +82,3 @@
     </div>
   </div>
 </div>
-
-

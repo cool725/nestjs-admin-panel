@@ -26,10 +26,10 @@ export class ReservationProfilesEntity extends TenantEntity {
   @Column({ type: 'bigint', nullable: false, unsigned: true })
   reservationId: number;
 
-  @Column({ type: 'char', nullable: false, default:0 })
+  @Column({ type: 'char', nullable: false, default: 0 })
   remindSMSState: number;
 
-  @Column({ type: 'char', nullable: false, default:0 })
+  @Column({ type: 'char', nullable: false, default: 0 })
   remindEmailState: number;
 
   constructor() {
@@ -37,9 +37,7 @@ export class ReservationProfilesEntity extends TenantEntity {
   }
 
   @BeforeInsert()
-  protected async beforeInsert() {
-
-  }
+  protected async beforeInsert() {}
 
   public toJSON() {
     return this;

@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
-  ReservationLegRepository, ReservationProfilesRepository,
+  ReservationLegRepository,
+  ReservationProfilesRepository,
   ReservationRepository,
 } from './classes/reservation.repository';
 import { doInsert } from '../../../common/db/utils/db.utils';
@@ -40,7 +41,7 @@ export class ReservationService {
       },
     });
     return {
-      data: rows
+      data: rows,
     };
   }
 

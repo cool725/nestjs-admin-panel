@@ -16,7 +16,7 @@ export class ProfilesAPI<Profile> {
     @Inject('apiPath')
     protected endpoint: string,
     private http: HttpClient
-  ) {  }
+  ) {}
 
   protected getPath(path: string, subPath: string | number = ''): string {
     return this.endpoint + '/profiles/' + path + '/' + (subPath ? subPath : '');

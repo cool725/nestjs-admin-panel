@@ -3,7 +3,7 @@ import { doSeed } from '../../../../common/db/seed';
 import { ReservationHeadEntity } from '../entities/reservation-head.entity';
 import { ReservationLegEntity } from '../entities/reservation-leg.entity';
 import { ReservationSourceEntity } from '../entities/reservation.source.entity';
-import {ReservationProfilesEntity} from "../entities/reservation.profiles.entity";
+import { ReservationProfilesEntity } from '../entities/reservation.profiles.entity';
 
 const ReservationDBOptions = <ConnectionOptions>{
   type: process.env.DB_TYPE,
@@ -20,7 +20,7 @@ const ReservationDBOptions = <ConnectionOptions>{
     ReservationHeadEntity,
     ReservationLegEntity,
     ReservationSourceEntity,
-    ReservationProfilesEntity
+    ReservationProfilesEntity,
   ],
 };
 

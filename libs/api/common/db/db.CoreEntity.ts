@@ -1,9 +1,9 @@
-import { BaseEntity, Column, TableInheritance } from "typeorm";
-import {classToPlain, Exclude} from "class-transformer";
+import { BaseEntity, Column, TableInheritance } from 'typeorm';
+import { classToPlain, Exclude } from 'class-transformer';
 
 @TableInheritance()
 export abstract class TenantEntity extends BaseEntity {
-   @Exclude() protected abstract  self:any // Child entity. This is required because child entity will be registered for queries
+  @Exclude() protected abstract self: any; // Child entity. This is required because child entity will be registered for queries
 
   @Column({ type: 'bigint', nullable: false, unsigned: true })
   companyId: number;

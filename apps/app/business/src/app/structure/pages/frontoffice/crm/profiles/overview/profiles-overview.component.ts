@@ -23,20 +23,19 @@ export class Profile {
   }
 }
 
-
 @Component({
   selector: 'movit-profiles-overview',
   templateUrl: './profiles-overview.component.html',
   styleUrls: ['./profiles-overview.component.css'],
 })
 export class ProfilesOverviewComponent extends PageController {
-  public profileTable:Table<Profile, ITableBaseFilter> = new Table<Profile, ITableBaseFilter>(
-    this.api.profiles$,
-    {
-      searchValue: '',
-      keys: ['firstName', 'lastName', 'phone', 'email'],
-    }
-  ).setFields(['firstName', 'lastName', 'email', 'phone', 'brithDay' ]);
+  public profileTable: Table<Profile, ITableBaseFilter> = new Table<
+    Profile,
+    ITableBaseFilter
+  >(this.api.profiles$, {
+    searchValue: '',
+    keys: ['firstName', 'lastName', 'phone', 'email'],
+  }).setFields(['firstName', 'lastName', 'email', 'phone', 'brithDay']);
 
   constructor(override injector: Injector, public api: ProfilesAPI<Profile>) {
     super(injector);
@@ -56,8 +55,7 @@ export class ProfilesOverviewComponent extends PageController {
   }
 
   createProfile() {
-      this.openModal(ProfilesFormComponent, {})
-    .then(() => this.getData());
+    this.openModal(ProfilesFormComponent, {}).then(() => this.getData());
   }
 
   editProfile(id: number) {

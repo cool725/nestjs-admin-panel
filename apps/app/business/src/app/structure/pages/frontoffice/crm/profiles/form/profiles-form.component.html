@@ -76,7 +76,10 @@
       </select>
     </div>
 
-    <div *ngIf="viewSettings.mode === 'simple'" class="modal-body modal-body-profiles">
+    <div
+      *ngIf="viewSettings.mode === 'simple'"
+      class="modal-body modal-body-profiles"
+    >
       <form class="row" [formGroup]="formProfile">
         <div class="col-12 mb-3">
           <ng-container [ngTemplateOutlet]="profileGender"></ng-container>
@@ -258,14 +261,26 @@
           </div> -->
           <div class="col-12 col-md-4">
             <mdb-form-control class="mdb-multiselect my-2">
-              <nz-select mdbInput class="w-100 form-control px-0" formControlName="segments" nzMode="multiple"
-                aria-label="segments" aria-describedby="profiles-vip" id="Kundensegment"
-                [ngClass]="{'c-class':formProfile.value.segments.length >0}">
-                <nz-option *ngFor="let segment of segments$ | async" [nzLabel]="segment.title"
-                  [nzValue]="segment.segmentId">
+              <nz-select
+                mdbInput
+                class="w-100 form-control px-0"
+                formControlName="segments"
+                nzMode="multiple"
+                aria-label="segments"
+                aria-describedby="profiles-vip"
+                id="Kundensegment"
+                [ngClass]="{ 'c-class': formProfile.value.segments.length > 0 }"
+              >
+                <nz-option
+                  *ngFor="let segment of segments$ | async"
+                  [nzLabel]="segment.title"
+                  [nzValue]="segment.segmentId"
+                >
                 </nz-option>
               </nz-select>
-              <label mdbLabel class="form-label px-1" for="Kundensegment">Kundensegment</label>
+              <label mdbLabel class="form-label px-1" for="Kundensegment"
+                >Kundensegment</label
+              >
             </mdb-form-control>
           </div>
           <!-- <div class="col-12 col-md-4">
@@ -278,11 +293,22 @@
           </div> -->
           <div class="col-12 col-md-4">
             <mdb-form-control class="mdb-multiselect my-2">
-              <nz-select mdbInput class="w-100 form-control px-0" formControlName="priceClass" multiple aria-label="priceclass"
-                aria-describedby="profiles-priceclass" id="Preisklasse"
-                 [ngClass]="{'c-class':formProfile.value.priceClass.length >0}">
+              <nz-select
+                mdbInput
+                class="w-100 form-control px-0"
+                formControlName="priceClass"
+                multiple
+                aria-label="priceclass"
+                aria-describedby="profiles-priceclass"
+                id="Preisklasse"
+                [ngClass]="{
+                  'c-class': formProfile.value.priceClass.length > 0
+                }"
+              >
               </nz-select>
-              <label mdbLabel class="form-label px-1" for="Preisklasse">Preisklasse</label>
+              <label mdbLabel class="form-label px-1" for="Preisklasse"
+                >Preisklasse</label
+              >
             </mdb-form-control>
           </div>
           <!-- <div class="col-12 col-md-4">
@@ -295,17 +321,31 @@
           </div> -->
           <div class="col-12 col-md-4">
             <mdb-form-control class="mdb-multiselect my-2">
-              <nz-select mdbInput class="w-100 form-control px-0" formControlName="source" multiple aria-label="source"
-                aria-describedby="profiles-source" id="Source"
-                [ngClass]="{'c-class':formProfile.value.source.length >0}">
+              <nz-select
+                mdbInput
+                class="w-100 form-control px-0"
+                formControlName="source"
+                multiple
+                aria-label="source"
+                aria-describedby="profiles-source"
+                id="Source"
+                [ngClass]="{ 'c-class': formProfile.value.source.length > 0 }"
+              >
               </nz-select>
-              <label mdbLabel class="form-label px-1" for="Source">Source</label>
+              <label mdbLabel class="form-label px-1" for="Source"
+                >Source</label
+              >
             </mdb-form-control>
           </div>
 
           <div class="col-12">
             <mdb-form-control>
-              <textarea mdbInput class="form-control" id="pshortnotes" rows="4"></textarea>
+              <textarea
+                mdbInput
+                class="form-control"
+                id="pshortnotes"
+                rows="4"
+              ></textarea>
               <label mdbLabel class="form-label" for="pshortnotes">Notes</label>
             </mdb-form-control>
           </div>
@@ -314,231 +354,258 @@
     </div>
 
     <!-- Large Modal -->
-    <div *ngIf="viewSettings.mode === 'details'" class="modal-body modal-body-profiles">
+    <div
+      *ngIf="viewSettings.mode === 'details'"
+      class="modal-body modal-body-profiles"
+    >
       <div class="row w-100">
         <div class="row col-12 col-md-6">
           <form class="row" [formGroup]="formProfile">
-           <mdb-tabs>
-            <mdb-tab title="Overview">
-              <div class="row shadow pt-3 mb-3">
-                <div class="col-12 mb-3">
-                  <ng-container [ngTemplateOutlet]="profileGender"></ng-container>
-                </div>
+            <mdb-tabs>
+              <mdb-tab title="Overview">
+                <div class="row shadow pt-3 mb-3">
+                  <div class="col-12 mb-3">
+                    <ng-container
+                      [ngTemplateOutlet]="profileGender"
+                    ></ng-container>
+                  </div>
 
-                <ng-container *ngIf="profileType === 'C'">
-                  <div class="col-12 row">
-                    <div class="col-12 col-md-12">
-                      <label>Title</label>
-                      <div class="input-group mb-3">
-                        <span class="input-group-text" id="profiles-title">@</span>
-                        <input
-                          formControlName="title"
-                          type="text"
-                          class="form-control"
-                          autocomplete="new-password"
-                          placeholder="Title"
-                          aria-label="title"
-                          aria-describedby="profiles-title"
+                  <ng-container *ngIf="profileType === 'C'">
+                    <div class="col-12 row">
+                      <div class="col-12 col-md-12">
+                        <label>Title</label>
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" id="profiles-title"
+                            >@</span
+                          >
+                          <input
+                            formControlName="title"
+                            type="text"
+                            class="form-control"
+                            autocomplete="new-password"
+                            placeholder="Title"
+                            aria-label="title"
+                            aria-describedby="profiles-title"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <ng-container>
+                    <div class="col-12 col-md-9 row">
+                      <div class="col-12 col-md-6">
+                        <label>Nachname</label>
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" id="profiles-lastname"
+                            >@</span
+                          >
+                          <input
+                            formControlName="lastName"
+                            type="text"
+                            class="form-control"
+                            autocomplete="new-password"
+                            placeholder="Nachname"
+                            aria-label="lastName"
+                            aria-describedby="profiles-lastname"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <label>{{ 'firstname' | translate }}</label>
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" id="profles-firstname"
+                            >@</span
+                          >
+                          <input
+                            formControlName="firstName"
+                            type="text"
+                            class="form-control"
+                            autocomplete="new-password"
+                            placeholder="Vorname"
+                            aria-label="firstName"
+                            aria-describedby="profiles-firstname"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-3 d-none d-md-block">
+                      <div class="form-group position-relative">
+                        <img
+                          class="rounded"
+                          style="max-width: 100px; position: absolute"
+                          src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
                         />
                       </div>
                     </div>
-                  </div>
-                </ng-container>
-                <ng-container>
+                  </ng-container>
+
                   <div class="col-12 col-md-9 row">
                     <div class="col-12 col-md-6">
-                      <label>Nachname</label>
+                      <label>Email</label>
                       <div class="input-group mb-3">
-                        <span class="input-group-text" id="profiles-lastname">@</span>
+                        <span class="input-group-text" id="profiles-email"
+                          >@</span
+                        >
                         <input
-                          formControlName="lastName"
                           type="text"
+                          formControlName="email"
                           class="form-control"
                           autocomplete="new-password"
-                          placeholder="Nachname"
-                          aria-label="lastName"
-                          aria-describedby="profiles-lastname"
+                          placeholder="Email"
+                          aria-label="email"
+                          aria-describedby="profiles-email"
                         />
                       </div>
                     </div>
                     <div class="col-12 col-md-6">
-                      <label>{{'firstname' | translate}}</label>
+                      <label>Telefon</label>
                       <div class="input-group mb-3">
-                        <span class="input-group-text" id="profles-firstname">@</span>
+                        <span class="input-group-text" id="profles-phone"
+                          >@</span
+                        >
                         <input
-                          formControlName="firstName"
+                          formControlName="phone"
                           type="text"
                           class="form-control"
                           autocomplete="new-password"
-                          placeholder="Vorname"
-                          aria-label="firstName"
-                          aria-describedby="profiles-firstname"
+                          placeholder="Phone"
+                          aria-label="phone"
+                          aria-describedby="profiles-phone"
                         />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-3 d-none d-md-block">
-                    <div class="form-group position-relative">
-                      <img
-                        class="rounded"
-                        style="max-width: 100px; position: absolute"
-                        src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
-                      />
-                    </div>
-                  </div>
-                </ng-container>
 
-                <div class="col-12 col-md-9 row">
-                  <div class="col-12 col-md-6">
-                    <label>Email</label>
-                    <div class="input-group mb-3">
-                      <span class="input-group-text" id="profiles-email">@</span>
-                      <input
-                        type="text"
-                        formControlName="email"
-                        class="form-control"
-                        autocomplete="new-password"
-                        placeholder="Email"
-                        aria-label="email"
-                        aria-describedby="profiles-email"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-6">
-                    <label>Telefon</label>
-                    <div class="input-group mb-3">
-                      <span class="input-group-text" id="profles-phone">@</span>
-                      <input
-                        formControlName="phone"
-                        type="text"
-                        class="form-control"
-                        autocomplete="new-password"
-                        placeholder="Phone"
-                        aria-label="phone"
-                        aria-describedby="profiles-phone"
-                      />
-
-                      <div
-                        class="w-100 text-danger"
-                        *ngIf="!formProfile.controls['phone'].valid"
-                      >
-                        {{ formProfile.controls['phone']?.errors | json }}
+                        <div
+                          class="w-100 text-danger"
+                          *ngIf="!formProfile.controls['phone'].valid"
+                        >
+                          {{ formProfile.controls['phone']?.errors | json }}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="row shadow pt-3 mb-3">
-                <div class="col-12 mb-3">
-                  <ng-container [ngTemplateOutlet]="profileGender"></ng-container>
-                </div>
-                <ng-container *ngIf="profileType === 'C'">
-                  <div class="col-12 row">
-                    <div class="col-12 col-md-12">
-                      <label>Title</label>
-                      <div class="input-group mb-3">
-                        <span class="input-group-text" id="profiles-title">@</span>
-                        <input
-                          formControlName="title"
-                          type="text"
-                          class="form-control"
-                          autocomplete="new-password"
-                          placeholder="Title"
-                          aria-label="title"
-                          aria-describedby="profiles-title"
+                <div class="row shadow pt-3 mb-3">
+                  <div class="col-12 mb-3">
+                    <ng-container
+                      [ngTemplateOutlet]="profileGender"
+                    ></ng-container>
+                  </div>
+                  <ng-container *ngIf="profileType === 'C'">
+                    <div class="col-12 row">
+                      <div class="col-12 col-md-12">
+                        <label>Title</label>
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" id="profiles-title"
+                            >@</span
+                          >
+                          <input
+                            formControlName="title"
+                            type="text"
+                            class="form-control"
+                            autocomplete="new-password"
+                            placeholder="Title"
+                            aria-label="title"
+                            aria-describedby="profiles-title"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <ng-container>
+                    <div class="col-12 col-md-9 row">
+                      <div class="col-12 col-md-6">
+                        <label>Nachname</label>
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" id="profiles-lastname"
+                            >@</span
+                          >
+                          <input
+                            formControlName="lastName"
+                            type="text"
+                            class="form-control"
+                            autocomplete="new-password"
+                            placeholder="Nachname"
+                            aria-label="lastName"
+                            aria-describedby="profiles-lastname"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <label>Vorname</label>
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" id="profles-firstname"
+                            >@</span
+                          >
+                          <input
+                            formControlName="firstName"
+                            type="text"
+                            class="form-control"
+                            autocomplete="new-password"
+                            placeholder="Vorname"
+                            aria-label="firstName"
+                            aria-describedby="profiles-firstname"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-3 d-none d-md-block">
+                      <div class="form-group position-relative">
+                        <img
+                          class="rounded"
+                          style="max-width: 100px; position: absolute"
+                          src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
                         />
                       </div>
                     </div>
-                  </div>
-                </ng-container>
-                <ng-container>
+                  </ng-container>
                   <div class="col-12 col-md-9 row">
                     <div class="col-12 col-md-6">
-                      <label>Nachname</label>
+                      <label>Email</label>
                       <div class="input-group mb-3">
-                        <span class="input-group-text" id="profiles-lastname">@</span>
+                        <span class="input-group-text" id="profiles-email"
+                          >@</span
+                        >
                         <input
-                          formControlName="lastName"
                           type="text"
+                          formControlName="email"
                           class="form-control"
                           autocomplete="new-password"
-                          placeholder="Nachname"
-                          aria-label="lastName"
-                          aria-describedby="profiles-lastname"
+                          placeholder="Email"
+                          aria-label="email"
+                          aria-describedby="profiles-email"
                         />
                       </div>
                     </div>
                     <div class="col-12 col-md-6">
-                      <label>Vorname</label>
+                      <label>Telefon</label>
                       <div class="input-group mb-3">
-                        <span class="input-group-text" id="profles-firstname">@</span>
+                        <span class="input-group-text" id="profles-phone"
+                          >@</span
+                        >
                         <input
-                          formControlName="firstName"
+                          formControlName="phone"
                           type="text"
                           class="form-control"
                           autocomplete="new-password"
-                          placeholder="Vorname"
-                          aria-label="firstName"
-                          aria-describedby="profiles-firstname"
+                          placeholder="Phone"
+                          aria-label="phone"
+                          aria-describedby="profiles-phone"
                         />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-3 d-none d-md-block">
-                    <div class="form-group position-relative">
-                      <img
-                        class="rounded"
-                        style="max-width: 100px; position: absolute"
-                        src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
-                      />
-                    </div>
-                  </div>
-                </ng-container>
-                <div class="col-12 col-md-9 row">
-                  <div class="col-12 col-md-6">
-                    <label>Email</label>
-                    <div class="input-group mb-3">
-                      <span class="input-group-text" id="profiles-email">@</span>
-                      <input
-                        type="text"
-                        formControlName="email"
-                        class="form-control"
-                        autocomplete="new-password"
-                        placeholder="Email"
-                        aria-label="email"
-                        aria-describedby="profiles-email"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-6">
-                    <label>Telefon</label>
-                    <div class="input-group mb-3">
-                      <span class="input-group-text" id="profles-phone">@</span>
-                      <input
-                        formControlName="phone"
-                        type="text"
-                        class="form-control"
-                        autocomplete="new-password"
-                        placeholder="Phone"
-                        aria-label="phone"
-                        aria-describedby="profiles-phone"
-                      />
 
-                      <div
-                        class="w-100 text-danger"
-                        *ngIf="!formProfile.controls['phone'].valid"
-                      >
-                        {{ formProfile.controls['phone']?.errors | json }}
+                        <div
+                          class="w-100 text-danger"
+                          *ngIf="!formProfile.controls['phone'].valid"
+                        >
+                          {{ formProfile.controls['phone']?.errors | json }}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </mdb-tab>
-            <mdb-tab title="Address"> </mdb-tab>
-            <mdb-tab title="Tab 3"> </mdb-tab>
-          </mdb-tabs>
+              </mdb-tab>
+              <mdb-tab title="Address"> </mdb-tab>
+              <mdb-tab title="Tab 3"> </mdb-tab>
+            </mdb-tabs>
           </form>
         </div>
         <div class="row col-12 col-md-6">

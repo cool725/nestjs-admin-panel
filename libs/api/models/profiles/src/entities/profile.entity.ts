@@ -24,7 +24,7 @@ import { TenantEntity } from '../../../../common/db/db.CoreEntity';
 @Unique(['companyId', 'profileId'])
 @Index(['companyId', 'vip'])
 export class ProfileEntity extends TenantEntity {
-  @Exclude()  self = ProfileEntity;
+  @Exclude() self = ProfileEntity;
 
   @PrimaryGeneratedColumn('increment')
   @Exclude()

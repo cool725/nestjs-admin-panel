@@ -45,15 +45,16 @@ press "Unternehmen"
 
 - password: demo
 
-
 #### Migrations
 
 When the database has been initialised run:
 `npm run typeorm:run`
 
 #### Locales
-To generate Locales data run: 
+
+To generate Locales data run:
 `node scripts/locales.json.generator.js`
+
 ---
 
 ### Development

@@ -2,20 +2,26 @@ import { Inject, Injectable, Optional } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Cacheable } from 'angular-cacheable';
-import {environment} from "../../../../../../environments/environment";
-import {ITableOptions} from "@movit/app/common";
+import { environment } from '../../../../../../environments/environment';
+import { ITableOptions } from '@movit/app/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AgendaAPI<Reservation> {
   reservation$ = new BehaviorSubject<Reservation | undefined>(undefined);
-   reservations$ = new BehaviorSubject<ITableOptions<Reservation>>(<any>null);
+  reservations$ = new BehaviorSubject<ITableOptions<Reservation>>(<any>null);
 
   constructor(private http: HttpClient) {}
 
   protected getPath(path: string, subPath: string | number = ''): string {
-    return environment.api.url + '/frontoffice/agenda/' + path + '/' + (subPath ? subPath : '');
+    return (
+      environment.api.url +
+      '/frontoffice/agenda/' +
+      path +
+      '/' +
+      (subPath ? subPath : '')
+    );
   }
 
   getReservation(reservationId: number) {
@@ -40,15 +46,14 @@ export class AgendaAPI<Reservation> {
     return this.http.delete(this.getPath('reservation', reservationId), {});
   }
 
-
   @Cacheable({})
   getSources() {
-    return this.http.get<any[]>(this.getPath( '/sources/source'));
+    return this.http.get<any[]>(this.getPath('/sources/source'));
   }
 
-  searchProfiles(searchTerm:string){
+  searchProfiles(searchTerm: string) {
     return this.http.get<Reservation[]>(this.getPath('profiles'), {
-      params: {searchTerm},
+      params: { searchTerm },
     });
   }
 }

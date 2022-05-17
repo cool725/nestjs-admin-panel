@@ -3,13 +3,18 @@ import { ReservationService } from './reservation.service';
 import ReservationDBOptions from './db/reservation.database';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import {
-  ReservationLegRepository, ReservationProfilesRepository,
+  ReservationLegRepository,
+  ReservationProfilesRepository,
   ReservationRepository,
 } from './classes/reservation.repository';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([ReservationRepository, ReservationLegRepository, ReservationProfilesRepository]),
+    TypeOrmModule.forFeature([
+      ReservationRepository,
+      ReservationLegRepository,
+      ReservationProfilesRepository,
+    ]),
   ],
 
   providers: [ReservationService],

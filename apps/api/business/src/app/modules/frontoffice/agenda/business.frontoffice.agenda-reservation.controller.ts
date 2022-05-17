@@ -51,7 +51,6 @@ export class BusinessFrontOfficeAgendaController {
     @GetUser() user: AuthUser,
     @Body() reservation
   ) {
-
     if (!reservation) reservation = {};
     reservation.userId = 1;
     return this.reservationService.saveReservation(

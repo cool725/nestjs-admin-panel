@@ -44,7 +44,7 @@ export class Table<Type, Filter extends ITableBaseFilter> {
    * */
   readonly paginate = new TablePagination();
 
-  private readonly  fields:(keyof Type)[] =  [];
+  private readonly fields: (keyof Type)[] = [];
 
   constructor(
     public data$: BehaviorSubject<ITableOptions<Type>>,
@@ -93,7 +93,7 @@ export class Table<Type, Filter extends ITableBaseFilter> {
     return new Table<T, F>(observer, filterValues);
   }
 
-  get eachKeyField(): (keyof Type)[]{
+  get eachKeyField(): (keyof Type)[] {
     return this.fields;
   }
 
@@ -102,9 +102,9 @@ export class Table<Type, Filter extends ITableBaseFilter> {
     this.data$.unsubscribe();
   }
 
-  setFields(fields:(keyof Type)[]){
+  setFields(fields: (keyof Type)[]) {
     this.fields.length = 0;
-    this.fields.push(... fields)
+    this.fields.push(...fields);
     return this;
   }
 

@@ -1,10 +1,10 @@
 <div class="modal-header">
   <span># </span>
   <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal"
+    aria-label="Close"
   ></button>
 </div>
 <div class="modal-header-sub">
@@ -18,54 +18,90 @@
   <div class="row w-100">
     <div class="col-12">
       <mdb-form-control>
-        <input formControlName="title" mdbInput type="text" id="res-title" class="form-control" />
-        <label mdbLabel class="form-label" for="res-title">{{'title' | translate}}</label>
+        <input
+          formControlName="title"
+          mdbInput
+          type="text"
+          id="res-title"
+          class="form-control"
+        />
+        <label mdbLabel class="form-label" for="res-title">{{
+          'title' | translate
+        }}</label>
       </mdb-form-control>
     </div>
 
-
     <div class="col-6 mt-4">
       <mdb-form-control>
-        <input formControlName="start" mdbInput type="date" id="res-start" class="form-control" />
-        <label mdbLabel class="form-label" for="res-start">{{'start' | translate}}</label>
+        <input
+          formControlName="start"
+          mdbInput
+          type="date"
+          id="res-start"
+          class="form-control"
+        />
+        <label mdbLabel class="form-label" for="res-start">{{
+          'start' | translate
+        }}</label>
       </mdb-form-control>
     </div>
     <div class="col-6 mt-4">
       <mdb-form-control>
-        <input formControlName="end" mdbInput type="date" id="res-end" class="form-control" />
-        <label mdbLabel class="form-label" for="res-end">{{'end' | translate}}</label>
+        <input
+          formControlName="end"
+          mdbInput
+          type="date"
+          id="res-end"
+          class="form-control"
+        />
+        <label mdbLabel class="form-label" for="res-end">{{
+          'end' | translate
+        }}</label>
       </mdb-form-control>
     </div>
 
     <div class="col-12 md-4 mt-2">
       <mdb-form-control class="mdb-multiselect my-2">
-        <nz-select mdbInput class="w-100 form-control px-0" nzShowSearch nzServerSearch [nzShowArrow]="false"
-          (nzOnSearch)="searchProfile($event)" [nzMaxTagCount]="10" nzMode="multiple"
-          id="Test" >
+        <nz-select
+          mdbInput
+          class="w-100 form-control px-0"
+          nzShowSearch
+          nzServerSearch
+          [nzShowArrow]="false"
+          (nzOnSearch)="searchProfile($event)"
+          [nzMaxTagCount]="10"
+          nzMode="multiple"
+          id="Test"
+        >
           <!-- [ngClass]="{'c-class':$event.length >0}" -->
-          <nz-option *ngFor="let item of []" [nzLabel]="item" [nzValue]="item"></nz-option>
+          <nz-option
+            *ngFor="let item of []"
+            [nzLabel]="item"
+            [nzValue]="item"
+          ></nz-option>
         </nz-select>
         <label mdbLabel class="form-label px-1" for="Test">Test</label>
       </mdb-form-control>
-      <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template>
+      <ng-template #tagPlaceHolder let-selectedList
+        >and {{ selectedList.length }} more selected</ng-template
+      >
     </div>
   </div>
-
 </form>
 
 <div class="modal-footer">
   <button type="button" class="btn btn-danger text-white">
-    {{'delete' | translate}}
+    {{ 'delete' | translate }}
   </button>
   <button
-          (click)="closeModal()"
-          type="button"
-          class="btn btn-primary text-white"
-          data-bs-dismiss="modal"
+    (click)="closeModal()"
+    type="button"
+    class="btn btn-primary text-white"
+    data-bs-dismiss="modal"
   >
-    {{'cancel' | translate}}
+    {{ 'cancel' | translate }}
   </button>
   <button (click)="save(null)" type="button" class="btn btn-success text-white">
-    {{'save' | translate}}
+    {{ 'save' | translate }}
   </button>
 </div>

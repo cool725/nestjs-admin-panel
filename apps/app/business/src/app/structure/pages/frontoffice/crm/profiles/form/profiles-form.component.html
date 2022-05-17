@@ -230,15 +230,16 @@
           <div class="col-12 col-md-4">
             <mdb-form-control class="mdb-multiselect my-2">
               <nz-select
-                #nzSelectSegments
-                mdbInput
+                mdbInput mdbNzSelect
+                #s
                 class="w-100 form-control px-0"
                 formControlName="segments"
                 nzMode="multiple"
                 aria-label="segments"
                 aria-describedby="profiles-segments"
                 id="Kundensegment"
-                [class.has-value]="nzSelectSegments.listOfValue.length"
+
+
               >
                 <nz-option
                   *ngFor="let segment of segments$ | async"

@@ -53,40 +53,33 @@ hr {
 }
 
 /* ANT - Desing */
-::ng-deep .mdb-multiselect {
-  .form-control {
-    border: 1px solid #b5babf !important;
+.mdb-multiselect {
+
+  .ant-select-selector{
+      border: none!important;
+      outline: none!important;
+      box-shadow: none!important;
+      padding-top: 4px;
   }
-
-  .ant-select:not(.ant-select-customize-input) .ant-select-selector {
-    border: 1px solid #ffffff !important;
+  .form-label{
+    padding-top: 0.5rem;
   }
-
-
-  .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input)
-  .ant-select-selector {
-    box-shadow: none !important;
-  }
-
-  label {
-    // padding-right: 0px 5px !important;
-    font-size: 20px !important;
-    top: 20px !important;
-    background-color: #ffffff !important;
-    transition: all 0.2s ease-out !important;
-  }
-
-  .ant-select-open + label {
-    font-size: 16px !important;
-    top: 0px !important;
-  }
-
-
-  .cdk-focused ~ .form-label,
-  .has-value ~ .form-label {
+  .form-control.cdk-focused ~ .form-label,
+  .form-control.has-value ~ .form-label {
     transform: translateY(-1rem) translateY(0.1rem) scale(0.8)!important;
   }
+
+  .form-control.has-value ~ .form-label ~ .form-notch .form-notch-middle,
+  .form-control.cdk-focused  ~ .form-notch .form-notch-middle,
+  {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    transition: all 0.2s linear;
+  }
 }
+
+
 
 ::ng-deep .lang_chooser_pills {
   nav {

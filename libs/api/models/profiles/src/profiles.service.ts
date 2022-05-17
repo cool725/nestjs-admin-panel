@@ -128,13 +128,13 @@ export class ProfilesSegmentService {
   async createSegment(businessId: number, data: any) {
     const segment = this.segmentRepo.create();
     segment.companyId = businessId;
-    doInsert(segment);
+    await doInsert(segment);
     return this.updateSegment(businessId, segment.segmentId, data);
   }
 
   async updateSegment(businessId, segmentId: number, data: any) {
     const segment = await this.getSegment(businessId, segmentId);
-    Object.assign(segment, data);
+    Object.assign(segment, data || {});
     return this.segmentRepo.save(segment);
   }
 

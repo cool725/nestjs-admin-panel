@@ -12,24 +12,16 @@
         <div>
           <div class="row">
             <div class="col-12 col-md-10">
-              <!-- <div class="form-group">
-                <input
-                  [(ngModel)]="profileSegmentTable.filterValues.searchValue"
-                  class="form-control"
-                  placeholder="Suchen"
-                  tabindex="1"
-                />
-              </div> -->
               <mdb-form-control>
                 <input
                   mdbInput
                   type="text"
-                  id="formControlDefault"
+                  id="searchvalue"
                   class="form-control"
                   [(ngModel)]="profileSegmentTable.filterValues.searchValue"
                 />
-                <label mdbLabel class="form-label" for="formControlDefault"
-                  >Suchen</label
+                <label mdbLabel class="form-label" for="searchvalue"
+                  >{{'search' | translate}}</label
                 >
               </mdb-form-control>
             </div>

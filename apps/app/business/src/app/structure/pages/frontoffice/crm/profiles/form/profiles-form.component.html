@@ -107,34 +107,32 @@
         <ng-container>
           <div class="col-12 col-md-9 row">
             <div class="col-12 col-md-6">
-              <label>Nachname</label>
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="profiles-lastname">@</span>
+              <mdb-form-control class="mt-2">
                 <input
-                  formControlName="lastName"
-                  type="text"
-                  class="form-control"
-                  autocomplete="new-password"
-                  placeholder="Nachname"
-                  aria-label="lastName"
-                  aria-describedby="profiles-lastname"
+                        mdbInput
+                        type="text"
+                        id="profiles-lastname"
+                        formControlName="lastName"
+                        class="form-control"
                 />
-              </div>
+                <label mdbLabel class="form-label" for="profiles-lastname">
+                  {{'lastname' | translate}}
+                </label>
+              </mdb-form-control>
             </div>
             <div class="col-12 col-md-6">
-              <label>Vorname</label>
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="profles-firstname">@</span>
+              <mdb-form-control class="mt-2">
                 <input
-                  formControlName="firstName"
-                  type="text"
-                  class="form-control"
-                  autocomplete="new-password"
-                  placeholder="Vorname"
-                  aria-label="firstName"
-                  aria-describedby="profiles-firstname"
+                        mdbInput
+                        type="text"
+                        formControlName="firstName"
+                        id="profiles-firstname"
+                        class="form-control"
                 />
-              </div>
+                <label mdbLabel class="form-label" for="profiles-firstname">
+                  {{'lastname' | translate}}
+                </label>
+              </mdb-form-control>
             </div>
           </div>
           <div class="col-12 col-md-3 d-none d-md-block">
@@ -394,21 +392,17 @@
                   <ng-container>
                     <div class="col-12 col-md-9 row">
                       <div class="col-12 col-md-6">
-                        <label>Nachname</label>
-                        <div class="input-group mb-3">
-                          <span class="input-group-text" id="profiles-lastname"
-                            >@</span
-                          >
+                        <mdb-form-control>
                           <input
-                            formControlName="lastName"
-                            type="text"
-                            class="form-control"
-                            autocomplete="new-password"
-                            placeholder="Nachname"
-                            aria-label="lastName"
-                            aria-describedby="profiles-lastname"
+                                  mdbInput
+                                  type="text"
+                                  id="profiles-lastname"
+                                  class="form-control"
                           />
-                        </div>
+                          <label mdbLabel class="form-label" for="profiles-lastname">
+                            {{'lastname'}}
+                          </label>
+                        </mdb-form-control>
                       </div>
                       <div class="col-12 col-md-6">
                         <label>{{ 'firstname' | translate }}</label>

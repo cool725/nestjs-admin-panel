@@ -8,7 +8,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ItemServiceAPI } from './item.api';
 import { ItemServiceFormComponent } from './form/item-service-form.component';
 import { MdbSharedModule } from '@movit/app/ui';
-import { TranslateModule } from '@ngx-translate/core';
+import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { TranslateLocaleModule } from '../../../../../../../../../../libs/app/common/module/translate/module.translate';
 
 const routes: Routes = [
@@ -40,6 +40,7 @@ const routes: Routes = [
     NzSelectModule,
     TranslateLocaleModule.forChild(),
     MdbSharedModule,
+    MdbFormsModule,
   ],
   providers: [ItemServiceAPI],
 })

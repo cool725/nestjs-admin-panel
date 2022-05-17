@@ -39,6 +39,8 @@ export class ProfilesFormComponent extends FormController<Profile> {
 
   sources$ = new Subject<any[]>();
 
+  priceClasses$ = new Subject<any[]>();
+
   constructor(override injector: Injector, public api: ProfilesAPI<Profile>) {
     super(injector);
     api.profile$.next(new Profile());
@@ -59,9 +61,10 @@ export class ProfilesFormComponent extends FormController<Profile> {
         }
       );
     }
-    this.segments$.subscribe(console.log);
+
     this.onLoadAndSetData(this.api.getSources(), this.sources$);
     this.onLoadAndSetData(this.api.getSegments(), this.segments$);
+    this.onLoadAndSetData(this.api.getPriceClass(), this.priceClasses$);
   }
 
   async save(profile: Partial<Profile>, closeOnSave = true) {

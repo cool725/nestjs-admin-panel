@@ -237,10 +237,7 @@
                 nzMode="multiple"
                 aria-label="segments"
                 aria-describedby="profiles-segments"
-                id="Kundensegment"
-
-
-              >
+                id="Kundensegment"  >
                 <nz-option
                   *ngFor="let segment of segments$ | async"
                   [nzLabel]="segment.title"
@@ -259,18 +256,19 @@
                 mdbInput mdbNzSelect
                 class="w-100 form-control px-0"
                 formControlName="priceClass"
-                multiple
                 aria-label="priceclass"
                 aria-describedby="profiles-priceclass"
                 id="Preisklasse"
-                [ngClass]="{
-                  'c-class': formProfile.value.priceClass.length > 0
-                }"
               >
+                <nz-option
+                  *ngFor="let p of priceClasses$ | async"
+                  [nzLabel]="p.title"
+                  [nzValue]="p.priceClassId"
+                >
+                </nz-option>
               </nz-select>
               <label mdbLabel class="form-label px-1" for="Preisklasse"
-                >Preisklasse</label
-              >
+                >Preisklasse</label>
             </mdb-form-control>
           </div>
           <div class="col-12 col-md-4">
@@ -283,11 +281,16 @@
                 aria-label="source"
                 aria-describedby="profiles-source"
                 id="Source"
-                [ngClass]="{ 'c-class': formProfile.value.source.length > 0 }"
               >
+                <nz-option
+                  *ngFor="let s of sources$ | async"
+                  [nzLabel]="s.title"
+                  [nzValue]="s.sourceId"
+                >
+                </nz-option>
               </nz-select>
               <label mdbLabel class="form-label px-1" for="Source"
-                >Source</label
+                >Sources</label
               >
             </mdb-form-control>
           </div>

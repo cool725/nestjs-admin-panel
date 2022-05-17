@@ -53,4 +53,8 @@ export class ProfilesAPI<Profile> {
   getSources() {
     return this.http.get<any[]>(this.endpoint + '/sources/source');
   }
+  @Cacheable({})
+  getPriceClass() {
+    return this.http.get<any[]>(this.endpoint + '/price-class/price-class');
+  }
 }

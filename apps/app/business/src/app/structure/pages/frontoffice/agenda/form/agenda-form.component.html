@@ -37,20 +37,16 @@
       </mdb-form-control>
     </div>
 
-    <div class="col-12 mt-4">
-      Test
-      <nz-select
-              class="w-100"
-              nzShowSearch
-              nzServerSearch
-              [nzShowArrow]="false"
-              (nzOnSearch)="searchProfile($event)"
-              [nzMaxTagCount]="10"
-              nzMode="multiple"
-              nzPlaceHolder="Please select"
-      >
-        <nz-option *ngFor="let item of []" [nzLabel]="item" [nzValue]="item"></nz-option>
-      </nz-select>
+    <div class="col-12 md-4 mt-2">
+      <mdb-form-control class="mdb-multiselect my-2">
+        <nz-select mdbInput class="w-100 form-control px-0" nzShowSearch nzServerSearch [nzShowArrow]="false"
+          (nzOnSearch)="searchProfile($event)" [nzMaxTagCount]="10" nzMode="multiple"
+          id="Test" >
+          <!-- [ngClass]="{'c-class':$event.length >0}" -->
+          <nz-option *ngFor="let item of []" [nzLabel]="item" [nzValue]="item"></nz-option>
+        </nz-select>
+        <label mdbLabel class="form-label px-1" for="Test">Test</label>
+      </mdb-form-control>
       <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template>
     </div>
   </div>

@@ -51,3 +51,101 @@ hr {
 .cursor-pointer {
   cursor: pointer;
 }
+
+
+/* ANT - Desing */
+::ng-deep .mdb-multiselect {
+  .form-control {
+    border: 1px solid #b5babf !important;
+  }
+
+  .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    border: 1px solid #ffffff !important;
+  }
+
+  label {
+    // padding-right: 0px 5px !important;
+    font-size: 20px !important;
+    top: 20px !important;
+    background-color: #ffffff !important;
+    transition: all 0.2s ease-out !important;
+  }
+
+  .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    box-shadow: none !important;
+  }
+
+  .ant-select-open+label {
+    font-size: 16px !important;
+    top: 0px !important;
+  }
+
+  .c-class+label {
+    font-size: 16px !important;
+    top: 0px !important;
+  }
+
+}
+
+::ng-deep .lang_chooser_pills {
+  nav {
+    a {
+      cursor: pointer;
+      user-select: none;
+      background: #f0f7fc;
+      margin: 0;
+      border-radius: 0 !important;
+      border: #c9c9c9 solid !important;
+      padding: 3px !important;
+
+      &.active {
+        background: rgb(69, 154, 250);
+      }
+    }
+  }
+
+  .nav-pills a:nth-of-type(1) {
+    animation-delay: 300ms;
+  }
+
+  .nav-pills a:nth-of-type(2) {
+    animation-delay: 400ms;
+  }
+
+  .nav-pills a:nth-of-type(3) {
+    animation-delay: 500ms;
+  }
+
+  .nav-pills a:nth-of-type(4) {
+    animation-delay: 600ms;
+  }
+
+  .nav-pills a:nth-of-type(5) {
+    animation-delay: 700ms;
+  }
+
+  .nav-pills a:nth-of-type(6) {
+    animation-delay: 800ms;
+  }
+
+  .nav-pills a:nth-of-type(7) {
+    animation-delay: 900ms;
+  }
+
+  .nav-pills a:nth-of-type(8) {
+    animation-delay: 1000ms;
+  }
+
+  .nav-pills a:nth-of-type(9) {
+    animation-delay: 1100ms;
+  }
+
+  .nav-pills a:nth-of-type(10) {
+    animation-delay: 1200ms;
+  }
+
+  .nav-pills a:nth-of-type(11) {
+    animation-delay: 1300ms;
+  }
+}
+

@@ -237,7 +237,7 @@
           </div>
         </div>
         <div class="col-12 row">
-          <div class="col-12 col-md-4">
+          <!-- <div class="col-12 col-md-4">
             <label>Kundensegment</label>
             <div class="input-group mb-3">
               <nz-select
@@ -246,7 +246,7 @@
                 nzMode="multiple"
                 nzPlaceHolder="Please select"
                 aria-label="segments"
-                aria-describedby="profiles-vip"
+                aria-describedby="profiles-segments"
               >
                 <nz-option
                   *ngFor="let segment of segments$ | async"
@@ -255,42 +255,57 @@
                 ></nz-option>
               </nz-select>
             </div>
-          </div>
+          </div> -->
           <div class="col-12 col-md-4">
+            <mdb-form-control class="mdb-multiselect my-2">
+              <nz-select mdbInput class="w-100 form-control px-0" formControlName="segments" nzMode="multiple"
+                aria-label="segments" aria-describedby="profiles-vip" id="Kundensegment"
+                [ngClass]="{'c-class':formProfile.value.segments.length >0}">
+                <nz-option *ngFor="let segment of segments$ | async" [nzLabel]="segment.title"
+                  [nzValue]="segment.segmentId">
+                </nz-option>
+              </nz-select>
+              <label mdbLabel class="form-label px-1" for="Kundensegment">Kundensegment</label>
+            </mdb-form-control>
+          </div>
+          <!-- <div class="col-12 col-md-4">
             <label>Preisklasse</label>
             <div class="input-group mb-3">
-              <nz-select
-                class="w-100"
-                formControlName="priceClass"
-                multiple
-                aria-label="priceclass"
-                aria-describedby="profiles-priceclass"
-              >
+              <nz-select class="w-100" formControlName="priceClass" multiple aria-label="priceclass"
+                aria-describedby="profiles-priceclass">
               </nz-select>
             </div>
-          </div>
+          </div> -->
           <div class="col-12 col-md-4">
+            <mdb-form-control class="mdb-multiselect my-2">
+              <nz-select mdbInput class="w-100 form-control px-0" formControlName="priceClass" multiple aria-label="priceclass"
+                aria-describedby="profiles-priceclass" id="Preisklasse"
+                 [ngClass]="{'c-class':formProfile.value.priceClass.length >0}">
+              </nz-select>
+              <label mdbLabel class="form-label px-1" for="Preisklasse">Preisklasse</label>
+            </mdb-form-control>
+          </div>
+          <!-- <div class="col-12 col-md-4">
             <label>Source</label>
             <div class="input-group mb-3">
-              <nz-select
-                class="w-100"
-                formControlName="source"
-                multiple
-                aria-label="source"
-                aria-describedby="profiles-source"
-              >
+              <nz-select class="w-100" formControlName="source" multiple aria-label="source"
+                aria-describedby="profiles-source">
               </nz-select>
             </div>
+          </div> -->
+          <div class="col-12 col-md-4">
+            <mdb-form-control class="mdb-multiselect my-2">
+              <nz-select mdbInput class="w-100 form-control px-0" formControlName="source" multiple aria-label="source"
+                aria-describedby="profiles-source" id="Source"
+                [ngClass]="{'c-class':formProfile.value.source.length >0}">
+              </nz-select>
+              <label mdbLabel class="form-label px-1" for="Source">Source</label>
+            </mdb-form-control>
           </div>
 
           <div class="col-12">
             <mdb-form-control>
-              <textarea
-                mdbInput
-                class="form-control"
-                id="pshortnotes"
-                rows="4"
-              ></textarea>
+              <textarea mdbInput class="form-control" id="pshortnotes" rows="4"></textarea>
               <label mdbLabel class="form-label" for="pshortnotes">Notes</label>
             </mdb-form-control>
           </div>

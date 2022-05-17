@@ -109,28 +109,28 @@
             <div class="col-12 col-md-6">
               <mdb-form-control class="mt-2">
                 <input
-                        mdbInput
-                        type="text"
-                        id="profiles-lastname"
-                        formControlName="lastName"
-                        class="form-control"
+                  mdbInput
+                  type="text"
+                  id="profiles-lastname"
+                  formControlName="lastName"
+                  class="form-control"
                 />
                 <label mdbLabel class="form-label" for="profiles-lastname">
-                  {{'lastname' | translate}}
+                  {{ 'lastname' | translate }}
                 </label>
               </mdb-form-control>
             </div>
             <div class="col-12 col-md-6">
               <mdb-form-control class="mt-2">
                 <input
-                        mdbInput
-                        type="text"
-                        formControlName="firstName"
-                        id="profiles-firstname"
-                        class="form-control"
+                  mdbInput
+                  type="text"
+                  formControlName="firstName"
+                  id="profiles-firstname"
+                  class="form-control"
                 />
                 <label mdbLabel class="form-label" for="profiles-firstname">
-                  {{'lastname' | translate}}
+                  {{ 'lastname' | translate }}
                 </label>
               </mdb-form-control>
             </div>
@@ -148,64 +148,54 @@
 
         <div class="col-12 col-md-9 row">
           <div class="col-12 col-md-6">
-            <label>Email</label>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="profiles-email">@</span>
+            <mdb-form-control class="mt-4">
               <input
+                mdbInput
                 type="text"
+                id="profiles-email"
                 formControlName="email"
                 class="form-control"
-                autocomplete="new-password"
-                placeholder="Email"
-                aria-label="email"
-                aria-describedby="profiles-email"
               />
-            </div>
+              <label mdbLabel class="form-label" for="profiles-email">
+                {{ 'email' | translate }}
+              </label>
+            </mdb-form-control>
           </div>
           <div class="col-12 col-md-6">
-            <label>Telefon</label>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="profles-phone">@</span>
+            <mdb-form-control class="mt-4">
               <input
-                formControlName="phone"
+                mdbInput
                 type="text"
+                id="profiles-email"
+                formControlName="email"
                 class="form-control"
-                autocomplete="new-password"
-                placeholder="Phone"
-                aria-label="phone"
-                aria-describedby="profiles-phone"
               />
-
-              <div
-                class="w-100 text-danger"
-                *ngIf="!formProfile.controls['phone'].valid"
-              >
-                {{ formProfile.controls['phone']?.errors | json }}
-              </div>
-            </div>
+              <label mdbLabel class="form-label" for="profiles-email">
+                {{ 'phone' | translate }}
+              </label>
+            </mdb-form-control>
           </div>
         </div>
 
-        <hr />
+        <hr class="mt-3" />
         <div class="col-12 row">
           <div class="col-12 col-md-4">
-            <label>Geburtstag</label>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="profiles-birthday">@</span>
+            <mdb-form-control class="mt-4">
               <input
-                type="date"
+                mdbInput
+                type="text"
+                id="profiles-birthDay"
                 formControlName="birthDay"
                 class="form-control"
-                autocomplete="new-password"
-                aria-label="birthday"
-                aria-describedby="profiles-birthday"
               />
-            </div>
+              <label mdbLabel class="form-label" for="profiles-birthDay">
+                {{ 'birthday' | translate }}
+              </label>
+            </mdb-form-control>
           </div>
           <div class="col-12 col-md-4">
             <label>VIP</label>
             <div class="input-group mb-3">
-              <span class="input-group-text" id="profiles-vip">@</span>
               <select
                 formControlName="vip"
                 class="form-control"
@@ -222,9 +212,8 @@
             </div>
           </div>
           <div class="col-12 col-md-4">
-            <label>Sprache *</label>
+            <label>Sprache </label>
             <div class="input-group mb-3">
-              <span class="input-group-text" id="profiles-language">@</span>
               <select
                 formControlName="languageId"
                 class="form-control"
@@ -238,36 +227,18 @@
           </div>
         </div>
         <div class="col-12 row">
-          <!-- <div class="col-12 col-md-4">
-            <label>Kundensegment</label>
-            <div class="input-group mb-3">
-              <nz-select
-                class="w-100"
-                formControlName="segments"
-                nzMode="multiple"
-                nzPlaceHolder="Please select"
-                aria-label="segments"
-                aria-describedby="profiles-segments"
-              >
-                <nz-option
-                  *ngFor="let segment of segments$ | async"
-                  [nzLabel]="segment.title"
-                  [nzValue]="segment.segmentId"
-                ></nz-option>
-              </nz-select>
-            </div>
-          </div> -->
           <div class="col-12 col-md-4">
             <mdb-form-control class="mdb-multiselect my-2">
               <nz-select
+                #nzSelectSegments
                 mdbInput
                 class="w-100 form-control px-0"
                 formControlName="segments"
                 nzMode="multiple"
                 aria-label="segments"
-                aria-describedby="profiles-vip"
+                aria-describedby="profiles-segments"
                 id="Kundensegment"
-                [ngClass]="{ 'c-class': formProfile.value.segments.length > 0 }"
+                [class.has-value]="nzSelectSegments.listOfValue.length"
               >
                 <nz-option
                   *ngFor="let segment of segments$ | async"
@@ -281,14 +252,6 @@
               >
             </mdb-form-control>
           </div>
-          <!-- <div class="col-12 col-md-4">
-            <label>Preisklasse</label>
-            <div class="input-group mb-3">
-              <nz-select class="w-100" formControlName="priceClass" multiple aria-label="priceclass"
-                aria-describedby="profiles-priceclass">
-              </nz-select>
-            </div>
-          </div> -->
           <div class="col-12 col-md-4">
             <mdb-form-control class="mdb-multiselect my-2">
               <nz-select
@@ -309,14 +272,6 @@
               >
             </mdb-form-control>
           </div>
-          <!-- <div class="col-12 col-md-4">
-            <label>Source</label>
-            <div class="input-group mb-3">
-              <nz-select class="w-100" formControlName="source" multiple aria-label="source"
-                aria-describedby="profiles-source">
-              </nz-select>
-            </div>
-          </div> -->
           <div class="col-12 col-md-4">
             <mdb-form-control class="mdb-multiselect my-2">
               <nz-select
@@ -337,14 +292,16 @@
           </div>
 
           <div class="col-12">
-            <mdb-form-control>
+            <mdb-form-control class="mt-4">
               <textarea
                 mdbInput
                 class="form-control"
-                id="pshortnotes"
+                id="profiles-notes-short"
                 rows="4"
               ></textarea>
-              <label mdbLabel class="form-label" for="pshortnotes">Notes</label>
+              <label mdbLabel class="form-label" for="profiles-notes-short">
+                {{ 'notes' | translate }}
+              </label>
             </mdb-form-control>
           </div>
         </div>
@@ -394,13 +351,17 @@
                       <div class="col-12 col-md-6">
                         <mdb-form-control>
                           <input
-                                  mdbInput
-                                  type="text"
-                                  id="profiles-lastname"
-                                  class="form-control"
+                            mdbInput
+                            type="text"
+                            id="profiles-lastname"
+                            class="form-control"
                           />
-                          <label mdbLabel class="form-label" for="profiles-lastname">
-                            {{'lastname'}}
+                          <label
+                            mdbLabel
+                            class="form-label"
+                            for="profiles-lastname"
+                          >
+                            {{ 'lastname' }}
                           </label>
                         </mdb-form-control>
                       </div>

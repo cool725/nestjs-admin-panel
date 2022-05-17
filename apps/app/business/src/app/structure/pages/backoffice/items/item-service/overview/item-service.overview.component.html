@@ -267,7 +267,12 @@
 
 
 <lib-modal-ui *ngIf="api.category$ | async as category"
-              [style]="{width: '400px', height: '725px', background: 'red', right: '0px', bottom: '0px', left: '0px', top: '0px', margin: 'auto' }">
+              [style]="{
+              width: '400px',
+              height: '725px',
+              background: 'red',
+               right: '0px',
+                bottom: '0px', left: '0px', top: '0px', margin: 'auto' }">
   <div class="modal-header">
     <select class="form-control bg-transparent">
       <option>Einfach</option>

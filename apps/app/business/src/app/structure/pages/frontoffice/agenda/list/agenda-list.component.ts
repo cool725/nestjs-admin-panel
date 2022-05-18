@@ -2,7 +2,6 @@ import { Component, Injector } from '@angular/core';
 import { PageController } from '../../../page.controller';
 import { AgendaAPI } from '../packages/agenda-api.service';
 import { ITableBaseFilter, Table } from '@movit/app/common';
-import { Profile } from '../../crm/profiles/overview/profiles-overview.component';
 import { AgendaFormComponent } from '../form/agenda-form.component';
 import { Debounce } from '../../../../../../../../../../libs/app/common/decorators/app.decorator.debounce';
 
@@ -14,7 +13,7 @@ import { Debounce } from '../../../../../../../../../../libs/app/common/decorato
 })
 export class AgendaListComponent extends PageController {
   public resTable: Table<any, ITableBaseFilter> = new Table<
-    Profile,
+    any,
     ITableBaseFilter
   >(this.api.reservations$, {
     searchValue: '',
@@ -22,7 +21,6 @@ export class AgendaListComponent extends PageController {
 
   constructor(override injector: Injector, protected api: AgendaAPI<any>) {
     super(injector);
-    this.resTable.data$.subscribe(console.log);
   }
 
   override getData() {
@@ -32,7 +30,7 @@ export class AgendaListComponent extends PageController {
   @Debounce(350)
   getReservations() {
     this.onLoadAndSetData(
-      this.api.getReservations(this.resTable.getFilterValuesAsHttpParams()),
+      this.api.getReservationList(this.resTable.getFilterValuesAsHttpParams()),
       this.api.reservations$
     );
   }

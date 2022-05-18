@@ -23,12 +23,23 @@ export class BusinessFrontOfficeAgendaController {
    * Gets reservations with legs
    * */
   @Get('reservation')
-  getReservations(
+  async getReservations(
     @GetCompany() business: BusinessEntity,
     @GetUser() user: AuthUser,
     @Body() filterValues: any
   ) {
-    return this.reservationService.getReservations(business.businessId, {});
+    return this.reservationService.getReservations(business.businessId, {})
+  }
+
+  @Get('list')
+  async getReservationList(
+    @GetCompany() business: BusinessEntity,
+    @GetUser() user: AuthUser,
+    @Body() filterValues: any
+  ) {
+    return {
+      data: await this.reservationService.getReservations(business.businessId, {})
+    }
   }
 
   @Get('reservation/:reservationId')

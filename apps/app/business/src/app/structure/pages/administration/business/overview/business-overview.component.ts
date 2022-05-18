@@ -21,7 +21,6 @@ export class BusinessOverviewComponent extends PageController {
 
   constructor(override injector: Injector, public api: BusinessAPI) {
     super(injector);
-    console.log(this.businessTable);
   }
 
   override getData() {

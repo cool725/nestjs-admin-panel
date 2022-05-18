@@ -34,6 +34,13 @@ export class AgendaAPI<Reservation> {
     });
   }
 
+  // return with pagination
+  getReservationList(filter: HttpParams): Observable<Reservation[]> {
+    return this.http.get<Reservation[]>(this.getPath('reservation'), {
+      params: filter,
+    });
+  }
+
   saveReservation(res: Partial<Reservation>) {
     return this.http.put(this.getPath('reservation'), res);
   }

@@ -226,6 +226,9 @@
 
   <div class="modal-footer">
     <!-- <footer> -->
+    <button type="button" (click)="cancel()" class="btn btn-gray-400 text-white">
+      cancel
+    </button>
     <button
       type="button"
       *ngIf="formPriceClass.valid"
@@ -238,9 +241,7 @@
     >
       {{ priceclass.priceClassId ? 'update' : 'save' }}
     </button>
-    <button type="button" (click)="cancel()" class="btn btn-gray-400 text-white">
-      cancel
-    </button>
+
     <!-- </footer> -->
   </div>
 </form>

@@ -52,7 +52,9 @@ hr {
   cursor: pointer;
 }
 
-/* ANT - Desing */
+//-- Temp --------------------------
+
+/* ANT - Design */
 .mdb-multiselect {
 
   .ant-select-selector{
@@ -79,9 +81,7 @@ hr {
   }
 }
 
-
-
-::ng-deep .lang_chooser_pills {
+.lang_chooser_pills {
   nav {
     a {
       cursor: pointer;

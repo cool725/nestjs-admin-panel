@@ -5,7 +5,7 @@ import {
   SaleItemRepository,
 } from './classes/sales-item.repository';
 import { SaleItemCategoryLinkEntity } from './entities/sale.entity.item-category.link';
-import {doInsert} from "../../../../../common/db/utils/db.utils";
+import { doInsert } from '../../../../../common/db/utils/db.utils';
 
 @Injectable()
 export class SalesItemService {
@@ -57,13 +57,20 @@ export class SalesItemService {
       type: 'S',
       itemId: itemId,
     });
-    saleItemEntity.setTranslationFromLabelObj(service.label);
+    await saleItemEntity.setTranslationFromLabelObj(service.label);
     await this.saveLinkCategories(businessId, itemId, service.categoriesIds);
     return saleItemEntity.update();
   }
 
   async saveLinkCategories(businessId, itemId, categoriesIds: number[]) {
     if (categoriesIds) {
+      const items = await SaleItemCategoryLinkEntity.find({
+        where:{
+          companyId:businessId,
+          itemId:itemId
+        }
+      })
+      await Promise.all(items.map( a => a.remove()));
       for (let i = 0; i < categoriesIds.length; i++) {
         const link = SaleItemCategoryLinkEntity.create();
         link.companyId = businessId;

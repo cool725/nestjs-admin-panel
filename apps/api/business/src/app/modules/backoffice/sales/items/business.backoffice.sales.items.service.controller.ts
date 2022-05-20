@@ -13,10 +13,10 @@ import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
 import { GetPagination } from '../../../../../../../../../libs/api/common/decorator';
 import { GetLanguage } from '../../../../../../../../../libs/api/common/decorator/decorator.language';
-import {AppsRolesGuard} from "../../../../../../../../../libs/api/models/apps-role/src/app/guards/auth.guards.apps";
-import {SalesItemService} from "../../../../../../../../../libs/api/models/sales/item/src/lib/sales-item-service";
-import {BusinessEntity} from "../../../../../../../../../libs/api/models/business/src/entities/business.entity";
-import {GetCompany} from "../../../../../../../../../libs/api/models/business/src/business.decorator";
+import { AppsRolesGuard } from '../../../../../../../../../libs/api/models/apps-role/src/app/guards/auth.guards.apps';
+import { SalesItemService } from '../../../../../../../../../libs/api/models/sales/item/src/lib/sales-item-service';
+import { BusinessEntity } from '../../../../../../../../../libs/api/models/business/src/entities/business.entity';
+import { GetCompany } from '../../../../../../../../../libs/api/models/business/src/business.decorator';
 
 @Controller(BackOffice.resolePath(BackOffice.Sales.Items.PATHService))
 @UseGuards(AuthGuard(), CompanyGuard, AppsRolesGuard(14))

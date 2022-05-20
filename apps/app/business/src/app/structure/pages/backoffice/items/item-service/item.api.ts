@@ -2,71 +2,11 @@ import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { ITableOptions } from '@movit/app/common';
+import { environment } from "../../../../../../environments/environment";
 
-class Item {
-  itemId: number;
-
-  companyId: number;
-
-  label: any = {};
-
-  readonly title: string;
-
-  categoriesIds: any[] = [];
-
-  order = 1;
-
-  color = '';
-
-  static create(item: Partial<Item>) {
-    return Object.assign(new Item(), item);
-  }
-
-
-
-  public changeLang(id: number, key: string) {
-    this.label[key].cLang = id;
-  }
-}
-
-export class ItemService extends Item {
-  override label = {
-    title: <any>{},
-    desc: <any>{},
-  };
-
-  static override create(item: Partial<Item>) {
-    return Object.assign(new ItemService(), item);
-  }
-}
-
-export class ItemCategory {
-  categoryId: number;
-  parentCategoryId: number;
-  companyId: number;
-  readonly title = '';
-  readonly label: any = {
-    title: <any>{},
-    desc: <any>{},
-  };
-
-  order = 1;
-
-  color = '';
-
-  enabled = 1;
-
-  readonly children: any = [];
-
-  static create(cat: Partial<ItemCategory>) {
-    return Object.assign(new ItemCategory(), cat);
-  }
-  public changeLang(id: number, key: string) {
-    this.label[key].cLang = id;
-  }
-}
-
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ItemServiceAPI<T, C> {
   readonly item$ = new BehaviorSubject<T | null>(null);
   readonly items$ = new BehaviorSubject<ITableOptions<T>>(<any>{ data: [] });
@@ -75,13 +15,8 @@ export class ItemServiceAPI<T, C> {
   readonly categories$ = new BehaviorSubject<ITableOptions<C>>(<any>{
     data: [],
   });
-
-  constructor(
-    @Inject('basePath') private basePath: string,
-    private http: HttpClient
-  ) {
-    console.log('basePath:', basePath);
-  }
+  basePath: string = environment.api.url + '/' + 'backoffice/sales/items'
+  constructor(private http: HttpClient) { }
 
   private getPath(
     path: string,
@@ -100,9 +35,11 @@ export class ItemServiceAPI<T, C> {
   getServices(filterValues = {}) {
     return this.http.get(this.getPath('service'), filterValues);
   }
+
   getService(serviceId: number) {
     return this.http.get(this.getPath('service', serviceId));
   }
+
   saveServiceItem(serivce: T) {
     return this.http.put(this.getPath('service'), serivce);
   }

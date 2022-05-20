@@ -20,16 +20,18 @@ import {
 } from 'typeorm';
 import { SaleItemCategoryLinkEntity } from './sale.entity.item-category.link';
 import { SaveOptions } from 'typeorm/repository/SaveOptions';
-import {TenantEntityTranslatable} from "../../../../../../common/db/db.CoreEntity";
-import Translatable from "../../../../../../common/decorator/decorator.translatable";
-
+import { TenantEntityTranslatable } from '../../../../../../common/db/db.CoreEntity';
+import Translatable from '../../../../../../common/decorator/decorator.translatable';
 
 @Entity('sell_item_category')
 @Index(['companyId'])
 @Index(['companyId', 'type'])
 @Unique(['companyId', 'type', 'categoryId'])
-export class SaleItemCategoryEntity extends Translatable(TenantEntityTranslatable, 'cat') {
-  @Exclude()  self: any = SaleItemCategoryEntity;
+export class SaleItemCategoryEntity extends Translatable(
+  TenantEntityTranslatable,
+  'cat'
+) {
+  @Exclude() self: any = SaleItemCategoryEntity;
 
   @PrimaryGeneratedColumn('increment')
   id: number;
@@ -64,17 +66,17 @@ export class SaleItemCategoryEntity extends Translatable(TenantEntityTranslatabl
   }
 
   @BeforeInsert()
-   async beforeInsert() {
-    await this.setLastEntryId('categoryId')
+  async beforeInsert() {
+    await this.setLastEntryId('categoryId');
   }
 
   @AfterUpdate()
-   afterUpdate() {
+  afterUpdate() {
     this.saveTranslations();
   }
 
   @BeforeRemove()
-   beforeRemove() {
+  beforeRemove() {
     this.removeTranslations();
   }
 

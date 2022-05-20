@@ -1,6 +1,6 @@
 <div
-        *ngIf="api.category$ | async as category"
-        [style]="{
+  *ngIf="api.category$ | async as category"
+  [style]="{
     width: '400px',
     height: '725px',
     background: 'red',
@@ -12,43 +12,43 @@
     display: 'block'
   }"
 >
-    <div class="modal-header">
-        <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-        ></button>
-    </div>
-    <div class="modal-header-sub">
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page"> Übersicht </a>
-            </li>
-        </ul>
-    </div>
-    <div class="modal-body">
-        <div class="form-group form-group-lang mb-2">
-            <!-- <label class="w-100 col-form-label">
+  <div class="modal-header">
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="modal-header-sub">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page"> Übersicht </a>
+      </li>
+    </ul>
+  </div>
+  <div class="modal-body">
+    <div class="form-group form-group-lang mb-2">
+      <!-- <label class="w-100 col-form-label">
               <b>Titel</b>
             </label> -->
-            <mdb-form-control style="overflow-x:hidden">
-                <input
-                        mdbInput
-                        type="text"
-                        id="cat-title"
-                        class="form-control"
-                        [(ngModel)]="
+      <mdb-form-control style="overflow-x: hidden">
+        <input
+          mdbInput
+          type="text"
+          id="cat-title"
+          class="form-control"
+          [(ngModel)]="
             category.label['title'][
               category.label['title']['cLang'] || defaultLanguageId
             ]
           "
-                />
-                <label mdbLabel class="form-label" for="cat-title">Title</label>
-                <div class="lang_chooser_pills">
-                    <nav class="nav nav-pills nav-fill fadeInDown">
-                        <a
-                                *ngFor="
+        />
+        <label mdbLabel class="form-label" for="cat-title">Title</label>
+        <div class="lang_chooser_pills">
+          <nav class="nav nav-pills nav-fill fadeInDown">
+            <a
+              *ngFor="
                 let l of [
                   { languageId: 1, name: 'de' },
                   { languageId: 2, name: 'en' },
@@ -58,39 +58,39 @@
                   { languageId: 2, name: 'en' }
                 ]
               "
-                                class="nav-item nav-link animated fadeInDown {{
+              class="nav-item nav-link animated fadeInDown {{
                 (category.label['title']['cLang'] || defaultLanguageId) ==
                 l.languageId
                   ? 'active'
                   : ''
               }}"
-                                (click)="category.changeLang(l.languageId, 'title')"
-                        >
-                            {{ l.name | uppercase }}
-                        </a>
-                    </nav>
-                </div>
-            </mdb-form-control>
+              (click)="category.changeLang(l.languageId, 'title')"
+            >
+              {{ l.name | uppercase }}
+            </a>
+          </nav>
         </div>
+      </mdb-form-control>
+    </div>
 
-        <div class="row mt-4">
-            <div class="col-3">
-                <div class="d-flex align-items-center">
-                    <label class="me-2">Farbe</label>
-                    <div class="input-group">
-                        <input
-                                type="color"
-                                [(ngModel)]="category.color"
-                                class="form-control p-1"
-                                placeholder="Color"
-                                aria-label="color"
-                                aria-describedby="profiles-sagment-color"
-                        />
-                    </div>
-                </div>
-            </div>
+    <div class="row mt-4">
+      <div class="col-3">
+        <div class="d-flex align-items-center">
+          <label class="me-2">Farbe</label>
+          <div class="input-group">
+            <input
+              type="color"
+              [(ngModel)]="category.color"
+              class="form-control p-1"
+              placeholder="Color"
+              aria-label="color"
+              aria-describedby="profiles-sagment-color"
+            />
+          </div>
+        </div>
+      </div>
 
-            <!-- <div class="col-12 col-md-2">
+      <!-- <div class="col-12 col-md-2">
               <div class="form-group">
                 <label class="w-100 col-form-label full">
                   <b>Farbe</b>
@@ -99,24 +99,27 @@
               </div>
             </div> -->
 
-            <div class="col-9 ps-0">
-                <div class="form-group">
-                    <mdb-form-control class="mdb-multiselect">
-                        <nz-select
-                                mdbInput mdbNzSelect
-                                id="cat-enabled"
-                                [(ngModel)]="category.enabled" class="form-control">
-                            <nz-option nzValue="1" nzLabel="Ja">Ja</nz-option>
-                            <nz-option nzValue="0" nzLabel="Nein">Ja</nz-option>
-                        </nz-select>
-                        <label mdbLabel class="form-label" for="cat-enabled"
-                        >Aktiviert</label
-                        >
-                    </mdb-form-control>
-                </div>
-            </div>
+      <div class="col-9 ps-0">
+        <div class="form-group">
+          <mdb-form-control class="mdb-multiselect">
+            <nz-select
+              mdbInput
+              mdbNzSelect
+              id="cat-enabled"
+              [(ngModel)]="category.enabled"
+              class="form-control"
+            >
+              <nz-option nzValue="1" nzLabel="Ja">Ja</nz-option>
+              <nz-option nzValue="0" nzLabel="Nein">Ja</nz-option>
+            </nz-select>
+            <label mdbLabel class="form-label" for="cat-enabled"
+              >Aktiviert</label
+            >
+          </mdb-form-control>
+        </div>
+      </div>
 
-            <!-- div class="col-12 col-md-10">
+      <!-- div class="col-12 col-md-10">
               <div class="form-group">
                 <label class="w-100 col-form-label">
                   <b>Aktiviert</b>
@@ -127,75 +130,75 @@
                 </select>
               </div>
             </div>< -->
-        </div>
-
-        <div class="form-group mt-4">
-            <label class="w-100 col-form-label"
-            ><b>Ist die Unterkategorie von:</b></label
-            >
-            <nz-select
-                    *ngIf="api.categories$ | async as categoryData"
-                    nzPlaceHolder="Please select"
-                    class="w-100"
-                    [(ngModel)]="category.parentCategoryId"
-                    [nzMaxTagPlaceholder]="tagPlaceHolder"
-            >
-                <ng-container *ngFor="let item of categoryData.data">
-                    <ng-container
-                            [ngTemplateOutlet]="catList"
-                            [ngTemplateOutletContext]="{ item: item }"
-                    ></ng-container>
-                </ng-container>
-                <ng-template #catList let-item="item">
-                    <nz-option-group [nzLabel]="item.title">
-                        <nz-option
-                                [nzValue]="item.categoryId"
-                                [nzLabel]="item.title"
-                        ></nz-option>
-                        <nz-option
-                                *ngFor="let item of item.children"
-                                [nzValue]="item.categoryId"
-                                [nzLabel]="item.title"
-                        >
-                            <ng-container
-                                    *ngFor="let item of item.children"
-                                    [ngTemplateOutlet]="catList"
-                                    [ngTemplateOutletContext]="{ item: item }"
-                            ></ng-container>
-                        </nz-option>
-                    </nz-option-group>
-                </ng-template>
-            </nz-select>
-            <ng-template #tagPlaceHolder let-selectedList>
-                and {{ selectedList.length }} more selected
-            </ng-template>
-        </div>
     </div>
-    <div class="modal-footer">
-        <button
-                *ngIf="category.categoryId"
-                (click)="deleteCategory(category)"
-                type="button"
-                class="btn btn-danger text-white"
-        >
-            Löschen
-        </button>
-        <button
-                (click)="api.category$.next(null)"
-                type="button"
-                class="btn btn-gray-400 text-white"
-                data-bs-dismiss="modal"
-        >
-            Abbrechen
-        </button>
-        <button
-                (click)="
+
+    <div class="form-group mt-4">
+      <label class="w-100 col-form-label"
+        ><b>Ist die Unterkategorie von:</b></label
+      >
+      <nz-select
+        *ngIf="api.categories$ | async as categoryData"
+        nzPlaceHolder="Please select"
+        class="w-100"
+        [(ngModel)]="category.parentCategoryId"
+        [nzMaxTagPlaceholder]="tagPlaceHolder"
+      >
+        <ng-container *ngFor="let item of categoryData.data">
+          <ng-container
+            [ngTemplateOutlet]="catList"
+            [ngTemplateOutletContext]="{ item: item }"
+          ></ng-container>
+        </ng-container>
+        <ng-template #catList let-item="item">
+          <nz-option-group [nzLabel]="item.title">
+            <nz-option
+              [nzValue]="item.categoryId"
+              [nzLabel]="item.title"
+            ></nz-option>
+            <nz-option
+              *ngFor="let item of item.children"
+              [nzValue]="item.categoryId"
+              [nzLabel]="item.title"
+            >
+              <ng-container
+                *ngFor="let item of item.children"
+                [ngTemplateOutlet]="catList"
+                [ngTemplateOutletContext]="{ item: item }"
+              ></ng-container>
+            </nz-option>
+          </nz-option-group>
+        </ng-template>
+      </nz-select>
+      <ng-template #tagPlaceHolder let-selectedList>
+        and {{ selectedList.length }} more selected
+      </ng-template>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      *ngIf="category.categoryId"
+      (click)="deleteCategory(category)"
+      type="button"
+      class="btn btn-danger text-white"
+    >
+      Löschen
+    </button>
+    <button
+      (click)="cancel()"
+      type="button"
+      class="btn btn-gray-400 text-white"
+      data-bs-dismiss="modal"
+    >
+      Abbrechen
+    </button>
+    <button
+      (click)="
         category.categoryId ? updateCategory(category) : saveCategory(category)
       "
-                type="button"
-                class="btn btn-success text-white"
-        >
-            Speichern
-        </button>
-    </div>
+      type="button"
+      class="btn btn-success text-white"
+    >
+      Speichern
+    </button>
+  </div>
 </div>

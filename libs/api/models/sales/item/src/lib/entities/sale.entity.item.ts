@@ -16,8 +16,8 @@ import {
 import { SaveOptions } from 'typeorm/repository/SaveOptions';
 import { SaleItemCategoryLinkEntity } from './sale.entity.item-category.link';
 import { SaleItemPriceEntity } from './sale.entity.item.prices';
-import {TenantEntityTranslatable} from "../../../../../../common/db/db.CoreEntity";
-import Translatable from "../../../../../../common/decorator/decorator.translatable";
+import { TenantEntityTranslatable } from '../../../../../../common/db/db.CoreEntity';
+import Translatable from '../../../../../../common/decorator/decorator.translatable';
 
 @Entity('sell_item')
 @Index(['companyId'])
@@ -58,7 +58,7 @@ export class SaleItemEntity extends Translatable(TenantEntityTranslatable) {
 
   @BeforeInsert()
   protected async beforeInsert() {
-   await this.setLastEntryId('itemId')
+    await this.setLastEntryId('itemId');
   }
 
   @AfterUpdate()

@@ -61,7 +61,7 @@ export class ProfilesService {
 
     for (const key in data) if (!data[key]) delete data[key];
     Object.assign(profile, data);
-    console.log(data)
+    console.log(data);
 
     await doInsert(profile);
 

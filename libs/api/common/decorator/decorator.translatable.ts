@@ -3,7 +3,7 @@ import { Like, Not } from 'typeorm';
 
 export interface ITranslatable {}
 
-type Constructor<T = {  }> = new (...args: any[]) => T;
+type Constructor<T = {}> = new (...args: any[]) => T;
 
 export default function Translatable<TBase extends Constructor>(
   Base: TBase,

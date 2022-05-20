@@ -1,37 +1,35 @@
-import {Component, Injector, OnInit} from '@angular/core';
-import {ItemService, ItemServiceAPI} from "../item.api";
-import {PageController} from "../../../../page.controller";
-import {FormController} from "../../../../form.controller";
-import {Confirmable} from "../../../../../../../../../../../libs/app/common/decorators";
-
+import { Component, Injector, OnInit } from '@angular/core';
+import { ItemServiceAPI } from '../item.api';
+import { FormController } from '../../../../form.controller';
+import { Confirmable } from '../../../../../../../../../../../libs/app/common/decorators';
+import { ItemService } from '../item.model';
 
 @Component({
   selector: 'movit-item-service-form',
   templateUrl: './item-service-form.component.html',
   styleUrls: ['./item-service-form.component.css'],
-  providers:[]
 })
-export class ItemServiceFormComponent extends FormController<any> {
+export class ItemServiceFormComponent extends FormController<ItemService> {
   constructor(
-      public api: ItemServiceAPI<any, any>,
-      override injector: Injector
+    public api: ItemServiceAPI<ItemService, any>,
+    override injector: Injector
   ) {
     super(injector);
   }
 
   getData(): void {
-    if(this.getId()){
-      this.getService()
-    }else {
-      this.api.item$.next(new ItemService())
+    if (this.getId()) {
+      this.getService();
+    } else {
+      this.api.item$.next(new ItemService());
     }
   }
 
-  getService(id = this.getId()){
+  getService(id = this.getId()) {
     this.onLoadAndSetData(
-        this.api.getService(id),
-        this.api.item$,
-        ItemService.create
+      this.api.getService(id),
+      this.api.item$,
+      ItemService.create
     );
   }
 
@@ -52,20 +50,27 @@ export class ItemServiceFormComponent extends FormController<any> {
       }
       data.data.push(service);
       this.api.items$.next(data);
+      console.log(service)
+      this.closeModal()
     });
   }
 
   updateService(service: ItemService) {
-    this.api.item$.next(<any>null);
-    return this.api.updateServiceItem(service.itemId, service).subscribe();
+    return this.api.updateServiceItem(service.itemId, service).subscribe(
+      ()=> this.closeModal()
+    );
   }
 
   @Confirmable({
     title: 'Ok?',
   })
   deleteService({ itemId }: ItemService) {
-    this.api.item$.next(<any>null);
+    this.closeModal()
     return this.api.deleteServiceItem(itemId).subscribe(() => this.getData());
   }
 
+  cancel(){
+    this.api.item$.next(null)
+    this.closeModal()
+  }
 }

@@ -2,14 +2,11 @@ import { Component, Injector } from '@angular/core';
 import { ItemController } from '../../item.controller';
 
 import { Confirmable } from '../../../../../../../../../../../libs/app/common/decorators';
-import {ItemCategory, ItemService, ItemServiceAPI } from '../item.api';
+import { ItemServiceAPI } from '../item.api';
 import { Table } from '@movit/app/common';
-import {ItemServiceFormComponent} from "../form-service/item-service-form.component";
-import {ItemServiceCategoryFormComponent} from "../form-category-service/item-service-category-form.component";
-
-
-
-
+import { ItemServiceFormComponent } from '../form-service/item-service-form.component';
+import { ItemServiceCategoryFormComponent } from '../form-category-service/item-service-category-form.component';
+import { ItemCategory, ItemService } from '../item.model';
 
 @Component({
   selector: 'movit-item-service',
@@ -57,30 +54,28 @@ export class ItemServiceOverviewComponent extends ItemController<ItemService> {
   create(type: 'service' | 'category') {
     switch (type) {
       case 'service': {
-        return this.openModal(
-            ItemServiceFormComponent
-        )
+        return this.openModal(ItemServiceFormComponent).then(
+          ()=>console.log(this.api.items$.getValue())
+        );
       }
       case 'category': {
-        return this.openModal(
-            ItemServiceCategoryFormComponent
-        );
+        return this.openModal(ItemServiceCategoryFormComponent).then(
+          () => this.getCategories()
+        )
       }
     }
   }
 
-
   editService({ itemId }: ItemService) {
-    return this.openModal(ItemService,{
-      id:itemId
-    })
+    return this.openModal(ItemServiceFormComponent, {
+      id: itemId,
+    }).then(()=>this.getServices())
   }
+
   editCategory({ categoryId }: ItemCategory) {
-    return this.onLoadAndSetData(
-      this.api.getServiceCategory(categoryId),
-      this.api.category$,
-      ItemCategory.create
-    );
+    this.openModal(ItemServiceCategoryFormComponent,{
+      id: categoryId
+    }).then(()=>this.getServices())
   }
 
   @Confirmable({

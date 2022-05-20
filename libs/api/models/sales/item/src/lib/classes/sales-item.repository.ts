@@ -1,8 +1,8 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { SaleItemEntity } from '../entities/sale.entity.item';
 import { SaleItemCategoryEntity } from '../entities/sale.entity.item-category';
-import {TranslationLabelEntity} from "../../../../../translation/src/entities/translation.label.item";
-import {TranslatableUtils} from "../../../../../../common/decorator";
+import { TranslationLabelEntity } from '../../../../../translation/src/entities/translation.label.item';
+import { TranslatableUtils } from '../../../../../../common/decorator';
 
 @EntityRepository(SaleItemEntity)
 export class SaleItemRepository extends Repository<SaleItemEntity> {

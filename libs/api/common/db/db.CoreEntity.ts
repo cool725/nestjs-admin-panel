@@ -28,8 +28,8 @@ export abstract class TenantEntity extends BaseEntity {
 }
 
 @TableInheritance()
-export class TenantEntityTranslatable extends TenantEntity{
-  protected  self: any;
+export class TenantEntityTranslatable extends TenantEntity {
+  protected self: any;
 
   protected beforeInsert(): Promise<any> {
     return Promise.resolve(undefined);

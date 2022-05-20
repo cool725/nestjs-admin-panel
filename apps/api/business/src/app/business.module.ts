@@ -14,7 +14,7 @@ import { BusinessFrontOfficeModule } from './modules/frontoffice/business.fronto
 import { ProfilesModule } from '@movit/api/profiles';
 import { ReservationModule } from '@movit/api/reservation';
 import { BusinessSettingsModule } from './modules/settings/business.settings.module';
-import {SellItemModule} from "@movit/api/sales/item";
+import { SellItemModule } from '@movit/api/sales/item';
 
 @Module({
   imports: [
@@ -30,7 +30,7 @@ import {SellItemModule} from "@movit/api/sales/item";
         ...BusinessModule.dbSettings.entities,
         ...ProfilesModule.dbSettings.entities,
         ...ReservationModule.dbSettings.entities,
-        ...SellItemModule.dbSettings.entities
+        ...SellItemModule.dbSettings.entities,
       ],
     }),
     AuthModule,

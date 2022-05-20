@@ -28,7 +28,7 @@ export class BusinessFrontOfficeAgendaController {
     @GetUser() user: AuthUser,
     @Body() filterValues: any
   ) {
-    return this.reservationService.getReservations(business.businessId, {})
+    return this.reservationService.getReservations(business.businessId, {});
   }
 
   @Get('list')
@@ -38,8 +38,11 @@ export class BusinessFrontOfficeAgendaController {
     @Body() filterValues: any
   ) {
     return {
-      data: await this.reservationService.getReservations(business.businessId, {})
-    }
+      data: await this.reservationService.getReservations(
+        business.businessId,
+        {}
+      ),
+    };
   }
 
   @Get('reservation/:reservationId')

@@ -1,13 +1,9 @@
 import { NgModule } from '@angular/core';
-import {NzSelectModule} from "ng-zorro-antd/select";
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 @NgModule({
-  declarations: [
-
-  ],
+  declarations: [],
   imports: [],
-  exports: [
-    NzSelectModule
-]
+  exports: [NzSelectModule],
 })
 export class NzAntSharedModule {}

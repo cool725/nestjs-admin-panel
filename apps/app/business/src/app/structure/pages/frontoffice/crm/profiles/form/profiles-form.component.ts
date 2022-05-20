@@ -4,15 +4,14 @@ import { ProfilesAPI } from '../packages/profile-api.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Confirmable } from '../../../../../../../../../../../libs/app/common/decorators';
 import { Profile } from '../overview/profiles-overview.component';
-import {BehaviorSubject, Subject} from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Component({
   selector: 'movit-profiles-form',
   templateUrl: './profiles-form.component.html',
   styleUrls: ['./profiles-form.component.scss'],
 })
-export class ProfilesFormComponent
-    extends FormController<Profile> {
+export class ProfilesFormComponent extends FormController<Profile> {
   viewSettings = {
     type: 'modal',
     mode: 'simple',
@@ -42,7 +41,7 @@ export class ProfilesFormComponent
 
   priceClasses$ = new BehaviorSubject<any[]>([]);
 
-  isLoading = false
+  isLoading = false;
 
   constructor(override injector: Injector, public api: ProfilesAPI<Profile>) {
     super(injector);
@@ -52,14 +51,11 @@ export class ProfilesFormComponent
     return this.formProfile.value.gender;
   }
 
-
-
-  override getData( loadProfile = true): void {
-    if( loadProfile ){
+  override getData(loadProfile = true): void {
+    if (loadProfile) {
       if (this.getId()) {
-        this.loadProfile()
-      }
-      else this.api.profile$.next(new Profile())
+        this.loadProfile();
+      } else this.api.profile$.next(new Profile());
     }
 
     this.onLoadAndSetData(this.api.getSegments(), this.segments$);
@@ -67,16 +63,16 @@ export class ProfilesFormComponent
     this.onLoadAndSetData(this.api.getPriceClass(), this.priceClasses$);
   }
 
-  loadProfile(id = this.getId()){
-    this.isLoading = true
+  loadProfile(id = this.getId()) {
+    this.isLoading = true;
     this.onLoadAndSetData(
-        this.api.getProfile(id),
-        this.api.profile$,
-        (profile: Partial<Profile>) => {
-          this.formProfile.patchValue(profile);
-          this.isLoading = false
-          return Profile.create(profile);
-        }
+      this.api.getProfile(id),
+      this.api.profile$,
+      (profile: Partial<Profile>) => {
+        this.formProfile.patchValue(profile);
+        this.isLoading = false;
+        return Profile.create(profile);
+      }
     );
   }
 
@@ -90,7 +86,7 @@ export class ProfilesFormComponent
     api$.subscribe(
       (data) => {
         if (closeOnSave && this.viewSettings.type === 'modal') {
-          this.resetData()
+          this.resetData();
           this.closeModal();
         }
       },
@@ -120,12 +116,12 @@ export class ProfilesFormComponent
   // todo rename
   // add comment
   cancel() {
-    this.resetData()
+    this.resetData();
     this.onCancel.emit();
   }
 
-  resetData(){
-    console.log('cleared')
+  resetData() {
+    console.log('cleared');
     this.api.profile$.next(<any>null);
   }
 }

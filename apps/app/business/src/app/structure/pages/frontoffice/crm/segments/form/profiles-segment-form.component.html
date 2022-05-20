@@ -96,23 +96,15 @@
       </div>
       <div class="col-9 ps-0">
         <div class="form-group">
-          <!-- <label>Order</label>
-                <div class="input-group mb-3">
-                  <input formControlName="order" type="number" class="form-control" placeholder="Order" aria-label="order"
-                    aria-describedby="profiles-sagment-order" />
-                </div> -->
           <mdb-form-control>
             <input
               mdbInput
               type="number"
               formControlName="order"
-              class="form-control"
-              id="formControlLg"
+              id="order"
               class="form-control"
             />
-            <label mdbLabel class="form-label" for="formControlDefault"
-              >Order</label
-            >
+            <label mdbLabel class="form-label" for="order">Order</label>
           </mdb-form-control>
           <div
             *ngIf="
@@ -129,7 +121,11 @@
   </div>
 
   <div class="modal-footer">
-    <button type="button" (click)="cancel()" class="btn btn-gray-400 text-white">
+    <button
+      type="button"
+      (click)="cancel()"
+      class="btn btn-gray-400 text-white"
+    >
       cancel
     </button>
     <button

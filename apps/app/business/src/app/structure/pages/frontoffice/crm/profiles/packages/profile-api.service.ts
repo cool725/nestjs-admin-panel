@@ -44,7 +44,6 @@ export class ProfilesAPI<Profile> {
     return this.http.delete(this.getPath('profile', profileId), {});
   }
 
-
   getSegments() {
     return this.http.get<any[]>(this.getPath('segment'));
   }

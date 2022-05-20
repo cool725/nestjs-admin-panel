@@ -62,6 +62,7 @@ export class ProfilesPriceClassFormComponent
     this.onSave.emit();
     this.api.profilePriceClass$.next(null);
   }
+
   async updatePriceClass(segment: number) {
     if (this.formPriceClass.invalid) {
       return;
@@ -86,18 +87,6 @@ export class ProfilesPriceClassFormComponent
     this.api.profilePriceClass$.next(null);
   }
 
-  eventCheck(event: any) {
-    this.viewSettings.showPercentage = event.target.checked;
-    if (this.viewSettings.showPercentage) {
-      this.formPriceClass.addControl(
-        'percentage',
-        new FormControl('', [Validators.required])
-      );
-    } else {
-      this.formPriceClass.removeControl('percentage');
-    }
-    this.formPriceClass.updateValueAndValidity();
-  }
   closePopup() {
     this.api.profilePriceClass$.next(null);
   }

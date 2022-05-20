@@ -10,23 +10,15 @@
         <div class="">
           <div class="row">
             <div class="col-12 col-md-12">
-              <!-- <div class="form-group"> -->
-              <!-- <input
-                  [(ngModel)]="tableServices.filterValues.search"
-                  class="form-control"
-                  placeholder="Suchen"
-                  tabindex="1"
-                /> -->
-              <!-- </div> -->
               <mdb-form-control>
                 <input
                   mdbInput
                   type="text"
-                  id="formControlLg"
+                  id="search"
                   class="form-control form-control-lg"
                   [(ngModel)]="tableServices.filterValues.search"
                 />
-                <label mdbLabel class="form-label" for="formControlLg"
+                <label mdbLabel class="form-label" for="search"
                   >Suchen</label
                 >
               </mdb-form-control>
@@ -353,7 +345,8 @@
     bottom: '0px',
     left: '0px',
     top: '0px',
-    margin: 'auto'
+    margin: 'auto',
+    display: 'block'
   }"
 >
   <div class="modal-header">
@@ -382,11 +375,11 @@
       </label> -->
       <mdb-form-control>
         <input
-          mdbInput
-          type="text"
-          id="cat-title"
-          class="form-control"
-          [(ngModel)]="
+                mdbInput
+                type="text"
+                id="cat-title"
+                class="form-control"
+                [(ngModel)]="
             category.label['title'][
               category.label['title']['cLang'] || defaultLanguageId
             ]
@@ -396,7 +389,7 @@
         <div class="lang_chooser_pills">
           <nav class="nav nav-pills nav-fill fadeInDown">
             <a
-              *ngFor="
+                    *ngFor="
                 let l of [
                   { languageId: 1, name: 'de' },
                   { languageId: 2, name: 'en' },
@@ -406,13 +399,13 @@
                   { languageId: 2, name: 'en' }
                 ]
               "
-              class="nav-item nav-link animated fadeInDown {{
+                    class="nav-item nav-link animated fadeInDown {{
                 (category.label['title']['cLang'] || defaultLanguageId) ==
                 l.languageId
                   ? 'active'
                   : ''
               }}"
-              (click)="category.changeLang(l.languageId, 'title')"
+                    (click)="category.changeLang(l.languageId, 'title')"
             >
               {{ l.name | uppercase }}
             </a>
@@ -427,12 +420,12 @@
           <label class="me-2">Farbe</label>
           <div class="input-group">
             <input
-              type="color"
-              [(ngModel)]="category.color"
-              class="form-control p-1"
-              placeholder="Color"
-              aria-label="color"
-              aria-describedby="profiles-sagment-color"
+                    type="color"
+                    [(ngModel)]="category.color"
+                    class="form-control p-1"
+                    placeholder="Color"
+                    aria-label="color"
+                    aria-describedby="profiles-sagment-color"
             />
           </div>
         </div>
@@ -449,13 +442,16 @@
 
       <div class="col-9 ps-0">
         <div class="form-group">
-          <mdb-form-control>
-            <select [(ngModel)]="category.enabled" class="form-control">
-              <option value="1">Ja</option>
-              <option value="0">Nein</option>
-            </select>
-            <label mdbLabel class="form-label" for="formControlDefault"
-              >Aktiviert</label
+          <mdb-form-control class="mdb-multiselect">
+            <nz-select
+                    mdbInput mdbNzSelect
+                    id="cat-enabled"
+                    [(ngModel)]="category.enabled" class="form-control">
+              <nz-option nzValue="1" nzLabel="Ja">Ja</nz-option>
+              <nz-option nzValue="0" nzLabel="Nein">Ja</nz-option>
+            </nz-select>
+            <label mdbLabel class="form-label" for="cat-enabled"
+            >Aktiviert</label
             >
           </mdb-form-control>
         </div>
@@ -476,36 +472,36 @@
 
     <div class="form-group mt-4">
       <label class="w-100 col-form-label"
-        ><b>Ist die Unterkategorie von:</b></label
+      ><b>Ist die Unterkategorie von:</b></label
       >
       <nz-select
-        *ngIf="api.categories$ | async as categoryData"
-        nzPlaceHolder="Please select"
-        class="w-100"
-        [(ngModel)]="category.parentCategoryId"
-        [nzMaxTagPlaceholder]="tagPlaceHolder"
+              *ngIf="api.categories$ | async as categoryData"
+              nzPlaceHolder="Please select"
+              class="w-100"
+              [(ngModel)]="category.parentCategoryId"
+              [nzMaxTagPlaceholder]="tagPlaceHolder"
       >
         <ng-container *ngFor="let item of categoryData.data">
           <ng-container
-            [ngTemplateOutlet]="catList"
-            [ngTemplateOutletContext]="{ item: item }"
+                  [ngTemplateOutlet]="catList"
+                  [ngTemplateOutletContext]="{ item: item }"
           ></ng-container>
         </ng-container>
         <ng-template #catList let-item="item">
           <nz-option-group [nzLabel]="item.title">
             <nz-option
-              [nzValue]="item.categoryId"
-              [nzLabel]="item.title"
+                    [nzValue]="item.categoryId"
+                    [nzLabel]="item.title"
             ></nz-option>
             <nz-option
-              *ngFor="let item of item.children"
-              [nzValue]="item.categoryId"
-              [nzLabel]="item.title"
+                    *ngFor="let item of item.children"
+                    [nzValue]="item.categoryId"
+                    [nzLabel]="item.title"
             >
               <ng-container
-                *ngFor="let item of item.children"
-                [ngTemplateOutlet]="catList"
-                [ngTemplateOutletContext]="{ item: item }"
+                      *ngFor="let item of item.children"
+                      [ngTemplateOutlet]="catList"
+                      [ngTemplateOutletContext]="{ item: item }"
               ></ng-container>
             </nz-option>
           </nz-option-group>
@@ -518,27 +514,27 @@
   </div>
   <div class="modal-footer">
     <button
-      *ngIf="category.categoryId"
-      (click)="deleteCategory(category)"
-      type="button"
-      class="btn btn-danger text-white"
+            *ngIf="category.categoryId"
+            (click)="deleteCategory(category)"
+            type="button"
+            class="btn btn-danger text-white"
     >
       Löschen
     </button>
     <button
-      (click)="api.category$.next(null)"
-      type="button"
-      class="btn btn-gray-400 text-white"
-      data-bs-dismiss="modal"
+            (click)="api.category$.next(null)"
+            type="button"
+            class="btn btn-gray-400 text-white"
+            data-bs-dismiss="modal"
     >
       Abbrechen
     </button>
     <button
-      (click)="
+            (click)="
         category.categoryId ? updateCategory(category) : saveCategory(category)
       "
-      type="button"
-      class="btn btn-success text-white"
+            type="button"
+            class="btn btn-success text-white"
     >
       Speichern
     </button>

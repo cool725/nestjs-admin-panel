@@ -49,7 +49,7 @@ export class ProfileEntity extends TenantEntity {
   phone: string;
 
   @Column({ type: 'date', nullable: true })
-  birthDay: number;
+  birthDay: Date;
 
   @Column({ type: 'smallint', nullable: true })
   vip: number | string;
@@ -91,6 +91,8 @@ export class ProfileEntity extends TenantEntity {
     this.lastName = profile.lastName;
     this.email = profile.email;
     this.phone = profile.phone;
+
+    this.birthDay = profile.birthDay;
 
     this.sourceId = profile.sourceId;
     this.notes = profile.notes;

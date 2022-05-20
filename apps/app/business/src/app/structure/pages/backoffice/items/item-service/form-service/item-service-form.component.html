@@ -1,0 +1,131 @@
+<div *ngIf="api.item$ | async as service">
+    <div class="modal-header">
+        <mdb-form-control class="w-100">
+            <select mdbInput type="text" id="formControlLg" class="form-control">
+                <option>Einfach</option>
+                <option>Detailiert</option>
+            </select>
+        </mdb-form-control>
+
+        <a class="p-2 ps-4" role="button" style="color: #a5bbd4">
+            <i class="fa fa-times fa-lg"></i>
+        </a>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+    </div>
+    <div class="modal-header-sub">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page"> Übersicht </a>
+            </li>
+        </ul>
+    </div>
+    <div class="modal-body">
+        <div class="form-group mb-2">
+            <label class="w-100 col-form-label"><b>Kategorien</b></label>
+            <nz-select
+                    *ngIf="api.categories$ | async as categoryData"
+                    nzMode="multiple"
+                    nzPlaceHolder="Please select"
+                    class="w-100"
+                    [(ngModel)]="service.categoriesIds"
+                    [nzMaxTagCount]="3"
+                    [nzMaxTagPlaceholder]="tagPlaceHolder"
+            >
+                <ng-container *ngFor="let item of categoryData.data">
+                    <ng-container
+                            [ngTemplateOutlet]="catList"
+                            [ngTemplateOutletContext]="{ item: item }"
+                    ></ng-container>
+                </ng-container>
+                <ng-template #catList let-item="item">
+                    <nz-option-group [nzLabel]="item.title">
+                        <nz-option
+                                [nzValue]="item.categoryId"
+                                [nzLabel]="item.title"
+                        ></nz-option>
+                        <nz-option
+                                *ngFor="let item of item.children"
+                                [nzValue]="item.categoryId"
+                                [nzLabel]="item.title"
+                        >
+                            <ng-container
+                                    *ngFor="let item of item.children"
+                                    [ngTemplateOutlet]="catList"
+                                    [ngTemplateOutletContext]="{ item: item }"
+                            ></ng-container>
+                        </nz-option>
+                    </nz-option-group>
+                </ng-template>
+            </nz-select>
+            <ng-template #tagPlaceHolder let-selectedList>
+                and {{ selectedList.length }} more selected
+            </ng-template>
+        </div>
+
+        <div class="form-group form-group-lang">
+            <div class="mb-4">
+                <label class="w-100 col-form-label">
+                    <b>Titel</b>
+                </label>
+                <div class="lang_chooser_pills">
+                    <nav class="nav nav-pills nav-fill fadeInDown">
+                        <a
+                                *ngFor="let l of [{ languageId: 1, name: 'de' }]"
+                                class="nav-item nav-link animated fadeInDown {{
+                (service.label['title']['cLang'] || defaultLanguageId) ==
+                l.languageId
+                  ? 'active'
+                  : ''
+              }}"
+                                (click)="service.changeLang(l.languageId, 'title')"
+                        >
+                            {{ l.name | uppercase }}
+                        </a>
+                    </nav>
+                </div>
+            </div>
+
+            <mdb-form-control>
+                <input
+                        mdbInput
+                        type="text"
+                        id="formControlLg"
+                        class="form-control"
+                        autocomplete="new-password"
+                        [(ngModel)]="
+            service.label['title'][
+              service.label['title']['cLang'] || defaultLanguageId
+            ]
+          "
+                />
+                <label mdbLabel class="form-label" for="formControlDefault"
+                >Title</label
+                >
+            </mdb-form-control>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button
+                (click)="deleteService(service)"
+                type="button"
+                class="btn btn-danger text-white"
+        >
+            Löschen
+        </button>
+        <button
+                (click)="api.item$.next(null)"
+                type="button"
+                class="btn btn-gray-400 text-white"
+                data-bs-dismiss="modal"
+        >
+            Abbrechen
+        </button>
+        <button
+                (click)="service.itemId ? updateService(service) : saveService(service)"
+                type="button"
+                class="btn btn-success text-white"
+        >
+            Speichern
+        </button>
+    </div>
+</div>

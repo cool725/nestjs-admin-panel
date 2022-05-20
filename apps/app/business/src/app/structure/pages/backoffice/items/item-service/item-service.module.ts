@@ -6,10 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { BoostrapModalUIModule } from '../../../../../../../../../../libs/app/ui/boostrap/modal/default/modal.default.module';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ItemServiceAPI } from './item.api';
-import { ItemServiceFormComponent } from './form/item-service-form.component';
+import { ItemServiceFormComponent } from './form-service/item-service-form.component';
 import { MdbSharedModule } from '@movit/app/ui';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
-import { TranslateLocaleModule } from '../../../../../../../../../../libs/app/common/module/translate/module.translate';
+import { TranslateLocaleModule } from '@movit/app/module';
+import {ItemServiceCategoryModule} from "./form-category-service/item-category-service-form.module";
+import {ItemServiceFormModule} from "./form-service/item-service-form.module";
 
 const routes: Routes = [
   {
@@ -31,17 +33,21 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ItemServiceOverviewComponent, ItemServiceFormComponent],
+  declarations: [ ItemServiceOverviewComponent ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    FormsModule,
-    BoostrapModalUIModule,
-    NzSelectModule,
     TranslateLocaleModule.forChild(),
+    BoostrapModalUIModule,
     MdbSharedModule,
-    MdbFormsModule,
+    ItemServiceFormModule,
+    ItemServiceCategoryModule,
+    FormsModule
   ],
-  providers: [ItemServiceAPI],
+  providers: [
+    {
+      provide: 'basePath',
+      useValue: '',
+    },ItemServiceAPI],
 })
 export class ItemServiceModule {}

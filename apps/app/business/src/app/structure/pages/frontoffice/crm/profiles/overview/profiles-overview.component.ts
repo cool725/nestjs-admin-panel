@@ -16,7 +16,7 @@ export class Profile {
   email: string;
   phone: string;
 
-  brithDay: string;
+  birthDay: string;
 
   static create(params: Partial<Profile>) {
     return Object.assign(new Profile(), params);
@@ -35,7 +35,7 @@ export class ProfilesOverviewComponent extends PageController {
   >(this.api.profiles$, {
     searchValue: '',
     keys: ['firstName', 'lastName', 'phone', 'email'],
-  }).setFields(['firstName', 'lastName', 'email', 'phone', 'brithDay']);
+  }).setFields(['firstName', 'lastName', 'email', 'phone', 'birthDay']);
 
   constructor(override injector: Injector, public api: ProfilesAPI<Profile>) {
     super(injector);

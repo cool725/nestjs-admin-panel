@@ -30,22 +30,22 @@ export class ProfilePriceClassAPI<PriceClass, FilterValues> {
   }
 
   getPriceClass(priceClassId: number) {
-    return this.http.get(this.getPath('priceclass', priceClassId));
+    return this.http.get(this.getPath('price-class', priceClassId));
   }
 
   getPriceClasses(options?: FilterValues): Observable<PriceClass[]> {
-    return this.http.get<PriceClass[]>(this.getPath('priceclass'), options);
+    return this.http.get<PriceClass[]>(this.getPath('price-class'), options);
   }
 
   savePriceClass(profile: Partial<PriceClass>) {
-    return this.http.put(this.getPath('priceclass'), profile);
+    return this.http.put(this.getPath('price-class'), profile);
   }
 
   updatePriceClass(priceClassId: number, profile: Partial<PriceClass>) {
-    return this.http.patch(this.getPath('priceclass', priceClassId), profile);
+    return this.http.patch(this.getPath('price-class', priceClassId), profile);
   }
 
   deletePriceClass(priceClassId: number) {
-    return this.http.delete(this.getPath('priceclass', priceClassId), {});
+    return this.http.delete(this.getPath('price-class', priceClassId), {});
   }
 }

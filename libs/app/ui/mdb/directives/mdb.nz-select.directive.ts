@@ -34,8 +34,12 @@ export class MdbNzSelectDirective implements OnInit, OnDestroy {
       )
   }
 
+  hasValues(){
+    return this.nzS.listOfValue.filter(a => a).length > 0
+  }
+
   updateStates(){
-    this.nzS.listOfValue.length ?
+    this.hasValues() ?
       this.node.classList.add('has-value') :
       this.node.classList.remove('has-value');
   }

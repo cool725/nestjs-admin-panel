@@ -30,7 +30,7 @@ export class BusinessFrontofficeProfilesPriceClassController {
     protected priceClassService: ProfilesPriceClassService
   ) {}
 
-  @Get('priceclass')
+  @Get('price-class')
   getPriceClasses(
     @GetCompany() business: BusinessEntity,
     @GetPagination() pagination: Pagination
@@ -41,7 +41,7 @@ export class BusinessFrontofficeProfilesPriceClassController {
     );
   }
 
-  @Get('priceclass/:priceClassId')
+  @Get('price-class/:priceClassId')
   getPriceClass(
     @GetCompany() business: BusinessEntity,
     @Param('priceClassId') priceClassId: number
@@ -52,12 +52,12 @@ export class BusinessFrontofficeProfilesPriceClassController {
     );
   }
 
-  @Put('priceclass')
+  @Put('price-class')
   createPriceClass(@GetCompany() business: BusinessEntity, @Body() data: any) {
     return this.priceClassService.savePriceClass(business.businessId, data);
   }
 
-  @Patch('priceclass/:priceClassId')
+  @Patch('price-class/:priceClassId')
   updatePriceClass(
     @GetCompany() business: BusinessEntity,
     @Param('priceClassId') priceClassId: number,
@@ -70,7 +70,7 @@ export class BusinessFrontofficeProfilesPriceClassController {
     );
   }
 
-  @Delete('priceclass/:priceClassId')
+  @Delete('price-class/:priceClassId')
   deletePriceClassId(
     @GetCompany() business: BusinessEntity,
     @Param('priceClassId') priceClassId: number

@@ -88,15 +88,27 @@ hr {
   .form-label{
     padding-top: 0.5rem;
   }
+
+  .form-control:not(.cdk-focused) ~ .form-label,
+  .form-control:not(.has-value) ~ .form-label {
+    transform: translateY(0rem) translateY(0rem) scale(1)!important;
+  }
+  .form-control:not(.cdk-focused) ~ .form-notch .form-notch-middle,
+  .form-control:not(.has-value) ~ .form-notch .form-notch-middle{
+    border-top: solid 1px #bdbdbd !important;
+  }
+
+
   .form-control.cdk-focused ~ .form-label,
   .form-control.has-value ~ .form-label {
     transform: translateY(-1rem) translateY(0.1rem) scale(0.8)!important;
   }
 
-  .form-control.has-value ~ .form-label ~ .form-notch .form-notch-middle,
+
+  .form-control.has-value  ~ .form-notch .form-notch-middle,
   .form-control.cdk-focused  ~ .form-notch .form-notch-middle,
   {
-    border-top: none;
+    border-top: none!important;
     border-right: none;
     border-left: none;
     transition: all 0.2s linear;

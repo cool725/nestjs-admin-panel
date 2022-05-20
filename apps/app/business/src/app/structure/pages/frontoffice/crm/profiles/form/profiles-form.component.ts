@@ -46,7 +46,6 @@ export class ProfilesFormComponent
 
   constructor(override injector: Injector, public api: ProfilesAPI<Profile>) {
     super(injector);
-    this.resetData()
   }
 
   get profileType() {
@@ -54,9 +53,13 @@ export class ProfilesFormComponent
   }
 
 
-  override getData(): void {
-    if (this.getId()) {
-      this.loadProfile()
+
+  override getData( loadProfile = true): void {
+    if( loadProfile ){
+      if (this.getId()) {
+        this.loadProfile()
+      }
+      else this.api.profile$.next(new Profile())
     }
 
     this.onLoadAndSetData(this.api.getSegments(), this.segments$);
@@ -87,6 +90,7 @@ export class ProfilesFormComponent
     api$.subscribe(
       (data) => {
         if (closeOnSave && this.viewSettings.type === 'modal') {
+          this.resetData()
           this.closeModal();
         }
       },

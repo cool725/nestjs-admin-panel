@@ -213,18 +213,17 @@
               </div>
             </div>
             <div class="col-12 col-md-4">
-              <label>Sprache </label>
-              <div class="input-group mb-3">
-                <select
+              <mdb-form-control class="mdb-multiselect my-2">
+                <nz-select
+                        mdbInput mdbNzSelect
+                        class="w-100 form-control px-0"
                         formControlName="languageId"
-                        class="form-control"
-                        autocomplete="new-password"
-                        aria-label="language"
-                        aria-describedby="profiles-language"
-                >
-                  <option value="1">Deutsch</option>
-                </select>
-              </div>
+                        multiple
+                        id="lang"
+                ></nz-select>
+                <label mdbLabel class="form-label px-1" for="lang"
+                >Sprachen</label>
+              </mdb-form-control>
             </div>
           </div>
           <div class="col-12 row">
@@ -261,6 +260,7 @@
                         aria-describedby="profiles-priceclass"
                         id="Preisklasse"
                 >
+                  <nz-option [nzValue]="null"> Keine </nz-option>
                   <nz-option
                           *ngFor="let p of priceClasses$ | async"
                           [nzLabel]="p.title"
@@ -283,6 +283,7 @@
                         aria-describedby="profiles-source"
                         id="Source"
                 >
+                  <nz-option [nzValue]="null"> Keine </nz-option>
                   <nz-option
                           *ngFor="let s of sources$ | async"
                           [nzLabel]="s.title"
@@ -589,7 +590,7 @@
           Löschen
         </button>
         <button
-                (click)="closeModal()"
+                (click)="closeModal();resetData()"
                 type="button"
                 class="btn btn-gray-400 text-white"
                 data-bs-dismiss="modal"

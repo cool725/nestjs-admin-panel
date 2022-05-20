@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {MdbSharedModule, NzAntSharedModule} from '@movit/app/ui';
+import { MdbSharedModule, NzAntSharedModule } from '@movit/app/ui';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import {TranslateLocaleModule} from "@movit/app/module";
 import {ItemServiceCategoryModule} from "../form-category-service/item-category-service-form.module";

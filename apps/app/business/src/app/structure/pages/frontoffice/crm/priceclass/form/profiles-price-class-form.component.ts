@@ -21,10 +21,10 @@ export class ProfilesPriceClassFormComponent
 
   formPriceClass = this.fb.group({
     title: new FormControl('', [Validators.required]),
-    isDefault: new FormControl(1, [Validators.required]),
-    color: new FormControl('#ffffff', [Validators.required]),
+    isDefault: new FormControl(0, []),
+    color: new FormControl('#ffffff', []),
     value: new FormControl(0),
-    reduceType: new FormControl('fixed', [Validators.required]),
+    reduceType: new FormControl('fixed', []),
   });
 
   constructor(

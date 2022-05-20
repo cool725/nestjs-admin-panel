@@ -45,13 +45,15 @@ export class AgendaAPI<Reservation> {
     return this.http.put(this.getPath('reservation'), res);
   }
 
-  updateProfile(reservationId: number, res: Partial<Reservation>) {
+  updateReservation(reservationId: number, res: Partial<Reservation>) {
     return this.http.patch(this.getPath('reservation', reservationId), res);
   }
 
   deleteReservation(reservationId: number) {
     return this.http.delete(this.getPath('reservation', reservationId), {});
   }
+
+  // -- todo move these functions
 
   @Cacheable({})
   getSources() {

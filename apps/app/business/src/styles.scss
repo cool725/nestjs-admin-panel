@@ -5,7 +5,8 @@
 
 html,
 body {
-  height: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
 body {
@@ -54,14 +55,35 @@ hr {
 
 //-- Temp --------------------------
 
+/*--- MDB---- */
+.form-outline .form-control {
+  min-height: 35px;
+}
+
+/*Prefilled Animation Bug*/
+.form-outline .form-control ~ .form-notch .form-notch-trailing,
+.form-outline .form-control{
+ transition: none!important;
+}
+.form-control.active ~ .form-label {
+  transition: none!important;
+}
+.form-control:focus ~ .form-label {
+  transition: transform 0.2s ease-out!important;;;
+}
+.form-outline .form-label {
+  transition: transform 0.2s ease-out!important;
+}
+
+
 /* ANT - Design */
 .mdb-multiselect {
 
   .ant-select-selector{
-      border: none!important;
-      outline: none!important;
-      box-shadow: none!important;
-      padding-top: 4px;
+    border: none!important;
+    outline: none!important;
+    box-shadow: none!important;
+    padding-top: 4px;
   }
   .form-label{
     padding-top: 0.5rem;

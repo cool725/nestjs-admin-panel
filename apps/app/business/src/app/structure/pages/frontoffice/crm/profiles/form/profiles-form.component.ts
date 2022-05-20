@@ -4,14 +4,15 @@ import { ProfilesAPI } from '../packages/profile-api.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Confirmable } from '../../../../../../../../../../../libs/app/common/decorators';
 import { Profile } from '../overview/profiles-overview.component';
-import { Subject } from 'rxjs';
+import {BehaviorSubject, Subject} from 'rxjs';
 
 @Component({
   selector: 'movit-profiles-form',
   templateUrl: './profiles-form.component.html',
   styleUrls: ['./profiles-form.component.scss'],
 })
-export class ProfilesFormComponent extends FormController<Profile> {
+export class ProfilesFormComponent
+    extends FormController<Profile> {
   viewSettings = {
     type: 'modal',
     mode: 'simple',
@@ -35,36 +36,45 @@ export class ProfilesFormComponent extends FormController<Profile> {
     source: new FormControl('', []),
   });
 
-  segments$ = new Subject<any[]>();
+  segments$ = new BehaviorSubject<any[]>([]);
 
-  sources$ = new Subject<any[]>();
+  sources$ = new BehaviorSubject<any[]>([]);
 
-  priceClasses$ = new Subject<any[]>();
+  priceClasses$ = new BehaviorSubject<any[]>([]);
+
+  isLoading = false
 
   constructor(override injector: Injector, public api: ProfilesAPI<Profile>) {
     super(injector);
-    api.profile$.next(new Profile());
+    this.resetData()
   }
 
   get profileType() {
     return this.formProfile.value.gender;
   }
 
+
   override getData(): void {
     if (this.getId()) {
-      this.onLoadAndSetData(
-        this.api.getProfile(this.getId()),
+      this.loadProfile()
+    }
+
+    this.onLoadAndSetData(this.api.getSegments(), this.segments$);
+    this.onLoadAndSetData(this.api.getSources(), this.sources$);
+    this.onLoadAndSetData(this.api.getPriceClass(), this.priceClasses$);
+  }
+
+  loadProfile(id = this.getId()){
+    this.isLoading = true
+    this.onLoadAndSetData(
+        this.api.getProfile(id),
         this.api.profile$,
         (profile: Partial<Profile>) => {
           this.formProfile.patchValue(profile);
+          this.isLoading = false
           return Profile.create(profile);
         }
-      );
-    }
-
-    this.onLoadAndSetData(this.api.getSources(), this.sources$);
-    this.onLoadAndSetData(this.api.getSegments(), this.segments$);
-    this.onLoadAndSetData(this.api.getPriceClass(), this.priceClasses$);
+    );
   }
 
   async save(profile: Partial<Profile>, closeOnSave = true) {
@@ -106,6 +116,12 @@ export class ProfilesFormComponent extends FormController<Profile> {
   // todo rename
   // add comment
   cancel() {
+    this.resetData()
     this.onCancel.emit();
+  }
+
+  resetData(){
+    console.log('cleared')
+    this.api.profile$.next(<any>null);
   }
 }

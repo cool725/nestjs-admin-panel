@@ -22,6 +22,12 @@ export class AgendaComponent extends PageController {
     this.api.getReservations(<any>{});
   }
 
+  editReservation(id: any) {
+    return this.openModal(AgendaFormComponent, {
+      id: id,
+    });
+  }
+
   // move those functions inside modal
   saveReservation() {
     this.api
@@ -33,12 +39,9 @@ export class AgendaComponent extends PageController {
       .subscribe();
   }
 
-  editReservation(id: any) {
-    return this.openModal(AgendaFormComponent, {
-      id: id,
-    });
-  }
   deleteReservation() {}
+
   cancelReservation() {}
+
   confirmReservation() {}
 }

@@ -1,5 +1,7 @@
 import {
-  BaseEntity,
+  AfterInsert,
+  AfterUpdate,
+  BaseEntity, BeforeInsert, BeforeRemove,
   Column,
   Entity,
   Index,
@@ -10,11 +12,15 @@ import {
   Unique,
 } from 'typeorm';
 import { SaleItemEntity } from './sale.entity.item';
+import Translatable from "../../../../../../common/decorator/decorator.translatable";
+import {TenantEntityTranslatable} from "../../../../../../common/db/db.CoreEntity";
 
 @Entity('sell_item_price')
 @Index(['companyId', 'type'])
 @Unique(['companyId', 'type', 'itemId', 'priceId'])
-export class SaleItemPriceEntity extends BaseEntity {
+export class SaleItemPriceEntity extends Translatable(TenantEntityTranslatable,'sip') {
+  self = SaleItemPriceEntity;
+
   @PrimaryGeneratedColumn('increment')
   id: number;
 
@@ -30,8 +36,14 @@ export class SaleItemPriceEntity extends BaseEntity {
   @Column({ type: 'bigint', unsigned: true, nullable: false })
   priceId: number;
 
-  @Column({ type: 'double', nullable: false, default: 0.0 })
-  price: number;
+  @Column({ type: 'double', nullable: true, default: 0.0 })
+  priceSell: number;
+
+  @Column({ type: 'double', nullable: true, default: 0.0 })
+  priceBuy: number;
+
+  @Column({ type: 'smallint', nullable: true, unsigned:true })
+  crmPriceClassId:number;
 
   @ManyToOne(() => SaleItemEntity, (item) => item.prices)
   @JoinColumn([
@@ -40,4 +52,27 @@ export class SaleItemPriceEntity extends BaseEntity {
     { name: 'itemId', referencedColumnName: 'itemId' },
   ])
   readonly item: SaleItemEntity;
+
+  images = [];
+
+  public getId() {
+    return this.itemId;
+  }
+
+  @BeforeInsert()
+  protected async beforeInsert() {
+    await this.setLastEntryId('priceId')
+  }
+
+  @AfterInsert()
+  @AfterUpdate()
+  protected afterUpdate() {
+    this.saveTranslations();
+  }
+
+  @BeforeRemove()
+  protected beforeRemove() {
+    this.removeTranslations();
+  }
+
 }

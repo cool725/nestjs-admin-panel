@@ -172,34 +172,44 @@
           <ng-template mdbTabContent> Tab content 2 </ng-template>
         </mdb-tab>
         <mdb-tab title="Varianten">
-          <table style="min-width: 865px;" class="table">
-            <thead>
-            <tr>
-              <td width="33%">Beschreibung</td>
-              <td>Preisklasse</td>
-              <td>Dauer </td>
-              <td>Pfz Start </td>
-              <td>Pfz Ende </td>
-              <td>Preis</td>
-              <td>
-                <a (click)="service.addVariant()" class="btn btn-success">
-                  +
-                </a>
-              </td>
-            </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let variant of service.prices">
-                <td>Beschreibung</td>
+          <div style="min-width: 865px;max-width: 95vw" >
+            <table class="table table-sm w-100">
+              <thead>
+              <tr>
+                <td width="33%">Beschreibung</td>
                 <td>Preisklasse</td>
                 <td>Dauer </td>
                 <td>Pfz Start </td>
                 <td>Pfz Ende </td>
                 <td>Preis</td>
+                <td>
+                  <a (click)="service.addVariant()" class="btn btn-success">
+                    +
+                  </a>
+                </td>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let variant of service.prices">
+                <td>
+                  <input mdbInput
+                         [(ngModel)]="
+                    variant.label['title'][
+                      variant.label['title']['cLang'] || defaultLanguageId
+                    ]"/>
+                </td>
+                <td>Preisklasse</td>
+                <td>Dauer </td>
+                <td>Pfz Start </td>
+                <td>Pfz Ende </td>
+                <td>
+                  <input mdbInput [(ngModel)]="variant.priceSell">
+                </td>
                 <td></td>
               </tr>
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         </mdb-tab>
         <mdb-tab title="Finanzen">
           <ng-template mdbTabContent> Tab content 3 </ng-template>

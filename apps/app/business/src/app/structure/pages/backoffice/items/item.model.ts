@@ -1,7 +1,9 @@
-export class Item {
+export abstract class Item {
     itemId: number;
 
     companyId: number;
+
+    abstract type:string
 
     readonly label: any = {};
 
@@ -20,10 +22,6 @@ export class Item {
 
     prices:ItemVariant[]
 
-    static create(item: Partial<Item>) {
-        return Object.assign(new Item(), item);
-    }
-
     public changeLang(id: number, key: string) {
         this.label[key].cLang = id;
     }
@@ -35,6 +33,8 @@ export class ItemCategory {
     parentCategoryId: number;
 
     companyId: number;
+
+    type: string;
 
     readonly title = '';
     readonly label: any = {
@@ -51,7 +51,6 @@ export class ItemCategory {
     readonly children: any = [];
 
     static create(cat: Partial<ItemCategory>) {
-        console.log(cat)
         return Object.assign(new ItemCategory(), cat);
     }
     public changeLang(id: number, key: string) {
@@ -63,11 +62,15 @@ export class ItemVariant{
 
     companyId: number;
 
+    itemId:number;
+
     priceId:number;
 
     type:string;
 
-    readonly label: any = {};
+    readonly label: any = {
+        title:{}
+    };
 
     /*
      * DisplayTitle

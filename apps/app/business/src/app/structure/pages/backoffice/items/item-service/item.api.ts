@@ -10,7 +10,7 @@ const defaultValue: any = null;
   providedIn: 'root',
 })
 export class ItemServiceAPI<T, C> {
-  readonly item$ = new BehaviorSubject<T>(defaultValue);
+  readonly item$:BehaviorSubject<T> = new BehaviorSubject<T>(<T>defaultValue);
   readonly items$ = new BehaviorSubject<ITableOptions<T>>(<any>{ data: [] });
 
   readonly category$ = new BehaviorSubject<C>(defaultValue);

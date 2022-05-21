@@ -2,7 +2,7 @@ import { EntityRepository, Repository } from 'typeorm';
 import { SaleItemEntity } from '../entities/sale.entity.item';
 import { SaleItemCategoryEntity } from '../entities/sale.entity.item-category';
 import { TranslationLabelEntity } from '../../../../../translation/src/entities/translation.label.item';
-import { TranslatableUtils } from '../../../../../../common/decorator';
+import {SaleItemPriceEntity} from "../entities/sale.entity.item.prices";
 
 @EntityRepository(SaleItemEntity)
 export class SaleItemRepository extends Repository<SaleItemEntity> {
@@ -20,7 +20,7 @@ export class SaleItemRepository extends Repository<SaleItemEntity> {
       where += ' and s.itemId = ? ';
     }
 
-    where += ' and tl.key not like "cat:%" ';
+    where += ' and (tl.key not like "cat:%" and tl.key not like "sip:%")';
 
     return this.query(
       `
@@ -62,11 +62,11 @@ export class SaleItemRepository extends Repository<SaleItemEntity> {
             }
           }
           // create translationObject
-          baseItem =TranslationLabelEntity.createTranslationObjectByRow(
+          baseItem = TranslationLabelEntity.createTranslationObjectByRow(
             baseItem,row
           )
         }
-        delete baseItem.labels;
+        if(baseItem?.labels) delete baseItem.labels;
         return baseItem;
       }
 
@@ -182,4 +182,48 @@ export class SaleItemCategoryRepository extends Repository<SaleItemCategoryEntit
    return this.list(businessId, languageId, options)
        .then(row => row?.data)
   }
+}
+
+@EntityRepository(SaleItemPriceEntity)
+export class SaleItemPriceRepository extends Repository<SaleItemPriceEntity> {
+    getPricesFromItem(businessId: number, itemId: number, type:string, options: { languageId?:number } = {}) {
+        const params = [businessId,itemId];
+        let where = '';
+
+        if (options.languageId) {
+            params.push(options.languageId);
+            where += ' and tl.languageId = ? ';
+        }
+
+        where += ' and tl.key like "sip:%" ';
+
+        return this.query(`
+         select
+             p.*,
+              group_concat(
+                      concat( tl.key, '${TranslationLabelEntity.DBSplitter}',tl.value)
+                      SEPARATOR '@@,@@'
+                  ) as labels,
+              languageId
+          from sell_item_price p
+                   left join translation_label tl on
+                      p.companyId = tl.companyId and
+                      p.type = tl.type and
+                      p.itemId = tl.id
+          where p.companyId = ? and p.type = "S" and p.itemId = ? ${where} 
+          group by p.priceId , tl.languageId `, params)
+            .then((rows) => {
+                for (let i = 0; i < rows.length; i++) {
+                const row = rows[i];
+                if (row.labels) {
+                    TranslationLabelEntity.createTranslationObjectByRow(
+                        row,row,'@@,@@','sip:'
+                        );
+                    if (row.label && row.label['title']) row.title = row.label['title'][1];
+                    delete row.labels;
+                }
+            }
+            return rows;
+        });
+    }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
-  SaleItemCategoryRepository,
+  SaleItemCategoryRepository, SaleItemPriceRepository,
   SaleItemRepository,
 } from './classes/sales-item.repository';
 import { SaleItemCategoryLinkEntity } from './entities/sale.entity.item-category.link';
@@ -12,6 +12,8 @@ export class SalesItemService {
   constructor(
     @InjectRepository(SaleItemRepository)
     private itemRepo: SaleItemRepository,
+    @InjectRepository(SaleItemPriceRepository)
+    private itemPriceRepo: SaleItemPriceRepository,
     @InjectRepository(SaleItemCategoryRepository)
     private categoryRepo: SaleItemCategoryRepository
   ) {}
@@ -20,10 +22,18 @@ export class SalesItemService {
     return this.itemRepo.list(businessId, langId, searchOptions);
   }
 
-  public getService(businessId, itemId) {
-    return this.itemRepo.list(businessId, null, {
+  public async getService(businessId, itemId) {
+    const service = await this.itemRepo.list(businessId, null, {
       itemId,
     })
+
+    if(!service)return service
+
+    service.prices = await this.itemPriceRepo.getPricesFromItem(
+        businessId, itemId, service.type
+    )
+
+    return service
   }
 
   /*
@@ -64,6 +74,9 @@ export class SalesItemService {
     });
     await saleItemEntity.setTranslationFromLabelObj(service.label);
     await this.saveLinkCategories(businessId, itemId, service.categoriesIds);
+    await this.savePrices(businessId, itemId, service.prices);
+
+
     return saleItemEntity.update();
   }
 
@@ -159,4 +172,30 @@ export class SalesItemService {
       [businessId, type, itemId]
     );
   }
+
+
+  // region prices/variants
+   private async savePrices(businessId:number, itemId:number, prices:any[]){
+
+    for(let i = 0; i<prices?.length;i++){
+      const price = prices[i];
+      const newPrice = this.itemPriceRepo.create()
+
+      newPrice.companyId = businessId;
+      newPrice.itemId = itemId;
+      newPrice.type = price.type;
+      newPrice.priceSell = price.priceSell;
+      await newPrice.setTranslationFromLabelObj(price.label)
+
+      await doInsert(newPrice)
+    }
+
+
+
+
+
+   }
+
+   // endregion
+
 }

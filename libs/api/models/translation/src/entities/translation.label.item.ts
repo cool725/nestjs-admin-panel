@@ -64,6 +64,7 @@ export class TranslationLabelEntity extends BaseEntity {
   * keyReplace: replace the key by given value; ex: cat:
   * */
   static createTranslationObjectByRow(baseItem, row = baseItem, splitBy = '@@,@@' , keyReplace = undefined){
+    if(!row.labels)return baseItem;
     const keyParis = row.labels.split(splitBy)
     keyParis.forEach(keyPair => {
       let [key, value] = keyPair.split(

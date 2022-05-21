@@ -1,6 +1,10 @@
 import {Item, ItemVariant} from "../item.model";
 
 export class ItemService extends Item {
+
+  override type = 'S'
+
+  // create class for this
   override label = {
     title: <any>{},
     desc: <any>{},
@@ -8,8 +12,26 @@ export class ItemService extends Item {
 
   override prices:ServiceVariant[] = [];
 
-  static override create(item: Partial<Item>) {
-    return Object.assign(new ItemService(), item);
+  static create(item: Partial<Item>) {
+    const newItem = new ItemService();
+
+    if(item.label){
+      newItem.label = Object.assign(
+          newItem.label, item.label
+      );
+      delete (<any>item).label
+    }
+
+    if(item.prices){
+      item.prices.map(
+          (price => {
+        newItem.addVariant(price)
+      }))
+
+      delete (<any>item).prices
+    }
+
+    return Object.assign(newItem, item);
   }
 
   public removeVariant(index:number){
@@ -18,18 +40,29 @@ export class ItemService extends Item {
 
   public addVariant(v?:Partial<ServiceVariant>){
     this.prices.push(
-        ServiceVariant.create(v)
+        ServiceVariant.create({
+          ... v || {},
+          type:this.type
+        })
     )
   }
 }
 
 export class ServiceVariant extends ItemVariant {
-
   duration:Date;
   bufferTimeStart:Date;
   bufferTimeEnd:Date;
-
   static override create(item?: Partial<ServiceVariant>) {
-    return Object.assign(new ServiceVariant(), item || {});
+    const newItem = new ServiceVariant()
+    if(item?.label){
+      for(const key in newItem.label){
+        newItem.label[key] = Object.assign(
+            newItem.label[key], item.label[key] || {}
+        );
+      }
+
+      delete (<any>item).label
+    }
+    return Object.assign(newItem, item || {});
   }
 }

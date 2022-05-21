@@ -1,5 +1,5 @@
 import { TranslationLabelEntity } from '../../models/translation/src/entities/translation.label.item';
-import { Like, Not } from 'typeorm';
+import {AfterUpdate, BeforeRemove, Like, Not} from 'typeorm';
 
 export interface ITranslatable {}
 
@@ -128,5 +128,8 @@ export default function Translatable<TBase extends Constructor>(
       }
       if (save) return this.saveTranslations();
     }
+
   };
+
+
 }

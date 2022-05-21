@@ -11,10 +11,8 @@ import {ItemCategory} from "../../item.model";
   styleUrls: ['./item-service-form.component.css'],
 })
 export class ItemServiceFormComponent extends FormController<ItemService> {
-  constructor(public api: ItemServiceAPI<ItemService, ItemCategory>, override injector: Injector
-  ) {
+  constructor(public api: ItemServiceAPI<ItemService, ItemCategory>, override injector: Injector) {
     super(injector);
-
   }
 
   getData(): void {

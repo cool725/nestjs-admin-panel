@@ -1,17 +1,4 @@
-<div
-  *ngIf="api.category$ | async as category"
-  [style]="{
-    width: '400px',
-    height: '725px',
-    background: 'red',
-    right: '0px',
-    bottom: '0px',
-    left: '0px',
-    top: '0px',
-    margin: 'auto',
-    display: 'block'
-  }"
->
+<div *ngIf="api.category$ | async as category">
   <div class="modal-header">
     <button
       type="button"
@@ -29,10 +16,7 @@
   </div>
   <div class="modal-body">
     <div class="form-group form-group-lang mb-2">
-      <!-- <label class="w-100 col-form-label">
-              <b>Titel</b>
-            </label> -->
-      <mdb-form-control style="overflow-x: hidden">
+      <mdb-form-control>
         <input
           mdbInput
           type="text"
@@ -109,8 +93,8 @@
               [(ngModel)]="category.enabled"
               class="form-control"
             >
-              <nz-option nzValue="1" nzLabel="Ja">Ja</nz-option>
-              <nz-option nzValue="0" nzLabel="Nein">Ja</nz-option>
+              <nz-option [nzValue]="1" nzLabel="Ja">Ja</nz-option>
+              <nz-option [nzValue]="0" nzLabel="Nein">Ja</nz-option>
             </nz-select>
             <label mdbLabel class="form-label" for="cat-enabled"
               >Aktiviert</label

@@ -10,7 +10,6 @@
     <a class="p-2 ps-4" role="button" style="color: #a5bbd4">
       <i class="fa fa-times fa-lg"></i>
     </a>
-    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
   </div>
   <div class="modal-header-sub">
     <ul class="nav nav-tabs">
@@ -73,9 +72,7 @@
               *ngFor="let l of [{ languageId: 1, name: 'de' }]"
               class="nav-item nav-link animated fadeInDown {{
                 (service.label['title']['cLang'] || defaultLanguageId) ==
-                l.languageId
-                  ? 'active'
-                  : ''
+                l.languageId  ? 'active'    : ''
               }}"
               (click)="service.changeLang(l.languageId, 'title')"
             >

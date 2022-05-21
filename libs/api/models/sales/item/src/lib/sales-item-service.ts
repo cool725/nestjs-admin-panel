@@ -33,7 +33,7 @@ export class SalesItemService {
     return this.itemRepo.list(businessId, langId, { itemId });
   }
 
-  public getCategory(businessId, categoryId) {
+  public getServiceCategory(businessId, categoryId) {
     return this.categoryRepo.list(businessId, null, {
       categoryId,
     });
@@ -41,6 +41,13 @@ export class SalesItemService {
 
   public getServiceCategories(businessId, langId, searchOptions) {
     return this.categoryRepo.list(businessId, langId, searchOptions);
+  }
+
+  /**
+   * Get Categories that parents have been deleted
+   * */
+  public getServiceCategoriesUnliked(){
+
   }
 
   async saveService(businessId, service) {

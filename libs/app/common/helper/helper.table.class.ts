@@ -110,8 +110,10 @@ export class Table<Type, Filter extends ITableBaseFilter> {
 
   public getFilterValuesAsHttpParams() {
     let queryParams = new HttpParams();
-    for (const key in this.filterValues)
-      queryParams = queryParams.append(key, <any>this.filterValues[key]);
+    for (const key in this.filterValues){
+      if(key && !key.includes('_'))
+        queryParams = queryParams.append(key, <any>this.filterValues[key]);
+    }
     return queryParams;
   }
 }

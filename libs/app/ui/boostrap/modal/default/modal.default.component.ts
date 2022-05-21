@@ -22,7 +22,7 @@ export class BoostrapModalUIComponent {
   @Input() style: any = {
     width: '925px',
     height: '725px',
-    background: 'red',
+    background: 'white',
     left: 'initial',
     top: 'initial',
     right: '0px',

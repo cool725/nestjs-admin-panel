@@ -4,14 +4,16 @@ import { BehaviorSubject } from 'rxjs';
 import { ITableOptions } from '@movit/app/common';
 import { environment } from "../../../../../../environments/environment";
 
+const defaultValue:any = null
+
 @Injectable({
   providedIn: 'root',
 })
 export class ItemServiceAPI<T, C> {
-  readonly item$ = new BehaviorSubject<T | null>(null);
+  readonly item$ = new BehaviorSubject<T>(defaultValue);
   readonly items$ = new BehaviorSubject<ITableOptions<T>>(<any>{ data: [] });
 
-  readonly category$ = new BehaviorSubject<C | null>(null);
+  readonly category$ = new BehaviorSubject<C>(defaultValue);
   readonly categories$ = new BehaviorSubject<ITableOptions<C>>(<any>{
     data: [],
   });
@@ -52,8 +54,14 @@ export class ItemServiceAPI<T, C> {
     return this.http.delete(this.getPath('service', itemId), options);
   }
 
-  getServiceCategory(filter: any = {}) {
-    return this.http.get(this.getPath('service', 'category'), filter);
+  //
+
+  getServiceCategory(categoryId: number ) {
+    return this.http.get<C>(this.getPath('service', 'category', categoryId));
+  }
+
+  getServiceCategories(filter: any = {}) {
+    return this.http.get<C[]>(this.getPath('service', 'category'), filter);
   }
 
   saveServiceCategory(category: any) {

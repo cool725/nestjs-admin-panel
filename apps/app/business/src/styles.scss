@@ -110,17 +110,20 @@ hr {
   }
 }
 
+
 .lang_chooser_pills {
+  overflow-x: hidden;;
   nav {
+    margin-left: -0rem;
     a {
       cursor: pointer;
       user-select: none;
       background: #f0f7fc;
-      margin: 0;
+
       border-radius: 0 !important;
       border: #c9c9c9 solid !important;
       padding: 3px !important;
-
+      margin: 0!important;
       &.active {
         background: rgb(69, 154, 250);
       }

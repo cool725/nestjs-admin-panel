@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BoostrapModalUIComponent } from './modal.default.component';
+import { BoostrapModalUIComponent } from "@movit/app/ui";
 
 @NgModule({
   imports: [CommonModule],

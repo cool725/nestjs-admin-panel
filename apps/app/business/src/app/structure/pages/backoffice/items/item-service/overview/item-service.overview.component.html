@@ -53,7 +53,7 @@
 
     <!-- list -->
     <div class="card shadow">
-      <table class="table mb-0 bg-white">
+      <table class="table table-sm mb-0 bg-white">
         <thead>
           <tr>
             <td>Titel</td>
@@ -69,12 +69,12 @@
               </td>
               <td></td>
               <td width="100px">
-                <a class="btn btn-primary" (click)="editService(item)">
+                <a class=" text-primary" (click)="editService(item)">
                   Bearbeiten
                 </a>
               </td>
               <td width="100px">
-                <a class="btn btn-danger" (click)="deleteService(item)">
+                <a class=" text-danger" (click)="deleteService(item)">
                   Löschen
                 </a>
               </td>
@@ -100,28 +100,25 @@
             <label>{{ 'category' | translate | titlecase }}</label>
           </div>
           <div class="card-body">
-            <table class="table cat-table">
+            <table class="table cat-table table-sm">
               <tbody>
                 <ng-container *ngFor="let category of categoryData.data">
                   <tr
-                    [style.background]="category.color"
-                    (click)="
+                    [style.background]="category.color"     >
+                    <td class="cursor-pointer" (click)="
                       tableCategories.filterValues._categoryId =
                         category.categoryId
-                    "
-                  >
-                    <td style="padding: 0">
-                      <small>{{ category.order }}</small>
-                    </td>
-                    <td>{{ category.title }}</td>
+                    ">{{ category.title }}</td>
                     <td width="10px" (click)="editCategory(category)">
-                      <a class="btn"> <i class="fa-solid fa-pen"></i></a>
+                      <a class=""> <i class="fa-solid fa-pen"></i></a>
                     </td>
                     <td
                       width="10px"
-                      (click)="deleteCategory(category); getCategories()"
+                      (click)="
+                      deleteCategory(category);
+                      getCategories();"
                     >
-                      <a class="btn"><i class="fa-solid fa-trash"></i></a>
+                      <a class=""><i class="fa-solid fa-trash"></i></a>
                     </td>
                   </tr>
                 </ng-container>
@@ -132,7 +129,7 @@
       </div>
       <div class="col-12 col-md-3">
         <div class="card">
-          <div class="card-header">
+          <div class="card-header d-flex justify-content-between">
             <label>{{ 'subcategory' | translate }}</label>
             <select
               style="
@@ -142,7 +139,7 @@
                 text-decoration: double underline;
               "
               [(ngModel)]="tableCategories.filterValues._categoryId"
-              class="transparent"
+              class="bg-transparent"
             >
               <option value="" selected>{{ 'all' | translate }}</option>
               <option
@@ -154,30 +151,27 @@
             </select>
           </div>
           <div class="card-body">
-            <table class="table">
+            <table class="table table-sm">
               <tbody>
                 <ng-container *ngFor="let category of categoryData.data">
                   <ng-container
                     *ngIf="
-                      !tableCategories.filterValues._categoryId ||
+                      !tableCategories.filterValues._categoryId ||(
                       category.categoryId ==
-                        tableCategories.filterValues._categoryId
+                        tableCategories.filterValues._categoryId)
                     "
                   >
                     <ng-container *ngFor="let category of category.children">
-                      <tr [style.background]="category.color">
-                        <td>
-                          <small>{{ category.order }}</small>
-                        </td>
+                      <tr [style.background]="category.color" [title]="category.order">
                         <td>{{ category.title }}</td>
                         <td width="10px" (click)="editCategory(category)">
-                          <a class="btn"><i class="fa-solid fa-pen"></i></a>
+                          <a class=""><i class="fa-solid fa-pen"></i></a>
                         </td>
                         <td
                           width="10px"
                           (click)="deleteCategory(category); getCategories()"
                         >
-                          <a class="btn"><i class="fa-solid fa-trash"></i></a>
+                          <a class=""><i class="fa-solid fa-trash"></i></a>
                         </td>
                       </tr>
                     </ng-container>
@@ -189,11 +183,14 @@
         </div>
       </div>
       <div class="col-12 col-md-3">
-        <div class="card h-line">
-          <div class="card-header">
-            <label>{{ 'notset' | translate }}</label>
+        <div class="card">
+          <div class="card-header d-flex justify-content-between">
+            <label>{{ 'notassigned' | translate }}</label>
+
           </div>
-          <div class="card-body"></div>
+          <div class="card-body">
+            Gelöschte parrents
+          </div>
         </div>
       </div>
     </div>
@@ -201,3 +198,30 @@
 </div>
 
 <!-- Modal -->
+
+<!-- Modal -->
+<lib-modal-ui *ngIf="api.item$ | async as service">
+  <movit-item-service-form
+    (onSave)="getServices()"
+    (onCancel)="getServices()"
+  ></movit-item-service-form>
+</lib-modal-ui>
+
+<lib-modal-ui
+  *ngIf="api.category$ | async as category"
+  [style]="{
+    width: '400px',
+    height: 'max-content',
+    right: '0px',
+    bottom: '0px',
+    left: '0px',
+    top: '0px',
+     margin: 'auto',
+    display: 'block'
+  }"
+>
+  <movit-item-service-category-form
+    (onSave)="getCategories()"
+    (onCancel)="getCategories()"
+  ></movit-item-service-category-form>
+</lib-modal-ui>

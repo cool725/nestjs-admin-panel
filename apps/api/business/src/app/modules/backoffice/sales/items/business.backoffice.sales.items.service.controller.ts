@@ -55,7 +55,7 @@ export class BusinessBackOfficeSalesItemsServiceController {
     @GetCompany() business: BusinessEntity,
     @Param('categoryId') categoryId
   ) {
-    return this.itemService.getCategory(business.businessId, categoryId);
+    return this.itemService.getServiceCategory(business.businessId, categoryId);
   }
 
   @Delete('/:itemId')

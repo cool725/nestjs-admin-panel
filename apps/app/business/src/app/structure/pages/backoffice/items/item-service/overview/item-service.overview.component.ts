@@ -4,8 +4,6 @@ import { ItemController } from '../../item.controller';
 import { Confirmable } from '../../../../../../../../../../../libs/app/common/decorators';
 import { ItemServiceAPI } from '../item.api';
 import { Table } from '@movit/app/common';
-import { ItemServiceFormComponent } from '../form-service/item-service-form.component';
-import { ItemServiceCategoryFormComponent } from '../form-category-service/item-service-category-form.component';
 import { ItemCategory, ItemService } from '../item.model';
 
 @Component({
@@ -46,7 +44,7 @@ export class ItemServiceOverviewComponent extends ItemController<ItemService> {
 
   getCategories() {
     this.onLoadAndSetData(
-      this.api.getServiceCategory(this.tableServices.filterValues),
+      this.api.getServiceCategories(this.tableServices.getFilterValuesAsHttpParams()),
       this.api.categories$
     );
   }
@@ -54,28 +52,27 @@ export class ItemServiceOverviewComponent extends ItemController<ItemService> {
   create(type: 'service' | 'category') {
     switch (type) {
       case 'service': {
-        return this.openModal(ItemServiceFormComponent).then(
-          ()=>console.log(this.api.items$.getValue())
-        );
+        return this.api.item$.next(new ItemService())
       }
       case 'category': {
-        return this.openModal(ItemServiceCategoryFormComponent).then(
-          () => this.getCategories()
-        )
+        return this.api.category$.next(new ItemCategory())
       }
     }
   }
 
   editService({ itemId }: ItemService) {
-    return this.openModal(ItemServiceFormComponent, {
-      id: itemId,
-    }).then(()=>this.getServices())
+    return this.api.getService(itemId).subscribe(
+      service =>  this.api.item$.next(ItemService.create(
+        service
+      ))
+    )
   }
 
   editCategory({ categoryId }: ItemCategory) {
-    this.openModal(ItemServiceCategoryFormComponent,{
-      id: categoryId
-    }).then(()=>this.getServices())
+    return this.api.getServiceCategory(categoryId).subscribe(
+      cat =>  this.api.category$.next(ItemCategory.create(
+        cat
+    )));
   }
 
   @Confirmable({

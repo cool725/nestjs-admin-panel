@@ -117,11 +117,11 @@ export class ProfilesFormComponent extends FormController<Profile> {
   // add comment
   cancel() {
     this.resetData();
+    this.closeModal()
     this.onCancel.emit();
   }
 
   resetData() {
-    console.log('cleared');
     this.api.profile$.next(<any>null);
   }
 }

@@ -20,8 +20,6 @@ export class ItemServiceFormComponent extends FormController<ItemService> {
   getData(): void {
     if (this.getId()) {
       this.getService();
-    } else {
-      this.api.item$.next(new ItemService());
     }
   }
 
@@ -50,14 +48,13 @@ export class ItemServiceFormComponent extends FormController<ItemService> {
       }
       data.data.push(service);
       this.api.items$.next(data);
-      console.log(service)
-      this.closeModal()
+      this.cancel()
     });
   }
 
   updateService(service: ItemService) {
     return this.api.updateServiceItem(service.itemId, service).subscribe(
-      ()=> this.closeModal()
+      ()=> this.cancel()
     );
   }
 
@@ -65,12 +62,12 @@ export class ItemServiceFormComponent extends FormController<ItemService> {
     title: 'Ok?',
   })
   deleteService({ itemId }: ItemService) {
-    this.closeModal()
+    this.cancel()
     return this.api.deleteServiceItem(itemId).subscribe(() => this.getData());
   }
 
   cancel(){
-    this.api.item$.next(null)
+    this.api.item$.next(<any>null)
     this.closeModal()
   }
 }

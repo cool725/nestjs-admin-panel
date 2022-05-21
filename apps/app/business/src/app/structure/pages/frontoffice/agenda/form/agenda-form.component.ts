@@ -58,6 +58,10 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
     this.closeModal();
   }
 
+  cancel(){
+    this.closeModal()
+  }
+
   @Debounce(300)
   searchProfile(searchTerm: any) {
     this.api.searchProfiles(searchTerm).subscribe();

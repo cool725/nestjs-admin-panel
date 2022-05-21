@@ -5,7 +5,6 @@ import { ItemCollectionOverviewComponent } from './overview/item-collection.over
 import { ItemCollectionApi } from './item-collection.api';
 
 const routes: Routes = [
-
   {
     path: '**',
     component: ItemCollectionOverviewComponent,
@@ -13,9 +12,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    ItemCollectionOverviewComponent,
-  ],
+  declarations: [ItemCollectionOverviewComponent],
   imports: [CommonModule, RouterModule.forChild(routes)],
   providers: [ItemCollectionApi],
 })

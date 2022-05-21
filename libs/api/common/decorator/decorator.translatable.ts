@@ -130,17 +130,3 @@ export default function Translatable<TBase extends Constructor>(
     }
   };
 }
-
-export const TranslatableUtils = {
-  splitLabels(entryRow, keyReplace = '') {
-    if (entryRow.labels)
-      entryRow.labels.split(',').forEach((keyPair) => {
-        let [key, value] = keyPair.split(TranslationLabelEntity.DBSplitter);
-        key = keyReplace ? key.replace(keyReplace, '') : key;
-        if (!entryRow.label) entryRow.label = {};
-        if (!entryRow.label[key]) entryRow.label[key] = {};
-        entryRow.label[key][entryRow.languageId] = value;
-      });
-    return entryRow;
-  },
-};

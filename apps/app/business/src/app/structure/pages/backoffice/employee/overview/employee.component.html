@@ -14,7 +14,10 @@
                 <i class="fa fa-search trailing"></i>
                 <input
                   (keyup)="getEmployees()"
-                  (input)="tableEmployees.filterValues.searchValue = $event.target.value"
+                  (input)="
+                    tableEmployees.filterValues.searchValue =
+                      $event.target.value
+                  "
                   mdbInput
                   type="text"
                   id="search"
@@ -27,11 +30,7 @@
             </div>
             <div class="col-6 col-md-2 mt-2 mt-md-0">
               <div class="form-group">
-                <button
-                  mdbRipple
-
-                  class="btn btn-success text-white w-100"
-                >
+                <button mdbRipple class="btn btn-success text-white w-100">
                   {{ 'create' | translate }}
                 </button>
               </div>

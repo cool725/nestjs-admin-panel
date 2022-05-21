@@ -55,4 +55,28 @@ export class TranslationLabelEntity extends BaseEntity {
   }) {
     return Object.assign(this, object);
   }
+
+  /*
+  * Creates a multi level string keypair
+  * baseItem | target for the keypair build
+  * row | must inlcude row.labels (will be refactored)
+  * splitBy seperator of words
+  * keyReplace: replace the key by given value; ex: cat:
+  * */
+  static createTranslationObjectByRow(baseItem, row = baseItem, splitBy = '@@,@@' , keyReplace = undefined){
+    const keyParis = row.labels.split(splitBy)
+    keyParis.forEach(keyPair => {
+      let [key, value] = keyPair.split(
+          TranslationLabelEntity.DBSplitter
+      );
+
+      key = keyReplace ? key.replace(keyReplace, '') : key;
+
+      if(!row.label) row.label = {}
+      if(!row.label[key]) row.label[key] = {}
+      baseItem.label[key][row.languageId] =  value
+
+    });
+    return baseItem
+  }
 }

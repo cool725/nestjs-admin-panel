@@ -5,7 +5,6 @@ import { ItemVoucherOverviewComponent } from './overview/item-voucher.overview.c
 import { ItemVoucherApi } from './item-voucher.api';
 
 const routes: Routes = [
-
   {
     path: '**',
     component: ItemVoucherOverviewComponent,
@@ -13,9 +12,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    ItemVoucherOverviewComponent,
-  ],
+  declarations: [ItemVoucherOverviewComponent],
   imports: [CommonModule, RouterModule.forChild(routes)],
   providers: [ItemVoucherApi],
 })

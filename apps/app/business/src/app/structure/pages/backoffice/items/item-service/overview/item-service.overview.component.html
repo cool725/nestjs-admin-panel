@@ -69,12 +69,12 @@
               </td>
               <td></td>
               <td width="100px">
-                <a class=" text-primary" (click)="editService(item)">
+                <a class="text-primary" (click)="editService(item)">
                   Bearbeiten
                 </a>
               </td>
               <td width="100px">
-                <a class=" text-danger" (click)="deleteService(item)">
+                <a class="text-danger" (click)="deleteService(item)">
                   Löschen
                 </a>
               </td>
@@ -103,20 +103,22 @@
             <table class="table cat-table table-sm">
               <tbody>
                 <ng-container *ngFor="let category of categoryData.data">
-                  <tr
-                    [style.background]="category.color"     >
-                    <td class="cursor-pointer" (click)="
-                      tableCategories.filterValues._categoryId =
-                        category.categoryId
-                    ">{{ category.title }}</td>
+                  <tr [style.background]="category.color">
+                    <td
+                      class="cursor-pointer"
+                      (click)="
+                        tableCategories.filterValues._categoryId =
+                          category.categoryId
+                      "
+                    >
+                      {{ category.title }}
+                    </td>
                     <td width="10px" (click)="editCategory(category)">
                       <a class=""> <i class="fa-solid fa-pen"></i></a>
                     </td>
                     <td
                       width="10px"
-                      (click)="
-                      deleteCategory(category);
-                      getCategories();"
+                      (click)="deleteCategory(category); getCategories()"
                     >
                       <a class=""><i class="fa-solid fa-trash"></i></a>
                     </td>
@@ -156,13 +158,16 @@
                 <ng-container *ngFor="let category of categoryData.data">
                   <ng-container
                     *ngIf="
-                      !tableCategories.filterValues._categoryId ||(
+                      !tableCategories.filterValues._categoryId ||
                       category.categoryId ==
-                        tableCategories.filterValues._categoryId)
+                        tableCategories.filterValues._categoryId
                     "
                   >
                     <ng-container *ngFor="let category of category.children">
-                      <tr [style.background]="category.color" [title]="category.order">
+                      <tr
+                        [style.background]="category.color"
+                        [title]="category.order"
+                      >
                         <td>{{ category.title }}</td>
                         <td width="10px" (click)="editCategory(category)">
                           <a class=""><i class="fa-solid fa-pen"></i></a>
@@ -186,30 +191,28 @@
         <div class="card">
           <div class="card-header d-flex justify-content-between">
             <label>{{ 'notassigned' | translate }}</label>
-
           </div>
-          <div class="card-body">
-            Gelöschte parrents
-          </div>
+          <div class="card-body">Gelöschte parrents</div>
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
 <!-- Modal -->
 
 <!-- Modal -->
-<lib-modal-ui *ngIf="api.item$ | async as service"
-              [style]="{
-    width: '400px',
+<lib-modal-ui
+  *ngIf="api.item$ | async as service"
+  [style]="{
+    'min-width': '500px',
+    width: 'max-content',
     height: 'max-content',
     right: '0px',
     bottom: '0px',
     left: '0px',
     top: '0px',
-     margin: 'auto',
+    margin: 'auto',
     display: 'block'
   }"
 >
@@ -228,7 +231,7 @@
     bottom: '0px',
     left: '0px',
     top: '0px',
-     margin: 'auto',
+    margin: 'auto',
     display: 'block'
   }"
 >

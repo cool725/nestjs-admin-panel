@@ -4,6 +4,4 @@ import { BehaviorSubject } from 'rxjs';
 import { ITableOptions } from '@movit/app/common';
 
 @Injectable()
-export class ItemVoucherApi<T> {
-
-}
+export class ItemVoucherApi<T> {}

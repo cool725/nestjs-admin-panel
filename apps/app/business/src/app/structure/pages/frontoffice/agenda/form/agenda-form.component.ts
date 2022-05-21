@@ -58,8 +58,8 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
     this.closeModal();
   }
 
-  cancel(){
-    this.closeModal()
+  cancel() {
+    this.closeModal();
   }
 
   @Debounce(300)

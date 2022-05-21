@@ -28,6 +28,7 @@ export class SaleItemRepository extends Repository<SaleItemEntity> {
               s.*,
                group_concat(
                        distinct concat(tl.key, '${TranslationLabelEntity.DBSplitter}' ,tl.value)
+                       SEPARATOR '@@,@@'
                   ) as labels,
               group_concat( distinct sicl.categoryId) as categoriesIds,
               languageId
@@ -54,36 +55,25 @@ export class SaleItemRepository extends Repository<SaleItemEntity> {
           const row = rows[i];
           if (!baseItem) {
             baseItem = row;
-            const [key, value] = baseItem.labels.split(
-              TranslationLabelEntity.DBSplitter
-            );
-            baseItem.label = {
-              [key]: { [row.languageId]: value },
-            };
-
-            delete baseItem.labels;
 
             // split categories
             if (baseItem.categoriesIds) {
               baseItem.categoriesIds = baseItem.categoriesIds.split(',');
             }
-
-            continue;
           }
-
-          const [key, value] = row.labels.split(
-            TranslationLabelEntity.DBSplitter
-          );
-          if (!baseItem.label[key]) baseItem.label[key] = {};
-          baseItem.label[key][row.languageId] = value;
+          // create translationObject
+          baseItem =TranslationLabelEntity.createTranslationObjectByRow(
+            baseItem,row
+          )
         }
+        delete baseItem.labels;
         return baseItem;
       }
 
       for (let i = 0; i < rows.length; i++) {
         const row = rows[i];
         if (row.labels) {
-          TranslatableUtils.splitLabels(row);
+          TranslationLabelEntity.createTranslationObjectByRow(row);
           if (row.label && row.label['title'])
             row.title = row.label['title'][languageId];
           delete row.labels;
@@ -120,12 +110,12 @@ export class SaleItemCategoryRepository extends Repository<SaleItemCategoryEntit
     let groupSql = options.grouped ? 'and cat.parentCategoryId is null' : '';
 
     const getCategories = (customWhere = '', customParams = []) =>
-      this.query(
-        `
+      this.query(`
           select
               cat.*,
               group_concat(
                       concat( tl.key, '${TranslationLabelEntity.DBSplitter}',tl.value)
+                      SEPARATOR '@@,@@'  
                   ) as labels,
               languageId
           from sell_item_category cat
@@ -135,31 +125,61 @@ export class SaleItemCategoryRepository extends Repository<SaleItemCategoryEntit
                       cat.categoryId = tl.id
           where cat.companyId = ? and cat.type = "S" ${where} ${customWhere}
           group by cat.categoryId , tl.languageId 
-`,
-        [...params, ...customParams]
-      );
+`, [...params, ...customParams]);
 
     const parseRows = async (rows) => {
+
+      if (options.categoryId) {
+        let baseItem;
+        for (let i = 0; i < rows.length; i++) {
+          const row = rows[i];
+          if (!baseItem) {
+            baseItem = row;
+
+            // split categories
+            if (baseItem.categoriesIds) {
+              baseItem.categoriesIds = baseItem.categoriesIds.split(',');
+            }
+          }
+          // create translationObject
+          baseItem =TranslationLabelEntity.createTranslationObjectByRow(
+              baseItem,row, '@@,@@', 'cat:'
+          )
+        }
+        delete baseItem.labels;
+        return baseItem;
+      }
+
       for (let i = 0; i < rows.length; i++) {
         const row = rows[i];
 
         if (row.labels) {
-          TranslatableUtils.splitLabels(row, 'cat:');
-          if (row.label && row.label['title'])
-            row.title = row.label['title'][languageId];
+          TranslationLabelEntity.createTranslationObjectByRow(
+              row, row ,'@@,@@','cat:'
+          );
+
+          if (row.label && row.label['title']) row.title = row.label['title'][languageId];
           delete row.labels;
         }
 
-        if (options.grouped)
-          row.children = await getCategories(`and cat.parentCategoryId = ?`, [
+        if (options.grouped) row.children = await getCategories(`and cat.parentCategoryId = ?`, [
             row.categoryId,
           ]).then(parseRows);
       }
+
       return rows;
     };
 
     return getCategories(groupSql)
       .then(parseRows)
       .then((data) => ({ data: data }));
+  }
+
+  get(
+     categoryId:number, businessId: number, languageId: number, options: any = {}
+  ){
+    options.categoryId = categoryId;
+   return this.list(businessId, languageId, options)
+       .then(row => row?.data)
   }
 }

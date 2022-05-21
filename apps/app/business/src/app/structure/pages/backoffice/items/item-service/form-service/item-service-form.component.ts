@@ -1,8 +1,9 @@
-import { Component, Injector, OnInit } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { ItemServiceAPI } from '../item.api';
 import { FormController } from '../../../../form.controller';
 import { Confirmable } from '../../../../../../../../../../../libs/app/common/decorators';
 import { ItemService } from '../item.model';
+import {ItemCategory} from "../../item.model";
 
 @Component({
   selector: 'movit-item-service-form',
@@ -10,18 +11,16 @@ import { ItemService } from '../item.model';
   styleUrls: ['./item-service-form.component.css'],
 })
 export class ItemServiceFormComponent extends FormController<ItemService> {
-  constructor(
-    public api: ItemServiceAPI<ItemService, any>,
-    override injector: Injector
+  constructor(public api: ItemServiceAPI<ItemService, ItemCategory>, override injector: Injector
   ) {
     super(injector);
+
   }
 
   getData(): void {
     if (this.getId()) {
       this.getService();
     }
-
   }
 
   getService(id = this.getId()) {
@@ -49,26 +48,26 @@ export class ItemServiceFormComponent extends FormController<ItemService> {
       }
       data.data.push(service);
       this.api.items$.next(data);
-      this.cancel()
+      this.cancel();
     });
   }
 
   updateService(service: ItemService) {
-    return this.api.updateServiceItem(service.itemId, service).subscribe(
-      ()=> this.cancel()
-    );
+    return this.api
+      .updateServiceItem(service.itemId, service)
+      .subscribe(() => this.cancel());
   }
 
   @Confirmable({
     title: 'Ok?',
   })
   deleteService({ itemId }: ItemService) {
-    this.cancel()
+    this.cancel();
     return this.api.deleteServiceItem(itemId).subscribe(() => this.getData());
   }
 
-  cancel(){
-    this.api.item$.next(<any>null)
-    this.closeModal()
+  cancel() {
+    this.api.item$.next(<any>null);
+    this.closeModal();
   }
 }

@@ -3,7 +3,7 @@ import { PageController } from '../../../page.controller';
 
 import { EmployeeApi } from './employee.api.service';
 import { ITableBaseFilter, Table } from '@movit/app/common';
-import { Debounce } from "../../../../../../../../../../libs/app/common/decorators/app.decorator.debounce";
+import { Debounce } from '../../../../../../../../../../libs/app/common/decorators/app.decorator.debounce';
 
 class Employee {
   employeeId: number;

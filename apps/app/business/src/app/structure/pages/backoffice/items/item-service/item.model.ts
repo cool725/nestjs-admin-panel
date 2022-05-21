@@ -1,26 +1,4 @@
-class Item {
-  itemId: number;
-
-  companyId: number;
-
-  label: any = {};
-
-  readonly title: string;
-
-  categoriesIds: any[] = [];
-
-  order = 1;
-
-  color = '';
-
-  static create(item: Partial<Item>) {
-    return Object.assign(new Item(), item);
-  }
-
-  public changeLang(id: number, key: string) {
-    this.label[key].cLang = id;
-  }
-}
+import {Item, ItemVariant} from "../item.model";
 
 export class ItemService extends Item {
   override label = {
@@ -28,33 +6,30 @@ export class ItemService extends Item {
     desc: <any>{},
   };
 
+  override prices:ServiceVariant[] = [];
+
   static override create(item: Partial<Item>) {
     return Object.assign(new ItemService(), item);
   }
+
+  public removeVariant(index:number){
+    this.prices.splice(index,1);
+  }
+
+  public addVariant(v?:Partial<ServiceVariant>){
+    this.prices.push(
+        ServiceVariant.create(v)
+    )
+  }
 }
 
-export class ItemCategory {
-  categoryId: number;
-  parentCategoryId: number;
-  companyId: number;
-  readonly title = '';
-  readonly label: any = {
-    title: <any>{},
-    desc: <any>{},
-  };
+export class ServiceVariant extends ItemVariant {
 
-  order = 1;
+  duration:Date;
+  bufferTimeStart:Date;
+  bufferTimeEnd:Date;
 
-  color = '';
-
-  enabled = 1;
-
-  readonly children: any = [];
-
-  static create(cat: Partial<ItemCategory>) {
-    return Object.assign(new ItemCategory(), cat);
-  }
-  public changeLang(id: number, key: string) {
-    this.label[key].cLang = id;
+  static override create(item?: Partial<ServiceVariant>) {
+    return Object.assign(new ServiceVariant(), item || {});
   }
 }

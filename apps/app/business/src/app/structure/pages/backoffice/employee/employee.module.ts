@@ -6,7 +6,7 @@ import { EmployeeOverviewComponent } from './overview/employee.component';
 import { EmployeeApi } from './overview/employee.api.service';
 
 import { MdbSharedModule } from '@movit/app/ui';
-import { TranslateLocaleModule } from "@movit/app/module";
+import { TranslateLocaleModule } from '@movit/app/module';
 
 const routes: Routes = [
   {

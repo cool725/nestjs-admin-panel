@@ -347,7 +347,11 @@
                               formControlName="title"
                               class="form-control"
                             />
-                            <label mdbLabel class="form-label" for="profiles-title">
+                            <label
+                              mdbLabel
+                              class="form-label"
+                              for="profiles-title"
+                            >
                               {{ 'title' | translate }}
                             </label>
                           </mdb-form-control>
@@ -598,7 +602,7 @@
           Löschen
         </button>
         <button
-          (click)="cancel();"
+          (click)="cancel()"
           type="button"
           class="btn btn-gray-400 text-white"
           data-bs-dismiss="modal"

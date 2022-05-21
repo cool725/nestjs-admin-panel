@@ -4,7 +4,8 @@ import { ItemController } from '../../item.controller';
 import { Confirmable } from '../../../../../../../../../../../libs/app/common/decorators';
 import { ItemServiceAPI } from '../item.api';
 import { Table } from '@movit/app/common';
-import { ItemCategory, ItemService } from '../item.model';
+import {  ItemService } from '../item.model';
+import {ItemCategory} from "../../item.model";
 
 @Component({
   selector: 'movit-item-service',
@@ -44,7 +45,9 @@ export class ItemServiceOverviewComponent extends ItemController<ItemService> {
 
   getCategories() {
     this.onLoadAndSetData(
-      this.api.getServiceCategories(this.tableServices.getFilterValuesAsHttpParams()),
+      this.api.getServiceCategories(
+        this.tableServices.getFilterValuesAsHttpParams()
+      ),
       this.api.categories$
     );
   }
@@ -52,27 +55,24 @@ export class ItemServiceOverviewComponent extends ItemController<ItemService> {
   create(type: 'service' | 'category') {
     switch (type) {
       case 'service': {
-        return this.api.item$.next(new ItemService())
+        return this.api.item$.next(new ItemService());
       }
       case 'category': {
-        return this.api.category$.next(new ItemCategory())
+        return this.api.category$.next(new ItemCategory());
       }
     }
   }
 
   editService({ itemId }: ItemService) {
-    return this.api.getService(itemId).subscribe(
-      service =>  this.api.item$.next(ItemService.create(
-        service
-      ))
-    )
+    return this.api
+      .getService(itemId)
+      .subscribe((service) => this.api.item$.next(ItemService.create(service)));
   }
 
   editCategory({ categoryId }: ItemCategory) {
-    return this.api.getServiceCategory(categoryId).subscribe(
-      cat =>  this.api.category$.next(ItemCategory.create(
-        cat
-    )));
+    return this.api
+      .getServiceCategory(categoryId)
+      .subscribe((cat) => this.api.category$.next(ItemCategory.create(cat)));
   }
 
   @Confirmable({

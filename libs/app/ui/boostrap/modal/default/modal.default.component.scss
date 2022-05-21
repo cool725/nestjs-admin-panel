@@ -19,9 +19,9 @@
         max-height: 30px;
         height: 30px;
         overflow: hidden;
-        ul{
+        ul {
           height: 100%;
-          a{
+          a {
             height: 100%;
             display: flex;
             align-items: center;
@@ -60,6 +60,25 @@
     &-content {
       height: 100%;
       border-radius: 0;
+      ::ng-deep {
+        mdb-tabs {
+          ul {
+            background: rgb(109, 131, 147);
+            height: 30px;
+            overflow: hidden;
+            a {
+              height: 100%;
+              color: white !important;
+              padding-top: 9px !important;
+              background-color: transparent !important;
+            }
+          }
+          .tab-content {
+            padding-right: 0.8rem;
+            padding-left: 0.8rem;
+          }
+        }
+      }
     }
   }
 }

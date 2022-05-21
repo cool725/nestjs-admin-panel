@@ -2,9 +2,9 @@ import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { ITableOptions } from '@movit/app/common';
-import { environment } from "../../../../../../environments/environment";
+import { environment } from '../../../../../../environments/environment';
 
-const defaultValue:any = null
+const defaultValue: any = null;
 
 @Injectable({
   providedIn: 'root',
@@ -17,8 +17,8 @@ export class ItemServiceAPI<T, C> {
   readonly categories$ = new BehaviorSubject<ITableOptions<C>>(<any>{
     data: [],
   });
-  basePath: string = environment.api.url + '/' + 'backoffice/sales/items'
-  constructor(private http: HttpClient) { }
+  basePath: string = environment.api.url + '/' + 'backoffice/sales/items';
+  constructor(private http: HttpClient) {}
 
   private getPath(
     path: string,
@@ -56,7 +56,7 @@ export class ItemServiceAPI<T, C> {
 
   //
 
-  getServiceCategory(categoryId: number ) {
+  getServiceCategory(categoryId: number) {
     return this.http.get<C>(this.getPath('service', 'category', categoryId));
   }
 

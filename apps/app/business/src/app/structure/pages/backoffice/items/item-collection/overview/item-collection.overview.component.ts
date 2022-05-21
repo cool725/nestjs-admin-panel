@@ -9,7 +9,10 @@ import { ItemCollectionApi } from '../item-collection.api';
   styleUrls: ['./item-collection.overview.component.css'],
 })
 export class ItemCollectionOverviewComponent extends ItemController<any> {
-  constructor(override injector: Injector, private api: ItemCollectionApi<any>) {
+  constructor(
+    override injector: Injector,
+    private api: ItemCollectionApi<any>
+  ) {
     super(injector);
   }
 

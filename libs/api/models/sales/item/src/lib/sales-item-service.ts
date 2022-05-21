@@ -23,7 +23,7 @@ export class SalesItemService {
   public getService(businessId, itemId) {
     return this.itemRepo.list(businessId, null, {
       itemId,
-    });
+    })
   }
 
   /*
@@ -34,7 +34,7 @@ export class SalesItemService {
   }
 
   public getServiceCategory(businessId, categoryId) {
-    return this.categoryRepo.list(businessId, null, {
+    return this.categoryRepo.get(categoryId,businessId, null, {
       categoryId,
     });
   }
@@ -46,9 +46,7 @@ export class SalesItemService {
   /**
    * Get Categories that parents have been deleted
    * */
-  public getServiceCategoriesUnliked(){
-
-  }
+  public getServiceCategoriesUnliked() {}
 
   async saveService(businessId, service) {
     const saleItemEntity = this.itemRepo.create();
@@ -72,12 +70,12 @@ export class SalesItemService {
   async saveLinkCategories(businessId, itemId, categoriesIds: number[]) {
     if (categoriesIds) {
       const items = await SaleItemCategoryLinkEntity.find({
-        where:{
-          companyId:businessId,
-          itemId:itemId
-        }
-      })
-      await Promise.all(items.map( a => a.remove()));
+        where: {
+          companyId: businessId,
+          itemId: itemId,
+        },
+      });
+      await Promise.all(items.map((a) => a.remove()));
       for (let i = 0; i < categoriesIds.length; i++) {
         const link = SaleItemCategoryLinkEntity.create();
         link.companyId = businessId;

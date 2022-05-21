@@ -19,60 +19,87 @@
     </ul>
   </div>
   <div class="modal-body">
-    <div class="form-group mb-2">
-      <label class="w-100 col-form-label"><b>Kategorien</b></label>
-      <nz-select
-        *ngIf="api.categories$ | async as categoryData"
-        nzMode="multiple"
-        nzPlaceHolder="Please select"
-        class="w-100"
-        [(ngModel)]="service.categoriesIds"
-        [nzMaxTagCount]="3"
-        [nzMaxTagPlaceholder]="tagPlaceHolder"
-      >
-        <ng-container *ngFor="let item of categoryData.data">
-          <ng-container
-            [ngTemplateOutlet]="catList"
-            [ngTemplateOutletContext]="{ item: item }"
-          ></ng-container>
-        </ng-container>
-        <ng-template #catList let-item="item">
-          <nz-option-group [nzLabel]="item.title">
-            <nz-option
-              [nzValue]="item.categoryId"
-              [nzLabel]="item.title"
-            ></nz-option>
-            <nz-option
-              *ngFor="let item of item.children"
-              [nzValue]="item.categoryId"
-              [nzLabel]="item.title"
-            >
+    <div class="form-group mb-3">
+      <mdb-form-control class="mdb-multiselect" >
+        <nz-select
+          mdbInput
+          mdbNzSelect
+          class="w-100 form-control px-0"
+          nzMode="multiple"
+          [(ngModel)]="service.categoriesIds"
+          [nzMaxTagCount]="3"
+          [nzMaxTagPlaceholder]="tagPlaceHolder"
+          id="lang"
+        >
+          <ng-container *ngIf="api.categories$ | async as categoryData">
+            <ng-container *ngFor="let item of categoryData.data">
               <ng-container
-                *ngFor="let item of item.children"
                 [ngTemplateOutlet]="catList"
                 [ngTemplateOutletContext]="{ item: item }"
               ></ng-container>
-            </nz-option>
-          </nz-option-group>
-        </ng-template>
-      </nz-select>
-      <ng-template #tagPlaceHolder let-selectedList>
-        and {{ selectedList.length }} more selected
-      </ng-template>
-    </div>
+            </ng-container>
+            <ng-template #catList let-item="item">
+              <nz-option-group [nzLabel]="item.title">
+                <nz-option
+                  [nzValue]="item.categoryId"
+                  [nzLabel]="item.title"
+                ></nz-option>
+                <nz-option
+                  *ngFor="let item of item.children"
+                  [nzValue]="item.categoryId"
+                  [nzLabel]="item.title"
+                >
+                  <ng-container
+                    *ngFor="let item of item.children"
+                    [ngTemplateOutlet]="catList"
+                    [ngTemplateOutletContext]="{ item: item }"
+                  ></ng-container>
+                </nz-option>
+              </nz-option-group>
+            </ng-template>
+          </ng-container>
 
-    <div class="form-group form-group-lang">
-      <div class="mb-4">
-        <label class="w-100 col-form-label">
-          <b>Titel</b>
-        </label>
+        </nz-select>
+        <ng-template #tagPlaceHolder let-selectedList>
+          and {{ selectedList.length }} more selected
+        </ng-template>
+        <label mdbLabel class="form-label px-1" for="lang"
+        >Kategorien</label
+        >
+      </mdb-form-control>
+    </div>
+    <div class="form-group form-group-lang mb-3">
+      <mdb-form-control>
+        <input
+          mdbInput
+          type="text"
+          id="cat-title"
+          class="form-control"
+          [(ngModel)]="
+            service.label['title'][
+              service.label['title']['cLang'] || defaultLanguageId
+            ]
+          "
+        />
+        <label mdbLabel class="form-label" for="cat-title">Title</label>
         <div class="lang_chooser_pills">
           <nav class="nav nav-pills nav-fill fadeInDown">
             <a
-              *ngFor="let l of [{ languageId: 1, name: 'de' }]"
+              *ngFor="
+                let l of [
+                  { languageId: 1, name: 'de' },
+                  { languageId: 2, name: 'en' },
+                  { languageId: 2, name: 'en' },
+                  { languageId: 2, name: 'en' },
+                  { languageId: 2, name: 'en' },
+                  { languageId: 2, name: 'en' }
+                ]
+              "
               class="nav-item nav-link animated fadeInDown {{
                 (service.label['title']['cLang'] || defaultLanguageId) ==
-                l.languageId  ? 'active'    : ''
+                l.languageId
+                  ? 'active'
+                  : ''
               }}"
               (click)="service.changeLang(l.languageId, 'title')"
             >
@@ -80,22 +107,6 @@
             </a>
           </nav>
         </div>
-      </div>
-
-      <mdb-form-control>
-        <input
-          mdbInput
-          type="text"
-          id="service-title"
-          class="form-control"
-          autocomplete="new-password"
-          [(ngModel)]="
-            service.label['title'][
-              service.label['title']['cLang'] || defaultLanguageId
-            ]
-          "
-        />
-        <label mdbLabel class="form-label" for="service-title">Title</label>
       </mdb-form-control>
     </div>
   </div>

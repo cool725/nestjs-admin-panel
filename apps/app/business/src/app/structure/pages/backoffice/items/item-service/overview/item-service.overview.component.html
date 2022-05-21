@@ -194,13 +194,25 @@
         </div>
       </div>
     </div>
+
   </div>
 </div>
 
 <!-- Modal -->
 
 <!-- Modal -->
-<lib-modal-ui *ngIf="api.item$ | async as service">
+<lib-modal-ui *ngIf="api.item$ | async as service"
+              [style]="{
+    width: '400px',
+    height: 'max-content',
+    right: '0px',
+    bottom: '0px',
+    left: '0px',
+    top: '0px',
+     margin: 'auto',
+    display: 'block'
+  }"
+>
   <movit-item-service-form
     (onSave)="getServices()"
     (onCancel)="getServices()"

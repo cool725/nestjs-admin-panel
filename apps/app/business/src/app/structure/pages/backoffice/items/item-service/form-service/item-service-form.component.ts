@@ -21,6 +21,7 @@ export class ItemServiceFormComponent extends FormController<ItemService> {
     if (this.getId()) {
       this.getService();
     }
+
   }
 
   getService(id = this.getId()) {

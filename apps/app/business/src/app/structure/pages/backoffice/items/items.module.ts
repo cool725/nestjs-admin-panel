@@ -21,6 +21,20 @@ const routes: Routes = [
             (m) => m.ItemServiceModule
           ),
       },
+      {
+        path: 'collection',
+        loadChildren: () =>
+          import('./item-collection/item-collection.module').then(
+            (m) => m.ItemCollectionModule
+          ),
+      },
+      {
+        path: 'voucher',
+        loadChildren: () =>
+          import('./item-voucher/item-voucher.module').then(
+            (m) => m.ItemVoucherModule
+          ),
+      },
     ],
   },
 ];

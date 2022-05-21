@@ -88,20 +88,19 @@
 
           <ng-container *ngIf="profileType === 'C'">
             <div class="col-12 col-md-9 row">
-              <div class="col-12 col-md-12">
-                <label>Title</label>
-                <div class="input-group mb-3">
-                  <span class="input-group-text" id="profiles-title">@</span>
+              <div class="col-12 col-md-12 mb-3">
+                <mdb-form-control class="mt-2">
                   <input
-                    formControlName="title"
+                    mdbInput
                     type="text"
+                    id="profiles-title"
+                    formControlName="title"
                     class="form-control"
-                    autocomplete="new-password"
-                    placeholder="Title"
-                    aria-label="title"
-                    aria-describedby="profiles-title"
                   />
-                </div>
+                  <label mdbLabel class="form-label" for="profiles-title">
+                    {{ 'title' | translate }}
+                  </label>
+                </mdb-form-control>
               </div>
             </div>
           </ng-container>
@@ -339,22 +338,19 @@
 
                     <ng-container *ngIf="profileType === 'C'">
                       <div class="col-12 row">
-                        <div class="col-12 col-md-12">
-                          <label>Title</label>
-                          <div class="input-group mb-3">
-                            <span class="input-group-text" id="profiles-title"
-                              >@</span
-                            >
+                        <div class="col-12 col-md-12 mb-3">
+                          <mdb-form-control class="mt-2">
                             <input
-                              formControlName="title"
+                              mdbInput
                               type="text"
+                              id="profiles-title"
+                              formControlName="title"
                               class="form-control"
-                              autocomplete="new-password"
-                              placeholder="Title"
-                              aria-label="title"
-                              aria-describedby="profiles-title"
                             />
-                          </div>
+                            <label mdbLabel class="form-label" for="profiles-title">
+                              {{ 'title' | translate }}
+                            </label>
+                          </mdb-form-control>
                         </div>
                       </div>
                     </ng-container>

@@ -4,8 +4,9 @@ import { EmployeeFormComponent } from './form/form.component';
 import { RouterModule, Routes } from '@angular/router';
 import { EmployeeOverviewComponent } from './overview/employee.component';
 import { EmployeeApi } from './overview/employee.api.service';
-import { TranslateModule } from '@ngx-translate/core';
+
 import { MdbSharedModule } from '@movit/app/ui';
+import { TranslateLocaleModule } from "@movit/app/module";
 
 const routes: Routes = [
   {
@@ -31,7 +32,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    TranslateModule.forChild(),
+    TranslateLocaleModule.forChild(),
     MdbSharedModule,
   ],
   providers: [EmployeeApi],

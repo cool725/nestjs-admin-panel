@@ -45,7 +45,17 @@ export class SaleItemPriceEntity extends Translatable(TenantEntityTranslatable,'
   @Column({ type: 'smallint', nullable: true, unsigned:true })
   crmPriceClassId:number;
 
-  @ManyToOne(() => SaleItemEntity, (item) => item.prices)
+  @Column({ type: 'smallint', nullable: true, default: 0 })
+  duration: number;
+  //bufferTimeStart:Date;
+  //bufferTimeEnd:Date;
+
+  @Column({ type: 'json', nullable: true })
+  options: number;
+
+  @ManyToOne(() => SaleItemEntity, (item) => item.prices, {
+        onDelete: 'CASCADE',
+  })
   @JoinColumn([
     { name: 'companyId', referencedColumnName: 'companyId' },
     { name: 'type', referencedColumnName: 'type' },

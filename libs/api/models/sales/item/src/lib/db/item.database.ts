@@ -3,7 +3,8 @@ import * as path from 'path';
 import { SaleItemEntity } from '../entities/sale.entity.item';
 import { SaleItemCategoryEntity } from '../entities/sale.entity.item-category';
 import { SaleItemCategoryLinkEntity } from '../entities/sale.entity.item-category.link';
-import { SaleItemPriceEntity } from '../entities/sale.entity.item.prices';
+import { SaleItemPriceEntity } from '../entities/sale.entity.item.price';
+import {SaleItemEmployeeEntity} from "../entities/sale.entity.item.employee";
 
 const DBItemOptions = <ConnectionOptions>{
   type: process.env.DB_TYPE,
@@ -24,6 +25,7 @@ const DBItemOptions = <ConnectionOptions>{
     SaleItemCategoryEntity,
     SaleItemCategoryLinkEntity,
     SaleItemPriceEntity,
+    SaleItemEmployeeEntity
   ],
 };
 

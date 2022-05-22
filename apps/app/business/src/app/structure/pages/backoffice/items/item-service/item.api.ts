@@ -17,7 +17,9 @@ export class ItemServiceAPI<T, C> {
   readonly categories$ = new BehaviorSubject<ITableOptions<C>>(<any>{
     data: [],
   });
+
   basePath: string = environment.api.url + '/' + 'backoffice/sales/items';
+
   constructor(private http: HttpClient) {}
 
   private getPath(
@@ -53,6 +55,9 @@ export class ItemServiceAPI<T, C> {
   deleteServiceItem(itemId: number, options: any = {}) {
     return this.http.delete(this.getPath('service', itemId), options);
   }
+  deleteServicePriceItem(itemId: number,priceId:number, options: any = {}) {
+    return this.http.delete(this.getPath('variant', itemId+'-'+priceId), options);
+  }
 
   //
 
@@ -80,5 +85,9 @@ export class ItemServiceAPI<T, C> {
       this.getPath('service', 'category', categoryId),
       options
     );
+  }
+
+  getEmployees(searchTerm:string = ''){
+    return this.http.get(this.basePath + ('/employees?search='+searchTerm));
   }
 }

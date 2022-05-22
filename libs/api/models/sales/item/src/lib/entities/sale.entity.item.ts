@@ -15,9 +15,11 @@ import {
 } from 'typeorm';
 import { SaveOptions } from 'typeorm/repository/SaveOptions';
 import { SaleItemCategoryLinkEntity } from './sale.entity.item-category.link';
-import { SaleItemPriceEntity } from './sale.entity.item.prices';
+import { SaleItemPriceEntity } from './sale.entity.item.price';
 import { TenantEntityTranslatable } from '../../../../../../common/db/db.CoreEntity';
 import Translatable from '../../../../../../common/decorator/decorator.translatable';
+import {SaleItemEmployeeRepository} from "../classes/sales-item.repository";
+import {SaleItemEmployeeEntity} from "./sale.entity.item.employee";
 
 @Entity('sell_item')
 @Index(['companyId'])
@@ -47,10 +49,11 @@ export class SaleItemEntity extends Translatable(TenantEntityTranslatable) {
   @OneToMany(() => SaleItemCategoryLinkEntity, (category) => category.item)
   categories: number[];
 
-  @OneToMany(() => SaleItemPriceEntity, (price) => price.item, {
-    onDelete: 'CASCADE',
-  })
+  @OneToMany(() => SaleItemPriceEntity, (price) => price.item, )
   prices: SaleItemPriceEntity[];
+
+  @OneToMany(() => SaleItemEmployeeEntity, (e) => e.item)
+  employees: SaleItemEmployeeEntity[];
 
   public getId() {
     return this.itemId;

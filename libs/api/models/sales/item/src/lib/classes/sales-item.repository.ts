@@ -2,7 +2,8 @@ import { EntityRepository, Repository } from 'typeorm';
 import { SaleItemEntity } from '../entities/sale.entity.item';
 import { SaleItemCategoryEntity } from '../entities/sale.entity.item-category';
 import { TranslationLabelEntity } from '../../../../../translation/src/entities/translation.label.item';
-import {SaleItemPriceEntity} from "../entities/sale.entity.item.prices";
+import {SaleItemPriceEntity} from "../entities/sale.entity.item.price";
+import {SaleItemEmployeeEntity} from "../entities/sale.entity.item.employee";
 
 @EntityRepository(SaleItemEntity)
 export class SaleItemRepository extends Repository<SaleItemEntity> {
@@ -226,4 +227,8 @@ export class SaleItemPriceRepository extends Repository<SaleItemPriceEntity> {
             return rows;
         });
     }
+}
+@EntityRepository(SaleItemEmployeeEntity)
+export class SaleItemEmployeeRepository extends Repository<SaleItemEmployeeEntity> {
+
 }

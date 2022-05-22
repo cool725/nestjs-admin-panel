@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
-  SaleItemCategoryRepository, SaleItemPriceRepository,
+  SaleItemCategoryRepository, SaleItemEmployeeRepository, SaleItemPriceRepository,
   SaleItemRepository,
 } from './classes/sales-item.repository';
 import { SaleItemCategoryLinkEntity } from './entities/sale.entity.item-category.link';
@@ -15,7 +15,9 @@ export class SalesItemService {
     @InjectRepository(SaleItemPriceRepository)
     private itemPriceRepo: SaleItemPriceRepository,
     @InjectRepository(SaleItemCategoryRepository)
-    private categoryRepo: SaleItemCategoryRepository
+    private categoryRepo: SaleItemCategoryRepository,
+     @InjectRepository(SaleItemEmployeeRepository)
+    private employeeRepo: SaleItemEmployeeRepository
   ) {}
 
   public getServices(businessId, langId, searchOptions) {
@@ -31,6 +33,12 @@ export class SalesItemService {
 
     service.prices = await this.itemPriceRepo.getPricesFromItem(
         businessId, itemId, service.type
+    )
+
+    service.employees = await this.employeeRepo.find(
+        { where: {
+            businessId, type:service.type ,itemId
+          }}
     )
 
     return service
@@ -75,6 +83,7 @@ export class SalesItemService {
     await saleItemEntity.setTranslationFromLabelObj(service.label);
     await this.saveLinkCategories(businessId, itemId, service.categoriesIds);
     await this.savePrices(businessId, itemId, service.prices);
+    await this.saveEmployees(businessId, itemId, service.employees);
 
 
     return saleItemEntity.update();
@@ -185,6 +194,9 @@ export class SalesItemService {
       newPrice.itemId = itemId;
       newPrice.type = price.type;
       newPrice.priceSell = price.priceSell;
+
+      newPrice.duration = price.duration;
+
       await newPrice.setTranslationFromLabelObj(price.label)
 
       await doInsert(newPrice)
@@ -197,5 +209,23 @@ export class SalesItemService {
    }
 
    // endregion
+
+  private async saveEmployees(businessId:number, itemId:number, employees){
+    await this.employeeRepo.delete({
+      companyId:businessId,
+      type:'S',
+      itemId:itemId
+    })
+    for ( const key in employees ) {
+      if(employees[key]){
+        await this.employeeRepo.insert({
+          companyId:  businessId,
+          type:       'S',
+          itemId:     itemId,
+          employeeId: employees[key]
+        })
+      }
+    }
+  }
 
 }

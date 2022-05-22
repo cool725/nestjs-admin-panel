@@ -64,9 +64,9 @@ export class ItemVariant{
 
     itemId:number;
 
-    priceId:number;
-
     type:string;
+
+    crmPriceClassId:number;
 
     readonly label: any = {
         title:{}

@@ -7,7 +7,7 @@ import { ConfigService } from '@nestjs/config';
 import { AuthUserCredentialsDto } from './classes/auth.dto.user.credentials';
 import { AuthRepositoryUser } from './classes/auth.repository.user';
 import { AuthUser } from './entities/auth.entity.user';
-import { Mailer } from '../../../../common/classes/lib/mail/Mail.Send.Class';
+import { Mailer } from '../../../../common/classes';
 
 @Injectable()
 export class AuthService {

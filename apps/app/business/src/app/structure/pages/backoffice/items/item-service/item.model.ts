@@ -12,6 +12,8 @@ export class ItemService extends Item {
 
   override prices:ServiceVariant[] = [];
 
+  employees:any = {}
+
   static create(item: Partial<Item>) {
     const newItem = new ItemService();
 

@@ -49,8 +49,7 @@ export class ProfilesOverviewComponent extends PageController {
   getProfiles() {
     this.onLoadAndSetData(
       this.api.getProfiles(this.profileTable.getFilterValuesAsHttpParams()),
-      this.api.profiles$,
-      (rows: Profile[]) => ({ data: rows })
+      this.api.profiles$
     );
   }
 

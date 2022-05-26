@@ -6,6 +6,7 @@ import {
   ReservationRepository,
 } from './classes/reservation.repository';
 import { doInsert } from '../../../common/db/utils/db.utils';
+import {Pagination} from "../../../common/decorator";
 
 @Injectable()
 export class ReservationService {
@@ -33,6 +34,11 @@ export class ReservationService {
     });
     return reservation;
   }
+
+  async getReservationsPaginated(companyId, paginate:Pagination) {
+    return paginate.apply(this.resHeadRepo,companyId)
+  }
+
 
   async getReservations(companyId, filterValues = {}) {
     const rows = await this.resHeadRepo.find({

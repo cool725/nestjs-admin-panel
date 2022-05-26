@@ -1,15 +1,16 @@
 import { EntityRepository, Repository } from 'typeorm';
-import { BusinessEntity } from '../entities/business.entity';
+import { CompanyEntity } from '../entities/companyEntity';
 import { BusinessUserRolesEntity } from '../entities/business.users.roles.entity.app';
 import { AuthUserEntity } from '@movit/api/auth';
+import {Company} from "@movit/api/business";
 
-@EntityRepository(BusinessEntity)
-export class CompanyRepository extends Repository<BusinessEntity> {
+@EntityRepository(CompanyEntity)
+export class CompanyRepository extends Repository<CompanyEntity> {
   constructor() {
     super();
   }
 
-  async listBusiness(user, options): Promise<BusinessEntity[]> {
+  async listAllowedBusinessFromUser(user, options): Promise<CompanyEntity[]> {
     const { userId, authCreatedAt } = user;
 
     const userBusinesses = await BusinessUserRolesEntity.find({
@@ -21,14 +22,14 @@ export class CompanyRepository extends Repository<BusinessEntity> {
       },
     });
 
-    return userBusinesses ? userBusinesses.map((b) => b.business) : [];
+    return userBusinesses ? userBusinesses.map((b) => b.company) : [];
   }
 
   // get company
   async getCompanyByUuIdWithVerification(
     user,
     uuId: string
-  ): Promise<BusinessEntity | null> {
+  ): Promise<CompanyEntity | null> {
     const { userId, authCreatedAt } = user;
     const roles = await BusinessUserRolesEntity.find({
       where: {
@@ -38,8 +39,8 @@ export class CompanyRepository extends Repository<BusinessEntity> {
         },
       },
     });
-    const role = roles.find((roles) => roles.business.businessUuId == uuId);
-    return role ? role.business : null;
+    const role = roles.find((roles) => roles.company.businessUuId == uuId);
+    return role ? role.company : null;
   }
 
   async getCompanyByInvitationCode(
@@ -57,22 +58,22 @@ export class CompanyRepository extends Repository<BusinessEntity> {
         user: user,
       },
     });
-    return userBusinesses.map((v) => v.business);
+    return userBusinesses.map((v) => v.company);
   }
 
   async getLinkedBusinessList(user) {
     return [];
   }
 
-  async getBusinessRoles(business: BusinessEntity) {
+  async getBusinessRoles(company: Company) {
     const userBusinesses = await BusinessUserRolesEntity.find({
       where: {
-        business: business,
+        business: company,
       },
     });
     return userBusinesses;
   }
-  async getBusinessUsers(business: BusinessEntity) {
+  async getBusinessUsers(business: CompanyEntity) {
     const userBusinesses = await BusinessUserRolesEntity.find({
       where: {
         business: business,
@@ -82,7 +83,7 @@ export class CompanyRepository extends Repository<BusinessEntity> {
     return userBusinesses.map((roles) => roles.user.toJSON());
   }
   async getBusinessUser(
-    business: BusinessEntity,
+    business: CompanyEntity,
     userId
   ): Promise<AuthUserEntity | null> {
     const userBusinesses = await BusinessUserRolesEntity.findOne({
@@ -95,17 +96,17 @@ export class CompanyRepository extends Repository<BusinessEntity> {
     return userBusinesses ? userBusinesses.user : null;
   }
 
-  async addUserToBusinessRole(business: BusinessEntity, authUser: AuthUserEntity) {
+  async addUserToBusinessRole(business: CompanyEntity, authUser: AuthUserEntity) {
     const userRoleBusiness: BusinessUserRolesEntity =
       await BusinessUserRolesEntity.create();
     userRoleBusiness.roles = 'user';
     userRoleBusiness.user = authUser;
     userRoleBusiness.userCreatedAt = authUser.authCreatedAt;
-    userRoleBusiness.business = business;
+    userRoleBusiness.company = business;
     return userRoleBusiness.save();
   }
 
-  async updateBusinessUser(business: BusinessEntity, user) {
+  async updateBusinessUser(business: CompanyEntity, user) {
     const userBusinesses = await BusinessUserRolesEntity.findOne({
       where: {
         business: business,
@@ -121,5 +122,5 @@ export class CompanyRepository extends Repository<BusinessEntity> {
     return { userId: userBusinesses.user.userId };
   }
 
-  deleteBusinessUser(business: BusinessEntity, uuId) {}
+  deleteBusinessUser(business: CompanyEntity, uuId) {}
 }

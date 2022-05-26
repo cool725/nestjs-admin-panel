@@ -2,11 +2,11 @@
   "projects": {
     "api-auth": {
       "type": "library",
-      "root": "libs/api/auth",
+      "root": "libs/api/domain/auth",
       "entryFile": "index",
-      "sourceRoot": "libs/api/auth/src",
+      "sourceRoot": "libs/api/domain/auth/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/api/auth/tsconfig.lib.json"
+        "tsConfigPath": "libs/api/domain/auth/tsconfig.lib.json"
       }
     }
   },

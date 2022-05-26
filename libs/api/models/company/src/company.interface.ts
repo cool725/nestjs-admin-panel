@@ -51,5 +51,5 @@ export interface Company {
 
     getId():number
 
-    toSimpleJson():Partial<Company>
+    toSimpleJson():Record<string, this>
 }

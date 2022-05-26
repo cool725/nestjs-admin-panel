@@ -83,7 +83,7 @@ export class ItemVariant{
 
     priceClassId:number;
 
-    images = [];
+    images:any[] = [];
 
     static create(variant?: Partial<ItemVariant>) {
         return Object.assign(new ItemVariant(), variant || {});

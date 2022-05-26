@@ -8,7 +8,7 @@ import {
 } from './classes/profiles.repository';
 import { Pagination } from '../../../common/decorator';
 import { ProfileEntity } from './entities/profile.entity';
-import { IsNull } from 'typeorm';
+import {IsNull, Like} from 'typeorm';
 import { doInsert } from '../../../common/db/utils/db.utils';
 import {ProfileSegmentEntity} from "./entities/profile.segment.entity";
 
@@ -20,15 +20,11 @@ export class ProfilesService {
   ) {}
 
   public getProfiles(companyId: number, pagination: Pagination) {
-    return this.profileRepo.find({
-      where: { companyId },
-      order: pagination.sort.reduce(
-        (order, sort) => ({ ...order, [sort.field]: sort.by }),
-        {}
-      ),
-      //  skip: pagination.skip,
-      take: pagination.limit,
-    });
+    return pagination.apply(this.profileRepo, companyId);
+  }
+
+  public getProfilesPaginated(companyId: number, pagination: Pagination) {
+    return pagination.apply(this.profileRepo, companyId);
   }
 
   public async getProfile(
@@ -107,15 +103,7 @@ export class ProfilesSegmentService {
     private segmentRepo: ProfilesSegmentRepository
   ) {}
   public getSegments(companyId: number, pagination: Pagination) {
-    return this.segmentRepo.find({
-      where: { companyId },
-      order: pagination.sort.reduce(
-        (order, sort) => ({ ...order, [sort.field]: sort.by }),
-        {}
-      ),
-      skip: pagination.skip,
-      take: pagination.limit,
-    });
+    return pagination.apply(this.segmentRepo,companyId);
   }
 
   public getSegment(companyId: number, segmentId: number) {

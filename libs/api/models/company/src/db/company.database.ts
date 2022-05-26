@@ -1,5 +1,5 @@
 import { ConnectionOptions } from 'typeorm';
-import { BusinessEntity } from '../entities/business.entity';
+import { CompanyEntity } from '../entities/companyEntity';
 import { BusinessUserRolesEntity } from '../entities/business.users.roles.entity.app';
 import { InitialBusinessSeeds } from './seeds/business.seeds';
 import { doSeed } from '../../../../common/db/seed';
@@ -16,7 +16,7 @@ const BusinessDBOptions = <ConnectionOptions>{
   logging: false,
   migrationsRun: true,
   logger: 'file',
-  entities: [BusinessEntity, BusinessUserRolesEntity],
+  entities: [CompanyEntity, BusinessUserRolesEntity],
 };
 
 doSeed([InitialBusinessSeeds], BusinessDBOptions, [AuthUserEntity, AuthLogin]);

@@ -63,7 +63,7 @@
         </thead>
         <tbody *ngIf="profileTable.data$ | async as tableData">
           <ng-container *ngFor="let profile of tableData.data">
-            <tr *ngIf="profileTable.canShow(profile)" class="entry-row">
+            <tr class="entry-row">
               <ng-container *ngFor="let key of profileTable.eachKeyField">
                 <td>{{ profile[key] }}</td>
               </ng-container>

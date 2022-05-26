@@ -26,8 +26,8 @@ export class ProfilesAPI<Profile> {
     return this.http.get(this.getPath('profile', profileId));
   }
 
-  getProfiles(filter: HttpParams): Observable<Profile[]> {
-    return this.http.get<Profile[]>(this.getPath('profile'), {
+  getProfiles(filter: HttpParams): Observable<{data:Profile[]}> {
+    return this.http.get<{data:Profile[]}>(this.getPath('profile'), {
       params: filter,
     });
   }

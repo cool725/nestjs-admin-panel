@@ -5,6 +5,12 @@ import { ITableBaseFilter, Table } from '@movit/app/common';
 import { AgendaFormComponent } from '../form/agenda-form.component';
 import { Debounce } from '../../../../../../../../../../libs/app/common/decorators/app.decorator.debounce';
 
+interface IResTableBaseFilter extends ITableBaseFilter{
+  customSearch?: {
+    title?: string
+  }
+}
+
 @Component({
   selector: 'movit-agenda',
   templateUrl: './agenda-list.component.html',
@@ -12,11 +18,12 @@ import { Debounce } from '../../../../../../../../../../libs/app/common/decorato
   providers: [],
 })
 export class AgendaListComponent extends PageController {
-  public resTable: Table<any, ITableBaseFilter> = new Table<
-    any,
-    ITableBaseFilter
+  public resTable: Table<any, IResTableBaseFilter> = new Table<
+    any, ITableBaseFilter
   >(this.api.reservations$, {
-    searchValue: '',
+    customSearch: {
+      title:''
+    },
   });
 
   constructor(override injector: Injector, protected api: AgendaAPI<any>) {

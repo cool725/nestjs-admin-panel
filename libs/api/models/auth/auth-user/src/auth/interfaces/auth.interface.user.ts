@@ -31,7 +31,7 @@ export interface AuthUser extends User {
 
   setEmail(mail:string):this
 
-  toJSON(): Record<string, any>
+  toJSON(): Record<string, AuthUser>
 
   initialise(data: Partial<this>, secure:boolean):this
 }

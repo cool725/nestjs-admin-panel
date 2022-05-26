@@ -15,8 +15,9 @@ const requirements = {
     '@ngx',
     'angular-cacheable',
     'ng-zorro-antd',
+    'mdb-angular-ui-kit',
   ],
-  mobile: ['ionic', 'capacitor'],
+  mobile: ['@ionic', '@capacitor','@nxtend'],
   api: [
     'cookie-session',
     'cookie-parser',
@@ -31,6 +32,9 @@ const requirements = {
     'tslib',
     'typeorm',
     'bexio',
+    'class-transformer',
+    'class-validator',
+    'cookie-parser',
   ],
 };
 
@@ -54,11 +58,9 @@ if (mode === 'api') {
   }
   json.devDependencies = result;
 
-  fs.writeFileSync(
-    path.resolve(__dirname, 'package.json'),
-    JSON.stringify(json),
-    'utf8'
-  );
+  //fs.unlinkSync(path.resolve(__dirname, 'package.json'));
+  fs.writeFileSync(path.resolve(__dirname, 'package.json'), JSON.stringify(json), 'utf8');
+
 } else if (mode === 'app') {
   let result = {};
   let exclude = [...requirements.api, requirements.mobile].toString();
@@ -79,4 +81,5 @@ if (mode === 'api') {
 
   fs.writeFileSync('package.json', JSON.stringify(json), 'utf8');
 }
-console.log('done');
+
+console.log('slicer:done', path.resolve(__dirname, 'package.json'));

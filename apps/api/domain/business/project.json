@@ -1,0 +1,52 @@
+{
+  "sourceRoot": "apps/api/domain/business/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/api/business",
+        "main": "apps/api/domain/business/src/main.ts",
+        "tsConfig": "apps/api/domain/business/tsconfig.app.json",
+        "assets": ["apps/api/domain/business/src/assets", "apps/api/domain/business/src/.env"],
+        "generatePackageJson": true
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/api/domain/business/src/environments/environment.ts",
+              "with": "apps/api/domain/business/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "api-business:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/api/domain/business/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/api/business"],
+      "options": {
+        "jestConfig": "apps/api/domain/business/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -34,8 +34,9 @@ export interface ITableOptions<T> extends IPageInfo {
 
 export interface ITableBaseFilter {
   page?: number;
-  searchValue: string;
+  searchValue?: string;
   keys?: string[];
+  customSearch?: { [key: string]: string; }
 }
 
 export class Table<Type, Filter extends ITableBaseFilter> {
@@ -55,7 +56,7 @@ export class Table<Type, Filter extends ITableBaseFilter> {
     obj: any,
     keys: string[] = this.filterValues.keys || []
   ): boolean {
-    const value: string = this.filterValues.searchValue;
+    const value: string = this.filterValues.searchValue || '';
     if (!value) return true;
 
     if (keys.length == 0) {
@@ -108,11 +109,36 @@ export class Table<Type, Filter extends ITableBaseFilter> {
     return this;
   }
 
+  private getSearchTerms():string {
+    if(Object.keys(this.filterValues.customSearch || {})?.length){
+      this.filterValues.searchValue = '';
+      for(const key in this.filterValues.customSearch){
+        if(this.filterValues.customSearch[key]) this.filterValues.searchValue += `${key}:${this.filterValues.customSearch[key]?.toLowerCase().trim()}`;
+      }
+    }else if(this.filterValues.keys?.length) {
+      const result = []
+      for(const key of this.filterValues.keys){
+        result.push(`${key}:${this.filterValues.searchValue?.toLowerCase().trim()}`);
+      }
+      return  result.join(',')
+    }
+
+    return this.filterValues.searchValue || '';
+  }
+
   public getFilterValuesAsHttpParams() {
     let queryParams = new HttpParams();
+    const searchTerm = this.getSearchTerms();
     for (const key in this.filterValues) {
-      if (key && !key.includes('_'))
-        queryParams = queryParams.append(key, <any>this.filterValues[key]);
+      if (key
+          && !key.includes('customSearch')
+          && !key.includes('_')){
+        queryParams =
+            key === 'searchValue' ?
+              queryParams.append(key, searchTerm) :
+               queryParams.append(key, <any>this.filterValues[key]);
+      }
+
     }
     return queryParams;
   }

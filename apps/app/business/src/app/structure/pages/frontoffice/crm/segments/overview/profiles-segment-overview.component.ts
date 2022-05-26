@@ -41,10 +41,7 @@ export class ProfilesSegmentOverviewComponent extends PageController {
   getSegments() {
     this.onLoadAndSetData(
       this.api.getSegments(),
-      this.api.profileSegments$,
-      (rows: any) => ({
-        data: rows,
-      })
+      this.api.profileSegments$
     );
   }
 

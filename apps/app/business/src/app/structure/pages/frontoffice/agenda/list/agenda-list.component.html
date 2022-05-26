@@ -16,11 +16,8 @@
               <mdb-form-control>
                 <i class="fa fa-search trailing"></i>
                 <input
-                  (keyup)="
-                    resTable.filterValues.searchValue = $event.target['value'];
-                    getReservations()
-                  "
-                  [value]="resTable.filterValues.searchValue"
+                  (keyup)="resTable.filterValues.customSearch.title = $event.target['value'];getReservations()"
+                  [value]="resTable.filterValues.customSearch?.title"
                   mdbInput
                   type="text"
                   id="search"

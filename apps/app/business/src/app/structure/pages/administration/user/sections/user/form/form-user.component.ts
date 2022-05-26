@@ -53,7 +53,7 @@ export class FormUserComponent<T> extends FormController<User> {
   }
 
   getUser(userId: any = this.getId('userId')) {
-    if (!userId) return;
+    if (!userId) return of([]);
     return this.userAPI
       .getUser(userId)
       .pipe(tap((user) => this.user$.next(User.create(user))))

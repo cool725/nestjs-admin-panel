@@ -4,7 +4,7 @@ import { AppsEntity } from '../../entities/start.entity.app';
 import { AuthUserEntity } from '@movit/api/auth';
 import { AppsUserRightEntity } from '../../entities/start.entity.user.rights';
 import { AppsRoleEntity } from '../../entities/start.entity.role.app';
-import { BusinessEntity } from '../../../../../company/src/entities/business.entity';
+import { CompanyEntity } from '../../../../../company/src/entities/companyEntity';
 
 export class InitialAppRoleSeeds extends SeedHelper {
   migrationName: string = this.constructor.name;
@@ -19,8 +19,8 @@ export class InitialAppRoleSeeds extends SeedHelper {
     });
   }
 
-  getDefaultCompany(): Promise<BusinessEntity> {
-    return BusinessEntity.findOne({
+  getDefaultCompany(): Promise<CompanyEntity> {
+    return CompanyEntity.findOne({
       where: {
         titleFull: 'MovIT:Demo',
       },

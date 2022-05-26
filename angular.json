@@ -1,8 +1,8 @@
 {
   "version": 2,
   "projects": {
-    "api-auth": "apps/api/auth",
-    "api-business": "apps/api/business",
+    "api-auth": "apps/api/domain/auth",
+    "api-business": "apps/api/domain/business",
     "app-auth": "apps/app/auth",
     "app-business": "apps/app/business",
     "lib-api-auth": "libs/api/models/auth/auth-user",

@@ -1,6 +1,6 @@
 import { Connection } from 'typeorm';
 import { SeedHelper } from '../../../../../common/db/seed';
-import { BusinessEntity } from '../../entities/business.entity';
+import { CompanyEntity } from '../../entities/companyEntity';
 import { AuthUserEntity } from '@movit/api/auth';
 import { BusinessUserRolesEntity } from '../../entities/business.users.roles.entity.app';
 
@@ -22,10 +22,10 @@ export class InitialBusinessSeeds extends SeedHelper {
     return new Promise<boolean>(async (resolve) => {
       if (!process.env.APP_DEFAULT_USER) return resolve(false);
 
-      if (await BusinessEntity.findOne({ where: { titleFull: 'MovIT:Demo' } }))
+      if (await CompanyEntity.findOne({ where: { titleFull: 'MovIT:Demo' } }))
         return resolve(false);
 
-      const demo = BusinessEntity.create();
+      const demo = CompanyEntity.create();
       demo.titleFull = 'MovIT:Demo';
       demo.taxIncomeId = 0;
       demo.taxExpenseId = 0;
@@ -34,7 +34,7 @@ export class InitialBusinessSeeds extends SeedHelper {
 
       const authUser = await this.getDefaultUser();
       if (authUser && authUser.email) {
-        await BusinessEntity.query(
+        await CompanyEntity.query(
           `
            insert into ${
              BusinessUserRolesEntity.getRepository().metadata.tableName

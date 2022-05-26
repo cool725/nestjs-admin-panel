@@ -9,7 +9,7 @@ import {
   Unique,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
-import { BusinessEntity } from './business.entity';
+import { CompanyEntity } from './companyEntity';
 import { AuthUserEntity } from '@movit/api/auth';
 
 @Entity('com_user_roles')
@@ -21,12 +21,13 @@ export class BusinessUserRolesEntity extends BaseEntity {
   @Column({ type: 'varchar', nullable: true, default: '', length: 20 })
   roles: string;
 
-  @ManyToOne(() => BusinessEntity, (business) => business.roles, {
+  @ManyToOne(() => CompanyEntity, (business) => business.roles, {
     onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
     eager: true,
   })
   @JoinColumn({ name: 'companyId' })
-  business: BusinessEntity;
+  company: CompanyEntity;
 
   @ManyToOne(() => AuthUserEntity, {
     onDelete: 'CASCADE',

@@ -65,7 +65,14 @@
           <ng-container *ngFor="let profile of tableData.data">
             <tr class="entry-row">
               <ng-container *ngFor="let key of profileTable.eachKeyField">
-                <td>{{ profile[key] }}</td>
+
+                <ng-container *ngIf="key === 'birthDay'">
+                  <td>{{ profile[key] | date:'dd.MM.yy' }}</td>
+                </ng-container>
+                <ng-container *ngIf="key !== 'birthDay'">
+                  <td>{{ profile[key] }}</td>
+                </ng-container>
+
               </ng-container>
               <td class="text-right ps-0 pe-2" width="80px" align="right">
                 <button
@@ -91,4 +98,6 @@
       </table>
     </div>
   </div>
+  <br>
+  <br>
 </div>

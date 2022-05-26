@@ -1,7 +1,7 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { FormController } from '../../../../form.controller';
 import { ProfilesAPI } from '../packages/profile-api.service';
-import { FormControl, Validators } from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { Confirmable } from '../../../../../../../../../../../libs/app/common/decorators';
 import { Profile } from '../overview/profiles-overview.component';
 import { BehaviorSubject, Subject } from 'rxjs';
@@ -33,6 +33,17 @@ export class ProfilesFormComponent extends FormController<Profile> {
     segments: new FormControl([], []),
     priceClass: new FormControl('', []),
     source: new FormControl('', []),
+
+    address: new FormGroup({
+      street:new FormControl('', [Validators.maxLength(71)]),
+      city:new FormControl('', [Validators.maxLength(30)]),
+      country:new FormControl('', [Validators.maxLength(25)]),
+      zip:new FormControl('', [Validators.min(1), Validators.max(9999999)]),
+    }),
+
+    job: new FormControl('', []),
+    civilState: new FormControl('', []),
+
   });
 
   segments$ = new BehaviorSubject<any[]>([]);

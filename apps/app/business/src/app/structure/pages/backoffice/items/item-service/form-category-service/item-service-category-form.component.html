@@ -1,5 +1,8 @@
 <div *ngIf="api.category$ | async as category">
   <div class="modal-header">
+    <span class="text-white">
+      <small>Kategorie</small>
+    </span>
     <button
       type="button"
       class="btn-close"
@@ -15,7 +18,7 @@
     </ul>
   </div>
   <div class="modal-body">
-    <div class="form-group form-group-lang mb-2">
+    <div class="form-group form-group-lang mb-3">
       <mdb-form-control>
         <input
           mdbInput
@@ -55,65 +58,6 @@
           </nav>
         </div>
       </mdb-form-control>
-    </div>
-
-    <div class="row mt-4">
-      <div class="col-3">
-        <div class="d-flex align-items-center">
-          <label class="me-2">Farbe</label>
-          <div class="input-group">
-            <input
-              type="color"
-              [(ngModel)]="category.color"
-              class="form-control p-1"
-              placeholder="Color"
-              aria-label="color"
-              aria-describedby="profiles-sagment-color"
-            />
-          </div>
-        </div>
-      </div>
-
-      <!-- <div class="col-12 col-md-2">
-              <div class="form-group">
-                <label class="w-100 col-form-label full">
-                  <b>Farbe</b>
-                </label>
-                <input [(ngModel)]="category.color" class="form-control" type="color" />
-              </div>
-            </div> -->
-
-      <div class="col-9 ps-0">
-        <div class="form-group">
-          <mdb-form-control class="mdb-multiselect">
-            <nz-select
-              mdbInput
-              mdbNzSelect
-              id="cat-enabled"
-              [(ngModel)]="category.enabled"
-              class="form-control"
-            >
-              <nz-option [nzValue]="1" nzLabel="Ja">Ja</nz-option>
-              <nz-option [nzValue]="0" nzLabel="Nein">Ja</nz-option>
-            </nz-select>
-            <label mdbLabel class="form-label" for="cat-enabled"
-              >Aktiviert</label
-            >
-          </mdb-form-control>
-        </div>
-      </div>
-
-      <!-- div class="col-12 col-md-10">
-              <div class="form-group">
-                <label class="w-100 col-form-label">
-                  <b>Aktiviert</b>
-                </label>
-                <select [(ngModel)]="category.enabled" class="form-control">
-                  <option value="1">Ja</option>
-                  <option value="0">Nein</option>
-                </select>
-              </div>
-            </div>< -->
     </div>
 
     <div class="form-group mt-4">
@@ -156,6 +100,40 @@
       <ng-template #tagPlaceHolder let-selectedList>
         and {{ selectedList.length }} more selected
       </ng-template>
+    </div>
+
+    <div class="form-group mt-4">
+      <mdb-form-control class="mdb-multiselect">
+        <nz-select
+                mdbInput
+                mdbNzSelect
+                id="cat-enabled"
+                [(ngModel)]="category.enabled"
+                class="form-control"
+        >
+          <nz-option [nzValue]="1" nzLabel="Ja">Ja</nz-option>
+          <nz-option [nzValue]="0" nzLabel="Nein">Ja</nz-option>
+        </nz-select>
+        <label mdbLabel class="form-label" for="cat-enabled"
+        >Aktiviert</label
+        >
+      </mdb-form-control>
+    </div>
+
+    <div class="form-group mt-4">
+       <div class="d-flex">
+         <div style="max-width: 50px" class="input-group">
+           <input
+                   type="color"
+                   [(ngModel)]="category.color"
+                   class="form-control p-1"
+                   placeholder="Color"
+                   aria-label="color"
+                   aria-describedby="profiles-sagment-color"
+           />
+         </div>
+         <label class="ms-3">Farbe</label>
+       </div>
     </div>
   </div>
   <div class="modal-footer">

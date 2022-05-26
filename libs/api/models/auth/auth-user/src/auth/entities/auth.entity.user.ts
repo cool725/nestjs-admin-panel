@@ -10,9 +10,10 @@ import {
 import * as bcrypt from 'bcryptjs';
 import { AuthLogin } from './auth.entity.login';
 import { Exclude, instanceToPlain } from 'class-transformer';
+import { AuthUser } from "../interfaces/auth.interface.user";
 
 @Entity('auth_user')
-export class AuthUser extends BaseEntity {
+export class AuthUserEntity extends BaseEntity implements AuthUser {
   @PrimaryGeneratedColumn('uuid')
   userId: string;
 
@@ -105,15 +106,15 @@ export class AuthUser extends BaseEntity {
     return this;
   }
 
-  public toJSON() {
-    return instanceToPlain(this);
-  }
-
-  initialise(data: Partial<AuthUser>, secure = false) {
+  initialise(data: Partial<AuthUserEntity>, secure = false) {
     if (!secure) {
       delete data.password;
       Object.assign(this, data);
     }
     return this;
+  }
+
+  public toJSON() {
+    return instanceToPlain(this);
   }
 }

@@ -5,3 +5,4 @@ export * from './auth/entities/auth.entity.login';
 export * from './auth/entities/auth.entity.user';
 export * from './auth/auth.decorator.user';
 export * from './auth/guards/auth.guards.company';
+export * from './auth/interfaces/auth.interface.user';

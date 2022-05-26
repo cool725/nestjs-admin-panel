@@ -10,13 +10,13 @@ import {
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { BusinessEntity } from './business.entity';
-import { AuthUser } from '@movit/api/auth';
+import { AuthUserEntity } from '@movit/api/auth';
 
 @Entity('com_user_roles')
 export class BusinessUserRolesEntity extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
   @Exclude()
-  _id: number;
+  id: number;
 
   @Column({ type: 'varchar', nullable: true, default: '', length: 20 })
   roles: string;
@@ -25,14 +25,14 @@ export class BusinessUserRolesEntity extends BaseEntity {
     onDelete: 'CASCADE',
     eager: true,
   })
-  @JoinColumn({ name: 'businessId' })
+  @JoinColumn({ name: 'companyId' })
   business: BusinessEntity;
 
-  @ManyToOne(() => AuthUser, {
+  @ManyToOne(() => AuthUserEntity, {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'userId' })
-  user: AuthUser;
+  user: AuthUserEntity;
 
   @Column({ type: 'smallint', precision: 5, nullable: false })
   @Index()

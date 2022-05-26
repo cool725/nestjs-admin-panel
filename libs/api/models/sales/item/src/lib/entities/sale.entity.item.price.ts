@@ -13,12 +13,12 @@ import {
 } from 'typeorm';
 import { SaleItemEntity } from './sale.entity.item';
 import Translatable from "../../../../../../common/decorator/decorator.translatable";
-import {TenantEntityTranslatable} from "../../../../../../common/db/db.CoreEntity";
+import {TenantCompanyTranslatableEntity} from "../../../../../company/src/tentant/company.tentant";
 
 @Entity('sell_item_price')
 @Index(['companyId', 'type'])
 @Unique(['companyId', 'type', 'itemId', 'priceId'])
-export class SaleItemPriceEntity extends Translatable(TenantEntityTranslatable,'sip') {
+export class SaleItemPriceEntity extends Translatable(TenantCompanyTranslatableEntity,'sip') {
   self = SaleItemPriceEntity;
 
   @PrimaryGeneratedColumn('increment')

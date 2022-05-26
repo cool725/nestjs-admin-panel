@@ -22,27 +22,27 @@ export class ReservationProfilesRepository extends Repository<ReservationProfile
     super();
   }
 
-  linkProfile(businessId: number, reservationId: number, profileId: number) {
+  linkProfile(companyId: number, reservationId: number, profileId: number) {
     const link = this.create();
-    link.companyId = businessId;
+    link.companyId = companyId;
     link.reservationId = reservationId;
     link.profileId = profileId;
     return link.save();
   }
 
   async linkProfiles(
-    businessId: number,
+    companyId: number,
     reservationId: number,
     profileIds: number[]
   ) {
     for (let i = 0; i < profileIds.length; i++) {
-      await this.linkProfile(businessId, reservationId, profileIds[i]);
+      await this.linkProfile(companyId, reservationId, profileIds[i]);
     }
   }
 
-  unlinkProfiles(businessId: number, reservationId: number, profileId: number) {
+  unlinkProfiles(companyId: number, reservationId: number, profileId: number) {
     this.delete({
-      companyId: businessId,
+      companyId: companyId,
       reservationId: reservationId,
       profileId: profileId,
     });

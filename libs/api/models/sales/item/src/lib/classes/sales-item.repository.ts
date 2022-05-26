@@ -7,8 +7,8 @@ import {SaleItemEmployeeEntity} from "../entities/sale.entity.item.employee";
 
 @EntityRepository(SaleItemEntity)
 export class SaleItemRepository extends Repository<SaleItemEntity> {
-  list(businessId: number, languageId: number, options: any = {}) {
-    const params = [businessId];
+  list(companyId: number, languageId: number, options: any = {}) {
+    const params = [companyId];
     let where = '';
 
     if (languageId) {
@@ -92,8 +92,8 @@ export class SaleItemCategoryRepository extends Repository<SaleItemCategoryEntit
     super();
   }
 
-  list(businessId: number, languageId: number, options: any = {}) {
-    const params = [businessId];
+  list(companyId: number, languageId: number, options: any = {}) {
+    const params = [companyId];
     let where = '';
 
     if (languageId) {
@@ -177,18 +177,18 @@ export class SaleItemCategoryRepository extends Repository<SaleItemCategoryEntit
   }
 
   get(
-     categoryId:number, businessId: number, languageId: number, options: any = {}
+     categoryId:number, companyId: number, languageId: number, options: any = {}
   ){
     options.categoryId = categoryId;
-   return this.list(businessId, languageId, options)
+   return this.list(companyId, languageId, options)
        .then(row => row?.data)
   }
 }
 
 @EntityRepository(SaleItemPriceEntity)
 export class SaleItemPriceRepository extends Repository<SaleItemPriceEntity> {
-    getPricesFromItem(businessId: number, itemId: number, type:string, options: { languageId?:number } = {}) {
-        const params = [businessId,itemId];
+    getPricesFromItem(companyId: number, itemId: number, type:string, options: { languageId?:number } = {}) {
+        const params = [companyId , itemId];
         let where = '';
 
         if (options.languageId) {

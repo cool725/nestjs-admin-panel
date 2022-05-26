@@ -18,26 +18,26 @@ export class ReservationService {
     private resProfilesRepo: ReservationProfilesRepository
   ) {}
 
-  async getReservation(businessId, reservationId) {
+  async getReservation(companyId, reservationId) {
     const reservation = await this.resHeadRepo.findOne({
       where: {
-        companyId: businessId,
+        companyId: companyId,
         reservationId,
       },
     });
     reservation.legs = await this.resLegRepo.find({
       where: {
-        companyId: businessId,
+        companyId: companyId,
         reservationId: reservationId,
       },
     });
     return reservation;
   }
 
-  async getReservations(businessId, filterValues = {}) {
+  async getReservations(companyId, filterValues = {}) {
     const rows = await this.resHeadRepo.find({
       where: {
-        companyId: businessId,
+        companyId: companyId,
       },
     });
     return {
@@ -45,9 +45,9 @@ export class ReservationService {
     };
   }
 
-  async saveReservation(businessId, reservation) {
+  async saveReservation(companyId, reservation) {
     const resHead = this.resHeadRepo.create();
-    resHead.companyId = businessId;
+    resHead.companyId = companyId;
     resHead.start = reservation.start;
     resHead.end = reservation.end;
     resHead.title = reservation.title;
@@ -56,17 +56,17 @@ export class ReservationService {
     return resHead.toJSON();
   }
 
-  async updateReservation(businessId, reservationId, reservation: any) {
+  async updateReservation(companyId, reservationId, reservation: any) {
     const resHead = await this.resHeadRepo.findOne({
-      where: { businessId: businessId, reservationId: reservationId },
+      where: { companyId: companyId, reservationId: reservationId },
     });
   }
 
   setReservationState(
-    businessId: number,
+      companyId: number,
     reservationId: number,
     state: number
   ) {}
 
-  deleteReservation(businessId: number, reservationId: number) {}
+  deleteReservation(companyId: number, reservationId: number) {}
 }

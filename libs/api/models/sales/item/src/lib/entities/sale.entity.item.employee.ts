@@ -9,12 +9,12 @@ import {
   Unique,
 } from 'typeorm';
 import { SaleItemEntity } from './sale.entity.item';
-import { TenantEntity } from "../../../../../../common/db/db.CoreEntity";
+import { TenantCompanyEntity } from "@movit/api/business";
 
 @Entity('sell_item_employee')
 @Index(['companyId', 'type'])
 @Unique(['companyId', 'type', 'itemId', 'employeeId'])
-export class SaleItemEmployeeEntity extends TenantEntity {
+export class SaleItemEmployeeEntity extends TenantCompanyEntity {
   self = SaleItemEmployeeEntity;
 
   @PrimaryGeneratedColumn('increment')

@@ -14,14 +14,14 @@ import { Exclude, instanceToPlain } from 'class-transformer';
 
 import { ReservationLegEntity } from './reservation-leg.entity';
 import { ReservationSourceEntity } from './reservation.source.entity';
-import { TenantEntity } from '../../../../common/db/db.CoreEntity';
+import { TenantCompanyEntity } from '../../../company/src/tentant/company.tentant';
 
 @Entity('res_reservation_head')
 @Index(['userId'])
 @Index(['companyId'])
 @Index(['companyId', 'state'])
 @Unique(['companyId', 'reservationId'])
-export class ReservationHeadEntity extends TenantEntity {
+export class ReservationHeadEntity extends TenantCompanyEntity {
   @Exclude() self = ReservationHeadEntity;
 
   @PrimaryGeneratedColumn('increment')

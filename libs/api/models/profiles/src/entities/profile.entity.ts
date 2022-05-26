@@ -17,13 +17,13 @@ import { ProfileSegmentEntity } from './profile.segment.entity';
 import { ProfileSourceEntity } from './profile.source.entity';
 import { ProfileSegmentRelationEntity } from './profile.segment.relation.entity';
 import { ProfilePriceClassEntity } from './profile.priceclass.entity';
-import { TenantEntity } from '../../../../common/db/db.CoreEntity';
+import { TenantCompanyEntity } from '../../../company/src/tentant/company.tentant';
 
 @Entity('crm_profile')
 @Index(['companyId'])
 @Unique(['companyId', 'profileId'])
 @Index(['companyId', 'vip'])
-export class ProfileEntity extends TenantEntity {
+export class ProfileEntity extends TenantCompanyEntity {
   @Exclude() self = ProfileEntity;
 
   @PrimaryGeneratedColumn('increment')

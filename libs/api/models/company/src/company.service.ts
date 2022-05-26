@@ -1,0 +1,100 @@
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { CompanyRepository } from './classes/company.repository';
+import { BusinessEntity } from './entities/business.entity';
+import { BusinessUserRolesEntity } from './entities/business.users.roles.entity.app';
+import { AuthUserEntity } from '@movit/api/auth';
+
+@Injectable()
+export class CompanyService {
+  constructor(
+    @InjectRepository(CompanyRepository)
+    private businessRepo: CompanyRepository
+  ) {}
+
+  /**
+   * List Business
+   * todo rename listAllowedBusinessFromUser
+   * */
+  public list(
+    authUser,
+    options: Partial<BusinessEntity>
+  ): Promise<BusinessEntity[]> {
+    return this.businessRepo.listBusiness(authUser, options);
+  }
+
+  // rename signUserInToCompany
+  public findUserBusinessRole(authUser, uuId): Promise<BusinessEntity> {
+    return this.businessRepo.getCompanyByUuIdWithVerification(authUser, uuId);
+  }
+
+  // todo rename
+  public async signUserByInvitationCode(
+    authUser,
+    invitationCode
+  ): Promise<BusinessEntity> {
+
+    const invitation = await this.businessRepo.getCompanyByInvitationCode(
+      invitationCode
+    );
+    if (!invitation || invitation.email != authUser.email) throw 'invitation is not valid';
+
+    const business = await this.businessRepo.findOne({
+      where: {
+        companyId: invitation.companyId,
+      },
+    });
+
+    // Save user-company link
+    const newRole = new BusinessUserRolesEntity();
+    newRole.user = authUser;
+    newRole.business = business;
+    newRole.roles = 'user';
+    await newRole.save();
+
+    // verify and reload data
+    return this.findUserBusinessRole(authUser, business.businessUuId);
+  }
+
+  getBusinessRoles(business: BusinessEntity) {
+    return this.businessRepo.getBusinessRoles(business);
+  }
+
+  getBusinessUsers(business: BusinessEntity) {
+    return this.businessRepo.getBusinessUsers(business);
+  }
+
+  /*
+   * Loads user that is assigned to company
+   * */
+  getBusinessUser(business: BusinessEntity, userId: string, details = {}) {
+    const user = this.businessRepo.getBusinessUser(business, userId);
+    return user;
+  }
+  updateBusinessUser(business: BusinessEntity, user: string) {
+    return this.businessRepo.updateBusinessUser(business, user);
+  }
+  addUserToBusinessRole(business: BusinessEntity, user: AuthUserEntity) {
+    return this.businessRepo.addUserToBusinessRole(business, user);
+  }
+  deleteBusinessUser(business: BusinessEntity, user: string) {
+    return this.businessRepo.deleteBusinessUser(business, user);
+  }
+  createBusiness() {
+    // create new business COM_ entry
+    // create com_user_role
+    // create app_role with business scope
+    // assign user
+  }
+
+  /**
+   * Return all Business/organisation where user has rights
+   * */
+  getAllowedBusinessListFromUser(user) {
+    return this.businessRepo.getAllowedBusinessListFromUser(user);
+  }
+
+  getLinkedBusinessList(business) {
+    return this.businessRepo.getLinkedBusinessList(business);
+  }
+}

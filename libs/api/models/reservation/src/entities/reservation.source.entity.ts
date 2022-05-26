@@ -10,12 +10,12 @@ import {
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { ReservationHeadEntity } from './reservation-head.entity';
-import { TenantEntity } from '../../../../common/db/db.CoreEntity';
+import { TenantCompanyEntity } from '../../../company/src/tentant/company.tentant';
 
 @Entity('res_source')
 @Index(['companyId'])
 @Unique(['companyId', 'sourceId'])
-export class ReservationSourceEntity extends TenantEntity {
+export class ReservationSourceEntity extends TenantCompanyEntity {
   @Exclude() self = ReservationSourceEntity;
   @PrimaryGeneratedColumn('increment')
   @Exclude()

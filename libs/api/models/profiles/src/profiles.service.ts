@@ -10,6 +10,7 @@ import { Pagination } from '../../../common/decorator';
 import { ProfileEntity } from './entities/profile.entity';
 import { IsNull } from 'typeorm';
 import { doInsert } from '../../../common/db/utils/db.utils';
+import {ProfileSegmentEntity} from "./entities/profile.segment.entity";
 
 @Injectable()
 export class ProfilesService {
@@ -18,9 +19,9 @@ export class ProfilesService {
     private profileRepo: ProfilesRepository
   ) {}
 
-  public getProfiles(businessId: number, pagination: Pagination) {
+  public getProfiles(companyId: number, pagination: Pagination) {
     return this.profileRepo.find({
-      where: { companyId: businessId },
+      where: { companyId },
       order: pagination.sort.reduce(
         (order, sort) => ({ ...order, [sort.field]: sort.by }),
         {}
@@ -31,13 +32,13 @@ export class ProfilesService {
   }
 
   public async getProfile(
-    businessId: number,
+      companyId: number,
     profileId: number,
     options: { relations?: string[] } = {}
   ) {
     const profile = await this.profileRepo.findOne({
       where: {
-        companyId: businessId,
+        companyId: companyId,
         profileId: profileId,
       },
     });
@@ -46,7 +47,7 @@ export class ProfilesService {
 
     if (options.relations?.includes('segments')) {
       profile.segments = await this.profileRepo.getProfileSegments(
-        businessId,
+          companyId,
         profileId
       );
     }
@@ -54,9 +55,9 @@ export class ProfilesService {
     return profile;
   }
 
-  async createProfile(businessId: number, data: Partial<ProfileEntity>) {
+  async createProfile(companyId: number, data: Partial<ProfileEntity>) {
     const profile = this.profileRepo.create();
-    profile.companyId = businessId;
+    profile.companyId = companyId;
     delete data.id;
 
     for (const key in data) if (!data[key]) delete data[key];
@@ -66,7 +67,7 @@ export class ProfilesService {
     await doInsert(profile);
 
     await this.profileRepo.saveSegments(
-      businessId,
+        companyId,
       profile.profileId,
       data.segments as number[]
     );
@@ -74,26 +75,26 @@ export class ProfilesService {
     return profile;
   }
 
-  async updateProfile(businessId, profileId: number, data: any) {
+  async updateProfile(companyId, profileId: number, data: any) {
     // todo handle segments | sources ect
     delete data.profileId;
-    delete data.businessId;
+    delete data.companyId;
 
-    const profile = await this.getProfile(businessId, profileId);
+    const profile = await this.getProfile(companyId, profileId);
     if (!profile) return;
 
     await this.profileRepo.saveSegments(
-      businessId,
-      profile.profileId,
-      <any>data.segments
+        companyId,
+        profile.profileId,
+        <any>data.segments
     );
 
     return profile.initialiseData(data).save();
   }
 
-  public deleteProfile(businessId, profileId: number) {
+  public deleteProfile(companyId, profileId: number) {
     return this.profileRepo.softDelete({
-      companyId: businessId,
+      companyId: companyId,
       profileId: profileId,
     });
   }
@@ -105,9 +106,9 @@ export class ProfilesSegmentService {
     @InjectRepository(ProfilesSegmentRepository)
     private segmentRepo: ProfilesSegmentRepository
   ) {}
-  public getSegments(businessId: number, pagination: Pagination) {
+  public getSegments(companyId: number, pagination: Pagination) {
     return this.segmentRepo.find({
-      where: { companyId: businessId },
+      where: { companyId },
       order: pagination.sort.reduce(
         (order, sort) => ({ ...order, [sort.field]: sort.by }),
         {}
@@ -117,31 +118,31 @@ export class ProfilesSegmentService {
     });
   }
 
-  public getSegment(businessId: number, segmentId: number) {
+  public getSegment(companyId: number, segmentId: number) {
     return this.segmentRepo.findOne({
       where: {
-        companyId: businessId,
+        companyId: companyId,
         segmentId: segmentId,
       },
     });
   }
 
-  async createSegment(businessId: number, data: any) {
+  async createSegment(companyId: number, data: Partial<ProfileSegmentEntity>) {
     const segment = this.segmentRepo.create();
-    segment.companyId = businessId;
+    segment.companyId = companyId;
     await doInsert(segment);
-    return this.updateSegment(businessId, segment.segmentId, data);
+    return this.updateSegment(companyId, segment.segmentId, data);
   }
 
-  async updateSegment(businessId, segmentId: number, data: any) {
-    const segment = await this.getSegment(businessId, segmentId);
+  async updateSegment(companyId, segmentId: number, data: any) {
+    const segment = await this.getSegment(companyId, segmentId);
     Object.assign(segment, data || {});
     return this.segmentRepo.save(segment);
   }
 
-  public deleteSegment(businessId: number, segmentId: number) {
+  public deleteSegment(companyId: number, segmentId: number) {
     return this.segmentRepo.delete({
-      companyId: businessId,
+      companyId: companyId,
       segmentId: segmentId,
     });
   }
@@ -154,27 +155,27 @@ export class ProfilesPriceClassService {
     private priceClassRepo: ProfilesPriceClassRepository
   ) {}
 
-  getPriceClasses(businessId: number, pagination: any) {
+  getPriceClasses(companyId: number, pagination: any) {
     return this.priceClassRepo.find({
       where: {
-        companyId: businessId,
+        companyId: companyId,
         deletedAt: IsNull(),
       },
     });
   }
 
-  getPriceClass(businessId: number, priceClassId: number) {
+  getPriceClass(companyId: number, priceClassId: number) {
     return this.priceClassRepo.findOne({
       where: {
-        companyId: businessId,
+        companyId: companyId,
         priceClassId: priceClassId,
       },
     });
   }
 
-  savePriceClass(businessId: number, data: any) {
+  savePriceClass(companyId: number, data: any) {
     const priceClass = this.priceClassRepo.create();
-    priceClass.companyId = businessId;
+    priceClass.companyId = companyId;
     priceClass.title = data.title;
     priceClass.color = data.color;
     priceClass.isDefault = data.isDefault;
@@ -183,19 +184,19 @@ export class ProfilesPriceClassService {
     return priceClass.save();
   }
 
-  async updatePriceClass(businessId: number, priceClassId, data: any) {
-    const priceClass = await this.getPriceClass(businessId, priceClassId);
+  async updatePriceClass(companyId: number, priceClassId, data: any) {
+    const priceClass = await this.getPriceClass(companyId, priceClassId);
     if (!priceClass) return;
 
-    priceClass.companyId = businessId;
+    priceClass.companyId = companyId;
     priceClass.title = data.title;
     return priceClass.save();
   }
 
-  deletePriceClass(businessId, priceClassId) {
+  deletePriceClass(companyId, priceClassId) {
     return this.priceClassRepo
       .findOne({
-        companyId: businessId,
+        companyId: companyId,
         priceClassId,
       })
       .then((r) => {

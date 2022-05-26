@@ -16,16 +16,15 @@ import {
 import { SaveOptions } from 'typeorm/repository/SaveOptions';
 import { SaleItemCategoryLinkEntity } from './sale.entity.item-category.link';
 import { SaleItemPriceEntity } from './sale.entity.item.price';
-import { TenantEntityTranslatable } from '../../../../../../common/db/db.CoreEntity';
+import { TenantCompanyTranslatableEntity } from '@movit/api/business';
 import Translatable from '../../../../../../common/decorator/decorator.translatable';
-import {SaleItemEmployeeRepository} from "../classes/sales-item.repository";
 import {SaleItemEmployeeEntity} from "./sale.entity.item.employee";
 
 @Entity('sell_item')
 @Index(['companyId'])
 @Index(['companyId', 'type'])
 @Unique(['companyId', 'type', 'itemId'])
-export class SaleItemEntity extends Translatable(TenantEntityTranslatable) {
+export class SaleItemEntity extends Translatable(TenantCompanyTranslatableEntity) {
   self = SaleItemEntity;
 
   @PrimaryGeneratedColumn('increment')

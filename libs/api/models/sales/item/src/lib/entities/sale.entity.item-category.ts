@@ -20,7 +20,7 @@ import {
 } from 'typeorm';
 import { SaleItemCategoryLinkEntity } from './sale.entity.item-category.link';
 import { SaveOptions } from 'typeorm/repository/SaveOptions';
-import { TenantEntityTranslatable } from '../../../../../../common/db/db.CoreEntity';
+import { TenantCompanyTranslatableEntity } from '../../../../../company/src/tentant/company.tentant';
 import Translatable from '../../../../../../common/decorator/decorator.translatable';
 
 @Entity('sell_item_category')
@@ -28,7 +28,7 @@ import Translatable from '../../../../../../common/decorator/decorator.translata
 @Index(['companyId', 'type'])
 @Unique(['companyId', 'type', 'categoryId'])
 export class SaleItemCategoryEntity extends Translatable(
-  TenantEntityTranslatable,
+  TenantCompanyTranslatableEntity,
   'cat'
 ) {
   @Exclude() self: any = SaleItemCategoryEntity;

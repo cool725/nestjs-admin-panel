@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 
 import { BusinessAppsController } from './controller/business.apps.controller';
-import { AppsModule } from '@movit/api/app';
+import { AppsModule } from '@movit/api/apps';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from '@movit/api/auth';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { BusinessModule } from '@movit/api/business';
+import { CompanyModule } from '@movit/api/business';
 import { BusinessBackOfficeModule } from './modules/backoffice/business.backoffice.module';
 import { BusinessAdministrationModule } from './modules/administration/business.administration.module';
 import { BusinessController } from './controller/business.controller';
@@ -27,7 +27,7 @@ import { SellItemModule } from '@movit/api/sales/item';
         ...TranslationModule.dbSettings.entities,
         ...AppsModule.dbSettings.entities,
         ...AuthModule.dbSettings.entities,
-        ...BusinessModule.dbSettings.entities,
+        ...CompanyModule.dbSettings.entities,
         ...ProfilesModule.dbSettings.entities,
         ...ReservationModule.dbSettings.entities,
         ...SellItemModule.dbSettings.entities,
@@ -35,7 +35,7 @@ import { SellItemModule } from '@movit/api/sales/item';
     }),
     AuthModule,
     AppsModule,
-    BusinessModule,
+    CompanyModule,
     BusinessFrontOfficeModule,
     BusinessBackOfficeModule,
     BusinessSettingsModule,

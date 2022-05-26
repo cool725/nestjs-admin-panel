@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { AuthRepositoryUserInvited } from '../../../../../../../../../../libs/api/models/auth/src/auth/classes/auth.repository.user.invited';
+import { AuthRepositoryUserInvited } from '../../../../../../../../../../libs/api/models/auth/auth-user/src/auth/classes/auth.repository.user.invited';
 import { Mailer } from '../../../../../../../../../../libs/api/common/classes';
 
 @Injectable()
@@ -11,11 +11,11 @@ export class UserInvitationService {
   ) {}
 
   getInvitedUsers(businessId) {
-    return this.userInvited.getInvitedUsers(businessId);
+    return this.userInvited.getInvitedCompaniesFromUser(businessId);
   }
 
   async inviteUser(email, businessId) {
-    const invitationCode = await this.userInvited.verifyEntryAndSave(
+    const invitationCode = await this.userInvited.verifyInvitationOrCreate(
       email,
       businessId
     );
@@ -38,6 +38,6 @@ export class UserInvitationService {
   }
 
   deleteEntry(email, businessId) {
-    return this.userInvited.deleteEntry(email, businessId);
+    return this.userInvited.deleteCompanyInvitationFromUser(email, businessId);
   }
 }

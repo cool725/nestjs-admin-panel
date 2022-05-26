@@ -3,7 +3,7 @@ import { AuthController } from './app.controller';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from '@movit/api/auth';
-import { BusinessModule } from '@movit/api/business';
+import { CompanyModule } from '@movit/api/business';
 import { BusinessController } from './business.controller';
 
 @Module({
@@ -15,11 +15,11 @@ import { BusinessController } from './business.controller';
       ...AuthModule.dbSettings,
       entities: [
         ...AuthModule.dbSettings.entities,
-        ...BusinessModule.dbSettings.entities,
+        ...CompanyModule.dbSettings.entities,
       ],
     }),
     AuthModule,
-    BusinessModule,
+    CompanyModule,
   ],
   controllers: [AuthController, BusinessController],
   providers: [],

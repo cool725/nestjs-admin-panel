@@ -20,24 +20,24 @@ export class SalesItemService {
     private employeeRepo: SaleItemEmployeeRepository
   ) {}
 
-  public getServices(businessId, langId, searchOptions) {
-    return this.itemRepo.list(businessId, langId, searchOptions);
+  public getServices(companyId, langId, searchOptions) {
+    return this.itemRepo.list(companyId, langId, searchOptions);
   }
 
-  public async getService(businessId, itemId) {
-    const service = await this.itemRepo.list(businessId, null, {
+  public async getService(companyId, itemId) {
+    const service = await this.itemRepo.list(companyId, null, {
       itemId,
     })
 
     if(!service)return service
 
     service.prices = await this.itemPriceRepo.getPricesFromItem(
-        businessId, itemId, service.type
+        companyId, itemId, service.type
     )
 
     service.employees = await this.employeeRepo.find(
         { where: {
-            businessId, type:service.type ,itemId
+            companyId, type:service.type ,itemId
           }}
     )
 
@@ -47,18 +47,18 @@ export class SalesItemService {
   /*
    * injects selected language title and description to object
    * */
-  public getServiceWithTranslation(businessId, itemId, langId) {
-    return this.itemRepo.list(businessId, langId, { itemId });
+  public getServiceWithTranslation(companyId, itemId, langId) {
+    return this.itemRepo.list(companyId, langId, { itemId });
   }
 
-  public getServiceCategory(businessId, categoryId) {
-    return this.categoryRepo.get(categoryId,businessId, null, {
+  public getServiceCategory(companyId, categoryId) {
+    return this.categoryRepo.get(categoryId,companyId, null, {
       categoryId,
     });
   }
 
-  public getServiceCategories(businessId, langId, searchOptions) {
-    return this.categoryRepo.list(businessId, langId, searchOptions);
+  public getServiceCategories(companyId, langId, searchOptions) {
+    return this.categoryRepo.list(companyId, langId, searchOptions);
   }
 
   /**
@@ -66,41 +66,41 @@ export class SalesItemService {
    * */
   public getServiceCategoriesUnliked() {}
 
-  async saveService(businessId, service) {
+  async saveService(companyId, service) {
     const saleItemEntity = this.itemRepo.create();
     saleItemEntity.type = 'S';
-    saleItemEntity.companyId = businessId;
+    saleItemEntity.companyId = companyId;
     await doInsert(saleItemEntity);
-    return this.updateService(businessId, saleItemEntity.itemId, service);
+    return this.updateService(companyId, saleItemEntity.itemId, service);
   }
 
-  async updateService(businessId: number, itemId: number, service) {
+  async updateService(companyId: number, itemId: number, service) {
     const saleItemEntity = await this.itemRepo.findOne({
-      companyId: businessId,
+      companyId: companyId,
       type: 'S',
       itemId: itemId,
     });
     await saleItemEntity.setTranslationFromLabelObj(service.label);
-    await this.saveLinkCategories(businessId, itemId, service.categoriesIds);
-    await this.savePrices(businessId, itemId, service.prices);
-    await this.saveEmployees(businessId, itemId, service.employees);
+    await this.saveLinkCategories(companyId, itemId, service.categoriesIds);
+    await this.savePrices(companyId, itemId, service.prices);
+    await this.saveEmployees(companyId, itemId, service.employees);
 
 
     return saleItemEntity.update();
   }
 
-  async saveLinkCategories(businessId, itemId, categoriesIds: number[]) {
+  async saveLinkCategories(companyId, itemId, categoriesIds: number[]) {
     if (categoriesIds) {
       const items = await SaleItemCategoryLinkEntity.find({
         where: {
-          companyId: businessId,
+          companyId: companyId,
           itemId: itemId,
         },
       });
       await Promise.all(items.map((a) => a.remove()));
       for (let i = 0; i < categoriesIds.length; i++) {
         const link = SaleItemCategoryLinkEntity.create();
-        link.companyId = businessId;
+        link.companyId = companyId;
         link.type = 'S';
         link.categoryId = categoriesIds[i];
         link.itemId = itemId;
@@ -109,11 +109,11 @@ export class SalesItemService {
     }
   }
 
-  async deleteService(businessId, itemId) {
+  async deleteService(companyId, itemId) {
     return this.itemRepo
       .findOne({
         where: {
-          companyId: businessId,
+          companyId: companyId,
           type: 'S',
           itemId: itemId,
         },
@@ -121,25 +121,25 @@ export class SalesItemService {
       .then((item) => (item ? item.remove() : null));
   }
 
-  public async saveServiceCategory(businessId, category) {
+  public async saveServiceCategory(companyId, category) {
     const saleItemCategoryEntity = this.categoryRepo.create();
-    saleItemCategoryEntity.companyId = businessId;
+    saleItemCategoryEntity.companyId = companyId;
     saleItemCategoryEntity.type = 'S';
     await doInsert(saleItemCategoryEntity);
     return this.updateCategoryService(
-      businessId,
+        companyId,
       saleItemCategoryEntity.categoryId,
       category
     );
   }
 
   async updateCategoryService(
-    businessId: number,
+      companyId: number,
     categoryId: number,
     category
   ) {
     const saleItemCatEntity = await this.categoryRepo.findOne({
-      companyId: businessId,
+      companyId: companyId,
       type: 'S',
       categoryId: categoryId,
     });
@@ -152,11 +152,11 @@ export class SalesItemService {
     return saleItemCatEntity.update();
   }
 
-  async deleteCategory(businessId: number, categoryId: number) {
+  async deleteCategory(companyId: number, categoryId: number) {
     return this.categoryRepo
       .findOne({
         where: {
-          companyId: businessId,
+          companyId: companyId,
           type: 'S',
           categoryId: categoryId,
         },
@@ -164,33 +164,33 @@ export class SalesItemService {
       .then((item) => (item ? item.remove() : null));
   }
 
-  protected unlinkCategory(businessId, categoryId, type = 'S') {
+  protected unlinkCategory(companyId, categoryId, type = 'S') {
     this.categoryRepo.query(
       `
     delete from sell_item_category_link where companyId = ? and type = ? and categoryId = ?
     `,
-      [businessId, type, categoryId]
+      [companyId, type, categoryId]
     );
   }
 
-  protected unlinkService(businessId, itemId, type = 'S') {
+  protected unlinkService(companyId, itemId, type = 'S') {
     this.categoryRepo.query(
       `
     delete from sell_item_category_link where companyId = ? and type = ? and itemId = ?
     `,
-      [businessId, type, itemId]
+      [companyId, type, itemId]
     );
   }
 
 
   // region prices/variants
-   private async savePrices(businessId:number, itemId:number, prices:any[]){
+   private async savePrices(companyId:number, itemId:number, prices:any[]){
 
     for(let i = 0; i<prices?.length;i++){
       const price = prices[i];
       const newPrice = this.itemPriceRepo.create()
 
-      newPrice.companyId = businessId;
+      newPrice.companyId = companyId;
       newPrice.itemId = itemId;
       newPrice.type = price.type;
       newPrice.priceSell = price.priceSell;
@@ -210,16 +210,16 @@ export class SalesItemService {
 
    // endregion
 
-  private async saveEmployees(businessId:number, itemId:number, employees){
+  private async saveEmployees(companyId:number, itemId:number, employees){
     await this.employeeRepo.delete({
-      companyId:businessId,
+      companyId:companyId,
       type:'S',
       itemId:itemId
     })
     for ( const key in employees ) {
       if(employees[key]){
         await this.employeeRepo.insert({
-          companyId:  businessId,
+          companyId:  companyId,
           type:       'S',
           itemId:     itemId,
           employeeId: employees[key]

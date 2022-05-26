@@ -11,14 +11,14 @@ import {
 import { BackOffice } from '../../business.backoffice.namespace';
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard} from '@movit/api/auth';
-import { BusinessEntity } from '../../../../../../../../../libs/api/models/business/src/entities/business.entity';
-import { GetCompany } from '../../../../../../../../../libs/api/models/business/src/business.decorator';
-import {BusinessService} from "@movit/api/business";
+import { BusinessEntity } from '../../../../../../../../../libs/api/models/company/src/entities/business.entity';
+import { GetCompany } from '../../../../../../../../../libs/api/models/company/src/company.decorator';
+import { CompanyService} from "@movit/api/business";
 
 @Controller(BackOffice.resolePath(BackOffice.Sales.Items.PATH))
 @UseGuards(AuthGuard(), CompanyGuard, /* AppsRolesGuard(14) */)
 export class BusinessBackOfficeSalesItemsController {
-  constructor(private companyService: BusinessService) {}
+  constructor(private companyService: CompanyService) {}
 
   @Get('/employees')
   async getEmployees(

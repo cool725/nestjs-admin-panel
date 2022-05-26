@@ -13,10 +13,10 @@ import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
 import { GetPagination } from '../../../../../../../../../libs/api/common/decorator';
 import { GetLanguage } from '../../../../../../../../../libs/api/common/decorator/decorator.language';
-import { AppsRolesGuard } from '../../../../../../../../../libs/api/models/apps-role/src/app/guards/auth.guards.apps';
+import { AppsRolesGuard } from '../../../../../../../../../libs/api/models/auth/apps-role/src/guards/auth.guards.apps';
 import { SalesItemService } from '../../../../../../../../../libs/api/models/sales/item/src/lib/sales-item-service';
-import { BusinessEntity } from '../../../../../../../../../libs/api/models/business/src/entities/business.entity';
-import { GetCompany } from '../../../../../../../../../libs/api/models/business/src/business.decorator';
+import { BusinessEntity } from '../../../../../../../../../libs/api/models/company/src/entities/business.entity';
+import { GetCompany } from '../../../../../../../../../libs/api/models/company/src/company.decorator';
 
 @Controller(BackOffice.resolePath(BackOffice.Sales.Items.PATHService))
 @UseGuards(AuthGuard(), CompanyGuard, AppsRolesGuard(14))
@@ -29,7 +29,7 @@ export class BusinessBackOfficeSalesItemsServiceController {
     @GetLanguage() langId,
     @GetPagination() paginate
   ) {
-    return this.itemService.getServices(business.businessId, langId, paginate);
+    return this.itemService.getServices(business.companyId, langId, paginate);
   }
 
   @Get('/category')
@@ -39,7 +39,7 @@ export class BusinessBackOfficeSalesItemsServiceController {
     @GetLanguage() langId,
     @GetPagination() pagination
   ) {
-    return this.itemService.getServiceCategories(business.businessId, langId, {
+    return this.itemService.getServiceCategories(business.companyId, langId, {
       ...pagination,
       grouped: true,
     });
@@ -47,7 +47,7 @@ export class BusinessBackOfficeSalesItemsServiceController {
 
   @Get('/:itemId')
   getService(@GetCompany() business: BusinessEntity, @Param('itemId') itemId) {
-    return this.itemService.getService(business.businessId, itemId);
+    return this.itemService.getService(business.companyId, itemId);
   }
 
   @Get('/category/:categoryId')
@@ -55,7 +55,7 @@ export class BusinessBackOfficeSalesItemsServiceController {
     @GetCompany() business: BusinessEntity,
     @Param('categoryId') categoryId
   ) {
-    return this.itemService.getServiceCategory(business.businessId, categoryId);
+    return this.itemService.getServiceCategory(business.companyId, categoryId);
   }
 
   @Delete('/:itemId')
@@ -64,12 +64,12 @@ export class BusinessBackOfficeSalesItemsServiceController {
     @Param('itemId') itemId,
     @GetPagination() paginate
   ) {
-    return this.itemService.deleteService(business.businessId, itemId);
+    return this.itemService.deleteService(business.companyId, itemId);
   }
 
   @Put()
   saveService(@GetCompany() business: BusinessEntity, @Body() service) {
-    return this.itemService.saveService(business.businessId, service);
+    return this.itemService.saveService(business.companyId, service);
   }
 
   @Patch(':itemId')
@@ -78,12 +78,12 @@ export class BusinessBackOfficeSalesItemsServiceController {
     @Param('itemId') itemId,
     @Body() service
   ) {
-    return this.itemService.updateService(business.businessId, itemId, service);
+    return this.itemService.updateService(business.companyId, itemId, service);
   }
 
   @Put('/category')
   saveCategory(@GetCompany() business: BusinessEntity, @Body() category) {
-    return this.itemService.saveServiceCategory(business.businessId, category);
+    return this.itemService.saveServiceCategory(business.companyId, category);
   }
 
   @Patch('/category/:id')
@@ -92,7 +92,7 @@ export class BusinessBackOfficeSalesItemsServiceController {
     @Param('id') id,
     @Body() category
   ) {
-    return this.itemService.saveServiceCategory(business.businessId, category);
+    return this.itemService.saveServiceCategory(business.companyId, category);
   }
 
   @Delete('category/:categoryId')
@@ -100,6 +100,6 @@ export class BusinessBackOfficeSalesItemsServiceController {
     @GetCompany() business: BusinessEntity,
     @Param('categoryId') categoryId
   ) {
-    return this.itemService.deleteCategory(business.businessId, categoryId);
+    return this.itemService.deleteCategory(business.companyId, categoryId);
   }
 }

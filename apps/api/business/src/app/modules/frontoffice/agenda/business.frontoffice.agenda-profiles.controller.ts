@@ -1,9 +1,9 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
 import { FrontOffice } from '../business.frontoffice.namespace';
 import { ReservationService } from '@movit/api/reservation';
-import { GetCompany } from '../../../../../../../../libs/api/models/business/src/business.decorator';
-import { BusinessEntity } from '../../../../../../../../libs/api/models/business/src/entities/business.entity';
-import { AuthUser, CompanyGuard, GetUser } from '@movit/api/auth';
+import { GetCompany } from '../../../../../../../../libs/api/models/company/src/company.decorator';
+import { BusinessEntity } from '../../../../../../../../libs/api/models/company/src/entities/business.entity';
+import { AuthUserEntity, CompanyGuard, GetUser } from '@movit/api/auth';
 import { AuthGuard } from '@nestjs/passport';
 import { ProfilesService } from '@movit/api/profiles';
 import { GetPagination } from '../../../../../../../../libs/api/common/decorator';
@@ -22,9 +22,9 @@ export class BusinessFrontOfficeAgendaProfilesController {
   @Get('profiles')
   getProfiles(
     @GetCompany() business: BusinessEntity,
-    @GetUser() user: AuthUser,
+    @GetUser() user: AuthUserEntity,
     @GetPagination() pagination: any
   ) {
-    return this.profilesService.getProfiles(business.businessId, pagination);
+    return this.profilesService.getProfiles(business.companyId, pagination);
   }
 }

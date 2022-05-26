@@ -15,8 +15,8 @@ import {
 } from '../../../../../../../../../libs/api/common/decorator';
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
-import { GetCompany } from '../../../../../../../../../libs/api/models/business/src/business.decorator';
-import { BusinessEntity } from '../../../../../../../../../libs/api/models/business/src/entities/business.entity';
+import { GetCompany } from '../../../../../../../../../libs/api/models/company/src/company.decorator';
+import { BusinessEntity } from '../../../../../../../../../libs/api/models/company/src/entities/business.entity';
 import { ProfilesService } from '@movit/api/profiles';
 import { ProfilesDto } from '../../../../../../../../../libs/api/models/profiles/src/classes/profiles.dto';
 
@@ -30,7 +30,7 @@ export class BusinessFrontOfficeProfilesController {
     @GetCompany() business: BusinessEntity,
     @GetPagination() pagination: Pagination
   ) {
-    return this.profilesService.getProfiles(business.businessId, pagination);
+    return this.profilesService.getProfiles(business.companyId, pagination);
   }
 
   @Get('profile/:profileId')
@@ -38,7 +38,7 @@ export class BusinessFrontOfficeProfilesController {
     @GetCompany() business: BusinessEntity,
     @Param('profileId') profileId: number
   ) {
-    return this.profilesService.getProfile(business.businessId, profileId, {
+    return this.profilesService.getProfile(business.companyId, profileId, {
       relations: ['segments'],
     });
   }
@@ -48,7 +48,7 @@ export class BusinessFrontOfficeProfilesController {
     @GetCompany() business: BusinessEntity,
     @Body() profile: ProfilesDto.Create
   ) {
-    return this.profilesService.createProfile(business.businessId, profile);
+    return this.profilesService.createProfile(business.companyId, profile);
   }
 
   @Patch('profile/:profileId')
@@ -58,7 +58,7 @@ export class BusinessFrontOfficeProfilesController {
     @Body() profile: ProfilesDto.Update
   ) {
     return this.profilesService.updateProfile(
-      business.businessId,
+      business.companyId,
       profileId,
       profile
     );
@@ -69,6 +69,6 @@ export class BusinessFrontOfficeProfilesController {
     @GetCompany() business: BusinessEntity,
     @Param('profileId') profileId: number
   ) {
-    return this.profilesService.deleteProfile(business.businessId, profileId);
+    return this.profilesService.deleteProfile(business.companyId, profileId);
   }
 }

@@ -10,10 +10,10 @@ export class ProfilesRepository extends Repository<ProfileEntity> {
     super();
   }
 
-  async getProfileSegments(businessId: number, profileId: number) {
+  async getProfileSegments(companyId: number, profileId: number) {
     const segments = await ProfileSegmentRelationEntity.find({
       where: {
-        companyId: businessId,
+        companyId: companyId,
         profileId: profileId,
       },
     });
@@ -21,12 +21,12 @@ export class ProfilesRepository extends Repository<ProfileEntity> {
   }
 
   async saveSegments(
-    businessId: number,
+      companyId: number,
     profileId: number,
     segmentIds: number[]
   ) {
     await ProfileSegmentRelationEntity.delete({
-      companyId: businessId,
+      companyId: companyId,
       profileId: profileId,
     });
     return Promise.all(
@@ -34,7 +34,7 @@ export class ProfilesRepository extends Repository<ProfileEntity> {
         const relation = ProfileSegmentRelationEntity.create();
         relation.profileId = profileId;
         relation.segmentId = id;
-        relation.companyId = businessId;
+        relation.companyId = companyId;
         return relation.save();
       })
     );

@@ -15,8 +15,8 @@ import {
 } from '../../../../../../../../../libs/api/common/decorator';
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
-import { GetCompany } from '../../../../../../../../../libs/api/models/business/src/business.decorator';
-import { BusinessEntity } from '../../../../../../../../../libs/api/models/business/src/entities/business.entity';
+import { GetCompany } from '../../../../../../../../../libs/api/models/company/src/company.decorator';
+import { BusinessEntity } from '../../../../../../../../../libs/api/models/company/src/entities/business.entity';
 import {
   ProfilesPriceClassService,
   ProfilesService,
@@ -36,7 +36,7 @@ export class BusinessFrontofficeProfilesPriceClassController {
     @GetPagination() pagination: Pagination
   ) {
     return this.priceClassService.getPriceClasses(
-      business.businessId,
+      business.companyId,
       pagination
     );
   }
@@ -47,14 +47,14 @@ export class BusinessFrontofficeProfilesPriceClassController {
     @Param('priceClassId') priceClassId: number
   ) {
     return this.priceClassService.getPriceClass(
-      business.businessId,
+      business.companyId,
       priceClassId
     );
   }
 
   @Put('price-class')
   createPriceClass(@GetCompany() business: BusinessEntity, @Body() data: any) {
-    return this.priceClassService.savePriceClass(business.businessId, data);
+    return this.priceClassService.savePriceClass(business.companyId, data);
   }
 
   @Patch('price-class/:priceClassId')
@@ -64,7 +64,7 @@ export class BusinessFrontofficeProfilesPriceClassController {
     @Body() data: any
   ) {
     return this.priceClassService.updatePriceClass(
-      business.businessId,
+      business.companyId,
       priceClassId,
       data
     );
@@ -76,7 +76,7 @@ export class BusinessFrontofficeProfilesPriceClassController {
     @Param('priceClassId') priceClassId: number
   ) {
     return this.priceClassService.deletePriceClass(
-      business.businessId,
+      business.companyId,
       priceClassId
     );
   }

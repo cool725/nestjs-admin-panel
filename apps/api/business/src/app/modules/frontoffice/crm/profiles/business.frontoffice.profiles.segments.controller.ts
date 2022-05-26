@@ -15,8 +15,8 @@ import {
 } from '../../../../../../../../../libs/api/common/decorator';
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
-import { GetCompany } from '../../../../../../../../../libs/api/models/business/src/business.decorator';
-import { BusinessEntity } from '../../../../../../../../../libs/api/models/business/src/entities/business.entity';
+import { GetCompany } from '../../../../../../../../../libs/api/models/company/src/company.decorator';
+import { BusinessEntity } from '../../../../../../../../../libs/api/models/company/src/entities/business.entity';
 import { ProfilesSegmentService, ProfilesService } from '@movit/api/profiles';
 
 @Controller(FrontOffice.resolePaths(['crm', FrontOffice.Profiles.PATH]))
@@ -32,7 +32,7 @@ export class BusinessFrontOfficeProfilesSegmentsController {
     @GetCompany() business: BusinessEntity,
     @GetPagination() pagination: Pagination
   ) {
-    return this.segmentService.getSegments(business.businessId, pagination);
+    return this.segmentService.getSegments(business.companyId, pagination);
   }
 
   @Get('segment/:segmentId')
@@ -40,12 +40,12 @@ export class BusinessFrontOfficeProfilesSegmentsController {
     @GetCompany() business: BusinessEntity,
     @Param('segmentId') segmentId: number
   ) {
-    return this.segmentService.getSegment(business.businessId, segmentId);
+    return this.segmentService.getSegment(business.companyId, segmentId);
   }
 
   @Put('segment')
   createSegment(@GetCompany() business: BusinessEntity, @Body() data: any) {
-    return this.segmentService.createSegment(business.businessId, data);
+    return this.segmentService.createSegment(business.companyId, data);
   }
 
   @Patch('segment/:segmentId')
@@ -55,7 +55,7 @@ export class BusinessFrontOfficeProfilesSegmentsController {
     @Body() data: any
   ) {
     return this.segmentService.updateSegment(
-      business.businessId,
+      business.companyId,
       segmentId,
       data
     );
@@ -67,6 +67,6 @@ export class BusinessFrontOfficeProfilesSegmentsController {
     @Param('segmentId') segmentId: number
   ) {
     if (segmentId)
-      return this.segmentService.deleteSegment(business.businessId, segmentId);
+      return this.segmentService.deleteSegment(business.companyId, segmentId);
   }
 }

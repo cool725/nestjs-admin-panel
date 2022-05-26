@@ -14,12 +14,12 @@ import {
 import { Exclude } from 'class-transformer';
 import { ProfileEntity } from './profile.entity';
 import { ProfileSegmentRelationEntity } from './profile.segment.relation.entity';
-import { TenantEntity } from '../../../../common/db/db.CoreEntity';
+import { TenantCompanyEntity } from '../../../company/src/tentant/company.tentant';
 
 @Entity('crm_segment')
 @Index(['companyId'])
 @Unique(['companyId', 'segmentId'])
-export class ProfileSegmentEntity extends TenantEntity {
+export class ProfileSegmentEntity extends TenantCompanyEntity {
   @Exclude() self = ProfileSegmentEntity;
 
   @PrimaryGeneratedColumn('increment')

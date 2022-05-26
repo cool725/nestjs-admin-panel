@@ -9,9 +9,9 @@ import {
 } from '@nestjs/common';
 import { FrontOffice } from '../business.frontoffice.namespace';
 import { ReservationService } from '@movit/api/reservation';
-import { GetCompany } from '../../../../../../../../libs/api/models/business/src/business.decorator';
-import { BusinessEntity } from '../../../../../../../../libs/api/models/business/src/entities/business.entity';
-import { AuthUser, CompanyGuard, GetUser } from '@movit/api/auth';
+import { GetCompany } from '../../../../../../../../libs/api/models/company/src/company.decorator';
+import { BusinessEntity } from '../../../../../../../../libs/api/models/company/src/entities/business.entity';
+import { AuthUserEntity, CompanyGuard, GetUser } from '@movit/api/auth';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller(FrontOffice.resolePaths([FrontOffice.Agenda.PATH]))
@@ -25,21 +25,21 @@ export class BusinessFrontOfficeAgendaController {
   @Get('reservation')
   async getReservations(
     @GetCompany() business: BusinessEntity,
-    @GetUser() user: AuthUser,
+    @GetUser() user: AuthUserEntity,
     @Body() filterValues: any
   ) {
-    return this.reservationService.getReservations(business.businessId, {});
+    return this.reservationService.getReservations(business.companyId, {});
   }
 
   @Get('list')
   async getReservationList(
     @GetCompany() business: BusinessEntity,
-    @GetUser() user: AuthUser,
+    @GetUser() user: AuthUserEntity,
     @Body() filterValues: any
   ) {
     return {
       data: await this.reservationService.getReservations(
-        business.businessId,
+        business.companyId,
         {}
       ),
     };
@@ -48,13 +48,13 @@ export class BusinessFrontOfficeAgendaController {
   @Get('reservation/:reservationId')
   getReservation(
     @GetCompany() business: BusinessEntity,
-    @GetUser() user: AuthUser,
+    @GetUser() user: AuthUserEntity,
     @Param('reservationId') reservationId: number,
     @Body() filterValues: any
   ) {
     // verify if reservation is private | user has access;
     return this.reservationService.getReservation(
-      business.businessId,
+      business.companyId,
       reservationId
     );
   }
@@ -62,13 +62,13 @@ export class BusinessFrontOfficeAgendaController {
   @Put('reservation')
   createReservation(
     @GetCompany() business: BusinessEntity,
-    @GetUser() user: AuthUser,
+    @GetUser() user: AuthUserEntity,
     @Body() reservation
   ) {
     if (!reservation) reservation = {};
     reservation.userId = 1;
     return this.reservationService.saveReservation(
-      business.businessId,
+      business.companyId,
       reservation
     );
   }
@@ -76,12 +76,12 @@ export class BusinessFrontOfficeAgendaController {
   @Patch('reservation/:reservationId')
   updateReservation(
     @GetCompany() business: BusinessEntity,
-    @GetUser() user: AuthUser,
+    @GetUser() user: AuthUserEntity,
     @Body() reservation,
     @Param('reservationId') reservationId
   ) {
     return this.reservationService.updateReservation(
-      business.businessId,
+      business.companyId,
       reservationId,
       reservation
     );
@@ -90,12 +90,12 @@ export class BusinessFrontOfficeAgendaController {
   @Patch('reservation/:reservationId')
   deleteReservation(
     @GetCompany() business: BusinessEntity,
-    @GetUser() user: AuthUser,
+    @GetUser() user: AuthUserEntity,
     @Body() reservation,
     @Param('reservationId') reservationId
   ) {
     return this.reservationService.deleteReservation(
-      business.businessId,
+      business.companyId,
       reservationId
     );
   }

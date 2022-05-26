@@ -9,13 +9,13 @@ import {
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { ReservationHeadEntity } from './reservation-head.entity';
-import { TenantEntity } from '../../../../common/db/db.CoreEntity';
+import { TenantCompanyEntity } from '../../../company/src/tentant/company.tentant';
 
 @Entity('res_reservation_leg')
 @Index(['companyId'])
 @Index(['companyId', 'userId'])
 @Unique(['companyId', 'reservationId', 'legId'])
-export class ReservationLegEntity extends TenantEntity {
+export class ReservationLegEntity extends TenantCompanyEntity {
   @Exclude() self = ReservationLegEntity;
 
   @PrimaryGeneratedColumn('increment')

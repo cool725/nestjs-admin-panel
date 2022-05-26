@@ -9,17 +9,17 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { Administration } from '../../business.administration.namespace';
-import { GetCompany } from '../../../../../../../../../libs/api/models/business/src/business.decorator';
+import { GetCompany } from '../../../../../../../../../libs/api/models/company/src/company.decorator';
 import { AuthGuard } from '@nestjs/passport';
-import { BusinessService } from '@movit/api/business';
-import { BusinessEntity } from '../../../../../../../../../libs/api/models/business/src/entities/business.entity';
+import { CompanyService } from '@movit/api/business';
+import { BusinessEntity } from '../../../../../../../../../libs/api/models/company/src/entities/business.entity';
 import { AuthService, CompanyGuard } from '@movit/api/auth';
 
 @Controller(Administration.resolePath(Administration.User.UserPATH))
 @UseGuards(AuthGuard(), CompanyGuard)
 export class BusinessAdministrationUserController {
   constructor(
-    private businessService: BusinessService,
+    private businessService: CompanyService,
     private authService: AuthService
   ) {}
 

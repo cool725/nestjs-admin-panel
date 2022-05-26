@@ -9,7 +9,6 @@ import { BaseEntity } from 'typeorm';
 interface insertEntity extends BaseEntity {
   id: number;
 }
-
 export const doInsert = async (entity: insertEntity) => {
   // ensure  beforeInsert():any is implemented
   while (!entity.id) {

@@ -9,25 +9,26 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { Administration } from '../../business.administration.namespace';
-import { GetCompany } from '../../../../../../../../../libs/api/models/business/src/business.decorator';
-import { BusinessEntity } from '../../../../../../../../../libs/api/models/business/src/entities/business.entity';
-import { BusinessService } from '@movit/api/business';
+import { GetCompany } from '../../../../../../../../../libs/api/models/company/src/company.decorator';
+import { BusinessEntity } from '../../../../../../../../../libs/api/models/company/src/entities/business.entity';
+import {Company, CompanyService} from '@movit/api/business';
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
-import { AppRoleService } from '@movit/api/app';
+import { AppRoleService } from "@movit/api/apps";
+
 import { IsNull } from 'typeorm';
 
 @Controller(Administration.resolePath(Administration.User.RolePATH))
 @UseGuards(AuthGuard(), CompanyGuard)
 export class BusinessAdministrationRoleController {
   constructor(
-    private businessService: BusinessService,
+    private businessService: CompanyService,
     private appRoleService: AppRoleService
   ) {}
 
   @Get('getRoles')
-  getRoles(@GetCompany() business: BusinessEntity) {
-    return this.appRoleService.getBusinessRoles(business.businessId);
+  getRoles(@GetCompany() business: Company) {
+    return this.appRoleService.getBusinessRoles(business.companyId);
   }
 
   @Get('getApps')
@@ -35,7 +36,7 @@ export class BusinessAdministrationRoleController {
     return Promise.all([
       this.appRoleService.getBusinessApps({
         domain: null,
-        companyId: business.businessId,
+        companyId: business.companyId,
       }),
       this.appRoleService.getBusinessApps({
         domain: 'business',
@@ -56,14 +57,14 @@ export class BusinessAdministrationRoleController {
     @GetCompany() business: BusinessEntity,
     @Param('roleId') roleId: number
   ) {
-    return this.appRoleService.findBusinessRole(roleId, business.businessId);
+    return this.appRoleService.findBusinessRole(roleId, business.companyId);
   }
 
   @Post('createRole')
   async createRole(@GetCompany() business: BusinessEntity, @Body() params) {
     const appRole = await this.appRoleService.createBusinessRole({
       ...params,
-      businessId: business.businessId,
+      businessId: business.companyId,
     });
 
     const { apps, users } = params;
@@ -81,8 +82,8 @@ export class BusinessAdministrationRoleController {
   ) {
     const appRole = await this.appRoleService.updateBusinessRole({
       ...params,
-      businessId: business.businessId,
-      companyId: business.businessId,
+      businessId: business.companyId,
+      companyId: business.companyId,
       roleId: roleId,
     });
 
@@ -105,15 +106,15 @@ export class BusinessAdministrationRoleController {
     @Param('roleId') roleId
   ) {
     this.appRoleService.deleteAppsFromRole(<any>{
-      companyId: business.businessId,
+      companyId: business.companyId,
       roleId: roleId,
     });
 
     this.appRoleService.deleteUsersFromRole(<any>{
-      companyId: business.businessId,
+      companyId: business.companyId,
       roleId: roleId,
     });
 
-    await this.appRoleService.deleteRole(business.businessId, roleId);
+    await this.appRoleService.deleteRole(business.companyId, roleId);
   }
 }

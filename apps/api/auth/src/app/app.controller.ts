@@ -12,7 +12,7 @@ import { Response } from 'express';
 import {
   AuthLogin,
   AuthService,
-  AuthUser,
+  AuthUserEntity,
   AuthUserCredentialsDto,
   GetUser,
 } from '@movit/api/auth';
@@ -133,7 +133,7 @@ export class AuthController {
   @Post('signin-company/:businessId')
   @UseGuards(AuthGuard())
   async signInCompany(
-    @GetUser() authUser: AuthUser,
+    @GetUser() authUser: AuthUserEntity,
     @Res({ passthrough: true }) res: Response,
     @Param('businessId') businessId: string
   ) {

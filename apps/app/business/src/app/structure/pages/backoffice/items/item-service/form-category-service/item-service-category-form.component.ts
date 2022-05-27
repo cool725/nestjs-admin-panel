@@ -2,7 +2,7 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { FormController } from '../../../../form.controller';
 import { ItemServiceAPI } from '../item.api';
 import { Confirmable } from '../../../../../../../../../../../libs/app/common/decorators';
-import {  ItemService } from '../item.model';
+import { ItemService } from '../item.model';
 import {ItemCategory} from "../../item.model";
 
 @Component({
@@ -19,9 +19,6 @@ export class ItemServiceCategoryFormComponent
     override injector: Injector
   ) {
     super(injector);
-    this.api.category$.subscribe(
-        console.log
-    )
   }
   ngOnInit(): void {}
 

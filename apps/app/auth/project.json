@@ -24,8 +24,7 @@
         ],
         "scripts": [
           "apps/app/auth/src/assets/vendors/vNotify/vanilla-notify.min.js"
-        ],
-        "generatePackageJson": true
+        ]
       },
       "configurations": {
         "production": {

@@ -32,19 +32,23 @@ export class ProfilesService {
     profileId: number,
     options: { relations?: string[] } = {}
   ) {
+
     const profile = await this.profileRepo.findOne({
       where: {
         companyId: companyId,
         profileId: profileId,
-      },
+      }
     });
+
+
+
+
 
     if (!options) return profile;
 
     if (options.relations?.includes('segments')) {
       profile.segments = await this.profileRepo.getProfileSegments(
-          companyId,
-        profileId
+          companyId, profileId
       );
     }
 
@@ -58,7 +62,7 @@ export class ProfilesService {
 
     for (const key in data) if (!data[key]) delete data[key];
     Object.assign(profile, data);
-    console.log(data);
+
 
     await doInsert(profile);
 
@@ -102,9 +106,20 @@ export class ProfilesSegmentService {
     @InjectRepository(ProfilesSegmentRepository)
     private segmentRepo: ProfilesSegmentRepository
   ) {}
-  public getSegments(companyId: number, pagination: Pagination) {
+  public getSegmentsPaginated(companyId: number, pagination: Pagination) {
     return pagination.apply(this.segmentRepo,companyId);
   }
+
+  public getSegments(companyId: number) {
+    return this.segmentRepo.find({
+      where:{companyId},
+      order: {
+        order:'ASC'
+      }
+    })
+  }
+
+
 
   public getSegment(companyId: number, segmentId: number) {
     return this.segmentRepo.findOne({

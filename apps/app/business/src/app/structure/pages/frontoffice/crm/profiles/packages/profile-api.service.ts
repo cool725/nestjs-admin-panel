@@ -8,8 +8,8 @@ import { Cacheable } from 'angular-cacheable';
   providedIn: 'root',
 })
 export class ProfilesAPI<Profile> {
-  profile$ = new BehaviorSubject<Profile>(<any>null);
-  profiles$ = new BehaviorSubject<ITableOptions<Profile>>(<any>null);
+  profile$ = new BehaviorSubject<Profile>(null);
+  profiles$ = new BehaviorSubject<ITableOptions<Profile>>(null);
 
   constructor(
     @Optional()
@@ -49,9 +49,16 @@ export class ProfilesAPI<Profile> {
   }
 
   @Cacheable({})
+  getAllSegments() {
+    console.warn('remove this and add as param: paginate:false')
+    return this.http.get<any[]>(this.getPath('segment-all'));
+  }
+
+  @Cacheable({})
   getSources() {
     return this.http.get<any[]>(this.endpoint + '/profiles/sources/');
   }
+
   @Cacheable({})
   getPriceClass() {
     return this.http.get<any[]>(this.endpoint + '/profiles/price-class/');

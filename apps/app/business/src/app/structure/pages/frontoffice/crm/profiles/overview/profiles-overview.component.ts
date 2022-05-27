@@ -18,8 +18,10 @@ export class Profile {
 
   birthDay: string;
 
-  static create(params: Partial<Profile>) {
-    return Object.assign(new Profile(), params);
+  priceClassId: number;
+
+  static create(params?: Partial<Profile>) {
+    return Object.assign(new Profile(), params || {});
   }
 }
 

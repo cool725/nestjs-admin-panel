@@ -57,7 +57,13 @@ export class ProfileEntity extends TenantCompanyEntity {
   @Column({ type: 'smallint', nullable: true, unsigned: true })
   languageId: number;
 
-  @OneToMany(() => ProfileSegmentRelationEntity, (segment) => segment.profile)
+  @Column({ type: 'bigint', nullable: true, unsigned: true })
+  sourceId: number;
+
+  @Column({ type: 'bigint', nullable: true, unsigned: true })
+  priceClassId: number;
+
+  @ManyToMany(() => ProfileSegmentRelationEntity, (segment) => segment.profile)
   @JoinColumn([
     { name: 'companyId', referencedColumnName: 'companyId' },
     { name: 'profileId', referencedColumnName: 'profileId' },
@@ -69,17 +75,16 @@ export class ProfileEntity extends TenantCompanyEntity {
     { name: 'companyId', referencedColumnName: 'companyId' },
     { name: 'sourceId', referencedColumnName: 'sourceId' },
   ])
-  sourceId: number;
+  source: ProfileSourceEntity;
 
   @ManyToOne(() => ProfilePriceClassEntity, (priceClass) => priceClass.profiles)
   @JoinColumn([
     { name: 'companyId', referencedColumnName: 'companyId' },
     { name: 'priceClassId', referencedColumnName: 'priceClassId' },
   ])
-  priceClassId: number;
+  priceClass: ProfilePriceClassEntity;
 
   @Column({ type: 'text', nullable: true })
-  @Exclude()
   notes: string;
 
   @DeleteDateColumn()
@@ -92,9 +97,13 @@ export class ProfileEntity extends TenantCompanyEntity {
     this.email = profile.email;
     this.phone = profile.phone;
 
-    this.birthDay = profile.birthDay;
+    this.birthDay = profile.birthDay || null;
 
-    this.sourceId = profile.sourceId;
+    this.sourceId = profile.sourceId || null;
+    this.priceClassId = profile.priceClassId || null;
+    this.languageId = profile.languageId || null;
+    this.vip        = profile.vip || null;
+
     this.notes = profile.notes;
     return this;
   }

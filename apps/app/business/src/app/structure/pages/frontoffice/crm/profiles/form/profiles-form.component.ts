@@ -31,7 +31,7 @@ export class ProfilesFormComponent extends FormController<Profile> {
     vip: new FormControl('', []),
     languageId: new FormControl('', []),
     segments: new FormControl([], []),
-    priceClass: new FormControl('', []),
+    priceClassId: new FormControl('', []),
     source: new FormControl('', []),
 
     address: new FormGroup({
@@ -69,7 +69,7 @@ export class ProfilesFormComponent extends FormController<Profile> {
       } else this.api.profile$.next(new Profile());
     }
 
-    this.onLoadAndSetData(this.api.getSegments(), this.segments$);
+    this.onLoadAndSetData(this.api.getAllSegments(), this.segments$);
     this.onLoadAndSetData(this.api.getSources(), this.sources$);
     this.onLoadAndSetData(this.api.getPriceClass(), this.priceClasses$);
   }
@@ -80,15 +80,19 @@ export class ProfilesFormComponent extends FormController<Profile> {
       this.api.getProfile(id),
       this.api.profile$,
       (profile: Partial<Profile>) => {
+        profile = Profile.create(profile)
         this.formProfile.patchValue(profile);
         this.isLoading = false;
-        return Profile.create(profile);
+        return profile
       }
     );
   }
 
   async save(profile: Partial<Profile>, closeOnSave = true) {
     const formValues = this.formProfile.value;
+    console.log(
+        formValues,
+    )
     const api$ = profile.profileId
       ? this.api.updateProfile(profile.profileId, formValues)
       : this.api.saveProfile(formValues);

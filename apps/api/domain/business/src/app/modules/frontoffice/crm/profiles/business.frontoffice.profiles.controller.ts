@@ -15,7 +15,7 @@ import {
 } from '../../../../../../../../../../libs/api/common/decorator';
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
-import { GetCompany } from '../../../../../../../../../../libs/api/models/company/src/company.decorator';
+import { GetCompany } from '@movit/api/business';
 import { CompanyEntity } from '../../../../../../../../../../libs/api/models/company/src/entities/companyEntity';
 import { ProfilesService } from '@movit/api/profiles';
 import { ProfilesDto } from '../../../../../../../../../../libs/api/models/profiles/src/classes/profiles.dto';
@@ -39,7 +39,7 @@ export class BusinessFrontOfficeProfilesController {
     @Param('profileId') profileId: number
   ) {
     return this.profilesService.getProfile(business.companyId, profileId, {
-      relations: ['segments'],
+      relations: ['segments','priceClassId'],
     });
   }
 

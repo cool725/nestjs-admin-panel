@@ -15,7 +15,7 @@ import {
 } from '../../../../../../../../../../libs/api/common/decorator';
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
-import { GetCompany } from '../../../../../../../../../../libs/api/models/company/src/company.decorator';
+import { GetCompany } from '@movit/api/business';
 import { CompanyEntity } from '../../../../../../../../../../libs/api/models/company/src/entities/companyEntity';
 import { ProfilesSegmentService, ProfilesService } from '@movit/api/profiles';
 
@@ -32,8 +32,14 @@ export class BusinessFrontOfficeProfilesSegmentsController {
     @GetCompany() business: CompanyEntity,
     @GetPagination() pagination: Pagination
   ) {
-    return this.segmentService.getSegments(business.companyId, pagination);
+    return this.segmentService.getSegmentsPaginated(business.companyId, pagination);
   }
+
+  @Get('segment-all')
+  getAllSegments(@GetCompany() business: CompanyEntity) {
+    return this.segmentService.getSegments(business.companyId);
+  }
+
 
   @Get('segment/:segmentId')
   getSegment(

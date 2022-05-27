@@ -55,7 +55,7 @@ export class ProfilePriceClassEntity extends BaseEntity {
   @Column({ type: 'date', nullable: true })
   deletedAt: Date;
 
-  @OneToMany(() => ProfileEntity, (profile) => profile.priceClassId, {})
+  @OneToMany(() => ProfileEntity, (profile) => profile.priceClass, {})
   @JoinColumn([
     { name: 'companyId', referencedColumnName: 'companyId' },
     { name: 'priceClassId', referencedColumnName: 'priceClassId' },

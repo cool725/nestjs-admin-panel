@@ -220,7 +220,7 @@
                   formControlName="languageId"
                   multiple
                   id="lang"
-                ></nz-select>
+                >     <nz-option nzLabel="De" [nzValue]="1" ></nz-option></nz-select>
                 <label mdbLabel class="form-label px-1" for="lang"
                   >Sprachen</label
                 >
@@ -258,17 +258,14 @@
                   mdbInput
                   mdbNzSelect
                   class="w-100 form-control px-0"
-                  formControlName="priceClass"
+                  formControlName="priceClassId"
                   aria-label="priceclass"
                   aria-describedby="profiles-priceclass"
                   id="Preisklasse"
                 >
                   <nz-option [nzValue]="null"> Keine </nz-option>
                   <nz-option
-                    *ngFor="let p of priceClasses$ | async"
-                    [nzLabel]="p.title"
-                    [nzValue]="p.priceClassId"
-                  >
+                    *ngFor="let p of priceClasses$ | async" [nzLabel]="p.title" [nzValue]="p.priceClassId">
                   </nz-option>
                 </nz-select>
                 <label mdbLabel class="form-label px-1" for="Preisklasse"
@@ -322,7 +319,7 @@
       <!-- Large Modal -->
       <div
         *ngIf="viewSettings.mode === 'details'"
-        class="modal-body modal-body-profiles"
+        class="modal-body modal-body-profiles bg-default"
       >
         <div class="row w-100">
           <div class="row col-12 col-md-6">
@@ -510,7 +507,9 @@
                                   formControlName="languageId"
                                   multiple
                                   id="lang"
-                          ></nz-select>
+                          >
+                            <nz-option nzLabel="De" nzValue="1" ></nz-option>
+                          </nz-select>
                           <label mdbLabel class="form-label px-1" for="lang"
                           >Sprachen</label
                           >

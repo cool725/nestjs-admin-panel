@@ -8,4 +8,4 @@ RUN node package.slicer.js
 RUN cat package.json
 #RUN npm i --production --ignore-scripts
 RUN npm i --g pm2
-RUN yarn add tslib
+RUN yarn add tslib --ignore-scripts

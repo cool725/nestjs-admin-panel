@@ -34,7 +34,7 @@ export class ProfileSourceEntity extends BaseEntity {
   @Column({ type: 'smallint', nullable: true, default: 1 })
   order: number;
 
-  @OneToMany(() => ProfileEntity, (profile) => profile.sourceId, {})
+  @OneToMany(() => ProfileEntity, (profile) => profile.source, {})
   profiles: ProfileEntity[];
 
   constructor() {

@@ -2,7 +2,6 @@ import { Inject, ModuleWithProviders, NgModule } from '@angular/core';
 import { TranslateService } from './app.service.translate';
 import { TranslatePipe } from './app.pipe.translate';
 import { LocaleResolver } from './app.service.translate-resolver';
-import { HttpClientModule } from '@angular/common/http';
 import { HTTPTranslateLoader } from './app.loader.translate';
 
 @NgModule({

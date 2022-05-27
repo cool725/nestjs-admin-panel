@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppHttpInterceptor } from '@movit/app/common';
-import { TranslateModule } from '@ngx-translate/core';
+import {HTTPTranslateLoader, TranslateLocaleModule} from "@movit/app/module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,8 +16,11 @@ import { TranslateModule } from '@ngx-translate/core';
     LayoutsModule,
     AppRoutingModule,
     HttpClientModule,
-    TranslateModule.forRoot({
-      defaultLanguage: 'de',
+    TranslateLocaleModule.forRoot({
+      loader: {
+        provide: 'TranslateLocaleLoader',
+        useClass: HTTPTranslateLoader,
+      },
     }),
   ],
   providers: [

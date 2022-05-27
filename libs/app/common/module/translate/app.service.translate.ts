@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HTTPTranslateLoader } from '@movit/app/module';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -17,7 +16,7 @@ export class TranslateService {
   constructor() {}
 
   public onInit() {
-    for (let section of this.defaultTranslationSections) {
+    for (const section of this.defaultTranslationSections) {
       this.loadAndSetTranslations(section, 'de', { isDefault: true });
     }
   }

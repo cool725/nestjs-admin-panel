@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { ProfilesFormComponent } from './profiles-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+
 import { NgModule } from '@angular/core';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ProfilesAPI } from '../packages/profile-api.service';
 import { environment } from '../../../../../../../environments/environment';
 import { MdbSharedModule } from '@movit/app/ui';
-import { TranslateLocaleModule } from '../../../../../../../../../../../libs/app/common/module/translate/module.translate';
+import { TranslateLocaleModule } from '@movit/app/module';
 
 @NgModule({
   declarations: [ProfilesFormComponent],

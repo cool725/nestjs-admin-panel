@@ -8,7 +8,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../packages/auth.api';
 import { catchError, of } from 'rxjs';
-import { TranslateModule } from '@ngx-translate/core';
+import {TranslateLocaleModule} from "@movit/app/module";
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -26,7 +26,7 @@ describe('LoginComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         CommonModule,
-        TranslateModule.forChild(),
+        TranslateLocaleModule.forChild(),
         RouterTestingModule,
         HttpClientModule,
       ],

@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { ProfilesSegmentFormComponent } from './profiles-segment-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+
 import { NgModule } from '@angular/core';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ProfileSegmentAPI } from '../packages/profile-sagment-api.service';
 import { environment } from '../../../../../../../environments/environment';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
-import { TranslateLocaleModule } from '../../../../../../../../../../../libs/app/common/module/translate/module.translate';
+import { TranslateLocaleModule } from '@movit/app/module';
 
 @NgModule({
   declarations: [ProfilesSegmentFormComponent],

@@ -13,7 +13,6 @@ import { RegisterComponent } from './register/register.component';
 import { CommonModule } from '@angular/common';
 import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
 import { MenuComponent } from './menu/menu.component';
-import { TranslateModule } from '@ngx-translate/core';
 
 const COMPONENTS = [
   LoginComponent,

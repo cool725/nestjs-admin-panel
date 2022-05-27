@@ -9,8 +9,7 @@
         "outputPath": "dist/apps/api/business",
         "main": "apps/api/domain/business/src/main.ts",
         "tsConfig": "apps/api/domain/business/tsconfig.app.json",
-        "assets": ["apps/api/domain/business/src/assets", "apps/api/domain/business/src/.env"],
-        "generatePackageJson": true
+        "assets": ["apps/api/domain/business/src/assets", "apps/api/domain/business/src/.env"]
       },
       "configurations": {
         "production": {

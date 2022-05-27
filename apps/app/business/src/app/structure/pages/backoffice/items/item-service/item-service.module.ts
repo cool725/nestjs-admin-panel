@@ -9,7 +9,7 @@ import { MdbSharedModule } from '@movit/app/ui';
 import { TranslateLocaleModule } from '@movit/app/module';
 import { ItemServiceCategoryModule } from './form-category-service/item-category-service-form.module';
 import { ItemServiceFormModule } from './form-service/item-service-form.module';
-import { BoostrapModalUIModule } from '../../../../../../../../../../libs/app/ui/boostrap/modal/default/modal.default.module';
+import { BoostrapModalUIModule } from '../../../../../../../../../../libs/app/ui/vendors/boostrap/modal/default/modal.default.module';
 
 const routes: Routes = [
   {

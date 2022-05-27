@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../../../../../../environments/environment';
 import { BoostrapModalUIComponent, MdbSharedModule } from '@movit/app/ui';
-import { BoostrapModalUIModule } from '../../../../../../../../../../libs/app/ui/boostrap/modal/default/modal.default.module';
+import { BoostrapModalUIModule } from '../../../../../../../../../../libs/app/ui/vendors/boostrap/modal/default/modal.default.module';
 import { ProfilesPriceClassOverviewComponent } from './overview/profiles-price-class-overview.component';
 import { ProfilesPriceClassFormComponent } from './form/profiles-price-class-form.component';
 import { ProfilePriceClassAPI } from './packages/profile-price-class-api.service';

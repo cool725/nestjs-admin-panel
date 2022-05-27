@@ -1,11 +1,12 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { PageController } from '../../../structure/pages/page.controller';
-import { HeaderMenuAPI } from './components/menu/packages/header.service';
+
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import { AuthCanActivate } from '@movit/app/common';
 import { HttpClient } from '@angular/common/http';
 import { UserStore } from '../../../../../../../../libs/app/common/store/app.store.user';
+import { HeaderMenuAPI } from "@movit/app/ui";
 
 @Component({
   selector: 'layout-comp-header',

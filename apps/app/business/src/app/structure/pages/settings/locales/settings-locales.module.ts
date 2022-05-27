@@ -6,7 +6,7 @@ import { LocalesService } from './locales-service';
 import { KeysPipe } from './pipes.key';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { FormsModule } from '@angular/forms';
-import { BoostrapModalUIModule } from '../../../../../../../../../libs/app/ui/boostrap/modal/default/modal.default.module';
+import { BoostrapModalUIModule } from '../../../../../../../../../libs/app/ui/vendors/boostrap/modal/default/modal.default.module';
 
 const routes: Routes = [
   {

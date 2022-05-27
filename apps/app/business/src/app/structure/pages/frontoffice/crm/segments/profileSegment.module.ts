@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../../../../../../environments/environment';
 import { ProfilesSegmentOverviewComponent } from './overview/profiles-segment-overview.component';
 
-import { BoostrapModalUIModule } from '../../../../../../../../../../libs/app/ui/boostrap/modal/default/modal.default.module';
+import { BoostrapModalUIModule } from '../../../../../../../../../../libs/app/ui/vendors/boostrap/modal/default/modal.default.module';
 import { ProfilesSegmentFormModule } from './form/profiles-segment-form.module';
 import { ProfilesSegmentFormComponent } from './form/profiles-segment-form.component';
 import { MdbSharedModule } from '@movit/app/ui';

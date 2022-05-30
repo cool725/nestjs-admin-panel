@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { fadein } from '../../structure/routing/router-animations';
 import { NavigationEnd, Router } from '@angular/router';
 
+
 @Component({
   selector: 'layout-auth',
   templateUrl: './auth.component.html',

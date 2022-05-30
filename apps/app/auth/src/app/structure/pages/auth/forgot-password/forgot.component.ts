@@ -4,6 +4,7 @@ import { AuthService } from '../packages/auth.api';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { passwordConfirm } from '../packages/auth.validator';
 
+
 @Component({
   selector: 'auth-forgot',
   templateUrl: './forgot.component.html',

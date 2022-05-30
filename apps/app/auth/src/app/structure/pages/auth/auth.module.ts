@@ -31,7 +31,7 @@ const COMPONENTS = [
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    TranslateModule,
+   
   ],
   declarations: [...COMPONENTS],
   providers: [

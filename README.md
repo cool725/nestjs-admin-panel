@@ -51,7 +51,8 @@ When the database has been initialised run:
 
 `npm run typeorm:run`
 
-If you get an error the database has not been
+If you get an error, 
+It means the database has not been
 initialised. 
 Restart the docker api, login into the database, verify if tables have been created and repeat this step again. 
 

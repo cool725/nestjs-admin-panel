@@ -13,7 +13,6 @@ import { RegisterComponent } from './register/register.component';
 import { CommonModule } from '@angular/common';
 import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
 import { MenuComponent } from './menu/menu.component';
-
 import {TranslateLocaleModule} from "@movit/app/module";
 
 const COMPONENTS = [
@@ -33,7 +32,7 @@ const COMPONENTS = [
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-   TranslateLocaleModule.forChild()
+    TranslateLocaleModule.forChild(),
   ],
   declarations: [...COMPONENTS],
   providers: [

@@ -64,7 +64,7 @@ To generate Locales data run:
 
 ---
 
-### Development
+### Deployment
 
 #### Branch
 

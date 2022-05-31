@@ -1,0 +1,13 @@
+<nav aria-label="Page navigation" class="pagination-nav">
+  <ul class="pagination">
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <a class="page-link" (click)="previousPage()">{{ 'previous' | translate }}</a>
+    </li>
+    <li class="page-item" *ngFor="let page of pages" [class.active]="page === currentPage">
+      <a class="page-link" (click)="goToPage(page)">{{ page }}</a>
+    </li>
+    <li class="page-item" [class.disabled]="currentPage === paginate.count">
+      <a class="page-link" (click)="nextPage()">{{ 'next' | translate }}</a>
+    </li>
+  </ul>
+</nav>

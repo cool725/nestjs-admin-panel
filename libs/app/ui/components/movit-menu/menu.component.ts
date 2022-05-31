@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Inject, Input, ViewChild} from '@angular/core';
+import {Component, Inject, Input, ViewChild} from '@angular/core';
 import { Subject } from 'rxjs';
 import {MenuEnv, MenuItem} from "./menu.interface";
 

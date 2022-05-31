@@ -74,7 +74,7 @@ create new Branch with your name as prefix.
 
 ### FileWatching
 
-Frontend: `npm run app:start:api-business`
+Frontend: `npm run app:start:app-business`
 Backend: `npm run api:start:api-business`
 
 ---

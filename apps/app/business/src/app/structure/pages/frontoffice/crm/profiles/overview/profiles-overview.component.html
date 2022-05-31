@@ -96,6 +96,7 @@
           </ng-container>
         </tbody>
       </table>
+      <mdb-pagination [paginate]="paginateObj" (pageChange)="onPageChange($event) "></mdb-pagination>
     </div>
   </div>
   <br>

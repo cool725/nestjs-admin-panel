@@ -1,10 +1,9 @@
 import { Component, Injector } from '@angular/core';
 import { PageController } from '../../../../page.controller';
 import { ProfilesAPI } from '../packages/profile-api.service';
-import { ITableBaseFilter, Table } from '@movit/app/common';
+import { Confirmable, Debounce, ITableBaseFilter, Table } from '@movit/app/common';
 import { ProfilesFormComponent } from '../form/profiles-form.component';
-import { Confirmable } from '../../../../../../../../../../../libs/app/common/decorators';
-import { Debounce } from '../../../../../../../../../../../libs/app/common/decorators/app.decorator.debounce';
+import { PaginationObj } from '@movit/app/ui';
 
 export class Profile {
   profileId: number;
@@ -31,6 +30,13 @@ export class Profile {
   styleUrls: ['./profiles-overview.component.css'],
 })
 export class ProfilesOverviewComponent extends PageController {
+
+
+  paginateObj: PaginationObj = {
+    count: 5,
+    page: 1,
+  };
+
   public profileTable: Table<Profile, ITableBaseFilter> = new Table<
     Profile,
     ITableBaseFilter
@@ -63,6 +69,10 @@ export class ProfilesOverviewComponent extends PageController {
     return this.openModal(ProfilesFormComponent, {
       id: id,
     });
+  }
+
+  onPageChange(page: number) {
+    console.log('toto:', page);
   }
 
   @Confirmable({ title: 'Sure?' })

@@ -21,7 +21,7 @@ export class BusinessUserRolesEntity extends BaseEntity {
   @Column({ type: 'varchar', nullable: true, default: '', length: 20 })
   roles: string;
 
-  @ManyToOne(() => CompanyEntity, (business) => business.roles, {
+  @ManyToOne(() => CompanyEntity, (company) => company.roles, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
     eager: true,

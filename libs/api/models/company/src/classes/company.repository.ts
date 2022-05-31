@@ -73,10 +73,10 @@ export class CompanyRepository extends Repository<CompanyEntity> {
     });
     return userBusinesses;
   }
-  async getBusinessUsers(business: CompanyEntity) {
+  async getBusinessUsers(company: CompanyEntity) {
     const userBusinesses = await BusinessUserRolesEntity.find({
       where: {
-        business: business,
+        company: company,
       },
       relations: ['user'],
     });

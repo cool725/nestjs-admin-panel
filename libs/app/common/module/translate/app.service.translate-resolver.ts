@@ -27,7 +27,7 @@ export class LocaleResolver implements Resolve<any> {
   ): Observable<any> | Promise<any> | any {
     const { routeConfig } = route;
     const data:any = routeConfig?.data;
-    const path = route?.url[0].path;
+    const path = route?.url[0]?.path;
     return this.ts.loadAndSetTranslations(data?.path || path);
   }
 }

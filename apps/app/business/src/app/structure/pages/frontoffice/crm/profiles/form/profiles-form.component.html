@@ -38,7 +38,9 @@
         id="radio-company"
         value="C"
       />
-      <label class="form-check-label" for="radio-company">Firma</label>
+      <label class="form-check-label" for="radio-company">
+        Company
+      </label>
     </div>
   </div>
 </ng-template>
@@ -358,18 +360,18 @@
                     <ng-container>
                       <div class="col-12 col-md-9 row">
                         <div class="col-12 col-md-6">
-                          <label>{{ 'firstname' | translate }}</label>
-                          <div class="input-group mb-3">
+                          <mdb-form-control class="mt-2">
                             <input
-                              formControlName="firstName"
-                              type="text"
-                              class="form-control"
-                              autocomplete="new-password"
-                              placeholder="Vorname"
-                              aria-label="firstName"
-                              aria-describedby="profiles-firstname"
+                                    mdbInput
+                                    type="text"
+                                    id="profiles-firstname"
+                                    formControlName="firstName"
+                                    class="form-control"
                             />
-                          </div>
+                            <label mdbLabel class="form-label" for="profiles-firstName">
+                              {{ 'firstName' | translate }}
+                            </label>
+                          </mdb-form-control>
                         </div>
 
                         <div class="col-12 col-md-6">
@@ -485,23 +487,6 @@
                       </div>
 
                       <div class="col-12 row" >
-                      <div class="col-12 col-md-12">
-                        <mdb-form-control class="mdb-multiselect my-2">
-                          <nz-select
-                                  mdbInput
-                                  mdbNzSelect
-                                  class="w-100 form-control px-0"
-                                  formControlName="languageId"
-                                  multiple
-                                  id="lang"
-                          >
-                            <nz-option nzLabel="De" nzValue="1" ></nz-option>
-                          </nz-select>
-                          <label mdbLabel class="form-label px-1" for="lang"
-                          >Sprachen</label
-                          >
-                        </mdb-form-control>
-                      </div>
 
                       <div class="col-12 col-md-12">
                         <mdb-form-control class="mt-4">
@@ -519,6 +504,24 @@
                     </div>
 
                     <div class="row my-2">
+                      <div class="col-12 col-md-6">
+                        <mdb-form-control class="mdb-multiselect my-2">
+                          <nz-select
+                                  mdbInput
+                                  mdbNzSelect
+                                  class="w-100 form-control px-0"
+                                  formControlName="languageId"
+                                  multiple
+                                  id="lang"
+                          >
+                            <nz-option nzLabel="DE" nzValue="1" ></nz-option>
+                            <nz-option nzLabel="EN" nzValue="2" ></nz-option>
+                          </nz-select>
+                          <label mdbLabel class="form-label px-1" for="lang">
+                            Sprache
+                          </label>
+                        </mdb-form-control>
+                      </div>
                       <div class="col-12 col-md-6">
                         <mdb-form-control class="mdb-multiselect my-2">
                           <nz-select

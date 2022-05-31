@@ -358,30 +358,8 @@
                     <ng-container>
                       <div class="col-12 col-md-9 row">
                         <div class="col-12 col-md-6">
-                          <mdb-form-control>
-                            <input
-                              mdbInput
-                              type="text"
-                              id="profiles-lastname"
-                              class="form-control"
-                            />
-                            <label
-                              mdbLabel
-                              class="form-label"
-                              for="profiles-lastname"
-                            >
-                              {{ 'lastname' }}
-                            </label>
-                          </mdb-form-control>
-                        </div>
-                        <div class="col-12 col-md-6">
                           <label>{{ 'firstname' | translate }}</label>
                           <div class="input-group mb-3">
-                            <span
-                              class="input-group-text"
-                              id="profles-firstname"
-                              >@</span
-                            >
                             <input
                               formControlName="firstName"
                               type="text"
@@ -390,6 +368,21 @@
                               placeholder="Vorname"
                               aria-label="firstName"
                               aria-describedby="profiles-firstname"
+                            />
+                          </div>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                          <label>{{ 'lastname' | translate }}</label>
+                          <div class="input-group mb-3">
+                            <input
+                              formControlName="lastName"
+                              type="text"
+                              class="form-control"
+                              autocomplete="new-password"
+                              placeholder="Nachname"
+                              aria-label="lastName"
+                              aria-describedby="profiles-lastname"
                             />
                           </div>
                         </div>
@@ -409,9 +402,6 @@
                       <div class="col-12 col-md-6">
                         <label>Email</label>
                         <div class="input-group mb-3">
-                          <span class="input-group-text" id="profiles-email"
-                            >@</span
-                          >
                           <input
                             type="text"
                             formControlName="email"
@@ -426,9 +416,6 @@
                       <div class="col-12 col-md-6">
                         <label>Telefon</label>
                         <div class="input-group mb-3">
-                          <span class="input-group-text" id="profles-phone"
-                            >@</span
-                          >
                           <input
                             formControlName="phone"
                             type="text"
@@ -592,65 +579,65 @@
                   </div>
                 </mdb-tab>
                 <mdb-tab title="Address">
-                  <div class="row shadow pt-3 mb-3">
-                    <label class="pb-3"><b>Addresse</b></label>
+                  <div class="row shadow pt-3 mb-3 address">
+                    <label class="pb-3"><b>{{ 'address' | translate }}</b></label>
                     <ng-container>
                       <div class="row m-0 col-12" formGroupName="address">
                         <div class="col-12 col-md-6">
-                          <label>Address</label>
+                          <label>{{ 'street' | translate }}</label>
                           <div class="input-group mb-3">
                             <textarea
-                                    rows="5"
-                                    formControlName="street"
-                                    type="text"
-                                    class="form-control"
-                                    autocomplete="new-password"
-                                    placeholder="street"
-                                    aria-label="street"
-                                    aria-describedby="profiles-street"
+                              rows="5"
+                              formControlName="street"
+                              type="text"
+                              class="form-control py-0 h-auto"
+                              autocomplete="new-password"
+                              placeholder="{{ 'street' | translate }}"
+                              aria-label="street"
+                              aria-describedby="profiles-street"
                             ></textarea>
                           </div>
                         </div>
                         <div class="row col-12 col-md-6">
                           <div class="col-12 col-md-6">
-                            <label>Zip</label>
+                            <label>Plz</label>
                             <div class="input-group mb-3">
                               <input
-                                      formControlName="zip"
-                                      type="text"
-                                      class="form-control"
-                                      autocomplete="new-password"
-                                      placeholder="Zip"
-                                      aria-label="zip"
-                                      aria-describedby="profiles-zip"
+                                formControlName="zip"
+                                type="text"
+                                class="form-control"
+                                autocomplete="new-password"
+                                placeholder="Plz"
+                                aria-label="zip"
+                                aria-describedby="profiles-zip"
                               />
                             </div>
                           </div>
                           <div class="col-12 col-md-6">
-                            <label>Place</label>
+                            <label>Stadt</label>
                             <div class="input-group mb-3">
                               <input
-                                      formControlName="city"
-                                      type="text"
-                                      class="form-control"
-                                      autocomplete="new-password"
-                                      placeholder="city"
-                                      aria-label="city"
-                                      aria-describedby="profiles-city"
+                                formControlName="city"
+                                type="text"
+                                class="form-control"
+                                autocomplete="new-password"
+                                placeholder="Stadt"
+                                aria-label="city"
+                                aria-describedby="profiles-city"
                               />
                             </div>
                           </div>
-                          <div class="col-12 col-md-12">
-                            <label>Country</label>
-                            <div class="input-group mb-3">
+                          <div class="col-12 col-md-12 mb-sm-0 mb-3">
+                            <label>{{ 'country' | translate }}</label>
+                            <div class="input-group">
                               <input
-                                      formControlName="country"
-                                      type="text"
-                                      class="form-control"
-                                      autocomplete="new-password"
-                                      placeholder="country"
-                                      aria-label="country"
-                                      aria-describedby="profiles-country"
+                                formControlName="country"
+                                type="text"
+                                class="form-control"
+                                autocomplete="new-password"
+                                placeholder="{{ 'country' | translate }}"
+                                aria-label="country"
+                                aria-describedby="profiles-country"
                               />
                             </div>
                           </div>
@@ -664,60 +651,60 @@
                     <ng-container>
                       <div class="row m-0 col-12" formGroupName="address">
                         <div class="col-12 col-md-6">
-                          <label>Address</label>
+                          <label>{{ 'street' | translate }}</label>
                           <div class="input-group mb-3">
                             <textarea
-                                    rows="5"
-                                    formControlName="street"
-                                    type="text"
-                                    class="form-control"
-                                    autocomplete="new-password"
-                                    placeholder="street"
-                                    aria-label="street"
-                                    aria-describedby="profiles-street"
+                              rows="5"
+                              formControlName="street"
+                              type="text"
+                              class="form-control py-0 h-auto"
+                              autocomplete="new-password"
+                              placeholder="{{ 'street' | translate }}"
+                              aria-label="street"
+                              aria-describedby="profiles-street"
                             ></textarea>
                           </div>
                         </div>
                         <div class="row col-12 col-md-6">
                           <div class="col-12 col-md-6">
-                            <label>Zip</label>
+                            <label>Plz</label>
                             <div class="input-group mb-3">
                               <input
-                                      formControlName="zip"
-                                      type="text"
-                                      class="form-control"
-                                      autocomplete="new-password"
-                                      placeholder="Zip"
-                                      aria-label="zip"
-                                      aria-describedby="profiles-zip"
+                                formControlName="zip"
+                                type="text"
+                                class="form-control"
+                                autocomplete="new-password"
+                                placeholder="Plz"
+                                aria-label="zip"
+                                aria-describedby="profiles-zip"
                               />
                             </div>
                           </div>
                           <div class="col-12 col-md-6">
-                            <label>Place</label>
+                            <label>Stadt</label>
                             <div class="input-group mb-3">
                               <input
-                                      formControlName="city"
-                                      type="text"
-                                      class="form-control"
-                                      autocomplete="new-password"
-                                      placeholder="city"
-                                      aria-label="city"
-                                      aria-describedby="profiles-city"
+                                formControlName="city"
+                                type="text"
+                                class="form-control"
+                                autocomplete="new-password"
+                                placeholder="Stadt"
+                                aria-label="city"
+                                aria-describedby="profiles-city"
                               />
                             </div>
                           </div>
-                          <div class="col-12 col-md-12">
-                            <label>Country</label>
-                            <div class="input-group mb-3">
+                          <div class="col-12 col-md-12 mb-sm-0 mb-3">
+                            <label>{{ 'country' | translate }}</label>
+                            <div class="input-group">
                               <input
-                                      formControlName="country"
-                                      type="text"
-                                      class="form-control"
-                                      autocomplete="new-password"
-                                      placeholder="country"
-                                      aria-label="country"
-                                      aria-describedby="profiles-country"
+                                formControlName="country"
+                                type="text"
+                                class="form-control"
+                                autocomplete="new-password"
+                                placeholder="{{ 'country' | translate }}"
+                                aria-label="country"
+                                aria-describedby="profiles-country"
                               />
                             </div>
                           </div>

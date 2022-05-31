@@ -516,66 +516,55 @@
                           </label>
                         </mdb-form-control>
                       </div>
-
                     </div>
 
-                    <div class="col-12 row " >
-                      <div class="col-12 col-md-4 mt-3">
-                        <label>VIP</label>
-                        <div class="input-group mb-3">
-                          <select
-                                  formControlName="vip"
-                                  class="form-control"
-                                  autocomplete="new-password"
-                                  aria-label="lastName"
-                                  aria-describedby="profiles-vip"
+                    <div class="row my-2">
+                      <div class="col-12 col-md-6">
+                        <mdb-form-control class="mdb-multiselect my-2">
+                          <nz-select
+                            mdbInput
+                            mdbNzSelect
+                            class="w-100 form-control px-0"
+                            formControlName="segments"
+                            nzMode="multiple"
+                            aria-label="segments"
+                            aria-describedby="profiles-segments"
+                            id="Kundensegment"
                           >
-                            <option value="">Nein</option>
-                            <option value="1">A</option>
-                            <option value="2">B</option>
-                            <option value="3">C</option>
-                            <option value="4">D</option>
-                          </select>
-                        </div>
+                            <nz-option
+                              *ngFor="let segment of segments$ | async"
+                              [nzLabel]="segment.title"
+                              [nzValue]="segment.segmentId"
+                            >
+                            </nz-option>
+                          </nz-select>
+                          <label mdbLabel class="form-label px-1" for="Kundensegment">
+                            Kundensegment
+                          </label>
+                        </mdb-form-control>
                       </div>
-                      <div class="col-12 col-md-4 mt-3">
-                        <label>VIP</label>
-                        <div class="input-group mb-3">
-                          <select
-                                  formControlName="vip"
-                                  class="form-control"
-                                  autocomplete="new-password"
-                                  aria-label="lastName"
-                                  aria-describedby="profiles-vip"
+                      <div class="col-12 col-md-6">
+                        <mdb-form-control class="mdb-multiselect my-2">
+                          <nz-select
+                            mdbInput
+                            mdbNzSelect
+                            class="w-100 form-control px-0"
+                            formControlName="priceClassId"
+                            aria-label="priceclass"
+                            aria-describedby="profiles-priceclass"
+                            id="Preisklasse"
                           >
-                            <option value="">Nein</option>
-                            <option value="1">A</option>
-                            <option value="2">B</option>
-                            <option value="3">C</option>
-                            <option value="4">D</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-12 col-md-4 mt-3">
-                        <label>VIP</label>
-                        <div class="input-group mb-3">
-                          <select
-                                  formControlName="vip"
-                                  class="form-control"
-                                  autocomplete="new-password"
-                                  aria-label="lastName"
-                                  aria-describedby="profiles-vip"
-                          >
-                            <option value="">Nein</option>
-                            <option value="1">A</option>
-                            <option value="2">B</option>
-                            <option value="3">C</option>
-                            <option value="4">D</option>
-                          </select>
-                        </div>
+                            <nz-option [nzValue]="null"> Keine </nz-option>
+                            <nz-option
+                              *ngFor="let p of priceClasses$ | async" [nzLabel]="p.title" [nzValue]="p.priceClassId">
+                            </nz-option>
+                          </nz-select>
+                          <label mdbLabel class="form-label px-1" for="Preisklasse">
+                            Preisklasse
+                          </label>
+                        </mdb-form-control>
                       </div>
                     </div>
-
                   </div>
                 </mdb-tab>
                 <mdb-tab title="Address">

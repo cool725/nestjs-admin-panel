@@ -83,7 +83,7 @@
         *ngIf="viewSettings.mode === 'simple'"
         class="modal-body modal-body-profiles"
       >
-        <form class="row" [formGroup]="formProfile">
+        <form class="row p-0" [formGroup]="formProfile">
           <div class="col-12 mb-3">
             <ng-container [ngTemplateOutlet]="profileGender"></ng-container>
           </div>
@@ -323,9 +323,9 @@
         *ngIf="viewSettings.mode === 'details'"
         class="modal-body modal-body-profiles bg-default"
       >
-        <div class="row w-100">
-          <div class="row col-12 col-md-6">
-            <form class="row" [formGroup]="formProfile">
+        <div class="row p-0 m-0 w-100">
+          <div class="col-12 col-md-6 p-0">
+            <form [formGroup]="formProfile">
               <mdb-tabs>
                 <mdb-tab title="Overview">
                   <div class="row shadow pt-3 mb-3">
@@ -714,7 +714,7 @@
               </mdb-tabs>
             </form>
           </div>
-          <div class="row col-12 col-md-6">
+          <div class="col-12 col-md-6 pe-0">
             <mdb-tabs>
               <mdb-tab title="Appointments">
                 <div class="row shadow pt-3 mb-3">

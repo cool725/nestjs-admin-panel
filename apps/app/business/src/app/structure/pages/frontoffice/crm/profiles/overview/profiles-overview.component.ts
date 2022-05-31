@@ -44,10 +44,6 @@ export class ProfilesOverviewComponent extends PageController {
     });
   }
 
-  onPageChange(page: number) {
-    console.log('toto:', page);
-  }
-
   @Confirmable({ title: 'Sure?' })
   async deleteProfile(id: number) {
     return this.api.deleteProfile(id).subscribe(() => this.reloadData());

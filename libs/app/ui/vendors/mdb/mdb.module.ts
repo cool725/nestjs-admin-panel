@@ -5,11 +5,11 @@ import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbNzSelectDirective } from './directives/mdb.nz-select.directive';
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
-import { MdbPaginationComponent } from './components/pagination/pagination.component';
 import { TranslateLocaleModule } from '@movit/app/module';
+import {MdbPaginationModule} from "./components/pagination/mdb.pagination.module";
 
 @NgModule({
-  declarations: [MdbNzSelectDirective, MdbPaginationComponent],
+  declarations: [MdbNzSelectDirective],
   imports: [CommonModule, TranslateLocaleModule],
   exports: [
     MdbRippleModule,
@@ -17,7 +17,7 @@ import { TranslateLocaleModule } from '@movit/app/module';
     MdbTabsModule,
     MdbCheckboxModule,
     MdbNzSelectDirective,
-    MdbPaginationComponent,
+    MdbPaginationModule
   ],
 })
 export class MdbSharedModule {}

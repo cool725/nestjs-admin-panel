@@ -3,7 +3,6 @@ import { PageController } from '../../../../page.controller';
 import { ProfilesAPI } from '../packages/profile-api.service';
 import { Confirmable, Debounce, ITableBaseFilter, Table } from '@movit/app/common';
 import { ProfilesFormComponent } from '../form/profiles-form.component';
-import { PaginationObj } from '@movit/app/ui';
 
 export class Profile {
   profileId: number;
@@ -31,22 +30,16 @@ export class Profile {
 })
 export class ProfilesOverviewComponent extends PageController {
 
-
-  paginateObj: PaginationObj = {
-    count: 5,
-    page: 1,
-  };
-
-  public profileTable: Table<Profile, ITableBaseFilter> = new Table<
-    Profile,
-    ITableBaseFilter
-  >(this.api.profiles$, {
+  public profileTable: Table<Profile, ITableBaseFilter> = new Table<Profile, ITableBaseFilter>(this.api.profiles$, {
     searchValue: '',
     keys: ['firstName', 'lastName', 'phone', 'email'],
   }).setFields(['firstName', 'lastName', 'email', 'phone', 'birthDay']);
 
   constructor(override injector: Injector, public api: ProfilesAPI<Profile>) {
     super(injector);
+    this.profileTable.data$.subscribe(test => {
+      console.log(this.profileTable.pagination)
+    })
   }
 
   getData(): void {
@@ -55,9 +48,10 @@ export class ProfilesOverviewComponent extends PageController {
 
   @Debounce(300)
   getProfiles() {
-    this.onLoadAndSetData(
-      this.api.getProfiles(this.profileTable.getFilterValuesAsHttpParams()),
-      this.api.profiles$
+    this.onLoadAndSetPaginatedData(
+      this.api.getProfiles(this.profileTable.getFilterValuesAndPaginationAsHttpParams()),
+      this.api.profiles$,
+      this.profileTable
     );
   }
 

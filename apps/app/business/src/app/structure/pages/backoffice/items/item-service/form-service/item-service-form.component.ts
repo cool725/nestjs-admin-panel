@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { ItemServiceAPI } from '../item.api';
 import { FormController } from '../../../../form.controller';
-import { Confirmable } from '../../../../../../../../../../../libs/app/common/decorators';
+import { Confirmable } from '@movit/app/common';
 import { ItemService } from '../item.model';
 import {ItemCategory} from "../../item.model";
 import {NzUploadFile} from "ng-zorro-antd/upload";

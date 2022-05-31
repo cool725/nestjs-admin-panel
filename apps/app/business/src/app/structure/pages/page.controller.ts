@@ -1,7 +1,7 @@
 import { Component, Injector, TemplateRef, ViewChild } from '@angular/core';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { AppNotifyService } from '@movit/app/common';
+import {AppNotifyService, Table} from '@movit/app/common';
 import { AutoUnsubscribe } from '../../../../../../../libs/app/common/decorators';
 import { DataEmitter, EDataEmitterType } from '@movit/app/common';
 
@@ -71,6 +71,20 @@ export abstract class PageController {
       subject.next(cb ? cb(data) : data);
       setTimeout(() => subscription.unsubscribe(), 0);
     });
+  }
+
+  protected onLoadAndSetPaginatedData<T,P>(
+      api$: Observable<T>,
+      subject: Subject<any>,
+      table:Table<P,any>,
+      cb: any = null
+  ): void {
+    this.onLoadAndSetData(
+        api$,subject, (data:any) => {
+          table.mapPagination(data);
+          return cb ? cb({data:data.data}) : {data:data.data}
+        }
+    )
   }
 
   protected destroySubscriptions() {

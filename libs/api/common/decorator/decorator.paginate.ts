@@ -62,6 +62,10 @@ const applyPagination = async <T>(
           return [];
         }),
     repo.count({
+      cache: {
+        id: repo.metadata.tableName,
+        milliseconds: 300000,
+      },
       where: {
         companyId: companyId,
       },

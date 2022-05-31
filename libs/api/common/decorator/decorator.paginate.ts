@@ -43,6 +43,7 @@ const  applyPagination = async <T>  (pagination:Pagination, repo:Repository<T>,c
   });
 
   return {
+    page:pagination.skip,
     data: result,
     count: total
   }

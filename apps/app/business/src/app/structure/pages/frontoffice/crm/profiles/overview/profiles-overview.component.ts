@@ -3,25 +3,7 @@ import { PageController } from '../../../../page.controller';
 import { ProfilesAPI } from '../packages/profile-api.service';
 import { Confirmable, Debounce, ITableBaseFilter, Table } from '@movit/app/common';
 import { ProfilesFormComponent } from '../form/profiles-form.component';
-
-export class Profile {
-  profileId: number;
-  companyId: number;
-
-  gender: 'C' | 'M' | 'W';
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-
-  birthDay: string;
-
-  priceClassId: number;
-
-  static create(params?: Partial<Profile>) {
-    return Object.assign(new Profile(), params || {});
-  }
-}
+import { Profile } from '../packages/profile.class';
 
 @Component({
   selector: 'movit-profiles-overview',
@@ -37,9 +19,6 @@ export class ProfilesOverviewComponent extends PageController {
 
   constructor(override injector: Injector, public api: ProfilesAPI<Profile>) {
     super(injector);
-    this.profileTable.data$.subscribe(test => {
-      console.log(this.profileTable.pagination)
-    })
   }
 
   getData(): void {

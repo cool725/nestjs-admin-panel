@@ -7,7 +7,7 @@ export interface Pagination {
   limit?: number;
   sort?: { field: string; by: 'ASC' | 'DESC' }[];
   search?: { field: string; value: string }[];
-  apply<T>(repo:Repository<T>,companyId:number, options?:any):Promise<{ data: Repository<T>[], count: number }>
+  apply<T>(repo:Repository<T>,companyId:number, options?:any):Promise<{ data: Repository<T>[], count: number , total: number, page: number }>
 }
 
 const  applyPagination = async <T>  (pagination:Pagination, repo:Repository<T>,companyId:number, options?:any):Promise<any> => {
@@ -44,8 +44,9 @@ const  applyPagination = async <T>  (pagination:Pagination, repo:Repository<T>,c
 
   return {
     page: pagination.skip,
+    count: result.length,
     data: result,
-    count: total
+    total: total
   }
 }
 

@@ -203,6 +203,12 @@
           Speichern
         </a>
         <a
+                class="btn btn-default ms-1"
+                (click)="navBack()"
+        >
+          Abbrechen
+        </a>
+        <a
           *ngIf="role.roleId"
           class="btn btn-danger ms-1"
           (click)="deleteRole(role.roleId)"

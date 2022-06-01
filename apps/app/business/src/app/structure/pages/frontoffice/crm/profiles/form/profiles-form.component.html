@@ -358,35 +358,35 @@
                       </div>
                     </ng-container>
                     <ng-container>
-                      <div class="col-12 col-md-9 row">
+                      <div class="col-12 col-md-9 row mt-2">
                         <div class="col-12 col-md-6">
-                          <mdb-form-control class="mt-2">
+                          <mdb-form-control>
                             <input
-                                    mdbInput
-                                    type="text"
-                                    id="profiles-firstname"
-                                    formControlName="firstName"
-                                    class="form-control"
+                              mdbInput
+                              type="text"
+                              id="profiles-firstname"
+                              formControlName="firstName"
+                              class="form-control"
                             />
                             <label mdbLabel class="form-label" for="profiles-firstName">
-                              {{ 'firstName' | translate }}
+                              {{ 'firstname' | translate }}
                             </label>
                           </mdb-form-control>
                         </div>
 
                         <div class="col-12 col-md-6">
-                          <label>{{ 'lastname' | translate }}</label>
-                          <div class="input-group mb-3">
+                          <mdb-form-control>
                             <input
-                              formControlName="lastName"
+                              mdbInput
                               type="text"
+                              id="profiles-lastname"
+                              formControlName="lastName"
                               class="form-control"
-                              autocomplete="new-password"
-                              placeholder="Nachname"
-                              aria-label="lastName"
-                              aria-describedby="profiles-lastname"
                             />
-                          </div>
+                            <label mdbLabel class="form-label" for="profiles-lastName">
+                              {{ 'lastname' | translate }}
+                            </label>
+                          </mdb-form-control>
                         </div>
                       </div>
                       <div class="col-12 col-md-3 d-none d-md-block">
@@ -400,102 +400,103 @@
                       </div>
                     </ng-container>
 
-                    <div class="col-12 col-md-9 row">
+                    <div class="col-12 col-md-9 row my-3">
                       <div class="col-12 col-md-6">
-                        <label>Email</label>
-                        <div class="input-group mb-3">
+                        <mdb-form-control>
                           <input
+                            mdbInput
                             type="text"
+                            id="profiles-email"
                             formControlName="email"
                             class="form-control"
-                            autocomplete="new-password"
-                            placeholder="Email"
-                            aria-label="email"
-                            aria-describedby="profiles-email"
                           />
-                        </div>
+                          <label mdbLabel class="form-label" for="profiles-email">
+                            {{ 'email' | translate }}
+                          </label>
+                        </mdb-form-control>
                       </div>
-                      <div class="col-12 col-md-6">
-                        <label>Telefon</label>
-                        <div class="input-group mb-3">
-                          <input
-                            formControlName="phone"
-                            type="text"
-                            class="form-control"
-                            autocomplete="new-password"
-                            placeholder="Phone"
-                            aria-label="phone"
-                            aria-describedby="profiles-phone"
-                          />
 
-                          <div
-                            class="w-100 text-danger"
-                            *ngIf="!formProfile.controls['phone'].valid"
-                          >
-                            {{ formProfile.controls['phone']?.errors | json }}
-                          </div>
+                      <div class="col-12 col-md-6">
+                        <mdb-form-control>
+                          <input
+                            mdbInput
+                            type="text"
+                            id="profiles-phone"
+                            formControlName="phone"
+                            class="form-control"
+                          />
+                          <label mdbLabel class="form-label" for="profiles-phone">
+                            {{ 'telephone' | translate }}
+                          </label>
+                        </mdb-form-control>
+
+                        <div
+                          class="w-100 text-danger"
+                          *ngIf="!formProfile.controls['phone'].valid"
+                        >
+                          {{ formProfile.controls['phone']?.errors | json }}
                         </div>
                       </div>
                     </div>
                   </div>
 
                   <div class="row shadow pt-3 mb-3">
-
-                      <div class="col-12 row" >
-                        <div class="col-12 col-md-4">
-                          <label>Job</label>
-                          <div class="input-group mb-3">
-                            <input
-                              formControlName="job"
-                              type="text"
-                              class="form-control"
-                              autocomplete="new-password"
-                              placeholder="job"
-                              aria-label="job"
-                              aria-describedby="profiles-job"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-12 col-md-4">
-                          <label>Civil status </label>
-                          <div class="input-group mb-3">
-                            <select
-                              formControlName="civilState"
-                              type="text"
-                              class="form-control"
-                              autocomplete="new-password"
-                              placeholder="Zip"
-                              aria-label="zip"
-                              aria-describedby="profiles-zip"
-                            ></select>
-                          </div>
-                        </div>
-                        <div class="col-12 col-md-4">
-                          <mdb-form-control class="mt-4">
-                            <input
-                                    mdbInput
-                                    id="profiles-birthDay"
-                                    formControlName="birthDay"
-                                    class="form-control"
-                                    type="date"
-                            />
-                            <label mdbLabel class="form-label" for="profiles-birthDay">
-                              {{ 'birthday' | translate }}
-                            </label>
-                          </mdb-form-control>
-                        </div>
+                    <div class="col-12 row my-2">
+                      <div class="col-12 col-md-4">
+                        <mdb-form-control>
+                          <input
+                            mdbInput
+                            type="text"
+                            id="profiles-job"
+                            formControlName="job"
+                            class="form-control"
+                          />
+                          <label mdbLabel class="form-label" for="profiles-job">
+                            Job
+                          </label>
+                        </mdb-form-control>
                       </div>
 
-                      <div class="col-12 row" >
+                      <div class="col-12 col-md-4">
+                        <mdb-form-control>
+                          <input
+                            mdbInput
+                            type="text"
+                            id="profiles-zip"
+                            formControlName="civilState"
+                            class="form-control"
+                          />
+                          <label mdbLabel class="form-label" for="profiles-zip">
+                            Civil status
+                          </label>
+                        </mdb-form-control>
+                      </div>
 
+                      <div class="col-12 col-md-4">
+                        <mdb-form-control>
+                          <input
+                            mdbInput
+                            id="profiles-birthDay"
+                            formControlName="birthDay"
+                            class="form-control"
+                            type="date"
+                          />
+                          <label mdbLabel class="form-label" for="profiles-birthDay">
+                            {{ 'birthday' | translate }}
+                          </label>
+                        </mdb-form-control>
+                      </div>
+                    </div>
+
+                    <div class="col-12 row">
                       <div class="col-12 col-md-12">
                         <mdb-form-control class="mt-4">
-                <textarea
-                        mdbInput
-                        class="form-control"
-                        id="profiles-notes-short"
-                        rows="4"
-                ></textarea>
+                          <textarea
+                            mdbInput
+                            class="form-control"
+                            id="profiles-notes-short"
+                            rows="4"
+                          ></textarea>
                           <label mdbLabel class="form-label" for="profiles-notes-short">
                             {{ 'notes' | translate }}
                           </label>
@@ -507,12 +508,12 @@
                       <div class="col-12 col-md-6">
                         <mdb-form-control class="mdb-multiselect my-2">
                           <nz-select
-                                  mdbInput
-                                  mdbNzSelect
-                                  class="w-100 form-control px-0"
-                                  formControlName="languageId"
-                                  multiple
-                                  id="lang"
+                            mdbInput
+                            mdbNzSelect
+                            class="w-100 form-control px-0"
+                            formControlName="languageId"
+                            multiple
+                            id="lang"
                           >
                             <nz-option nzLabel="DE" nzValue="1" ></nz-option>
                             <nz-option nzLabel="EN" nzValue="2" ></nz-option>
@@ -571,67 +572,66 @@
                   </div>
                 </mdb-tab>
                 <mdb-tab title="Address">
-                  <div class="row shadow pt-3 mb-3 address">
+                  <div class="row shadow pt-3 mb-3">
                     <label class="pb-3"><b>{{ 'address' | translate }}</b></label>
                     <ng-container>
-                      <div class="row m-0 col-12" formGroupName="address">
+                      <div class="row mx-0 mb-3 col-12" formGroupName="address">
                         <div class="col-12 col-md-6">
-                          <label>{{ 'street' | translate }}</label>
-                          <div class="input-group mb-3">
+                          <mdb-form-control>
                             <textarea
-                              rows="5"
+                              mdbInput
+                              class="form-control"
+                              id="profiles-street"
                               formControlName="street"
-                              type="text"
-                              class="form-control py-0 h-auto"
-                              autocomplete="new-password"
-                              placeholder="{{ 'street' | translate }}"
-                              aria-label="street"
-                              aria-describedby="profiles-street"
+                              rows="5"
                             ></textarea>
-                          </div>
+                            <label mdbLabel class="form-label" for="profiles-street">
+                              {{ 'street' | translate }}
+                            </label>
+                          </mdb-form-control>
                         </div>
                         <div class="row col-12 col-md-6">
                           <div class="col-12 col-md-6">
-                            <label>Plz</label>
-                            <div class="input-group mb-3">
+                            <mdb-form-control>
                               <input
+                                mdbInput
+                                id="profiles-zip"
                                 formControlName="zip"
-                                type="text"
                                 class="form-control"
-                                autocomplete="new-password"
-                                placeholder="Plz"
-                                aria-label="zip"
-                                aria-describedby="profiles-zip"
+                                type="text"
                               />
-                            </div>
+                              <label mdbLabel class="form-label" for="profiles-zip">
+                                Plz
+                              </label>
+                            </mdb-form-control>
                           </div>
                           <div class="col-12 col-md-6">
-                            <label>Stadt</label>
-                            <div class="input-group mb-3">
+                            <mdb-form-control>
                               <input
+                                mdbInput
+                                id="profiles-city"
                                 formControlName="city"
-                                type="text"
                                 class="form-control"
-                                autocomplete="new-password"
-                                placeholder="Stadt"
-                                aria-label="city"
-                                aria-describedby="profiles-city"
+                                type="text"
                               />
-                            </div>
+                              <label mdbLabel class="form-label" for="profiles-city">
+                                Stadt
+                              </label>
+                            </mdb-form-control>
                           </div>
                           <div class="col-12 col-md-12 mb-sm-0 mb-3">
-                            <label>{{ 'country' | translate }}</label>
-                            <div class="input-group">
+                            <mdb-form-control>
                               <input
+                                mdbInput
+                                id="profiles-country"
                                 formControlName="country"
-                                type="text"
                                 class="form-control"
-                                autocomplete="new-password"
-                                placeholder="{{ 'country' | translate }}"
-                                aria-label="country"
-                                aria-describedby="profiles-country"
+                                type="text"
                               />
-                            </div>
+                              <label mdbLabel class="form-label" for="profiles-country">
+                                {{ 'country' | translate }}
+                              </label>
+                            </mdb-form-control>
                           </div>
                         </div>
                       </div>
@@ -641,64 +641,63 @@
                   <div class="row shadow pt-3 mb-3">
                     <label class="pb-3"><b>Rechnungsaddresse</b></label>
                     <ng-container>
-                      <div class="row m-0 col-12" formGroupName="address">
+                      <div class="row mx-0 mb-3 col-12" formGroupName="address">
                         <div class="col-12 col-md-6">
-                          <label>{{ 'street' | translate }}</label>
-                          <div class="input-group mb-3">
+                          <mdb-form-control>
                             <textarea
-                              rows="5"
+                              mdbInput
+                              class="form-control"
+                              id="profiles-street"
                               formControlName="street"
-                              type="text"
-                              class="form-control py-0 h-auto"
-                              autocomplete="new-password"
-                              placeholder="{{ 'street' | translate }}"
-                              aria-label="street"
-                              aria-describedby="profiles-street"
+                              rows="5"
                             ></textarea>
-                          </div>
+                            <label mdbLabel class="form-label" for="profiles-street">
+                              {{ 'street' | translate }}
+                            </label>
+                          </mdb-form-control>
                         </div>
                         <div class="row col-12 col-md-6">
                           <div class="col-12 col-md-6">
-                            <label>Plz</label>
-                            <div class="input-group mb-3">
+                            <mdb-form-control>
                               <input
+                                mdbInput
+                                id="profiles-zip"
                                 formControlName="zip"
-                                type="text"
                                 class="form-control"
-                                autocomplete="new-password"
-                                placeholder="Plz"
-                                aria-label="zip"
-                                aria-describedby="profiles-zip"
+                                type="text"
                               />
-                            </div>
+                              <label mdbLabel class="form-label" for="profiles-zip">
+                                Plz
+                              </label>
+                            </mdb-form-control>
                           </div>
                           <div class="col-12 col-md-6">
-                            <label>Stadt</label>
-                            <div class="input-group mb-3">
+                            <mdb-form-control>
                               <input
+                                mdbInput
+                                id="profiles-city"
                                 formControlName="city"
-                                type="text"
                                 class="form-control"
-                                autocomplete="new-password"
-                                placeholder="Stadt"
-                                aria-label="city"
-                                aria-describedby="profiles-city"
+                                type="text"
                               />
-                            </div>
+                              <label mdbLabel class="form-label" for="profiles-city">
+                                Stadt
+                              </label>
+                            </mdb-form-control>
                           </div>
                           <div class="col-12 col-md-12 mb-sm-0 mb-3">
-                            <label>{{ 'country' | translate }}</label>
-                            <div class="input-group">
+                            <mdb-form-control>
                               <input
+                                mdbInput
+                                id="profiles-country"
                                 formControlName="country"
-                                type="text"
                                 class="form-control"
-                                autocomplete="new-password"
-                                placeholder="{{ 'country' | translate }}"
-                                aria-label="country"
-                                aria-describedby="profiles-country"
+                                type="text"
                               />
-                            </div>
+                              <label mdbLabel class="form-label" for="profiles-country">
+                                {{ 'country' | translate }}
+                              </label>
+                            </mdb-form-control>
                           </div>
                         </div>
                       </div>

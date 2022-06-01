@@ -27,10 +27,7 @@ export class Table<Type, Filter extends ITableBaseFilter> {
   }
 
   public mapPagination(paginate:any){
-    Object.assign(this.pagination, {
-      perPage: paginate.count,
-      total: paginate.total,
-    })
+    this.pagination.initPages( paginate.total, paginate.count, paginate.page);
   }
 
   public canShow(

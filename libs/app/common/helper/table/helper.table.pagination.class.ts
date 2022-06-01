@@ -6,8 +6,7 @@ export interface ITablePaginationInfo {
   perPage: number;
 }
 
-export class TablePagination implements ITablePaginationInfo{
-
+export class TablePagination implements ITablePaginationInfo {
   prevPage: boolean;
 
   nextPage: number;
@@ -18,12 +17,17 @@ export class TablePagination implements ITablePaginationInfo{
 
   perPage: number;
 
-  get numberOfTotalPages (): number {
-    return Math.ceil(this.total / this.perPage)
-  }
+  numberOfTotalPages: number;
 
-  get pages(){
-    // Array.from({ length: this.paginate.total }, (_, i) => i + 1)
-    return [1,2]
+  pages: number[];
+
+  initPages(total: number, perPage: number, page: number) {
+    this.total = total;
+    if (!this.perPage) {
+      this.perPage = perPage;
+    }
+    this.currentPage = Math.floor(page / this.perPage) + 1;
+    this.numberOfTotalPages = Math.ceil(this.total / this.perPage);
+    this.pages = Array.from({ length: this.numberOfTotalPages ?? 0 }, (_, i) => i + 1);
   }
 }

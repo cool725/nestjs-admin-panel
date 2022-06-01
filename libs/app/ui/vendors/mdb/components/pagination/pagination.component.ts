@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { TablePagination } from "@movit/app/common";
+import { PageType, TablePagination } from "@movit/app/common";
 
 @Component({
   selector: 'mdb-pagination',
@@ -12,6 +12,8 @@ export class MdbPaginationComponent {
 
   @Output()
   onPageChange: EventEmitter<number> = new EventEmitter<number>();
+
+  PageType = PageType;
 
   nextPage() {
     if (this.paginate.currentPage < this.paginate.total) {

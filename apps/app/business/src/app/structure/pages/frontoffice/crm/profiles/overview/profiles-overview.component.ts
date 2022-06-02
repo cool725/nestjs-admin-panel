@@ -1,29 +1,9 @@
 import { Component, Injector } from '@angular/core';
 import { PageController } from '../../../../page.controller';
 import { ProfilesAPI } from '../packages/profile-api.service';
-import { ITableBaseFilter, Table } from '@movit/app/common';
+import { Confirmable, Debounce, ITableBaseFilter, Table } from '@movit/app/common';
 import { ProfilesFormComponent } from '../form/profiles-form.component';
-import { Confirmable } from '../../../../../../../../../../../libs/app/common/decorators';
-import { Debounce } from '../../../../../../../../../../../libs/app/common/decorators/app.decorator.debounce';
-
-export class Profile {
-  profileId: number;
-  companyId: number;
-
-  gender: 'C' | 'M' | 'W';
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-
-  birthDay: string;
-
-  priceClassId: number;
-
-  static create(params?: Partial<Profile>) {
-    return Object.assign(new Profile(), params || {});
-  }
-}
+import { Profile } from '../packages/profile.class';
 
 @Component({
   selector: 'movit-profiles-overview',
@@ -31,10 +11,8 @@ export class Profile {
   styleUrls: ['./profiles-overview.component.css'],
 })
 export class ProfilesOverviewComponent extends PageController {
-  public profileTable: Table<Profile, ITableBaseFilter> = new Table<
-    Profile,
-    ITableBaseFilter
-  >(this.api.profiles$, {
+
+  public profileTable: Table<Profile, ITableBaseFilter> = new Table<Profile, ITableBaseFilter>(this.api.profiles$, {
     searchValue: '',
     keys: ['firstName', 'lastName', 'phone', 'email'],
   }).setFields(['firstName', 'lastName', 'email', 'phone', 'birthDay']);
@@ -49,9 +27,10 @@ export class ProfilesOverviewComponent extends PageController {
 
   @Debounce(300)
   getProfiles() {
-    this.onLoadAndSetData(
-      this.api.getProfiles(this.profileTable.getFilterValuesAsHttpParams()),
-      this.api.profiles$
+    this.onLoadAndSetPaginatedData(
+      this.api.getProfiles(this.profileTable.getFilterValuesAndPaginationAsHttpParams()),
+      this.api.profiles$,
+      this.profileTable
     );
   }
 

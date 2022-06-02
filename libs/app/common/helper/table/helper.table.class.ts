@@ -1,56 +1,34 @@
-import { BehaviorSubject } from 'rxjs';
+import {BehaviorSubject, Subject, takeUntil} from 'rxjs';
 import { HttpParams } from '@angular/common/http';
+import {ITablePaginationInfo, TablePagination} from "./helper.table.pagination.class";
+import {ITableBaseFilter} from "./helper.table.filter.class";
 
-interface IPageInfo {
-  prevPage: boolean;
-  nextPage: number;
-  currentPage: number;
-
-  total: number;
-  perPage: number;
-}
-
-class TablePagination {
-  pages: number[] = [];
-
-  getPages(infos: IPageInfo): number[] {
-    let pageNum: any = Array.apply(
-      null,
-      Array(Math.min(Math.round(infos.total / infos.perPage) || 0, 10))
-    );
-
-    if (infos.currentPage > 10) {
-      const factor: number = 10 * Math.floor(infos.currentPage / 10);
-      pageNum = pageNum.map((s: number, i: number) => factor + i);
-    } else pageNum = pageNum.map((s: number, i: number) => 1 + i);
-
-    return pageNum;
-  }
-}
-
-export interface ITableOptions<T> extends IPageInfo {
+export interface ITableOptions<T> extends ITablePaginationInfo {
   data: T[];
 }
 
-export interface ITableBaseFilter {
-  page?: number;
-  searchValue?: string;
-  keys?: string[];
-  customSearch?: { [key: string]: string; }
-}
 
 export class Table<Type, Filter extends ITableBaseFilter> {
+
   /*
-   * Pagination Hanlder
+   * Pagination Helper
    * */
-  readonly paginate = new TablePagination();
+  readonly pagination = new TablePagination();
 
   private readonly fields: (keyof Type)[] = [];
+
+  private onDispose = new Subject<void>();
 
   constructor(
     public data$: BehaviorSubject<ITableOptions<Type>>,
     public filterValues: Filter = <Filter>{}
-  ) {}
+  ) {
+
+  }
+
+  public mapPagination(paginate:any){
+    this.pagination.initPages( paginate.total, paginate.count, paginate.page);
+  }
 
   public canShow(
     obj: any,
@@ -83,10 +61,6 @@ export class Table<Type, Filter extends ITableBaseFilter> {
     return false;
   }
 
-  public getPagesNum(pageResultInfos: IPageInfo) {
-    return this.paginate.getPages(pageResultInfos);
-  }
-
   static create<T, F extends ITableBaseFilter>(
     observer: BehaviorSubject<ITableOptions<T>>,
     filterValues: F
@@ -98,17 +72,14 @@ export class Table<Type, Filter extends ITableBaseFilter> {
     return this.fields;
   }
 
-  // todo comment
-  destroy() {
-    this.data$.unsubscribe();
-  }
-
   setFields(fields: (keyof Type)[]) {
     this.fields.length = 0;
     this.fields.push(...fields);
     return this;
   }
 
+
+  //todo move this to filter & search
   private getSearchTerms():string {
     if(Object.keys(this.filterValues.customSearch || {})?.length){
       this.filterValues.searchValue = '';
@@ -126,7 +97,7 @@ export class Table<Type, Filter extends ITableBaseFilter> {
     return this.filterValues.searchValue || '';
   }
 
-  public getFilterValuesAsHttpParams() {
+  public getFilterValuesAsHttpParams():HttpParams {
     let queryParams = new HttpParams();
     const searchTerm = this.getSearchTerms();
     for (const key in this.filterValues) {
@@ -141,5 +112,18 @@ export class Table<Type, Filter extends ITableBaseFilter> {
 
     }
     return queryParams;
+  }
+
+  public getFilterValuesAndPaginationAsHttpParams():HttpParams{
+    let queryParams = this.getFilterValuesAsHttpParams();
+    queryParams = queryParams.append('page',(this.pagination.currentPage || 0).toString())
+    queryParams = queryParams.set('limit',(this.pagination.perPage || 10 ).toString());
+    return queryParams
+  }
+
+  // todo comment
+  destroy() {
+    this.onDispose.complete();
+    this.data$.unsubscribe();
   }
 }

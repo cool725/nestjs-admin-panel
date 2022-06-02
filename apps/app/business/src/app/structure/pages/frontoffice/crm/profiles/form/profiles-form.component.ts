@@ -2,9 +2,9 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { FormController } from '../../../../form.controller';
 import { ProfilesAPI } from '../packages/profile-api.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import { Confirmable } from '../../../../../../../../../../../libs/app/common/decorators';
-import { Profile } from '../overview/profiles-overview.component';
+import { Confirmable } from '@movit/app/common';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { Profile } from '../packages/profile.class';
 
 @Component({
   selector: 'movit-profiles-form',

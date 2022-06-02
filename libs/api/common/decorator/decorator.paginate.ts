@@ -15,7 +15,7 @@ export interface Pagination {
     data: Repository<T>[];
     count: number;
     total: number;
-    page: number;
+    currentPage: number;
   }>;
 }
 

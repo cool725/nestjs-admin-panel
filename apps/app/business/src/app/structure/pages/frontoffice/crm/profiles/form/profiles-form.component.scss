@@ -10,5 +10,12 @@
     .tab-pane {
       padding: 10px;
     }
+    .nav-tabs .nav-link.active {
+      color: #a5bbd4 !important;
+    }
   }
+}
+
+textarea.no-resize{
+    resize: none;
 }

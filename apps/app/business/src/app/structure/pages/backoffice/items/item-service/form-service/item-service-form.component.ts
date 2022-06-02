@@ -4,7 +4,6 @@ import { FormController } from '../../../../form.controller';
 import { Confirmable } from '../../../../../../../../../../../libs/app/common/decorators';
 import { ItemService } from '../item.model';
 import {ItemCategory} from "../../item.model";
-import {NzUploadFile} from "ng-zorro-antd/upload";
 import {Observable} from "rxjs";
 
 const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
@@ -33,8 +32,6 @@ export class ItemServiceFormComponent extends FormController<ItemService> {
       this.getService();
     }
   }
-
-
 
   getService(id = this.getId()) {
     this.onLoadAndSetData(
@@ -96,7 +93,6 @@ export class ItemServiceFormComponent extends FormController<ItemService> {
     this.cancel();
     return this.api.deleteServiceItem(itemId).subscribe(() => this.getData());
   }
-
 
   @Confirmable({
     title: 'Ok?',

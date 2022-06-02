@@ -8,6 +8,7 @@ export class ReservationRepository extends Repository<ReservationHeadEntity> {
   constructor() {
     super();
   }
+
 }
 
 @EntityRepository(ReservationLegEntity)
@@ -16,13 +17,14 @@ export class ReservationLegRepository extends Repository<ReservationLegEntity> {
     super();
   }
 }
+
 @EntityRepository(ReservationProfilesEntity)
 export class ReservationProfilesRepository extends Repository<ReservationProfilesEntity> {
   constructor() {
     super();
   }
 
-  linkProfile(companyId: number, reservationId: number, profileId: number) {
+  addProfileToReservation(companyId: number, reservationId: number, profileId: number) {
     const link = this.create();
     link.companyId = companyId;
     link.reservationId = reservationId;
@@ -30,18 +32,25 @@ export class ReservationProfilesRepository extends Repository<ReservationProfile
     return link.save();
   }
 
-  async linkProfiles(
+  async addProfilesToReservation(
     companyId: number,
     reservationId: number,
     profileIds: number[]
   ) {
     for (let i = 0; i < profileIds.length; i++) {
-      await this.linkProfile(companyId, reservationId, profileIds[i]);
+      await this.addProfileToReservation(companyId, reservationId, profileIds[i]);
     }
   }
 
-  unlinkProfiles(companyId: number, reservationId: number, profileId: number) {
-    this.delete({
+  async removeProfilesFromReservation(companyId: number, reservationId: number, profileIds: number[]) {
+    for(let i = 0; i<profileIds?.length;i++){
+      await this.removeProfileFromReservation(companyId,reservationId,
+          profileIds[i])
+    }
+  }
+
+  removeProfileFromReservation(companyId: number, reservationId: number, profileId: number) {
+    return this.delete({
       companyId: companyId,
       reservationId: reservationId,
       profileId: profileId,
@@ -49,5 +58,6 @@ export class ReservationProfilesRepository extends Repository<ReservationProfile
   }
 
   updateSmsState() {}
+
   updateEmailState() {}
 }

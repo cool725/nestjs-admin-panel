@@ -64,23 +64,27 @@
       <mdb-form-control class="mdb-multiselect my-2">
         <nz-select
           mdbInput
+          mdbNzSelect
           class="w-100 form-control px-0"
           nzShowSearch
           nzServerSearch
+          formControlName="profileIds"
           [nzShowArrow]="false"
           (nzOnSearch)="searchProfile($event)"
           [nzMaxTagCount]="10"
           nzMode="multiple"
-          id="Test"
+          id="profiles-search"
         >
           <!-- [ngClass]="{'c-class':$event.length >0}" -->
           <nz-option
-            *ngFor="let item of []"
-            [nzLabel]="item"
-            [nzValue]="item"
+            *ngFor="let item of filteredProfiles"
+            [nzLabel]="item.firstName"
+            [nzValue]="item.profileId"
           ></nz-option>
         </nz-select>
-        <label mdbLabel class="form-label px-1" for="Test">Test</label>
+        <label mdbLabel class="form-label px-1" for="profiles-search">
+          Kunden
+        </label>
       </mdb-form-control>
       <ng-template #tagPlaceHolder let-selectedList
         >and {{ selectedList.length }} more selected</ng-template

@@ -68,6 +68,16 @@ export class ReservationService {
     });
   }
 
+  async setProfilesToReservation(companyId,reservationId,profilesIds){
+    // add profiles to reshead
+    if( profilesIds ){
+      await this.resProfilesRepo.removeProfilesFromReservation(companyId,reservationId,profilesIds)
+      return this.resProfilesRepo.addProfilesToReservation(
+          companyId, reservationId, profilesIds
+      );
+    }
+  }
+
   setReservationState(
       companyId: number,
     reservationId: number,

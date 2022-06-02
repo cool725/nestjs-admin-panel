@@ -3,6 +3,7 @@ import { FormController } from '../../../form.controller';
 import { FormControl, Validators } from '@angular/forms';
 import { AgendaAPI } from '../packages/agenda-api.service';
 import { Debounce } from '../../../../../../../../../../libs/app/common/decorators/app.decorator.debounce';
+import { tap } from 'rxjs';
 
 class Reservation {
   static create(params: Partial<Reservation>) {
@@ -24,7 +25,12 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
     title: new FormControl('', [Validators.max(100)]),
     start: new FormControl('', [Validators.required]),
     end: new FormControl('', [Validators.required]),
+
+    profileIds:new FormControl([], []),
+
   });
+
+  filteredProfiles:any = []
 
   constructor(
     override injector: Injector,
@@ -53,6 +59,11 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
   override getData(): void {}
 
   save(reservation: any) {
+
+    console.log(
+        this.reservationForm.value
+    )
+
     this.api.saveReservation(this.reservationForm.value).subscribe();
     this.onSave.emit();
     this.closeModal();
@@ -64,6 +75,8 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
 
   @Debounce(300)
   searchProfile(searchTerm: any) {
-    this.api.searchProfiles(searchTerm).subscribe();
+    this.api.searchProfiles(searchTerm)
+        .pipe(tap((values:any) => this.filteredProfiles = values.data))
+        .subscribe();
   }
 }

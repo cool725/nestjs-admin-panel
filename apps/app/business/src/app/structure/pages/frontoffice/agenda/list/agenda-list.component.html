@@ -55,13 +55,15 @@
             <th>{{ 'end' | translate }}</th>
             <th>{{ 'state' | translate }}</th>
             <th>{{ 'price' | translate }}</th>
+            <th></th>
           </tr>
         </thead>
         <tbody *ngIf="resTable.data$ | async as tableData">
           <tr *ngFor="let row of tableData.data">
             <td>{{ row.title }}</td>
-            <td>{{ row.start }}</td>
-            <td>{{ row.end }}</td>
+            <td> </td>
+            <td>{{ row.start | date:'dd.MM.yy  hh:mm' }}</td>
+            <td>{{ row.end | date:'dd.MM.yy  hh:mm' }}</td>
             <td>{{ row.state }}</td>
             <td>{{ row.price }}</td>
             <td>

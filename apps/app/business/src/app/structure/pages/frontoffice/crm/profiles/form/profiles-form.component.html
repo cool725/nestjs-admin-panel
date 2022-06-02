@@ -556,14 +556,14 @@
                             formControlName="priceClassId"
                             aria-label="priceclass"
                             aria-describedby="profiles-priceclass"
-                            id="Preisklasse"
+                            id="priceClassId"
                           >
                             <nz-option [nzValue]="null"> Keine </nz-option>
                             <nz-option
                               *ngFor="let p of priceClasses$ | async" [nzLabel]="p.title" [nzValue]="p.priceClassId">
                             </nz-option>
                           </nz-select>
-                          <label mdbLabel class="form-label px-1" for="Preisklasse">
+                          <label mdbLabel class="form-label px-1" for="priceClassId">
                             Preisklasse
                           </label>
                         </mdb-form-control>
@@ -575,15 +575,15 @@
                   <div class="row shadow pt-3 mb-3">
                     <label class="pb-3"><b>{{ 'address' | translate }}</b></label>
                     <ng-container>
-                      <div class="row mx-0 mb-3 col-12" formGroupName="address">
+                      <div class="row mx-0 mb-3 col-12" formGroupName="defaultAddress">
                         <div class="col-12 col-md-6">
                           <mdb-form-control>
                             <textarea
                               mdbInput
-                              class="form-control"
+                              class="form-control no-resize"
                               id="profiles-street"
                               formControlName="street"
-                              rows="5"
+                              rows="4"
                             ></textarea>
                             <label mdbLabel class="form-label" for="profiles-street">
                               {{ 'street' | translate }}
@@ -619,7 +619,7 @@
                               </label>
                             </mdb-form-control>
                           </div>
-                          <div class="col-12 col-md-12 mb-sm-0 mb-3">
+                          <div class="col-12 col-md-12 mb-sm-0 mt-2 mb-3">
                             <mdb-form-control>
                               <input
                                 mdbInput
@@ -637,11 +637,10 @@
                       </div>
                     </ng-container>
                   </div>
-
                   <div class="row shadow pt-3 mb-3">
                     <label class="pb-3"><b>Rechnungsaddresse</b></label>
                     <ng-container>
-                      <div class="row mx-0 mb-3 col-12" formGroupName="address">
+                      <div class="row mx-0 mb-3 col-12" formGroupName="billingAddress">
                         <div class="col-12 col-md-6">
                           <mdb-form-control>
                             <textarea

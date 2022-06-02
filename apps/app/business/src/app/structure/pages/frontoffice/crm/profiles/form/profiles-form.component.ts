@@ -34,12 +34,20 @@ export class ProfilesFormComponent extends FormController<Profile> {
     priceClassId: new FormControl('', []),
     source: new FormControl('', []),
 
-    address: new FormGroup({
+    defaultAddress: new FormGroup({
       street:new FormControl('', [Validators.maxLength(71)]),
       city:new FormControl('', [Validators.maxLength(30)]),
       country:new FormControl('', [Validators.maxLength(25)]),
       zip:new FormControl('', [Validators.min(1), Validators.max(9999999)]),
     }),
+
+    billingAddress: new FormGroup({
+      street:new FormControl('', [Validators.maxLength(71)]),
+      city:new FormControl('', [Validators.maxLength(30)]),
+      country:new FormControl('', [Validators.maxLength(25)]),
+      zip:new FormControl('', [Validators.min(1), Validators.max(9999999)]),
+    }),
+
 
     job: new FormControl('', []),
     civilState: new FormControl('', []),

@@ -358,9 +358,9 @@
                       </div>
                     </ng-container>
 
-                    <div class="row col-12 d-flex">
+                    <div class="col-12 d-flex">
                       <div class="col-12 col-md-8">
-                        <div class="row mb-4">
+                        <div class="row mb-3">
                           <div class="col-12 col-md-6">
                             <mdb-form-control>
                               <input
@@ -443,56 +443,58 @@
                   </div>
 
                   <div class="row shadow pt-3 mb-3">
-                    <div class="col-12 row my-2">
-                      <div class="col-12 col-md-4">
-                        <mdb-form-control>
-                          <input
-                            mdbInput
-                            type="text"
-                            id="profiles-job"
-                            formControlName="job"
-                            class="form-control"
-                          />
-                          <label mdbLabel class="form-label" for="profiles-job">
-                            Job
-                          </label>
-                        </mdb-form-control>
-                      </div>
+                    <div class="col-12 mt-2">
+                      <div class="row">
+                        <div class="col-12 col-md-4">
+                          <mdb-form-control>
+                            <input
+                              mdbInput
+                              type="text"
+                              id="profiles-job"
+                              formControlName="job"
+                              class="form-control"
+                            />
+                            <label mdbLabel class="form-label" for="profiles-job">
+                              Job
+                            </label>
+                          </mdb-form-control>
+                        </div>
 
-                      <div class="col-12 col-md-4 mt-3 mt-md-0">
-                        <mdb-form-control>
-                          <input
-                            mdbInput
-                            type="text"
-                            id="profiles-zip"
-                            formControlName="civilState"
-                            class="form-control"
-                          />
-                          <label mdbLabel class="form-label" for="profiles-zip">
-                            Civil status
-                          </label>
-                        </mdb-form-control>
-                      </div>
+                        <div class="col-12 col-md-4 mt-3 mt-md-0">
+                          <mdb-form-control>
+                            <input
+                              mdbInput
+                              type="text"
+                              id="profiles-zip"
+                              formControlName="civilState"
+                              class="form-control"
+                            />
+                            <label mdbLabel class="form-label" for="profiles-zip">
+                              Civil status
+                            </label>
+                          </mdb-form-control>
+                        </div>
 
-                      <div class="col-12 col-md-4 mt-3 mt-md-0">
-                        <mdb-form-control>
-                          <input
-                            mdbInput
-                            id="profiles-birthDay"
-                            formControlName="birthDay"
-                            class="form-control"
-                            type="date"
-                          />
-                          <label mdbLabel class="form-label" for="profiles-birthDay">
-                            {{ 'birthday' | translate }}
-                          </label>
-                        </mdb-form-control>
+                        <div class="col-12 col-md-4 mt-3 mt-md-0">
+                          <mdb-form-control>
+                            <input
+                              mdbInput
+                              id="profiles-birthDay"
+                              formControlName="birthDay"
+                              class="form-control"
+                              type="date"
+                            />
+                            <label mdbLabel class="form-label" for="profiles-birthDay">
+                              {{ 'birthday' | translate }}
+                            </label>
+                          </mdb-form-control>
+                        </div>
                       </div>
                     </div>
 
-                    <div class="col-12 row">
+                    <div class="col-12 d-flex mt-3">
                       <div class="col-12 col-md-12">
-                        <mdb-form-control class="mt-4">
+                        <mdb-form-control>
                           <textarea
                             mdbInput
                             class="form-control"
@@ -506,69 +508,71 @@
                       </div>
                     </div>
 
-                    <div class="row my-2">
-                      <div class="col-12 col-md-4">
-                        <mdb-form-control class="mdb-multiselect my-2">
-                          <nz-select
-                            mdbInput
-                            mdbNzSelect
-                            class="w-100 form-control px-0"
-                            formControlName="languageId"
-                            multiple
-                            id="lang"
-                          >
-                            <nz-option nzLabel="DE" nzValue="1" ></nz-option>
-                            <nz-option nzLabel="EN" nzValue="2" ></nz-option>
-                          </nz-select>
-                          <label mdbLabel class="form-label px-1" for="lang">
-                            Sprache
-                          </label>
-                        </mdb-form-control>
-                      </div>
-                      <div class="col-12 col-md-4">
-                        <mdb-form-control class="mdb-multiselect my-2">
-                          <nz-select
-                            mdbInput
-                            mdbNzSelect
-                            class="w-100 form-control px-0"
-                            formControlName="segments"
-                            nzMode="multiple"
-                            aria-label="segments"
-                            aria-describedby="profiles-segments"
-                            id="Kundensegment"
-                          >
-                            <nz-option
-                              *ngFor="let segment of segments$ | async"
-                              [nzLabel]="segment.title"
-                              [nzValue]="segment.segmentId"
+                    <div class="col-12 my-3">
+                      <div class="row">
+                        <div class="col-12 col-md-4">
+                          <mdb-form-control class="mdb-multiselect">
+                            <nz-select
+                              mdbInput
+                              mdbNzSelect
+                              class="w-100 form-control px-0"
+                              formControlName="languageId"
+                              multiple
+                              id="lang"
                             >
-                            </nz-option>
-                          </nz-select>
-                          <label mdbLabel class="form-label px-1" for="Kundensegment">
-                            Kundensegment
-                          </label>
-                        </mdb-form-control>
-                      </div>
-                      <div class="col-12 col-md-4">
-                        <mdb-form-control class="mdb-multiselect my-2">
-                          <nz-select
-                            mdbInput
-                            mdbNzSelect
-                            class="w-100 form-control px-0"
-                            formControlName="priceClassId"
-                            aria-label="priceclass"
-                            aria-describedby="profiles-priceclass"
-                            id="priceClassId"
-                          >
-                            <nz-option [nzValue]="null"> Keine </nz-option>
-                            <nz-option
-                              *ngFor="let p of priceClasses$ | async" [nzLabel]="p.title" [nzValue]="p.priceClassId">
-                            </nz-option>
-                          </nz-select>
-                          <label mdbLabel class="form-label px-1" for="priceClassId">
-                            Preisklasse
-                          </label>
-                        </mdb-form-control>
+                              <nz-option nzLabel="DE" nzValue="1" ></nz-option>
+                              <nz-option nzLabel="EN" nzValue="2" ></nz-option>
+                            </nz-select>
+                            <label mdbLabel class="form-label px-1" for="lang">
+                              Sprache
+                            </label>
+                          </mdb-form-control>
+                        </div>
+                        <div class="col-12 col-md-4 mt-3 mt-md-0">
+                          <mdb-form-control class="mdb-multiselect">
+                            <nz-select
+                              mdbInput
+                              mdbNzSelect
+                              class="w-100 form-control px-0"
+                              formControlName="segments"
+                              nzMode="multiple"
+                              aria-label="segments"
+                              aria-describedby="profiles-segments"
+                              id="Kundensegment"
+                            >
+                              <nz-option
+                                *ngFor="let segment of segments$ | async"
+                                [nzLabel]="segment.title"
+                                [nzValue]="segment.segmentId"
+                              >
+                              </nz-option>
+                            </nz-select>
+                            <label mdbLabel class="form-label px-1" for="Kundensegment">
+                              Kundensegment
+                            </label>
+                          </mdb-form-control>
+                        </div>
+                        <div class="col-12 col-md-4 mt-3 mt-md-0">
+                          <mdb-form-control class="mdb-multiselect">
+                            <nz-select
+                              mdbInput
+                              mdbNzSelect
+                              class="w-100 form-control px-0"
+                              formControlName="priceClassId"
+                              aria-label="priceclass"
+                              aria-describedby="profiles-priceclass"
+                              id="priceClassId"
+                            >
+                              <nz-option [nzValue]="null"> Keine </nz-option>
+                              <nz-option
+                                *ngFor="let p of priceClasses$ | async" [nzLabel]="p.title" [nzValue]="p.priceClassId">
+                              </nz-option>
+                            </nz-select>
+                            <label mdbLabel class="form-label px-1" for="priceClassId">
+                              Preisklasse
+                            </label>
+                          </mdb-form-control>
+                        </div>
                       </div>
                     </div>
                   </div>

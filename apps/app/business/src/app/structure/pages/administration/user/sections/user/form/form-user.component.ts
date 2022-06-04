@@ -101,7 +101,7 @@ export class FormUserComponent<T> extends FormController<User> {
   }
 
   navBack() {
-    this.router.navigate([this.basePath + '/settings/user/overview/']);
+    this.router.navigate([this.basePath + '/administration/user/overview/']);
   }
 
   isValid(key: string, user: User) {}

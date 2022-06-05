@@ -1,0 +1,132 @@
+<div class="onboarding-sidebar" #sidebarWindow>
+  <button class="closebtn bg-white border-0" (click)="closeNav()">×</button>
+
+  <ul class="navbar-nav d-block">
+    <li *ngFor="let menuItem of menuItems" class="{{ menuItem.class }} nav-item">
+      <a routerLinkActive="active" class="nav-link d-flex align-items-center text-dark">
+        <i class="{{ menuItem.icon }} trailing"></i>
+        <span class="ms-2 ">{{ menuItem.title }}</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="row h-100 position-relative onboarding">
+  <div class="navbar-collapse d-md-none d-block">
+    <button (click)="openNav()">☰</button>
+  </div>
+
+  <nav class="navbar d-md-block d-none navbar-expand-md col-2" id="sidenav-main">
+    <ul class="navbar-nav d-block">
+      <li *ngFor="let menuItem of menuItems" class="{{ menuItem.class }} nav-item">
+        <a routerLinkActive="active" class="nav-link d-flex align-items-center text-dark">
+          <i class="{{ menuItem.icon }} trailing"></i>
+          <span class="ms-2 ">{{ menuItem.title }}</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="col-12 p-3 col-md-10">
+    <div class="body border rounded-3 p-3">
+      <div class="table-header d-flex justify-content-between m-3">
+        <span class="fw-bold fs-3">{{ title }}</span>
+        <button class="btn btn-primary" (click)="onRefresh()"><i class="fa fa-refresh"></i> Refresh</button>
+      </div>
+
+      <div class="d-block">
+        <div class="p-2 border rounded-3">
+          <table class="w-100">
+            <tr *ngFor="let row of tableData" class="py-2 text-black">
+              <th scope="row" class="onboarding-data-id justify-content-center d-flex">
+                <div class="circle">
+                  <p class="text-white">{{ row.id }}</p>
+                </div>
+              </th>
+              <td>{{ row.title }}</td>
+              <td>{{ row.description }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-rounded btn-sm fw-bold"
+                  mdbRipple rippleColor="dark"
+                >
+                  View
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="row pagination-details mt-3">
+          <div class="col-md-3">
+            <p class="mb-2 mb-md-0">
+              Showing {{ pager.startIndex + 1 }} to {{ pager.endIndex + 1 }} of {{ tableData.length }} entries
+            </p>
+          </div>
+          <div class="col-md-9">
+            <nav role="navigation">
+              <ul *ngIf="pager.pages && pager.pages.length" class="pagination justify-content-end">
+                <li>
+                  <button
+                    type="button"
+                    class="btn-sm btn-default"
+                    (click)="setPage(1)"
+                    [disabled]="pager.currentPage === 1"
+                    title="Go to the first page"
+                  >
+                    First
+                  </button>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    class="btn-sm btn-default"
+                    (click)="setPage(pager.currentPage - 1)"
+                    [disabled]="pager.currentPage === 1"
+                    title="Go to the previous page"
+                  >
+                    Previous
+                  </button>
+                </li>
+                <li *ngFor="let page of pager.pages">
+                  <button
+                    type="button"
+                    [attr.aria-current]="pager.currentPage === page ? 'true' : 'false'"
+                    [ngClass]="pager.currentPage === page ? 'btn-primary' : 'btn-default'"
+                    class="btn-sm"
+                    (click)="setPage(page)"
+                  >
+                    {{ page }}
+                  </button>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    class="btn-sm btn-default"
+                    (click)="setPage(pager.currentPage + 1)"
+                    [disabled]="pager.currentPage === pager.totalPages"
+                    title="Go to the next page"
+                  >
+                    Next
+                  </button>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    class="btn-sm btn-default"
+                    (click)="setPage(pager.totalPages)"
+                    [disabled]="pager.currentPage === pager.totalPages"
+                    title="Go to the last page"
+                  >
+                    Last
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

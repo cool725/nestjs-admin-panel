@@ -12,6 +12,13 @@ const routes = [
   { path: 'new', component: FormUserComponent },
   { path: 'edit/:userId', component: FormUserComponent },
   { path: 'overview', component: UserComponent },
+  {
+    path: 'onboarding',
+    loadChildren: () =>
+      import('./onboarding/user.onboarding.module').then(
+        (m) => m.UseOnboardingrModule
+      ),
+  },
 ];
 
 @NgModule({

@@ -24,6 +24,7 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
   reservationForm = this.fb.group({
     title: new FormControl('', [Validators.max(100)]),
     place: new FormControl('', [Validators.max(200)]),
+
     profileIds: new FormControl([], []),
     state: new FormControl('', [Validators.required]),
     confidentiality: new FormControl('', [Validators.required]),
@@ -45,6 +46,7 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
   });
 
   filteredProfiles: any = [];
+  employees: any = [];
 
   constructor(
     override injector: Injector,
@@ -55,26 +57,34 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
 
   ngOnInit(): void {
     if (this.getId()) {
-      this.onLoadAndSetData(
-        this.api.getReservation(this.getId()),
-        this.api.reservation$,
-        (res: any) => {
-          this.reservationForm.setValue({
-            title: res.title,
-            start: res.start?.split('T')[0],
-            end: res.end?.split('T')[0],
-          });
-          return Reservation.create(res);
-        }
-      );
+     this.getReservationById(this.getId())
     }
+  }
+
+  getReservationById(reservationId:number = this.getId()){
+    this.onLoadAndSetData(
+        this.api.getReservation(reservationId),
+        this.api.reservation$,
+        (data: any) => {
+          this.filteredProfiles = data.profiles
+          console.log(data)
+          this.reservationForm.reset();
+          this.reservationForm.patchValue({
+            title: data.title,
+            startDate: data.start?.split('T')[0],
+            endDate: data.end?.split('T')[0],
+            profileIds: data.profileIds,
+          });
+
+
+          return Reservation.create(data);
+        }
+    );
   }
 
   override getData(): void {}
 
   save(reservation: any) {
-    console.log(this.reservationForm.value);
-
     this.api.saveReservation(this.reservationForm.value).subscribe();
     this.onSave.emit();
     this.closeModal();
@@ -90,5 +100,12 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
       .searchProfiles(searchTerm)
       .pipe(tap((values: any) => (this.filteredProfiles = values.data)))
       .subscribe();
+  }
+
+  getEmployees(){
+    this.api
+        .getEmployees()
+          .pipe(tap((values: any) => (this.employees = values.data)))
+            .subscribe();
   }
 }

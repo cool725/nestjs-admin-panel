@@ -1,5 +1,4 @@
 import {
-  BaseEntity,
   BeforeInsert,
   Column,
   Entity,
@@ -75,8 +74,7 @@ export class ReservationHeadEntity extends TenantCompanyEntity {
     await this.setLastEntryId('reservationId');
   }
 
-  initialiseData(reservation:any)
-  {
+  initialiseData(reservation:any) {
     this.start = reservation.start;
     this.end = reservation.end;
     this.title = reservation.title;

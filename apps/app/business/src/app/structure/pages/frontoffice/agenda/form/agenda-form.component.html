@@ -125,17 +125,11 @@
         </mdb-form-control>
       </div>
     </div>
-    <div class="row mt-3">
+    <div class="row mt-4">
       <div class="col-7">
         <table class="table quick-service-table table-bordered">
           <thead>
             <tr>
-              <td style="width: 100px" class="select-noborder text-dark">
-                <select class="form-control">
-                  <option value="service">Service</option>
-                  <option value="product">Product</option>
-                </select>
-              </td>
               <td>{{ 'employees' | translate | titlecase }}</td>
               <td>{{ 'duration' | translate | titlecase }}</td>
               <td>{{ 'amount' | translate | titlecase }}</td>
@@ -143,11 +137,8 @@
               <td style="border-right: 0">Total</td>
             </tr>
             <tr>
-              <td style="padding: 0" colspan="100%">
-                <select
-                  aria-placeholder="Search|Service"
-                  class="w-100"
-                ></select>
+              <td colspan="100%">
+
               </td>
             </tr>
           </thead>

@@ -57,6 +57,7 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
   });
 
   filteredProfiles: any = [];
+
   employees: any = [];
 
   constructor(
@@ -68,8 +69,11 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
 
   ngOnInit(): void {
     if (this.getId()) {
-     this.getReservationById(this.getId())
+      this.getReservationById(this.getId())
     }
+  }
+
+  override getData(): void {
   }
 
   getReservationById(reservationId:number = this.getId()){
@@ -93,21 +97,21 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
     );
   }
 
-  override getData(): void {}
-
   save(reservation: any) {
     this.api.saveReservation(
         Reservation.mapForRequest(this.reservationForm.value)
-    ).subscribe();
-    this.onSave.emit();
-    this.closeModal();
+    ).subscribe((data)=>{
+      this.onSave.emit();
+      this.closeModal(data);
+    });
+
   }
 
   cancel() {
     this.closeModal();
   }
 
-  // modal
+  // External Pages
   openProfileModal(profileId?:number){
     return this.openModal(ProfilesFormComponent, {
       id: profileId,
@@ -123,10 +127,10 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
     });
   }
 
-  openInCashSystem(){}
+  openInCashSystem(reservationId:number){}
+  // endregion
 
-  // region data
-
+  // region Getting custom data
   getEmployees(){
     this.api
         .getEmployees()
@@ -141,6 +145,5 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
         .pipe(tap((values: any) => (this.filteredProfiles = values.data)))
         .subscribe();
   }
-
   // endregion
 }

@@ -99,6 +99,26 @@
               />
             </div>
           </div>
+
+          <div class="col-md-6 col-12 mt-2">
+            <div class="form-group">
+              <div class="form-check mt-4">
+                <input
+                  [disabled]="!!user.userId"
+                  mdbCheckbox
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  [checked]="user.isEmployee"
+                  (change)=" user.isEmployee= $event.target.checked"
+                  id="isemployee"
+                />
+                <label class="form-check-label" for="isemployee">
+                  Benutzer als Mitarbeiter eintragen.
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
       </form>
       <div class="card-footer">

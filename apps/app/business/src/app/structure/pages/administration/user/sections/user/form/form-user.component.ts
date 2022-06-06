@@ -12,12 +12,14 @@ import { PageController } from '../../../../../page.controller';
 import { FormController } from '../../../../../form.controller';
 
 class User {
+  userId: string;
   firstName: string;
   lastName: string;
   email: string;
   avatar: string;
   phone: string;
   birthDay: string;
+  isEmployee: boolean;
 
   constructor() {}
 
@@ -75,6 +77,7 @@ export class FormUserComponent<T> extends FormController<User> {
   }
 
   doSave(data: any) {
+
     if (!this.verifyFields()) {
       return console.warn('Form is not valid');
     }
@@ -105,4 +108,6 @@ export class FormUserComponent<T> extends FormController<User> {
   }
 
   isValid(key: string, user: User) {}
+
+
 }

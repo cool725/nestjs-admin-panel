@@ -1,4 +1,5 @@
 import {
+  BeforeInsert,
   Column,
   Entity, Index, JoinColumn, OneToOne,
   PrimaryGeneratedColumn, Unique
@@ -32,9 +33,10 @@ export class EmployeeEntity extends TenantCompanyEntity  {
   @Column({ type: 'varchar', length: 50, nullable: true })
   lastName: string;
 
-  @Column({ length: 100 })
+  @Column({ length: 100, nullable: true })
   email: string;
 
+  @BeforeInsert()
   async beforeInsert(): Promise<any> {
     await this.setLastEntryId('employeeId');
   }

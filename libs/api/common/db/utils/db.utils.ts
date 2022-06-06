@@ -11,8 +11,10 @@ interface insertEntity extends BaseEntity {
 }
 export const doInsert = async (entity: insertEntity) => {
   // ensure  beforeInsert():any is implemented
-  while (!entity.id) {
+  let counter = 0;
+  while (!entity.id && counter< 5000) {
     try {
+      counter++;
       await entity.save();
     } catch (e) {
       console.log('retry', entity, e);

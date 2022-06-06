@@ -75,4 +75,12 @@ export class ReservationHeadEntity extends TenantCompanyEntity {
   protected async beforeInsert() {
     await this.setLastEntryId('reservationId');
   }
+
+  initialiseData(reservation:any)
+  {
+    this.start = reservation.start;
+    this.end = reservation.end;
+    this.title = reservation.title;
+    this.userId = reservation.userId;
+  }
 }

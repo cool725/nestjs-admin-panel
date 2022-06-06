@@ -7,24 +7,21 @@ import {
 } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
 
-export namespace ProfilesDto {
+export namespace ReservationDTO {
   export class Create {
     @IsNotEmpty()
-    gender: string;
+    start: string;
 
-    firstName: string;
-    lastName: string;
+    @IsNotEmpty()
+    end: string;
 
-    @IsEmail()
-    @IsOptional()
-    @ValidateIf((self) => self.email)
-    email: string;
+    // creator of reservation
+    userId?:string
 
-    @IsPhoneNumber() // todo test this
-    @IsOptional()
-    @ValidateIf((self) => self.phone)
-    phone: string;
+    profileIds:number[]
   }
 
-  export class Update extends PartialType(Create) {}
+  export class Update extends PartialType(Create) {
+    readonly userId?:string
+  }
 }

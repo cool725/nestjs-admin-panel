@@ -10,6 +10,7 @@ import { SettingUserAPI } from '../../../packages/user-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PageController } from '../../../../../page.controller';
 import { FormController } from '../../../../../form.controller';
+import { Confirmable } from "@movit/app/common";
 
 class User {
   userId: string;
@@ -84,6 +85,14 @@ export class FormUserComponent<T> extends FormController<User> {
 
     if (!this.inline) this.saveUser(data);
     this.onSave.emit(data);
+  }
+
+  @Confirmable({
+    title: ''
+  })
+  deleteUser(user:any){
+    return this.userAPI.deleteUser(user.userId)
+      .subscribe(()=> this.navBack())
   }
 
   saveUser(user: any) {

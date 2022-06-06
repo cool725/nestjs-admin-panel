@@ -126,10 +126,17 @@
           *ngIf="
             phone.valid && email.valid && firstName.valid && lastName.valid
           "
-          class="btn btn-success text-white"
+          class="btn btn-success text-white me-1"
           (click)="doSave(user)"
         >
           Speichern
+        </a>
+        <a
+          *ngIf="user.userId"
+          class="btn btn-danger text-white me-1"
+          (click)="deleteUser(user)"
+        >
+          Löschen
         </a>
         <a class="btn btn-default" (click)="navBack()"> Abbrechen </a>
       </div>

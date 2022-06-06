@@ -11,7 +11,6 @@ class Reservation {
   }
   static mapForRequest(params: any) {
     // parse required infos for backend
-
     return {
       ...params,
       start: null,// startDate + startTime,
@@ -106,6 +105,7 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
   }
 
   override getData(): void {
+    this.getEmployees()
   }
 
   getReservationById(reservationId:number = this.getId()){

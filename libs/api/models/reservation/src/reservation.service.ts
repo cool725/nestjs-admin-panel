@@ -30,6 +30,10 @@ export class ReservationService {
            companyId:companyId, reservationId:reservationId,
         }).getOne()
 
+    if(reservation){
+      return null
+    }
+
     reservation.legs = await this.resLegRepo.find({
       where: {
         companyId: companyId,

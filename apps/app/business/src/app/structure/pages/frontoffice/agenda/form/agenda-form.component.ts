@@ -22,6 +22,39 @@ class Reservation {
   }
 }
 
+// todo create as directive
+const generateDuration = () : { label:string,value: number}[] => {
+    const timeDurations = []
+    //fill time array
+    let h = 0;
+    let y = 5;
+    let lb: any = "";
+    //add time to dropdown
+    for (let i = 0; i <= 111; i++) {
+    if (y % 60 === 0) {
+    h++
+  } //stunden hinzufügen
+  if (y <= 55)        //minuten formatieren
+  {
+    lb = y + 'min'
+  }
+  else if (y >= 60) {
+    lb = h + 'h ' + (y - 60 * h) + 'min';
+  } //Zeit formatieren
+
+  const a = {label: lb, value: y}
+  timeDurations.push(a)
+  if (y >= 120) {
+    y = y + 15;
+  }
+  else {
+    y = y + 5;
+  }
+  }
+  return timeDurations
+}
+
+
 @Component({
   selector: 'movit-agenda-form',
   templateUrl: './agenda-form.component.html',
@@ -60,6 +93,8 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
 
   employees: any = [];
 
+  durations = generateDuration()
+
   constructor(
     override injector: Injector,
     private api: AgendaAPI<Reservation>
@@ -71,6 +106,7 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
     if (this.getId()) {
       this.getReservationById(this.getId())
     }
+    console.log(this.durations)
   }
 
   override getData(): void {

@@ -108,7 +108,7 @@
         <label>Duration</label>
         <div class="input-group">
           <select formControlName="duration" class="form-control">
-            <option value="">1h20min</option>
+            <option *ngFor="let duration of durations" [value]="duration.label">{{duration.label}}</option>
           </select>
         </div>
       </div>

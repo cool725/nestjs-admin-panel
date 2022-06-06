@@ -98,9 +98,7 @@ export class ProfilesFormComponent extends FormController<Profile> {
 
   async save(profile: Partial<Profile>, closeOnSave = true) {
     const formValues = this.formProfile.value;
-    console.log(
-        formValues,
-    )
+
     const api$ = profile.profileId
       ? this.api.updateProfile(profile.profileId, formValues)
       : this.api.saveProfile(formValues);
@@ -110,7 +108,7 @@ export class ProfilesFormComponent extends FormController<Profile> {
       (data) => {
         if (closeOnSave && this.viewSettings.type === 'modal') {
           this.resetData();
-          this.closeModal();
+          this.closeModal(data);
         }
       },
       ({ error }) => {
@@ -119,7 +117,6 @@ export class ProfilesFormComponent extends FormController<Profile> {
         );
         for (let i = 0; i < keys.length; i++) {
           const key: string = keys[i];
-          console.log(key, this.formProfile.controls[key]);
           this.formProfile.controls[key].setErrors({ incorrect: true });
         }
       }

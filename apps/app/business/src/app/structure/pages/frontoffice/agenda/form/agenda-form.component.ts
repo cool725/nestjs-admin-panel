@@ -4,6 +4,7 @@ import { FormArray, FormControl, Validators } from '@angular/forms';
 import { AgendaAPI } from '../packages/agenda-api.service';
 import { Debounce } from '@movit/app/common';
 import { tap } from 'rxjs';
+import {ProfilesFormComponent} from "../../crm/profiles/form/profiles-form.component";
 
 class Reservation {
   static create(params: Partial<Reservation>) {
@@ -94,13 +95,28 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
     this.closeModal();
   }
 
-  @Debounce(300)
-  searchProfile(searchTerm: any) {
-    this.api
-      .searchProfiles(searchTerm)
-      .pipe(tap((values: any) => (this.filteredProfiles = values.data)))
-      .subscribe();
+  // modal
+  openProfileModal(profileId?:number){
+    return this.openModal(ProfilesFormComponent, {
+      id: profileId,
+    }).then((r:any)=> {
+
+      if( r ){
+        this.filteredProfiles.push(r);
+        const values = this.reservationForm.value;
+        values.profileIds.push(r.profileId);
+        values.profileIds = values.profileIds.map((id:any)=>+id);
+        this.reservationForm.patchValue(
+            values
+        )
+      }
+
+    });
   }
+
+  openInCashSystem(){}
+
+  // region data
 
   getEmployees(){
     this.api
@@ -108,4 +124,14 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
           .pipe(tap((values: any) => (this.employees = values.data)))
             .subscribe();
   }
+
+  @Debounce(300)
+  searchProfile(searchTerm: any) {
+    this.api
+        .searchProfiles(searchTerm)
+        .pipe(tap((values: any) => (this.filteredProfiles = values.data)))
+        .subscribe();
+  }
+
+  // endregion
 }

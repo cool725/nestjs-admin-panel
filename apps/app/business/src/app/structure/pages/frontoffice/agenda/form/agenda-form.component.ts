@@ -10,6 +10,16 @@ class Reservation {
   static create(params: Partial<Reservation>) {
     return params;
   }
+  static mapForRequest(params: any) {
+    // parse required infos for backend
+
+    return {
+      ...params,
+      start: null,// startDate + startTime,
+      end: null// startDate + startTime,
+      // other infos
+    };
+  }
 }
 
 @Component({
@@ -86,7 +96,9 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
   override getData(): void {}
 
   save(reservation: any) {
-    this.api.saveReservation(this.reservationForm.value).subscribe();
+    this.api.saveReservation(
+        Reservation.mapForRequest(this.reservationForm.value)
+    ).subscribe();
     this.onSave.emit();
     this.closeModal();
   }
@@ -105,10 +117,7 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
         this.filteredProfiles.push(r);
         const values = this.reservationForm.value;
         values.profileIds.push(r.profileId);
-        values.profileIds = values.profileIds.map((id:any)=>+id);
-        this.reservationForm.patchValue(
-            values
-        )
+        this.reservationForm.patchValue(values)
       }
 
     });

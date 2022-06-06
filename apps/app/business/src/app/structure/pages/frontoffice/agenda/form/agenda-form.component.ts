@@ -3,7 +3,6 @@ import { FormController } from '../../../form.controller';
 import { FormArray, FormControl, Validators } from '@angular/forms';
 import { AgendaAPI } from '../packages/agenda-api.service';
 import { Debounce } from '@movit/app/common';
-import { tap } from 'rxjs';
 import {ProfilesFormComponent} from "../../crm/profiles/form/profiles-form.component";
 
 class Reservation {
@@ -61,6 +60,7 @@ const generateDuration = () : { label:string,value: number}[] => {
   styleUrls: ['./agenda-form.component.css'],
 })
 export class AgendaFormComponent extends FormController<any> implements OnInit {
+
   viewSettings: any = {
     mode: 'mode',
   };
@@ -68,23 +68,20 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
   reservationForm = this.fb.group({
     title: new FormControl('', [Validators.max(100)]),
     place: new FormControl('', [Validators.max(200)]),
+    description: new FormControl('', [Validators.required]),
 
-    profileIds: new FormControl([], []),
     state: new FormControl('', [Validators.required]),
     confidentiality: new FormControl('', [Validators.required]),
-    duration: new FormControl(''),
-    price: new FormControl(
-      {
-        value: 0,
-        disabled: true,
-      },
-      [Validators.required]
-    ),
+    price: new FormControl(0, [Validators.required]),
+
+    profileIds: new FormControl([], []),
+
     startDate: new FormControl('', [Validators.required]),
     startTime: new FormControl('', [Validators.required]),
     endDate: new FormControl('', [Validators.required]),
     endTime: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
+    duration: new FormControl(''),
+
     employee: new FormControl('', [Validators.required]),
     employeeIds: new FormArray([new FormControl('')]),
   });

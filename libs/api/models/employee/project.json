@@ -1,18 +1,19 @@
 {
-  "sourceRoot": "libs/api/employee/src",
+  "sourceRoot": "libs/api/models/employee/src",
+  "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/api/employee/**/*.ts"]
+        "lintFilePatterns": ["libs/api/models/employee/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/api/employee"],
+      "outputs": ["coverage/libs/api/models/employee"],
       "options": {
-        "jestConfig": "libs/api/employee/jest.config.js",
+        "jestConfig": "libs/api/models/employee/jest.config.ts",
         "passWithNoTests": true
       }
     }

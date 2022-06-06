@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'api-employee',
-  preset: '../../../jest.preset.js',
+  displayName: 'api-models-employees',
+  preset: '../../../../jest.preset.js',
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
@@ -11,5 +11,5 @@ module.exports = {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../../coverage/libs/api/employee',
+  coverageDirectory: '../../../../coverage/libs/api/models/employees',
 };

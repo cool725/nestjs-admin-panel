@@ -15,6 +15,7 @@ import { ProfilesModule } from '@movit/api/profiles';
 import { ReservationModule } from '@movit/api/reservation';
 import { BusinessSettingsModule } from './modules/settings/business.settings.module';
 import { SellItemModule } from '@movit/api/sales/item';
+import {EmployeeModule} from "@movit/api/models/employee";
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { SellItemModule } from '@movit/api/sales/item';
         ...AuthModule.dbSettings.entities,
         ...CompanyModule.dbSettings.entities,
         ...ProfilesModule.dbSettings.entities,
+        ...EmployeeModule.dbSettings.entities,
         ...ReservationModule.dbSettings.entities,
         ...SellItemModule.dbSettings.entities,
       ],
@@ -36,6 +38,7 @@ import { SellItemModule } from '@movit/api/sales/item';
     AuthModule,
     AppsModule,
     CompanyModule,
+    EmployeeModule,
     BusinessFrontOfficeModule,
     BusinessBackOfficeModule,
     BusinessSettingsModule,

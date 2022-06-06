@@ -90,7 +90,7 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
 
   employees: any = [];
 
-  durations = generateDuration()
+  durations = generateDuration();
 
   constructor(
     override injector: Injector,

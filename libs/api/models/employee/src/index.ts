@@ -1,1 +1,2 @@
-export * from './lib/api-employee.module';
+export * from './lib/employee.module';
+export * from './lib/employee.service';

@@ -1,6 +1,6 @@
 import {
   BeforeInsert,
-  Column,
+  Column, CreateDateColumn, DeleteDateColumn,
   Entity, Index, JoinColumn, OneToOne,
   PrimaryGeneratedColumn, Unique
 } from "typeorm";
@@ -35,6 +35,12 @@ export class EmployeeEntity extends TenantCompanyEntity  {
 
   @Column({ length: 100, nullable: true })
   email: string;
+
+  @CreateDateColumn()
+  created!: Date;
+
+  @DeleteDateColumn()
+  deletedAt?: Date;
 
   @BeforeInsert()
   async beforeInsert(): Promise<any> {

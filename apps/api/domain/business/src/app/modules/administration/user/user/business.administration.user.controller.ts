@@ -68,10 +68,11 @@ export class BusinessAdministrationUserController {
 
   @Delete('deleteUser/:userId')
   deleteUser(
-    @GetCompany() business: CompanyEntity,
+    @GetCompany() company: CompanyEntity,
     @Param('userId') userId: string,
     @Body() userData: any
   ) {
-    return this.businessService.deleteBusinessUser(business, userId);
+    this.employeeService.removeEmployeesFromCompany(company.companyId,userId);
+    return this.businessService.deleteBusinessUser(company, userId);
   }
 }

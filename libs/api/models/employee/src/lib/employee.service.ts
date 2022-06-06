@@ -16,6 +16,19 @@ export class EmployeeService {
       }
     })
   }
+
+  async removeEmployeesFromCompany(companyId:number,userId:string){
+    const employee = await this.employeeRepo.findOne({
+      where:{
+        companyId,
+        user:{
+          userId:userId
+        }
+      }
+    })
+   return  employee ? employee.softRemove() : null
+  }
+
   async setUserAsEmployeeOfCompany(companyId:number, userId:string){
     let employee = await this.employeeRepo.findOne({
       where:{

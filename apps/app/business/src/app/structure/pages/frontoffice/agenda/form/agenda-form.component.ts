@@ -169,16 +169,14 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
   getEmployees(){
     this.api
         .getEmployees()
-          .pipe(tap((values: any) => (this.employees = values.data)))
-            .subscribe();
+            .subscribe((values: any) => (this.employees = values.data));
   }
 
   @Debounce(300)
   searchProfile(searchTerm: any) {
     this.api
         .searchProfiles(searchTerm)
-        .pipe(tap((values: any) => (this.filteredProfiles = values.data)))
-        .subscribe();
+        .subscribe((values: any) => (this.filteredProfiles = values.data));
   }
   // endregion
 }

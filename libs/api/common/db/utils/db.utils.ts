@@ -12,7 +12,7 @@ interface insertEntity extends BaseEntity {
 export const doInsert = async (entity: insertEntity) => {
   // ensure  beforeInsert():any is implemented
   let counter = 0;
-  while (!entity.id && counter< 5000) {
+  while (!entity.id && counter < 10) {
     try {
       counter++;
       await entity.save();

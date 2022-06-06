@@ -21,25 +21,28 @@ export class ReservationService {
   ) {}
 
   async getReservation(companyId, reservationId) {
-    const reservation = await this.resHeadRepo.findOne({
-      where: {
-        companyId: companyId,
-        reservationId,
-      },
-    });
+    const reservation = await this.resHeadRepo
+        .createQueryBuilder('res')
+        .leftJoinAndSelect('res.legs', 'leg')
+        .leftJoinAndSelect('res.profiles', 'profiles')
+        .leftJoinAndSelect('profiles.profile', 'profile')
+        .where(`res.companyId = :companyId and res.reservationId = :reservationId `,{
+           companyId:companyId, reservationId:reservationId,
+        }).getOne()
+
     reservation.legs = await this.resLegRepo.find({
       where: {
         companyId: companyId,
         reservationId: reservationId,
       },
     });
-    return reservation;
+
+    return reservation.exportForView();
   }
 
   async getReservationsPaginated(companyId, paginate:Pagination) {
     return paginate.apply(this.resHeadRepo,companyId)
   }
-
 
   async getReservations(companyId, filterValues = {}) {
     const rows = await this.resHeadRepo.find({
@@ -74,6 +77,7 @@ export class ReservationService {
           companyId, reservationId, reservation.profileIds
       )
     }
+
 
     await doInsert(resHead);
     return resHead.toJSON()

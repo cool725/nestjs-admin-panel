@@ -16,12 +16,12 @@ export namespace ReservationDTO {
     end: string;
 
     // creator of reservation
-    userId?:string
+    userId?:string|number
 
     profileIds:number[]
   }
 
   export class Update extends PartialType(Create) {
-    readonly userId?:string
+    readonly userId?:string|number
   }
 }

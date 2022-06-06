@@ -2,7 +2,7 @@
   <layout-comp-header></layout-comp-header>
   <ui-topbar></ui-topbar>
   <div class="main-content">
-    <div [@fadein]="getRouterOutletState(outlet)" class="h-100">
+    <div [@fadein]="getRouterOutletState(outlet)">
       <ng-container #vcModal></ng-container>
       <router-outlet #outlet="outlet"></router-outlet>
     </div>

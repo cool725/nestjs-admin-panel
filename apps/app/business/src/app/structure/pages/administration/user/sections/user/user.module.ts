@@ -16,7 +16,7 @@ const routes = [
     path: 'onboarding',
     loadChildren: () =>
       import('./onboarding/user.onboarding.module').then(
-        (m) => m.UseOnboardingrModule
+        (m) => m.UseBoardingModule
       ),
   },
 ];

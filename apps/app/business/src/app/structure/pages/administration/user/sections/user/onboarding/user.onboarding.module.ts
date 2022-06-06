@@ -20,4 +20,4 @@ const routes = [
     RouterModule
   ],
 })
-export class UseOnboardingrModule {}
+export class UseBoardingModule {}

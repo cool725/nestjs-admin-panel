@@ -106,7 +106,6 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
     if (this.getId()) {
       this.getReservationById(this.getId())
     }
-    console.log(this.durations)
   }
 
   override getData(): void {

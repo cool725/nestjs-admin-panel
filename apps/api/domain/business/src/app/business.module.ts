@@ -15,7 +15,7 @@ import { ProfilesModule } from '@movit/api/profiles';
 import { ReservationModule } from '@movit/api/reservation';
 import { BusinessSettingsModule } from './modules/settings/business.settings.module';
 import { SellItemModule } from '@movit/api/sales/item';
-import {EmployeeModule} from "@movit/api/models/employee";
+import { EmployeeModule } from "@movit/api/models/employee";
 
 @Module({
   imports: [

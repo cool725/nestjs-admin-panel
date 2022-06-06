@@ -13,7 +13,7 @@ import {classToPlain, Exclude, instanceToPlain} from 'class-transformer';
 
 import { ReservationLegEntity } from './reservation-leg.entity';
 import { ReservationSourceEntity } from './reservation.source.entity';
-import { TenantCompanyEntity } from '../../../company/src/tentant/company.tentant';
+import { TenantCompanyEntity } from "@movit/api/business";
 import {ReservationProfilesEntity} from "./reservation.profiles.entity";
 
 @Entity('res_reservation_head')

@@ -1,109 +1,26 @@
 :host{
-  min-height: calc(100vh - 60px - 42px);
-  width: 100vw;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-.onboarding {
-  .onboarding-data-id {
-    text-align: center;
-    vertical-align: middle;
-
-    .circle {
-      background: red;
-      border-radius: 50%;
-      font-weight: bold;
-      display: table;
-      width: 30px;
-      height: 30px;
-
-      p {
-        vertical-align: middle;
-        display: table-cell;
-      }
-    }
-  }
-
-  table {
-    td,
-    th {
-      padding: 10px 0px;
-      color: #000;
-      text-align: center;
-    }
-  }
-
-  .pagination-details ul {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
-
-    li {
-      align-self: center;
-      display: inline-block;
-      list-style: none;
-      margin: 0 3px;
-    }
-  }
-
-  .navbar li {
-    &:hover {
-      background-color: #0dcaf0;
-      border-top-right-radius: 30px;
-      border-bottom-right-radius: 30px;
-
-      span,
-      i {
-        color: #0d6efd;
-      }
-    }
-  }
-
-  .navbar-collapse {
-    position: absolute;
-    margin-left: 10px;
-    margin-top: 10px;
-
-    button {
-      background-color: #20c997;
-      border-radius: 50%;
-      font-size: 16px;
-      cursor: pointer;
-      color: white;
-      padding: 5px 10px;
-      border: none;
-
-      &:hover {
-        background-color: #444;
-      }
-    }
-  }
-}
-
-.onboarding-sidebar {
   height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #fff;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%), 0 2px 10px 0 rgb(0 0 0 / 10%);
-
-  a {
-    padding: 8px 8px 8px 32px;
-  }
-
-  .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 30px;
-  }
+  display: block;
 }
 
+
+
+
+
+.circle {
+  background: #ea3e3e;
+  border-radius: 50%;
+
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  font-weight: 100;
+  p {
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+    line-height: 32px
+  }
+}

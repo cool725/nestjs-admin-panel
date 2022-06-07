@@ -31,28 +31,23 @@ export class UserOnBoardingService {
       data:    [
         {
           id: 1,
-          title: 'Onboarding 1',
+          title: 'User Creation',
           description: 'Description 1'
         },
         {
           id: 2,
-          title: 'Onboarding 2',
+          title: 'Roles',
           description: 'Description 2'
         },
         {
           id: 3,
-          title: 'Onboarding 3',
+          title: 'Shiftplan & Availability',
           description: 'Description 3'
         },
         {
           id: 4,
-          title: 'Onboarding 4',
+          title: 'Services',
           description: 'Description 4'
-        },
-        {
-          id: 5,
-          title: 'Onboarding 5',
-          description: 'Description 5'
         }
       ]
     })

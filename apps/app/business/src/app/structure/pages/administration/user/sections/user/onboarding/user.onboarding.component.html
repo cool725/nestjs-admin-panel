@@ -1,8 +1,10 @@
 <ng-template #topbar>
-  <div class="left-box cursor-pointer"></div>
+  <div class="left-box cursor-pointer">
+    <i class="fas fa-cog"></i>
+  </div>
   <div class="d-flex justify-content-between w-100">
     <h4 class="slide">
-      Ttile
+
     </h4>
     <div class="pe-2">
 
@@ -10,68 +12,68 @@
   </div>
 </ng-template>
 
-<div class="onboarding-sidebar" #sidebarWindow>
-  <button class="closebtn bg-white border-0" (click)="closeNav()">×</button>
-
-  <ul class="navbar-nav d-block">
-    <li *ngFor="let menuItem of menuItems" class="{{ menuItem.class }} nav-item">
-      <a routerLinkActive="active" class="nav-link d-flex align-items-center text-dark">
-        <i class="{{ menuItem.icon }} trailing"></i>
-        <span class="ms-2 ">{{ menuItem.title }}</span>
-      </a>
-    </li>
-  </ul>
-</div>
-
-<div class="d-flex  position-relative onboarding">
-  <div class="navbar-collapse d-md-none d-block">
-    <button (click)="openNav()">☰</button>
+<div class="d-md-flex h-100 w-100">
+  <div class="d-none d-sm-block col-sm-3 col-md-2" >
+    <nav class="navbar bg-white h-100 d-flex align-items-start ">
+      <ul class="navbar-nav d-block ps-sm-2 ps-md-3">
+        <li *ngFor="let menuItem of menuItems" class="border-1 nav-item">
+          <a routerLinkActive="active" class="nav-link d-flex align-items-center text-dark">
+            <i class="{{ menuItem.icon }} trailing"></i>
+            <span class="ms-2 ">{{ menuItem.title }}</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
   </div>
 
-  <nav class="navbar d-md-block d-none navbar-expand-md col-2" id="sidenav-main">
-    <ul class="navbar-nav d-block">
-      <li *ngFor="let menuItem of menuItems" class="{{ menuItem.class }} nav-item">
-        <a routerLinkActive="active" class="nav-link d-flex align-items-center text-dark">
-          <i class="{{ menuItem.icon }} trailing"></i>
-          <span class="ms-2 ">{{ menuItem.title }}</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
+  <div class="p-3 w-100">
+    <div class="container">
 
-  <div class="col-12 p-3 col-md-10">
-    <div class="body border rounded-3 p-3">
-      <div class="table-header d-flex justify-content-between m-3">
-        <span class="fw-bold fs-3"> Title </span>
-      </div>
 
-      <div class="d-block">
-        <div class="p-2 border rounded-3">
-          <table class="w-100" *ngIf="tableOnBoarding.data$ | async as tableData">
-            <tr *ngFor="let row of tableData.data" class="py-2 text-black">
-              <th scope="row" class="onboarding-data-id justify-content-center d-flex">
-                <div class="circle">
-                  <p class="text-white">{{ row.id }}</p>
+      <div class="col-12 card bg-white shadow p-3 mb-4">
+          <div class="">
+            <div class="row">
+              <div class="col-12 col-md-8"></div>
+              <div class="col-3 col-md-2 mt-2 mt-md-0">
+                <div class="form-group">
+                  <button mdbRipple class="btn btn-success text-white w-100">
+                    create user
+                  </button>
                 </div>
-              </th>
-              <td>{{ row.title }}</td>
-              <td>{{ row.description }}</td>
-              <td>
-                <button
-                  type="button"
-                  class="btn btn-primary btn-rounded btn-sm fw-bold"
-                  mdbRipple rippleColor="dark"
-                >
-                  View
-                </button>
-              </td>
-            </tr>
-          </table>
-
-          <mdb-pagination
-            [paginate]="tableOnBoarding.pagination"
-          ></mdb-pagination>
+              </div>
+              <div class="col-3 col-md-2 mt-2 mt-md-0">
+                <div class="form-group">
+                  <button mdbRipple class="btn btn-success text-white w-100">
+                    Choose user
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
+
+      <div class="card shadow pt-3 pb-3">
+        <table class="w-100" *ngIf="tableOnBoarding.data$ | async as tableData">
+          <tr *ngFor="let row of tableData.data" class="py-2 text-black">
+            <th scope="row" class="onboarding-data-id justify-content-center d-flex">
+              <div class="circle">
+                <p class="text-white">{{ row.id }}</p>
+              </div>
+            </th>
+            <td>{{ row.title }}</td>
+            <td>{{ row.description }}</td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-primary btn-rounded btn-sm fw-bold"
+                mdbRipple rippleColor="dark"
+              >
+                View
+              </button>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>

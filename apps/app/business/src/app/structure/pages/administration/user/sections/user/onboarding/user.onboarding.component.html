@@ -4,7 +4,7 @@
   </div>
   <div class="d-flex justify-content-between w-100">
     <h4 class="slide">
-
+      User Onboarding
     </h4>
     <div class="pe-2">
 
@@ -13,7 +13,7 @@
 </ng-template>
 
 <div class="d-md-flex h-100 w-100">
-  <div class="d-none d-sm-block col-sm-3 col-md-2" >
+  <div class="d-none d-sm-block col-sm-3 col-md-2" *ngIf="menuItems.length" >
     <nav class="navbar bg-white h-100 d-flex align-items-start ">
       <ul class="navbar-nav d-block ps-sm-2 ps-md-3">
         <li *ngFor="let menuItem of menuItems" class="border-1 nav-item">
@@ -25,18 +25,15 @@
       </ul>
     </nav>
   </div>
-
   <div class="p-3 w-100">
     <div class="container">
-
-
       <div class="col-12 card bg-white shadow p-3 mb-4">
           <div class="">
             <div class="row">
               <div class="col-12 col-md-8"></div>
               <div class="col-3 col-md-2 mt-2 mt-md-0">
                 <div class="form-group">
-                  <button mdbRipple class="btn btn-success text-white w-100">
+                  <button (click)="createNewUser()" mdbRipple class="btn btn-success text-white w-100">
                     create user
                   </button>
                 </div>
@@ -51,25 +48,31 @@
             </div>
           </div>
         </div>
-
-
       <div class="card shadow pt-3 pb-3">
         <table class="w-100" *ngIf="tableOnBoarding.data$ | async as tableData">
           <tr *ngFor="let row of tableData.data" class="py-2 text-black">
-            <th scope="row" class="onboarding-data-id justify-content-center d-flex">
+            <td>
               <div class="circle">
                 <p class="text-white">{{ row.id }}</p>
               </div>
-            </th>
+            </td>
             <td>{{ row.title }}</td>
             <td>{{ row.description }}</td>
+            <td>
+              <div class="boarding-state">
+                <span class="dot-state active"></span>
+                <span class="dot-state active"></span>
+                <span class="dot-state not-active"></span>
+                <span class="dot-state"></span>
+              </div>
+            </td>
             <td>
               <button
                 type="button"
                 class="btn btn-primary btn-rounded btn-sm fw-bold"
                 mdbRipple rippleColor="dark"
               >
-                View
+                <i class="fa fa-edit text-white"></i>
               </button>
             </td>
           </tr>

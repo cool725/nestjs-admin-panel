@@ -1,11 +1,13 @@
 import { Component, Injector, ViewChild, ElementRef } from '@angular/core';
 import { ITableBaseFilter, Table } from '@movit/app/common';
 import { PageController } from '../../../../../page.controller';
-import { IOnBoardingTask, UserOnBoardingService } from './user.onboarding.service';
+import { IOnBoardingTask, UserOnBoardingUserService } from './user-on-boarding-user.service';
 
 export const Items: any[] = [
-  { path: '/', title: 'End To End Onboarding', icon: 'fa fa-search', class: '' },
+  /*
+   { path: '/', title: 'End To End Onboarding', icon: 'fa fa-search', class: '' },
   { path: '/', title: 'Account and Users', icon: 'fa fa-search', class: '' },
+  * */
 ];
 
 @Component({
@@ -23,7 +25,7 @@ export class UserOnboardingComponent extends PageController {
 
   constructor(
     override injector: Injector,
-    private api: UserOnBoardingService,
+    private api: UserOnBoardingUserService,
   ) {
     super(injector);
   }
@@ -36,11 +38,13 @@ export class UserOnboardingComponent extends PageController {
     );
   }
 
-  openNav() {
-    this.sidebarWindowReference.nativeElement.style.width = "250px";
+  createNewUser(){
+    // show user creation forms
+    // nav back to here and assign user to form
   }
 
-  closeNav() {
-    this.sidebarWindowReference.nativeElement.style.width = "0px";
+  assignUser(userId?:number){
+    // if id then do nothing
+    // if no id then show user selection
   }
 }

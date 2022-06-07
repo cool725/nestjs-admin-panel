@@ -8,6 +8,10 @@ import { UserOnboardingComponent } from './user.onboarding.component';
 import { BehaviorSubject, of } from "rxjs";
 import { ITableOptions } from "@movit/app/common";
 import { HttpParams } from "@angular/common/http";
+import {
+  Administration
+} from "../../../../../../../../../../../api/domain/business/src/app/modules/administration/business.administration.namespace";
+import User = Administration.User;
 
 export class IOnBoardingTask {
    id: number;
@@ -15,10 +19,14 @@ export class IOnBoardingTask {
    description: string;
  }
 @Injectable()
-export class UserOnBoardingService {
+export class UserOnBoardingUserService {
 
-  onBoardingTasks$ = new BehaviorSubject<ITableOptions<IOnBoardingTask>>(
+  readonly onBoardingTasks$ = new BehaviorSubject<ITableOptions<IOnBoardingTask>>(
       null
+  );
+
+  readonly onBoardingUser$ = new BehaviorSubject<ITableOptions<any>>(
+    null
   );
 
   getOnBoardingTasks(httpParams:HttpParams){
@@ -46,7 +54,7 @@ export class UserOnBoardingService {
         },
         {
           id: 4,
-          title: 'Services',
+          title: 'Assign Services',
           description: 'Description 4'
         }
       ]

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserComponent } from './user.component';
+import { UserComponent } from './overview/user.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { UserNewComponent } from './new/user.new.component';

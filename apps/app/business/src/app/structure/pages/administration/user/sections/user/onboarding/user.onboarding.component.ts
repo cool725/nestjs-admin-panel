@@ -50,7 +50,6 @@ export class UserOnboardingComponent extends PageController {
     private router: Router,
   ) {
     super(injector);
-    this.getData();
   }
 
   calculatePagination(totalItems: number, currentPage: number = 1, pageSize: number = 10): IPaginationModel {

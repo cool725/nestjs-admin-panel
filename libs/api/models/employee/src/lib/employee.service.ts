@@ -2,6 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import {EmployeeRepository} from "./classes/auth.repository.template";
 import { AuthUserEntity } from "@movit/api/auth";
+import { IsNull } from "typeorm";
 
 @Injectable()
 export class EmployeeService {
@@ -12,7 +13,8 @@ export class EmployeeService {
   getEmployeesFromCompany(companyId:number){
    return this.employeeRepo.find({
       where:{
-        companyId
+        companyId,
+        deletedAt:IsNull()
       }
     })
   }

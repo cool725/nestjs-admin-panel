@@ -45,7 +45,6 @@ export class UserOnboardingComponent extends PageController {
 
 
   getData() {
-
     this.onLoadAndSetPaginatedData(
       this.api.getOnBoardingTasks(this.tableOnBoarding.getFilterValuesAndPaginationAsHttpParams()),
       this.api.onBoardingTasks$,
@@ -53,7 +52,6 @@ export class UserOnboardingComponent extends PageController {
     )
   }
 
-  onRefresh() {}
 
 
   openNav() {

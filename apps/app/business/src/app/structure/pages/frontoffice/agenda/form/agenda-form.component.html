@@ -15,80 +15,210 @@
 </div>
 
 <form [formGroup]="reservationForm" class="modal-body">
-  <div class="row w-100">
-    <div class="col-12">
-      <mdb-form-control>
-        <input
-          formControlName="title"
-          mdbInput
-          type="text"
-          id="res-title"
-          class="form-control"
-        />
-        <label mdbLabel class="form-label" for="res-title">{{
-          'title' | translate
-        }}</label>
-      </mdb-form-control>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-7">
+        <mdb-form-control>
+          <input
+            formControlName="title"
+            mdbInput
+            type="text"
+            id="res-title"
+            class="form-control"
+          />
+          <label mdbLabel class="form-label" for="res-title">{{
+            'title' | translate
+          }}</label>
+        </mdb-form-control>
+      </div>
+      <div class="col-5">
+        <mdb-form-control>
+          <input
+            formControlName="place"
+            mdbInput
+            type="text"
+            id="res-place"
+            class="form-control"
+          />
+          <label mdbLabel class="form-label" for="res-title">{{
+            'address' | translate
+          }}</label>
+        </mdb-form-control>
+      </div>
     </div>
-
-    <div class="col-6 mt-4">
-      <mdb-form-control>
-        <input
-          formControlName="start"
-          mdbInput
-          type="date"
-          id="res-start"
-          class="form-control"
-        />
-        <label mdbLabel class="form-label" for="res-start">{{
-          'start' | translate
-        }}</label>
-      </mdb-form-control>
-    </div>
-    <div class="col-6 mt-4">
-      <mdb-form-control>
-        <input
-          formControlName="end"
-          mdbInput
-          type="date"
-          id="res-end"
-          class="form-control"
-        />
-        <label mdbLabel class="form-label" for="res-end">{{
-          'end' | translate
-        }}</label>
-      </mdb-form-control>
-    </div>
-
-    <div class="col-12 md-4 mt-2">
-      <mdb-form-control class="mdb-multiselect my-2">
-        <nz-select
-          mdbInput
-          mdbNzSelect
-          class="w-100 form-control px-0"
-          nzShowSearch
-          nzServerSearch
-          formControlName="profileIds"
-          [nzShowArrow]="false"
-          (nzOnSearch)="searchProfile($event)"
-          [nzMaxTagCount]="10"
-          nzMode="multiple"
-          id="profiles-search"
+    <div class="row mt-3 align-items-center">
+      <div class="col-10">
+        <mdb-form-control class="mdb-multiselect my-2">
+          <nz-select
+            mdbInput
+            mdbNzSelect
+            class="w-100 form-control px-0"
+            nzShowSearch
+            nzServerSearch
+            formControlName="profileIds"
+            [nzShowArrow]="false"
+            (nzOnSearch)="searchProfile($event)"
+            [nzMaxTagCount]="10"
+            nzMode="multiple"
+            id="profiles-search"
+          >
+            <!-- [ngClass]="{'c-class':$event.length >0}" -->
+            <nz-option
+              *ngFor="let item of filteredProfiles"
+              [nzLabel]="item.firstName"
+              [nzValue]="item.profileId"
+            ></nz-option>
+          </nz-select>
+          <label mdbLabel class="form-label px-1" for="profiles-search">
+            Kunden
+          </label>
+        </mdb-form-control>
+        <ng-template #tagPlaceHolder let-selectedList
+          >and {{ selectedList.length }} more selected</ng-template
         >
-          <!-- [ngClass]="{'c-class':$event.length >0}" -->
-          <nz-option
-            *ngFor="let item of filteredProfiles"
-            [nzLabel]="item.firstName"
-            [nzValue]="item.profileId"
-          ></nz-option>
-        </nz-select>
-        <label mdbLabel class="form-label px-1" for="profiles-search">
-          Kunden
-        </label>
-      </mdb-form-control>
-      <ng-template #tagPlaceHolder let-selectedList
-        >and {{ selectedList.length }} more selected</ng-template
-      >
+      </div>
+      <div class="col-2">
+        <button (click)="openProfileModal()" type="button" class="btn btn-success text-white">
+          {{ 'add' | translate }}
+        </button>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-7">
+        <div class="row">
+          <div class="col">
+            <label>Show as</label>
+            <div class="input-group">
+              <select formControlName="state" class="form-control">
+                <option value="">Busy</option>
+              </select>
+            </div>
+          </div>
+          <div class="col">
+            <label>Confidentiality</label>
+            <div class="input-group">
+              <select formControlName="confidentiality" class="form-control">
+                <option value="">Standard</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <label>Duration</label>
+        <div class="input-group">
+          <select formControlName="duration" class="form-control">
+            <option *ngFor="let duration of durations" [value]="duration.label">{{duration.label}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-2">
+        <label>Price</label>
+        <mdb-form-control>
+          <input
+            formControlName="price"
+            mdbInput
+            type="number"
+            id="res-price"
+            class="form-control"
+          />
+        </mdb-form-control>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-7">
+        <table class="table quick-service-table table-bordered">
+          <thead>
+            <tr>
+              <td>{{ 'employees' | translate | titlecase }}</td>
+              <td>{{ 'duration' | translate | titlecase }}</td>
+              <td>{{ 'amount' | translate | titlecase }}</td>
+              <td>{{ 'price' | translate | titlecase }}</td>
+              <td style="border-right: 0">Total</td>
+            </tr>
+            <tr>
+              <td colspan="100%">
+
+              </td>
+            </tr>
+          </thead>
+
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="col-5">
+        <div class="col-12">
+          <label>From</label>
+          <div class="row">
+            <div class="col">
+              <mdb-form-control>
+                <input
+                  formControlName="startDate"
+                  mdbInput
+                  type="date"
+                  id="res-start"
+                  class="form-control"
+                />
+              </mdb-form-control>
+            </div>
+            <div class="col">
+              <mdb-form-control>
+                <input
+                  formControlName="startTime"
+                  mdbInput
+                  type="time"
+                  id="res-start"
+                  class="form-control"
+                />
+              </mdb-form-control>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 mt-2">
+          <label>Till</label>
+          <div class="row">
+            <div class="col">
+              <mdb-form-control>
+                <input
+                  formControlName="endDate"
+                  mdbInput
+                  type="date"
+                  id="res-end-date"
+                  class="form-control"
+                />
+              </mdb-form-control>
+            </div>
+            <div class="col">
+              <mdb-form-control>
+                <input
+                  formControlName="endTime"
+                  mdbInput
+                  type="time"
+                  id="res-end-time"
+                  class="form-control"
+                />
+              </mdb-form-control>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 mt-2">
+          <label>Short description</label>
+          <mdb-form-control>
+            <textarea
+              formControlName="description"
+              mdbInput
+              id="res-description"
+              class="form-control"
+            ></textarea>
+          </mdb-form-control>
+        </div>
+        <div class="col-12 mt-2">
+          <label>Responsible staff</label>
+          <select formControlName="employee" class="form-control">
+            <option value="">Weslley De Souza</option>
+          </select>
+        </div>
+      </div>
     </div>
   </div>
 </form>

@@ -1,7 +1,7 @@
 import {
   Body,
   Controller,
-  Get,
+  Get, HttpException, HttpStatus,
   Param,
   Patch,
   Put,
@@ -13,6 +13,7 @@ import {Company, GetCompany} from '@movit/api/business';
 import { AuthUserEntity, CompanyGuard, GetUser } from '@movit/api/auth';
 import { AuthGuard } from '@nestjs/passport';
 import {GetPagination, Pagination} from "../../../../../../../../../libs/api/common/decorator";
+import {ReservationDTO} from "../../../../../../../../../libs/api/models/reservation/src/classes/reservation.dto";
 
 @Controller(FrontOffice.resolePaths([FrontOffice.Agenda.PATH]))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)
@@ -63,10 +64,16 @@ export class BusinessFrontOfficeAgendaController {
   createReservation(
     @GetCompany() business: Company,
     @GetUser() user: AuthUserEntity,
-    @Body() reservation
+    @Body() reservation:ReservationDTO.Create
   ) {
-    if (!reservation) reservation = {};
-    reservation.userId = 1;
+
+    if (!reservation) {
+      throw new HttpException('Parameter', HttpStatus.BAD_REQUEST);
+    }
+
+    // creator
+    reservation.userId = user.userId;
+
     return this.reservationService.saveReservation(
       business.companyId,
       reservation
@@ -77,7 +84,7 @@ export class BusinessFrontOfficeAgendaController {
   updateReservation(
     @GetCompany() business: Company,
     @GetUser() user: AuthUserEntity,
-    @Body() reservation,
+    @Body() reservation:ReservationDTO.Update,
     @Param('reservationId') reservationId
   ) {
     return this.reservationService.updateReservation(

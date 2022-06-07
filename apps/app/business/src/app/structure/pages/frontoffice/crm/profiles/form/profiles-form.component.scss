@@ -1,21 +1,28 @@
 :host {
   height: 100%;
 }
+
 .shadow {
   background: white;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
+
 .modal-body-profiles {
   ::ng-deep {
     .tab-pane {
       padding: 10px;
     }
+
     .nav-tabs .nav-link.active {
       color: #a5bbd4 !important;
+    }
+
+    mdb-form-control nz-select {
+      padding: 2px;
     }
   }
 }
 
-textarea.no-resize{
-    resize: none;
+textarea.no-resize {
+  resize: none;
 }

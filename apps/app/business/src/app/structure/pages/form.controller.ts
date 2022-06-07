@@ -42,5 +42,5 @@ export abstract class FormController<T> extends PageController {
   /**
    * closes the modal
    * */
-  protected closeModal() {}
+  protected closeModal(passData?:any) {}
 }

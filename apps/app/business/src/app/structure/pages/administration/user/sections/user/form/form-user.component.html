@@ -99,6 +99,26 @@
               />
             </div>
           </div>
+
+          <div class="col-md-6 col-12 mt-2">
+            <div class="form-group">
+              <div class="form-check mt-4">
+                <input
+                  [disabled]="!!user.userId"
+                  mdbCheckbox
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  [checked]="user.isEmployee"
+                  (change)=" user.isEmployee= $event.target.checked"
+                  id="isemployee"
+                />
+                <label class="form-check-label" for="isemployee">
+                  Benutzer als Mitarbeiter eintragen.
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
       </form>
       <div class="card-footer">
@@ -106,10 +126,17 @@
           *ngIf="
             phone.valid && email.valid && firstName.valid && lastName.valid
           "
-          class="btn btn-success text-white"
+          class="btn btn-success text-white me-1"
           (click)="doSave(user)"
         >
           Speichern
+        </a>
+        <a
+          *ngIf="user.userId"
+          class="btn btn-danger text-white me-1"
+          (click)="deleteUser(user)"
+        >
+          Löschen
         </a>
         <a class="btn btn-default" (click)="navBack()"> Abbrechen </a>
       </div>

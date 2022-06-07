@@ -18,6 +18,7 @@ import { ProfileSourceEntity } from './profile.source.entity';
 import { ProfileSegmentRelationEntity } from './profile.segment.relation.entity';
 import { ProfilePriceClassEntity } from './profile.priceclass.entity';
 import { TenantCompanyEntity } from '../../../company/src/tentant/company.tentant';
+import {ReservationProfilesEntity} from "../../../reservation/src/entities/reservation.profiles.entity";
 
 @Entity('crm_profile')
 @Index(['companyId'])
@@ -90,6 +91,12 @@ export class ProfileEntity extends TenantCompanyEntity {
   @DeleteDateColumn()
   @Exclude()
   deletedAt: Date;
+
+  @OneToMany(()=> ReservationProfilesEntity,(rpe)=> rpe.profile,{
+    onDelete:'CASCADE',
+    onUpdate:'CASCADE',
+  })
+  resReminders: ReservationProfilesEntity[];
 
   public initialiseData(profile: Partial<ProfileEntity>) {
     this.firstName = profile.firstName;

@@ -14,12 +14,14 @@ import { AuthGuard } from '@nestjs/passport';
 import { CompanyService } from '@movit/api/business';
 import { CompanyEntity } from '../../../../../../../../../../libs/api/models/company/src/entities/companyEntity';
 import { AuthService, CompanyGuard } from '@movit/api/auth';
+import { EmployeeService } from "@movit/api/models/employee";
 
 @Controller(Administration.resolePath(Administration.User.UserPATH))
 @UseGuards(AuthGuard(), CompanyGuard)
 export class BusinessAdministrationUserController {
   constructor(
     private businessService: CompanyService,
+    private employeeService: EmployeeService,
     private authService: AuthService
   ) {}
 
@@ -37,16 +39,22 @@ export class BusinessAdministrationUserController {
   }
 
   @Post('createUser')
-  createUser(@GetCompany() business: CompanyEntity, @Body() userData: any) {
+  async createUser(@GetCompany() company: CompanyEntity, @Body() userData: any) {
     userData.password = userData.password || '*****';
-    return this.authService.signUp(userData).then(async ({ userId }) => {
+    const user = await this.authService.signUp(userData).then(async ({ userId }) => {
       return this.businessService.addUserToBusinessRole(
-        business,
+        company,
         await this.authService
           .getUserByUserId(userId)
           .then((user) => user.initialise(userData).save())
       );
     });
+
+    if( userData.isEmployee ){
+      this.employeeService.setUserAsEmployeeOfCompany(company.companyId,user.user.userId)
+    }
+
+    return user
   }
 
   @Patch('updateUser/:userId')
@@ -60,10 +68,11 @@ export class BusinessAdministrationUserController {
 
   @Delete('deleteUser/:userId')
   deleteUser(
-    @GetCompany() business: CompanyEntity,
+    @GetCompany() company: CompanyEntity,
     @Param('userId') userId: string,
     @Body() userData: any
   ) {
-    return this.businessService.deleteBusinessUser(business, userId);
+    this.employeeService.removeEmployeesFromCompany(company.companyId,userId);
+    return this.businessService.deleteBusinessUser(company, userId);
   }
 }

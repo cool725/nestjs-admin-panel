@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthCanActivate } from '@movit/app/common';
 import { LayoutMainComponent } from '../../layout/main/layout-main.component';
 import { LayoutMainModule } from '../../layout/main/layout-main.module';
-import { SettingsModule } from '../pages/settings/settings.module';
 
 const childRoutes = [
   {

@@ -65,4 +65,9 @@ export class AgendaAPI<Reservation> {
       params: { searchTerm },
     });
   }
+  getEmployees() {
+    return this.http.get<Reservation[]>(this.getPath('employees'), {
+      params: {  },
+    });
+  }
 }

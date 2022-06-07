@@ -140,6 +140,6 @@ export class RoleFormComponent extends FormController<any> {
   }
 
   navBack() {
-    this.router.navigate([this.basePath + '/settings/user/role/']);
+    this.router.navigate([this.basePath + '/administration/user/role/']);
   }
 }

@@ -1,10 +1,7 @@
 import {
   Directive,
-  ElementRef,
-  OnChanges,
   OnDestroy,
   OnInit,
-  SimpleChanges,
 } from '@angular/core';
 import { NzSelectComponent } from 'ng-zorro-antd/select';
 import { Subject, takeUntil } from 'rxjs';

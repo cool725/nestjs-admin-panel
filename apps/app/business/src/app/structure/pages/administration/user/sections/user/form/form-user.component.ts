@@ -10,14 +10,17 @@ import { SettingUserAPI } from '../../../packages/user-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PageController } from '../../../../../page.controller';
 import { FormController } from '../../../../../form.controller';
+import { Confirmable } from "@movit/app/common";
 
 class User {
+  userId: string;
   firstName: string;
   lastName: string;
   email: string;
   avatar: string;
   phone: string;
   birthDay: string;
+  isEmployee: boolean;
 
   constructor() {}
 
@@ -75,12 +78,21 @@ export class FormUserComponent<T> extends FormController<User> {
   }
 
   doSave(data: any) {
+
     if (!this.verifyFields()) {
       return console.warn('Form is not valid');
     }
 
     if (!this.inline) this.saveUser(data);
     this.onSave.emit(data);
+  }
+
+  @Confirmable({
+    title: ''
+  })
+  deleteUser(user:any){
+    return this.userAPI.deleteUser(user.userId)
+      .subscribe(()=> this.navBack())
   }
 
   saveUser(user: any) {
@@ -101,8 +113,10 @@ export class FormUserComponent<T> extends FormController<User> {
   }
 
   navBack() {
-    this.router.navigate([this.basePath + '/settings/user/overview/']);
+    this.router.navigate([this.basePath + '/administration/user/overview/']);
   }
 
   isValid(key: string, user: User) {}
+
+
 }

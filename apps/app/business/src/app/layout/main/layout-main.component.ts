@@ -75,9 +75,9 @@ export class LayoutMainComponent {
       options,
       122
     );
-    (componentRef.instance as any)['closeModal'] = () => {
+    (componentRef.instance as any)['closeModal'] = (data:any) => {
       modalRef.destroy();
-      resolver ? resolver() : null;
+      resolver ? resolver(data) : null;
     }; // todo find better solution | with data emitter
     return componentRef;
   }

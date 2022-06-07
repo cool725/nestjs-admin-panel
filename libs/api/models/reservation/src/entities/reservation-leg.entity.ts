@@ -2,7 +2,7 @@ import {
   BeforeInsert,
   Column,
   Entity,
-  Index,
+  Index, JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
   Unique,
@@ -29,6 +29,10 @@ export class ReservationLegEntity extends TenantCompanyEntity {
   legId: number;
 
   @ManyToOne(() => ReservationHeadEntity, (res) => res.legs)
+  @JoinColumn([
+    { name: 'companyId', referencedColumnName: 'companyId' },
+    { name: 'reservationId', referencedColumnName: 'reservationId' },
+  ])
   head: ReservationHeadEntity;
 
   @Column({ type: 'bigint', nullable: false, unsigned: true })

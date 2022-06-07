@@ -68,7 +68,9 @@ export class CompanyRepository extends Repository<CompanyEntity> {
   async getBusinessRoles(company: Company) {
     const userBusinesses = await BusinessUserRolesEntity.find({
       where: {
-        business: company,
+        company: {
+          companyId:company.companyId
+        },
       },
     });
     return userBusinesses;
@@ -76,19 +78,23 @@ export class CompanyRepository extends Repository<CompanyEntity> {
   async getBusinessUsers(company: CompanyEntity) {
     const userBusinesses = await BusinessUserRolesEntity.find({
       where: {
-        company: company,
+        company: {
+          companyId:company.companyId
+        },
       },
       relations: ['user'],
     });
     return userBusinesses.map((roles) => roles.user.toJSON());
   }
   async getBusinessUser(
-    business: CompanyEntity,
+    company: CompanyEntity,
     userId
   ): Promise<AuthUserEntity | null> {
     const userBusinesses = await BusinessUserRolesEntity.findOne({
       where: {
-        business: business,
+        company: {
+          companyId:company.companyId
+        },
         user: { userId },
       },
       relations: ['user'],
@@ -106,10 +112,12 @@ export class CompanyRepository extends Repository<CompanyEntity> {
     return userRoleBusiness.save();
   }
 
-  async updateBusinessUser(business: CompanyEntity, user) {
+  async updateBusinessUser(company: CompanyEntity, user) {
     const userBusinesses = await BusinessUserRolesEntity.findOne({
       where: {
-        business: business,
+        company: {
+          companyId:company.companyId
+        },
         user: { userId: user.userId },
       },
       relations: ['user'],
@@ -122,5 +130,20 @@ export class CompanyRepository extends Repository<CompanyEntity> {
     return { userId: userBusinesses.user.userId };
   }
 
-  deleteBusinessUser(business: CompanyEntity, uuId) {}
+  async deleteBusinessUser(company: CompanyEntity, userId:string) {
+    const userBusinesses = await BusinessUserRolesEntity.findOne({
+      where: {
+        company: {
+          companyId:company.companyId
+        },
+        user: { userId: userId },
+      },
+      relations: ['user'],
+    });
+
+    // removing link to user
+    userBusinesses.remove();
+
+
+  }
 }

@@ -16,7 +16,6 @@ import { AppsRoleRightsEntity } from './entities/start.entity.role.rights';
     ]),
   ],
   providers: [AppRoleService],
-  controllers: [],
   exports: [AppRoleService],
 })
 export class AppsModule {

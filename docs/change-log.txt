@@ -1,2 +1,4 @@
 02.06.20222
     -  Optimization Profiles Modal
+04.06.20222
+    -  Administration Path bugfix

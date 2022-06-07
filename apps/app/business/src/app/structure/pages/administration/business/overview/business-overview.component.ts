@@ -3,7 +3,7 @@ import { PageController } from '../../../page.controller';
 import { BusinessAPI, IBusiness } from '../business-api.service';
 import { Debounce } from '../../../../../../../../../../libs/app/common/decorators/app.decorator.debounce';
 import { ITableBaseFilter, Table } from '@movit/app/common';
-import { Confirmable } from '../../../../../../../../../../libs/app/common/decorators';
+import { Confirmable } from '@movit/app/common';
 
 @Component({
   selector: 'movit-settings-overview',

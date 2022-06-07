@@ -35,6 +35,10 @@ export class SettingUserAPI {
     return this.http.post(this.getPath('/user/createUser'), user);
   }
 
+  deleteUser(userId: any) {
+    return this.http.delete(this.getPath('/user/deleteUser/'+userId));
+  }
+
   updateUser(user: any) {
     return this.http.patch(
       this.getPath('/user/updateUser/' + user.userId),

@@ -55,12 +55,12 @@ export class CompanyService {
     return this.findUserBusinessRole(authUser, company.businessUuId);
   }
 
-  getBusinessRoles(business: CompanyEntity) {
-    return this.companyRepo.getBusinessRoles(business);
+  getBusinessRoles(company: CompanyEntity) {
+    return this.companyRepo.getBusinessRoles(company);
   }
 
-  getBusinessUsers(business: CompanyEntity) {
-    return this.companyRepo.getBusinessUsers(business);
+  getBusinessUsers(company: CompanyEntity) {
+    return this.companyRepo.getBusinessUsers(company);
   }
 
   /*
@@ -75,8 +75,8 @@ export class CompanyService {
   addUserToBusinessRole(business: CompanyEntity, user: AuthUserEntity) {
     return this.companyRepo.addUserToBusinessRole(business, user);
   }
-  deleteBusinessUser(business: CompanyEntity, user: string) {
-    return this.companyRepo.deleteBusinessUser(business, user);
+  deleteBusinessUser(business: CompanyEntity, userId: string) {
+    return this.companyRepo.deleteBusinessUser(business, userId);
   }
   createBusiness() {
     // create new business COM_ entry

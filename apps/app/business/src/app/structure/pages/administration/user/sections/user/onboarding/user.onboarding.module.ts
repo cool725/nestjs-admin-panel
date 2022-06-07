@@ -20,8 +20,8 @@ const routes = [
     MdbSharedModule,
     RouterModule
   ],
-  providers:[
+  providers: [
     UserOnBoardingService
   ]
 })
-export class UseBoardingModule {}
+export class UseBoardingModule { }

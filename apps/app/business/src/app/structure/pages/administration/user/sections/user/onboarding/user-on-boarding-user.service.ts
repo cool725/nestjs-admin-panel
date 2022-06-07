@@ -53,7 +53,7 @@ export class UserOnBoardingUserService {
           description: 'Description 3'
         },
         {
-          id: 4,
+          id: 4, /*coiffure / beauty*/
           title: 'Assign Services',
           description: 'Description 4'
         }

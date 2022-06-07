@@ -7,6 +7,9 @@ import { EmployeeApi } from './overview/employee.api.service';
 
 import { MdbSharedModule } from '@movit/app/ui';
 import { TranslateLocaleModule } from '@movit/app/module';
+import {
+    BoostrapModalUIModule
+} from "../../../../../../../../../libs/app/ui/vendors/boostrap/modal/default/modal.default.module";
 
 const routes: Routes = [
   {
@@ -29,12 +32,13 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [EmployeeOverviewComponent, EmployeeFormComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    TranslateLocaleModule.forChild(),
-    MdbSharedModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        TranslateLocaleModule.forChild(),
+        MdbSharedModule,
+        BoostrapModalUIModule,
+    ],
   providers: [EmployeeApi],
 })
 export class EmployeeModule {}

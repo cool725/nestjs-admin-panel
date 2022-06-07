@@ -27,6 +27,7 @@ export class CompanyGuard implements CanActivate {
     if (!payload) return false;
 
     if (payload.userId == request.user.userId) {
+      // todo cache query
       const query = await this.connection.query(
         `
          select com_company.* from com_company

@@ -30,7 +30,8 @@
             </div>
             <div class="col-6 col-md-2 mt-2 mt-md-0">
               <div class="form-group">
-                <button mdbRipple class="btn btn-success text-white w-100">
+                <button mdbRipple (click)="showActionModal()"
+                        class="btn btn-success text-white w-100">
                   {{ 'create' | translate }}
                 </button>
               </div>
@@ -68,12 +69,11 @@
               <td>{{ employee.birthDay | date: 'dd.MM.yy' }}</td>
               <td>{{ employee.email }}</td>
               <td>{{ employee.phone }}</td>
-
               <td class="text-right pe-2" align="right">
                 <button
                   mdbRipple
                   [routerLink]="
-                    basePath + '/settings/employee/edit/' + employee.employeeId
+                    basePath + '/backoffice/employee/edit/' + employee.employeeId
                   "
                   class="btn btn-primary"
                 >
@@ -87,3 +87,51 @@
     </div>
   </div>
 </div>
+
+
+<lib-modal-ui
+        *ngIf="users && users.length"
+        [style]="{
+    margin: 'auto',
+    width: '500px',
+    height: '525px',
+    background: 'white',
+    inset: '0px',
+    display: 'block'
+  }"
+>
+  <div class="p-3">
+    <table class="table">
+      <thead>
+      <td>
+        Benutzer
+      </td>
+      <td >
+
+      </td>
+      </thead>
+      <tbody>
+      <tr *ngFor="let entry of users">
+        <td>
+          {{entry.firstName}} {{entry.lastName}}
+        </td>
+        <td align="right">
+          <a class="btn" (click)="createEmployeeFromUser(entry.userId)">
+            Erstellen
+          </a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="position-absolute bottom-0">
+    <a class="btn ">
+      Ohne Benutzer fortfahren
+    </a>
+    <a class="btn btn-default" (click)="users = []">
+      Abbrechen
+    </a>
+  </div>
+
+</lib-modal-ui>

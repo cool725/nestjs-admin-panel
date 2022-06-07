@@ -3,7 +3,7 @@ import { PageController } from '../../../page.controller';
 
 import { EmployeeApi } from './employee.api.service';
 import { ITableBaseFilter, Table } from '@movit/app/common';
-import { Debounce } from '../../../../../../../../../../libs/app/common/decorators/app.decorator.debounce';
+import { Debounce } from '@movit/app/common';
 
 class Employee {
   employeeId: number;
@@ -33,6 +33,9 @@ export class EmployeeOverviewComponent extends PageController {
     }
   );
 
+
+  users:any[]
+
   constructor(
     override injector: Injector,
     protected api: EmployeeApi<Employee, ITableEmployeeFilter>
@@ -46,6 +49,24 @@ export class EmployeeOverviewComponent extends PageController {
 
   @Debounce(500)
   getEmployees() {
-    this.onLoadAndSetData(this.api.get('employees'), this.api.employees$);
+    this.onLoadAndSetData(this.api.get(''), this.api.employees$,
+        (rows:any)=>({data:rows}));
+  }
+
+  showActionModal(){
+    // Get user list
+
+    // Show modal
+    this.api.getUsers().subscribe((users) => {
+      this.users = users
+      if(this.users.length == 0){
+        // create a non assigned employee / show forms
+      }
+
+    })
+  }
+
+  createEmployeeFromUser(userId:string){
+    this.api.createEmployeeFromUser(userId).subscribe()
   }
 }

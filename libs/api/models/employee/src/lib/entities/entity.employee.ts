@@ -1,4 +1,5 @@
 import {
+  BeforeInsert,
   Column,
   Entity, Index, JoinColumn, OneToOne,
   PrimaryGeneratedColumn, Unique
@@ -35,6 +36,7 @@ export class EmployeeEntity extends TenantCompanyEntity  {
   @Column({ length: 100 })
   email: string;
 
+  @BeforeInsert()
   async beforeInsert(): Promise<any> {
     await this.setLastEntryId('employeeId');
   }

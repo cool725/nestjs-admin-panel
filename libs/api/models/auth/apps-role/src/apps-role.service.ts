@@ -37,7 +37,7 @@ export class AppRoleService {
     return this.roleRepo.getBusinessRolesByBusinessId(companyId);
   }
 
-  public findBusinessRole(companyId:number, roleId:number) {
+  public findBusinessRole(roleId:number, companyId:number) {
     return this.roleRepo.getBusinessRoleByBusinessId(companyId, roleId);
   }
 

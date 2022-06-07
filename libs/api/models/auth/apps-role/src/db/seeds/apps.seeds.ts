@@ -261,6 +261,14 @@ export class InitialAppsSeeds extends SeedHelper {
       categoryId: 6,
       img: '',
     },
+    {
+      appId: 29,
+      domain: 'business',
+      title: 'user',
+      path: '/settings/user/overview',
+      categoryId: 11,
+      img: '',
+    },
   ];
 
   public async doSeed(queryRunner: Connection): Promise<boolean> {

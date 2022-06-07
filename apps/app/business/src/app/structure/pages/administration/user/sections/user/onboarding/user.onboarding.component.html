@@ -1,3 +1,17 @@
+<ng-template #topbar>
+  <div class="left-box cursor-pointer">
+    <i class="fas fa-cog"></i>
+  </div>
+  <div class="d-flex justify-content-between w-100">
+    <h4 class="slide">
+       Ttile
+    </h4>
+    <div class="pe-2">
+
+    </div>
+  </div>
+</ng-template>
+
 <div class="onboarding-sidebar" #sidebarWindow>
   <button class="closebtn bg-white border-0" (click)="closeNav()">×</button>
 
@@ -30,14 +44,14 @@
   <div class="col-12 p-3 col-md-10">
     <div class="body border rounded-3 p-3">
       <div class="table-header d-flex justify-content-between m-3">
-        <span class="fw-bold fs-3">{{ title }}</span>
+        <span class="fw-bold fs-3"> Title </span>
         <button class="btn btn-primary" (click)="onRefresh()"><i class="fa fa-refresh"></i> Refresh</button>
       </div>
 
       <div class="d-block">
         <div class="p-2 border rounded-3">
-          <table class="w-100">
-            <tr *ngFor="let row of tableData" class="py-2 text-black">
+          <table class="w-100" *ngIf="tableOnBoarding.data$ | async as tableData">
+            <tr *ngFor="let row of tableData.data" class="py-2 text-black">
               <th scope="row" class="onboarding-data-id justify-content-center d-flex">
                 <div class="circle">
                   <p class="text-white">{{ row.id }}</p>
@@ -56,76 +70,13 @@
               </td>
             </tr>
           </table>
+
+          <mdb-pagination
+            [paginate]="tableOnBoarding.pagination"
+          ></mdb-pagination>
         </div>
 
-        <div class="row pagination-details mt-3">
-          <div class="col-md-3">
-            <p class="mb-2 mb-md-0">
-              Showing {{ pager.startIndex + 1 }} to {{ pager.endIndex + 1 }} of {{ tableData.length }} entries
-            </p>
-          </div>
-          <div class="col-md-9">
-            <nav role="navigation">
-              <ul *ngIf="pager.pages && pager.pages.length" class="pagination justify-content-end">
-                <li>
-                  <button
-                    type="button"
-                    class="btn-sm btn-default"
-                    (click)="setPage(1)"
-                    [disabled]="pager.currentPage === 1"
-                    title="Go to the first page"
-                  >
-                    First
-                  </button>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    class="btn-sm btn-default"
-                    (click)="setPage(pager.currentPage - 1)"
-                    [disabled]="pager.currentPage === 1"
-                    title="Go to the previous page"
-                  >
-                    Previous
-                  </button>
-                </li>
-                <li *ngFor="let page of pager.pages">
-                  <button
-                    type="button"
-                    [attr.aria-current]="pager.currentPage === page ? 'true' : 'false'"
-                    [ngClass]="pager.currentPage === page ? 'btn-primary' : 'btn-default'"
-                    class="btn-sm"
-                    (click)="setPage(page)"
-                  >
-                    {{ page }}
-                  </button>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    class="btn-sm btn-default"
-                    (click)="setPage(pager.currentPage + 1)"
-                    [disabled]="pager.currentPage === pager.totalPages"
-                    title="Go to the next page"
-                  >
-                    Next
-                  </button>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    class="btn-sm btn-default"
-                    (click)="setPage(pager.totalPages)"
-                    [disabled]="pager.currentPage === pager.totalPages"
-                    title="Go to the last page"
-                  >
-                    Last
-                  </button>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
+
       </div>
     </div>
   </div>

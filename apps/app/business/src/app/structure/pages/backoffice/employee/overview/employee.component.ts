@@ -57,7 +57,7 @@ export class EmployeeOverviewComponent extends PageController {
     // Get user list
 
     // Show modal
-    this.api.getUsers().subscribe((users) => {
+    this.api.getNonAssignedUsers().subscribe((users) => {
       this.users = users
       if(this.users.length == 0){
         // create a non assigned employee / show forms

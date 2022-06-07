@@ -35,4 +35,14 @@ export class BusinessFrontOfficeAgendaDataController {
   ) {
     return this.employeeService.getEmployeesFromCompany(company.companyId)
   }
+
+  @Get('sources')
+  getSources(
+      @GetCompany() company: CompanyEntity,
+      @GetUser() user: AuthUserEntity,
+      @GetPagination() pagination: Pagination
+  ) {
+    return []
+  }
+
 }

@@ -9,7 +9,7 @@ import {
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
-import {classToPlain, Exclude, instanceToPlain} from 'class-transformer';
+import {classToPlain, Exclude} from 'class-transformer';
 
 import { ReservationLegEntity } from './reservation-leg.entity';
 import { ReservationSourceEntity } from './reservation.source.entity';

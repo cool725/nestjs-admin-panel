@@ -23,7 +23,9 @@ export class BusinessBackofficeEmployeesController {
   @Get('users')
   async getNonAssignedUsers(@GetCompany() company:CompanyEntity) {
     const users = await this.companyService.getBusinessUsers(company);
-    const employees = await this.getEmployees(company)
+    const employees = await this.employeeService.getEmployeesFromCompany(company.companyId,{
+      loadRelationIds:true,
+    })
     return users.filter(user => !employees.find(employee => employee['user'] === user.userId));
   }
 

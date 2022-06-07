@@ -23,9 +23,11 @@ export class UserOnBoardingService {
 
   getOnBoardingTasks(httpParams:HttpParams){
    return of({
-      currentPage: 0,
-      perPage: 0,
-      total: 0,
+      currentPage: 1,
+      perPage: 10,
+      total: 5,
+     count:5,
+
       data:    [
         {
           id: 1,

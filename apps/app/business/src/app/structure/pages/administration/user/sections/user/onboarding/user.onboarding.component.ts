@@ -35,9 +35,7 @@ export class UserOnboardingComponent extends PageController {
 
   constructor(
     override injector: Injector,
-    public userAPI: SettingUserAPI,
     private api: UserOnBoardingService,
-    private router: Router,
   ) {
     super(injector);
 

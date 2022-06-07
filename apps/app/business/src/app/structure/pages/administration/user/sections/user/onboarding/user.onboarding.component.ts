@@ -28,7 +28,7 @@ export class UserOnboardingComponent extends PageController {
 
   })
 
-  menuItems: any[] = [];
+  menuItems: any[] = Items;
   entriesPerPage: number;
   currentPage: number;
 
@@ -40,11 +40,12 @@ export class UserOnboardingComponent extends PageController {
     private router: Router,
   ) {
     super(injector);
+
   }
 
 
   getData() {
-    this.menuItems = Items;
+
     this.onLoadAndSetPaginatedData(
       this.api.getOnBoardingTasks(this.tableOnBoarding.getFilterValuesAndPaginationAsHttpParams()),
       this.api.onBoardingTasks$,

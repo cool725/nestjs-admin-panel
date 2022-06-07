@@ -1,7 +1,5 @@
 import { Component, Injector, ViewChild, ElementRef } from '@angular/core';
 import { ITableBaseFilter, Table } from '@movit/app/common';
-
-import { SettingUserAPI } from '../../../packages/user-api.service';
 import { PageController } from '../../../../../page.controller';
 import { IOnBoardingTask, UserOnBoardingService } from './user.onboarding.service';
 

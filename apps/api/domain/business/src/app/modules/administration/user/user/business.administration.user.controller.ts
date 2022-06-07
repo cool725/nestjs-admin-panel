@@ -9,7 +9,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { Administration } from '../../business.administration.namespace';
-import { GetCompany } from '../../../../../../../../../../libs/api/models/company/src/company.decorator';
+import { GetCompany } from "@movit/api/business";
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyService } from '@movit/api/business';
 import { CompanyEntity } from '../../../../../../../../../../libs/api/models/company/src/entities/companyEntity';

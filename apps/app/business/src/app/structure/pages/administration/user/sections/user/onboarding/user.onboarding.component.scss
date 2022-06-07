@@ -1,3 +1,6 @@
+:host{
+  min-height: calc(100vh - 60px - 42px);
+}
 .onboarding {
   .onboarding-data-id {
     text-align: center;
@@ -100,3 +103,4 @@
     font-size: 30px;
   }
 }
+

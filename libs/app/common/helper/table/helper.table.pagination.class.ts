@@ -1,6 +1,6 @@
 export interface ITablePaginationInfo {
-  prevPage: boolean;
-  nextPage: number;
+  prevPage?: boolean;
+  nextPage?: number;
   currentPage: number;
   total: number;
   perPage: number;

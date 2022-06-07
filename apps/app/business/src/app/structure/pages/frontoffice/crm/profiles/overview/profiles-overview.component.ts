@@ -12,7 +12,8 @@ import { Profile } from '../packages/profile.class';
 })
 export class ProfilesOverviewComponent extends PageController {
 
-  public profileTable: Table<Profile, ITableBaseFilter> = new Table<Profile, ITableBaseFilter>(this.api.profiles$, {
+  public profileTable: Table<Profile, ITableBaseFilter> =
+    new Table<Profile, ITableBaseFilter>(this.api.profiles$, {
     searchValue: '',
     keys: ['firstName', 'lastName', 'phone', 'email'],
   }).setFields(['firstName', 'lastName', 'email', 'phone', 'birthDay']);

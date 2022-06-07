@@ -1,5 +1,8 @@
 :host{
   min-height: calc(100vh - 60px - 42px);
+  width: 100vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 .onboarding {
   .onboarding-data-id {

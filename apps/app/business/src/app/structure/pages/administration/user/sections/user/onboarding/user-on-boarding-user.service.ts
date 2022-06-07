@@ -17,7 +17,8 @@ export class IOnBoardingTask {
    id: number;
    title: string;
    description: string;
- }
+}
+
 @Injectable()
 export class UserOnBoardingUserService {
 
@@ -38,22 +39,20 @@ export class UserOnBoardingUserService {
 
       data:    [
         {
-          id: 1,
           title: 'User Creation',
           description: 'Description 1'
         },
         {
-          id: 2,
           title: 'Roles',
           description: 'Description 2'
         },
         {
-          id: 3,
+          /* when using plans y*/
           title: 'Shiftplan & Availability',
           description: 'Description 3'
         },
         {
-          id: 4, /*coiffure / beauty*/
+          /*coiffure / beauty*/
           title: 'Assign Services',
           description: 'Description 4'
         }

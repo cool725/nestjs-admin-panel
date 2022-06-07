@@ -50,10 +50,10 @@
         </div>
       <div class="card shadow pt-3 pb-3">
         <table class="w-100" *ngIf="tableOnBoarding.data$ | async as tableData">
-          <tr *ngFor="let row of tableData.data" class="py-2 text-black">
+          <tr *ngFor="let row of tableData.data;let i = index" class="py-2 text-black">
             <td>
               <div class="circle">
-                <p class="text-white">{{ row.id }}</p>
+                <p class="text-white">{{ i + 1 }}</p>
               </div>
             </td>
             <td>{{ row.title }}</td>

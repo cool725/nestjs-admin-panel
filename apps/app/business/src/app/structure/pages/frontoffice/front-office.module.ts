@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LocaleResolver, TranslateLocaleModule } from '@movit/app/module';
+import {CashSystemModule} from "./cashsystem/cashsystem.module";
 
 const routes: Routes = [
   {
@@ -21,7 +22,7 @@ const routes: Routes = [
   {
     path: 'cashsystem',
     loadChildren: () =>
-      import('./cashsystem/cashsystem.module').then((m) => m.CashsystemModule),
+      import('./cashsystem/cashsystem.module').then((m) => m.CashSystemModule),
     resolve: LocaleResolver.default,
   },
 ];

@@ -1,131 +1,82 @@
-<div class="onboarding-sidebar" #sidebarWindow>
-  <button class="closebtn bg-white border-0" (click)="closeNav()">×</button>
-
-  <ul class="navbar-nav d-block">
-    <li *ngFor="let menuItem of menuItems" class="{{ menuItem.class }} nav-item">
-      <a routerLinkActive="active" class="nav-link d-flex align-items-center text-dark">
-        <i class="{{ menuItem.icon }} trailing"></i>
-        <span class="ms-2 ">{{ menuItem.title }}</span>
-      </a>
-    </li>
-  </ul>
-</div>
-
-<div class="row h-100 position-relative onboarding">
-  <div class="navbar-collapse d-md-none d-block">
-    <button (click)="openNav()">☰</button>
+<ng-template #topbar>
+  <div class="left-box cursor-pointer">
+    <i class="fas fa-cog"></i>
   </div>
+  <div class="d-flex justify-content-between w-100">
+    <h4 class="slide">
+      User Onboarding
+    </h4>
+    <div class="pe-2">
 
-  <nav class="navbar d-md-block d-none navbar-expand-md col-2" id="sidenav-main">
-    <ul class="navbar-nav d-block">
-      <li *ngFor="let menuItem of menuItems" class="{{ menuItem.class }} nav-item">
-        <a routerLinkActive="active" class="nav-link d-flex align-items-center text-dark">
-          <i class="{{ menuItem.icon }} trailing"></i>
-          <span class="ms-2 ">{{ menuItem.title }}</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
+    </div>
+  </div>
+</ng-template>
 
-  <div class="col-12 p-3 col-md-10">
-    <div class="body border rounded-3 p-3">
-      <div class="table-header d-flex justify-content-between m-3">
-        <span class="fw-bold fs-3">{{ title }}</span>
-        <button class="btn btn-primary" (click)="onRefresh()"><i class="fa fa-refresh"></i> Refresh</button>
-      </div>
-
-      <div class="d-block">
-        <div class="p-2 border rounded-3">
-          <table class="w-100">
-            <tr *ngFor="let row of tableData" class="py-2 text-black">
-              <th scope="row" class="onboarding-data-id justify-content-center d-flex">
-                <div class="circle">
-                  <p class="text-white">{{ row.id }}</p>
+<div class="d-md-flex h-100 w-100">
+  <div class="d-none d-sm-block col-sm-3 col-md-2" *ngIf="menuItems.length" >
+    <nav class="navbar bg-white h-100 d-flex align-items-start ">
+      <ul class="navbar-nav d-block ps-sm-2 ps-md-3">
+        <li *ngFor="let menuItem of menuItems" class="border-1 nav-item">
+          <a routerLinkActive="active" class="nav-link d-flex align-items-center text-dark">
+            <i class="{{ menuItem.icon }} trailing"></i>
+            <span class="ms-2 ">{{ menuItem.title }}</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="p-3 w-100">
+    <div class="container">
+      <div class="col-12 card bg-white shadow p-3 mb-4">
+          <div class="">
+            <div class="row">
+              <div class="col-12 col-md-8"></div>
+              <div class="col-3 col-md-2 mt-2 mt-md-0">
+                <div class="form-group">
+                  <button (click)="createNewUser()" mdbRipple class="btn btn-success text-white w-100">
+                    create user
+                  </button>
                 </div>
-              </th>
-              <td>{{ row.title }}</td>
-              <td>{{ row.description }}</td>
-              <td>
-                <button
-                  type="button"
-                  class="btn btn-primary btn-rounded btn-sm fw-bold"
-                  mdbRipple rippleColor="dark"
-                >
-                  View
-                </button>
-              </td>
-            </tr>
-          </table>
-        </div>
-
-        <div class="row pagination-details mt-3">
-          <div class="col-md-3">
-            <p class="mb-2 mb-md-0">
-              Showing {{ pager.startIndex + 1 }} to {{ pager.endIndex + 1 }} of {{ tableData.length }} entries
-            </p>
-          </div>
-          <div class="col-md-9">
-            <nav role="navigation">
-              <ul *ngIf="pager.pages && pager.pages.length" class="pagination justify-content-end">
-                <li>
-                  <button
-                    type="button"
-                    class="btn-sm btn-default"
-                    (click)="setPage(1)"
-                    [disabled]="pager.currentPage === 1"
-                    title="Go to the first page"
-                  >
-                    First
+              </div>
+              <div class="col-3 col-md-2 mt-2 mt-md-0">
+                <div class="form-group">
+                  <button mdbRipple class="btn btn-success text-white w-100">
+                    Choose user
                   </button>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    class="btn-sm btn-default"
-                    (click)="setPage(pager.currentPage - 1)"
-                    [disabled]="pager.currentPage === 1"
-                    title="Go to the previous page"
-                  >
-                    Previous
-                  </button>
-                </li>
-                <li *ngFor="let page of pager.pages">
-                  <button
-                    type="button"
-                    [attr.aria-current]="pager.currentPage === page ? 'true' : 'false'"
-                    [ngClass]="pager.currentPage === page ? 'btn-primary' : 'btn-default'"
-                    class="btn-sm"
-                    (click)="setPage(page)"
-                  >
-                    {{ page }}
-                  </button>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    class="btn-sm btn-default"
-                    (click)="setPage(pager.currentPage + 1)"
-                    [disabled]="pager.currentPage === pager.totalPages"
-                    title="Go to the next page"
-                  >
-                    Next
-                  </button>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    class="btn-sm btn-default"
-                    (click)="setPage(pager.totalPages)"
-                    [disabled]="pager.currentPage === pager.totalPages"
-                    title="Go to the last page"
-                  >
-                    Last
-                  </button>
-                </li>
-              </ul>
-            </nav>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+      <div class="card shadow pt-3 pb-3">
+        <table class="w-100" *ngIf="tableOnBoarding.data$ | async as tableData">
+          <tr *ngFor="let row of tableData.data;let i = index" class="py-2 text-black">
+            <td>
+              <div class="circle">
+                <p class="text-white">{{ i + 1 }}</p>
+              </div>
+            </td>
+            <td>{{ row.title }}</td>
+            <td>{{ row.description }}</td>
+            <td>
+              <div class="boarding-state">
+                <span class="dot-state active"></span>
+                <span class="dot-state active"></span>
+                <span class="dot-state not-active"></span>
+                <span class="dot-state"></span>
+              </div>
+            </td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-primary btn-rounded btn-sm fw-bold"
+                mdbRipple rippleColor="dark"
+              >
+                <i class="fa fa-edit text-white"></i>
+              </button>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>

@@ -17,7 +17,7 @@ export class HeaderComponent extends PageController implements OnInit {
   readonly profileMenuItems = [
     {
       title: 'Einstellungen',
-      path: '/settings/overview',
+      path: '/administration/overview',
       cb: ($event: any, item: any) => {
         this.router.navigate([environment.company.url + item.path]);
       },

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MdbSharedModule } from '@movit/app/ui';
 
 import { UserOnboardingComponent } from './user.onboarding.component';
+import { UserOnBoardingUserService } from "./user-on-boarding-user.service";
 
 const routes = [
   { path: '', component: UserOnboardingComponent }
@@ -19,5 +20,8 @@ const routes = [
     MdbSharedModule,
     RouterModule
   ],
+  providers: [
+    UserOnBoardingUserService
+  ]
 })
-export class UseBoardingModule {}
+export class UseBoardingModule { }

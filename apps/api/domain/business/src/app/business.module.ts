@@ -17,6 +17,7 @@ import { BusinessSettingsModule } from './modules/settings/business.settings.mod
 import { SellItemModule } from '@movit/api/sales/item';
 import { EmployeeModule } from "@movit/api/models/employee";
 
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -44,8 +45,6 @@ import { EmployeeModule } from "@movit/api/models/employee";
     BusinessSettingsModule,
     BusinessAdministrationModule,
   ],
-  controllers: [BusinessController, BusinessAppsController],
-  providers: [],
-  exports: [],
+  controllers: [BusinessController, BusinessAppsController]
 })
 export class BusinessAPIModule {}

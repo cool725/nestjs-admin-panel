@@ -13,7 +13,7 @@ export class MdbPaginationComponent {
   @Output()
   onPageChange: EventEmitter<number> = new EventEmitter<number>();
 
-  PageType = PageType;
+  pageType = PageType;
 
   nextPage() {
     if (this.paginate.currentPage < this.paginate.total) {

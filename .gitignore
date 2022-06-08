@@ -10,3 +10,4 @@ temp/
 .env
 docs/local.webserver.conf
 *.locale.json
+ormlogs.log

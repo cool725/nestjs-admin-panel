@@ -36,6 +36,7 @@ export class EmployeeEntity extends TenantCompanyEntity  {
   @Column({ length: 100, nullable: true })
   email: string;
 
+
   @CreateDateColumn()
   created!: Date;
 

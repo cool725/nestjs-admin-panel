@@ -4,7 +4,7 @@ import { RoleComponent } from './role.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { RoleFormComponent } from './form/role.form.component';
-import { SettingRoleAPI } from '../../packages/apps-api.service';
+import { SettingRoleAPI } from '../packages/apps-api.service';
 import { MdbSharedModule } from '@movit/app/ui';
 
 const routes = [

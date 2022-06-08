@@ -16,4 +16,8 @@ export namespace BackOffice {
       export const PATHProduct = 'sales/items/product';
     }
   }
+
+  export namespace Employees {
+    export const PATHBase = 'employees';
+  }
 }

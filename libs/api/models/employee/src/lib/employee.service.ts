@@ -1,53 +1,71 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {EmployeeRepository} from "./classes/auth.repository.template";
-import { AuthUserEntity } from "@movit/api/auth";
-import { IsNull } from "typeorm";
+import { EmployeeRepository } from "./classes/auth.repository.template";
+import {IsNull} from "typeorm";
+import {AuthUserEntity} from "@movit/api/auth";
 
 @Injectable()
 export class EmployeeService {
+    constructor(@InjectRepository(EmployeeRepository) private employeeRepo: EmployeeRepository) {}
 
-  constructor(
-    @InjectRepository(EmployeeRepository) private employeeRepo: EmployeeRepository) {}
+    create(){
+        return this.employeeRepo.create()
+    }
 
-  getEmployeesFromCompany(companyId:number){
-   return this.employeeRepo.find({
-      where:{
-        companyId,
-        deletedAt:IsNull()
-      }
-    })
-  }
+    getEmployeeByUserId(companyId:number,userId:string){
+        return this.employeeRepo.findOne({
+            where:{
+                companyId,
+                user: {
+                    userId:userId
+                }
+            }
+        })
+    }
 
-  async removeEmployeesFromCompany(companyId:number,userId:string){
-    const employee = await this.employeeRepo.findOne({
-      where:{
-        companyId,
-        user:{
-          userId:userId
-        }
-      }
-    })
-   return  employee ? employee.softRemove() : null
-  }
+    getEmployeesFromCompany(companyId:number, params = {}){
+        return this.employeeRepo.find({
+            where:{
+                companyId,
+                deletedAt:IsNull()
+            },
+            ... params,
+            cache:{
+                id:companyId+'_employees',
+                milliseconds:300000
+            }
+        })
+    }
 
-  async setUserAsEmployeeOfCompany(companyId:number, userId:string){
-    let employee = await this.employeeRepo.findOne({
-      where:{
-        companyId,
-        user:{ userId: userId }
-      }
-    });
+    async removeEmployeesFromCompany(companyId:number,userId:string){
+        const employee = await this.employeeRepo.findOne({
+            where:{
+                companyId,
+                user:{
+                    userId:userId
+                }
+            }
+        })
+        return  employee ? employee.softRemove() : null
+    }
 
-    if( employee) return true;
+    async setUserAsEmployeeOfCompany(companyId:number, userId:string){
+        let employee = await this.employeeRepo.findOne({
+            where:{
+                companyId,
+                user:{ userId: userId }
+            }
+        });
 
-     employee = this.employeeRepo.create();
-     employee.companyId = companyId;
+        if( employee) return true;
 
-     // todo: load user and set values
-     employee.user = Object.assign(new AuthUserEntity(),{userId:userId})
-     await this.employeeRepo.save(employee)
+        employee = this.employeeRepo.create();
+        employee.companyId = companyId;
 
-    return true
-  }
+        // todo: load user and set values
+        employee.user = Object.assign(new AuthUserEntity(),{userId:userId})
+        await this.employeeRepo.save(employee)
+
+        return true
+    }
 }

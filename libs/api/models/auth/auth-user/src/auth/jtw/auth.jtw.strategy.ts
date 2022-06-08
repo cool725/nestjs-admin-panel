@@ -3,7 +3,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { AuthRepositoryUser } from '../classes/auth.repository.user';
 import { InjectRepository } from '@nestjs/typeorm';
 import { IAuthJtwPayload } from './auth.jtw.interface';
-import { AuthUserEntity } from '../entities/auth.entity.user';
+import { AuthUserEntity } from '@movit/api/auth';
 import { ConfigService } from '@nestjs/config';
 
 // @ts-ignore
@@ -43,10 +43,18 @@ export class AuthJtwStrategy extends PassportStrategy(Strategy) {
 
       return session && session.user ? session.user : undefined;
     } else {
-      const user = await this.authUserRepo.findOne({
-        authCreatedAt: payload.authCreatedAt,
-        userId: payload.sub,
-      });
+      const user = await this.authUserRepo.findOne(
+          {
+            where:{
+              authCreatedAt: payload.authCreatedAt,
+              userId: payload.sub,
+            },
+            cache: {
+              id:  payload.sub,
+              milliseconds: 3600000 // 1h
+            }
+      },
+          );
       return user ? user : undefined;
     }
   }

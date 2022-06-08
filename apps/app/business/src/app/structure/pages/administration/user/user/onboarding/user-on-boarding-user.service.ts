@@ -10,7 +10,7 @@ import { ITableOptions } from "@movit/app/common";
 import { HttpParams } from "@angular/common/http";
 import {
   Administration
-} from "../../../../../../../../../../../api/domain/business/src/app/modules/administration/business.administration.namespace";
+} from "../../../../../../../../../../api/domain/business/src/app/modules/administration/business.administration.namespace";
 import User = Administration.User;
 
 export class IOnBoardingTask {

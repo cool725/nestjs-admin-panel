@@ -4,8 +4,8 @@
       <a class="page-link" (click)="previousPage()">{{ 'previous' | translate }}</a>
     </li>
     <li class="page-item" *ngFor="let page of paginate.pages" [class.active]="paginate.currentPage == page.value">
-      <a *ngIf="page.type === PageType.NUMBER" class="page-link" (click)="goToPage(page.value)">{{ page.value }}</a>
-      <span *ngIf="page.type === PageType.DOTS" class="page-dots">...</span>
+      <a *ngIf="page.type === pageType.NUMBER" class="page-link" (click)="goToPage(page.value)">{{ page.value }}</a>
+      <span *ngIf="page.type === pageType.DOTS" class="page-dots">...</span>
     </li>
     <li class="page-item" [class.disabled]="paginate.currentPage === paginate.numberOfTotalPages">
       <a class="page-link" (click)="nextPage()">{{ 'next' | translate }}</a>

@@ -9,12 +9,20 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { Administration } from '../../business.administration.namespace';
+<<<<<<< HEAD
 import { GetCompany } from "@movit/api/business";
+=======
+import { GetCompany } from '@movit/api/business';
+>>>>>>> origin/feature/cashsystem/init
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyService } from '@movit/api/business';
 import { CompanyEntity } from '../../../../../../../../../../libs/api/models/company/src/entities/companyEntity';
 import { AuthService, CompanyGuard } from '@movit/api/auth';
+<<<<<<< HEAD
 import { EmployeeService } from "@movit/api/models/employee";
+=======
+import {Pagination} from "../../../../../../../../../../libs/api/common/decorator";
+>>>>>>> origin/feature/cashsystem/init
 
 @Controller(Administration.resolePath(Administration.User.UserPATH))
 @UseGuards(AuthGuard(), CompanyGuard)
@@ -26,8 +34,11 @@ export class BusinessAdministrationUserController {
   ) {}
 
   @Get('getUsers')
-  getUsers(@GetCompany() business: CompanyEntity) {
-    return this.businessService.getBusinessUsers(business);
+  getUsers(
+      @GetCompany() business: CompanyEntity,
+      @GetCompany() pagination: Pagination
+  ) {
+    return this.businessService.getBusinessUsersPaginated(business,pagination);
   }
 
   @Get('getUser/:userId')

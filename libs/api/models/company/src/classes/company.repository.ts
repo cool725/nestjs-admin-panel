@@ -3,6 +3,7 @@ import { CompanyEntity } from '../entities/companyEntity';
 import { BusinessUserRolesEntity } from '../entities/business.users.roles.entity.app';
 import { AuthUserEntity } from '@movit/api/auth';
 import {Company} from "@movit/api/business";
+import {Pagination} from "../../../../common/decorator";
 
 @EntityRepository(CompanyEntity)
 export class CompanyRepository extends Repository<CompanyEntity> {
@@ -75,6 +76,7 @@ export class CompanyRepository extends Repository<CompanyEntity> {
     });
     return userBusinesses;
   }
+
   async getBusinessUsers(company: CompanyEntity) {
     const userBusinesses = await BusinessUserRolesEntity.find({
       where: {
@@ -86,6 +88,44 @@ export class CompanyRepository extends Repository<CompanyEntity> {
     });
     return userBusinesses.map((roles) => roles.user.toJSON());
   }
+
+  async getBusinessUsersPaginated(company: CompanyEntity, pagination:Pagination) {
+    const [result, total] = await Promise.all([
+      BusinessUserRolesEntity
+          .find({
+            where: {
+              company: {
+                companyId: company.companyId,
+              }
+            },
+            order: pagination.sort.reduce(
+                (order, sort) => ({ ...order, [sort.field]: sort.by }),
+                {}
+            ),
+            skip: pagination.skip,
+            take: pagination.limit,
+            relations: ['user'],
+          })
+          .catch((e) => {
+            console.error(e);
+            return [];
+          }),
+      BusinessUserRolesEntity.count({
+        cache: {
+          id: 'BusinessUserRolesEntity_' + company.companyId,
+          milliseconds: 300000,
+        },
+        where: {
+          companyId: company.companyId,
+        },
+        relations: ['user'],
+      }),
+    ]);
+
+    return result.map((roles) => roles.user.toJSON());
+  }
+
+
   async getBusinessUser(
     company: CompanyEntity,
     userId

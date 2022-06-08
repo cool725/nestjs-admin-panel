@@ -23,12 +23,12 @@ const getLocalesFromDB = async (projectName) => {
   const tableName = `translation_locale`;
 
   const db = await typeorm.createConnection({
-    type: process.env.DB_TYPE,
-    host: process.env.DB_HOST,
-    port: +(process.env.DB_PORT || 0),
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
+    type: process.env['DB_TYPE'],
+    host: process.env['DB_HOST'],
+    port: +(process.env['DB_PORT'] || 0),
+    username: process.env['DB_USERNAME'],
+    password: process.env['DB_PASSWORD'],
+    database: process.env['DB_DATABASE'],
   });
 
   const rows = await db.query(['select * from', tableName].join(' '));

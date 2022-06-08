@@ -7,12 +7,12 @@ import { BusinessUserRolesEntity } from '../../entities/business.users.roles.ent
 export class InitialBusinessSeeds extends SeedHelper {
   migrationName: string = this.constructor.name;
 
-  migrationDelay = 2000;
+  override migrationDelay = 2000;
 
   getDefaultUser(): Promise<AuthUserEntity> {
     return AuthUserEntity.findOne({
       where: {
-        email: process.env.APP_DEFAULT_USER,
+        email: process.env['APP_DEFAULT_USER'],
       },
     });
   }
@@ -20,7 +20,7 @@ export class InitialBusinessSeeds extends SeedHelper {
   public async doSeed(queryRunner: Connection): Promise<boolean> {
     // eslint-disable-next-line no-async-promise-executor
     return new Promise<boolean>(async (resolve) => {
-      if (!process.env.APP_DEFAULT_USER) return resolve(false);
+      if (!process.env['APP_DEFAULT_USER']) return resolve(false);
 
       if (await CompanyEntity.findOne({ where: { titleFull: 'MovIT:Demo' } }))
         return resolve(false);

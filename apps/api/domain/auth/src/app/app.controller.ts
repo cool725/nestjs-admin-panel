@@ -178,7 +178,7 @@ export class AuthController {
   static handleSuccess(res: Response, options: any = {}) {
     // User access token
     const cookieOptions =
-      process.env.APP_ENV === 'development'
+      process.env['APP_ENV'] === 'development'
         ? {
             domain: '.movit.local',
             secure: false,

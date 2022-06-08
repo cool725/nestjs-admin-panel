@@ -8,7 +8,7 @@ export const env = (() => {
         : require('dotenv').config({
             path: path.resolve(__dirname, '..', '.env'),
           });
-      if (!process.env.APP_ENV) process.env.APP_ENV = 'development';
+      if (!process.env['APP_ENV']) process.env['APP_ENV'] = 'development';
     },
   };
 })();

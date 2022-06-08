@@ -6,7 +6,7 @@
 const _crypto = require('crypto');
 
 export const cryptoUtils = {
-  masterKey: process.env.APP_NAME || 'crypto',
+  masterKey: process.env['APP_NAME'] || 'crypto',
 
   hash: (value, salt, keyLen = 64) => {
     return _crypto
@@ -23,7 +23,7 @@ export const cryptoUtils = {
    */
   encrypt: function (
     text: string,
-    masterkey: string = this.masterKey,
+    masterkey: string = cryptoUtils.masterKey,
     length: number = 32
   ) {
     // random initialization vector
@@ -63,7 +63,7 @@ export const cryptoUtils = {
    */
   decrypt: function (
     encdata: string,
-    masterkey: string = this.masterKey,
+    masterkey: string = cryptoUtils.masterKey,
     length: number = 32
   ) {
     try {

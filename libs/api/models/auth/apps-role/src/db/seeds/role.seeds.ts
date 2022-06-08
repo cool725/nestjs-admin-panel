@@ -9,12 +9,12 @@ import { CompanyEntity } from '../../../../../company/src/entities/companyEntity
 export class InitialAppRoleSeeds extends SeedHelper {
   migrationName: string = this.constructor.name;
 
-  migrationDelay = 3000;
+  override migrationDelay = 3000;
 
   getDefaultUser(): Promise<AuthUserEntity> {
     return AuthUserEntity.findOne({
       where: {
-        email: process.env.APP_DEFAULT_USER,
+        email: process.env['APP_DEFAULT_USER'],
       },
     });
   }

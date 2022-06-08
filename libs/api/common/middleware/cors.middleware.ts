@@ -12,7 +12,7 @@ const ConfigCors = {
 
   allowedFields: <string[]>['Authorization', 'Content-Type', 'Company'],
 
-  allowedOrigin: <string>process.env.API_ACCESS_CONTROL_ORIGIN || '*',
+  allowedOrigin: <string>process.env['API_ACCESS_CONTROL_ORIGIN'] || '*',
 
   customHeaders: <{ key: string; value: string }[]>[
     {

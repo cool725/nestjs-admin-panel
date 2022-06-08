@@ -6,7 +6,7 @@ import { AuthUserEntity } from '@movit/api/auth';
 export class InitialLayoutSeeds extends SeedHelper {
   migrationName: string = this.constructor.name;
 
-  migrationDelay = 5000;
+  override migrationDelay = 5000;
 
   templates: Partial<AuthTemplate>[] = [
     {
@@ -887,8 +887,8 @@ export class InitialLayoutSeeds extends SeedHelper {
 
   static getUserData() {
     return {
-      email: process.env.APP_DEFAULT_USER,
-      password: process.env.APP_DEFAULT_PASSWORD,
+      email: process.env['APP_DEFAULT_USER'],
+      password: process.env['APP_DEFAULT_PASSWORD'],
     };
   }
 

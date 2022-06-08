@@ -6,9 +6,9 @@ var fs = require('fs'),
 export class BackupSQL {
   static backupPath = './backup';
   static dumpDatabase(
-    DB_USER: string = process.env.DB_USERNAME,
-    DB_PASSWORD: string = process.env.DB_PASSWORD,
-    DB_NAME: string = process.env.DB_DATABASE
+    DB_USER: string = process.env['DB_USERNAME'],
+    DB_PASSWORD: string = process.env['DB_PASSWORD'],
+    DB_NAME: string = process.env['DB_DATABASE']
   ): Promise<{ path: string; file: string; unlink(): void }> {
     const fileName = DB_NAME + '_' + moment().format('YYYY-MM-DD');
     const output = path.resolve(BackupSQL.backupPath, fileName + '.sql');

@@ -37,7 +37,7 @@ export abstract class SeedHelper {
   abstract doSeed(conn: Connection): Promise<boolean>;
 
   public getParameterPlaceHolder(num = 1) {
-    switch (process.env.DB_TYPE) {
+    switch (process.env['DB_TYPE']) {
       case 'postgres':
         return `$` + num;
       default:

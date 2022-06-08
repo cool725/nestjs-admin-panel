@@ -105,7 +105,7 @@ export class AuthService {
     email: string,
     domain: string | undefined = undefined
   ) {
-    const baseUrl = domain || process.env.RESET_URL_BASE || process.env.APP_URL;
+    const baseUrl = domain || process.env['RESET_URL_BASE'] || process.env['APP_URL'];
     const html = Mailer.Mail.loadTemplate('reset-password.html');
     return new Mailer.Mail()
       .sendEmail(

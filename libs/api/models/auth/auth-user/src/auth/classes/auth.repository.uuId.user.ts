@@ -35,14 +35,13 @@ export class AuthRepositoryUUId {
     }
   }
 
-  public unRegisterUuIdById(uuId: string, id: number) {
+  public async unRegisterUuIdById(uuId: string, id: number) {
     if (uuId) {
       return AuthLogin.delete({
         uuId: uuId,
         id: id,
       }).catch(AuthRepositoryUUId.onError);
     }
-    return;
   }
   public async unRegisterUuIdFromUser(uuId: string, userId: string) {
     if (uuId) {

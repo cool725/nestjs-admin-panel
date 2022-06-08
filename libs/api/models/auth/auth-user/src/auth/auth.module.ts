@@ -15,7 +15,7 @@ import { AuthRepositoryTemplate } from './classes/auth.repository.template';
       defaultStrategy: 'jwt',
     }),
     JwtModule.register({
-      secret: process.env.APP_SECRET,
+      secret: process.env['APP_SECRET'],
       signOptions: {
         expiresIn: 0,
       },

@@ -79,7 +79,7 @@ export class BusinessController {
 
   static handleSignInSuccess(res, token: string) {
     const cookieOptions =
-      process.env.APP_ENV === 'development'
+      process.env['APP_ENV'] === 'development'
         ? {
             domain: '.movit.local',
             secure: false,

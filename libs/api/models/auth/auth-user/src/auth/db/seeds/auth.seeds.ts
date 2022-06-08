@@ -5,12 +5,12 @@ import { AuthUserEntity } from '../../entities/auth.entity.user';
 export class InitialUserSeeds extends SeedHelper {
   migrationName: string = this.constructor.name;
 
-  migrationDelay = 1000;
+  override migrationDelay = 1000;
 
   static getUserData() {
     return {
-      email: process.env.APP_DEFAULT_USER,
-      password: process.env.APP_DEFAULT_PASSWORD,
+      email: process.env['APP_DEFAULT_USER'],
+      password: process.env['APP_DEFAULT_PASSWORD'],
     };
   }
 

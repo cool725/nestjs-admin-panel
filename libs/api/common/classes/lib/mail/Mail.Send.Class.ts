@@ -65,7 +65,7 @@ export namespace Mailer {
       if (+this.auth.hash == 1) {
         this.auth.pass = cryptoUtils.decrypt(
           this.auth.pass,
-          this.auth.user + process.env.APP_NAME
+          this.auth.user + process.env['APP_NAME']
         );
       }
 
@@ -95,19 +95,19 @@ export namespace Mailer {
 
   export class Mail {
     private readonly options = {
-      mail: process.env.MAIL_SENDER || process.env.MAIL_USER,
+      mail: process.env['MAIL_SENDER'] || process.env['MAIL_USER'],
       secure: false,
     };
 
     private readonly host = new MailConfig({
-      name: process.env.MAIL_NAME || process.env.APP_URL,
-      host: process.env.MAIL_HOST,
-      port: +process.env.MAIL_PORT,
-      secure: <any>process.env.MAIL_SECURE,
+      name: process.env['MAIL_NAME'] || process.env['APP_URL'],
+      host: process.env['MAIL_HOST'],
+      port: +process.env['MAIL_PORT'],
+      secure: <any>process.env['MAIL_SECURE'],
       auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS,
-        hash: process.env.MAIL_HASH,
+        user: process.env['MAIL_USER'],
+        pass: process.env['MAIL_PASS'],
+        hash: process.env['MAIL_HASH'],
       },
     });
 
@@ -116,7 +116,7 @@ export namespace Mailer {
     }
 
     private static verifyMailData() {
-      if (!process.env.MAIL_HOST || !process.env.MAIL_USER) {
+      if (!process.env['MAIL_HOST'] || !process.env['MAIL_USER']) {
         console.warn('creds for mail missing!', __filename);
       }
     }
@@ -131,7 +131,7 @@ export namespace Mailer {
     ) {
       return new Promise((resolve, reject) => {
         // setup email data with unicode symbols
-        const mailOptions = {
+        const mailOptions: any = {
           from: this.options.mail,
           secure: this.options.secure,
           to: to,
@@ -145,7 +145,7 @@ export namespace Mailer {
         const transporter = nodemailer.createTransport(this.host.export());
 
         // send mail with defined transport object
-        transporter.sendMail(mailOptions, (error, info) => {
+        transporter.sendMail(mailOptions, (error: any, info) => {
           if (error || info.rejected.length) {
             if (error.code === 'EAUTH') {
               console.error(error);

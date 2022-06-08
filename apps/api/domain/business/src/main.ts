@@ -19,13 +19,13 @@ async function bootstrap() {
   app.use(cookieParser());
   app.use(CorsMiddleware());
 
-  const port = process.env.PORT || 3003;
+  const port = process.env['PORT'] || 3003;
   await app.listen(port);
 
   listRoutes(app.getHttpServer());
 
   Logger.log(
-    process.env.APP_ENV +
+    process.env['APP_ENV'] +
       `: 🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
   );
 }

@@ -6,10 +6,10 @@ import {
   Output,
 } from '@angular/core';
 import { BehaviorSubject, catchError, map, of, Subject, tap } from 'rxjs';
-import { SettingUserAPI } from '../../../packages/user-api.service';
+import { SettingUserAPI } from '../../packages/user-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PageController } from '../../../../../page.controller';
-import { FormController } from '../../../../../form.controller';
+import { PageController } from '../../../../page.controller';
+import { FormController } from '../../../../form.controller';
 import { Confirmable } from "@movit/app/common";
 
 class User {

@@ -1,9 +1,9 @@
 import { Component, Injector, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, map, Subject, tap } from 'rxjs';
-import { SettingRoleAPI } from '../../../packages/apps-api.service';
-import { SettingUserAPI } from '../../../packages/user-api.service';
-import { FormController } from '../../../../../form.controller';
+import { SettingRoleAPI } from '../../packages/apps-api.service';
+import { SettingUserAPI } from '../../packages/user-api.service';
+import { FormController } from '../../../../form.controller';
 
 @Component({
   selector: 'movit-role.form',

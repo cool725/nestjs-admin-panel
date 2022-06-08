@@ -12,14 +12,14 @@ const routes = [
   {
     path: 'user/role',
     loadChildren: () =>
-      import('./user/sections/role/role.module').then(
+      import('./user/role/role.module').then(
         (m) => m.SettingsUserRoleModule
       ),
   },
   {
     path: 'user',
     loadChildren: () =>
-      import('./user/sections/user/user.module').then(
+      import('./user/user/user.module').then(
         (m) => m.AdministrationUserModule
       ),
   },

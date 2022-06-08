@@ -2,3 +2,212 @@
   <div class="left-box"></div>
   <h4 class="slide">Products</h4>
 </ng-template>
+
+<div class="p-4">
+  <div class="container">
+    <div class="pb-4">
+      <div class="col-12 card bg-white shadow p-3">
+        <div class="">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <mdb-form-control>
+                <input
+                  mdbInput
+                  type="text"
+                  id="search"
+                  class="form-control form-control-lg"
+                  [(ngModel)]="tableServices.filterValues.search"
+                />
+                <label mdbLabel class="form-label" for="search">Suchen</label>
+              </mdb-form-control>
+            </div>
+            <div class="w-100">
+              <hr />
+            </div>
+            <div class="d-flex justify-content-between">
+              <div class="d-flex">
+                <button
+                  mdbRipple
+                  (click)="create('category')"
+                  class="btn btn-success text-white"
+                >
+                  Kategorie erstellen
+                </button>
+              </div>
+
+              <button mdbRipple class="ms-2 btn btn-primary text-white">
+                Ansicht ändern
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- list -->
+    <div class="card shadow">
+      <table class="table table-sm mb-0 bg-white">
+        <thead>
+          <tr>
+            <td>Titel</td>
+            <td></td>
+            <td width="100px"></td>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="tableServices.data$ | async as tableData">
+            <tr *ngFor="let item of tableData.data">
+              <td>
+                {{ item.title }}
+              </td>
+              <td></td>
+              <td width="100px">
+                <a class="text-primary" (click)="editService(item)">
+                  Bearbeiten
+                </a>
+              </td>
+              <td width="100px">
+                <a class="text-danger" (click)="deleteService(item)">
+                  Löschen
+                </a>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Categories -->
+    <div
+      class="row w-100 pt-4 mt-4"
+      *ngIf="api.categories$ | async as categoryData"
+    >
+      <div class="col-12 col-md-3">
+        <label style="font-size: 16px; font-weight: 600"
+          >{{ 'category' | translate | titlecase }}
+        </label>
+      </div>
+      <div class="col-12 col-md-3">
+        <div class="card">
+          <div class="card-header">
+            <label>{{ 'category' | translate | titlecase }}</label>
+          </div>
+          <div class="card-body">
+            <table class="table cat-table table-sm">
+              <tbody>
+                <ng-container *ngFor="let category of categoryData.data">
+                  <tr [style.background]="category.color">
+                    <td
+                      class="cursor-pointer"
+                      (click)="
+                        tableCategories.filterValues._categoryId =
+                          category.categoryId
+                      "
+                    >
+                      {{ category.title }}
+                    </td>
+                    <td width="10px" (click)="editCategory(category)">
+                      <a class=""> <i class="fa-solid fa-pen"></i></a>
+                    </td>
+                    <td
+                      width="10px"
+                      (click)="deleteCategory(category); getCategories()"
+                    >
+                      <a class=""><i class="fa-solid fa-trash"></i></a>
+                    </td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-3">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between">
+            <label>{{ 'subcategory' | translate }}</label>
+            <select
+              style="
+                width: 130px;
+                padding-left: 20px;
+                border: none;
+                text-decoration: double underline;
+              "
+              [(ngModel)]="tableCategories.filterValues._categoryId"
+              class="bg-transparent"
+            >
+              <option value="" selected>{{ 'all' | translate }}</option>
+              <option
+                *ngFor="let c of categoryData.data"
+                [value]="c.categoryId"
+              >
+                {{ c.title }}
+              </option>
+            </select>
+          </div>
+          <div class="card-body">
+            <table class="table table-sm">
+              <tbody>
+                <ng-container *ngFor="let category of categoryData.data">
+                  <ng-container
+                    *ngIf="
+                      !tableCategories.filterValues._categoryId ||
+                      category.categoryId ==
+                        tableCategories.filterValues._categoryId
+                    "
+                  >
+                    <ng-container *ngFor="let category of category.children">
+                      <tr
+                        [style.background]="category.color"
+                        [title]="category.order"
+                      >
+                        <td>{{ category.title }}</td>
+                        <td width="10px" (click)="editCategory(category)">
+                          <a class=""><i class="fa-solid fa-pen"></i></a>
+                        </td>
+                        <td
+                          width="10px"
+                          (click)="deleteCategory(category); getCategories()"
+                        >
+                          <a class=""><i class="fa-solid fa-trash"></i></a>
+                        </td>
+                      </tr>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-3">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between">
+            <label>{{ 'notassigned' | translate }}</label>
+          </div>
+          <div class="card-body">Gelöschte parrents</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<lib-modal-ui
+  *ngIf="api.category$ | async as category"
+  [style]="{
+    width: '400px',
+    height: 'max-content',
+    right: '0px',
+    bottom: '0px',
+    left: '0px',
+    top: '0px',
+    margin: 'auto',
+    display: 'block'
+  }"
+>
+  <movit-item-service-category-form
+    (onSave)="getCategories()"
+    (onCancel)="getCategories()"
+  ></movit-item-service-category-form>
+</lib-modal-ui>

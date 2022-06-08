@@ -1,5 +1,6 @@
 import {
-  Column,
+  BeforeInsert,
+  Column, CreateDateColumn, DeleteDateColumn,
   Entity, Index, JoinColumn, OneToOne,
   PrimaryGeneratedColumn, Unique
 } from "typeorm";

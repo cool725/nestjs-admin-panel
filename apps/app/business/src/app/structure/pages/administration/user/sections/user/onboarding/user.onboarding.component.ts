@@ -1,6 +1,6 @@
 import { Component, Injector, ViewChild, ElementRef } from '@angular/core';
 import { ITableBaseFilter, Table } from '@movit/app/common';
-import { PageController } from '../../../../page.controller';
+import { PageController } from '../../../../../page.controller';
 import { IOnBoardingTask, UserOnBoardingUserService } from './user-on-boarding-user.service';
 
 export const Items: any[] = [

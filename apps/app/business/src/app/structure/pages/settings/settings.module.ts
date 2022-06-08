@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { SettingUserAPI } from '../administration/user/packages/user-api.service';
 
 const routes: Routes = [
   {
@@ -22,5 +23,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [],
   imports: [CommonModule, RouterModule.forChild(routes)],
+  providers: [SettingUserAPI],
 })
 export class SettingsModule {}

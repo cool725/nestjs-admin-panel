@@ -10,12 +10,40 @@
         <div class="">
           <div class="row">
             <div class="col-12 col-md-8">
-              <div class="form-group">
+              <div class="form-group d-flex">
                 <input
+                  [(ngModel)]="userTable.filterValues.searchValue"
                   class="form-control"
                   placeholder="Suchen"
                   tabindex="1"
                 />
+
+                <div mdbDropdown class="dropdown">
+                  <button
+                    class="btn btn-primary btn-rounded fw-bold ms-1 dropdown-toggle"
+                    type="button"
+                    id="filterMenu"
+                    mdbDropdownToggle
+                    aria-expanded="false"
+                  >
+                    <i class="fa fa-filter text-white"></i>
+                    Filter
+                  </button>
+                  <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="filterMenu">
+                    <li *ngFor="let item of filterItems" class="d-flex align-items-center px-2">
+                      <input
+                        mdbCheckbox
+                        class="form-check-input m-0"
+                        type="checkbox"
+                        value=""
+                        id="{{item.id}}"
+                      />
+                      <label class="form-check-label dropdown-item" for="{{item.id}}">
+                        {{ item.title }}
+                      </label>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -23,6 +51,51 @@
       </div>
     </div>
     <div class="card shadow">
+      <table class="table mb-0 bg-white">
+        <thead>
+          <tr>
+            <td width="70px"></td>
+            <th></th>
+            <th>Vorname</th>
+            <th>Nachname</th>
+            <th>Geburstag</th>
+            <th>Email</th>
+            <th>Telefon</th>
+            <th>Apps</th>
+            <th class="text-right pe-2" align="right">
+              <a></a>
+            </th>
+          </tr>
+        </thead>
+        <tbody *ngIf="userTable.data$ | async as tableData">
+          <ng-container *ngFor="let user of tableData.data">
+            <tr *ngIf="userTable.canShow(user)" class="entry-row">
+              <td width="70px">
+                <img width="50px" [src]="user.avatar" />
+              </td>
+              <td>{{ user.gender }}</td>
+              <td>{{ user.firstName }}</td>
+              <td>{{ user.lastName }}</td>
+              <td>{{ user.birthDay | date: 'dd.MM.yy' }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.phone }}</td>
+              <td>{{ user.total }}</td>
+
+              <td class="text-right pe-2" align="right">
+                <button
+                  mdbRipple
+                  [routerLink]="
+                    basePath + '/administration/user/edit/' + user.userId
+                  "
+                  class="btn btn-primary"
+                >
+                  <i class="fa fa-edit text-white"></i>
+                </button>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

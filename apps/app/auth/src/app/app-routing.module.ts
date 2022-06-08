@@ -4,7 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./layout/layouts.module').then((m) => m.LayoutsModule),
+    loadChildren: () =>
+      import('./layout/layouts.module').then((m) => m.LayoutsModule),
   },
   {
     path: 'auth',

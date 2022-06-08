@@ -3,11 +3,7 @@ import { FormController } from '../../../form.controller';
 import { FormArray, FormControl, Validators } from '@angular/forms';
 import { AgendaAPI } from '../packages/agenda-api.service';
 import { Debounce } from '@movit/app/common';
-<<<<<<< HEAD
 import {ProfilesFormComponent} from "../../crm/profiles/form/profiles-form.component";
-=======
-import { tap } from 'rxjs';
->>>>>>> origin/feature/cashsystem/init
 
 class Reservation {
   static create(params: Partial<Reservation>) {

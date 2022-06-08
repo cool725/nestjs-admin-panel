@@ -1,0 +1,80 @@
+<ng-template #topbar>
+  <div class="left-box"></div>
+  <h4 class="slide">Berechtigungen</h4>
+</ng-template>
+
+<div class="p-4">
+  <div class="container">
+    <div class="pb-4">
+      <div class="col-12 card bg-white shadow p-3">
+        <div class="">
+          <div class="row">
+            <div class="col-10">
+              <div class="form-group">
+                <input
+                  [(ngModel)]="rolesTable.filterValues.searchValue"
+                  class="form-control"
+                  placeholder="Suchen"
+                  tabindex="1"
+                />
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="form-group">
+                <div class="d-none d-md-block">
+                  <a
+                    [routerLink]="basePath + '/administration/user/role/new'"
+                    class="btn btn-success text-white w-100"
+                    >Erstellen
+                  </a>
+                </div>
+                <div class="d-md-none">
+                  <a
+                    [routerLink]="basePath + '/administration/user/role/new'"
+                    class="btn btn-success text-white"
+                    >+</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card shadow">
+      <table class="table mb-0 bg-white">
+        <thead>
+          <tr>
+            <th>Rolle</th>
+            <th>Anz. Personen</th>
+            <th>Status</th>
+            <th class="text-right pe-2" align="right">
+              <a></a>
+            </th>
+          </tr>
+        </thead>
+        <tbody *ngIf="rolesTable.data$ | async as tableData">
+          <ng-container *ngFor="let role of tableData.data">
+            <tr *ngIf="rolesTable.canShow(role, ['title'])" class="entry-row">
+              <td>{{ role.title }}</td>
+              <td>{{ role.countUser || 0 }}</td>
+              <td>{{ role.state ? 'enabled' : 'disabled' }}</td>
+              <td class="text-right pe-2" align="right">
+                <button
+                  mdbRipple
+                  [routerLink]="
+                    basePath + '/administration/user/role/edit/' + role.roleId
+                  "
+                  class="btn btn-primary"
+                >
+                  <i class="fa fa-edit text-white"></i>
+                </button>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

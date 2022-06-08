@@ -4,13 +4,12 @@ import { CompanyRepository } from './classes/company.repository';
 import { CompanyEntity } from './entities/companyEntity';
 import { BusinessUserRolesEntity } from './entities/business.users.roles.entity.app';
 import { AuthUserEntity } from '@movit/api/auth';
-import {Pagination} from "../../../common/decorator";
 
 @Injectable()
 export class CompanyService {
   constructor(
     @InjectRepository(CompanyRepository)
-    private companyRepo: CompanyRepository,
+    private companyRepo: CompanyRepository
   ) {}
 
   /**
@@ -63,11 +62,6 @@ export class CompanyService {
   getBusinessUsers(company: CompanyEntity) {
     return this.companyRepo.getBusinessUsers(company);
   }
-
-  async getBusinessUsersPaginated(business: CompanyEntity,pagination:Pagination) {
-    return this.companyRepo.getBusinessUsersPaginated(business, pagination);
-  }
-
 
   /*
    * Loads user that is assigned to company

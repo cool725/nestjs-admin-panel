@@ -1,10 +1,4 @@
-02.06.2022
+02.06.20222
     -  Optimization Profiles Modal
-<<<<<<< HEAD
 04.06.20222
     -  Administration Path bugfix
-=======
-
-03.06.2022
-    -  Moving UserAdministration Folder
->>>>>>> origin/feature/cashsystem/init

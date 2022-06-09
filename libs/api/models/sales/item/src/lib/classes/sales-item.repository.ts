@@ -8,13 +8,18 @@ import {SaleItemEmployeeEntity} from "../entities/sale.entity.item.employee";
 @EntityRepository(SaleItemEntity)
 export class SaleItemRepository extends Repository<SaleItemEntity> {
 
-  list(companyId: number, languageId: number, options: {categoryId?:number,itemId?:number} = {}) {
-    const params = [companyId];
+  list(companyId: number, languageId: number, options: {categoryId?:number,itemId?:number,searchTerm?:string} = {}) {
+    const params:any = [companyId];
     let where = '';
 
     if (languageId) {
       params.push(languageId);
       where += ' and tl.languageId = ? ';
+    }
+
+    if (languageId && options.searchTerm) {
+      params.push(options.searchTerm);
+      where += ' and tl.value like %?% ';
     }
 
     if (options.itemId) {

@@ -10,7 +10,7 @@ import { ItemProductOverviewComponent } from './overview/item-product.overview.c
 import { ItemProductAPI } from './item-product.api';
 import { ItemProductFormComponent } from './form/item-product-form.component';
 import { PostageProductOverviewComponent } from './postage/postage-product.overview.component';
-import { ItemServiceCategoryModule } from './form-category-service/item-category-service-form.module';
+import { ItemProductCategoryModule } from './form-category-product/item-category-product-form.module';
 
 const routes: Routes = [
   {
@@ -38,7 +38,7 @@ const routes: Routes = [
     FormsModule,
     MdbSharedModule,
     BoostrapModalUIModule,
-    ItemServiceCategoryModule
+    ItemProductCategoryModule
   ],
   providers: [ItemProductAPI],
 })

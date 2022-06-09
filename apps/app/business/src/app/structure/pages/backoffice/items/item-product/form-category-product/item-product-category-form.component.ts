@@ -6,11 +6,11 @@ import { ItemService } from '../../item-service/item.model';
 import { ItemCategory } from "../../item.model";
 
 @Component({
-  selector: 'movit-item-service-category-form',
-  templateUrl: './item-service-category-form.component.html',
-  styleUrls: ['./item-service-category-form.component.css'],
+  selector: 'movit-item-product-category-form',
+  templateUrl: './item-product-category-form.component.html',
+  styleUrls: ['./item-product-category-form.component.css'],
 })
-export class ItemServiceCategoryFormComponent
+export class ItemProductCategoryFormComponent
   extends FormController<ItemCategory>
   implements OnInit {
   constructor(

@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ItemServiceCategoryFormComponent } from './item-service-category-form.component';
 import { MdbSharedModule, NzAntSharedModule } from '@movit/app/ui';
-import { ItemServiceAPI } from '../../item-service/item.api';
+
+import { ItemProductCategoryFormComponent } from './item-product-category-form.component';
 
 @NgModule({
-  declarations: [ItemServiceCategoryFormComponent],
+  declarations: [ItemProductCategoryFormComponent],
   imports: [CommonModule, FormsModule, MdbSharedModule, NzAntSharedModule],
-  exports: [ItemServiceCategoryFormComponent],
+  exports: [ItemProductCategoryFormComponent],
 })
 
-export class ItemServiceCategoryModule {}
+export class ItemProductCategoryModule { }

@@ -12,6 +12,7 @@ interface User {
   birthDay: string;
   email: string;
   phone: string;
+  role: string; // administrator // user
   total?: number; // numbers of apps
 }
 

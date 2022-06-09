@@ -11,6 +11,7 @@ export namespace FrontOffice {
   export namespace CashSystem {
     export const PATH = 'cashsystem';
     export const PATHSettings = PATH+'/settings';
+    export const PATHItems = PATH+'/items';
   }
 
   export namespace Agenda {

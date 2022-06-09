@@ -24,6 +24,16 @@ export class SalesItemService {
     return this.itemRepo.list(companyId, langId, searchOptions);
   }
 
+  public async getServicesGrouped(companyId, langId, searchOptions) {
+
+    // get all categories grouped
+    const categories = await this.getServiceCategories(companyId,langId,searchOptions)
+
+    // literate throw all categories and fetch serviceInfos
+
+    return categories
+  }
+
   public async getService(companyId, itemId) {
     const service = await this.itemRepo.list(companyId, null, {
       itemId,

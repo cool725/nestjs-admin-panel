@@ -12,6 +12,19 @@
   </div>
 </ng-template>
 
-<div class="">
+<div class="h-100 layout">
+   <ng-container [ngSwitch]="1">
+     <div *ngSwitchCase="1" class="h-100 grid grid-cols-3">
+       <div class="c1 h-100">
+         1
+       </div>
+       <div class="c2 h-100">
+         2
+       </div>
+       <div class="c3 h-100">
+         3
+       </div>
+     </div>
+   </ng-container>
 
 </div>

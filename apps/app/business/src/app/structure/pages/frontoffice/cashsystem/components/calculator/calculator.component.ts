@@ -22,13 +22,13 @@ export class CashSystemCalculatorComponent implements OnInit , OnDestroy {
   @Input() priceTotal      = 0;
   @Input() cTitle          = '';
 
-  @Input() canShowPayTill   = false;
+  @Input() canShowPayTill  = false;
   @Input() payTill         = 0;
 
   //display and styling
-  @Input() inlineTotal= false;
-  @Input() bottom= 0;
-  @Input() buttonMaxWidth= 100;
+  @Input() inlineTotal = false;
+  @Input() bottom = 0;
+  @Input() buttonMaxWidth = 100;
 
 
   @Output() onCancelItem = new EventEmitter();
@@ -38,9 +38,6 @@ export class CashSystemCalculatorComponent implements OnInit , OnDestroy {
   @Output() onAddCash:EventEmitter<{value:any}> = new EventEmitter();
 
   @Output() onOpts    = new EventEmitter();
-
-
-
 
   constructor() { }
 
@@ -69,15 +66,18 @@ export class CashSystemCalculatorComponent implements OnInit , OnDestroy {
   clickCancelItem(){
     this.onCancelItem.emit()
   }
+
   clickAddCash(){
     this.onAddCash.emit({value:this.CC.value})
     this.CC.resetInput()
 
   }
+
   clickPay(){
     this.onPay.emit({value:this.CC.value})
     this.CC.resetInput()
   }
+
   clickPrint(){
     this.onPrint.emit()
   }
@@ -105,6 +105,7 @@ export class CashSystemCalculatorComponent implements OnInit , OnDestroy {
     this[key] = await this.getValue(text,typ,fallback)
   }
 
+  // todo rename keys
   optsUpdate(){
     this.onOpts.emit({
       cTitle:this.cTitle,

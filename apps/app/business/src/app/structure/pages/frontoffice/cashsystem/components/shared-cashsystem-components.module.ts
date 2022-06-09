@@ -12,6 +12,7 @@ import { CashSystemBasketFooterComponent } from './basket/footer/basket-footer.c
 import { CashSystemBasketHeaderComponent } from './basket/header/basket-header.component';
 import { CashSystemBasketItemLineComponent } from './basket/item-line/basket-item-line.component';
 import {ToFixedPipe} from "@movit/app/common";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -24,9 +25,9 @@ import {ToFixedPipe} from "@movit/app/common";
     CashSystemReceiptComponent,
     CashSystemServicesComponent,
     CashSystemSettingsComponent,
-      ToFixedPipe
+    ToFixedPipe
   ],
-  imports: [CommonModule, MdbSharedModule, TranslateLocaleModule],
+  imports: [CommonModule, MdbSharedModule, TranslateLocaleModule.forChild(), FormsModule],
   exports: [
     CashSystemAccountChooserComponent,
     CashSystemBasketComponent,

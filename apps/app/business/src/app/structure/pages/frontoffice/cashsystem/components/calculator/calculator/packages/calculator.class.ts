@@ -12,12 +12,16 @@ export class Calculator {
 
   }
 
-  reset(){
-    this.input = ''
+  resetInput():void{
+    this.value = ''
   }
 
-  getValue(){
+  get value() :string{
     return this.input
+  }
+
+  set value(val:string){
+    this.input = val;
   }
 
   onBtn(value:any){
@@ -75,10 +79,11 @@ export class Calculator {
 
   }
 
-  private onBtnClear(){
+   onBtnClear(){
     this.input = ''
   }
-  private onBtnPrint(){
+
+   onBtnPrint(){
     this.onPrint.emit()
   }
 

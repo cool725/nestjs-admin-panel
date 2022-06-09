@@ -1,7 +1,5 @@
 <div class="bg-white h-100 overflow-y-auto shadow">
-
-  <div class=""></div>
-  <div class="cat__cash--service-tab row animated fadeIn " >
+  <div class="services-tab row animated fadeIn" >
     <div  *ngIf="canShowTab('manual')"      id="cash--service-tab_manual"       (click)="changeView('manual')"   class=" btn border-0 tab-items"  > {{'eingabe' | translate | titlecase}} </div>
     <div  *ngIf="canShowTab('services')"    (click)="changeView('services')"   class=" btn border-0 tab-items"> {{'services' | translate | titlecase}} </div>
     <div  *ngIf="canShowTab('products')"     (click)="changeView('products')" class=" btn border-0 tab-items"> {{'apps_products' | translate | titlecase}}  </div>

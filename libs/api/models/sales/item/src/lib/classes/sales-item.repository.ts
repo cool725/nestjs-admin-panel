@@ -7,6 +7,7 @@ import {SaleItemEmployeeEntity} from "../entities/sale.entity.item.employee";
 
 @EntityRepository(SaleItemEntity)
 export class SaleItemRepository extends Repository<SaleItemEntity> {
+
   list(companyId: number, languageId: number, options: any = {}) {
     const params = [companyId];
     let where = '';
@@ -21,6 +22,7 @@ export class SaleItemRepository extends Repository<SaleItemEntity> {
       where += ' and s.itemId = ? ';
     }
 
+    // todo add comment "sip" ?
     where += ' and (tl.key not like "cat:%" and tl.key not like "sip:%")';
 
     return this.query(
@@ -84,6 +86,7 @@ export class SaleItemRepository extends Repository<SaleItemEntity> {
       return { data: rows };
     });
   }
+
 }
 
 @EntityRepository(SaleItemCategoryEntity)

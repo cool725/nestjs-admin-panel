@@ -11,7 +11,7 @@ import { EmployeeService } from "@movit/api/models/employee";
 
 @Controller(FrontOffice.resolePaths([FrontOffice.Agenda.PATH]))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)
-export class BusinessFrontOfficeAgendaDataController {
+export class BusinessFrontofficeAgendaDataController {
   constructor(
     protected reservationService: ReservationService,
     protected profilesService: ProfilesService,

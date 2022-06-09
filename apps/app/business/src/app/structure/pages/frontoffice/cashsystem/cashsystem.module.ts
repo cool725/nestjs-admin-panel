@@ -21,7 +21,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    TranslateLocaleModule,
+    TranslateLocaleModule.forChild(),
     MdbSharedModule,
     SharedCashSystemComponentsModule,
   ],

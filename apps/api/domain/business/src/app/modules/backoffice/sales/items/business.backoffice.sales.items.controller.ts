@@ -11,8 +11,8 @@ import {
 import { BackOffice } from '../../business.backoffice.namespace';
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard} from '@movit/api/auth';
-import { CompanyEntity } from '../../../../../../../../../../libs/api/models/company/src/entities/companyEntity';
-import { GetCompany } from '../../../../../../../../../../libs/api/models/company/src/company.decorator';
+import { CompanyEntity } from '@movit/api/business';
+import { GetCompany } from '@movit/api/business';
 import { CompanyService} from "@movit/api/business";
 
 @Controller(BackOffice.resolePath(BackOffice.Sales.Items.PATH))

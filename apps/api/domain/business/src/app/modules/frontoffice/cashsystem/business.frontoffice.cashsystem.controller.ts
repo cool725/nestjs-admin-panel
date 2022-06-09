@@ -4,7 +4,7 @@ import {AuthUserEntity, CompanyGuard, GetUser} from '@movit/api/auth';
 import { AuthGuard } from '@nestjs/passport';
 import {CashSystemDeviceService} from "@movit/api/models/cashsystem";
 import {GetCompany} from "@movit/api/business";
-import {CompanyEntity} from "../../../../../../../../../libs/api/models/company/src/entities/companyEntity";
+import { CompanyEntity } from '@movit/api/business';
 import {GetPagination, Pagination} from "../../../../../../../../../libs/api/common/decorator";
 
 @Controller(FrontOffice.resolePaths([FrontOffice.CashSystem.PATH]))

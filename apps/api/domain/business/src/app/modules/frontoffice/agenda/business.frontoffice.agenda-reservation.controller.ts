@@ -13,7 +13,7 @@ import {Company, GetCompany} from '@movit/api/business';
 import { AuthUserEntity, CompanyGuard, GetUser } from '@movit/api/auth';
 import { AuthGuard } from '@nestjs/passport';
 import {GetPagination, Pagination} from "../../../../../../../../../libs/api/common/decorator";
-import {ReservationDTO} from "../../../../../../../../../libs/api/models/reservation/src/classes/reservation.dto";
+import { ReservationDTO } from '../../../../../../../../../libs/api/models/reservation/src/classes/reservation.dto';
 
 @Controller(FrontOffice.resolePaths([FrontOffice.Agenda.PATH]))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)

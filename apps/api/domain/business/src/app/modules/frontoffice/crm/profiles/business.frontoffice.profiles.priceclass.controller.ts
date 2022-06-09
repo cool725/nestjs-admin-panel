@@ -15,8 +15,8 @@ import {
 } from '../../../../../../../../../../libs/api/common/decorator';
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
-import { GetCompany } from '../../../../../../../../../../libs/api/models/company/src/company.decorator';
-import { CompanyEntity } from '../../../../../../../../../../libs/api/models/company/src/entities/companyEntity';
+import { GetCompany } from '@movit/api/business';
+import { CompanyEntity } from '@movit/api/business';
 import {
   ProfilesPriceClassService,
   ProfilesService,

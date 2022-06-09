@@ -12,7 +12,7 @@ import { Administration } from '../../business.administration.namespace';
 import { GetCompany } from "@movit/api/business";
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyService } from '@movit/api/business';
-import { CompanyEntity } from '../../../../../../../../../../libs/api/models/company/src/entities/companyEntity';
+import { CompanyEntity } from '@movit/api/business';
 import { AuthService, CompanyGuard } from '@movit/api/auth';
 import { EmployeeService } from "@movit/api/models/employee";
 

@@ -4,7 +4,7 @@ import { ITableBaseFilter, Table } from '@movit/app/common';
 import { PageController } from '../../page.controller';
 import { SettingUserAPI } from '../../administration/user/packages/user-api.service';
 
-interface User {
+interface IUser {
   userId: number;
   avatar: 'M' | 'W';
   gender: 'M' | 'W';
@@ -21,13 +21,20 @@ interface IFilter {
   id: string;
 }
 
+interface IUserItem {
+  data: IUser[];
+  count: number;
+  countEmployees: number;
+  countAdministrators: number;
+}
+
 @Component({
   selector: 'movit-settings-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css'],
 })
 export class SettingsUserComponent extends PageController {
-  userTable = new Table<User, ITableBaseFilter>(this.userAPI.users$);
+  userTable = new Table<IUser, ITableBaseFilter>(this.userAPI.users$);
   filterItems: IFilter[] = [];
 
   constructor(override injector: Injector, public userAPI: SettingUserAPI) {
@@ -40,9 +47,8 @@ export class SettingsUserComponent extends PageController {
 
   getUsers() {
     this.onLoadAndSetData(
-      this.userAPI.getUsers(),
-      this.userAPI.users$,
-      (rows: any) => ({ data: rows })
+      this.userAPI.getUsersWithInfo(),
+      this.userAPI.users$
     );
   }
 
@@ -52,5 +58,9 @@ export class SettingsUserComponent extends PageController {
       : this.userAPI.createUser(user);
 
     api.subscribe();
+  }
+
+  getTableData(data: any) {
+    return data;
   }
 }

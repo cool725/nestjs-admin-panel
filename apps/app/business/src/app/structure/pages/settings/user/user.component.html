@@ -7,43 +7,58 @@
   <div class="container">
     <div class="pb-4">
       <div class="col-12 card bg-white shadow p-3">
-        <div class="">
-          <div class="row">
-            <div class="col-12 col-md-8">
-              <div class="form-group d-flex">
-                <input
-                  [(ngModel)]="userTable.filterValues.searchValue"
-                  class="form-control"
-                  placeholder="Suchen"
-                  tabindex="1"
-                />
+        <div *ngIf="userTable.data$ | async as tableData" class="d-flex gap-4 mb-3">
+          <div>
+            <h6>Count Users</h6>
+            <span>{{ getTableData(tableData).count }}</span>
+          </div>
 
-                <div mdbDropdown class="dropdown">
-                  <button
-                    class="btn btn-primary btn-rounded fw-bold ms-1 dropdown-toggle"
-                    type="button"
-                    id="filterMenu"
-                    mdbDropdownToggle
-                    aria-expanded="false"
-                  >
-                    <i class="fa fa-filter text-white"></i>
-                    Filter
-                  </button>
-                  <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="filterMenu">
-                    <li *ngFor="let item of filterItems" class="d-flex align-items-center px-2">
-                      <input
-                        mdbCheckbox
-                        class="form-check-input m-0"
-                        type="checkbox"
-                        value=""
-                        id="{{item.id}}"
-                      />
-                      <label class="form-check-label dropdown-item" for="{{item.id}}">
-                        {{ item.title }}
-                      </label>
-                    </li>
-                  </ul>
-                </div>
+          <div>
+            <h6>Count Employees</h6>
+            <span>{{ getTableData(tableData).countEmployees }}</span>
+          </div>
+
+          <div>
+            <h6>Count Administrators</h6>
+            <span>{{ getTableData(tableData).countAdministrators }}</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 col-md-8">
+            <div class="form-group d-flex">
+              <input
+                [(ngModel)]="userTable.filterValues.searchValue"
+                class="form-control"
+                placeholder="Suchen"
+                tabindex="1"
+              />
+
+              <div mdbDropdown class="dropdown">
+                <button
+                  class="btn btn-primary btn-rounded fw-bold ms-1 dropdown-toggle"
+                  type="button"
+                  id="filterMenu"
+                  mdbDropdownToggle
+                  aria-expanded="false"
+                >
+                  <i class="fa fa-filter text-white"></i>
+                  Filter
+                </button>
+                <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="filterMenu">
+                  <li *ngFor="let item of filterItems" class="d-flex align-items-center px-2">
+                    <input
+                      mdbCheckbox
+                      class="form-check-input m-0"
+                      type="checkbox"
+                      value=""
+                      id="{{item.id}}"
+                    />
+                    <label class="form-check-label dropdown-item" for="{{item.id}}">
+                      {{ item.title }}
+                    </label>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

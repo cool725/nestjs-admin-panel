@@ -29,9 +29,16 @@ export class SalesItemService {
     // get all categories grouped
     const categories = await this.getServiceCategories(companyId,langId, {
       ...searchOptions ,grouped:true})
-
-    // literate throw all categories and fetch serviceInfos
-    // .items = servicesArray
+    for (const category of categories.data) {
+      if (category.children?.length) {
+         for (const subcategory of category.children) {
+           const services = await this.itemRepo.list(companyId, langId, { categoryId: subcategory.categoryId});
+           subcategory.items = services ? services.data : [];
+         }
+      }
+      const services = await this.itemRepo.list(companyId, langId, { categoryId: category.categoryId});
+      category.items = services ? services.data : []
+    }
 
     return categories
   }

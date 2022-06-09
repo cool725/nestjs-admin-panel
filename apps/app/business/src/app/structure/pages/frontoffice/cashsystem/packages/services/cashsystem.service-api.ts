@@ -1,7 +1,5 @@
 import {Injectable, NgModule} from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {BehaviorSubject} from "rxjs";
-import {ICashSystemSettings} from "../interfaces/cashsystem.interface";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../../../environments/environment";
 

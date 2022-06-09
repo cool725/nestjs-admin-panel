@@ -15,6 +15,7 @@ export class MainCashSystemComponent extends PageController {
 
   ) {
     super(injector);
+    console.log('weslley')
   }
 
   getData(): void {

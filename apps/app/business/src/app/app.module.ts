@@ -10,10 +10,6 @@ import { AppHttpInterceptor } from '@movit/app/common';
 import { environment } from '../environments/environment';
 import { HTTPTranslateLoader, TranslateLocaleModule } from '@movit/app/module';
 
-export const getJtwToken = ():string =>{
-  return 'test';
-}
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -35,4 +31,3 @@ export const getJtwToken = ():string =>{
   bootstrap: [AppComponent],
 })
 export class AppModule {}
-

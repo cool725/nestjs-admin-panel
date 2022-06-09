@@ -27,9 +27,11 @@ export class SalesItemService {
   public async getServicesGrouped(companyId, langId, searchOptions) {
 
     // get all categories grouped
-    const categories = await this.getServiceCategories(companyId,langId,searchOptions)
+    const categories = await this.getServiceCategories(companyId,langId, {
+      ...searchOptions ,grouped:true})
 
     // literate throw all categories and fetch serviceInfos
+    // .items = servicesArray
 
     return categories
   }

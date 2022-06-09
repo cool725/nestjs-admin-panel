@@ -8,7 +8,7 @@ import {SaleItemEmployeeEntity} from "../entities/sale.entity.item.employee";
 @EntityRepository(SaleItemEntity)
 export class SaleItemRepository extends Repository<SaleItemEntity> {
 
-  list(companyId: number, languageId: number, options: any = {}) {
+  list(companyId: number, languageId: number, options: {categoryId?:number,itemId?:number} = {}) {
     const params = [companyId];
     let where = '';
 
@@ -20,6 +20,11 @@ export class SaleItemRepository extends Repository<SaleItemEntity> {
     if (options.itemId) {
       params.push(options.itemId);
       where += ' and s.itemId = ? ';
+    }
+
+    if (options.categoryId) {
+      params.push(options.categoryId);
+      where += ' and sicl.categoryId = ? ';
     }
 
     // todo add comment "sip" ?
@@ -36,18 +41,18 @@ export class SaleItemRepository extends Repository<SaleItemEntity> {
               group_concat( distinct sicl.categoryId) as categoriesIds,
               languageId
           from sell_item s
-              
+
                    left join translation_label tl on
                       s.companyId = tl.companyId and
-                      s.type = tl.type 
+                      s.type = tl.type
                    and s.itemId = tl.id
 
                    left join sell_item_category_link sicl on (
                       s.companyId = sicl.companyId and
                       s.type = sicl.type and
                       s.itemId = sicl.itemId
-                   ) 
-          
+                   )
+
           where s.companyId = ? and s.type = "S" ${where}
           group by s.itemId, languageId`,
       params
@@ -119,16 +124,16 @@ export class SaleItemCategoryRepository extends Repository<SaleItemCategoryEntit
               cat.*,
               group_concat(
                       concat( tl.key, '${TranslationLabelEntity.DBSplitter}',tl.value)
-                      SEPARATOR '@@,@@'  
+                      SEPARATOR '@@,@@'
                   ) as labels,
               languageId
           from sell_item_category cat
             left join translation_label tl on
                       cat.companyId = tl.companyId and
-                      cat.type = tl.type and 
+                      cat.type = tl.type and
                       cat.categoryId = tl.id
           where cat.companyId = ? and cat.type = "S" ${where} ${customWhere}
-          group by cat.categoryId , tl.languageId 
+          group by cat.categoryId , tl.languageId
 `, [...params, ...customParams]);
 
     const parseRows = async (rows) => {
@@ -179,6 +184,7 @@ export class SaleItemCategoryRepository extends Repository<SaleItemCategoryEntit
       .then((data) => ({ data: data }));
   }
 
+
   get(
      categoryId:number, companyId: number, languageId: number, options: any = {}
   ){
@@ -214,7 +220,7 @@ export class SaleItemPriceRepository extends Repository<SaleItemPriceEntity> {
                       p.companyId = tl.companyId and
                       p.type = tl.type and
                       p.itemId = tl.id
-          where p.companyId = ? and p.type = "S" and p.itemId = ? ${where} 
+          where p.companyId = ? and p.type = "S" and p.itemId = ? ${where}
           group by p.priceId , tl.languageId `, params)
             .then((rows) => {
                 for (let i = 0; i < rows.length; i++) {

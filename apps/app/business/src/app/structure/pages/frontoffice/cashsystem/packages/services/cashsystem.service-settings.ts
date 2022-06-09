@@ -8,7 +8,7 @@ import {environment} from "../../../../../../../environments/environment";
 @Injectable()
 export class CashSystemSettingsService {
     settings$:BehaviorSubject<ICashSystemSettings>
-    basePath = 'frontoffice/cashsystem'
+    basePath = '/frontoffice/cashsystem/'
     constructor(private http:HttpClient) {}
 
     private getPath(path:string, subPath?:string | number){

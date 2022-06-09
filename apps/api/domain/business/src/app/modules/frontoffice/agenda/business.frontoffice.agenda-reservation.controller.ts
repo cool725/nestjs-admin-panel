@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { FrontOffice } from '../business.frontoffice.namespace';
 import { ReservationService } from '@movit/api/reservation';
-import {Company, GetCompany} from '@movit/api/business';
+import {ICompany, GetCompany} from '@movit/api/business';
 import { AuthUserEntity, CompanyGuard, GetUser } from '@movit/api/auth';
 import { AuthGuard } from '@nestjs/passport';
 import {GetPagination, Pagination} from "../../../../../../../../../libs/api/common/decorator";
@@ -25,7 +25,7 @@ export class BusinessFrontOfficeAgendaController {
    * */
   @Get('reservation')
   async getReservations(
-    @GetCompany() business: Company,
+    @GetCompany() business: ICompany,
     @GetUser() user: AuthUserEntity,
     @GetPagination() pagination: Pagination
   ) {
@@ -34,7 +34,7 @@ export class BusinessFrontOfficeAgendaController {
 
   @Get('list')
   async getReservationList(
-    @GetCompany() business: Company,
+    @GetCompany() business: ICompany,
     @GetUser() user: AuthUserEntity,
     @GetPagination() pagination: Pagination
   ) {
@@ -48,7 +48,7 @@ export class BusinessFrontOfficeAgendaController {
 
   @Get('reservation/:reservationId')
   getReservation(
-    @GetCompany() business: Company,
+    @GetCompany() business: ICompany,
     @GetUser() user: AuthUserEntity,
     @Param('reservationId') reservationId: number,
     @Body() filterValues: any
@@ -62,7 +62,7 @@ export class BusinessFrontOfficeAgendaController {
 
   @Put('reservation')
   createReservation(
-    @GetCompany() business: Company,
+    @GetCompany() business: ICompany,
     @GetUser() user: AuthUserEntity,
     @Body() reservation:ReservationDTO.Create
   ) {
@@ -82,7 +82,7 @@ export class BusinessFrontOfficeAgendaController {
 
   @Patch('reservation/:reservationId')
   updateReservation(
-    @GetCompany() business: Company,
+    @GetCompany() business: ICompany,
     @GetUser() user: AuthUserEntity,
     @Body() reservation:ReservationDTO.Update,
     @Param('reservationId') reservationId
@@ -96,7 +96,7 @@ export class BusinessFrontOfficeAgendaController {
 
   @Patch('reservation/:reservationId')
   deleteReservation(
-    @GetCompany() business: Company,
+    @GetCompany() business: ICompany,
     @GetUser() user: AuthUserEntity,
     @Body() reservation,
     @Param('reservationId') reservationId

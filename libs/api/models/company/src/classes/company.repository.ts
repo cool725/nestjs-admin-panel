@@ -2,7 +2,7 @@ import { EntityRepository, Repository } from 'typeorm';
 import { CompanyEntity } from '../entities/companyEntity';
 import { BusinessUserRolesEntity } from '../entities/business.users.roles.entity.app';
 import { AuthUserEntity } from '@movit/api/auth';
-import {Company} from "@movit/api/business";
+import {ICompany} from "@movit/api/business";
 
 @EntityRepository(CompanyEntity)
 export class CompanyRepository extends Repository<CompanyEntity> {
@@ -65,7 +65,7 @@ export class CompanyRepository extends Repository<CompanyEntity> {
     return [];
   }
 
-  async getBusinessRoles(company: Company) {
+  async getBusinessRoles(company: ICompany) {
     const userBusinesses = await BusinessUserRolesEntity.find({
       where: {
         company: {

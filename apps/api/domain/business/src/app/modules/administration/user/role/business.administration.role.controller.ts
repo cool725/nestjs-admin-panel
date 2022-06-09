@@ -11,7 +11,7 @@ import {
 import { Administration } from '../../business.administration.namespace';
 import { GetCompany } from '@movit/api/business';
 import { CompanyEntity } from '@movit/api/business';
-import {Company, CompanyService} from '@movit/api/business';
+import {ICompany, CompanyService} from '@movit/api/business';
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
 import { AppRoleService } from "@movit/api/apps";
@@ -27,7 +27,7 @@ export class BusinessAdministrationRoleController {
   ) {}
 
   @Get('getRoles')
-  getRoles(@GetCompany() business: Company) {
+  getRoles(@GetCompany() business: ICompany) {
     return this.appRoleService.getBusinessRoles(business.companyId);
   }
 

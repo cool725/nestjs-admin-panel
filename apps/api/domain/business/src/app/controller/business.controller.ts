@@ -2,7 +2,7 @@ import { Controller, Get, Param, Req, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard, GetUser } from '@movit/api/auth';
 import { GetCompany } from "@movit/api/business";
-import { Company, CompanyService } from "@movit/api/business";
+import { ICompany, CompanyService } from "@movit/api/business";
 
 @Controller()
 @UseGuards(AuthGuard())
@@ -11,7 +11,7 @@ export class BusinessController {
 
   @Get('company')
   @UseGuards(CompanyGuard)
-  getData(@GetCompany() company: Company) {
+  getData(@GetCompany() company: ICompany) {
     return company.toSimpleJson();
   }
 

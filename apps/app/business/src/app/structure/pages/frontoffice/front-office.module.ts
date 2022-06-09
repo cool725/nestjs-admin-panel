@@ -21,7 +21,7 @@ const routes: Routes = [
   {
     path: 'cashsystem',
     loadChildren: () =>
-      import('./cashsystem/cashsystem.module').then((m) => m.CashsystemModule),
+      import('./cashsystem/cashsystem.module').then((m) => m.CashSystemModule),
     resolve: LocaleResolver.default,
   },
 ];

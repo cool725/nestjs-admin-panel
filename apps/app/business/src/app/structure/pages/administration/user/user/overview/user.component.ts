@@ -3,7 +3,7 @@ import { PageController } from '../../../../page.controller';
 import { SettingUserAPI } from '../../packages/user-api.service';
 import { ITableBaseFilter, Table } from '@movit/app/common';
 
-interface User {
+interface IUser {
   userId: number;
   avatar: 'M' | 'W';
   gender: 'M' | 'W';
@@ -22,7 +22,7 @@ interface User {
   styleUrls: ['./user.component.css'],
 })
 export class UserComponent extends PageController {
-  userTable = new Table<User, ITableBaseFilter>(this.userAPI.users$);
+  userTable = new Table<IUser, ITableBaseFilter>(this.userAPI.users$);
 
   constructor(override injector: Injector, public userAPI: SettingUserAPI) {
     super(injector);

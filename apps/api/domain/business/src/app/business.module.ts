@@ -16,6 +16,7 @@ import { ReservationModule } from '@movit/api/reservation';
 import { BusinessSettingsModule } from './modules/settings/business.settings.module';
 import { SellItemModule } from '@movit/api/sales/item';
 import { EmployeeModule } from "@movit/api/models/employee";
+import { CashSystemModule } from "@movit/api/models/cashsystem";
 
 
 @Module({
@@ -34,6 +35,7 @@ import { EmployeeModule } from "@movit/api/models/employee";
         ...EmployeeModule.dbSettings.entities,
         ...ReservationModule.dbSettings.entities,
         ...SellItemModule.dbSettings.entities,
+        ...CashSystemModule.dbSettings.entities,
       ],
     }),
     AuthModule,

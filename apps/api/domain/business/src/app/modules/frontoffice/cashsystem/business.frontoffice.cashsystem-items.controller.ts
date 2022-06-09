@@ -8,7 +8,7 @@ import {SalesItemService} from "@movit/api/sales/item";
 
 @Controller(FrontOffice.resolePaths([FrontOffice.CashSystem.PATHItems]))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)
-export class BusinessFrontofficeCashSystemSettingsController {
+export class BusinessFrontofficeCashSystemItemsController {
   constructor(
     private itemService: SalesItemService
   ) {}

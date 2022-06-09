@@ -9,7 +9,7 @@ import {GetPagination, Pagination} from "../../../../../../../../../libs/api/com
 
 @Controller(FrontOffice.resolePaths([FrontOffice.CashSystem.PATH]))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)
-export class BusinessFrontofficeCashSystemSettingsController {
+export class BusinessFrontofficeCashSystemController {
   constructor(
     protected cashSystemDeviceService: CashSystemDeviceService,
   ) {}

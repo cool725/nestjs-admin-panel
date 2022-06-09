@@ -20,10 +20,10 @@ export class CashSystemDeviceEntity extends TenantCompanyEntity  {
   @Column({ type: 'bigint', nullable: false, unsigned: true })
   deviceId: string;
 
-  @Column({ enum: ['cashsystem'], nullable: false })
+  @Column({type:'enum', enum: ['cashsystem'], nullable: false })
   deviceType: string;
 
-  @Column({ type: 'string', nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   deviceReference: string; // internalId
 
   @Column({ type: 'boolean', default:true })

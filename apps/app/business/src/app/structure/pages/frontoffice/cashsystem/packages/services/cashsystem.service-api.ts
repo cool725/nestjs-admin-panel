@@ -2,29 +2,29 @@ import {Injectable, NgModule} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../../../environments/environment";
+import { ICashSystemSettings } from "../interfaces/cashsystem.interface";
 
 @Injectable()
-export class CashSystemItemService {
+export class CashSystemService {
+  settings$:BehaviorSubject<ICashSystemSettings>
+  basePath = '/frontoffice/cashsystem/'
+  constructor(private http:HttpClient) {}
 
-    services$:BehaviorSubject<any[]>
+  private getPath(path:string, subPath?:string | number){
+    return environment.api.url + this.basePath + path + (subPath ? ('/'+subPath) : '')
+  }
 
-    basePath = 'frontoffice/cashsystem'
+  public signInToCashSystem(){
+    return this.http.get(this.getPath('settings/signin'))
+  }
 
-    constructor(private http:HttpClient) {
-        // test
-        this.getServices().subscribe()
-    }
+  public getSettings(systemId?:(number | string)){
+    return this.http.get<ICashSystemSettings>(this.getPath('settings/settings', (systemId || '')))
+  }
 
-    private getPath(path:string, subPath?:string | number){
-        return environment.api.url + this.basePath + path + (subPath ? ('/'+subPath) : '')
-    }
+  saveSettings(){
 
-    public getServices(){
-        return this.http.get<any[]>(this.getPath('items/services'))
-    }
+  }
 
-    saveSettings(){
-
-    }
 
 }

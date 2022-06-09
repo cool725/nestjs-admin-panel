@@ -30,6 +30,19 @@ export class BusinessAdministrationUserController {
     return this.businessService.getBusinessUsers(business);
   }
 
+  @Get('getUsersWithInfo')
+  async getUsersWithInfo(@GetCompany() business: CompanyEntity) {
+    const users = await this.businessService.getBusinessUsers(business);
+    const employees = await this.employeeService.getEmployeesFromCompany(business.companyId);
+    return {
+      page:1,
+      data:users,
+      count:users.length,
+      countEmployees: employees.length,
+      countAdministrators: 1, // to implement
+    }
+  }
+
   @Get('getUser/:userId')
   getUser(
     @GetCompany() business: CompanyEntity,

@@ -32,10 +32,10 @@ export class UserComponent extends PageController {
   }
 
   getUsers() {
-    this.onLoadAndSetData(
-      this.userAPI.getUsers(),
+    this.onLoadAndSetPaginatedData(
+      this.userAPI.getUsersWithInfo(),
       this.userAPI.users$,
-      (rows: any) => ({ data: rows })
+      this.userTable
     );
   }
 

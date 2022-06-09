@@ -173,7 +173,7 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
   searchProfile(searchTerm: any) {
     this.api
         .searchProfiles(searchTerm)
-        .subscribe((values: any) => (this.filteredProfiles = values.data));
+          .subscribe((values: any) => (this.filteredProfiles = values.data));
   }
   // endregion
 }

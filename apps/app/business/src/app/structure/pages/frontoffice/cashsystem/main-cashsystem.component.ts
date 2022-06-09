@@ -2,6 +2,7 @@ import {Component, Injector} from '@angular/core';
 import { PageController } from '../../page.controller';
 import {CashSystemSettingsService} from "./packages/services/cashsystem.service-settings";
 import { CashSystemItemsService } from "./packages/services/cashsystem.service-items";
+import { CashSystemProfileService } from "./packages/services/cashsystem.service-profile";
 
 @Component({
   selector: 'movit-main-cashsystem',
@@ -14,10 +15,11 @@ export class MainCashSystemComponent extends PageController {
       override injector: Injector,
       private settings: CashSystemSettingsService,
       private itemsService: CashSystemItemsService,
+      private profileService: CashSystemProfileService,
 
   ) {
     super(injector);
-    itemsService
+
   }
 
   getData(): void {

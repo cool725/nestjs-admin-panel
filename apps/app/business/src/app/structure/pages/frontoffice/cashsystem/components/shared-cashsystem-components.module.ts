@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MdbSharedModule } from '@movit/app/ui';
+import { MdbSharedModule, NzAntSharedModule } from "@movit/app/ui";
 import { TranslateLocaleModule } from '@movit/app/module';
 import { CashSystemAccountChooserComponent } from './account-chooser/account-chooser.component';
 import { CashSystemBasketComponent } from './basket/basket.component';
@@ -27,7 +27,7 @@ import { FormsModule } from "@angular/forms";
     CashSystemSettingsComponent,
     ToFixedPipe
   ],
-  imports: [CommonModule, MdbSharedModule, TranslateLocaleModule.forChild(), FormsModule],
+  imports: [CommonModule, MdbSharedModule, TranslateLocaleModule.forChild(), FormsModule, NzAntSharedModule],
   exports: [
     CashSystemAccountChooserComponent,
     CashSystemBasketComponent,

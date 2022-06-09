@@ -10,6 +10,7 @@ export namespace FrontOffice {
 
   export namespace CashSystem {
     export const PATH = 'cashsystem';
+    export const PATHSettings = PATH+'/settings';
   }
 
   export namespace Agenda {

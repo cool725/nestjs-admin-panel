@@ -1,0 +1,22 @@
+{
+  "sourceRoot": "libs/api/models/cashsystem/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api/models/cashsystem/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/models/cashsystem"],
+      "options": {
+        "jestConfig": "libs/api/models/cashsystem/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

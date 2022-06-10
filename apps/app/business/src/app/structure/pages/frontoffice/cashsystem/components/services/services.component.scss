@@ -1,16 +1,8 @@
 
-.cat__cash--service-tab{
-  display: block;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  &.non-row div{
-    display: block!important;
-  }
-
+.services-tab{
+   width: 100%;
+   display:flex ;
+  overflow-x: auto;
   .tab-items{
     box-shadow:none;
     min-width: 110px;
@@ -22,9 +14,12 @@
     line-height: 1.5;
     font-family: "Nunito Sans", sans-serif;
     padding: 0.375rem 0.75rem;
+    text-align: center;
     &.active, &:active, &:focus, &:hover {
       background-color: #e4e9f0;
       border-color: #e4e9f0;
     }
   }
 }
+
+

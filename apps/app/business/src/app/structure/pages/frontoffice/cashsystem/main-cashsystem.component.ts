@@ -23,9 +23,21 @@ export class MainCashSystemComponent extends PageController {
   }
 
   getData(): void {
+    this.getSettings()
+    this.getServices()
+  }
+
+  getServices(){
     this.onLoadAndSetData(
-        this.settings.getSettings(),
-        this.settings.settings$
+      this.itemsService.getServices(),
+      this.itemsService.services$
+    )
+  }
+
+  getSettings(){
+    this.onLoadAndSetData(
+      this.settings.getSettings(),
+      this.settings.settings$
     )
   }
 }

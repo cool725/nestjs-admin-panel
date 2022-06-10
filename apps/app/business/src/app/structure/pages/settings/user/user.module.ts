@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
+
 import { MdbSharedModule } from '@movit/app/ui';
 import { SettingsUserComponent } from './user.component';
 
@@ -16,8 +16,7 @@ const routes = [
     CommonModule,
     RouterModule.forChild(routes),
     FormsModule,
-    MdbSharedModule,
-    MdbDropdownModule
+    MdbSharedModule
   ],
 })
 export class SettingsUserModule { }

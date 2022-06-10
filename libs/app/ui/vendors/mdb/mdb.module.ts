@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
-import { MdbNzSelectDirective } from './directives/mdb.nz-select.directive';
+import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 import { TranslateLocaleModule } from '@movit/app/module';
-import {MdbPaginationModule} from "./components/pagination/mdb.pagination.module";
+
+import { MdbNzSelectDirective } from './directives/mdb.nz-select.directive';
+import { MdbPaginationModule } from "./components/pagination/mdb.pagination.module";
 
 @NgModule({
   declarations: [MdbNzSelectDirective],
@@ -17,7 +19,8 @@ import {MdbPaginationModule} from "./components/pagination/mdb.pagination.module
     MdbTabsModule,
     MdbCheckboxModule,
     MdbNzSelectDirective,
-    MdbPaginationModule
+    MdbPaginationModule,
+    MdbDropdownModule
   ],
 })
-export class MdbSharedModule {}
+export class MdbSharedModule { }

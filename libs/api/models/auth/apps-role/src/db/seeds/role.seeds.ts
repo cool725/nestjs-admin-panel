@@ -4,7 +4,7 @@ import { AppsEntity } from '../../entities/start.entity.app';
 import { AuthUserEntity } from '@movit/api/auth';
 import { AppsUserRightEntity } from '../../entities/start.entity.user.rights';
 import { AppsRoleEntity } from '../../entities/start.entity.role.app';
-import { CompanyEntity } from '../../../../../company/src/entities/companyEntity';
+import { CompanyEntity } from '@movit/api/business';
 
 export class InitialAppRoleSeeds extends SeedHelper {
   migrationName: string = this.constructor.name;

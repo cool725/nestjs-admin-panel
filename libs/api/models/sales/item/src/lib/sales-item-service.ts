@@ -30,8 +30,20 @@ export class SalesItemService {
     const categories = await this.getServiceCategories(companyId,langId, {
       ...searchOptions ,grouped:true})
 
-    // literate throw all categories and fetch serviceInfos
-    // .items = servicesArray
+    // fetch category services and its children services
+    const fetchCategoryServices = async (category) => {
+      if (category.children?.length) {
+        for (const subcategory of category.children) {
+          await fetchCategoryServices(subcategory)
+        }
+      }
+      const services = await this.itemRepo.list(companyId, langId, { categoryId: category.categoryId});
+      category.items = services ? services.data : []
+    }
+
+    for (const category of categories.data) {
+      await fetchCategoryServices(category)
+    }
 
     return categories
   }

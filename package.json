@@ -23,7 +23,8 @@
     "preinstall-webconfig": "node scripts/nginx.config.builder.js",
     "postinstall": "ngcc --properties es2015 browser module main",
     "docker:build": "npm run preinstall-webconfig && docker image build --tag admin-framework --progress plain --file Dockerfile .",
-    "nx:update": "nx migrate latest && nx migrate --run-migrations"
+    "nx:update": "nx migrate latest && nx migrate --run-migrations",
+    "ng:lint": "nx lint"
   },
   "private": true,
   "dependencies": {

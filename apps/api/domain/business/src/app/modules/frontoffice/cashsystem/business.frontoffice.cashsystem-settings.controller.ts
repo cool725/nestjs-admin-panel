@@ -1,26 +1,22 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
-import {FrontOffice} from '../business.frontoffice.namespace';
-import { ReservationService } from '@movit/api/reservation';
+import { FrontOffice } from '../business.frontoffice.namespace';
 import { GetCompany } from "@movit/api/business";
 import { CompanyEntity } from '@movit/api/business';
 import { AuthUserEntity, CompanyGuard, GetUser } from '@movit/api/auth';
 import { AuthGuard } from '@nestjs/passport';
-import { ProfilesService } from '@movit/api/profiles';
-import { GetPagination, Pagination } from "../../../../../../../../../libs/api/common/decorator";
-import { EmployeeService } from "@movit/api/models/employee";
-import {CashSystemDeviceService} from "@movit/api/models/cashsystem";
+import { CashSystemDeviceService } from "@movit/api/models/cashsystem";
 
 @Controller(FrontOffice.resolePaths([FrontOffice.CashSystem.PATHSettings]))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)
 export class BusinessFrontofficeCashSystemSettingsController {
   constructor(
     protected cashSystemDeviceService: CashSystemDeviceService,
-  ) {}
+  ) { }
 
   @Get('healthcheck')
   getSources(
-      @GetCompany() company: CompanyEntity,
-      @GetUser() user: AuthUserEntity,
+    @GetCompany() company: CompanyEntity,
+    @GetUser() user: AuthUserEntity,
   ) {
     return company.companyId
   }

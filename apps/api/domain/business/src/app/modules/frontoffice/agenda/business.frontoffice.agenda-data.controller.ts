@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { Controller, Get, UseGuards } from '@nestjs/common';
 import { FrontOffice } from '../business.frontoffice.namespace';
 import { ReservationService } from '@movit/api/reservation';
@@ -16,7 +18,7 @@ export class BusinessFrontofficeAgendaDataController {
     protected reservationService: ReservationService,
     protected profilesService: ProfilesService,
     protected employeeService: EmployeeService,
-  ) {}
+  ) { }
 
   @Get('profiles')
   getProfiles(
@@ -38,9 +40,9 @@ export class BusinessFrontofficeAgendaDataController {
 
   @Get('sources')
   getSources(
-      @GetCompany() company: CompanyEntity,
-      @GetUser() user: AuthUserEntity,
-      @GetPagination() pagination: Pagination
+    @GetCompany() company: CompanyEntity,
+    @GetUser() user: AuthUserEntity,
+    @GetPagination() pagination: Pagination
   ) {
     return []
   }

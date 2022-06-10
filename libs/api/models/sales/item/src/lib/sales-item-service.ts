@@ -31,14 +31,17 @@ export class SalesItemService {
       ...searchOptions ,grouped:true})
 
     // fetch category services and its children services
+    let maxIteration = 10000;
     const fetchCategoryServices = async (category) => {
-      if (category.children?.length) {
+      if (category.children?.length && maxIteration) {
         for (const subcategory of category.children) {
+          maxIteration--;
           await fetchCategoryServices(subcategory)
         }
       }
       const services = await this.itemRepo.list(companyId, langId, { categoryId: category.categoryId});
       category.items = services ? services.data : []
+
     }
 
     for (const category of categories.data) {

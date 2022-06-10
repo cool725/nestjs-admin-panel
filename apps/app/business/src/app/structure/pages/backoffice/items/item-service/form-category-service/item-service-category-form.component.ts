@@ -37,6 +37,7 @@ export class ItemServiceCategoryFormComponent
   }
 
   saveCategory(category: ItemCategory) {
+    if(category.categoryId)return  this.updateCategory(category);
     return this.api.saveServiceCategory(category).subscribe((cat: any) => {
       this.onSave.emit(cat);
       this.cancel();

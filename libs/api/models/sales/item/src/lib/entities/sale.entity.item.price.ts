@@ -50,7 +50,7 @@ export class SaleItemPriceEntity extends Translatable(TenantCompanyTranslatableE
   //bufferTimeStart:Date;
   //bufferTimeEnd:Date;
 
-  @Column({ type: 'json', nullable: true })
+  @Column({ type: 'text', nullable: true })
   options: number;
 
   @ManyToOne(() => SaleItemEntity, (item) => item.prices, {

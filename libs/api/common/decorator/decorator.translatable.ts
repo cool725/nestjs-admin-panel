@@ -44,7 +44,7 @@ export default function Translatable<TBase extends Constructor>(
           await TranslationLabelEntity.delete({
             companyId: self.companyId,
             id: self.getId(),
-            key: getTranslationKey(label.key),
+            key: (label.key),
             type: label.type,
             languageId: label.languageId,
           });

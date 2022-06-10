@@ -92,7 +92,7 @@ export class BusinessBackOfficeSalesItemsServiceController {
     @Param('id') id,
     @Body() category
   ) {
-    return this.itemService.saveServiceCategory(business.companyId, category);
+    return this.itemService.updateCategoryService(business.companyId, id,category);
   }
 
   @Delete('category/:categoryId')

@@ -15,8 +15,8 @@ import { GetPagination } from '../../../../../../../../../../libs/api/common/dec
 import { GetLanguage } from '../../../../../../../../../../libs/api/common/decorator/decorator.language';
 import { AppsRolesGuard } from '../../../../../../../../../../libs/api/models/auth/apps-role/src/guards/auth.guards.apps';
 import { SalesItemService } from '../../../../../../../../../../libs/api/models/sales/item/src/lib/sales-item-service';
-import { CompanyEntity } from '../../../../../../../../../../libs/api/models/company/src/entities/companyEntity';
-import { GetCompany } from '../../../../../../../../../../libs/api/models/company/src/company.decorator';
+import { CompanyEntity } from '@movit/api/business';
+import { GetCompany } from '@movit/api/business';
 
 @Controller(BackOffice.resolePath(BackOffice.Sales.Items.PATHService))
 @UseGuards(AuthGuard(), CompanyGuard, AppsRolesGuard(14))

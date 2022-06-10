@@ -7,10 +7,15 @@ import { CashSystemPaymentService } from './packages/services/cashsystem.service
 import { MainCashSystemComponent } from './main-cashsystem.component';
 import { SharedCashSystemComponentsModule } from './components/shared-cashsystem-components.module';
 import { TranslateLocaleModule } from '@movit/app/module';
-import { MdbSharedModule } from '@movit/app/ui';
+import { MdbSharedModule, NzAntSharedModule } from "@movit/app/ui";
 import { RouterModule, Routes } from '@angular/router';
+import { CashSystemProfileService } from "./packages/services/cashsystem.service-profile";
 
 const routes: Routes = [
+  {
+    path: '',
+    component: MainCashSystemComponent,
+  },
   {
     path: '**',
     component: MainCashSystemComponent,
@@ -29,6 +34,7 @@ const routes: Routes = [
     CashSystemPaymentService,
     CashSystemItemsService,
     CashSystemSettingsService,
+    CashSystemProfileService
   ],
 })
 export class CashSystemModule {}

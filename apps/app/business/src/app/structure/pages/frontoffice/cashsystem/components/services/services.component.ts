@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'movit-cashsystem-services',
@@ -6,5 +6,40 @@ import { Component } from '@angular/core';
   styleUrls: ['./services.component.scss'],
 })
 export class CashSystemServicesComponent {
+
+  @Input() allowedTabs  = [
+    'manual',
+    'services',
+    'products',
+    'coupons',
+    'res',
+    'cBills',
+    'orders',
+    'history',
+  ]
+
+  @Input() currentTab = 'services'
+
+  setDefault(){
+    this.allowedTabs = [
+      'manual',
+      'services',
+      'prodcuts',
+      'coupons',
+      'res',
+      'cBills',
+      'orders',
+      'history',
+    ]
+  }
+
+  canShowTab(tabName:string){
+    if(!this.allowedTabs)this.setDefault();
+    return this.allowedTabs &&this.allowedTabs.includes(tabName)
+  }
+
+  changeView(value:string){
+    this.currentTab = value
+  }
 
 }

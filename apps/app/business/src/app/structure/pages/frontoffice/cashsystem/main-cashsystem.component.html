@@ -12,6 +12,21 @@
   </div>
 </ng-template>
 
-<div class="">
+<div class="h-100 layout">
+   <ng-container [ngSwitch]="1">
+     <div *ngSwitchCase="1" class="h-100 grid grid-cols-3">
+       <div class="c1 h-100">
+         <movit-cashsystem-services></movit-cashsystem-services>
+       </div>
+       <div class="c2 h-100">
+         <movit-cashsystem-basket></movit-cashsystem-basket>
+       </div>
+       <div class="c3 h-100">
+         <movit-cashsystem-receipt></movit-cashsystem-receipt>
+         <movit-cashsystem-account-chooser></movit-cashsystem-account-chooser>
+         <movit-cashsystem-calculator></movit-cashsystem-calculator>
+       </div>
+     </div>
+   </ng-container>
 
 </div>

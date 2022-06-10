@@ -2,7 +2,7 @@ import { Controller, Get, UseGuards } from '@nestjs/common';
 import {FrontOffice} from '../business.frontoffice.namespace';
 import { ReservationService } from '@movit/api/reservation';
 import { GetCompany } from "@movit/api/business";
-import { CompanyEntity } from '../../../../../../../../../libs/api/models/company/src/entities/companyEntity';
+import { CompanyEntity } from '@movit/api/business';
 import { AuthUserEntity, CompanyGuard, GetUser } from '@movit/api/auth';
 import { AuthGuard } from '@nestjs/passport';
 import { ProfilesService } from '@movit/api/profiles';

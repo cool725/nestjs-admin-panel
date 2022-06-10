@@ -1,0 +1,17 @@
+.services-tab{
+  display: -webkit-box;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+
+  &.non-row div{
+    display: block!important;
+  }
+
+  .tab-items{
+    min-width: 110px;
+    border-right: 1px #ececec solid !important;
+    border-radius: 0;
+    width: fit-content;
+  }
+}

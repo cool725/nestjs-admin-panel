@@ -11,10 +11,10 @@ import {
 } from 'typeorm';
 import {Exclude, instanceToPlain} from 'class-transformer';
 import { BusinessUserRolesEntity } from './business.users.roles.entity.app';
-import {Company} from "../company.interface";
+import {ICompany} from "../company.interface";
 
 @Entity('com_company')
-export class CompanyEntity extends BaseEntity implements Company{
+export class CompanyEntity extends BaseEntity implements ICompany{
   @PrimaryGeneratedColumn('increment')
   @Exclude()
   companyId: number;

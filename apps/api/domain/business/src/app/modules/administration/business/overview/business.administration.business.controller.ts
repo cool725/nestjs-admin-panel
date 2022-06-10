@@ -1,7 +1,7 @@
 import { Controller, Get, Param, UseGuards } from '@nestjs/common';
 import { Administration } from '../../business.administration.namespace';
-import { GetCompany } from '../../../../../../../../../../libs/api/models/company/src/company.decorator';
-import { CompanyEntity } from '../../../../../../../../../../libs/api/models/company/src/entities/companyEntity';
+import { GetCompany } from '@movit/api/business';
+import { CompanyEntity } from '@movit/api/business';
 import { CompanyService} from '@movit/api/business';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthUserEntity, CompanyGuard, GetUser } from '@movit/api/auth';

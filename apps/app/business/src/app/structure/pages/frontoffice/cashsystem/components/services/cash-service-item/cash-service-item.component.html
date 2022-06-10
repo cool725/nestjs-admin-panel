@@ -1,0 +1,18 @@
+<ng-container *ngIf="cat">
+    <div *ngIf="hasItems(cat['services'],'title', cat.children,'services') "
+         class="col-12 cat-title cat-row-item-{{row}}"
+         [style.background-color]="cat.color || bgColor">
+        <a>{{levelTreeSeperator}}</a> <b>{{cat.title}}</b>
+        <div class="pull-right">
+            <i style="margin-right: 20px" class="fa fa-bars"></i>
+            <i style="margin-right: 5px"  class="fa fa-plus"></i>
+            <i class="fa fa-minus"></i>
+        </div>
+    </div>
+    
+    <ng-container *ngIf="(cat && cat.children.length )">
+        <movit-cashsystem-service-item *ngFor="let cat of cat.children " [cat]="cat"
+        ></movit-cashsystem-service-item>
+    </ng-container>
+</ng-container>
+

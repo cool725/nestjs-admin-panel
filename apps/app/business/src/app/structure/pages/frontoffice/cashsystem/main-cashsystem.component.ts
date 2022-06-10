@@ -14,7 +14,7 @@ export class MainCashSystemComponent extends PageController {
   constructor(
       override injector: Injector,
       private settings: CashSystemSettingsService,
-      private itemsService: CashSystemItemsService,
+      public itemsService: CashSystemItemsService,
       private profileService: CashSystemProfileService,
 
   ) {

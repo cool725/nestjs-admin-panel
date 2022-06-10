@@ -1,65 +1,43 @@
 <div class="bg-white h-100 overflow-y-auto shadow">
-  <div class="services-tab">
-    <div
-      *ngIf="canShowTab('manual')"
-      (click)="changeView('manual')"
-      class="border-0 tab-items"
-    >
-      {{ 'eingabe' | translate | titlecase }}
-    </div>
-    <div
-      *ngIf="canShowTab('services')"
-      (click)="changeView('services')"
-      class="border-0 tab-items"
-    >
-      {{ 'services' | translate | titlecase }}
-    </div>
-    <div
-      *ngIf="canShowTab('products')"
-      (click)="changeView('products')"
-      class="btn border-0 tab-items"
-    >
-      {{ 'apps_products' | translate | titlecase }}
-    </div>
-    <div
-      *ngIf="canShowTab('coupons')"
-      (click)="changeView('coupons')"
-      class="border-0 tab-items"
-    >
-      {{ 'coupon' | translate | titlecase }}/Abo
-    </div>
-    <div
-      *ngIf="canShowTab('res')"
-      id="cash--service-tab_res"
-      (click)="changeView('appointments')"
-      class="border-0 tab-items"
-    >
-      {{ 'appointments' | translate | titlecase }}
-    </div>
-    <div
-      *ngIf="canShowTab('cBills')"
-      (click)="changeView('cBills')"
-      class="border-0 tab-items"
-    >
-      {{ 'bill' | translate | titlecase }}
-    </div>
-    <div
-      *ngIf="canShowTab('orders')"
-      (click)="changeView('orders')"
-      class="border-0 tab-items"
-    >
-      {{ 'orders' | translate | titlecase }}
-    </div>
-    <div
-      *ngIf="canShowTab('history')"
-      (click)="changeView('history')"
-      class="border-0 tab-items"
-    >
-      {{ 'history' | translate | titlecase }}
-    </div>
+  <div class="services-tab row animated fadeIn pt-2" >
+    <div  *ngIf="canShowTab('manual')"      id="cash--service-tab_manual"       (click)="changeView('manual')"   class=" btn border-0 tab-items"  > {{'eingabe' | translate | titlecase}} </div>
+    <div  *ngIf="canShowTab('services')"    (click)="changeView('services')"   class=" btn border-0 tab-items"> {{'services' | translate | titlecase}} </div>
+    <div  *ngIf="canShowTab('products')"     (click)="changeView('products')" class=" btn border-0 tab-items"> {{'apps_products' | translate | titlecase}}  </div>
+    <div  *ngIf="canShowTab('coupons')"     (click)="changeView('coupons')"   class="  btn border-0 tab-items"> {{'coupon' | translate | titlecase}}/Abo   </div>
+    <div  *ngIf="canShowTab('res')"         id="cash--service-tab_res"   (click)="changeView('appointments')"   class="  btn border-0 tab-items"> {{'appointments' | translate | titlecase}}  </div>
+    <div  *ngIf="canShowTab('cBills')"      (click)="changeView('cBills')"   class="  btn border-0 tab-items"> {{'bill' | translate | titlecase}}  </div>
+    <div  *ngIf="canShowTab('orders')"      (click)="changeView('orders')"   class="  btn border-0 tab-items"> {{'orders'   | translate | titlecase}} </div>
+    <div  *ngIf="canShowTab('history')"     (click)="changeView('history')"    class="  btn border-0 tab-items"> {{'history' | translate | titlecase}} </div>
   </div>
 
   <!-- As List-->
+  <div class="full-row row" >
+    <!--  [style.background-color]="hexToRgb(cat.color,0.8)" -->
+    <ng-container [ngSwitch]="currentTab">
+      <ng-container *ngSwitchCase="'services'">
+
+        <!--
+           <input (keyup.enter)="clickFirstItem()" [(ngModel)]="filterValue" class="col-12 text-center border-0 " placeholder="{{'search' | translate}}" >
+        -->
+
+        <ng-container *ngIf="services$ | async as categories">
+          <ng-container *ngFor="let cat of categories ;let i  = index">
+            <cat-cash-service-item
+                    [filterValue]="filterValue"
+                    [showOnlyLowestItem]="true"
+                    (onItemSelect)="itemClick($event)"
+                    [row]="i+1"
+                    [cat]="cat"
+                    style="width: 100%"
+                    [typ]="'services'"
+                    [showCatLine]="0">
+            </cat-cash-service-item>
+          </ng-container>
+        </ng-container>
+
+      </ng-container>
+    </ng-container>
+
 
   <!-- As Buttons-->
 </div>

@@ -1,5 +1,23 @@
-<div class="bg-white shadow-sm w-100">
-  <br>
-  <br>
-  <br>
+<div class="bg-white shadow-sm w-100 p-1">
+  <div class="d-flex justify-content-between">
+    <span class="title">{{ 'total' | translate | titlecase }}:</span>
+    <span class="value"> {{ total }}</span>
+  </div>
+  <div class="d-flex justify-content-between">
+    <span class="title">{{ 'paid' | translate | titlecase }}:</span>
+    <span class="value">{{ paid }}</span>
+  </div>
+  <div class="d-flex justify-content-between">
+    <span class="title">{{ 'invoiced' | translate | titlecase }}:</span>
+    <span class="value">{{ invoice }}</span>
+  </div>
+  <br >
+  <div class="d-flex justify-content-between">
+    <span class="title fw-bold">{{ 'to pay' | translate | titlecase }}:</span>
+    <span class="value fw-bold">{{ total - paid }}</span>
+  </div>
+  <div class="d-flex justify-content-between">
+    <span class="title">{{ 'change' | translate | titlecase }}:</span>
+    <span class="value">{{ change }}</span>
+  </div>
 </div>

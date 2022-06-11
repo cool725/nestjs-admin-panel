@@ -27,9 +27,9 @@ export class ProfilesOverviewComponent extends PageController {
   }
 
   @Debounce(300)
-  getProfiles(resetCurrentPage = false) {
+  getProfiles(resetPagination = false) {
     this.onLoadAndSetPaginatedData(
-      this.api.getProfiles(this.profileTable.getFilterValuesAndPaginationAsHttpParams(resetCurrentPage)),
+      this.api.getProfiles(this.profileTable.getFilterValuesAndPaginationAsHttpParams({resetPagination: resetPagination})),
       this.api.profiles$,
       this.profileTable
     );

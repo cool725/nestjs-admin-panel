@@ -22,7 +22,7 @@
               <mdb-form-control>
                 <i class="fa fa-search trailing"></i>
                 <input
-                  (keyup)="getProfiles()"
+                  (keyup)="getProfiles(true)"
                   [(ngModel)]="profileTable.filterValues.searchValue"
                   mdbInput
                   type="text"

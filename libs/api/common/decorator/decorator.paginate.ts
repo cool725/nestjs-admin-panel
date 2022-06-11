@@ -69,9 +69,7 @@ const applyPagination = async <T>(
         id: repo.metadata.tableName,
         milliseconds: 300000,
       },
-      where: {
-        companyId: companyId,
-      },
+      where: where,
     }),
   ]);
 

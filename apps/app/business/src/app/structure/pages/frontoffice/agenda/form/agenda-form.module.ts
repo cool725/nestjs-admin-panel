@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 import { AgendaFormComponent } from './agenda-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateLocaleModule } from '@movit/app/module';
-import { MdbSharedModule } from '@movit/app/ui';
+import {MdbSharedModule, NzAntSharedModule} from '@movit/app/ui';
 import { environment } from '../../../../../../environments/environment';
 import { AgendaAPI } from '../packages/agenda-api.service';
-import { NzSelectModule } from 'ng-zorro-antd/select';
 
 @NgModule({
   declarations: [AgendaFormComponent],
@@ -16,7 +15,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     ReactiveFormsModule,
     TranslateLocaleModule,
     MdbSharedModule,
-    NzSelectModule,
+    NzAntSharedModule,
   ], // todo create nzSharedModule
   entryComponents: [AgendaFormComponent],
   providers: [

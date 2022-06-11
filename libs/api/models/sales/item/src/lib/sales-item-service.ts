@@ -39,14 +39,13 @@ export class SalesItemService {
           await fetchCategoryServices(subcategory)
         }
       }
-      const services = await this.itemRepo.list(companyId, langId, { categoryId: category.categoryId});
+      const services = await this.itemRepo.list(companyId, langId, {...searchOptions, categoryId: category.categoryId});
       category.items = services ? services.data : []
 
     }
 
-    for (const category of categories.data) {
-      await fetchCategoryServices(category)
-    }
+    for (const category of categories.data) await fetchCategoryServices(category)
+
 
     return categories
   }

@@ -16,6 +16,9 @@ import { CashSystemServicesItemComponent } from "./services/cash-service-item/ca
 import { ToFixedPipe} from "@movit/app/common";
 import { FormsModule } from "@angular/forms";
 import {CashSystemServicesRowComponent} from "./services/cash-service-row/cash-service-row.component";
+import {
+  CashSystemServicesItemPriceChooserComponent
+} from "./services/cash-service-item/cash-service-item-price-chooser/cash-service-item-price-chooser.component";
 
 @NgModule({
   declarations: [
@@ -29,6 +32,7 @@ import {CashSystemServicesRowComponent} from "./services/cash-service-row/cash-s
     CashSystemServicesComponent,
     CashSystemServicesRowComponent,
     CashSystemServicesItemComponent,
+    CashSystemServicesItemPriceChooserComponent,
     CashSystemSettingsComponent,
     ToFixedPipe
   ],
@@ -41,5 +45,8 @@ import {CashSystemServicesRowComponent} from "./services/cash-service-row/cash-s
     CashSystemServicesComponent,
     CashSystemSettingsComponent,
   ],
+  entryComponents:[
+    CashSystemServicesItemPriceChooserComponent
+  ]
 })
 export class SharedCashSystemComponentsModule {}

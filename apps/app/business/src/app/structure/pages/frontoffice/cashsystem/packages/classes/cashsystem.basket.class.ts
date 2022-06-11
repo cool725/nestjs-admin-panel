@@ -15,6 +15,9 @@ export class CashSystemBasket{
           this.billGroupId = i.splitId;
       }
       * */
+        console.log(
+            item
+        )
 
         ItemTransaction.constructor
         item        = ItemTransaction.create(item);

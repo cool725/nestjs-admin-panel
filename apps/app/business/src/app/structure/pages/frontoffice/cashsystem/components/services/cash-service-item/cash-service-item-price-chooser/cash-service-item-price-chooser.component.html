@@ -1,0 +1,15 @@
+<table>
+    <tr>
+        <td>Preisklasse</td>
+        <td> </td>
+        <td> </td>
+    </tr>
+</table>
+
+<div class="container">
+    <ng-container *ngFor="let price of prices">
+        <div (click)="clickAction(price)" [style.background-color]="bgColor" class="menu-open-button chooser-item">
+            {{price.priceSell}}
+        </div>
+    </ng-container>
+</div>

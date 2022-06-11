@@ -19,7 +19,9 @@ export class BusinessFrontofficeCashSystemItemsController {
       @GetUser() user: AuthUserEntity,
   ) {
     return this.itemService.getServicesGrouped(
-        company.companyId,1, {}
+        company.companyId,1, {
+          price:true
+        }
     )
   }
 

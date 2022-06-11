@@ -64,12 +64,15 @@ export class LayoutMainComponent {
 
   public async openModal<C>(
     component: Type<C>,
-    options: { id?: any } = {},
+    options: { id?: any, style?:any } = {},
     resolver: any = undefined
   ) {
     const modalRef = this.vcModal.createComponent<BoostrapModalUIComponent>(
       BoostrapModalUIComponent
     );
+
+    modalRef.instance.style = options.style || modalRef.instance.style
+
     const componentRef = await modalRef.instance.setModalContentFromComponent(
       component,
       options,

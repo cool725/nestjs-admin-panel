@@ -30,9 +30,9 @@ export class UserOnboardingComponent extends PageController {
     super(injector);
   }
 
-  getData() {
+  getData(resetPagination = false) {
     this.onLoadAndSetPaginatedData(
-      this.api.getOnBoardingTasks(this.tableOnBoarding.getFilterValuesAndPaginationAsHttpParams()),
+      this.api.getOnBoardingTasks(this.tableOnBoarding.getFilterValuesAndPaginationAsHttpParams({resetPagination})),
       this.api.onBoardingTasks$,
       this.tableOnBoarding
     );

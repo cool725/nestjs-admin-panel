@@ -33,6 +33,7 @@ async function bootstrap() {
 const listRoutes = (server) => {
   const router = server._events.request._router;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const availableRoutes: [] = router.stack
     .map((layer) => {
       if (layer.route) {

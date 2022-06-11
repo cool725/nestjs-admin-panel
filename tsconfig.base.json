@@ -32,6 +32,7 @@
         "libs/api/models/finance/transaction/index.ts"
       ],
       "@movit/api/middleware": ["libs/api/common/middleware/index.ts"],
+      "@movit/api/classes": ["libs/api/common/classes/index.ts"],
       "@movit/api/models/cashsystem": [
         "libs/api/models/cashsystem/src/index.ts"
       ],

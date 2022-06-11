@@ -1,4 +1,4 @@
-import {Injectable, NgModule} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {ICashSystemSettings} from "../interfaces/cashsystem.interface";
 import { HttpClient, HttpParams } from "@angular/common/http";
@@ -25,7 +25,5 @@ export class CashSystemProfileService {
 
   }
 
-  saveSettings(){
-
-  }
+  // saveSettings(){}
 }

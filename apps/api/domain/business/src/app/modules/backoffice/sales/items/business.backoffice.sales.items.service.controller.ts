@@ -13,7 +13,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
 import { GetPagination } from '../../../../../../../../../../libs/api/common/decorator';
 import { GetLanguage } from '../../../../../../../../../../libs/api/common/decorator/decorator.language';
-import { AppsRolesGuard } from '../../../../../../../../../../libs/api/models/auth/apps-role/src/guards/auth.guards.apps';
+import { AppsRolesGuard } from '@movit/api/apps';
 import { SalesItemService } from '../../../../../../../../../../libs/api/models/sales/item/src/lib/sales-item-service';
 import { CompanyEntity } from '@movit/api/business';
 import { GetCompany } from '@movit/api/business';
@@ -62,7 +62,7 @@ export class BusinessBackOfficeSalesItemsServiceController {
   async deleteService(
     @GetCompany() business: CompanyEntity,
     @Param('itemId') itemId,
-    @GetPagination() paginate
+    // @GetPagination() paginate
   ) {
     return this.itemService.deleteService(business.companyId, itemId);
   }

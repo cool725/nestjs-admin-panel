@@ -24,8 +24,8 @@ export class BusinessFrontofficeCashSystemProfilesController {
 
   @Get('price-class')
   getProfilePriceClass(
-    @GetCompany() company: ICompany,
-    @GetPagination() pagination: Pagination,
+    // @GetCompany() company: ICompany,
+    // @GetPagination() pagination: Pagination,
   ) {
     return []
   }

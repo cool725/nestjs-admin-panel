@@ -2,7 +2,7 @@ import { Controller, Get, UseGuards } from '@nestjs/common';
 import { FrontOffice } from '../business.frontoffice.namespace';
 import { GetCompany } from "@movit/api/business";
 import { CompanyEntity } from '@movit/api/business';
-import { AuthUserEntity, CompanyGuard, GetUser } from '@movit/api/auth';
+import { CompanyGuard } from '@movit/api/auth';
 import { AuthGuard } from '@nestjs/passport';
 import { CashSystemDeviceService } from "@movit/api/models/cashsystem";
 
@@ -16,7 +16,7 @@ export class BusinessFrontofficeCashSystemSettingsController {
   @Get('healthcheck')
   getSources(
     @GetCompany() company: CompanyEntity,
-    @GetUser() user: AuthUserEntity,
+    // @GetUser() user: AuthUserEntity,
   ) {
     return company.companyId
   }

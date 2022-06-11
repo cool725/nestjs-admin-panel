@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { AuthRepositoryUserInvited } from '../../../../../../../../../../../libs/api/models/auth/auth-user/src/auth/classes/auth.repository.user.invited';
-import { Mailer } from '../../../../../../../../../../../libs/api/common/classes';
+import { AuthRepositoryUserInvited } from '@movit/api/auth';
+import { Mailer } from '@movit/api/classes';
 
 @Injectable()
 export class UserInvitationService {

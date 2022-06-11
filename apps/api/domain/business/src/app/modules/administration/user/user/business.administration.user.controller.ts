@@ -70,7 +70,7 @@ export class BusinessAdministrationUserController {
   deleteUser(
     @GetCompany() company: CompanyEntity,
     @Param('userId') userId: string,
-    @Body() userData: any
+    // @Body() userData: any
   ) {
     this.employeeService.removeEmployeesFromCompany(company.companyId,userId);
     return this.businessService.deleteBusinessUser(company, userId);

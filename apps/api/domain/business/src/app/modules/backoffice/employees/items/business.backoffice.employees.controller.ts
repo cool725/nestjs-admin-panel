@@ -1,7 +1,7 @@
 import {Controller, Get, Param, Put, UseGuards} from '@nestjs/common';
 import {BackOffice} from '../../business.backoffice.namespace';
 import { AuthGuard } from '@nestjs/passport';
-import {AuthService, AuthUserEntity, CompanyGuard} from '@movit/api/auth';
+import {AuthService, CompanyGuard} from '@movit/api/auth';
 import {EmployeeService} from "@movit/api/models/employee";
 import {CompanyService, GetCompany} from "@movit/api/business";
 import { CompanyEntity } from '@movit/api/business';

@@ -7,9 +7,13 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
-import { GetCompany } from '@movit/api/business';
-import { CompanyEntity } from '@movit/api/business';
-import { AuthUserEntity, CompanyGuard, GetUser } from '@movit/api/auth';
+// import { GetCompany } from '@movit/api/business';
+// import { CompanyEntity } from '@movit/api/business';
+import { 
+  // AuthUserEntity, 
+  CompanyGuard,
+  // GetUser 
+} from '@movit/api/auth';
 import { AuthGuard } from '@nestjs/passport';
 import { Settings } from '../business.settings.namespace';
 import { LocalesService } from '@movit/api/translation';
@@ -20,14 +24,16 @@ export class BusinessSettingsLocalesController {
   constructor(protected localesService: LocalesService) {}
 
   @Get('all')
-  getAll(@GetCompany() business: CompanyEntity, @GetUser() user: AuthUserEntity) {
+  getAll(
+    // @GetCompany() business: CompanyEntity, @GetUser() user: AuthUserEntity
+    ) {
     return this.localesService.getAllLocales();
   }
 
   @Put('setText')
   setText(
-    @GetCompany() business: CompanyEntity,
-    @GetUser() user: AuthUserEntity,
+    // @GetCompany() business: CompanyEntity,
+    // @GetUser() user: AuthUserEntity,
     @Body() params: any
   ) {
     return this.localesService.createLocaleValue(
@@ -40,8 +46,8 @@ export class BusinessSettingsLocalesController {
 
   @Patch('updateText/:key')
   updateText(
-    @GetCompany() business: CompanyEntity,
-    @GetUser() user: AuthUserEntity,
+    // @GetCompany() business: CompanyEntity,
+    // @GetUser() user: AuthUserEntity,
     @Param('key') key: string,
     @Body() params: any
   ) {

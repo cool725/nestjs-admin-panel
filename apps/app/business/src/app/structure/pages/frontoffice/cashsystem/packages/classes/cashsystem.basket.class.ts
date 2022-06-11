@@ -1,12 +1,77 @@
 import {ItemTransaction} from "./cashsystem.item.class";
+import {Subject} from "rxjs";
+import {EventEmitter} from "@angular/core";
+
+class PriceHandler{
+
+    priceTotal         = 0;
+
+    priceGiven    = 0;
+
+    pricePayed    = 0;
+
+    priceInvoice  = 0;
+
+    priceCanceled = 0;
+
+    priceOpen    = 0;
+
+    priceChange        = 0;
+
+    constructor(basket:CashSystemBasket) {}
+
+    reset(){
+        this.pricePayed    = 0;
+        this.priceGiven    = 0;
+        this.priceTotal         = 0;
+        this.priceOpen     = 0;
+        this.priceCanceled = 0;
+        this.priceInvoice  = 0;
+    }
+
+}
 
 export class CashSystemBasket{
     basketId:string;
 
     items:ItemTransaction[] = []
 
-    doUpdate(){
+    payments:any[] = []
 
+    readonly priceHandler:PriceHandler = new PriceHandler(this)
+
+    public doUpdate(){
+        this.updatePrice()
+        this.ON.update$.next(true)
+    }
+
+    public updatePrice(){
+        this.priceHandler.reset()
+
+        for(let i = 0;i  < this.items.length;i++){
+            const item    =  this.items[i];
+
+            this.priceHandler.priceTotal   += item.active && item.finalized == 0 ? item.price : 0;
+            this.priceHandler.priceTotal   += item.finalized > 0  ? item.price : 0;
+
+            this.priceHandler.pricePayed    += item.finalized >= 1 ? item.price : 0;
+            this.priceHandler.priceCanceled += item.finalized < 0  ? item.price : 0;
+        }
+
+        for(let i = 0; i < this.payments.length;i++){
+            const payment   = this.payments[i];
+            this.priceHandler.priceGiven += payment.finalized == 0 ? payment.price : 0;
+            /*
+                if(this.isInvoiceAcc(payment.accountId || payment.creditAccountId)){
+                this.priceTotalInvoice += payment.finalized >= 1 ? payment.price : 0
+                }
+            * */
+        }
+
+        this.priceHandler.priceOpen = this.priceHandler.priceTotal - this.priceHandler.pricePayed;
+
+        //this.verify();
+        return this
     }
     
     public itemAdd(item:ItemTransaction, price, options:{emitEvent?:boolean} = {}){
@@ -15,9 +80,7 @@ export class CashSystemBasket{
           this.billGroupId = i.splitId;
       }
       * */
-        console.log(
-            item
-        )
+
 
         ItemTransaction.constructor
         item        = ItemTransaction.create(item);
@@ -30,8 +93,8 @@ export class CashSystemBasket{
         }
 
         this.doUpdate()
-        this.ON.addItem(item)
-        if(options.emitEvent)this.ON.save();
+        //this.ON.addItem(item)
+        //if(options.emitEvent)this.ON.save();
         return item
     }
 
@@ -43,7 +106,7 @@ export class CashSystemBasket{
 
         }
         this.doUpdate()
-        if(save)this.ON.save()
+        //if(save)this.ON.save()
     }
 
     private itemIsUnique(item:ItemTransaction){
@@ -66,7 +129,15 @@ export class CashSystemBasket{
 
 
     // eslint-disable-next-line @typescript-eslint/member-ordering
-    ON:any = {}
+    ON = {
+        update$:new Subject(),
+        save:new EventEmitter()
+    }
+
+    static calcVatVal(price , vat)  {
+        // MwSt. = (Brutto-Preis / (100 + Mehrwertsteuersatz) ) * Mehrwertsteuersatz
+        return (((price / ( 100 + vat)) * vat))
+    };
 }
 
  

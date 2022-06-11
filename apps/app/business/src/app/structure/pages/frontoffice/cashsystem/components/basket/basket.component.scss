@@ -1,0 +1,10 @@
+:host{
+  height: 100%;
+  width: 100%;
+}
+
+.items-container{
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 80%;
+}

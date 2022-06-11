@@ -1,4 +1,6 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input} from '@angular/core';
+import {CashSystemStore} from "../../packages/services/cashsystem.store";
+import {Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'movit-cashsystem-receipt',
@@ -8,11 +10,38 @@ import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 })
 export class CashSystemReceiptComponent {
 
-  @Input() total: number = 0;
-  @Input() paid: number = 0;
-  @Input() invoice: number = 0;
-  @Input() change: number = 0;
+  public get total(){
+    return this.store.basket.priceHandler.priceTotal
+  }
+
+  public get paid(){
+    return this.store.basket.priceHandler.pricePayed
+  }
+
+  public get invoice(){
+    return this.store.basket.priceHandler.priceInvoice
+  }
+
+  public get change(){
+    return this.store.basket.priceHandler.priceChange
+  }
 
   currency = 'CHF'
+
+  private ngUnsubscribe = new Subject<void>();
+
+  constructor(private store:CashSystemStore,
+              private cdr: ChangeDetectorRef) {
+
+    store.basket.ON.update$
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe(()=>cdr.detectChanges());
+
+  }
+
+  ngOnDestroy(){
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
 
 }

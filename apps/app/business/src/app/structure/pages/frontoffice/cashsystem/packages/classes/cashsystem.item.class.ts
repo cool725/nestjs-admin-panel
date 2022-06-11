@@ -69,7 +69,7 @@ export class ItemTransaction{
 
     active:boolean
 
-    finalized // enum
+    finalized = 0// enum
 
     title:string
 
@@ -77,13 +77,15 @@ export class ItemTransaction{
 
     priceId:number
 
-    price = 0 // todo rename
+    public price = 0 // todo rename
 
     static create(item?:any):ItemTransaction{
         return Object.assign(new ItemTransaction(),item || {})
     }
 
     setPrice(price){
-
+        this.price = price.priceSell
     }
+
+
 }

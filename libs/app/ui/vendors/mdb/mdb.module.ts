@@ -7,7 +7,6 @@ import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 import { TranslateLocaleModule } from '@movit/app/module';
 import { MdbPaginationModule } from "./components/pagination/mdb.pagination.module";
 
-
 @NgModule({
   imports: [CommonModule, TranslateLocaleModule],
   exports: [

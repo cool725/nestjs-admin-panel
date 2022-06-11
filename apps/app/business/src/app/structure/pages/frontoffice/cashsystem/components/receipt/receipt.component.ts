@@ -13,4 +13,6 @@ export class CashSystemReceiptComponent {
   @Input() invoice: number = 0;
   @Input() change: number = 0;
 
+  currency = 'CHF'
+
 }

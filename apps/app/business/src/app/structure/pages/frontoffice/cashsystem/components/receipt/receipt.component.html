@@ -1,23 +1,23 @@
-<div class="bg-white shadow-sm w-100 p-1">
-  <div class="d-flex justify-content-between">
+<div class="receipt-container bg-white shadow-sm w-100 p-1">
+  <div class="">
     <span class="title">{{ 'total' | translate | titlecase }}:</span>
-    <span class="value"> {{ total }}</span>
+    <span class="value pe-1"> {{ total | toFixed}}</span>
   </div>
-  <div class="d-flex justify-content-between">
+  <div class="">
     <span class="title">{{ 'paid' | translate | titlecase }}:</span>
-    <span class="value">{{ paid }}</span>
+    <span class="value pe-1">{{ paid | toFixed}}</span>
   </div>
-  <div class="d-flex justify-content-between">
+  <div class=" mb-3">
     <span class="title">{{ 'invoiced' | translate | titlecase }}:</span>
-    <span class="value">{{ invoice }}</span>
+    <span class="value pe-1">{{ invoice | toFixed }}</span>
   </div>
-  <br >
-  <div class="d-flex justify-content-between">
+
+  <div class="">
     <span class="title fw-bold">{{ 'to pay' | translate | titlecase }}:</span>
-    <span class="value fw-bold">{{ total - paid }}</span>
+    <span class="value fw-bold pe-1">{{ total - paid | toFixed}}</span>
   </div>
-  <div class="d-flex justify-content-between">
+  <div class="">
     <span class="title">{{ 'change' | translate | titlecase }}:</span>
-    <span class="value">{{ change }}</span>
+    <span class="value pe-1">{{ change | toFixed }}</span>
   </div>
 </div>

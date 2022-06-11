@@ -7,6 +7,9 @@
             <i  *ngIf="!category.isCollapsed" class="fa fa-minus ms-1"></i>
         </div>
     </div>
+
+    <movit-cashsystem-service-row-item *ngIf="!category.isCollapsed" [row]="row" [category]="category" [items]="category.items"></movit-cashsystem-service-row-item>
+
     <ng-container *ngIf="(category && !category.isCollapsed && category.children.length )">
         <movit-cashsystem-service-row
                 *ngFor="let cat of category.children"

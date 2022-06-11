@@ -3,6 +3,7 @@ import { PageController } from '../../page.controller';
 import {CashSystemSettingsService} from "./packages/services/cashsystem.service-settings";
 import { CashSystemItemsService } from "./packages/services/cashsystem.service-items";
 import { CashSystemProfileService } from "./packages/services/cashsystem.service-profile";
+import {ItemCategory} from "./packages/classes/cashsystem.item.class";
 
 @Component({
   selector: 'movit-main-cashsystem',
@@ -31,7 +32,9 @@ export class MainCashSystemComponent extends PageController {
     this.onLoadAndSetData(
       this.itemsService.getServices(),
       this.itemsService.services$,
-        (categories) => categories.data
+        (categories) => categories.data?.map(
+            ItemCategory.create
+        )
     )
   }
 

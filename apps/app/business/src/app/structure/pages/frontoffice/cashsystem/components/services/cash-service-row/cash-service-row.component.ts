@@ -1,12 +1,7 @@
 import { Component, OnInit,Input ,Output,EventEmitter} from '@angular/core';
+import { ItemCategory } from '../../../packages/classes/cashsystem.item.class';
 
-class ItemCategory {
-  title: string
-  color: string
-    items: any[]
-  children: ItemCategory[]
-  isCollapsed: boolean
-}
+
 
 @Component({
   selector:    'movit-cashsystem-service-row',

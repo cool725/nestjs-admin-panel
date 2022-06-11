@@ -11,36 +11,6 @@
   }
 }
 
-// squares
-.chooser-item {
-  align-self: center;
-  width: 125px;
-  position: relative;
-  overflow: hidden;
-  border: 4px;
-  min-height: 66px;
-  margin: 3px;
-  padding: 5px;
-  border-radius: 10px;
-  background-size: cover!important;
-  text-align: center;
-  padding-bottom: 0;
-}
-.chooser-item.bar{
-  width: 100%!important;
-  border-radius: 0px!important;
-  height: 30px!important;
-  margin: 0!important;
-}
-.has-img{
-  height: 110px !important;
-  display: flex;
-  div{
-    align-self: flex-end;
-    width: 100%;
-    background: #eaeaea;
-  }
-}
 
 
 $colour1: rgb(75, 187, 255); // white
@@ -73,14 +43,18 @@ $colour10,$colour11,$colour12,$colour13,$colour14,$colour15,$colour16 ,$colour17
 $colour20,$colour21,$colour22,$colour23 ;
 
 @for $i from 1 through length($colors) {
-  .cat-row-item-#{$i}{
-    background: nth($colors, $i);
-  }
-  .row-item-#{$i}{
-    background: nth($colors, $i);
-    &.has-img div{
+  :host{
+   ::ng-deep{
+    .cat-row-item-#{$i}{
       background: nth($colors, $i);
     }
+    .row-item-#{$i}{
+      background: nth($colors, $i);
+      &.has-img div{
+        background: nth($colors, $i);
+      }
+    }
+  }
   }
 }
 

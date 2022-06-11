@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {CashSystemStore} from "../../packages/services/cashsystem.store";
 
 @Component({
   selector: 'movit-cashsystem-basket',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./basket.component.scss'],
 })
 export class CashSystemBasketComponent {
-
+  constructor(public store:CashSystemStore) {
+  }
 }

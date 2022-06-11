@@ -114,9 +114,9 @@ export class Table<Type, Filter extends ITableBaseFilter> {
     return queryParams;
   }
 
-  public getFilterValuesAndPaginationAsHttpParams():HttpParams{
+  public getFilterValuesAndPaginationAsHttpParams(resetCurrentPage = false):HttpParams{
     let queryParams = this.getFilterValuesAsHttpParams();
-    queryParams = queryParams.append('page',(this.pagination.currentPage || 0).toString())
+    queryParams = queryParams.append('page',(resetCurrentPage ? 0 : (this.pagination.currentPage || 0)).toString())
     queryParams = queryParams.set('limit',(this.pagination.perPage || 10 ).toString());
     return queryParams
   }

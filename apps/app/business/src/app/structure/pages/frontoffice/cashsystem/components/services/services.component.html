@@ -21,17 +21,10 @@
         -->
 
         <ng-container *ngIf="services$ | async as categories">
-          <ng-container *ngFor="let cat of categories ;let i  = index">
-            <cat-cash-service-item
-                    [filterValue]="filterValue"
-                    [showOnlyLowestItem]="true"
-                    (onItemSelect)="itemClick($event)"
-                    [row]="i+1"
-                    [cat]="cat"
-                    style="width: 100%"
-                    [typ]="'services'"
-                    [showCatLine]="0">
-            </cat-cash-service-item>
+          <ng-container *ngFor="let category of categories ;let i  = index">
+            <movit-cashsystem-service-row-item
+                    *ngFor="let category of category.children" [category]="category" [row]="i + 1"
+            ></movit-cashsystem-service-row-item>
           </ng-container>
         </ng-container>
 

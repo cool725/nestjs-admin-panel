@@ -1,5 +1,5 @@
 <div class="bg-white h-100 overflow-y-auto shadow">
-  <div class="services-tab row animated fadeIn pt-2" >
+  <div class="services-tab row pt-2" >
     <div  *ngIf="canShowTab('manual')"      id="cash--service-tab_manual"       (click)="changeView('manual')"   class=" btn border-0 tab-items"  > {{'eingabe' | translate | titlecase}} </div>
     <div  *ngIf="canShowTab('services')"    (click)="changeView('services')"   class=" btn border-0 tab-items"> {{'services' | translate | titlecase}} </div>
     <div  *ngIf="canShowTab('products')"     (click)="changeView('products')" class=" btn border-0 tab-items"> {{'apps_products' | translate | titlecase}}  </div>
@@ -20,11 +20,9 @@
            <input (keyup.enter)="clickFirstItem()" [(ngModel)]="filterValue" class="col-12 text-center border-0 " placeholder="{{'search' | translate}}" >
         -->
 
-        <ng-container *ngIf="services$ | async as categories">
+        <ng-container *ngIf="itemCategories$ | async as categories">
           <ng-container *ngFor="let category of categories ;let i  = index">
-            <movit-cashsystem-service-row-item
-                    *ngFor="let category of category.children" [category]="category" [row]="i + 1"
-            ></movit-cashsystem-service-row-item>
+            <movit-cashsystem-service-row [category]="category" [row]="i + 1"></movit-cashsystem-service-row>
           </ng-container>
         </ng-container>
 

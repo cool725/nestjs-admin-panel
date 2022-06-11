@@ -21,7 +21,7 @@ export class CashSystemServicesComponent {
 
   @Input() currentTab = 'services'
 
-  services$:BehaviorSubject<any[]>
+  @Input() itemCategories$:BehaviorSubject<any[]>
 
   setDefault(){
     this.allowedTabs = [

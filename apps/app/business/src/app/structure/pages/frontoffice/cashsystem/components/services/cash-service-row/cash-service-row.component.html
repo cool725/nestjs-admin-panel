@@ -1,0 +1,17 @@
+<ng-container *ngIf="category">
+    <div *ngIf="hasItems(category.items, category.children) "
+         class="col-12 cat-title cat-row-item-{{row}}" [style.background-color]="category.color || bgColor">
+        <div><a>{{levelTreeSeperator}}</a><b>{{category.title}}</b></div>
+        <div class="cat-title-icon" (click)="category.isCollapsed = !category.isCollapsed">
+            <i  *ngIf="category.isCollapsed" class="fa fa-plus ms-1"></i>
+            <i  *ngIf="!category.isCollapsed" class="fa fa-minus ms-1"></i>
+        </div>
+    </div>
+    <ng-container *ngIf="(category && !category.isCollapsed && category.children.length )">
+        <movit-cashsystem-service-row
+                *ngFor="let cat of category.children"
+                [category]="cat"
+                [depthLevel]="depthLevel + 1"
+        ></movit-cashsystem-service-row>
+    </ng-container>
+</ng-container>

@@ -30,7 +30,8 @@ export class MainCashSystemComponent extends PageController {
   getServices(){
     this.onLoadAndSetData(
       this.itemsService.getServices(),
-      this.itemsService.services$
+      this.itemsService.services$,
+        (categories) => categories.data
     )
   }
 

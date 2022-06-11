@@ -15,6 +15,7 @@ import { CashSystemServicesItemComponent } from "./services/cash-service-item/ca
 
 import { ToFixedPipe} from "@movit/app/common";
 import { FormsModule } from "@angular/forms";
+import {CashSystemServicesRowComponent} from "./services/cash-service-row/cash-service-row.component";
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FormsModule } from "@angular/forms";
     CashSystemCalculatorComponent,
     CashSystemReceiptComponent,
     CashSystemServicesComponent,
+    CashSystemServicesRowComponent,
     CashSystemServicesItemComponent,
     CashSystemSettingsComponent,
     ToFixedPipe

@@ -2,8 +2,11 @@
 .services-tab{
    width: 100%;
    display:flex ;
-  overflow-x: auto;
-  .tab-items{
+   overflow-x: auto;
+   flex-wrap: nowrap;
+    margin-left: 0;
+    margin-right: 0;
+  .tab-items {
     box-shadow:none;
     min-width: 110px;
     border-right: 1px #ececec solid !important;

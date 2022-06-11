@@ -16,7 +16,9 @@
    <ng-container [ngSwitch]="1">
      <div *ngSwitchCase="1" class="h-100 grid grid-cols-3">
        <div class="c1 h-100">
-         <movit-cashsystem-services></movit-cashsystem-services>
+         <movit-cashsystem-services
+          [itemCategories$]="itemsService.services$"
+         ></movit-cashsystem-services>
        </div>
        <div class="c2 h-100">
          <movit-cashsystem-basket></movit-cashsystem-basket>

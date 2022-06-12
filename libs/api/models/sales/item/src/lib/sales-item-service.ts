@@ -135,6 +135,14 @@ export class SalesItemService {
   }
 
   async deleteService(companyId, itemId) {
+    this.itemPriceRepo.find({
+      where: {
+        companyId: companyId,
+        type: 'S',
+        itemId: itemId,
+      }})
+      .then(items => {items.map(item => item.removeTranslations())});
+
     return this.itemRepo
       .findOne({
         where: {

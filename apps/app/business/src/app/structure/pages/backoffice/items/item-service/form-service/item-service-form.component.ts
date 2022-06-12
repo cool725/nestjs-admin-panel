@@ -45,7 +45,6 @@ export class ItemServiceFormComponent extends FormController<ItemService> {
     );
   }
 
-
   saveService(service: ItemService) {
     this.api.item$.next(<any>null);
     return this.api.saveServiceItem(service).subscribe((service: any) => {
@@ -63,7 +62,7 @@ export class ItemServiceFormComponent extends FormController<ItemService> {
       }
       data.data.push(service);
       this.api.items$.next(data);
-      this.cancel();
+      this.cancel(true);
     });
   }
 
@@ -87,7 +86,7 @@ export class ItemServiceFormComponent extends FormController<ItemService> {
         const current = data.data.find(s => s.itemId == service.itemId)
         if(current) Object.assign(current,service)
         this.api.items$.next(data);
-        this.cancel()
+        this.cancel(true);
       });
   }
 
@@ -95,15 +94,16 @@ export class ItemServiceFormComponent extends FormController<ItemService> {
     title: 'Ok?',
   })
   deleteService({ itemId }: ItemService) {
-    this.cancel();
-    return this.api.deleteServiceItem(itemId).subscribe(() => this.getData());
+    return this.api.deleteServiceItem(itemId).subscribe(() => {
+      this.cancel(true);
+    });
   }
 
   @Confirmable({
     title: 'Ok?',
   })
   deletePriceItem({ itemId, priceId }:any) {
-    return this.api.deleteServicePriceItem(itemId,priceId).subscribe(() => this.getData());
+    return this.api.deleteServicePriceItem(itemId,priceId).subscribe();
   }
 
   // refactore
@@ -115,7 +115,8 @@ export class ItemServiceFormComponent extends FormController<ItemService> {
    // this.previewVisible = true;
   };
 
-  cancel() {
+  cancel(emit = false) {
+    if(emit)this.onCancel.next(null)
     this.api.item$.next(<any>null);
     this.closeModal();
   }

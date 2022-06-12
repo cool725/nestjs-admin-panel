@@ -1,15 +1,28 @@
-<table>
-    <tr>
-        <td>Preisklasse</td>
-        <td> </td>
-        <td> </td>
-    </tr>
-</table>
 
-<div class="container">
+<button type="button" 
+        class="btn-close position-absolute top-0 end-0 pe-2 pt-2" 
+        aria-label="Close"
+        (click)="closeModal(null)">
+</button>
+
+<div class="header d-flex p-4 pb-0 w-100">
+    <h3 class="flex-fill me-2">{{'Preisklasse' | translate }}</h3>
+    <select class="flex-fill form-control">
+        <option value="employees">{{ 'employees' | translate | titlecase }}</option>
+    </select>
+    <select class="flex-fill form-control">
+        <option value="clients">{{ 'clients' | translate | titlecase }}</option>
+        <option value="b2c">{{ 'b2c' | translate | titlecase }}</option>
+        <option value="demo">{{ 'demo' | translate | titlecase }}</option>
+    </select>
+</div>
+<hr class="mx-4"/>
+<div class="container d-flex justify-content-evenly p-4 pt-0">
     <ng-container *ngFor="let price of prices">
-        <div (click)="clickAction(price)" [style.background-color]="bgColor" class="menu-open-button chooser-item">
-            {{price.priceSell}}
+        <div (click)="clickAction(price)" [style.background-color]="bgColor" class="menu-open-button chooser-item d-flex flex-column">
+            <span class="fs-4 fw-bold">{{ price.priceSell | toFixed }}</span>
+            <span class="fw-bold">{{ price.description}}</span>    <!-- This field is not exist-->
+            <span class="fw-bold">{{ price.duration}} {{'min' | translate }}</span>    
         </div>
     </ng-container>
 </div>

@@ -45,8 +45,5 @@ import {
     CashSystemServicesComponent,
     CashSystemSettingsComponent,
   ],
-  entryComponents:[
-    CashSystemServicesItemPriceChooserComponent
-  ]
 })
 export class SharedCashSystemComponentsModule {}

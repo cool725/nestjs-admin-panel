@@ -8,7 +8,12 @@
         </div>
     </div>
 
-    <movit-cashsystem-service-row-item *ngIf="!category.isCollapsed" [row]="row" [category]="category" [items]="category.items"></movit-cashsystem-service-row-item>
+    <movit-cashsystem-service-row-item *ngIf="!category.isCollapsed" 
+        [row]="row" 
+        [category]="category" 
+        [items]="category.items"
+        [bgColor]="'#4bbbff'">
+    </movit-cashsystem-service-row-item>
 
     <ng-container *ngIf="(category && !category.isCollapsed && category.children.length )">
         <movit-cashsystem-service-row

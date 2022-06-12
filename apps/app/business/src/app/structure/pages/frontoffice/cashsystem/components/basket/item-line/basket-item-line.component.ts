@@ -1,5 +1,4 @@
 import {Component, Input} from '@angular/core';
-import {ItemTransaction} from "../../../packages/classes/cashsystem.item.class";
 import {CashSystemStore} from "../../../packages/services/cashsystem.store";
 import {ItemBillGroup} from "../../../packages/classes/cashsystem.basket.class";
 
@@ -12,6 +11,5 @@ export class CashSystemBasketItemLineComponent {
 
   @Input( ) billGroup:ItemBillGroup
 
-  constructor(public store:CashSystemStore) {
-  }
+  constructor(public store:CashSystemStore) {}
 }

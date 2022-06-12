@@ -138,8 +138,11 @@ export class CashSystemBasket{
         item.active = true;
         item.setPrice(price);
 
-        if(this.itemIsUnique(item)){
-            if(item.lineId == 1 || !item.lineId) item.lineId = this.items[0] ? (1+this.items[this.items.length-1].lineId) : item.lineId
+        /**
+         * Add item or increment counting
+         * */
+        if(this.itemIsUnique(item,true)){
+            if(item.lineId == 1 || !item.lineId) item.lineId = this.items[0] ? (this.items[this.items.length-1].lineId + 1) : item.lineId
             this.items.push(item as ItemTransaction)
         }
 
@@ -154,7 +157,6 @@ export class CashSystemBasket{
         if( i >= 0 ){
             if(this.items[i].amount > 1) this.items[i].amount--;
             else this.items.splice(i,1)
-
         }
         this.doUpdate()
         //if(save)this.ON.save()

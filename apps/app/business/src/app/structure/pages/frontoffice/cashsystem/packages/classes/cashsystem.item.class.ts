@@ -61,7 +61,7 @@ export class ItemTransaction{
 
     transactionId
 
-    lineId
+    lineId = 1
 
     billId
 

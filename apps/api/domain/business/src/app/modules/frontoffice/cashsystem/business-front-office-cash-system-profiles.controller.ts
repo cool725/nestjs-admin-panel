@@ -10,7 +10,7 @@ import { GetPagination, Pagination } from "../../../../../../../../../libs/api/c
 
 @Controller(FrontOffice.resolePaths([FrontOffice.CashSystem.PATHProfiles]))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)
-export class BusinessFrontofficeCashSystemProfilesController {
+export class BusinessFrontOfficeCashSystemProfilesController {
   constructor(
     private profilesService: ProfilesService
   ) {}

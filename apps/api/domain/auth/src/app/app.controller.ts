@@ -38,14 +38,14 @@ export class AuthController {
     @Body() authCredentialsDto: AuthUserCredentialsDto,
     @Res({ passthrough: true }) res: Response
   ): Promise<{ accessToken: string }> {
-    return this.authService.signIn(authCredentialsDto).then(async (result) => {
+    return this.authService.signIn(authCredentialsDto)
+        .then(async (result) => {
       if (result && result.accessToken) {
         /* Verify if user has companyRole */
         const user: any = {
           userId: result.user.id,
           authCreatedAt: result.user.authCreatedAt,
         };
-
 
         const list = await this.companyService.listAllowedBusinessFromUser(user, {});
 
@@ -59,6 +59,7 @@ export class AuthController {
           ...result,
           uuId: authCredentialsDto.uuId,
         });
+
       }
       return result;
     });

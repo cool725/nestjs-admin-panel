@@ -1,6 +1,6 @@
 <ng-container *ngFor="let item of billGroup.items">
-    <tr  class="finalized-{{item.finalized}}" *ngIf="item.finalized === 0">
-        <td width="5%" (click)="store.basket.itemRemove(item.lineId)">
+    <tr class="finalized-{{item.finalized}}" *ngIf="item.finalized === 0">
+        <td class="cursor-pointer" width="5%" (click)="store.basket.itemRemove(item.lineId)">
             <i class="fa fa-trash" style="padding-top: 10px; font-size: 16px; padding-left: 2px; opacity: 0.3;"></i>
         </td>
         <td width="40%">

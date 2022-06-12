@@ -17,9 +17,11 @@
     </select>
 </div>
 <hr class="mx-4"/>
-<div class="container d-flex justify-content-evenly p-4 pt-0">
+<div class="container d-flex flex-wrap justify-content-evenly p-4 pt-0">
     <ng-container *ngFor="let price of prices">
-        <div (click)="clickAction(price)" [style.background-color]="bgColor" class="menu-open-button chooser-item d-flex flex-column">
+        <div (click)="clickAction(price)" 
+            [style.background-color]="bgColor" 
+            class="menu-open-button chooser-item d-flex flex-column">
             <span class="fs-4 fw-bold">{{ price.priceSell | toFixed }}</span>
             <span class="fw-bold">{{ price.description}}</span>    <!-- This field is not exist-->
             <span class="fw-bold">{{ price.duration}} {{'min' | translate }}</span>    

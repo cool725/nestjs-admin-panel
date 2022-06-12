@@ -14,6 +14,7 @@ import {
 import { SaleItemEntity } from './sale.entity.item';
 import Translatable from "../../../../../../common/decorator/decorator.translatable";
 import {TenantCompanyTranslatableEntity} from "../../../../../company/src/tentant/company.tentant";
+import { SaveOptions } from "typeorm/repository/SaveOptions";
 
 @Entity('sell_item_price')
 @Index(['companyId', 'type'])
@@ -66,7 +67,7 @@ export class SaleItemPriceEntity extends Translatable(TenantCompanyTranslatableE
   images = [];
 
   public getId() {
-    return this.itemId;
+    return this.priceId;
   }
 
   @BeforeInsert()
@@ -83,6 +84,16 @@ export class SaleItemPriceEntity extends Translatable(TenantCompanyTranslatableE
   @BeforeRemove()
   protected beforeRemove() {
     this.removeTranslations();
+  }
+
+
+  update(options?: SaveOptions){
+    return new Promise(resolve => {
+      this.save(options).then(()=>{
+        this.afterUpdate();
+        resolve(true)
+      })
+    })
   }
 
 }

@@ -111,7 +111,6 @@ export class SalesItemService {
     await this.savePrices(companyId, itemId, service.prices);
     await this.saveEmployees(companyId, itemId, service.employees);
 
-
     return saleItemEntity.update();
   }
 
@@ -212,7 +211,7 @@ export class SalesItemService {
   // region prices/variants
    private async savePrices(companyId:number, itemId:number, prices:any[]){
 
-    for(let i = 0; i<prices?.length;i++){
+    for(let i = 0; i< prices?.length;i++){
       const price = prices[i];
 
       if(price.priceId){
@@ -225,11 +224,13 @@ export class SalesItemService {
 
           }
         });
+
         if(priceOld){
           Object.assign(priceOld, price)
           priceOld.companyId = companyId;
           priceOld.setTranslationFromLabelObj(price.label)
-          await priceOld.save()
+
+          await priceOld.update()
         }
       }else {
         const newPrice = this.itemPriceRepo.create()
@@ -242,11 +243,6 @@ export class SalesItemService {
         await newPrice.setTranslationFromLabelObj(price.label)
         await doInsert(newPrice)
       }
-
-
-
-
-
 
     }
 

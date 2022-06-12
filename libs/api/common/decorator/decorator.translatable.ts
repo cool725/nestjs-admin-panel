@@ -20,10 +20,7 @@ export default function Translatable<TBase extends Constructor>(
     public removeTranslations() {
       const self: any = this;
       if (self.getId() && self.companyId) {
-        const customParams = keyPrefix
-          ? { key: Like(`${keyPrefix}:%`) }
-          : { key: Not(Like(`cat:%`)) };
-
+        const customParams = keyPrefix ? { key: Like(`${keyPrefix}:%`) } : { key: Not(Like(`%:%`)) };
         TranslationLabelEntity.delete({
           companyId: self.companyId,
           id: self.getId(),
@@ -36,7 +33,7 @@ export default function Translatable<TBase extends Constructor>(
     public async saveTranslations() {
       let self: any = this;
       if (!self.labels) self.labels = [];
-      console.log('called', self.labels.length);
+
       for (let i = 0; i < self.labels.length; i++) {
         const label: TranslationLabelEntity = self.labels[i];
 
@@ -49,6 +46,7 @@ export default function Translatable<TBase extends Constructor>(
             languageId: label.languageId,
           });
           label.id = self.getId();
+          console.log('>>>>>>>>>>',label.id)
           await TranslationLabelEntity.insert(label);
         }
       }

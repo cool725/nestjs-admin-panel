@@ -14,7 +14,7 @@ import { CompanyGuard } from '@movit/api/auth';
 import { GetPagination } from '../../../../../../../../../../libs/api/common/decorator';
 import { GetLanguage } from '../../../../../../../../../../libs/api/common/decorator/decorator.language';
 import { AppsRolesGuard } from '../../../../../../../../../../libs/api/models/auth/apps-role/src/guards/auth.guards.apps';
-import { SalesItemService } from '../../../../../../../../../../libs/api/models/sales/item/src/lib/sales-item-service';
+import { SalesItemService } from "@movit/api/sales/item";
 import { CompanyEntity } from '@movit/api/business';
 import { GetCompany } from '@movit/api/business';
 

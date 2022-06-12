@@ -37,8 +37,11 @@ export class CashSystemServicesItemComponent  {
     let price = item.prices[0];
 
     if(item.prices.length > 1){
+      // todo add backdrop
       price = await this.showPriceChooser(item)
     }
+
+    if(!price)return
 
     this.store.basket.itemAdd(item,price)
   }
@@ -61,7 +64,10 @@ export class CashSystemServicesItemComponent  {
               },
               injectableData:{
                 prices: item.prices,
-                bgColor:this.bgColor
+                bgColor:this.bgColor,
+                priceClasses:{
+                  profiles: this.store.priceClasses.profiles.getValue()
+                }
               }
             },
           },resolve

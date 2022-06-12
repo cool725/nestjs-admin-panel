@@ -90,4 +90,7 @@ export class ItemServiceAPI<T, C> {
   getEmployees(searchTerm:string = ''){
     return this.http.get(this.basePath + ('/employees?search='+searchTerm));
   }
+  getPriceClasses(){
+    return this.http.get<any[]>(this.basePath + ('/price-class'));
+  }
 }

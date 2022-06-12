@@ -246,6 +246,8 @@
                 <td>
                   <select mdbInput
                           [(ngModel)]="variant.crmPriceClassId">
+                    <option value="" selected> Keine </option>
+                    <option [value]="variant.priceClassId" *ngFor="let priceClass of priceClasses">{{priceClass.title}}</option>
                   </select>
                 </td>
                 <td>

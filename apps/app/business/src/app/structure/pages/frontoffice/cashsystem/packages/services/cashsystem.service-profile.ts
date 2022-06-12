@@ -25,7 +25,10 @@ export class CashSystemProfileService {
 
   }
 
-  saveSettings(){
-
+  getPriceClass(){
+    let httpParams = new HttpParams()
+    return this.http.get<ICashSystemSettings>(this.getPath('price-class' ),{
+      params:httpParams
+    });
   }
 }

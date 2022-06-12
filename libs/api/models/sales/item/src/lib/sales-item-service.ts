@@ -214,18 +214,40 @@ export class SalesItemService {
 
     for(let i = 0; i<prices?.length;i++){
       const price = prices[i];
-      const newPrice = this.itemPriceRepo.create()
 
-      newPrice.companyId = companyId;
-      newPrice.itemId = itemId;
-      newPrice.type = price.type;
-      newPrice.priceSell = price.priceSell;
+      if(price.priceId){
+        const priceOld = await this.itemPriceRepo.findOne({
+          where:{
+            companyId:companyId,
+            itemId:itemId,
+            type:price.type,
+            priceId:price.priceId,
 
-      newPrice.duration = price.duration;
+          }
+        });
+        if(priceOld){
+          Object.assign(priceOld, price)
+          priceOld.companyId = companyId;
+          priceOld.setTranslationFromLabelObj(price.label)
+          await priceOld.save()
+        }
+      }else {
+        const newPrice = this.itemPriceRepo.create()
+        newPrice.companyId = companyId;
+        newPrice.itemId = itemId;
+        newPrice.type = price.type;
+        newPrice.priceSell = price.priceSell;
+        newPrice.duration = price.duration;
+        newPrice.crmPriceClassId = price.crmPriceClassId;
+        await newPrice.setTranslationFromLabelObj(price.label)
+        await doInsert(newPrice)
+      }
 
-      await newPrice.setTranslationFromLabelObj(price.label)
 
-      await doInsert(newPrice)
+
+
+
+
     }
 
 

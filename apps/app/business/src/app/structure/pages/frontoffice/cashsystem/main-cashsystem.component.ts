@@ -4,6 +4,7 @@ import {CashSystemSettingsService} from "./packages/services/cashsystem.service-
 import { CashSystemItemsService } from "./packages/services/cashsystem.service-items";
 import { CashSystemProfileService } from "./packages/services/cashsystem.service-profile";
 import {ItemCategory} from "./packages/classes/cashsystem.item.class";
+import { CashSystemStore } from "./packages/services/cashsystem.store";
 
 @Component({
   selector: 'movit-main-cashsystem',
@@ -14,6 +15,7 @@ export class MainCashSystemComponent extends PageController {
 
   constructor(
       override injector: Injector,
+      private store: CashSystemStore,
       private settings: CashSystemSettingsService,
       public itemsService: CashSystemItemsService,
       private profileService: CashSystemProfileService,
@@ -25,6 +27,7 @@ export class MainCashSystemComponent extends PageController {
 
   getData(): void {
     this.getSettings()
+    this.getPriceClass()
     this.getServices()
   }
 
@@ -42,6 +45,13 @@ export class MainCashSystemComponent extends PageController {
     this.onLoadAndSetData(
       this.settings.getSettings(),
       this.settings.settings$
+    )
+  }
+
+  getPriceClass(){
+    this.onLoadAndSetData(
+      this.profileService.getPriceClass(),
+      this.store.priceClasses.profiles
     )
   }
 }

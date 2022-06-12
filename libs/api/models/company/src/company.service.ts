@@ -63,6 +63,7 @@ export class CompanyService {
     return this.companyRepo.getBusinessUsers(company);
   }
 
+
   /*
    * Loads user that is assigned to company
    * */

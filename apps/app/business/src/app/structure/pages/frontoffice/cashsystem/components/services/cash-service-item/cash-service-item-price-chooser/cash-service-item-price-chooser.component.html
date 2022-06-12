@@ -1,6 +1,6 @@
 
-<button type="button" 
-        class="btn-close position-absolute top-0 end-0 pe-2 pt-2" 
+<button type="button"
+        class="btn-close position-absolute top-0 end-0 pe-2 pt-2"
         aria-label="Close"
         (click)="closeModal(null)">
 </button>
@@ -10,21 +10,24 @@
     <select class="flex-fill form-control">
         <option value="employees">{{ 'employees' | translate | titlecase }}</option>
     </select>
-    <select class="flex-fill form-control">
-        <option value="clients">{{ 'clients' | translate | titlecase }}</option>
-        <option value="b2c">{{ 'b2c' | translate | titlecase }}</option>
-        <option value="demo">{{ 'demo' | translate | titlecase }}</option>
+    <select (change)="setPriceClass($event.target.value,'profile')"
+      class="flex-fill form-control">
+      <option
+          *ngFor="let item of priceClasses.profiles"
+          [value]="item.priceClassId" >
+        {{item.title}}
+      </option>
     </select>
 </div>
 <hr class="mx-4"/>
 <div class="container d-flex flex-wrap justify-content-evenly p-4 pt-0">
     <ng-container *ngFor="let price of prices">
-        <div (click)="clickAction(price)" 
-            [style.background-color]="bgColor" 
+        <div (click)="clickAction(price)"
+            [style.background-color]="bgColor"
             class="menu-open-button chooser-item d-flex flex-column">
-            <span class="fs-4 fw-bold">{{ price.priceSell | toFixed }}</span>
+            <span class="fs-4 fw-bold">{{ getPrice(price.priceSell) | toFixed }}</span>
             <span class="fw-bold">{{ price.description}}</span>    <!-- This field is not exist-->
-            <span class="fw-bold">{{ price.duration}} {{'min' | translate }}</span>    
+            <span class="fw-bold">{{ price.duration}} {{'min' | translate }}</span>
         </div>
     </ng-container>
 </div>

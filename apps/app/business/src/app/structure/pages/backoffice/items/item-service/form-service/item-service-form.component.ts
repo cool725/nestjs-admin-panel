@@ -23,6 +23,8 @@ export class ItemServiceFormComponent extends FormController<ItemService> {
 
   employees$:Observable<any[]> = <any>this.api.getEmployees();
 
+  priceClasses:{title:string,priceClassId:number}[] = []
+
   constructor(public api: ItemServiceAPI<ItemService, ItemCategory>, override injector: Injector) {
     super(injector);
   }
@@ -31,6 +33,8 @@ export class ItemServiceFormComponent extends FormController<ItemService> {
     if (this.getId()) {
       this.getService();
     }
+
+    this.api.getPriceClasses().subscribe( priceClasses =>  this.priceClasses = priceClasses)
   }
 
   getService(id = this.getId()) {
@@ -40,6 +44,7 @@ export class ItemServiceFormComponent extends FormController<ItemService> {
       ItemService.create
     );
   }
+
 
   saveService(service: ItemService) {
     this.api.item$.next(<any>null);

@@ -9,11 +9,9 @@
   height: 80%;
   .basket-table {
     position: relative;
-    border-collapse: collapse; 
-    th, td {
-      padding: 0.1rem;
-    }
+    border-collapse: collapse;
     th {
+      font-weight: 300;
       background: white;
       position: sticky;
       top: 0;

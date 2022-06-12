@@ -1,4 +1,4 @@
-:host{
+:host {
   height: 100%;
   width: 100%;
 
@@ -9,8 +9,19 @@
   }
 }
 
-.items-container{
+.items-container {
   overflow-y: auto;
   overflow-x: hidden;
   height: 80%;
+  .basket-table {
+    position: relative;
+    border-collapse: collapse;
+    th {
+      font-weight: 300;
+      background: white;
+      position: sticky;
+      top: 0;
+      box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+    }
+  }
 }

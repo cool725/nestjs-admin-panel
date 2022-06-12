@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {catchError, Observable, of} from 'rxjs';
 
 @Injectable()
 export class TranslateService {
@@ -31,11 +31,18 @@ export class TranslateService {
       options: any = {}
   ) {
     return new Promise(resolve => {
-      this.loadTranslations(section, lang).subscribe((languages) => {
+      this.loadTranslations(section, lang)
+          .pipe(catchError(
+              err => {
+                resolve(true)
+                return of(null)
+              }
+          ))
+          .subscribe((languages) => {
         if (options && options.isDefault) {
           Object.assign(this.defaultTranslations, languages);
         } else {
-          this.translations = languages;
+          this.translations = languages || {};
         }
         resolve(languages);
       });

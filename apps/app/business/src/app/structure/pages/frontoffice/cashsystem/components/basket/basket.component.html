@@ -1,23 +1,50 @@
 <movit-cashsystem-basket-header></movit-cashsystem-basket-header>
 
 <div class="items-container">
-    <table class="table">
-        <thead>
-            <tr>
-                <td>
-                    Test
-                </td>
-            </tr>
-        </thead>
-        <tr *ngFor="let itemLine of store.basket.items" >
-            <td class="bg-white">
-              {{itemLine.title}}
-            </td>
-            <td class="bg-white">
-                {{itemLine.price | toFixed}}
-            </td>
-        </tr>
-    </table>
+  <table class="table basket-table">
+    <thead>
+      <tr>
+        <th width="5%"></th>
+        <th width="40%">
+          {{ 'description' | translate | titlecase }}
+        </th>
+        <th width="5%">
+          {{ 'amount' | translate | titlecase }}
+        </th>
+        <th width="15%">
+          {{ 'price' | translate | titlecase }}
+        </th>
+        <th width="15%">
+          {{ 'total' | translate | titlecase }}
+        </th>
+        <th width="10%">
+          {{ 'action' | translate | titlecase }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let itemLine of store.basket.items" class="bg-light bg-gradient">
+        <td width="5%">
+            <i class="fas fa-trash-alt"></i>
+        </td>
+        <td width="40%">
+          {{ itemLine.title }}
+        </td>
+        <td width="5%">
+            {{ itemLine.amount }}
+        </td>
+        <td width="15%">
+            {{ itemLine.price | toFixed }}
+        </td>
+        <td width="15%">
+            {{ itemLine.price * itemLine.amount | toFixed }}
+        </td>
+        <td width="10%">
+            <input class="form-check-input" type="checkbox"/>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <movit-cashsystem-basket-footer></movit-cashsystem-basket-footer>

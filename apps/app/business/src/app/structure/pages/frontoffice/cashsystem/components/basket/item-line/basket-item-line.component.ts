@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {ItemTransaction} from "../../../packages/classes/cashsystem.item.class";
+import {CashSystemStore} from "../../../packages/services/cashsystem.store";
+import {ItemBillGroup} from "../../../packages/classes/cashsystem.basket.class";
 
 @Component({
   selector: 'movit-cashsystem-basket-item-line',
@@ -7,4 +10,8 @@ import { Component } from '@angular/core';
 })
 export class CashSystemBasketItemLineComponent {
 
+  @Input( ) billGroup:ItemBillGroup
+
+  constructor(public store:CashSystemStore) {
+  }
 }

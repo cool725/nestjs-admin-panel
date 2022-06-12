@@ -1,1 +1,30 @@
-toto
+<ng-container *ngFor="let item of billGroup.items">
+    <tr class="finalized-{{item.finalized}}" *ngIf="item.finalized === 0">
+        <td class="cursor-pointer" width="5%" (click)="store.basket.itemRemove(item.lineId)">
+            <i class="fa fa-trash" style="padding-top: 10px; font-size: 16px; padding-left: 2px; opacity: 0.3;"></i>
+        </td>
+        <td width="40%">
+            {{item.title}}
+        </td>
+        <td width="5%" class="text-center">
+            {{item.amount }}
+        </td>
+        <td width="15%" class="text-end">
+            {{item.priceSingle | toFixed}}
+        </td>
+        <td width="15%" class="text-end">
+            {{item.priceTotal | toFixed}}
+        </td>
+        <td width="10%" align="right">
+            <input
+                    [(ngModel)]="item.active"
+                    (change)="store.basket.doUpdate()"
+                    mdbCheckbox
+                    class="form-check-input ms-2"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+            />
+        </td>
+    </tr>
+</ng-container>

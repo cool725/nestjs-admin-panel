@@ -8,7 +8,7 @@ import { HTTPTranslateLoader } from './app.loader.translate';
   imports: [
     /*HttpClientModule*/
   ],
-  providers: [TranslateService, LocaleResolver],
+  providers: [ LocaleResolver],
   declarations: [TranslatePipe],
   exports: [TranslatePipe],
 })
@@ -28,6 +28,7 @@ export class TranslateLocaleModule {
     return {
       ngModule: TranslateLocaleModule,
       providers: [
+        TranslateService,
         { provide: 'TranslateLocaleLoader', useClass: conf.loader.useClass },
       ],
     };

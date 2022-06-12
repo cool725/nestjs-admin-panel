@@ -61,7 +61,7 @@ export class ItemTransaction{
 
     transactionId
 
-    lineId
+    lineId = 1
 
     billId
 
@@ -77,7 +77,7 @@ export class ItemTransaction{
 
     priceId:number
 
-    public price = 0 // todo rename
+    private price = 0;
 
     static create(item?:any):ItemTransaction{
         return Object.assign(new ItemTransaction(),item || {})
@@ -87,5 +87,16 @@ export class ItemTransaction{
         this.price = price.priceSell
     }
 
+    set priceSingle(price){
+        this.price = price
+    }
+
+    get priceSingle(){
+        return this.price
+    }
+
+    get priceTotal(){
+        return this.priceSingle * this.amount
+    }
 
 }

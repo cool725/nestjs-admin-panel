@@ -3,10 +3,9 @@ import { CashSystemModule } from "@movit/api/models/cashsystem";
 import {SellItemModule} from "@movit/api/sales/item";
 import { ProfilesModule } from "@movit/api/profiles";
 
-import {BusinessFrontofficeCashSystemSettingsController} from "./business.frontoffice.cashsystem-settings.controller";
-import { BusinessFrontofficeCashSystemItemsController } from "./business.frontoffice.cashsystem-items.controller";
-import { BusinessFrontofficeCashSystemController } from "./business.frontoffice.cashsystem.controller";
-import { BusinessFrontofficeCashSystemProfilesController } from "./business.frontoffice.cashsystem-profiles.controller";
+ import { BusinessFrontOfficeCashSystemItemsController } from "./business-front-office-cash-system-items.controller";
+import { BusinessFrontOfficeCashSystemController } from "./business.frontoffice.cashsystem.controller";
+import { BusinessFrontOfficeCashSystemProfilesController } from "./business-front-office-cash-system-profiles.controller";
 
 
 @Module({
@@ -16,10 +15,9 @@ import { BusinessFrontofficeCashSystemProfilesController } from "./business.fron
       ProfilesModule,
   ],
   controllers: [
-    BusinessFrontofficeCashSystemController,
-    BusinessFrontofficeCashSystemSettingsController,
-    BusinessFrontofficeCashSystemItemsController,
-    BusinessFrontofficeCashSystemProfilesController
+    BusinessFrontOfficeCashSystemController,
+    BusinessFrontOfficeCashSystemItemsController,
+    BusinessFrontOfficeCashSystemProfilesController
   ],
   providers: [
 

@@ -8,13 +8,13 @@ import {SalesItemService} from "@movit/api/sales/item";
 
 @Controller(FrontOffice.resolePaths([FrontOffice.CashSystem.PATHItems]))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)
-export class BusinessFrontofficeCashSystemItemsController {
+export class BusinessFrontOfficeCashSystemItemsController {
   constructor(
     private itemService: SalesItemService
   ) {}
 
   @Get('services')
-  getSources(
+  getServices(
       @GetCompany() company: ICompany,
       @GetUser() user: AuthUserEntity,
   ) {
@@ -24,5 +24,17 @@ export class BusinessFrontofficeCashSystemItemsController {
         }
     )
   }
+
+    @Get('products')
+    getProducts(
+        @GetCompany() company: ICompany,
+        @GetUser() user: AuthUserEntity)
+    {}
+
+    @Get('vouchers')
+    getVouchers(
+        @GetCompany() company: ICompany,
+        @GetUser() user: AuthUserEntity)
+    {}
 
 }

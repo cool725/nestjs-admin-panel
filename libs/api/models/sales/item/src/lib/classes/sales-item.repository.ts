@@ -229,7 +229,7 @@ export class SaleItemPriceRepository extends Repository<SaleItemPriceEntity> {
                    left join translation_label tl on
                       p.companyId = tl.companyId and
                       p.type = tl.type and
-                      p.itemId = tl.id
+                      p.priceId = tl.id
           where p.companyId = ? and p.type = "S" and p.itemId = ? ${where}
           group by p.priceId , tl.languageId `, params)
             .then((rows) => {

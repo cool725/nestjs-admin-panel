@@ -13,7 +13,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   height: 80%;
-  .basket-table {
+  > table {
     position: relative;
     border-collapse: collapse;
     th {
@@ -23,5 +23,18 @@
       top: 0;
       box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
     }
+    ::ng-deep {
+      td {
+        vertical-align: middle;
+        .icon-delete{
+          padding-top: 7px;
+          font-size: 16px;
+          padding-left: 2px;
+          opacity: 0.3;
+          padding-bottom: 9px;
+        }
+      }
+    }
+
   }
 }

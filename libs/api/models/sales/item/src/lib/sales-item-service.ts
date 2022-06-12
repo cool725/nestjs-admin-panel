@@ -222,6 +222,8 @@ export class SalesItemService {
     for(let i = 0; i< prices?.length;i++){
       const price = prices[i];
 
+      // todo refactore dupplicate code
+      // todo verify if price is valid types
       if(price.priceId){
         const priceOld = await this.itemPriceRepo.findOne({
           where:{
@@ -234,8 +236,13 @@ export class SalesItemService {
         });
 
         if(priceOld){
-          Object.assign(priceOld, price)
+
           priceOld.companyId = companyId;
+          priceOld.itemId = itemId;
+          priceOld.type = price.type;
+          priceOld.priceSell = price.priceSell;
+          priceOld.duration = price.duration;
+          priceOld.crmPriceClassId = price.crmPriceClassId || null;
           priceOld.setTranslationFromLabelObj(price.label)
 
           await priceOld.update()
@@ -247,7 +254,7 @@ export class SalesItemService {
         newPrice.type = price.type;
         newPrice.priceSell = price.priceSell;
         newPrice.duration = price.duration;
-        newPrice.crmPriceClassId = price.crmPriceClassId;
+        newPrice.crmPriceClassId = price.crmPriceClassId  || null;;
         await newPrice.setTranslationFromLabelObj(price.label)
         await doInsert(newPrice)
       }

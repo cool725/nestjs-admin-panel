@@ -92,7 +92,7 @@ export class SaleItemPriceEntity extends Translatable(TenantCompanyTranslatableE
       this.save(options).then(()=>{
         this.afterUpdate();
         resolve(true)
-      })
+      }).then(resolve)
     })
   }
 

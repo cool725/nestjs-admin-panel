@@ -23,7 +23,14 @@ export class ItemServiceFormComponent extends FormController<ItemService> {
 
   employees$:Observable<any[]> = <any>this.api.getEmployees();
 
-  priceClasses:{title:string,priceClassId:number}[] = []
+  priceClasses:{title:string,priceClassId:number}[] = [];
+
+  lang = [
+    { languageId: 1, name: 'de' },
+    { languageId: 2, name: 'en' },
+    { languageId: 3, name: 'fr' },
+    { languageId: 4, name: 'it' }
+  ];
 
   constructor(public api: ItemServiceAPI<ItemService, ItemCategory>, override injector: Injector) {
     super(injector);

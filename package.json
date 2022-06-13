@@ -2,6 +2,7 @@
   "name": "movit",
   "version": "0.0.1",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "ng": "nx",
     "start": "ts-node src/index.ts",
@@ -25,7 +26,6 @@
     "docker:build": "npm run preinstall-webconfig && docker image build --tag admin-framework --progress plain --file Dockerfile .",
     "nx:update": "nx migrate latest && nx migrate --run-migrations"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "13.3.6",
     "@angular/common": "13.3.6",

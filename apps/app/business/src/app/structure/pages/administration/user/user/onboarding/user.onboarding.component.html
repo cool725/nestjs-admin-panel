@@ -77,6 +77,9 @@
             </td>
           </tr>
         </table>
+        <mdb-pagination
+                [paginate]="tableOnBoarding.pagination"
+                (onPageChange)="getData()"></mdb-pagination>
       </div>
     </div>
   </div>

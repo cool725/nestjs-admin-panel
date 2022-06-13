@@ -11,7 +11,6 @@ import { MdbNzSelectDirective } from './directives/mdb.nz-select.directive';
 import { MdbPaginationModule } from "./components/pagination/mdb.pagination.module";
 
 @NgModule({
-  declarations: [MdbNzSelectDirective],
   imports: [CommonModule, TranslateLocaleModule],
   exports: [
     MdbRippleModule,
@@ -20,7 +19,8 @@ import { MdbPaginationModule } from "./components/pagination/mdb.pagination.modu
     MdbCheckboxModule,
     MdbNzSelectDirective,
     MdbPaginationModule,
-    MdbDropdownModule
+    MdbDropdownModule,
+    MdbPaginationModule
   ],
 })
-export class MdbSharedModule { }
+export class MdbSharedModule {}

@@ -3,9 +3,10 @@ import { BusinessBackOfficeSalesItemsProductController } from './business.backof
 import { BusinessBackOfficeSalesItemsServiceController } from './business.backoffice.sales.items.service.controller';
 import { SellItemModule } from '@movit/api/sales/item';
 import {BusinessBackOfficeSalesItemsController} from "./business.backoffice.sales.items.controller";
+import { ProfilesModule } from "@movit/api/profiles";
 
 @Module({
-  imports: [SellItemModule],
+  imports: [SellItemModule,ProfilesModule],
   controllers: [
     BusinessBackOfficeSalesItemsController,
     BusinessBackOfficeSalesItemsServiceController,

@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/api/finance/transaction",
+  "sourceRoot": "libs/api/finance/transaction",
+  "prefix": "movit",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/finance/transaction"],
+      "options": {
+        "jestConfig": "libs/api/finance/transaction/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/api/finance/transaction/src/**/*.ts",
+          "libs/api/finance/transaction/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

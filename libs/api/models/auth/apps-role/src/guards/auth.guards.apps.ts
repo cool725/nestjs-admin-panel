@@ -28,7 +28,7 @@ function createAppsRolesGuard(...ids: number[]) {
                       arr.roleId =  aur.roleId
          where aur.companyId = ? and aur.userId = ? and appId in (${questionMarks})`,
         [companyId, userId, appIds]
-      ).then((r) => (r[0] ? r[0].access.split(',') : []));
+      ).then((r) => (r[0] ? (r[0].access || '').split(',') : []));
     }
 
     protected hasMethodAccess(appAccess, reqMethod) {

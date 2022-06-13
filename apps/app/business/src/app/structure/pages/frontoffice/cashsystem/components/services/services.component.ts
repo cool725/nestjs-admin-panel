@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'movit-cashsystem-services',
@@ -20,6 +21,8 @@ export class CashSystemServicesComponent {
 
   @Input() currentTab = 'services'
 
+  @Input() itemCategories$:BehaviorSubject<any[]>
+
   setDefault(){
     this.allowedTabs = [
       'manual',
@@ -33,12 +36,12 @@ export class CashSystemServicesComponent {
     ]
   }
 
-  canShowTab(tabName:string){
+  canShowTab(tabName: string){
     if(!this.allowedTabs)this.setDefault();
     return this.allowedTabs &&this.allowedTabs.includes(tabName)
   }
 
-  changeView(value:string){
+  changeView(value: string){
     this.currentTab = value
   }
 

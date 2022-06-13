@@ -11,8 +11,14 @@ import { CashSystemSettingsComponent } from './settings/settings.component';
 import { CashSystemBasketFooterComponent } from './basket/footer/basket-footer.component';
 import { CashSystemBasketHeaderComponent } from './basket/header/basket-header.component';
 import { CashSystemBasketItemLineComponent } from './basket/item-line/basket-item-line.component';
-import {ToFixedPipe} from "@movit/app/common";
+import { CashSystemServicesItemComponent } from "./services/cash-service-item/cash-service-item.component";
+
+import { ToFixedPipe} from "@movit/app/common";
 import { FormsModule } from "@angular/forms";
+import {CashSystemServicesRowComponent} from "./services/cash-service-row/cash-service-row.component";
+import {
+  CashSystemServicesItemPriceChooserComponent
+} from "./services/cash-service-item/cash-service-item-price-chooser/cash-service-item-price-chooser.component";
 
 @NgModule({
   declarations: [
@@ -24,6 +30,9 @@ import { FormsModule } from "@angular/forms";
     CashSystemCalculatorComponent,
     CashSystemReceiptComponent,
     CashSystemServicesComponent,
+    CashSystemServicesRowComponent,
+    CashSystemServicesItemComponent,
+    CashSystemServicesItemPriceChooserComponent,
     CashSystemSettingsComponent,
     ToFixedPipe
   ],

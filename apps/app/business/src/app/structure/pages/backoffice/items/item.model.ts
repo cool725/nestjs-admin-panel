@@ -27,6 +27,8 @@ export abstract class Item {
     }
 }
 
+
+
 export class ItemCategory {
     categoryId: number;
 

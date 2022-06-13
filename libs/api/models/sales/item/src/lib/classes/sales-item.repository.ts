@@ -7,8 +7,7 @@ import {SaleItemEmployeeEntity} from "../entities/sale.entity.item.employee";
 
 @EntityRepository(SaleItemEntity)
 export class SaleItemRepository extends Repository<SaleItemEntity> {
-
-  list(companyId: number, languageId: number, options: {categoryId?:number,itemId?:number,searchTerm?:string} = {}) {
+  list(companyId: number, languageId: number, options: {categoryId?:number,itemId?:number,searchTerm?:string,price?:boolean} = {}) {
     const params:any = [companyId];
     let where = '';
 
@@ -35,8 +34,7 @@ export class SaleItemRepository extends Repository<SaleItemEntity> {
     // todo add comment "sip" ?
     where += ' and (tl.key not like "cat:%" and tl.key not like "sip:%")';
 
-    return this.query(
-      `
+    return this.query(`
           select
               s.*,
                group_concat(
@@ -59,9 +57,9 @@ export class SaleItemRepository extends Repository<SaleItemEntity> {
                    )
 
           where s.companyId = ? and s.type = "S" ${where}
-          group by s.itemId, languageId`,
-      params
-    ).then((rows) => {
+          group by s.itemId, languageId`, params)
+        .then(async (rows) => {
+
       if (options.itemId) {
         let baseItem;
         for (let i = 0; i < rows.length; i++) {
@@ -85,18 +83,28 @@ export class SaleItemRepository extends Repository<SaleItemEntity> {
 
       for (let i = 0; i < rows.length; i++) {
         const row = rows[i];
+
         if (row.labels) {
           TranslationLabelEntity.createTranslationObjectByRow(row);
           if (row.label && row.label['title'])
             row.title = row.label['title'][languageId];
           delete row.labels;
         }
+
+        if(options.price){
+            row.prices = await this.query(`
+                select * from sell_item_price where companyId = ? and type = ? and itemId = ?
+            `,[
+                companyId,
+                row.type,
+                row.itemId
+            ])
+        }
       }
 
       return { data: rows };
     });
   }
-
 }
 
 @EntityRepository(SaleItemCategoryEntity)
@@ -189,10 +197,7 @@ export class SaleItemCategoryRepository extends Repository<SaleItemCategoryEntit
       .then((data) => ({ data: data }));
   }
 
-
-  get(
-     categoryId:number, companyId: number, languageId: number, options: any = {}
-  ){
+  get(categoryId:number, companyId: number, languageId: number, options: any = {}){
     options.categoryId = categoryId;
    return this.list(companyId, languageId, options)
        .then(row => row?.data)
@@ -224,7 +229,7 @@ export class SaleItemPriceRepository extends Repository<SaleItemPriceEntity> {
                    left join translation_label tl on
                       p.companyId = tl.companyId and
                       p.type = tl.type and
-                      p.itemId = tl.id
+                      p.priceId = tl.id
           where p.companyId = ? and p.type = "S" and p.itemId = ? ${where}
           group by p.priceId , tl.languageId `, params)
             .then((rows) => {

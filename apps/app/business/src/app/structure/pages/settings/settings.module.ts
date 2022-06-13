@@ -10,14 +10,7 @@ const routes: Routes = [
       import('./locales/settings-locales.module').then(
         (m) => m.SettingsLocalesModule
       ),
-  },
-  {
-    path: 'user',
-    loadChildren: () =>
-      import('./user/user.module').then(
-        (m) => m.SettingsUserModule
-      ),
-  },
+  }
 ];
 
 @NgModule({

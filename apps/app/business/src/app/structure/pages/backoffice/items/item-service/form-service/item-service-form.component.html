@@ -226,13 +226,12 @@
               <tbody>
                <tr *ngFor="let variant of service.prices; let i = index">
                 <td>
-                  <div class="d-flex">
-                    <input mdbInput class="form-control me-2 flex-grow-1" 
+                  <div class="input-group">
+                    <input mdbInput class="form-control" 
                     [(ngModel)]="variant.label['title'][variant.label['title']['cLang'] || defaultLanguageId]" >
-                    <select mdbInput class="form-control" 
+                    <select mdbInput class="form-control select-lang" 
                       [ngModel]="variant.label['title']['cLang'] || defaultLanguageId"
-                      (ngModelChange)="variant.label['title']['cLang'] = $event"
-                       style="width: 50px">
+                      (ngModelChange)="variant.label['title']['cLang'] = $event">
                       <option *ngFor="let l of lang" [value]="l.languageId"> {{l.name | titlecase }} </option>
                     </select>
                 </div>

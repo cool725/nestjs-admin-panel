@@ -18,7 +18,7 @@ export class AuthUserEntity extends BaseEntity implements AuthUser {
   @PrimaryGeneratedColumn('uuid')
   userId: string;
 
-  @Column({length: 100, nullable:false })
+  @Column({length: 100, nullable: false})
   email: string;
 
   @Column({ length: 50, type: 'varchar' })
@@ -107,7 +107,7 @@ export class AuthUserEntity extends BaseEntity implements AuthUser {
     return this;
   }
 
-  initialise(data: Partial<AuthUserEntity>, secure = false) {
+  public initialise(data: Partial<AuthUserEntity>, secure = false) {
     if (!secure) {
       delete data.password;
       Object.assign(this, data);

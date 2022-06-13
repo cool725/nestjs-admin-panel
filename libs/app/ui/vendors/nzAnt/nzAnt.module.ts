@@ -10,7 +10,7 @@ import { MdbNzSelectDirective } from './directives/mdb.nz-select.directive';
 @NgModule({
   declarations: [NzCustomEmptyComponent, MdbNzSelectDirective],
   imports: [NzEmptyModule, TranslateLocaleModule],
-  exports: [NzSelectModule, NzUploadModule],
+    exports: [NzSelectModule, NzUploadModule, MdbNzSelectDirective],
   providers: [
     {
       provide: NZ_CONFIG,

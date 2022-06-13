@@ -12,10 +12,8 @@ import { Observable } from 'rxjs';
  * */
 @Injectable({ providedIn: 'root' })
 export class LangResolver implements Resolve<any> {
-  resolve(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<any> | Promise<any> | any {
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
     return this.loadLanguage(route);
   }
 

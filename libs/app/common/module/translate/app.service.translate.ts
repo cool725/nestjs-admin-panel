@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {catchError, Observable, of} from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 
 @Injectable()
 export class TranslateService {
@@ -25,11 +25,7 @@ export class TranslateService {
 
   public setTranslations(section: string, values: any, lang?: string) {}
 
-  public loadAndSetTranslations(
-      section: string,
-      lang: string = this.currentLang,
-      options: any = {}
-  ) {
+  public loadAndSetTranslations(section: string, lang: string = this.currentLang, options: any = {}) {
     return new Promise(resolve => {
       this.loadTranslations(section, lang)
           .pipe(catchError(

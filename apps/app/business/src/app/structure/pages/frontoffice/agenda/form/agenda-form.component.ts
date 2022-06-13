@@ -159,6 +159,7 @@ export class AgendaFormComponent extends FormController<any> implements OnInit {
     });
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   openInCashSystem(reservationId:number){}
   // endregion
 

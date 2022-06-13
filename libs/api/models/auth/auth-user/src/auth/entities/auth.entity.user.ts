@@ -18,7 +18,7 @@ export class AuthUserEntity extends BaseEntity implements AuthUser {
   @PrimaryGeneratedColumn('uuid')
   userId: string;
 
-  @Column({length: 100 })
+  @Column({length: 100, nullable:false })
   email: string;
 
   @Column({ length: 50, type: 'varchar' })

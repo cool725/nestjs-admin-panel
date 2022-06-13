@@ -30,7 +30,7 @@ const ENDPOINT = 'https://partnerdev-mapsbooking.googleapis.com'; // for sandbox
 
 const keys = require(JSON_KEY_FULL_PATH);
 
-class Merchant{
+export class Merchant{
 
 
     constructor(private client,private options) {}
@@ -100,18 +100,19 @@ class Merchant{
 
 }
 
-class MerchantServices{
+export class MerchantServices{
     // https://developers.google.com/maps-booking/reference/maps-booking-api/rest/v1alpha/inventory.partners.merchants.services/ -> All Methods (u can find them at the bottom of the webpage)
     constructor(private client,private options) {}
 }
 
 
+/*
 const testData = Merchant.testData()
 
-new Merchant(new JWT({
+const merchant = new Merchant(new JWT({
     email: keys.client_email,
     key: keys.private_key,
     scopes: ['https://www.googleapis.com/auth/mapsbooking'],
-}),{
-})
+}),{})
+* */
 

@@ -20,7 +20,7 @@ export class AuthLogin extends BaseEntity {
   @Index()
   authCreatedAt: number;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar' , length: 55, nullable:false })
   uuId: string;
 
   @ManyToOne(() => AuthUserEntity, (user) => user.logins, {

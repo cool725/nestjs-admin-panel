@@ -6,7 +6,7 @@ import { environment } from "../../../../../../../environments/environment";
 @Injectable()
 export class CashSystemItemsService {
 
-  services$:BehaviorSubject<any[]>
+  services$:BehaviorSubject<any[]> = new BehaviorSubject([])
 
   basePath = '/frontoffice/cashsystem/'
 

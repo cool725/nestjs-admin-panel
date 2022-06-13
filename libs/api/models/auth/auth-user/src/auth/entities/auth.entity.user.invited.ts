@@ -15,7 +15,7 @@ export class AuthUserInvited extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   invitationId: string;
 
-  @Column({ type: 'varchar', unique: false, length: 100 })
+  @Column({ type: 'varchar', unique: false, length: 70 })
   email: string;
 
   @Column({ type: 'varchar', nullable: true })

@@ -4,7 +4,7 @@
       *ngFor="let baseItems of menuItems$ | async"
       class="animated fadeInDown"
       nz-submenu
-      [nzTitle]="baseItems.title"
+      [nzTitle]="('app_'+ baseItems.title) | translate"
     >
       <ul *ngIf="baseItems.children?.length">
         <!-- lv 1-->
@@ -14,7 +14,7 @@
             nz-menu-item
             [routerLink]="childItem.path"
           >
-            {{ childItem.title }}
+            {{ ('app_'+ childItem.title) | translate}}
           </li>
           <li
             *ngIf="childItem.children?.length"
@@ -29,7 +29,7 @@
                   nz-menu-item
                   [routerLink]="childItem.path"
                 >
-                  {{ childItem.title }}
+                  {{ ('app_'+childItem.title) | translate }}
                 </li>
                 <li
                   *ngIf="childItem.children?.length"
@@ -44,7 +44,7 @@
                         nz-menu-item
                         [routerLink]="childItem.path"
                       >
-                        {{ childItem.title }}
+                        {{ ('app_'+ childItem.title)  | translate }}
                       </li>
                       <li
                         *ngIf="childItem.children?.length"
@@ -57,7 +57,7 @@
                             *ngFor="let childItem of childItem.children"
                           >
                             <li [routerLink]="childItem.path" nz-menu-item>
-                              {{ childItem.title }}
+                              {{ ('app_'+childItem.title) | translate }}
                             </li>
                           </ng-container>
                         </ul>

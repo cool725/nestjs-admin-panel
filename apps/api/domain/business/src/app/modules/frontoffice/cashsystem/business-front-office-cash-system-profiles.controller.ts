@@ -4,14 +4,16 @@ import { GetCompany } from "@movit/api/business";
 import { ICompany } from '@movit/api/business';
 import { CompanyGuard } from '@movit/api/auth';
 import { AuthGuard } from '@nestjs/passport';
-import { ProfilesService } from "@movit/api/profiles";
+
+import { ProfilesPriceClassService, ProfilesService } from "@movit/api/profiles";
 import { GetPagination, Pagination } from "../../../../../../../../../libs/api/common/decorator";
 
 @Controller(FrontOffice.resolePaths([FrontOffice.CashSystem.PATHProfiles]))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)
-export class BusinessFrontofficeCashSystemProfilesController {
+export class BusinessFrontOfficeCashSystemProfilesController {
   constructor(
-    private profilesService: ProfilesService
+    private profilesService: ProfilesService,
+    private priceClassService: ProfilesPriceClassService,
   ) { }
 
   @Get('profiles')
@@ -24,10 +26,10 @@ export class BusinessFrontofficeCashSystemProfilesController {
 
   @Get('price-class')
   getProfilePriceClass(
-    // @GetCompany() company: ICompany,
-    // @GetPagination() pagination: Pagination,
+    @GetCompany() company: ICompany,
+    @GetPagination() pagination: Pagination,
   ) {
-    return []
+    return this.priceClassService.getPriceClasses(company.companyId, pagination)
   }
 
 }

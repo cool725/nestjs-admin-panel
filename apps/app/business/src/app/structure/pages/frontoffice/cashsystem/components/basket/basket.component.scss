@@ -1,0 +1,40 @@
+:host {
+  height: 100%;
+  width: 100%;
+
+  ::ng-deep{
+    .slim-mode td{
+      padding: 5px 0 0!important;
+    }
+  }
+}
+
+.items-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 80%;
+  > table {
+    position: relative;
+    border-collapse: collapse;
+    th {
+      font-weight: 300;
+      background: white;
+      position: sticky;
+      top: 0;
+      box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+    }
+    ::ng-deep {
+      td {
+        vertical-align: middle;
+        .icon-delete{
+          padding-top: 7px;
+          font-size: 16px;
+          padding-left: 2px;
+          opacity: 0.3;
+          padding-bottom: 9px;
+        }
+      }
+    }
+
+  }
+}

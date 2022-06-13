@@ -31,7 +31,8 @@
                         let l of [
                           { languageId: 1, name: 'de' },
                           { languageId: 2, name: 'en' },
-                          { languageId: 3, name: 'fr' }
+                          { languageId: 3, name: 'fr' },
+                          { languageId: 4, name: 'it' }
 
                         ]
                       "
@@ -245,6 +246,8 @@
                 <td>
                   <select mdbInput
                           [(ngModel)]="variant.crmPriceClassId">
+                    <option value="" selected> Keine </option>
+                    <option [value]="priceClass.priceClassId" *ngFor="let priceClass of priceClasses">{{priceClass.title}}</option>
                   </select>
                 </td>
                 <td>

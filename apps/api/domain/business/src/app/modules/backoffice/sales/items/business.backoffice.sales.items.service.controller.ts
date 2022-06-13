@@ -13,8 +13,8 @@ import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
 import { GetPagination } from '../../../../../../../../../../libs/api/common/decorator';
 import { GetLanguage } from '../../../../../../../../../../libs/api/common/decorator/decorator.language';
-import { AppsRolesGuard } from '@movit/api/apps';
-import { SalesItemService } from '../../../../../../../../../../libs/api/models/sales/item/src/lib/sales-item-service';
+import { AppsRolesGuard } from '../../../../../../../../../../libs/api/models/auth/apps-role/src/guards/auth.guards.apps';
+import { SalesItemService } from "@movit/api/sales/item";
 import { CompanyEntity } from '@movit/api/business';
 import { GetCompany } from '@movit/api/business';
 
@@ -92,7 +92,7 @@ export class BusinessBackOfficeSalesItemsServiceController {
     @Param('id') id,
     @Body() category
   ) {
-    return this.itemService.saveServiceCategory(business.companyId, category);
+    return this.itemService.updateCategoryService(business.companyId, id,category);
   }
 
   @Delete('category/:categoryId')

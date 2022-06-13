@@ -1,0 +1,13 @@
+<div class="display-type-{{settings.displayType}} row flex" >
+    <ng-container *ngFor="let item of items">
+        <div
+                *ngIf="canShow() && ((!category.itemExistsInChild(item) && settings.showOnlyLowestItem) || !settings.showOnlyLowestItem)"
+                class=" menu-open-button chooser-item row-item-{{row}} "
+                [style.background-color]="item.color || bgColor"
+                (click)="clickAction(item)">
+            {{item.title}}
+        </div>
+    </ng-container>
+
+</div>
+

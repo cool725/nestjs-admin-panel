@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
+import { NzAntSharedModule } from '@movit/app/ui';
 import { BusinessFormComponent } from './business-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { NzSelectModule } from 'ng-zorro-antd/select';
 import { TranslateLocaleModule } from '@movit/app/module';
 
 @NgModule({
@@ -12,7 +12,7 @@ import { TranslateLocaleModule } from '@movit/app/module';
     TranslateLocaleModule.forChild(),
     FormsModule,
     ReactiveFormsModule,
-    NzSelectModule,
+    NzAntSharedModule,
   ],
   providers: [],
   entryComponents: [BusinessFormComponent],

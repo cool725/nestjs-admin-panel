@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/api/finance/report",
+  "sourceRoot": "libs/api/finance/report/src",
+  "prefix": "movit",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/finance/report"],
+      "options": {
+        "jestConfig": "libs/api/finance/report/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/api/finance/report/src/**/*.ts",
+          "libs/api/finance/report/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

@@ -64,7 +64,7 @@ export class LayoutMainComponent {
 
   public async openModal<C>(
     component: Type<C>,
-    options: { id?: any, style?:any } = {},
+    options: { id?: any, style?:any, dialogClass?: string } = {},
     resolver: any = undefined
   ) {
     const modalRef = this.vcModal.createComponent<BoostrapModalUIComponent>(
@@ -72,6 +72,9 @@ export class LayoutMainComponent {
     );
 
     modalRef.instance.style = options.style || modalRef.instance.style
+    if (options.dialogClass) {
+      modalRef.instance.dialogClass = options.dialogClass
+    }
 
     const componentRef = await modalRef.instance.setModalContentFromComponent(
       component,

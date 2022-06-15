@@ -6,7 +6,7 @@ import { AppsRoleEntity } from '../entities/start.entity.role.app';
 import { AppsUserRightEntity } from '../entities/start.entity.user.rights';
 import { AppsRoleRightsEntity } from '../entities/start.entity.role.rights';
 import { doSeed } from '../../../../../common/db/seed';
-import { InitialAppsSeeds } from './seeds/apps.seeds';
+
 import { InitialAppRoleSeeds } from './seeds/role.seeds';
 
 const DBStartOptions = <ConnectionOptions>{
@@ -29,6 +29,6 @@ const DBStartOptions = <ConnectionOptions>{
   ],
 };
 
-doSeed([InitialAppsSeeds, InitialAppRoleSeeds], DBStartOptions);
+doSeed([InitialAppRoleSeeds], DBStartOptions);
 
 export default DBStartOptions;

@@ -52,8 +52,7 @@ export class AccountService {
       for (let i = 0; i < base.length; i++) {
         const category = base[i];
         category.accounts =
-          (await this.getAccounts({
-            companyId: params.companyId,
+          (await this.getAccounts(params.companyId,{
             accountCategoryId: category.uuId,
           })) || [];
         category.categories = (await fetchCategories(category.uuId)) || [];
@@ -70,13 +69,13 @@ export class AccountService {
     return await getChildren(baseCategories);
   }
 
-  async getAccounts(params: {
-    companyId: number;
+  async getAccounts(  companyId: number, params: {
+
     accountCategoryId?: string;
     type?: EAccountType;
   }) {
 
-    if (!params.companyId) {
+    if (companyId) {
       throw 'companyId is missing: 1';
     }
 
@@ -84,7 +83,7 @@ export class AccountService {
       .createQueryBuilder()
       .select()
       .orderBy('code')
-      .where('companyId = :companyId', { companyId: params.companyId });
+      .where('companyId = :companyId', { companyId: companyId });
 
     if (params.accountCategoryId) {
       query.andWhere('accountCategoryId = :accountCategoryId', {
@@ -114,11 +113,11 @@ export class AccountService {
     accountCategoryId?: string;
   }) {
     const results = {
-      debits: await this.getAccounts({
+      debits: await this.getAccounts(params.companyId,{
         ...params,
         type: EAccountType.active_accounts,
       }).then(AccountService.arrayToJSON),
-      credits: await this.getAccounts({
+      credits: await this.getAccounts(params.companyId,{
         ...params,
         type: EAccountType.passive_accounts,
       }).then(AccountService.arrayToJSON),

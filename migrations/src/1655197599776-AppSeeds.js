@@ -83,6 +83,12 @@ module.exports = class AppSeeds1655197599776 {
             title: 'payment',
             parentCategoryId: 5,
         },
+        {
+            categoryId: 14,
+            domain: 'business',
+            title: 'settings',
+            parentCategoryId: 4,
+        },
     ];
 
     apps =  [
@@ -260,6 +266,14 @@ module.exports = class AppSeeds1655197599776 {
         {
             appId: 29,
             domain: 'business',
+            title: 'accountsetttings',
+            path: '/finances/settings/accounts/overview',
+            categoryId: 14,
+            img: '',
+        },
+        {
+            appId: 30,
+            domain: 'business',
             title: 'cashsystem',
             path: '/frontoffice/cashsystem/overview',
             categoryId: 2,
@@ -272,8 +286,8 @@ module.exports = class AppSeeds1655197599776 {
         await queryRunner.query('delete from app_app where companyId is null')
         await queryRunner.query('delete from app_category where companyId is null')
 
-    for(let i = 0; i <this.categories.length; i++) {
-      await queryRunner.query(`INSERT INTO app_category (categoryId, domain, parentCategoryId, companyId, title) VALUES (?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE companyId=companyId; `,
+        for(let i = 0; i <this.categories.length; i++) {
+            await queryRunner.query(`INSERT INTO app_category (categoryId, domain, parentCategoryId, companyId, title) VALUES (?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE companyId=companyId; `,
         [
             this.categories[i].categoryId,
             this.categories[i].domain,
@@ -284,20 +298,20 @@ module.exports = class AppSeeds1655197599776 {
       )
     }
 
-    const apps = this.apps
-    for(let i = 0; i <this.apps.length; i++) {
-      await queryRunner.query(`INSERT INTO app_app (appId, domain, companyId, title, path, img, categoryId) VALUES (?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE companyId=companyId; `,
-        [
-          apps[i].appId,
-          apps[i].domain,
-          apps[i].companyId,
-          apps[i].title,
-          apps[i].path,
-          apps[i].img,
-          apps[i].categoryId
-        ]
-      )
-    }
+        const apps = this.apps
+        for(let i = 0; i <this.apps.length; i++) {
+          await queryRunner.query(`INSERT INTO app_app (appId, domain, companyId, title, path, img, categoryId) VALUES (?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE companyId=companyId; `,
+            [
+              apps[i].appId,
+              apps[i].domain,
+              apps[i].companyId,
+              apps[i].title,
+              apps[i].path,
+              apps[i].img,
+              apps[i].categoryId
+            ]
+          )
+        }
   }
 
   async down(queryRunner) { }

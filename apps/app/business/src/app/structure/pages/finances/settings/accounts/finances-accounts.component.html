@@ -1,0 +1,63 @@
+<div class="p-3 pt-4 content">
+    <div class="col-12 col-md-12 col-lg-12 mb-5">
+        <div class="card">
+            <div class="card-header bg-white border-bottom-0 pt-2">
+                <div class="d-flex justify-content-between">
+                    <strong class="ps-2">
+                        Kontoübersicht:
+                    </strong>
+                    <div class="d-none d-md-block">
+                        <ng-container *ngFor="let list of lists">
+                            <a
+                                    [class.active]="list.name == tab"
+                                    class="cursor-pointer me-4" (click)="tab = list.name">{{list.name | translate}}</a>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngFor="let list of lists">
+    <div *ngIf="tab === '' || list.name === tab" class="p-3 pt-1 content">
+        <div class="col-12 col-md-12 col-lg-12 mb-5">
+            <div class="card">
+                <div class="card-header bg-white border-bottom-0 pt-2">
+                    <div class="d-flex justify-content-between">
+                        <strong class="ps-2">
+                            {{list.name}}
+                        </strong>
+                        <div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 ">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th *ngFor="let key of table.keys"  [width]="key.width">
+                                        {{key.name }}
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tbody>
+                                <ng-container *ngFor="let data of accounts$ | async">
+                                    <tr *ngIf="canShowCode(data.code, list.codeFrom,  list.codeTill)">
+                                        <td *ngFor="let key of table.keys" [width]="key.width">
+                                            {{key.render ? key.render(data[key.key || key.name]) : data[key.key || key.name]}}
+                                        </td>
+                                    </tr>
+                                </ng-container >
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>

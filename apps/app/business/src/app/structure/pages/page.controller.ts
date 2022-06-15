@@ -65,10 +65,12 @@ export abstract class PageController {
   protected onLoadAndSetData<T>(
     api$: Observable<T>,
     subject: Subject<any>,
-    cb: any = null
+    cb: any = null,
+    done: any = null,
   ): void {
     const subscription = api$.subscribe((data: any) => {
       subject.next(cb ? cb(data) : data);
+      done ? done() : null;
       setTimeout(() => subscription.unsubscribe(), 0);
     });
   }

@@ -21,6 +21,14 @@ const routes: Routes = [
       ),
     canActivate: canActivateRoutes,
   },
+  {
+    path: 'settings',
+    loadChildren: () =>
+        import('./settings/finances-settings.module').then(
+            (m) => m.FinanceSettingsModule
+        ),
+    canActivate: canActivateRoutes,
+  },
 ];
 
 @NgModule({

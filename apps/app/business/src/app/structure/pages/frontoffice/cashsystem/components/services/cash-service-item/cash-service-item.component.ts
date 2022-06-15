@@ -66,7 +66,7 @@ export class CashSystemServicesItemComponent  {
                 prices: item.prices,
                 bgColor:this.bgColor,
                 priceClasses:{
-                  profiles: this.store.priceClasses.profiles.getValue()
+                  profiles$: this.store.priceClasses.profiles$.getValue()
                 }
               }
             },

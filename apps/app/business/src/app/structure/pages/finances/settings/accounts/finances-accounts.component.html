@@ -65,7 +65,7 @@
                                                 {{key.render ? key.render(data[key.key || key.name]) : data[key.key || key.name]}}
                                             </td>
                                             <td>
-                                                <input type="checkbox" (change)="updateAccount(data)">
+                                                <input type="checkbox" (change)="data.showInCashSystem = !data.showInCashSystem;updateAccount(data)">
                                             </td>
                                         </tr>
                                 </ng-container >

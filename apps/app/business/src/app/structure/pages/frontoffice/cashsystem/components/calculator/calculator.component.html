@@ -18,21 +18,17 @@
     </div>
 
     <div class="position-relative">
-
       <div class="position-absolute input-field-ctext animated fadeIn">
         <p *ngIf="canShowPayTill" style="margin: 0" >  <small>RG: {{cTitle || ''}}</small> </p>
         <p *ngIf="canShowPayTill" style=""         >   <small>Zahlen bis: {{payTill}}Tage</small> </p>
       </div>
-
       <input disabled [(ngModel)]="CC.input" style="background: white;display: flex;flex-direction: column" class="input" id="input">
-
     </div>
 
     <div class="buttons" [style.width]="buttonMaxWidth+'%'">
       <div *ngIf="!inlineTotal" class="operators">
-
         <!--active-->
-        <div  class="tab-money tip "><!--   nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" -->
+        <div class="tab-money tip "><!--   nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" -->
           <p style="margin-top: 12px"> Optionen
             <i *ngIf="canShowPayTill" class="fa fa-arrow-circle-o-down animated fadeIn"></i> </p>
         </div>
@@ -48,57 +44,65 @@
           </ul>
         </nz-dropdown-menu>
         -->
-
-
-        <div   class="tab-money" >
+        <div class="tab-money" >
           <p>{{'payment' | titlecase}}</p>
           <span> {{priceGiven | toFixed}} </span>
         </div>
-        <div >
+        <div>
           <p> {{'open'  | titlecase}}  </p>
           <span> {{priceTotal - priceGiven  | toFixed}} </span>
         </div>
-
       </div>
       <div style="    margin-left: -5px;" class="leftPanel">
-        <div   class="numbers">
+        <div [class.disabled]="cashDirectlyMode" class="numbers">
           <div (click)="CC.onBtn(7)" id="num_7" class="number">7</div>
           <div (click)="CC.onBtn(8)" id="num_8" class="number">8</div>
           <div (click)="CC.onBtn(9)" id="num_9" class="number">9</div>
           <div (click)="CC.onBtnClear()" id="clear">C</div>
         </div>
-        <div class="numbers">
+        <div [class.disabled]="cashDirectlyMode" class="numbers">
           <div (click)="CC.onBtn(4)" id="num_4" class="number">4</div>
           <div (click)="CC.onBtn(5)" id="num_5" class="number">5</div>
           <div (click)="CC.onBtn(6)" id="num_6" class="number">6</div>
           <div (click)="CC.onBtnOperator('÷')"id="num_div" class="operator">&divide;</div>
         </div>
-        <div class="numbers">
+        <div [class.disabled]="cashDirectlyMode" class="numbers">
           <div  (click)="CC.onBtn(1)" id="num_1" class="number">1</div>
           <div (click)="CC.onBtn(2)"  id="num_2" class="number">2</div>
           <div (click)="CC.onBtn(3)"  id="num_3" class="number">3</div>
           <div (click)="CC.onBtnOperator('×')" id="num_x" class="operator" >×</div>
         </div>
-        <div class="numbers">
+        <div [class.disabled]="cashDirectlyMode" class="numbers">
           <div (click)="CC.onBtn(0)"           id="num_0"     class="number">0</div>
           <div (click)="CC.onBtn('.')"         id="num_point" class="operator">.</div>
           <div (click)="CC.onBtnOperator('-')" id="num_minus" class="operator">-</div>
           <div (click)="CC.onBtnOperator('+')" id="num_plus"  class="operator">+</div>
 
         </div>
-
-        <!-- CASHout -->
-        <div class="numbers">
-          <div  (click)="CC.calculate()"  style="    width: 20%;" class="" id="result">=</div>
-          <div [style.opacity]="canCancelItem ? 1:0.1" (click)="clickCancelItem()" style="width: 20%;background-color: #dc3545!important;"  class="btn-success"     >
-            <small *ngIf="!iconMode">{{'cancel' }}</small>
-            <small  *ngIf="iconMode"><i class="fa fa-trash"></i></small>
+        <!-- cashout -->
+        <ng-container *ngIf="!cashDirectlyMode">
+          <div class="numbers">
+            <div  (click)="CC.calculate()"  style="    width: 20%;" class="" id="result">=</div>
+            <div [style.opacity]="canCancelItem ? 1:0.1" (click)="clickCancelItem()" style="width: 20%;background-color: #dc3545!important;"  class="btn-success"     >
+              <small *ngIf="!iconMode">{{'cancel' }}</small>
+              <small  *ngIf="iconMode"><i class="fa fa-trash"></i></small>
+            </div>
+            <div  (click)="CC.calculate();clickPrint()"  style="width: 20%;background: #9e9e9e!important;"   class="print"><small>{{'print' | translate}}</small></div>
+            <div id="confirmcalc"  (click)="CC.calculate();clickPay()" style="width: 20%;background: #009ff1!important;" class="{{canCashOut?'cancashout':''}}" ><small>{{'ok' | translate}}</small></div>
+            <div *ngIf="allowGroup"  (click)="CC.calculate();clickAddCash()"  style="width: 20%;background-color: #6cdc6f!important;" class="btn-success"    > <small>{{'group' | translate}}</small> </div>
+            <div id='cashocalc' [style.opacity]="canCashOut ? 1:0.1"  (click)="CC.calculate();clickCashOut()"  style="width: 20%;background-color: #6cdc6f!important;" class="btn-success"    ><small> {{'cashout' | translate}}</small> </div>
           </div>
-          <div  (click)="CC.calculate();clickPrint()"  style="width: 20%;background: #9e9e9e!important;"   class="print"><small>{{'print' | translate}}</small></div>
-          <div id="confirmcalc"  (click)="CC.calculate();clickPay()" style="width: 20%;background: #009ff1!important;" class="{{canCashOut?'cancashout':''}}" ><small>{{'ok' | translate}}</small></div>
-          <div *ngIf="allowGroup"  (click)="CC.calculate();clickAddCash()"  style="width: 20%;background-color: #6cdc6f!important;" class="btn-success"    > <small>{{'group' | translate}}</small> </div>
-          <div id='cashocalc' [style.opacity]="canCashOut ? 1:0.1"  (click)="CC.calculate();clickCashOut()"  style="width: 20%;background-color: #6cdc6f!important;" class="btn-success"    ><small> {{'cashout' | translate}}</small> </div>
-        </div>
+        </ng-container>
+        <ng-container *ngIf="cashDirectlyMode">
+          <div class="numbers">
+            <div [style.opacity]="canCancelItem ? 1:0.1" (click)="clickCancelItem()" style="width: 33%;background-color: #dc3545!important;"  class="btn-success"     >
+              <small *ngIf="!iconMode">{{'cancel' }}</small>
+              <small  *ngIf="iconMode"><i class="fa fa-trash"></i></small>
+            </div>
+            <div  (click)="CC.calculate();clickPrint()"  style="width: 33%;background: #9e9e9e!important;"   class="print"><small>{{'print' | translate}}</small></div>
+            <div id='cashocalc'  (click)="CC.calculate();clickCashOut()"  style="width: 33%;background-color: #6cdc6f!important;" class="btn-success"    ><small> {{'cashout' | translate}}</small> </div>
+          </div>
+        </ng-container>
       </div>
     </div>
   </div>

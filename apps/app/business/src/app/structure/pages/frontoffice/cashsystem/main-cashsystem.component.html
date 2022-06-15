@@ -26,7 +26,7 @@
        <div class="c3 h-100">
          <movit-cashsystem-receipt></movit-cashsystem-receipt>
          <movit-cashsystem-account-chooser></movit-cashsystem-account-chooser>
-         <movit-cashsystem-calculator></movit-cashsystem-calculator>
+         <movit-cashsystem-calculator [cashDirectlyMode]="!store.basket.accountIsCash"></movit-cashsystem-calculator>
        </div>
      </div>
    </ng-container>

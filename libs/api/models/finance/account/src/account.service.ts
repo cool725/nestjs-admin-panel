@@ -75,13 +75,12 @@ export class AccountService {
     return await getChildren(baseCategories);
   }
 
-  async getAccounts(companyId: number, params: { accountCategoryId?: string; type?: EAccountType;showInCashSystem?:boolean }):Promise<FinAccountEntity[]> {
+  async getAccounts(companyId: number, params: { accountCategoryId?: string; type?: EAccountType;showInCashSystem?:boolean,select?:string[] }):Promise<FinAccountEntity[]> {
 
     if (!companyId) throw 'getAccounts: companyId is missing: 1';
 
     const query = this.accountRepo
-      .createQueryBuilder()
-      .select()
+      .createQueryBuilder().select()
       .orderBy('code')
       .where(`
       CASE

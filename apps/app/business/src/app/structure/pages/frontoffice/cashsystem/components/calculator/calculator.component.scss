@@ -46,6 +46,10 @@
     max-width: 100%;
   }
 
+  .disabled{
+    opacity: 0.2 !important;
+  }
+
   .operators {
     justify-content: space-between;
     display: flex;

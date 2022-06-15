@@ -31,7 +31,7 @@ export class BusinessFrontOfficeCashSystemController {
     return company.companyId
   }
 
-  @Get('finances/accounts')
+  @Get('accounts')
   getAccounts(
       @GetCompany() company: CompanyEntity,
       @GetUser() user: AuthUserEntity,
@@ -39,7 +39,8 @@ export class BusinessFrontOfficeCashSystemController {
     return this.accountService.getAccounts(
         company.companyId,
         {
-          showInCashSystem: true
+          showInCashSystem: true,
+          select:['name','accountId','code']
         }
     )
   }

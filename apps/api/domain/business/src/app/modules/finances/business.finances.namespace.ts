@@ -10,5 +10,6 @@ export namespace Finances {
 
   export namespace Settings {
     export const PATH = 'settings';
+    export const PATHAccounts = 'settings/accounts';
   }
 }

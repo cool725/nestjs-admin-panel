@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, Injector, OnInit} from '@angular/core';
-import { delay, first, map, Observable, Subject, tap } from 'rxjs';
+import {BehaviorSubject, delay, first, map, Observable, Subject, tap} from 'rxjs';
 import { PageController } from '../../../page.controller';
 import {FinancesSettingsAccountsAPI} from "./finances-settings-accounts";
 
@@ -8,7 +8,7 @@ class Account {
   code:number
 
   static create  (data = {}) {
-    Object.assign(new Account(),data)
+    return Object.assign(new Account(),data)
   }
 }
 
@@ -22,7 +22,7 @@ export class FinanceAccountingComponent
   extends PageController
 {
 
-  accounts$: Subject<any[]> = new Subject();
+  accounts$: Subject<Account[]> = new BehaviorSubject([]);
 
   table = {
     keys:[
@@ -132,7 +132,12 @@ export class FinanceAccountingComponent
     return codeNr>= from && codeNr<= till
   }
 
+  updateAccount(account:Account){
+    this.api.updateAccount(account).subscribe()
+  }
+
   updateView(){
+
     this.cdr.detectChanges()
   }
 }

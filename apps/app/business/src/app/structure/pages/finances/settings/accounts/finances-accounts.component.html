@@ -1,3 +1,17 @@
+
+<ng-template #topbar>
+    <div class="left-box cursor-pointer">
+        <i class="fas fa-cog"></i>
+    </div>
+    <div class="d-flex justify-content-between w-100">
+        <h4 class="slide">
+            {{ 'kontoübersicht' | translate }}
+        </h4>
+        <div class="pe-2">
+
+        </div>
+    </div>
+</ng-template>
 <div class="p-3 pt-4 content">
     <div class="col-12 col-md-12 col-lg-12 mb-5">
         <div class="card">
@@ -46,11 +60,14 @@
                                 <tbody>
                                 <tbody>
                                 <ng-container *ngFor="let data of accounts$ | async">
-                                    <tr *ngIf="canShowCode(data.code, list.codeFrom,  list.codeTill)">
-                                        <td *ngFor="let key of table.keys" [width]="key.width">
-                                            {{key.render ? key.render(data[key.key || key.name]) : data[key.key || key.name]}}
-                                        </td>
-                                    </tr>
+                                        <tr *ngIf="canShowCode(data.code, list.codeFrom,  list.codeTill)">
+                                            <td *ngFor="let key of table.keys" [width]="key.width">
+                                                {{key.render ? key.render(data[key.key || key.name]) : data[key.key || key.name]}}
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" (change)="updateAccount(data)">
+                                            </td>
+                                        </tr>
                                 </ng-container >
                                 </tbody>
                             </table>

@@ -63,6 +63,9 @@ export class FinAccountEntity extends TenantCompanyEntity {
   @JoinColumn({ name: 'taxId' })
   tax: FinAccountTaxEntity;
 
+  @Column({ type: 'boolean', default: 0})
+  showInCashSystem: boolean;
+
   constructor(params: Partial<FinAccountEntity> = {}) {
     super();
     this.initialise(params);

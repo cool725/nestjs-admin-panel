@@ -20,5 +20,8 @@ export class FinancesSettingsAccountsAPI {
     return this.http.get<any>(this.getBaseUrl('/finances/settings/accounts'));
   }
 
+  updateAccount(account) {
+    return this.http.patch(this.getBaseUrl('/finances/settings/accounts/'+account.accountId),account);
+  }
 
 }

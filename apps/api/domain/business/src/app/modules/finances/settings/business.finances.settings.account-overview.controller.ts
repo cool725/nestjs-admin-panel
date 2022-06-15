@@ -15,18 +15,43 @@ import { AppsRolesGuard } from 'libs/api/models/auth/apps-role/src/guards/auth.g
 import {AccountService} from "@movit/api/finance/account";
 import {GetCompany, ICompany} from "@movit/api/business";
 
-@Controller(Finances.resolePaths([Finances.Settings.PATH]))
+@Controller(Finances.resolePaths([Finances.Settings.PATHAccounts]))
 @UseGuards(AuthGuard(), CompanyGuard ,AppsRolesGuard(29))
 export class BusinessFinancesSettingsAccountOverviewController {
 
   constructor(private accountService:AccountService) {
   }
 
-  @Get('accounts')
-  getAccounts(
+  @Get('')
+  async getAccounts(
       @GetCompany() company:ICompany
   ){
-    return this.accountService.getAccounts(company.companyId,{})
+    const accounts = await this.accountService.getAccounts(company.companyId,{
+     // relations:['category']
+    })
+    return accounts.map( v => {
+      if(+v.companyId == 0) delete v.companyId
+      return v
+    })
+  }
+
+  @Patch(':accountId')
+  async updateAccount(
+      @Param('accountId') accountId:number,
+      @GetCompany() company:ICompany,
+      @Body() account:any,
+  ){
+
+    let acc = await this.accountService.getAccount(company.companyId ,accountId);
+    if( !acc ) acc = await this.accountService.createCompanyAccount(company.companyId,accountId)
+
+    // update infos
+    acc.showInCashSystem = account.showInCashSystem
+    acc.code = account.code
+    acc.isActive = account.isActive
+
+    return account
+
   }
 
 }

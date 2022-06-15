@@ -75,7 +75,7 @@ export class AccountService {
     return await getChildren(baseCategories);
   }
 
-  async getAccounts(companyId: number, params: { accountCategoryId?: string; type?: EAccountType; }):Promise<FinAccountEntity[]> {
+  async getAccounts(companyId: number, params: { accountCategoryId?: string; type?: EAccountType;showInCashSystem?:boolean }):Promise<FinAccountEntity[]> {
 
     if (!companyId) throw 'getAccounts: companyId is missing: 1';
 
@@ -94,6 +94,10 @@ export class AccountService {
       query.andWhere('accountCategoryId = :accountCategoryId', {
         accountCategoryId: params.accountCategoryId,
       });
+    }
+
+    if (params.showInCashSystem) {
+      query.andWhere('showInCashSystem = 1', {});
     }
 
     if (params.type) {

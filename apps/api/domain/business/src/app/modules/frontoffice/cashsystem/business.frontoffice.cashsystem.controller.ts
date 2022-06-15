@@ -5,14 +5,15 @@ import { AuthGuard } from '@nestjs/passport';
 import { CashSystemDeviceService} from "@movit/api/models/cashsystem";
 import { GetCompany} from "@movit/api/business";
 import { CompanyEntity } from '@movit/api/business';
+import {AccountService} from "@movit/api/finance/account";
 
 @Controller(FrontOffice.resolePaths([FrontOffice.CashSystem.PATH]))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)
 export class BusinessFrontOfficeCashSystemController {
   constructor(
+    protected accountService: AccountService,
     protected cashSystemDeviceService: CashSystemDeviceService,
   ) {}
-
 
   @Get('healthcheck')
   healthCheck(
@@ -35,7 +36,12 @@ export class BusinessFrontOfficeCashSystemController {
       @GetCompany() company: CompanyEntity,
       @GetUser() user: AuthUserEntity,
   ) {
-    return []
+    return this.accountService.getAccounts(
+        company.companyId,
+        {
+          showInCashSystem: true
+        }
+    )
   }
 
 }

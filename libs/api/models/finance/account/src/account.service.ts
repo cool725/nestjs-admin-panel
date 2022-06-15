@@ -85,7 +85,7 @@ export class AccountService {
       .orderBy('code')
       .where(`
       CASE
-        WHEN EXISTS(SELECT * FROM fin_account WHERE companyId = :companyId) THEN companyId = :companyId
+        WHEN EXISTS(SELECT * FROM fin_account fa WHERE fa.companyId = :companyId and FinAccountEntity.accountId = fa.accountId) THEN companyId = :companyId
         ELSE companyId = 0
       END
       `, { companyId: companyId })

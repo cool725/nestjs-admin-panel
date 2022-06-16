@@ -54,14 +54,16 @@ export class CashSystemServicesItemComponent  {
             data: {
               style:{
                 maxWidth:'520px',
-                height:'max-content',
+                height:'max-content !important',
                 left:'0',
                 right:'0',
                 top:'0',
                 bottom:'0',
                 margin:'auto',
                 display:'block',
+                boxShadow: 'none !important',
               },
+              dialogClass: 'item-price-chooser-dialog',
               injectableData:{
                 prices: item.prices,
                 bgColor:this.bgColor,

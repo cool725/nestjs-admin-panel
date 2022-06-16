@@ -1,15 +1,16 @@
-import { Component, Injector } from '@angular/core';
-import { PageController } from '../../page.controller';
-import { CashSystemItemsService } from './packages/services/cashsystem.service-items';
-import { CashSystemProfileService } from './packages/services/cashsystem.service-profile';
-import { ItemCategory } from './packages/classes/cashsystem.item.class';
-import { CashSystemStore } from './packages/services/cashsystem.store';
-import { CashSystemService } from './packages/services/cashsystem.service-api';
+import { Component, Injector } from "@angular/core";
+import { PageController } from "../../page.controller";
+import { CashSystemItemsService } from "./packages/services/cashsystem.service-items";
+import { CashSystemProfileService } from "./packages/services/cashsystem.service-profile";
+import { ItemCategory } from "./packages/classes/cashsystem.item.class";
+import { CashSystemStore } from "./packages/services/cashsystem.store";
+import { CashSystemService } from "./packages/services/cashsystem.service-api";
+import { switchMap } from "rxjs";
 
 @Component({
-  selector: 'movit-main-cashsystem',
-  templateUrl: './main-cashsystem.component.html',
-  styleUrls: ['./main-cashsystem.component.scss'],
+  selector: "movit-main-cashsystem",
+  templateUrl: "./main-cashsystem.component.html",
+  styleUrls: ["./main-cashsystem.component.scss"],
 })
 export class MainCashSystemComponent extends PageController {
   constructor(
@@ -20,6 +21,7 @@ export class MainCashSystemComponent extends PageController {
     private profileService: CashSystemProfileService
   ) {
     super(injector);
+    this.listen();
   }
 
   getData(): void {
@@ -33,7 +35,7 @@ export class MainCashSystemComponent extends PageController {
     this.onLoadAndSetData(
       this.itemsService.getServices(),
       this.itemsService.services$,
-      (categories) => categories.data?.map(ItemCategory.create)
+      categories => categories.data?.map(ItemCategory.create)
     );
   }
 
@@ -46,9 +48,12 @@ export class MainCashSystemComponent extends PageController {
   }
 
   getPriceClass() {
-    this.onLoadAndSetData(
-      this.profileService.getPriceClass(),
-      this.store.priceClasses.profiles$
-    );
+    this.onLoadAndSetData(this.profileService.getPriceClass(), this.store.priceClasses.profiles$);
+  }
+
+  listen() {
+    this.store.basket.ON.cashOut$
+      .pipe(switchMap(basketInfos => this.api.cashout(basketInfos)))
+      .subscribe(console.log);
   }
 }

@@ -1,1 +1,8 @@
-toto
+<select
+        [(ngModel)]="accountSelectionId"
+        class="form-control">
+    <option *ngFor="let acc of store.accounts$ | async"
+    [value]="acc.accountId">
+        {{formatName(acc.name)}}
+    </option>
+</select>

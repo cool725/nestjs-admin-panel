@@ -7,8 +7,8 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
-import { GetCompany } from '../../../../../../../../../libs/api/models/company/src/company.decorator';
-import { CompanyEntity } from '../../../../../../../../../libs/api/models/company/src/entities/companyEntity';
+import { GetCompany } from '@movit/api/business';
+import { CompanyEntity } from '@movit/api/business';
 import { AuthUserEntity, CompanyGuard, GetUser } from '@movit/api/auth';
 import { AuthGuard } from '@nestjs/passport';
 import { Settings } from '../business.settings.namespace';

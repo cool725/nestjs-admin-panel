@@ -1,3 +1,4 @@
+export * from './entities/companyEntity';
 export * from './company.module';
 export * from './company.service';
 export * from './company.interface';

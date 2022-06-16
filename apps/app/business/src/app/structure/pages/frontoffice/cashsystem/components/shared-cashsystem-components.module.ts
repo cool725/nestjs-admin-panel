@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MdbSharedModule } from '@movit/app/ui';
+import { MdbSharedModule, NzAntSharedModule } from "@movit/app/ui";
 import { TranslateLocaleModule } from '@movit/app/module';
 import { CashSystemAccountChooserComponent } from './account-chooser/account-chooser.component';
 import { CashSystemBasketComponent } from './basket/basket.component';
@@ -11,6 +11,14 @@ import { CashSystemSettingsComponent } from './settings/settings.component';
 import { CashSystemBasketFooterComponent } from './basket/footer/basket-footer.component';
 import { CashSystemBasketHeaderComponent } from './basket/header/basket-header.component';
 import { CashSystemBasketItemLineComponent } from './basket/item-line/basket-item-line.component';
+import { CashSystemServicesItemComponent } from "./services/cash-service-item/cash-service-item.component";
+
+import { ToFixedPipe} from "@movit/app/common";
+import { FormsModule } from "@angular/forms";
+import {CashSystemServicesRowComponent} from "./services/cash-service-row/cash-service-row.component";
+import {
+  CashSystemServicesItemPriceChooserComponent
+} from "./services/cash-service-item/cash-service-item-price-chooser/cash-service-item-price-chooser.component";
 
 @NgModule({
   declarations: [
@@ -22,9 +30,13 @@ import { CashSystemBasketItemLineComponent } from './basket/item-line/basket-ite
     CashSystemCalculatorComponent,
     CashSystemReceiptComponent,
     CashSystemServicesComponent,
+    CashSystemServicesRowComponent,
+    CashSystemServicesItemComponent,
+    CashSystemServicesItemPriceChooserComponent,
     CashSystemSettingsComponent,
+    ToFixedPipe
   ],
-  imports: [CommonModule, MdbSharedModule, TranslateLocaleModule],
+  imports: [CommonModule, MdbSharedModule, TranslateLocaleModule.forChild(), FormsModule, NzAntSharedModule],
   exports: [
     CashSystemAccountChooserComponent,
     CashSystemBasketComponent,

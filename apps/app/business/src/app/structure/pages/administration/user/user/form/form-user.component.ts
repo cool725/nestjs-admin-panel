@@ -1,14 +1,11 @@
 import {
   Component,
-  EventEmitter,
   Injector,
-  Input,
-  Output,
+  Input
 } from '@angular/core';
-import { BehaviorSubject, catchError, map, of, Subject, tap } from 'rxjs';
+import { BehaviorSubject, catchError,of, tap } from 'rxjs';
 import { SettingUserAPI } from '../../packages/user-api.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { PageController } from '../../../../page.controller';
+import { Router } from '@angular/router';
 import { FormController } from '../../../../form.controller';
 import { Confirmable } from "@movit/app/common";
 
@@ -112,11 +109,9 @@ export class FormUserComponent<T> extends FormController<User> {
       });
   }
 
+  isValid(key: string, user: User) {}
+
   navBack() {
     this.router.navigate([this.basePath + '/administration/user/overview/']);
   }
-
-  isValid(key: string, user: User) {}
-
-
 }

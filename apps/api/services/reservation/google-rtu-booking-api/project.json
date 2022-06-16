@@ -1,0 +1,57 @@
+{
+  "sourceRoot": "apps/api/services/reservation/google-rtu-booking-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/api/services/reservation/google-rtu-booking-api",
+        "main": "apps/api/services/reservation/google-rtu-booking-api/src/main.ts",
+        "tsConfig": "apps/api/services/reservation/google-rtu-booking-api/tsconfig.app.json",
+        "assets": [
+          "apps/api/services/reservation/google-rtu-booking-api/src/assets"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/api/services/reservation/google-rtu-booking-api/src/environments/environment.ts",
+              "with": "apps/api/services/reservation/google-rtu-booking-api/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "api-services-reservation-google-rtu-booking-api:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "apps/api/services/reservation/google-rtu-booking-api/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/apps/api/services/reservation/google-rtu-booking-api"
+      ],
+      "options": {
+        "jestConfig": "apps/api/services/reservation/google-rtu-booking-api/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

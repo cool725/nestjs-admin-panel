@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
+import { NzAntSharedModule } from '@movit/app/ui';
 import { ProfilesSegmentFormComponent } from './profiles-segment-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgModule } from '@angular/core';
-import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ProfileSegmentAPI } from '../packages/profile-sagment-api.service';
 import { environment } from '../../../../../../../environments/environment';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
@@ -16,7 +16,7 @@ import { TranslateLocaleModule } from '@movit/app/module';
     TranslateLocaleModule.forChild(),
     FormsModule,
     ReactiveFormsModule,
-    NzSelectModule,
+    NzAntSharedModule,
     MdbFormsModule,
   ],
   providers: [

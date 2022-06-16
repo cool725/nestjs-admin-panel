@@ -6,7 +6,8 @@ import {BusinessBackofficeEmployeesModule} from "./employees/items/business.back
 @Module({
   imports: [
     BusinessBackofficeSalesItemsModule,
-    BusinessBackofficeEmployeesModule],
+    BusinessBackofficeEmployeesModule
+  ],
   controllers: [BusinessBackOfficeController],
   providers: [],
 })

@@ -45,11 +45,14 @@ export class BoostrapModalUIComponent {
   ): Promise<ComponentRef<C>> {
     return new Promise((resolver) => {
       this.fullMode = this.modalState;
-      setTimeout(() => {
+       setTimeout(() => {
         this.vc.clear();
         const componentRef = this.vc.createComponent(component);
         const instance: any = componentRef.instance;
         instance.id = options.id;
+        if(options.injectableData){
+          Object.assign(instance,options.injectableData)
+        }
         if (instance.viewSettings && instance.viewSettings.changeMode) {
           instance.viewSettings.mode = this.fullMode ? 'details' : 'simple';
           instance.viewSettings.changeMode = (mode: string) => {

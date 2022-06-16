@@ -5,7 +5,7 @@ import {
   Entity,
   Index,
   OneToMany,
-  PrimaryGeneratedColumn,
+  PrimaryGeneratedColumn, Unique,
 } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
 import { AuthLogin } from './auth.entity.login';
@@ -13,11 +13,12 @@ import { Exclude, instanceToPlain } from 'class-transformer';
 import { AuthUser } from "../interfaces/auth.interface.user";
 
 @Entity('auth_user')
+@Unique(['email'])
 export class AuthUserEntity extends BaseEntity implements AuthUser {
   @PrimaryGeneratedColumn('uuid')
   userId: string;
 
-  @Column({ unique: true, length: 100 })
+ @Column({ length: 70, nullable:false })
   email: string;
 
   @Column({ length: 50, type: 'varchar' })
@@ -106,7 +107,7 @@ export class AuthUserEntity extends BaseEntity implements AuthUser {
     return this;
   }
 
-  initialise(data: Partial<AuthUserEntity>, secure = false) {
+  public initialise(data: Partial<AuthUserEntity>, secure = false) {
     if (!secure) {
       delete data.password;
       Object.assign(this, data);

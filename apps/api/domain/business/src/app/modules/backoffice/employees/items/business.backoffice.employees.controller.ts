@@ -4,7 +4,7 @@ import { AuthGuard } from '@nestjs/passport';
 import {AuthService, AuthUserEntity, CompanyGuard} from '@movit/api/auth';
 import {EmployeeService} from "@movit/api/models/employee";
 import {CompanyService, GetCompany} from "@movit/api/business";
-import {CompanyEntity} from "../../../../../../../../../../libs/api/models/company/src/entities/companyEntity";
+import { CompanyEntity } from '@movit/api/business';
 
 @Controller(BackOffice.resolePath(BackOffice.Employees.PATHBase))
 @UseGuards(AuthGuard(), CompanyGuard)
@@ -37,7 +37,7 @@ export class BusinessBackofficeEmployeesController {
     let employee = await this.employeeService.getEmployeeByUserId(companyId,userId);;
     if(employee) return false
     employee = this.employeeService.create()
-    let user = await this.authUserService.getUserByUserId(userId);
+    const user = await this.authUserService.getUserByUserId(userId);
     employee.companyId = companyId;
     employee.user      = user;
     employee.email     = user.email

@@ -22,20 +22,14 @@
       "@movit/api/auth": ["libs/api/models/auth/auth-user/src/index.ts"],
       "@movit/api/business": ["libs/api/models/company/src/index.ts"],
       "@movit/api/extern": ["libs/api/third-party/src/index.ts"],
-      "@movit/api/finance/account": [
-        "libs/api/models/finance/account/src/index.ts"
-      ],
-      "@movit/api/finance/report": [
-        "libs/api/models/finance/report/src/index.ts"
-      ],
-      "@movit/api/finance/transaction": [
-        "libs/api/models/finance/transaction/index.ts"
-      ],
+      "@movit/api/finance/account": ["libs/api/models/finance/account/src/index.ts"],
+      "@movit/api/finance/report": ["libs/api/models/finance/report/src/index.ts"],
+      "@movit/api/finance/transaction": ["libs/api/models/finance/transaction/index.ts"],
       "@movit/api/middleware": ["libs/api/common/middleware/index.ts"],
-      "@movit/api/models/cashsystem": [
-        "libs/api/models/cashsystem/src/index.ts"
-      ],
+      "@movit/api/models/cashsystem": ["libs/api/models/cashsystem/src/index.ts"],
       "@movit/api/models/employee": ["libs/api/models/employee/src/index.ts"],
+      "@movit/api/models/finance/basket": ["libs/api/models/finance/basket/src/index.ts"],
+      "@movit/api/models/finance/bill": ["libs/api/models/finance/bill/src/index.ts"],
       "@movit/api/profiles": ["libs/api/models/profiles/src/index.ts"],
       "@movit/api/reservation": ["libs/api/models/reservation/src/index.ts"],
       "@movit/api/role": ["libs/api/models/apps-role/src/role/index.ts"],

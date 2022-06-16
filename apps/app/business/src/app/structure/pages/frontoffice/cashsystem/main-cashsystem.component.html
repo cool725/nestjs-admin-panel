@@ -1,1 +1,37 @@
-Main cash system component
+<ng-template #topbar>
+  <div class="left-box cursor-pointer">
+    <i class="fas fa-cog"></i>
+  </div>
+  <div class="d-flex justify-content-between w-100">
+    <h4 class="slide">
+      {{ 'cashsystem' | translate }}
+    </h4>
+    <div class="pe-2">
+
+    </div>
+  </div>
+</ng-template>
+
+<div class="h-100 layout">
+   <ng-container [ngSwitch]="1">
+     <div *ngSwitchCase="1" class="h-100 grid grid-cols-3">
+       <div class="c1 h-100">
+         <movit-cashsystem-services
+          [itemCategories$]="itemsService.services$"
+         ></movit-cashsystem-services>
+       </div>
+       <div class="c2 h-100">
+         <movit-cashsystem-basket></movit-cashsystem-basket>
+       </div>
+       <div class="c3 h-100">
+         <movit-cashsystem-receipt></movit-cashsystem-receipt>
+         <movit-cashsystem-account-chooser></movit-cashsystem-account-chooser>
+         <movit-cashsystem-calculator
+                 (onCashOut)="store.basket.cashOut()"
+                 [canCashOut]="store.basket.canCashOut"
+                 [cashDirectlyMode]="!store.basket.accountIsCash"></movit-cashsystem-calculator>
+       </div>
+     </div>
+   </ng-container>
+
+</div>

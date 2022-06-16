@@ -16,7 +16,7 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
 import { GetCompany } from '@movit/api/business';
-import { CompanyEntity } from '../../../../../../../../../../libs/api/models/company/src/entities/companyEntity';
+import { CompanyEntity } from '@movit/api/business';
 import { ProfilesSegmentService, ProfilesService } from '@movit/api/profiles';
 
 @Controller(FrontOffice.resolePaths(['crm', FrontOffice.Profiles.PATH]))

@@ -7,13 +7,12 @@ function createAppsRolesGuard(...ids: number[]) {
   return class MixinAppsRoleGuard implements CanActivate {
     protected getData(context): {
       user: AuthUserEntity;
-      business: { companyId: any };
+      company: { companyId: any };
     } {
       const { user, _company } = context.switchToHttp().getRequest();
-      console.warn('verify companyId in createAppsRolesGuard')
       return {
         user,
-        business: {
+        company: {
           companyId: _company.companyId,
         },
       };
@@ -28,7 +27,7 @@ function createAppsRolesGuard(...ids: number[]) {
                       arr.roleId =  aur.roleId
          where aur.companyId = ? and aur.userId = ? and appId in (${questionMarks})`,
         [companyId, userId, appIds]
-      ).then((r) => (r[0] ? r[0].access.split(',') : []));
+      ).then((r) => (r[0] ? (r[0].access || '').split(',') : []));
     }
 
     protected hasMethodAccess(appAccess, reqMethod) {
@@ -40,11 +39,11 @@ function createAppsRolesGuard(...ids: number[]) {
     }
 
     async canActivate(context: ExecutionContext) {
-      const { user, business } = this.getData(context);
+      const { user, company } = this.getData(context);
       const req = context.switchToHttp().getRequest();
 
       const access = await this.getAccess(
-        business.companyId,
+          company.companyId,
         user.userId,
         ids
       );

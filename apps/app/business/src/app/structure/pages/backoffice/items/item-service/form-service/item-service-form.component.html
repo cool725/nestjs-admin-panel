@@ -27,14 +27,7 @@
                        <div class="lang_chooser_pills">
                            <nav class="nav nav-pills nav-fill fadeInDown">
                                <a
-                                       *ngFor="
-                        let l of [
-                          { languageId: 1, name: 'de' },
-                          { languageId: 2, name: 'en' },
-                          { languageId: 3, name: 'fr' }
-
-                        ]
-                      "
+                                       *ngFor="let l of lang"
                                        class="nav-item nav-link animated fadeInDown {{
                         (service.label['title']['cLang'] ||
                           defaultLanguageId) == l.languageId
@@ -68,16 +61,7 @@
                        <div class="lang_chooser_pills">
                            <nav class="nav nav-pills nav-fill fadeInDown">
                                <a
-                                       *ngFor="
-                        let l of [
-                          { languageId: 1, name: 'de' },
-                          { languageId: 2, name: 'en' },
-                          { languageId: 2, name: 'en' },
-                          { languageId: 2, name: 'en' },
-                          { languageId: 2, name: 'en' },
-                          { languageId: 2, name: 'en' }
-                        ]
-                      "
+                                       *ngFor="let l of lang"
                                        class="nav-item nav-link animated fadeInDown {{
                         (service.label['desc']['cLang'] || defaultLanguageId) ==
                         l.languageId
@@ -233,34 +217,53 @@
                 <td>Pfz Ende</td>
                 <td>Preis</td>
                 <td>
-                  <a (click)="service.addVariant()" class="btn btn-success">+</a>
+                  <button type="button" (click)="service.addVariant()" class="btn btn-success btn-floating">
+                    <i class="fas fa-plus"></i>
+                  </button>
                 </td>
               </tr>
               </thead>
               <tbody>
-               <tr *ngFor="let variant of service.prices">
+               <tr *ngFor="let variant of service.prices; let i = index">
                 <td>
-                  <input mdbInput [(ngModel)]="variant.label['title'][variant.label['title']['cLang'] || defaultLanguageId]" >
+                  <div class="input-group">
+                    <input mdbInput class="form-control" 
+                    [(ngModel)]="variant.label['title'][variant.label['title']['cLang'] || defaultLanguageId]" >
+                    <select mdbInput class="form-control select-lang" 
+                      [ngModel]="variant.label['title']['cLang'] || defaultLanguageId"
+                      (ngModelChange)="variant.label['title']['cLang'] = $event">
+                      <option *ngFor="let l of lang" [value]="l.languageId"> {{l.name | titlecase }} </option>
+                    </select>
+                </div>
                 </td>
                 <td>
-                  <select mdbInput
+                  <select mdbInput class="form-control" 
                           [(ngModel)]="variant.crmPriceClassId">
+                    <option value="" selected> Keine </option>
+                    <option [value]="priceClass.priceClassId" *ngFor="let priceClass of priceClasses">{{priceClass.title}}</option>
                   </select>
                 </td>
                 <td>
-                  <input mdbInput [(ngModel)]="variant.duration" type="number" min="0" >
+                  <input mdbInput class="form-control" [(ngModel)]="variant.duration" type="number" min="0" >
                 </td>
                 <td>
-                  <input mdbInput [(ngModel)]="variant.duration" type="number" min="0" >
-
+                  <input mdbInput class="form-control" [(ngModel)]="variant.bufferTimeStart" type="number" min="0" >
                 </td>
                 <td>
-                  <input mdbInput [(ngModel)]="variant.duration" type="number" min="0" >
+                  <input mdbInput class="form-control" [(ngModel)]="variant.bufferTimeEnd" type="number" min="0" >
                 </td>
                 <td>
-                  <input mdbInput [(ngModel)]="variant.priceSell">
+                    <input #priceSellInput mdbInput class="form-control" 
+                    [class.is-invalid]="!variant.priceSell && variant.priceSell !== 0" 
+                    required [(ngModel)]="variant.priceSell">
                 </td>
-                <td></td>
+                <td>
+                  <div class="d-flex">
+                    <button type="button" (click)="service.removeVariant(i)" class="btn btn-danger btn-floating">
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                  </div>
+                </td>
               </tr>
               </tbody>
             </table>
@@ -290,6 +293,7 @@
     </button>
     <button
       (click)="service.itemId ? updateService(service) : saveService(service)"
+      [disabled]="!service.itemValid()"
       type="button"
       class="btn btn-success text-white"
     >

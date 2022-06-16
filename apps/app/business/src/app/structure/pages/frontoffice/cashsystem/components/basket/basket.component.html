@@ -1,1 +1,32 @@
-toto
+<movit-cashsystem-basket-header></movit-cashsystem-basket-header>
+
+<div class="items-container">
+    <table class="table slim-mode">
+        <thead>
+            <tr>
+                <td width="5%"></td>
+                <td width="40%">
+                    {{'description' | translate | titlecase}}
+                </td>
+                <td width="5%" class="text-center">
+                    {{'amount' | translate | titlecase}}
+                </td>
+                <td width="15%" class="text-end">
+                    {{'price' | translate | titlecase}}
+                </td>
+                <td width="15%" class="text-end">
+                    {{'total' | translate | titlecase}}
+                </td>
+                <td width="10%">
+
+                </td>
+            </tr>
+        </thead>
+        <movit-cashsystem-basket-item-line *ngFor="let billGroup of store.basket.itemBillGroups"
+        [billGroup]="billGroup">
+
+        </movit-cashsystem-basket-item-line>
+    </table>
+</div>
+
+<movit-cashsystem-basket-footer></movit-cashsystem-basket-footer>

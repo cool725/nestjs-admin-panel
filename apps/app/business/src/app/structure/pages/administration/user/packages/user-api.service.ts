@@ -24,6 +24,10 @@ export class SettingUserAPI {
     return this.http.get(this.getPath('/user/getUsers'));
   }
 
+  getUsersWithInfo() {
+    return this.http.get(this.getPath('/user/getUsersWithInfo'));
+  }
+
   getRoles() {
     return this.http.get(this.getPath('/role/getRoles'));
   }

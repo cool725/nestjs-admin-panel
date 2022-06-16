@@ -24,6 +24,32 @@ export class SalesItemService {
     return this.itemRepo.list(companyId, langId, searchOptions);
   }
 
+  public async getServicesGrouped(companyId, langId, searchOptions) {
+
+    // get all categories grouped
+    const categories = await this.getServiceCategories(companyId,langId, {
+      ...searchOptions ,grouped:true})
+
+    // fetch category services and its children services
+    let maxIteration = 10000;
+    const fetchCategoryServices = async (category) => {
+      if (category.children?.length && maxIteration) {
+        for (const subcategory of category.children) {
+          maxIteration--;
+          await fetchCategoryServices(subcategory)
+        }
+      }
+      const services = await this.itemRepo.list(companyId, langId, {...searchOptions, categoryId: category.categoryId});
+      category.items = services ? services.data : []
+
+    }
+
+    for (const category of categories.data) await fetchCategoryServices(category)
+
+
+    return categories
+  }
+
   public async getService(companyId, itemId) {
     const service = await this.itemRepo.list(companyId, null, {
       itemId,
@@ -85,7 +111,6 @@ export class SalesItemService {
     await this.savePrices(companyId, itemId, service.prices);
     await this.saveEmployees(companyId, itemId, service.employees);
 
-
     return saleItemEntity.update();
   }
 
@@ -110,6 +135,14 @@ export class SalesItemService {
   }
 
   async deleteService(companyId, itemId) {
+    this.itemPriceRepo.find({
+      where: {
+        companyId: companyId,
+        type: 'S',
+        itemId: itemId,
+      }})
+      .then(items => {items.map(item => item.removeTranslations())});
+
     return this.itemRepo
       .findOne({
         where: {
@@ -186,20 +219,46 @@ export class SalesItemService {
   // region prices/variants
    private async savePrices(companyId:number, itemId:number, prices:any[]){
 
-    for(let i = 0; i<prices?.length;i++){
+    for(let i = 0; i< prices?.length;i++){
       const price = prices[i];
-      const newPrice = this.itemPriceRepo.create()
 
-      newPrice.companyId = companyId;
-      newPrice.itemId = itemId;
-      newPrice.type = price.type;
-      newPrice.priceSell = price.priceSell;
+      // todo refactore dupplicate code
+      // todo verify if price is valid types
+      if(price.priceId){
+        const priceOld = await this.itemPriceRepo.findOne({
+          where:{
+            companyId:companyId,
+            itemId:itemId,
+            type:price.type,
+            priceId:price.priceId,
 
-      newPrice.duration = price.duration;
+          }
+        });
 
-      await newPrice.setTranslationFromLabelObj(price.label)
+        if(priceOld){
 
-      await doInsert(newPrice)
+          priceOld.companyId = companyId;
+          priceOld.itemId = itemId;
+          priceOld.type = price.type;
+          priceOld.priceSell = price.priceSell;
+          priceOld.duration = price.duration;
+          priceOld.crmPriceClassId = price.crmPriceClassId || null;
+          priceOld.setTranslationFromLabelObj(price.label)
+
+          await priceOld.update()
+        }
+      }else {
+        const newPrice = this.itemPriceRepo.create()
+        newPrice.companyId = companyId;
+        newPrice.itemId = itemId;
+        newPrice.type = price.type;
+        newPrice.priceSell = price.priceSell;
+        newPrice.duration = price.duration;
+        newPrice.crmPriceClassId = price.crmPriceClassId  || null;;
+        await newPrice.setTranslationFromLabelObj(price.label)
+        await doInsert(newPrice)
+      }
+
     }
 
 

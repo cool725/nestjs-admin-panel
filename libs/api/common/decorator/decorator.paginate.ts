@@ -29,13 +29,15 @@ const applyPagination = async <T>(
 
   // or
   for (let search of pagination.search) {
-    where.push({
-      companyId: companyId,
-      [search.field]:
+    if(search){
+      where.push({
+        companyId: companyId,
+        [search.field]:
           search.field === 'phone'
-              ? Like('%' + search.value + '%')
-              : Like(search.value + `%`),
-    });
+            ? Like('%' + search.value + '%')
+            : Like(search.value + `%`),
+      });
+    }
   }
 
   // and
@@ -58,17 +60,16 @@ const applyPagination = async <T>(
           take: pagination.limit,
         })
         .catch((e) => {
+          console.log('applyPagination',where);
           console.error(e);
           return [];
         }),
     repo.count({
       cache: {
-        id: repo.metadata.tableName,
-        milliseconds: 300000,
+        id: repo.metadata.tableName + '_'+ companyId,
+        milliseconds:  300000,
       },
-      where: {
-        companyId: companyId,
-      },
+      where: where,
     }),
   ]);
 

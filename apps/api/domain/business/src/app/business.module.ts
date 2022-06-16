@@ -16,6 +16,9 @@ import { ReservationModule } from '@movit/api/reservation';
 import { BusinessSettingsModule } from './modules/settings/business.settings.module';
 import { SellItemModule } from '@movit/api/sales/item';
 import { EmployeeModule } from "@movit/api/models/employee";
+import { CashSystemModule } from "@movit/api/models/cashsystem";
+import {AccountModule} from "@movit/api/finance/account";
+import {BusinessFinancesModule} from "./modules/finances/business.finances.module";
 
 
 @Module({
@@ -34,6 +37,8 @@ import { EmployeeModule } from "@movit/api/models/employee";
         ...EmployeeModule.dbSettings.entities,
         ...ReservationModule.dbSettings.entities,
         ...SellItemModule.dbSettings.entities,
+        ...AccountModule.dbSettings.entities,
+        ...CashSystemModule.dbSettings.entities,
       ],
     }),
     AuthModule,
@@ -44,6 +49,7 @@ import { EmployeeModule } from "@movit/api/models/employee";
     BusinessBackOfficeModule,
     BusinessSettingsModule,
     BusinessAdministrationModule,
+    BusinessFinancesModule
   ],
   controllers: [BusinessController, BusinessAppsController]
 })

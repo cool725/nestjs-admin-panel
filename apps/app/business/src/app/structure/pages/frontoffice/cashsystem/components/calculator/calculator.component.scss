@@ -1,0 +1,181 @@
+#calculator-container{
+  width: 100%;
+  background: white;
+  margin-left: 0%;
+
+  &.isAbsolute{
+    position: absolute; bottom: 0;
+  }
+
+  .calculator {
+    min-width: 325px;
+    padding: 20px;
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 1px;
+  }
+
+  .input {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 1px;
+    height: 60px;
+    padding-right: 15px;
+    padding-top: 10px;
+    text-align: right;
+    margin-right: 6px;
+    font-size: 2.5rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    transition: all .2s ease-in-out;
+    background: transparent;
+  }
+
+  .input-field-ctext{
+    opacity: 0.5;
+    margin: 10px;
+  }
+
+  .input:hover {
+    border: 1px solid #bbb;
+    -webkit-box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  .buttons {
+    max-width: 100%;
+  }
+
+  .disabled{
+    opacity: 0.2 !important;
+  }
+
+  .operators {
+    justify-content: space-between;
+    display: flex;
+
+    p{
+      opacity: 0.6;
+      line-height: 1px;
+      margin-bottom: 0;
+    }
+    span{
+      top: 9px;
+      font-size: 20px;
+      position: relative;
+    }
+
+    .active{
+      color: #ffb805;
+      font-weight: 600;
+    }
+  }
+
+  .tab-money.tip{
+    background: linear-gradient(45deg, #826afe, #7d7af8) !important;
+  }
+
+  .operators div {
+    max-height:     60px;
+    display:        inline-block;
+    border:         1px solid #97a2bb;
+    border-radius:  5px;
+    width:          33%;
+    text-align:     center;
+    padding:        10px;
+    margin:         20px 4px 10px 0;
+    cursor: pointer;
+    background-color: #ddd;
+    transition: border-color .2s ease-in-out, background-color .2s, box-shadow .2s;
+  }
+  .operators div:hover {
+    background-color: #ddd;
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+    border-color: #aaa;
+  }
+  .operators div:active {
+    font-weight: bold;
+  }
+  .operators div {
+    background: linear-gradient(45deg, #738cfe, #7d7af8);
+    color: #fff;
+    box-shadow: 0 6px 25px rgba(110, 109, 254, 0.4);
+    transition: box-shadow 0.5s ease;
+  }
+  .operators div:hover,
+  .operators div:focus {
+    box-shadow: 0 12px 45px rgba(139, 139, 254, 0.6);
+  }
+
+
+  .print  {
+    background: linear-gradient(45deg, #75fe7b, #7bf8b1);
+    color: #fff;
+    box-shadow: 0 6px 25px rgba(130, 254, 228, 0.4);
+    transition: box-shadow 0.5s ease;
+  }
+  .print :hover,
+  .print :focus {
+    box-shadow: 0 12px 45px rgba(142, 254, 119, 0.6);
+  }
+
+  .leftPanel {
+    display: inline-block;
+  }
+
+  .numbers{
+    width: 100%;;
+    display: inline-flex;
+    transition: all 0.3s;
+  }
+  .numbers div {
+    display: inline-block;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 25%;
+    text-align: center;
+    padding: 10px;
+    margin: 4px 4px 4px 0;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    transition: border-color .2s ease-in-out, background-color .2s, box-shadow .2s;
+  }
+
+  .numbers div:hover {
+    background-color: #f1f1f1;
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+    border-color: #bbb;
+  }
+
+  .numbers div:active {
+    font-weight: bold;
+  }
+
+  div.equal {
+    display: inline-block;
+    border: 1px solid #3079ED;
+    border-radius: 1px;
+    width: 17%;
+    text-align: center;
+    padding: 127px 10px;
+    margin: 10px 6px 10px 0;
+    vertical-align: top;
+    cursor: pointer;
+    color: #FFF;
+    background-color: #4d90fe;
+    transition: all .2s ease-in-out;
+  }
+
+  div.equal:hover {
+    background-color: #307CF9;
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+    border-color: #1857BB;
+  }
+
+  div.equal:active {
+    font-weight: bold;
+  }
+}

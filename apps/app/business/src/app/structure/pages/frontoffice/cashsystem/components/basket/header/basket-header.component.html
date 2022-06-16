@@ -1,1 +1,26 @@
-toto
+<div class="basket-header">
+  <div class="w-100 bg-dark">
+    <nz-select
+      mdbInput
+      mdbNzSelect
+      class="w-100 form-control px-0 bg-transparent"
+      nzShowSearch
+      nzServerSearch
+      (nzOnSearch)="searchProfile($event)"
+      [nzShowArrow]="false"
+      nzMode="default"
+      id="profiles-search"
+    >
+      <!-- [ngClass]="{'c-class':$event.length >0}" -->
+      <nz-option
+        *ngFor="let item of filteredProfiles"
+        [nzLabel]="item.firstName"
+        [nzValue]="item.profileId"
+      ></nz-option>
+    </nz-select>
+    <ng-template #tagPlaceHolder let-selectedList
+    >and {{ selectedList.length }} more selected</ng-template
+    >
+  </div>
+</div>
+

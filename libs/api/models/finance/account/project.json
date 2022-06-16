@@ -1,0 +1,23 @@
+{
+  "root": "libs/api/finance/account",
+  "sourceRoot": "libs/api/finance/account/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api/finance/account/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/finance/account"],
+      "options": {
+        "jestConfig": "libs/api/finance/account/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

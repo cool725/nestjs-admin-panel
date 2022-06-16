@@ -1,6 +1,6 @@
 import {BusinessUserRolesEntity} from "./entities/business.users.roles.entity.app";
 
-export interface Company {
+export interface ICompany {
 
     companyId: number;
 

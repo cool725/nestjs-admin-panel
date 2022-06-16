@@ -13,15 +13,11 @@ const routes: Routes = [
   {
     path: 'crm',
     loadChildren: () => import('./crm/crm.module').then((m) => m.CrmModule),
-    resolve: LocaleResolver.default,
-    data: {
-      test: 1,
-    },
+    resolve: LocaleResolver.default
   },
   {
     path: 'cashsystem',
-    loadChildren: () =>
-      import('./cashsystem/cashsystem.module').then((m) => m.CashSystemModule),
+    loadChildren: () => import('./cashsystem/cashsystem.module').then((m) => m.CashSystemModule),
     resolve: LocaleResolver.default,
   },
 ];

@@ -13,18 +13,15 @@
     </div>
 </ng-template>
 <div class="p-3 pt-4 content">
-    <div class="col-12 col-md-12 col-lg-12 mb-5">
+    <div class="col-12">
         <div class="card">
             <div class="card-header bg-white border-bottom-0 pt-2">
                 <div class="d-flex justify-content-between">
-                    <strong class="ps-2">
-                        Kontoübersicht:
-                    </strong>
-                    <div class="d-none d-md-block">
+                    <div class="d-flex flex-wrap">
                         <ng-container *ngFor="let list of lists">
                             <a
-                                    [class.active]="list.name == tab"
-                                    class="cursor-pointer me-4" (click)="tab = list.name">{{list.name | translate}}</a>
+                                    [class.active]="list.name === tab"
+                                    class="cursor-pointer nav-link my-2 me-4" (click)="tab = list.name">{{list.name | translate}}</a>
                         </ng-container>
                     </div>
                 </div>
@@ -37,11 +34,11 @@
     <div *ngIf="tab === '' || list.name === tab" class="p-3 pt-1 content">
         <div class="col-12 col-md-12 col-lg-12 mb-5">
             <div class="card">
-                <div class="card-header bg-white border-bottom-0 pt-2">
+                <div class="card-header bg-white border-bottom-0 pb-0">
                     <div class="d-flex justify-content-between">
-                        <strong class="ps-2">
+                        <span class="h5 mx-2 mt-4 mb-0 font-weight-bold" style="margin-left: 1.4rem !important">
                             {{list.name}}
-                        </strong>
+                        </span>
                         <div>
                         </div>
                     </div>
@@ -51,24 +48,29 @@
                         <div class="col-12 ">
                             <table class="table">
                                 <thead>
-                                <tr>
-                                    <th *ngFor="let key of table.keys"  [width]="key.width">
-                                        {{key.name }}
-                                    </th>
-                                </tr>
+                                    <tr>
+                                        <th *ngFor="let key of table.keys"  [width]="key.width">
+                                            {{key.name }}
+                                        </th>
+                                        <th>
+                                            In der Kasse anzeigen 
+                                        </th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <tbody>
-                                <ng-container *ngFor="let data of accounts$ | async">
+                                    <ng-container *ngFor="let data of accounts$ | async">
                                         <tr *ngIf="canShowCode(data.code, list.codeFrom,  list.codeTill)">
                                             <td *ngFor="let key of table.keys" [width]="key.width">
                                                 {{key.render ? key.render(data[key.key || key.name]) : data[key.key || key.name]}}
                                             </td>
-                                            <td>
-                                                <input type="checkbox" (change)="data.showInCashSystem = !data.showInCashSystem;updateAccount(data)">
+                                            <td class="text-center">
+                                                <input 
+                                                    mdbCheckbox
+                                                    class="form-check-input"
+                                                    type="checkbox" [checked]="data.showInCashSystem" (change)="data.showInCashSystem = !data.showInCashSystem;updateAccount(data)">
                                             </td>
                                         </tr>
-                                </ng-container >
+                                    </ng-container >
                                 </tbody>
                             </table>
                         </div>

@@ -33,7 +33,7 @@ export class FinanceAccountingComponent extends PageController {
   table = {
     keys: [
       {
-        width: '8%',
+        width: '10%',
         name: 'Code',
         key: 'code',
         type: '',
@@ -42,6 +42,7 @@ export class FinanceAccountingComponent extends PageController {
       },
       {
         name: 'Beschreibung',
+        width: '40%',
         type: '',
         key: 'name',
         filter: false,
@@ -49,13 +50,14 @@ export class FinanceAccountingComponent extends PageController {
       },
       {
         name: 'FiBu KAt.',
+        width: '13%',
         key: 'categoryName',
         type: '',
         filter: false,
         sort: true,
       },
       {
-        width: '8%',
+        width: '10%',
         name: 'Typ',
         key: 'type',
         type: '',

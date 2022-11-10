@@ -18,7 +18,7 @@ import { CompanyGuard } from '@movit/api/auth';
 import { GetCompany } from '@movit/api/business';
 import { CompanyEntity } from '@movit/api/business';
 import { ProfilesService } from '@movit/api/profiles';
-import { ProfilesDto } from '../../../../../../../../../../libs/api/models/profiles/src/classes/profiles.dto';
+import { ProfilesDto } from '@movit/api/profiles';
 
 @Controller(FrontOffice.resolePaths(['crm', FrontOffice.Profiles.PATH]))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)

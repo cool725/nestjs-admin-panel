@@ -11,7 +11,7 @@ import {
 import { Administration } from '../../business.administration.namespace';
 import { GetCompany } from '@movit/api/business';
 import { CompanyEntity } from '@movit/api/business';
-import {ICompany, CompanyService} from '@movit/api/business';
+import { ICompany, CompanyService } from '@movit/api/business';
 import { AuthGuard } from '@nestjs/passport';
 import { CompanyGuard } from '@movit/api/auth';
 import { AppRoleService } from "@movit/api/apps";
@@ -24,7 +24,7 @@ export class BusinessAdministrationRoleController {
   constructor(
     private businessService: CompanyService,
     private appRoleService: AppRoleService
-  ) {}
+  ) { }
 
   @Get('getRoles')
   getRoles(@GetCompany() business: ICompany) {
@@ -40,11 +40,13 @@ export class BusinessAdministrationRoleController {
       }),
       this.appRoleService.getBusinessApps({
         domain: 'business',
+        // eslint-disable-next-line
         companyId: IsNull() as any,
       }),
     ])
       .then((rows) => [...rows[0], ...rows[1]])
       .then((apps) =>
+        // eslint-disable-next-line
         apps.map((app: any) => {
           app.categoryName = app?.category?.title; // todo get base category
           delete app.category;
@@ -105,11 +107,13 @@ export class BusinessAdministrationRoleController {
     @GetCompany() business: CompanyEntity,
     @Param('roleId') roleId
   ) {
+    // eslint-disable-next-line
     this.appRoleService.deleteAppsFromRole(<any>{
       companyId: business.companyId,
       roleId: roleId,
     });
 
+    // eslint-disable-next-line
     this.appRoleService.deleteUsersFromRole(<any>{
       companyId: business.companyId,
       roleId: roleId,

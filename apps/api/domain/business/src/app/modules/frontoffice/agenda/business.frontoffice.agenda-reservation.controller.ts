@@ -13,7 +13,7 @@ import {ICompany, GetCompany} from '@movit/api/business';
 import { AuthUserEntity, CompanyGuard, GetUser } from '@movit/api/auth';
 import { AuthGuard } from '@nestjs/passport';
 import {GetPagination, Pagination} from "../../../../../../../../../libs/api/common/decorator";
-import { ReservationDTO } from '../../../../../../../../../libs/api/models/reservation/src/classes/reservation.dto';
+import { ReservationDTO } from '@movit/api/reservation';
 
 @Controller(FrontOffice.resolePaths([FrontOffice.Agenda.PATH]))
 @UseGuards(AuthGuard(), CompanyGuard /*AppsRolesGuard(xx)*/)
@@ -35,8 +35,8 @@ export class BusinessFrontOfficeAgendaController {
   @Get('list')
   async getReservationList(
     @GetCompany() business: ICompany,
-    @GetUser() user: AuthUserEntity,
-    @GetPagination() pagination: Pagination
+    // @GetUser() user: AuthUserEntity,
+    // @GetPagination() pagination: Pagination
   ) {
     return {
       data: await this.reservationService.getReservations(
@@ -51,7 +51,7 @@ export class BusinessFrontOfficeAgendaController {
     @GetCompany() business: ICompany,
     @GetUser() user: AuthUserEntity,
     @Param('reservationId') reservationId: number,
-    @Body() filterValues: any
+    // @Body() filterValues: any
   ) {
     // verify if reservation is private | user has access;
     return this.reservationService.getReservation(

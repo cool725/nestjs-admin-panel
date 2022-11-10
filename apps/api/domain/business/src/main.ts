@@ -10,13 +10,6 @@ import { BusinessAPIModule } from './app/business.module';
 import * as cookieParser from 'cookie-parser';
 import { CorsMiddleware } from '@movit/api/middleware';
 
-import {BexioHelper} from "@movit/api/extern";
-import {FinAccountEntity} from "../../../../../libs/api/models/finance/account/src/entities/account.entity.app";
-import {FinAccountTaxEntity} from "../../../../../libs/api/models/finance/account/src/entities/account.tax.entity.app";
-import {
-  FinAccountCategoryEntity
-} from "../../../../../libs/api/models/finance/account/src/entities/account.category.entity.app";
-
 async function bootstrap() {
   const app = await NestFactory.create(BusinessAPIModule);
   const globalPrefix = 'api';
@@ -33,13 +26,14 @@ async function bootstrap() {
 
   Logger.log(
     process.env['APP_ENV'] +
-      `: 🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
+    `: 🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
   );
 }
 
 const listRoutes = (server) => {
   const router = server._events.request._router;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const availableRoutes: [] = router.stack
     .map((layer) => {
       if (layer.route) {

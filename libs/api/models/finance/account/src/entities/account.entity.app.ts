@@ -13,7 +13,7 @@ import { classToPlain, Exclude } from 'class-transformer';
 import { FinAccountCategoryEntity } from './account.category.entity.app';
 import { FinAccountTaxEntity } from './account.tax.entity.app';
 import { EAccountType } from '../classes/account.enum';
-import {TenantCompanyEntity} from "../../../../company/src";
+import { TenantCompanyEntity } from '../../../../company/src';
 
 @Entity('fin_account')
 @Unique(['companyId', 'code'])
@@ -63,6 +63,9 @@ export class FinAccountEntity extends TenantCompanyEntity {
   @JoinColumn({ name: 'taxId' })
   tax: FinAccountTaxEntity;
 
+  @Column({ type: 'boolean', default: false })
+  showInCashSystem: boolean;
+
   constructor(params: Partial<FinAccountEntity> = {}) {
     super();
     this.initialise(params);
@@ -90,6 +93,6 @@ export class FinAccountEntity extends TenantCompanyEntity {
   protected self = FinAccountEntity;
 
   protected async beforeInsert(): Promise<any> {
-    return await this.setLastEntryId('accountId')
+    return await this.setLastEntryId('accountId');
   }
 }

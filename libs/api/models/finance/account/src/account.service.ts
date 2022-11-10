@@ -7,6 +7,7 @@ import {
 } from './classes/account.repository';
 import { FinAccountCategoryEntity } from './entities/account.category.entity.app';
 import { EAccountType } from './classes/account.enum';
+import {FinAccountEntity} from "./entities/account.entity.app";
 
 @Injectable()
 export class AccountService {
@@ -19,10 +20,15 @@ export class AccountService {
     private taxRepo: AccountTaxRepository
   ) {}
 
-  async getCategories(params: {
-    companyId: number;
-    withAccounts?: boolean;
-  }): Promise<FinAccountCategoryEntity[]> {
+  async getAccount(companyId:number,accountId){
+   return this.accountRepo.findOne({
+      where: {
+        companyId,accountId
+      }
+    })
+  }
+
+  async getCategories(params: { companyId: number; withAccounts?: boolean; }): Promise<FinAccountCategoryEntity[]> {
 
     if (!params.companyId) {
       throw 'CompanyId is missing';
@@ -52,8 +58,7 @@ export class AccountService {
       for (let i = 0; i < base.length; i++) {
         const category = base[i];
         category.accounts =
-          (await this.getAccounts({
-            companyId: params.companyId,
+          (await this.getAccounts(params.companyId,{
             accountCategoryId: category.uuId,
           })) || [];
         category.categories = (await fetchCategories(category.uuId)) || [];
@@ -70,26 +75,28 @@ export class AccountService {
     return await getChildren(baseCategories);
   }
 
-  async getAccounts(params: {
-    companyId: number;
-    accountCategoryId?: string;
-    type?: EAccountType;
-  }) {
+  async getAccounts(companyId: number, params: { accountCategoryId?: string; type?: EAccountType;showInCashSystem?:boolean,select?:string[] }):Promise<FinAccountEntity[]> {
 
-    if (!params.companyId) {
-      throw 'companyId is missing: 1';
-    }
+    if (!companyId) throw 'getAccounts: companyId is missing: 1';
 
     const query = this.accountRepo
-      .createQueryBuilder()
-      .select()
+      .createQueryBuilder().select()
       .orderBy('code')
-      .where('companyId = :companyId', { companyId: params.companyId });
+      .where(`
+      CASE
+        WHEN EXISTS(SELECT * FROM fin_account fa WHERE fa.companyId = :companyId and FinAccountEntity.accountId = fa.accountId) THEN companyId = :companyId
+        ELSE companyId = 0
+      END
+      `, { companyId: companyId })
 
     if (params.accountCategoryId) {
       query.andWhere('accountCategoryId = :accountCategoryId', {
         accountCategoryId: params.accountCategoryId,
       });
+    }
+
+    if (params.showInCashSystem) {
+      query.andWhere('showInCashSystem = 1', {});
     }
 
     if (params.type) {
@@ -114,16 +121,27 @@ export class AccountService {
     accountCategoryId?: string;
   }) {
     const results = {
-      debits: await this.getAccounts({
+      debits: await this.getAccounts(params.companyId,{
         ...params,
         type: EAccountType.active_accounts,
       }).then(AccountService.arrayToJSON),
-      credits: await this.getAccounts({
+      credits: await this.getAccounts(params.companyId,{
         ...params,
         type: EAccountType.passive_accounts,
       }).then(AccountService.arrayToJSON),
     };
     return results;
+  }
+
+  async createCompanyAccount(companyId:number,accountId:number){
+    const accountOrg = await this.accountRepo.findOne({
+      companyId:0,
+      accountId:accountId
+    })
+    const account = this.accountRepo.create()
+    Object.assign(account,accountOrg.toJSON());
+    account.companyId = companyId;
+    return account.save()
   }
 
   static arrayToJSON(array) {

@@ -10,6 +10,7 @@ import { AppHttpInterceptor } from '@movit/app/common';
 import { environment } from '../environments/environment';
 import { HTTPTranslateLoader, TranslateLocaleModule } from '@movit/app/module';
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -21,7 +22,7 @@ import { HTTPTranslateLoader, TranslateLocaleModule } from '@movit/app/module';
       loader: {
         provide: 'TranslateLocaleLoader',
         useClass: HTTPTranslateLoader,
-      },
+      }
     })
   ],
   providers: [

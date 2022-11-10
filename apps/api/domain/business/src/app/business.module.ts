@@ -18,6 +18,7 @@ import { SellItemModule } from '@movit/api/sales/item';
 import { EmployeeModule } from "@movit/api/models/employee";
 import { CashSystemModule } from "@movit/api/models/cashsystem";
 import {AccountModule} from "@movit/api/finance/account";
+import {BusinessFinancesModule} from "./modules/finances/business.finances.module";
 
 
 @Module({
@@ -48,6 +49,7 @@ import {AccountModule} from "@movit/api/finance/account";
     BusinessBackOfficeModule,
     BusinessSettingsModule,
     BusinessAdministrationModule,
+    BusinessFinancesModule
   ],
   controllers: [BusinessController, BusinessAppsController]
 })

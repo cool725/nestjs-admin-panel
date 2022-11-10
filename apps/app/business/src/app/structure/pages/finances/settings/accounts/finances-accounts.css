@@ -1,0 +1,6 @@
+a.active{
+    color: #514d6a;
+    font-weight: bold;
+    text-decoration: underline;
+    text-underline-offset: 0.5rem;
+}

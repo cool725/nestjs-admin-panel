@@ -253,7 +253,8 @@ INSERT INTO fin_account (companyId, id, accountId, name, externId, color, type, 
 INSERT INTO fin_account (companyId, id, accountId, name, externId, color, type, code, isActive, accountCategoryId, taxId) VALUES (${companyId}, 113, 113, 'Hosting (SLA)', '201', null, 1, 3202, 0, 14, null);
 INSERT INTO fin_account (companyId, id, accountId, name, externId, color, type, code, isActive, accountCategoryId, taxId) VALUES (${companyId}, 114, 114, 'Software (SLA)', '202', null, 1, 3203, 0, 14, null);
 INSERT INTO fin_account (companyId, id, accountId, name, externId, color, type, code, isActive, accountCategoryId, taxId) VALUES (${companyId}, 115, 115, 'Eink. Domain', '203', null, 2, 4201, 0, 19, null);
-INSERT INTO fin_account (companyId, id, accountId, name, externId, color, type, code, isActive, accountCategoryId, taxId) VALUES (${companyId}, 116, 116, 'Bruttoerlöse Hosting', '204', null, 1, 3205, 0, 14, null);`.split('\n')
+INSERT INTO fin_account (companyId, id, accountId, name, externId, color, type, code, isActive, accountCategoryId, taxId) VALUES (${companyId}, 116, 116, 'Bruttoerlöse Hosting', '204', null, 1, 3205, 0, 14, null);
+INSERT INTO fin_account (companyId, id, accountId, name, externId, color, type, code, isActive, accountCategoryId, taxId, showInCashSystem) VALUES (${companyId}, 119, 117, 'Kasse', null, null, 3, 1000, 1, 5, null, 1);`.split('\n')
         for(let i = 0; i < cmds.length; i++) await queryRunner.query(cmds[i])
     }
 

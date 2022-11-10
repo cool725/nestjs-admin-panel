@@ -6,6 +6,7 @@ import { ProfilesModule } from "@movit/api/profiles";
  import { BusinessFrontOfficeCashSystemItemsController } from "./business-front-office-cash-system-items.controller";
 import { BusinessFrontOfficeCashSystemController } from "./business.frontoffice.cashsystem.controller";
 import { BusinessFrontOfficeCashSystemProfilesController } from "./business-front-office-cash-system-profiles.controller";
+import {AccountModule} from "@movit/api/finance/account";
 
 
 @Module({
@@ -13,6 +14,7 @@ import { BusinessFrontOfficeCashSystemProfilesController } from "./business-fron
       CashSystemModule,
       SellItemModule,
       ProfilesModule,
+      AccountModule
   ],
   controllers: [
     BusinessFrontOfficeCashSystemController,

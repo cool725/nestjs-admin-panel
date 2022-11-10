@@ -1,0 +1,488 @@
+<ng-template #topbar>
+    <div class="left-box"></div>
+    <h4 class="slide">{{ 'employee edit' | translate }}</h4>
+</ng-template>
+<ng-template #employeeGender>
+    <ng-template #genderReqStar>
+    <span
+            class="text-danger"
+            *ngIf="employeeForm.controls['gender']?.hasError('required')"
+    >*</span
+    >
+    </ng-template>
+    <div [formGroup]="employeeForm">
+        <div class="form-check form-check-inline ml-1">
+            <input
+                    formControlName="gender"
+                    class="form-check-input"
+                    type="radio"
+                    id="radio-male"
+                    value="M"
+            />
+            <label class="form-check-label" for="radio-male"
+            >
+                <ng-container [ngTemplateOutlet]="genderReqStar"></ng-container>
+                Male</label
+            >
+        </div>
+        <div class="form-check form-check-inline ml-1">
+            <input
+                    formControlName="gender"
+                    class="form-check-input"
+                    type="radio"
+                    id="radio-woman"
+                    value="W"
+            />
+            <label class="form-check-label" for="radio-woman">Woman</label>
+        </div>
+        <div class="form-check form-check-inline ml-1">
+            <input
+                    formControlName="gender"
+                    class="form-check-input"
+                    type="radio"
+                    id="radio-company"
+                    value="C"
+            />
+            <label class="form-check-label" for="radio-company">
+                Company
+            </label>
+        </div>
+    </div>
+</ng-template>
+<div class="container-fluid employee-form">
+    <div class="row p-4 w-100">
+        <div class="col-12 col-md-6">
+            <form [formGroup]="employeeForm">
+                <mdb-tabs>
+                    <mdb-tab title="Overview">
+                        <div class="row shadow pt-3 mb-3">
+                            <div class="col-12 mb-3">
+                                <ng-container
+                                        [ngTemplateOutlet]="employeeGender"
+                                ></ng-container>
+                            </div>
+
+                            <ng-container *ngIf="employeeType === 'C'">
+                                <div class="col-12 row">
+                                    <div class="col-12 col-md-12 mb-3">
+                                        <mdb-form-control class="mt-2">
+                                            <input
+                                                    mdbInput
+                                                    type="text"
+                                                    id="employee-title"
+                                                    formControlName="title"
+                                                    class="form-control"
+                                            />
+                                            <label
+                                                    mdbLabel
+                                                    class="form-label"
+                                                    for="employee-title"
+                                            >
+                                                {{ 'title' | translate }}
+                                            </label>
+                                        </mdb-form-control>
+                                    </div>
+                                </div>
+                            </ng-container>
+
+                            <div class="col-12 d-flex">
+                                <div class="col-12 col-md-8">
+                                    <div class="row mb-3">
+                                        <div class="col-12 col-md-6">
+                                            <mdb-form-control>
+                                                <input
+                                                        mdbInput
+                                                        type="text"
+                                                        id="employee-firstname"
+                                                        formControlName="firstName"
+                                                        class="form-control"
+                                                />
+                                                <label mdbLabel class="form-label" for="employee-firstName">
+                                                    {{ 'firstname' | translate }}
+                                                </label>
+                                            </mdb-form-control>
+                                        </div>
+
+                                        <div class="col-12 col-md-6 mt-3 mt-md-0">
+                                            <mdb-form-control>
+                                                <input
+                                                        mdbInput
+                                                        type="text"
+                                                        id="employee-lastname"
+                                                        formControlName="lastName"
+                                                        class="form-control"
+                                                />
+                                                <label mdbLabel class="form-label" for="employee-lastName">
+                                                    {{ 'lastname' | translate }}
+                                                </label>
+                                            </mdb-form-control>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-12 col-md-6">
+                                            <mdb-form-control>
+                                                <input
+                                                        mdbInput
+                                                        type="text"
+                                                        id="employee-email"
+                                                        formControlName="email"
+                                                        class="form-control"
+                                                />
+                                                <label mdbLabel class="form-label" for="employee-email">
+                                                    {{ 'email' | translate }}
+                                                </label>
+                                            </mdb-form-control>
+                                        </div>
+
+                                        <div class="col-12 col-md-6 mt-3 mt-md-0">
+                                            <mdb-form-control>
+                                                <input
+                                                        mdbInput
+                                                        type="text"
+                                                        id="employee-phone"
+                                                        formControlName="phone"
+                                                        class="form-control"
+                                                />
+                                                <label mdbLabel class="form-label" for="employee-phone">
+                                                    {{ 'telephone' | translate }}
+                                                </label>
+                                            </mdb-form-control>
+
+                                            <div
+                                                    class="w-100 text-danger"
+                                                    *ngIf="!employeeForm.controls['phone'].valid"
+                                            >
+                                                {{ employeeForm.controls['phone']?.errors | json }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-4 d-none d-md-flex justify-content-end">
+                                    <img
+                                            class="rounded"
+                                            style="max-width: 100px; position: absolute"
+                                            src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row shadow pt-3 mb-3">
+                            <div class="col-12 mt-2">
+                                <div class="row">
+                                    <div class="col-12 col-md-4">
+                                        <mdb-form-control>
+                                            <input
+                                                    mdbInput
+                                                    type="text"
+                                                    id="employee-job"
+                                                    formControlName="job"
+                                                    class="form-control"
+                                            />
+                                            <label mdbLabel class="form-label" for="employee-job">
+                                                Job
+                                            </label>
+                                        </mdb-form-control>
+                                    </div>
+
+                                    <div class="col-12 col-md-4 mt-3 mt-md-0">
+                                        <mdb-form-control>
+                                            <input
+                                                    mdbInput
+                                                    type="text"
+                                                    id="employee-civil"
+                                                    formControlName="civilState"
+                                                    class="form-control"
+                                            />
+                                            <label mdbLabel class="form-label" for="employee-civil">
+                                                Civil status
+                                            </label>
+                                        </mdb-form-control>
+                                    </div>
+
+                                    <div class="col-12 col-md-4 mt-3 mt-md-0">
+                                        <mdb-form-control>
+                                            <input
+                                                    mdbInput
+                                                    id="employee-birthDay"
+                                                    formControlName="birthDay"
+                                                    class="form-control"
+                                                    type="date"
+                                            />
+                                            <label mdbLabel class="form-label" for="employee-birthDay">
+                                                {{ 'birthday' | translate }}
+                                            </label>
+                                        </mdb-form-control>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 d-flex mt-3">
+                                <div class="col-12 col-md-12">
+                                    <mdb-form-control>
+                          <textarea
+                                  mdbInput
+                                  class="form-control"
+                                  id="employee-notes-short"
+                                  rows="4"
+                          ></textarea>
+                                        <label mdbLabel class="form-label" for="employee-notes-short">
+                                            {{ 'notes' | translate }}
+                                        </label>
+                                    </mdb-form-control>
+                                </div>
+                            </div>
+
+                            <div class="col-12 my-3">
+                                <div class="row">
+                                    <div class="col-12 col-md-4">
+                                        <mdb-form-control class="mdb-multiselect">
+                                            <nz-select
+                                                    mdbInput
+                                                    mdbNzSelect
+                                                    class="w-100 form-control px-0"
+                                                    formControlName="languageId"
+                                                    multiple
+                                                    id="lang"
+                                            >
+                                                <nz-option nzLabel="DE" nzValue="1"></nz-option>
+                                                <nz-option nzLabel="EN" nzValue="2"></nz-option>
+                                            </nz-select>
+                                            <label mdbLabel class="form-label px-1" for="lang">
+                                                Sprache
+                                            </label>
+                                        </mdb-form-control>
+                                    </div>
+                                    <div class="col-12 col-md-4 mt-3 mt-md-0">
+                                        <mdb-form-control class="mdb-multiselect">
+                                            <nz-select
+                                                    mdbInput
+                                                    mdbNzSelect
+                                                    class="w-100 form-control px-0"
+                                                    formControlName="segments"
+                                                    nzMode="multiple"
+                                                    aria-label="segments"
+                                                    aria-describedby="employee-segments"
+                                                    id="Kundensegment"
+                                            >
+                                                <nz-option
+                                                        *ngFor="let segment of segments$ | async"
+                                                        [nzLabel]="segment.title"
+                                                        [nzValue]="segment.segmentId"
+                                                >
+                                                </nz-option>
+                                            </nz-select>
+                                            <label mdbLabel class="form-label px-1" for="Kundensegment">
+                                                Kundensegment
+                                            </label>
+                                        </mdb-form-control>
+                                    </div>
+                                    <div class="col-12 col-md-4 mt-3 mt-md-0">
+                                        <mdb-form-control class="mdb-multiselect">
+                                            <nz-select
+                                                    mdbInput
+                                                    mdbNzSelect
+                                                    class="w-100 form-control px-0"
+                                                    formControlName="priceClassId"
+                                                    aria-label="priceclass"
+                                                    aria-describedby="employee-priceclass"
+                                                    id="priceClassId"
+                                            >
+                                                <nz-option [nzValue]="null"> Keine</nz-option>
+                                                <nz-option
+                                                        *ngFor="let p of priceClasses$ | async" [nzLabel]="p.title"
+                                                        [nzValue]="p.priceClassId">
+                                                </nz-option>
+                                            </nz-select>
+                                            <label mdbLabel class="form-label px-1" for="priceClassId">
+                                                Preisklasse
+                                            </label>
+                                        </mdb-form-control>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mdb-tab>
+                    <mdb-tab title="Address">
+                        <div class="row shadow pt-3 mb-3">
+                            <label class="pb-3"><b>{{ 'address' | translate }}</b></label>
+                            <ng-container>
+                                <div class="row mx-0 mb-3 col-12" formGroupName="defaultAddress">
+                                    <div class="col-12 col-md-6">
+                                        <mdb-form-control>
+                            <textarea
+                                    mdbInput
+                                    class="form-control no-resize"
+                                    id="employee-street"
+                                    formControlName="street"
+                                    rows="4"
+                            ></textarea>
+                                            <label mdbLabel class="form-label" for="employee-street">
+                                                {{ 'street' | translate }}
+                                            </label>
+                                        </mdb-form-control>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="row h-100">
+                                            <div class="col-12 col-md-6 mt-2 mt-md-0">
+                                                <mdb-form-control>
+                                                    <input
+                                                            mdbInput
+                                                            id="employee-zip"
+                                                            formControlName="zip"
+                                                            class="form-control"
+                                                            type="text"
+                                                    />
+                                                    <label mdbLabel class="form-label" for="employee-zip">
+                                                        Plz
+                                                    </label>
+                                                </mdb-form-control>
+                                            </div>
+                                            <div class="col-12 col-md-6 mt-2 mt-md-0">
+                                                <mdb-form-control>
+                                                    <input
+                                                            mdbInput
+                                                            id="employee-city"
+                                                            formControlName="city"
+                                                            class="form-control"
+                                                            type="text"
+                                                    />
+                                                    <label mdbLabel class="form-label" for="employee-city">
+                                                        Stadt
+                                                    </label>
+                                                </mdb-form-control>
+                                            </div>
+                                            <div class="col-12 col-md-12 mt-2 mb-0 d-flex align-items-end">
+                                                <mdb-form-control class="w-100">
+                                                    <input
+                                                            mdbInput
+                                                            id="employee-country"
+                                                            formControlName="country"
+                                                            class="form-control"
+                                                            type="text"
+                                                    />
+                                                    <label mdbLabel class="form-label" for="employee-country">
+                                                        {{ 'country' | translate }}
+                                                    </label>
+                                                </mdb-form-control>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <div class="row shadow pt-3 mb-3">
+                            <label class="pb-3"><b>Rechnungsaddresse</b></label>
+                            <ng-container>
+                                <div class="row mx-0 mb-3 col-12" formGroupName="billingAddress">
+                                    <div class="col-12 col-md-6">
+                                        <mdb-form-control>
+                            <textarea
+                                    mdbInput
+                                    class="form-control"
+                                    id="employee-street-2"
+                                    formControlName="street"
+                                    rows="5"
+                            ></textarea>
+                                            <label mdbLabel class="form-label" for="employee-street-2">
+                                                {{ 'street' | translate }}
+                                            </label>
+                                        </mdb-form-control>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="row h-100">
+                                            <div class="col-12 col-md-6 mt-2 mt-md-0">
+                                                <mdb-form-control>
+                                                    <input
+                                                            mdbInput
+                                                            id="employee-zip-2"
+                                                            formControlName="zip"
+                                                            class="form-control"
+                                                            type="text"
+                                                    />
+                                                    <label mdbLabel class="form-label" for="employee-zip-2">
+                                                        Plz
+                                                    </label>
+                                                </mdb-form-control>
+                                            </div>
+                                            <div class="col-12 col-md-6 mt-2 mt-md-0">
+                                                <mdb-form-control>
+                                                    <input
+                                                            mdbInput
+                                                            id="employee-city-2"
+                                                            formControlName="city"
+                                                            class="form-control"
+                                                            type="text"
+                                                    />
+                                                    <label mdbLabel class="form-label" for="employee-city-2">
+                                                        Stadt
+                                                    </label>
+                                                </mdb-form-control>
+                                            </div>
+                                            <div class="col-12 col-md-12 mt-2 mb-0 d-flex align-items-end">
+                                                <mdb-form-control class="w-100">
+                                                    <input
+                                                            mdbInput
+                                                            id="employee-country-2"
+                                                            formControlName="country"
+                                                            class="form-control"
+                                                            type="text"
+                                                    />
+                                                    <label mdbLabel class="form-label" for="employee-country-2">
+                                                        {{ 'country' | translate }}
+                                                    </label>
+                                                </mdb-form-control>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </mdb-tab>
+                    <mdb-tab title="Notizen"></mdb-tab>
+                    <mdb-tab title="Einstellungen">
+                        <div class="row shadow pt-3 mb-3">
+                            <label class="pb-3"><b>Benachrichtigungen</b></label>
+                        </div>
+                    </mdb-tab>
+                </mdb-tabs>
+            </form>
+        </div>
+        <div class="col-12 col-md-6">
+            <mdb-tabs>
+                <mdb-tab title="Appointments">
+                    <div class="row shadow pt-3 mb-3">
+                        <label class="pb-3"><b> Appointments </b></label>
+                        <table class="table table-sm table-striped"></table>
+                    </div>
+                </mdb-tab>
+                <mdb-tab title="Orders">
+                    <div class="row shadow pt-3 mb-3">
+                        <label class="pb-3"><b> </b></label>
+                        <table class="table table-sm table-striped"></table>
+                    </div>
+                </mdb-tab>
+                <mdb-tab title="Phone">
+                    <div class="row shadow pt-3 mb-3">
+                        <label class="pb-3"><b> </b></label>
+                        <table class="table table-sm table-striped"></table>
+                    </div>
+                </mdb-tab>
+                <mdb-tab title="Bills">
+                    <div class="row shadow pt-3 mb-3">
+                        <label class="pb-3"><b> </b></label>
+                        <table class="table table-sm table-striped"></table>
+                    </div>
+                </mdb-tab>
+                <mdb-tab title="Voucher">
+                    <div class="row shadow pt-3 mb-3">
+                        <label class="pb-3"><b> </b></label>
+                        <table class="table table-sm table-striped"></table>
+                    </div>
+                </mdb-tab>
+            </mdb-tabs>
+        </div>
+    </div>
+</div>

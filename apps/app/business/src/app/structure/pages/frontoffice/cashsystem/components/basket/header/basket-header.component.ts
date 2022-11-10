@@ -1,8 +1,8 @@
 import { Component, Injector } from "@angular/core";
-import { CashSystemSettingsService } from "../../../packages/services/cashsystem.service-settings";
 import { CashSystemItemsService } from "../../../packages/services/cashsystem.service-items";
 import { CashSystemProfileService } from "../../../packages/services/cashsystem.service-profile";
 import { Debounce } from "@movit/app/common";
+import {CashSystemStore} from "../../../packages/services/cashsystem.store";
 
 @Component({
   selector: 'movit-cashsystem-basket-header',
@@ -13,8 +13,7 @@ export class CashSystemBasketHeaderComponent {
 
   filteredProfiles
   constructor(
-
-    private settings: CashSystemSettingsService,
+    private store: CashSystemStore,
     private itemsService: CashSystemItemsService,
     private profileService: CashSystemProfileService,
 
